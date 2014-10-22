@@ -1,0 +1,155 @@
+// wizard
+.wizard {
+  position: relative;
+  overflow: hidden;
+  background-color: #f9f9f9;
+
+  &:before,
+  &:after {
+    display: table;
+    line-height: 0;
+    content: "";
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  ul {
+    width: 4000px;
+    padding: 0;
+    margin: 0;
+    list-style: none outside none;
+
+    &.previous-disabled li.complete {
+      cursor: default;
+
+      &:hover {
+        color: #468847;
+        cursor: default;
+        background: #f3f4f5;
+
+        .chevron:before {
+          border-left-color: #f3f4f5;
+        }
+      }
+    }
+
+    li {
+      position: relative;
+      float: left;
+      height: 46px;
+      padding: 0 20px 0 30px;
+      margin: 0;
+      font-size: 16px;
+      line-height: 46px;
+      color: darken(#f2f2f2, 30%);
+      cursor: default;
+      background: #f2f2f2;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      .chevron {
+        position: absolute;
+        top: -24px;
+        right: -14px;
+        z-index: 1;
+        display: block;
+        border: 48px solid transparent;
+        border-right: 0;
+        border-left: 24px solid #fff;
+
+        &:before {
+          position: absolute;
+          top: -48px;
+          right: 5px;
+          display: block;
+          border: 48px solid transparent;
+          border-right: 0;
+          border-left: 24px solid #f2f2f2;
+          content: "";
+        }
+      }
+
+      &.complete {
+        color: #fff;
+        background: $color-success;
+
+        &:hover {
+          cursor: pointer;
+          background: darken($color-success, 1%);
+
+          .chevron:before {
+            border-left: 24px solid darken($color-success, 1%);
+          }
+        }
+
+        .chevron:before {
+          border-left: 24px solid $color-success;
+        }
+      }
+
+      &.active {
+        color: #fff;
+        background: $color-primary;
+
+        .chevron:before {
+          border-left: 24px solid $color-primary;
+        }
+      }
+
+      .badge {
+        position: relative;
+        top: -2px;
+        margin-right: 8px;
+        padding: 4px 7px;
+
+        &.badge-info {
+          background-color: darken($color-primary, 10%);
+        }
+
+        &.badge-success {
+          background-color: darken($color-success, 10%);
+        }
+      }
+    }
+  }
+}
+
+.step-content {
+  margin: 30px 0 ;
+  padding-left: 20px;
+
+  .step-pane {
+    display: none;
+  }
+
+  .active {
+    display: block;
+
+    .btn-group .active {
+      display: inline-block;
+    }
+  }
+
+  .form-group {
+    margin-bottom:0;
+    padding-left: 8px;
+    .help-text {
+      position: relative;
+      top: 30px;
+    }
+  }
+
+  .badge-success {
+    background-color: darken($color-success, 10%);;
+    font-weight: normal;
+  }
+
+  .badge-warning {
+    background-color: darken($color-danger, 10%);
+    font-weight: normal;
+  }
+}

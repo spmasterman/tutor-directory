@@ -1,0 +1,21 @@
+{# These files are suffer from twig-ception. They are twig files that render a twig file that renders an html file    #}
+{# that deals with one of the CRUD operations on an entity. They arent needed for production- only during development #}
+
+{% block extends %}
+{{ "{% extends 'FitchDashboardBundle::dashboard.html.twig' %}" }}
+{% endblock extends %}
+
+{% block content %}
+{{ "{% block main_header -%}" }}
+        <h2>{{ "{% trans %}" }}{{ entity|lower }}.edit.verb{{ "{% endtrans %}" }}</h2>
+        <em>{{ "{% trans %}" }}{{ entity|lower }}.edit.tagline{{ "{% endtrans %}" }}</em>
+{{ "{% endblock %}" }}
+
+{{ "{% block main_content -%}" }}
+    {{ "{% form_theme edit_form 'FitchDashboardBundle:Form:horizontal.html.twig' %}" }}
+    {{ "{{ form(edit_form, {'attr': {'class': 'form-horizontal'} }) }}" }}
+
+    {% set hide_edit, hide_delete = true, false %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+{{ "{% endblock %}" }}
+{% endblock content %}

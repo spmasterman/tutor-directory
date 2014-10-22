@@ -1,0 +1,42 @@
+application:
+    fullname: Fitch Learning Tutor Directory
+    shortname: Tutor Directory
+    author: Shaun Masterman (shaun at masterman.com) / Southbase Limited
+    description: Tutor Directory for Fitch Learning
+    copyright: &nbsp; &copy; 2014 Fitch Learning
+
+home:
+    title: Tutor Directory
+    tagline: a global resource for the Fitch faculty
+
+error:
+    search_intro: You can also use search below to find the page you are looking for.
+    401:
+        status: Uh-oh!<br/>Not Authorised
+        long: <p>You aren't authorised to do what you are trying to do. If you think this has happened in error, please <a href="#">let us know</a>.</p><p>It's possible that you just need to login as a different user with elevated privileges.</p>
+    403:
+        status: Oops!<br/>Forbidden
+        long: <p>The server has returned a forbidden status while trying to execute your task. If you think this has happened in error, please <a href="#">let us know</a>.</p>
+    404:
+        status: Oops!<br/>Page Not Found
+        long: The page you were looking for could not be found, please <a href="#">contact us</a> to report this issue.
+    500:
+        status: Ooops!<br/>Internal Server Error
+        long: <p>The server ran into a problem doing what you asked and reported the error code '500 Internal Server Error'</p><p>Please <a href="#">let us know</a> what you were doing when this happened. We'll get our best detectives on the case and fix it as soon as possible. Sorry for any inconvenience caused.</p>
+
+navigation:
+    back: Go Back
+    home: Home
+    login: Login
+    new: Create a new entry
+    list: Show All
+    delete: Delete
+    show: Show
+    edit: Edit
+    update: Update
+    activate:
+      one: Activate
+      all: Activate All
+    deactivate:
+      one: Deactivate
+      all: Deactivate All

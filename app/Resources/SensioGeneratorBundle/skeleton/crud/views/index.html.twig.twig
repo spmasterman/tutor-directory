@@ -1,0 +1,63 @@
+{% block extends %}
+{{ "{% extends 'FitchDashboardBundle::dashboard.html.twig' %}" }}
+{% endblock extends %}
+
+{% block content %}
+    {{ "{% block main_header -%}" }}
+    <h2>{{ "{% trans %}" }}{{ entity|lower }}.list.verb{{ "{% endtrans %}" }}</h2>
+    <em>{{ "{% trans %}" }}{{ entity|lower }}.list.tagline{{ "{% endtrans %}" }}</em>
+    {{ "{% endblock %}" }}
+
+{{ "{% block main_content -%}" }}
+    <table class="records_list table table-condensed table-striped">
+        <thead>
+            <tr>
+            {%- for field, metadata in fields %}
+
+                <th>{{ field|capitalize }}</th>
+
+            {%- endfor %}
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{ '{% for entity in entities %}' }}
+            <tr>
+
+        {%- for field, metadata in fields %}
+            {%- if loop.first and ('show' in actions) %}
+
+                <td><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</a></td>
+
+            {%- elseif metadata.type in ['date', 'datetime'] %}
+
+                <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+
+            {%- else %}
+
+                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+            {%- endif %}
+
+            {%- if loop.last %}
+
+                <td>
+                    {%- include "crud/views/others/actions.html.twig.twig" %}
+                </td>
+
+            {%- endif %}
+        {%- endfor %}
+
+            </tr>
+        {{ '{% endfor %}' }}
+        </tbody>
+    </table>
+
+    {% if 'new' in actions %}
+    <a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}" class="btn btn-default btn-s">
+        <i class="fa fa-plus-circle"></i> {{ "{% trans %}navigation.new{% endtrans %}" }}
+    </a>
+    {% endif %}
+{{ "{% endblock %}" }}
+{% endblock content %}

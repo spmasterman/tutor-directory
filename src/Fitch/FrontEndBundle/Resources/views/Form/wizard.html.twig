@@ -1,0 +1,81 @@
+{# Used in Wizard presentation - stacked style. Assumes fields will be a collection of EAV attribues - these are #}
+{# compound fields (based off entityCollection) that have some additional attributes defined in #}
+{# FitchEntityAttributeValueBundle\Form\EventListener\AttributeSubscriber #}
+
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
+            {% if compound %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' hide')|trim}) %}
+            {% else %}
+                <div class="col-xs-6">
+            {% endif %}
+
+            {{ form_label(form, null, {'label_attr': label_attr} ) }}
+            {{ form_widget(form, {'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form) }}
+
+            {% if not compound %}
+                </div>
+            {% endif %}
+
+            {%  if label_attr.help is defined %}
+            <div class="col-xs-6 help-text">
+                <em>{{ label_attr.help }}</em>
+            </div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block attributeCollection_widget %}
+    {% spaceless %}
+        {% for attribute in form %}
+            {% if attribute.value is defined %}
+                {{ form_row(attribute.value) }}
+            {% endif %}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock attributeCollection_widget %}
+
+{% block button_row %}
+    {% spaceless %}
+        {% if 'data-no-open-row' not in attr %}
+            <div class="actions">
+        {% endif %}
+        {{ form_widget(form) }}
+        {% if 'data-no-close-row' not in attr %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock button_row %}
+
+{% block button_attributes %}
+    {% spaceless %}
+        id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
+        {% for attrname, attrvalue in attr %}{% if attrvalue != 'data-no-open-row' and attrvalue != 'data-no-close-row'%}{{ attrname }}="{{ attrvalue }}"{%endif%}{% endfor %}
+    {% endspaceless %}
+{% endblock button_attributes %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% set type = type|default('submit') %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ attr.submit_class|default('btn-primary'))|trim}) %}
+        {{ block('button_widget') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block button_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-s')|trim}) %}
+        {% if attr.submit_glyph is defined %}
+            {% set glyph = '<i class="fa ' ~ attr.submit_glyph ~ '"></i>' %}
+        {% else %}
+            {% set glyph = '' %}
+        {% endif %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ glyph|raw }} {{ label|trans({}, translation_domain) }}</button>
+    {% endspaceless %}
+{% endblock button_widget %}

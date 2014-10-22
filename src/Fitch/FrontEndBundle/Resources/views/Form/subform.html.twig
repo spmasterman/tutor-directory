@@ -1,0 +1,74 @@
+{# This form should be used to render a separate form that should not have its own <form> tags #}
+{# Fields are wrapped in a subform-group div  #}
+
+{% block form_start -%}
+{%- endblock form_start %}
+
+{% block form_end -%}
+{%- endblock form_end %}
+
+{% block form_row %}
+    {% spaceless %}
+        <div class="subform-group {% if errors|length > 0 %}has-error{% endif %}">
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+
+            {{ form_label(form, null, {'label_attr': {'class': 'control-label'} }) }}
+
+            {{ form_errors(form) }}
+
+            {{ form_widget(form, {'attr': {'class': 'form-control' } }) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block enhancedtextarea_row %}
+    {% spaceless %}
+        <div class="subform-group {% if errors|length > 0 %}has-error{% endif %}">
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+
+            {{ form_label(form, null, {'label_attr': {'class': 'control-label'} }) }}
+            {% if attr.helptext|default('') %}
+                <span class="help-text tooltip-trigger" data-toggle="tooltip" data-placement="left" title="{{ attr.helptext }}"><i class="fa fa-info-circle blue-font" ></i></span>
+            {% endif %}
+            {{ form_errors(form) }}
+
+            {% set widget_class = 'form-control' %}
+            {% if attr.character_count|default('') == 'twitter' %}
+                {% set widget_class = widget_class ~ ' count-style-twitter' %}
+            {% endif %}
+
+            {{ form_widget(form, {'attr': {'class': widget_class } }) }}
+            {% if attr.character_count|default('') == 'twitter' %}
+                <p class="help-block text-right js-textarea-help"><span class="char-count text-muted"></span></p>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock enhancedtextarea_row %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <p class="text-danger">{{ error.message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

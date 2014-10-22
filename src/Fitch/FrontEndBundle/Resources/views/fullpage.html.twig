@@ -1,0 +1,12 @@
+{%  extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="full-page-wrapper {% block wrapper_classes %}{% endblock %}">
+        <div class="inner-page">
+        {% block content %}{% endblock %}
+        </div>
+        {% block footer %}
+            {%  include 'FitchFrontEndBundle::footer.html.twig' %}
+        {% endblock %}
+    </div>
+{% endblock %}

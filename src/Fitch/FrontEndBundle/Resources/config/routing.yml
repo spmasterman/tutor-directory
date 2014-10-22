@@ -1,0 +1,13 @@
+FrontEndBundle_annotation:
+    resource: "@FitchFrontEndBundle/Controller"
+    prefix: /
+    type: annotation
+
+terms:
+    pattern: /terms
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'FitchFrontEndBundle:Pages:terms.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false

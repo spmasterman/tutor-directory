@@ -1,0 +1,83 @@
+{% extends 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group">
+            {{ form_label(form, null, {'label_attr': {'class': 'sr-only'} }) }}
+            {{ form_errors(form) }}
+
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            {% set placeholder = label|trans({}, translation_domain) %}
+            {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': placeholder } }) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block button_row %}
+    {% spaceless %}
+        <div class="form-group" style="vertical-align: top;">
+            {{ form_widget(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock button_row %}
+
+{% block form_start %}
+    {% spaceless %}
+        {% set method = method|upper %}
+        {% if method in ["GET", "POST"] %}
+            {% set form_method = method %}
+        {% else %}
+            {% set form_method = "POST" %}
+        {% endif %}
+        <form name="{{ form.vars.name }}" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %} style=" display:inline!important;">
+        {% if form_method != method %}
+            <input type="hidden" name="_method" value="{{ method }}" />
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_start %}
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    {% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block onoff_row %}
+    {% spaceless %}
+        <div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+
+            {{ form_label(form, null, {'label_attr': {'class': 'control-label'} }) }}
+            <div class="switch">
+                <div class="control-inline onoffswitch">
+                    {{ form_widget(form, {'attr': {'class': 'onoffswitch-checkbox'} }) }}
+
+                    {# cheating a bit - weve already rendered the label with its required classes - now were rendering #}
+                    {# another one - but adding the onoffswitch class #}
+                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' onoffswitch-label')|trim}) %}
+
+                    {% set inner_class = (type|default('') ~ ' onoffswitch-inner')|trim %}
+                    {% set switch_class = (type|default('') ~ ' onoffswitch-switch')|trim %}
+
+                    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                    <div class="{{inner_class}}"></div>
+                    <div class="{{switch_class }}"></div>
+                    </label>
+
+                    {{ form_errors(form) }}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock onoff_row %}

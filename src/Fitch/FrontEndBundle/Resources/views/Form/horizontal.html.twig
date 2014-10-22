@@ -1,0 +1,196 @@
+{% block form_row %}
+    {% spaceless %}
+        <div class="row form-group {% if errors|length > 0 %}has-error{% endif %}">
+            {{ form_label(form, null, {'label_attr': {'class': 'control-label col-xs-2'} }) }}
+
+            <div class="col-xs-10">
+                {{ form_widget(form, {'attr': {'class': 'form-control'} }) }}
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block checkbox_row %}
+    {% spaceless %}
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <div class="checkbox">
+                    {% if not compound %}
+                        {% set label_attr = label_attr|merge({'for': id}) %}
+                    {% endif %}
+                    {% if required %}
+                        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+                    {% endif %}
+                    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                    {{ form_widget(form) }}
+                    {% if label is empty %}
+                        {% set label = name|humanize %}
+                    {% endif %}
+                    {{ label|trans({}, translation_domain) }}
+                    </label>
+                    {{ form_errors(form) }}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock checkbox_row %}
+
+{% block onoff_row %}
+    {% spaceless %}
+        <div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+
+            {{ form_label(form, null, {'label_attr': {'class': 'control-label col-xs-2'} }) }}
+            <div class="col-xs-10 switch">
+                <div class="control-inline onoffswitch">
+                    {{ form_widget(form, {'attr': {'class': 'onoffswitch-checkbox'} }) }}
+
+                    {# cheating a bit - weve already rendered the label with its required classes - now were rendering #}
+                    {# another one - but adding the onoffswitch class #}
+                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' onoffswitch-label')|trim}) %}
+
+                    {% set inner_class = (type|default('') ~ ' onoffswitch-inner')|trim %}
+                    {% set switch_class = (type|default('') ~ ' onoffswitch-switch')|trim %}
+
+                    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                         <div class="{{inner_class}}"></div>
+                         <div class="{{switch_class }}"></div>
+                    </label>
+
+                    {{ form_errors(form) }}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock onoff_row %}
+
+{#{% block button_row %}#}
+    {#{% spaceless %}#}
+        {#<div class="form-group">#}
+            {#<div class="col-xs-offset-2 col-xs-10">#}
+                {#{{ form_widget(form) }}#}
+            {#</div>#}
+        {#</div>#}
+    {#{% endspaceless %}#}
+{#{% endblock button_row %}#}
+
+{% block button_row %}
+    {% spaceless %}
+        {% if 'data-no-open-row' not in attr %}
+            <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+        {% endif %}
+        {{ form_widget(form) }}
+        {% if 'data-no-close-row' not in attr %}
+            </div>
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock button_row %}
+
+{% block button_attributes %}
+    {% spaceless %}
+        id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
+        {% for attrname, attrvalue in attr %}{% if attrvalue != 'data-no-open-row' and attrvalue != 'data-no-close-row'%}{{ attrname }}="{{ attrvalue }}"{%endif%}{% endfor %}
+    {% endspaceless %}
+{% endblock button_attributes %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% set type = type|default('submit') %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ attr.submit_class|default('btn-primary'))|trim}) %}
+        {{ block('button_widget') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block button_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-s')|trim}) %}
+        {% if attr.submit_glyph is defined %}
+            {% set glyph = '<i class="fa ' ~ attr.submit_glyph ~ '"></i>' %}
+        {% else %}
+            {% set glyph = '' %}
+        {% endif %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ glyph|raw }} {{ label|trans({}, translation_domain) }}</button>
+    {% endspaceless %}
+{% endblock button_widget %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <ul class="error-list alert alert-danger">
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block attributeCollection_widget %}
+    {% spaceless %}
+        {% for attribute in form %}
+            {% if attribute.value is defined %}
+                {{ form_row(attribute.value) }}
+            {% endif %}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock attributeCollection_widget %}
+
+
+{# TODO - EDIT EAV SCHEMA CAN USE THIS - ALSO WHEN WE GET TO QUESTIONS THIS IS WHAT WILL RENDER THE SUB ELEMENTS #}
+{# TODO - IT DOESNT WORK PROPERLY AS IT STANDS BUT IM LEAVING IT HERE CAUSE ITS HALF WAY THERE. A BUNCH OF ADDITIONAL #}
+{# TODO - STUFF IS ON THE SCHEMA/edit.html.twig TEMPLATE. WHEN YOU GET TO THIS BIT, COMMENT OUT THESE TWO BLOCKS #}
+{# TODO - AND LOOK AT /admin/eav/attribute/schema/edit/1 TO SEE WHAT THE STARTING POINT IS #}
+{% block collection_widget %}
+    {% spaceless %}
+        <div class="collection">
+            {% if prototype is defined %}
+                {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+            {% endif %}
+            <div {{ block('widget_container_attributes') }}>
+                {{ form_errors(form) }}
+                <ul>
+                    {% for prototype in form %}
+                        {{ block('collection_item_widget') }}
+                    {% endfor %}
+                </ul>
+                {{ form_rest(form) }}
+            </div>
+            <div class="clear"></div>
+            <a class="add" title="Add" href="javascript:void()">
+                <div style="display: none;"></div>
+                <span>Add</span>
+            </a>
+        </div>
+        <div class="clear"></div>
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+    {% spaceless %}
+        <li>
+            {% set fieldNum = 1 %}
+            {% for row in prototype %}
+                <div class="field{{ fieldNum }}">
+                    {{ form_label(row) }}
+                    {{ form_widget(row, { 'attr': { 'class': 'test' }}) }}
+                </div>
+                {% set fieldNum = fieldNum + 1 %}
+            {% endfor %}
+            <a class="remove" title="Remove" href="javascript:void()">
+                <span>Delete</span>
+            </a>
+            <div class="clear"></div>
+        </li>
+    {% endspaceless %}
+{% endblock collection_item_widget %}

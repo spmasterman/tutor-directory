@@ -1,0 +1,27 @@
+{% extends "FitchFrontEndBundle::fullpage.html.twig" %}
+
+{% block stylesheets -%}
+    {% include "::weakly-branded.html.twig" %}
+{% endblock %}
+
+{% block wrapper_classes %}main{% endblock %}
+
+{% block content %}
+<div class="content col-md-offset-1 col-md-10">
+    <div class="main-header">
+        <h2>Terms and Agreements</h2>
+        <em>the small print</em>
+    </div>
+    <div class="main-content">
+        <p>Use of this service and website falls under the Standard Terms and Conditions of Fitch Learning which are available on the main Fitch Learning corporate website.</p>
+
+        <p>You can contact us by any of the following methods:<br/>
+        Email: clientservices@fitchlearning.com<br/>
+        Post: Fitch Learning, 4 Chiswell Street, London, EC1Y 4UP<br/>
+        Telephone: +44 207 496 8600</p>
+
+        <a href="javascript:history.go(-1)" class="btn btn-custom-primary"><i class="fa fa-arrow-left"></i> {% trans %}navigation.back{% endtrans %}</a>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,125 @@
+{%  extends '::base.html.twig' %}
+
+{% block body_attrs %}class="dashboard"{% endblock %}
+
+{% block body %}
+	<!-- WRAPPER -->
+	<div class="wrapper">
+
+        {% block top_alert %}
+            {{ render(controller('FitchFrontEndBundle:Alert:index', {})) }}
+        {% endblock %}
+
+        {% block top_bar %}
+            {{ render(controller('FitchFrontEndBundle:Navigation:mainbar', {})) }}
+        {% endblock %}
+
+		<!-- BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+		<div class="bottom">
+			<div class="container">
+				<div class="row">
+					<!-- left sidebar -->
+					<div class="col-md-2 left-sidebar">
+
+						<!-- main-nav -->
+                        <nav class="main-nav">
+                            {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:sidebarMenu', {
+                                'currentClass' : 'active',
+                                'ancestorClass': 'active open',
+                                'template': 'FitchFrontEndBundle:Menu:sidemenu.html.twig',
+                                'depth' : 2
+                            }) }}
+                        </nav>
+						<!-- /main-nav -->
+
+						<div class="sidebar-minified js-toggle-minified">
+							<i class="fa fa-angle-left"></i>
+						</div>
+
+						<!-- sidebar content -->
+                        {% block sidebar_content %}
+                        {% endblock %}
+						<!-- end sidebar content -->
+					</div>
+					<!-- end left sidebar -->
+
+					<!-- content-wrapper -->
+					<div class="col-md-10 content-wrapper">
+						<div class="row">
+                            <div class="col-md-4">
+                                {% block breadcrumb %}
+                                    {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:breadcrumbMenu', {
+                                    'currentClass' : 'active',
+                                    'ancestorClass': 'active open',
+                                    'template': 'FitchFrontEndBundle:Menu:breadcrumb.html.twig',
+                                    }) }}
+                                {% endblock %}
+                            </div>
+                            <div class="col-md-8">
+                                {% block top_stats %}
+                                    {{ render(controller('FitchFrontEndBundle:Stats:top', {})) }}
+                                {% endblock %}
+                            </div>
+						</div>
+
+						<!-- main -->
+						<div class="content">
+                            {% block main %}
+                                <div class="main-header">
+                                    {% block main_header %}{% endblock %}
+                                </div>
+                                {% block flashbag %}
+                                    {% for flashMessage in app.session.flashbag.get('success') %}
+                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <strong>Success</strong> {{ flashMessage }}
+                                        </div>
+                                    {% endfor %}
+                                    {% for flashMessage in app.session.flashbag.get('info') %}
+                                        <div class="alert alert-info alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <strong>Information</strong> {{ flashMessage }}
+                                        </div>
+                                    {% endfor %}
+                                    {% for flashMessage in app.session.flashbag.get('warning') %}
+                                        <div class="alert alert-warning alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <strong>Warning</strong> {{ flashMessage }}
+                                        </div>
+                                    {% endfor %}
+                                    {% for flashMessage in app.session.flashbag.get('error') %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <strong>Error</strong> {{ flashMessage }}
+                                        </div>
+                                    {% endfor %}
+                                {% endblock %}
+
+                                <div class="main-content">
+                                    {% block main_content %}{% endblock %}
+                                </div>
+                            {% endblock %}
+						</div>
+						<!-- /main -->
+					</div>
+					<!-- /content-wrapper -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- END BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+
+        {% block footer %}
+            {%  include 'FitchFrontEndBundle::footer.html.twig' %}
+		{% endblock %}
+
+	</div>
+	<!-- /wrapper -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+{% endblock %}

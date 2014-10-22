@@ -1,0 +1,39 @@
+{% block extends %}
+{{ "{% extends 'FitchDashboardBundle::dashboard.html.twig' %}" }}
+{% endblock extends %}
+
+{% block content %}
+    {{ "{% block main_header -%}" }}
+    <h2>{{ "{% trans %}" }}{{ entity|lower }}.show.verb{{ "{% endtrans %}" }}</h2>
+    <em>{{ "{% trans %}" }}{{ entity|lower }}.show.tagline{{ "{% endtrans %}" }}</em>
+    {{ "{% endblock %}" }}
+
+{{ "{% block main_content -%}" }}
+    <table class="record_properties table table-condensed table-striped">
+        <tbody>
+        {%- for field, metadata in fields %}
+
+            <tr>
+                <th class="col-xs-2">{{ field|capitalize }}</th>
+
+            {%- if metadata.type in ['date', 'datetime'] %}
+
+                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}' }}</td>
+
+            {%- else %}
+
+                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+            {%- endif %}
+
+            </tr>
+
+        {%- endfor %}
+
+        </tbody>
+    </table>
+
+    {% set hide_edit, hide_delete = false, false %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+{{ "{% endblock %}" }}
+{% endblock content %}

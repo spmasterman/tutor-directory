@@ -1,0 +1,16 @@
+@import 'bs_variables';
+
+$link-color: $brand-info;
+
+a {
+	color: $link-color;
+
+	&:hover, &:focus {
+		color: darken($link-color, 12%);
+	}
+}
+
+.footer {
+	background-color: $brand-primary;
+	border-top: 1px solid lighten($brand-primary, 5%);
+}

@@ -1,0 +1,14 @@
+services:
+    fitch.twig.time_ago:
+        class: Fitch\FrontEndBundle\Twig\Extension\TimeAgoExtension
+        arguments: [@translator]
+        tags:
+        - { name: twig.extension }
+    #
+    # Event Listeners
+    #
+
+    fitch.frontendbundle.listener.request:
+      class: Fitch\FrontEndBundle\Listener\AjaxAuthenticationListener
+      tags:
+        - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 250 }

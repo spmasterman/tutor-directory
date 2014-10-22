@@ -1,0 +1,20 @@
+{% extends 'FitchDashboardBundle::fullpage.html.twig' %}
+
+{% block stylesheets -%}
+    {% include "::weakly-branded.html.twig" %}
+{% endblock %}
+
+{% block wrapper_classes %}page-error text-center{% endblock %}
+
+{% block content %}
+            <h1>
+				<span class="clearfix title">
+					<span class="number">500</span>
+					<span class="text">{% trans %}error.500.status{% endtrans %}</span>
+				</span>
+			</h1>
+
+			<p>{% trans %}error.500.long{% endtrans %}</p>
+{% endblock %}
+
+

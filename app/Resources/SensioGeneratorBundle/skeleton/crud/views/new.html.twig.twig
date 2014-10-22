@@ -1,0 +1,18 @@
+{% block extends %}
+{{ "{% extends 'FitchDashboardBundle::dashboard.html.twig' %}" }}
+{% endblock extends %}
+
+{% block content %}
+    {{ "{% block main_header -%}" }}
+    <h2>{{ "{% trans %}" }}{{ entity|lower }}.new.verb{{ "{% endtrans %}" }}</h2>
+    <em>{{ "{% trans %}" }}{{ entity|lower }}.new.tagline{{ "{% endtrans %}" }}</em>
+    {{ "{% endblock %}" }}
+
+{{ "{% block main_content -%}" }}
+    {{ "{% form_theme form 'FitchDashboardBundle:Form:horizontal.html.twig' %}" }}
+    {{ "{{ form(form, {'attr': {'class': 'form-horizontal'} }) }}" }}
+
+    {% set hide_edit, hide_delete = true, true %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+{{ "{% endblock %}" }}
+{% endblock content %}
