@@ -6,6 +6,32 @@ probably don't need to have a common ancestor - these projects are unrelated and
 little purpose. If I find that I'm making the same edits in both projects more than once in a blue moon, I'll produce 
 some independent bundle that they both can share.  
 
+0) Spec
+-------
+
+Instructor Competency Database
+ 
+We have a big faculty (permanent tutors) and associate base (consultants who we can call in when needed and pay to teach on a per day basis).
+ 
+It is becoming clear that we are developing corporate amnesia about these people! We don’t know who we have available, what they are capable of doing, or what their terms of engagement are. So say a CRM, or a regional MD needs to find a tutor capable of teaching financial statement analysis in Asia, it is nigh on impossible for us to do so and we end up searching from scratch or looking over old course lists to find them. What we need is a database system to manage these individuals – a ‘little black book’ for our faculty and consultants. I have looked externally for a system to buy in without success.
+ 
+Such a system can have a good, immediate commercial return as have made a number of different changes to the teams here over the last few months and everyone is trying to get their knowledge together.
+ 
+The ‘old’ way of developing this would be to build an ERP function and tie it into existing functionality but this is not congruent with the concept of building more isolated systems that we are heading towards.
+ 
+What I would like to have is the following simple, standalone system.
+ 
+* A CRUD interface for storing information about tutors. I imagine the key information we need will be (I am imagining each category being a tab)
+* Personal information (Name, address, home country, region, e-mail, phone, photo (not critical) etc.)
+* Terms of engagement (Uploaded contract, rates, notes)
+* Competencies. We need the ability to tag tutors with competencies – a competency is an arbitrary tag that searches for pre-existing tags AND a level (intern, graduate, practitioner).
+* A search function that allows you to search for any tutors that match the search term across any field (outside of terms of engagement).
+* An admin function that allows us to CRUD users of the system.
+ 
+In terms of logging in because this is separated from the ERP the user auth will need to be local. I would suggest using the Federated User Management system the guys are developing here but not sure how far along that is. Might be worth investigating this.
+ 
+The Terms of engagement tab needs to be locked to specific users. Because we are holding personal data the system needs to be secure (not ridiculously so but all the basics need to be right – no open URLs etc).
+
 1) Installing it
 ----------------
 
