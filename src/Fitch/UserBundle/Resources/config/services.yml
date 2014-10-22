@@ -1,12 +1,6 @@
 parameters:
-    fitch_user_provider.class: Fitch\UserBundle\Security\Core\User\FOSUBUserProvider
 
 services:
-    my_user_provider:
-        class: "%fitch_user_provider.class%"
-        #this is the place where the properties are passed to the UserProvider - see config.yml
-        arguments: [@fos_user.user_manager]
-
     #
     # Model Managers
     #

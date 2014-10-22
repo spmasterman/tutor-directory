@@ -18,12 +18,6 @@
         </a>
     </div>
 
-    <a class="btn btn-login-twitter" href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}" alt="{% trans %}security.login.with.twitter{% endtrans %}">{% trans %}security.login.with.twitter{% endtrans %}</a>
-
-    <div class="separator">
-        <span>OR</span>
-    </div>
-
     <div class="login-box center-block">
         <form action="{{ path("fos_user_security_check") }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
