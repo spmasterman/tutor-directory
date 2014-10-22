@@ -1,0 +1,11 @@
+{% extends "FitchDashboardBundle::fullpage.html.twig" %}
+
+{% block stylesheets -%}
+    {% include "::weakly-branded.html.twig" %}
+{% endblock %}
+
+{% block wrapper_classes %}text-center{% endblock %}
+
+{% block content %}
+    {{ block('fos_user_content') }}
+{% endblock %}

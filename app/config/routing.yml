@@ -1,0 +1,14 @@
+fitch_common:
+    resource: "@FitchCommonBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fitch_frontend:
+    resource: "@FitchFrontEndBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fitch_user:
+    resource: "@FitchUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

@@ -1,5 +1,5 @@
 {% block extends %}
-{{ "{% extends 'FitchDashboardBundle::dashboard.html.twig' %}" }}
+{{ "{% extends 'FitchFrontEndBundle::frontend.html.twig' %}" }}
 {% endblock extends %}
 
 {% block content %}
@@ -9,7 +9,7 @@
     {{ "{% endblock %}" }}
 
 {{ "{% block main_content -%}" }}
-    {{ "{% form_theme form 'FitchDashboardBundle:Form:horizontal.html.twig' %}" }}
+    {{ "{% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}" }}
     {{ "{{ form(form, {'attr': {'class': 'form-horizontal'} }) }}" }}
 
     {% set hide_edit, hide_delete = true, true %}

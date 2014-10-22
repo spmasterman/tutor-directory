@@ -1,0 +1,57 @@
+{% extends "FitchUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block wrapper_classes %}{{parent()}} page-login{% endblock %}
+
+{% block fos_user_content %}
+
+{% if error %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation"></i>
+        <span>{{ error|trans }}</span>
+    </div>
+{% endif %}
+
+    <div class="logo">
+        <a href="index.html">
+            <img src="{{ asset('bundles/fitchdashboard/images/logo.png') }}" alt="" />
+        </a>
+    </div>
+
+    <a class="btn btn-login-twitter" href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}" alt="{% trans %}security.login.with.twitter{% endtrans %}">{% trans %}security.login.with.twitter{% endtrans %}</a>
+
+    <div class="separator">
+        <span>OR</span>
+    </div>
+
+    <div class="login-box center-block">
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <p class="title">Use your username</p>
+
+            <div class="input-group">
+                <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
+                <input type="text" placeholder="{{ 'security.login.username'|trans }}" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            </div>
+            <div class="input-group">
+                <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
+                <input type="password" placeholder="{{ 'security.login.password'|trans }}" class="form-control" id="password" name="_password" required="required">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            </div>
+            <div class="simple-checkbox">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on">
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
+
+            <button class="btn btn-custom-primary btn-lg btn-block btn-login"><i class="fa fa-arrow-circle-o-right"></i> {{ 'security.login.submit'|trans }}</button>
+        </form>
+
+        <div class="links">
+            <p><a href="{{ path('fos_user_resetting_request') }}">Forgot Username or Password?</a></p>
+            <p><a href="{{ path('fos_user_registration_register') }}">Create New Account</a></p>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}

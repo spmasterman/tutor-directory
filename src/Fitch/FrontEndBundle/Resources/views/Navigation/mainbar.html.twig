@@ -31,34 +31,34 @@
 									<a href="#" class="hidden-md hidden-lg main-nav-toggle"><i class="fa fa-bars"></i></a>
 									<!-- end responsive menu bar icon -->
 
-									<div class="notifications">
-										<ul>
-											<!-- notification: inbox -->
-											<li class="notification-item inbox">
-												<div class="btn-group"
-                                                     data-ajax='true'
-                                                     data-ajax-callback='messages_unread'
-                                                     data-ajax-param-count = 6
-                                                     data-ajax-param-offset = 0
-                                                >
-                                                    {{ render(controller('FitchBotBundle:Message:unread', { 'offset' : 0, 'count': 6})) }}
-                                                </div>
-											</li>
-											<!-- end notification: inbox -->
+									{#<div class="notifications">#}
+										{#<ul>#}
+											{#<!-- notification: inbox -->#}
+											{#<li class="notification-item inbox">#}
+												{#<div class="btn-group"#}
+                                                     {#data-ajax='true'#}
+                                                     {#data-ajax-callback='messages_unread'#}
+                                                     {#data-ajax-param-count = 6#}
+                                                     {#data-ajax-param-offset = 0#}
+                                                {#>#}
+                                                    {#{{ render(controller('FitchBotBundle:Message:unread', { 'offset' : 0, 'count': 6})) }}#}
+                                                {#</div>#}
+											{#</li>#}
+											{#<!-- end notification: inbox -->#}
 
-											<!-- notification: general -->
-											<li class="notification-item general">
-												<div class="btn-group"
-                                                     data-ajax='true'
-                                                     data-ajax-callback='sample_notifications'
-                                                     data-ajax-param-count = 10
-                                                 >
-                                                    {{ render(controller('FitchNotificationBundle:Notification:sample', { 'count': 10})) }}
-												</div>
-											</li>
-											<!-- end notification: general -->
-										</ul>
-									</div>
+											{#<!-- notification: general -->#}
+											{#<li class="notification-item general">#}
+												{#<div class="btn-group"#}
+                                                     {#data-ajax='true'#}
+                                                     {#data-ajax-callback='sample_notifications'#}
+                                                     {#data-ajax-param-count = 10#}
+                                                 {#>#}
+                                                    {#{{ render(controller('FitchNotificationBundle:Notification:sample', { 'count': 10})) }}#}
+												{#</div>#}
+											{#</li>#}
+											{#<!-- end notification: general -->#}
+										{#</ul>#}
+									{#</div>#}
 
 									<!-- logged user and the menu -->
 									<div class="logged-user">

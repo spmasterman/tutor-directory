@@ -29,7 +29,7 @@
     <body {% block body_attrs %}{% endblock %}>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' '@dashboard_js' filter='?yui_js' combine=true %}
+            {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' '@frontend_js' filter='?yui_js' combine=true %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}

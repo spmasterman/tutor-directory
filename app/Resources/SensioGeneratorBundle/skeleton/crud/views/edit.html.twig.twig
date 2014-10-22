@@ -2,7 +2,7 @@
 {# that deals with one of the CRUD operations on an entity. They arent needed for production- only during development #}
 
 {% block extends %}
-{{ "{% extends 'FitchDashboardBundle::dashboard.html.twig' %}" }}
+{{ "{% extends 'FitchFrontEndBundle::frontend.html.twig' %}" }}
 {% endblock extends %}
 
 {% block content %}
@@ -12,7 +12,7 @@
 {{ "{% endblock %}" }}
 
 {{ "{% block main_content -%}" }}
-    {{ "{% form_theme edit_form 'FitchDashboardBundle:Form:horizontal.html.twig' %}" }}
+    {{ "{% form_theme edit_form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}" }}
     {{ "{{ form(edit_form, {'attr': {'class': 'form-horizontal'} }) }}" }}
 
     {% set hide_edit, hide_delete = true, false %}

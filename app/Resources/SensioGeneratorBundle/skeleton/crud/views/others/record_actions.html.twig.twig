@@ -11,7 +11,7 @@
 {% endif %}
 
 {% if ('delete' in actions) and (not hide_delete) %}
-    {{ "{% form_theme delete_form 'FitchDashboardBundle:Form:inline.html.twig' %}" }}
+    {{ "{% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}" }}
     {{ "{{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}" }}
 {% endif %}
 </div>

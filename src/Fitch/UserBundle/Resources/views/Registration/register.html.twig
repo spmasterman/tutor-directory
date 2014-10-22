@@ -1,0 +1,9 @@
+{% extends "FitchUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block wrapper_classes %}{{parent()}} page-register{% endblock %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+{% endblock fos_user_content %}
