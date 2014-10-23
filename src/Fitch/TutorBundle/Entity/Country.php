@@ -7,6 +7,7 @@ use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Country
@@ -61,4 +62,112 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
      * @var boolean
      */
     protected $highlighted;
+
+    /**
+     * @return OperatingRegion
+     */
+    public function getDefaultRegion()
+    {
+        return $this->defaultRegion;
+    }
+
+    /**
+     * @param OperatingRegion $defaultRegion
+     * @return $this
+     */
+    public function setDefaultRegion($defaultRegion)
+    {
+        $this->defaultRegion = $defaultRegion;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDialingCode()
+    {
+        return $this->dialingCode;
+    }
+
+    /**
+     * @param string $dialingCode
+     * @return $this
+     */
+    public function setDialingCode($dialingCode)
+    {
+        $this->dialingCode = $dialingCode;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isHighlighted()
+    {
+        return $this->highlighted;
+    }
+
+    /**
+     * @param boolean $highlighted
+     * @return $this
+     */
+    public function setHighlighted($highlighted)
+    {
+        $this->highlighted = $highlighted;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThreeDigitCode()
+    {
+        return $this->threeDigitCode;
+    }
+
+    /**
+     * @param string $threeDigitCode
+     * @return $this
+     */
+    public function setThreeDigitCode($threeDigitCode)
+    {
+        $this->threeDigitCode = $threeDigitCode;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwoDigitCode()
+    {
+        return $this->twoDigitCode;
+    }
+
+    /**
+     * @param string $twoDigitCode
+     * @return $this
+     */
+    public function setTwoDigitCode($twoDigitCode)
+    {
+        $this->twoDigitCode = $twoDigitCode;
+        return $this;
+    }
 }

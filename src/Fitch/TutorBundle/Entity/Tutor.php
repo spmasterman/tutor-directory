@@ -8,6 +8,7 @@ use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Tutor
@@ -58,6 +59,15 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      * )
      */
     protected $files;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="OperatingRegion")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     *
+     * @var OperatingRegion
+     */
+    protected $region;
+
 
     public function __construct()
     {
@@ -135,6 +145,24 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     public function setPhoneNumbers($phoneNumbers)
     {
         $this->phoneNumbers = $phoneNumbers;
+        return $this;
+    }
+
+    /**
+     * @return OperatingRegion
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param OperatingRegion $region
+     * @return $this
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
         return $this;
     }
 
