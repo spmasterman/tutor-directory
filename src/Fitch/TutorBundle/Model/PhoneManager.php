@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\PhoneBundle\Model;
+namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;

@@ -16,8 +16,8 @@ parameters:
   fitch.entity.operating_region.class: Fitch\TutorBundle\Entity\OperatingRegion
   fitch.entity.country.class: Fitch\TutorBundle\Entity\Country
   fitch.entity.competency.class: Fitch\TutorBundle\Entity\Competency
-  fitch.entity.competency_type.class: Fitch\TutorBundle\Entity\Competency
-  fitch.entity.competency_level.class: Fitch\TutorBundle\Entity\Competency
+  fitch.entity.competency_type.class: Fitch\TutorBundle\Entity\CompetencyType
+  fitch.entity.competency_level.class: Fitch\TutorBundle\Entity\CompetencyLevel
 
 services:
     #

@@ -27,6 +27,14 @@ class CompetencyLevel implements IdentityTraitInterface, TimestampableTraitInter
     private $name;
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Set name
      *
      * @param string $name

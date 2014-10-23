@@ -17,8 +17,16 @@ class MenuBuilder extends ContainerAware
             ->setChildrenAttribute('class', 'main-menu')
         ;
 
+        $this
+            ->addRegions($menu)
+            ->addCountries($menu)
+            ->addCompetencyTypes($menu)
+            ->addCompetencyLevels($menu)
+        ;
+
         return $menu;
     }
+
 
     public function breadcrumbMenu(FactoryInterface $factory, array $options)
     {
@@ -30,6 +38,13 @@ class MenuBuilder extends ContainerAware
         $homeNode = $menu
             ->addChild('Home', ['route' => 'home'])
             ->setAttribute('icon', 'fa fa-home fa-fw');
+
+        $this
+            ->addRegions($homeNode)
+            ->addCountries($homeNode)
+            ->addCompetencyTypes($homeNode)
+            ->addCompetencyLevels($homeNode)
+        ;
 
         return $menu;
     }
@@ -51,4 +66,65 @@ class MenuBuilder extends ContainerAware
                 ->getParent();
         return $menu;
     }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addRegions(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Regions', array('route' => 'region'))
+            ->setAttribute('icon', 'fa fa-globe fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addCountries(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Countries', array('route' => 'country'))
+            ->setAttribute('icon', 'fa fa-flag-o fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addCompetencyTypes(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Competency Types', array('route' => 'competency_type'))
+            ->setAttribute('icon', 'fa fa-bullseye fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addCompetencyLevels(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Competency Levels', array('route' => 'competency_level'))
+            ->setAttribute('icon', 'fa fa-signal fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
 }
+

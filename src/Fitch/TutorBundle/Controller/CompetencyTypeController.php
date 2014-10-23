@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,7 +14,7 @@ use Fitch\TutorBundle\Form\CompetencyTypeType;
 /**
  * CompetencyType controller.
  *
- * @Route("/competency/type")
+ * @Route("/type/competency/")
  */
 class CompetencyTypeController extends Controller
 {
@@ -24,65 +25,67 @@ class CompetencyTypeController extends Controller
      * @Route("/", name="competency_type")
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('FitchTutorBundle:CompetencyType')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
+        return [
+            'competencyTypes' => $this->getCompetencyTypeManager()->findAll(),
+        ];
     }
+
     /**
      * Creates a new CompetencyType entity.
      *
      * @Route("/", name="competency_type_create")
      * @Method("POST")
      * @Template("FitchTutorBundle:CompetencyType:new.html.twig")
+     *
+     * @param Request $request
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function createAction(Request $request)
     {
-        $entity = new CompetencyType();
-        $form = $this->createCreateForm($entity);
+        $competencyTypeManager = $this->getCompetencyTypeManager();
+        $competencyType = $competencyTypeManager->createCompetencyType();
+
+        $form = $this->createCreateForm($competencyType);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('competency_type_show', array('id' => $entity->getId())));
+            $competencyTypeManager->saveCompetencyType($competencyType);
+            return $this->redirect($this->generateUrl('competency_type_show', ['id' => $competencyType->getId()]));
         }
 
-        return array(
-            'entity' => $entity,
+        return [
+            'competencyType' => $competencyType,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
     * Creates a form to create a CompetencyType entity.
     *
-    * @param CompetencyType $entity The entity
+    * @param CompetencyType $competencyType The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(CompetencyType $entity)
+    private function createCreateForm(CompetencyType $competencyType)
     {
-        $form = $this->createForm(new CompetencyTypeType(), $entity, array(
+        $form = $this->createForm(new CompetencyTypeType(), $competencyType, [
             'action' => $this->generateUrl('competency_type_create'),
             'method' => 'POST',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => 'Create',
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle'
-        )));
+        ]]);
 
         return $form;
     }
@@ -96,13 +99,13 @@ class CompetencyTypeController extends Controller
      */
     public function newAction()
     {
-        $entity = new CompetencyType();
-        $form   = $this->createCreateForm($entity);
+        $competencyType = $this->getCompetencyTypeManager()->createCompetencyType();
+        $form   = $this->createCreateForm($competencyType);
 
-        return array(
-            'entity' => $entity,
+        return [
+            'competencyType' => $competencyType,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -111,23 +114,23 @@ class CompetencyTypeController extends Controller
      * @Route("/{id}", name="competency_type_show")
      * @Method("GET")
      * @Template()
+     *
+     * @param CompetencyType $competencyType
+     *
+     * @return array
      */
-    public function showAction($id)
+    public function showAction(CompetencyType $competencyType)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:CompetencyType')->find($id);
-
-        if (!$entity) {
+        if (!$competencyType) {
             throw $this->createNotFoundException('Unable to find CompetencyType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($competencyType->getId());
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'competencyType' => $competencyType,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -136,105 +139,107 @@ class CompetencyTypeController extends Controller
      * @Route("/{id}/edit", name="competency_type_edit")
      * @Method("GET")
      * @Template()
+     *
+     * @param CompetencyType $competencyType
+     *
+     * @return array
      */
-    public function editAction($id)
+    public function editAction(CompetencyType $competencyType)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:CompetencyType')->find($id);
-
-        if (!$entity) {
+        if (!$competencyType) {
             throw $this->createNotFoundException('Unable to find CompetencyType entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($competencyType);
+        $deleteForm = $this->createDeleteForm($competencyType->getId());
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'competencyType' => $competencyType,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
     * Creates a form to edit a CompetencyType entity.
     *
-    * @param CompetencyType $entity The entity
+    * @param CompetencyType $competencyType The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(CompetencyType $entity)
+    private function createEditForm(CompetencyType $competencyType)
     {
-        $form = $this->createForm(new CompetencyTypeType(), $entity, array(
-            'action' => $this->generateUrl('competency_type_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new CompetencyTypeType(), $competencyType, [
+            'action' => $this->generateUrl('competency_type_update', ['id' => $competencyType->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => $this->get('translator')->trans('navigation.update'),
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle'
-            )));
+            ]]);
 
         return $form;
     }
+
     /**
      * Edits an existing CompetencyType entity.
      *
      * @Route("/{id}", name="competency_type_update")
      * @Method("PUT")
      * @Template("FitchTutorBundle:CompetencyType:edit.html.twig")
+     *
+     * @param Request $request
+     * @param CompetencyType $competencyType
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, CompetencyType $competencyType)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:CompetencyType')->find($id);
-
-        if (!$entity) {
+        if (!$competencyType) {
             throw $this->createNotFoundException('Unable to find CompetencyType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($competencyType->getId());
+        $editForm = $this->createEditForm($competencyType);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('competency_type_edit', array('id' => $id)));
+            $this->getCompetencyTypeManager()->saveCompetencyType($competencyType);
+            return $this->redirect($this->generateUrl('competency_type_edit', ['id' => $competencyType->getId()]));
         }
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'competencyType' => $competencyType,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
+
     /**
      * Deletes a CompetencyType entity.
      *
      * @Route("/{id}", name="competency_type_delete")
      * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param CompetencyType $competencyType
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, CompetencyType $competencyType)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($competencyType->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('FitchTutorBundle:CompetencyType')->find($id);
-
-            if (!$entity) {
+            if (!$competencyType) {
                 throw $this->createNotFoundException('Unable to find CompetencyType entity.');
             }
-
-            $em->remove($entity);
-            $em->flush();
+            $this->getCompetencyTypeManager()->removeCompetencyType($competencyType->getId());
         }
 
         return $this->redirect($this->generateUrl('competency_type'));
@@ -250,16 +255,24 @@ class CompetencyTypeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('competency_type_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('competency_type_delete', ['id' => $id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit',
-                array(
+                [
                     'label' => $this->get('translator')->trans('navigation.delete'),
-                        'attr' => array(
+                        'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle'
-                )))
+                ]])
             ->getForm()
         ;
+    }
+
+    /**
+     * @return CompetencyTypeManager
+     */
+    public function getCompetencyTypeManager()
+    {
+        return $this->get('fitch.manager.competency_type');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,7 +14,7 @@ use Fitch\TutorBundle\Form\CompetencyLevelType;
 /**
  * CompetencyLevel controller.
  *
- * @Route("/competency/level")
+ * @Route("/level/competency/")
  */
 class CompetencyLevelController extends Controller
 {
@@ -24,65 +25,67 @@ class CompetencyLevelController extends Controller
      * @Route("/", name="competency_level")
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('FitchTutorBundle:CompetencyLevel')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
+        return [
+            'competencyLevels' => $this->getCompetencyLevelManager()->findAll(),
+        ];
     }
+
     /**
      * Creates a new CompetencyLevel entity.
      *
      * @Route("/", name="competency_level_create")
      * @Method("POST")
      * @Template("FitchTutorBundle:CompetencyLevel:new.html.twig")
+     *
+     * @param Request $request
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function createAction(Request $request)
     {
-        $entity = new CompetencyLevel();
-        $form = $this->createCreateForm($entity);
+        $competencyLevelManager = $this->getCompetencyLevelManager();
+        $competencyLevel = $competencyLevelManager->createCompetencyLevel();
+
+        $form = $this->createCreateForm($competencyLevel);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('competency_level_show', array('id' => $entity->getId())));
+            $competencyLevelManager->saveCompetencyLevel($competencyLevel);
+            return $this->redirect($this->generateUrl('competency_level_show', ['id' => $competencyLevel->getId()]));
         }
 
-        return array(
-            'entity' => $entity,
+        return [
+            'competencyLevel' => $competencyLevel,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
     * Creates a form to create a CompetencyLevel entity.
     *
-    * @param CompetencyLevel $entity The entity
+    * @param CompetencyLevel $competencyLevel The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(CompetencyLevel $entity)
+    private function createCreateForm(CompetencyLevel $competencyLevel)
     {
-        $form = $this->createForm(new CompetencyLevelType(), $entity, array(
+        $form = $this->createForm(new CompetencyLevelType(), $competencyLevel, [
             'action' => $this->generateUrl('competency_level_create'),
             'method' => 'POST',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => 'Create',
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle'
-        )));
+        ]]);
 
         return $form;
     }
@@ -96,13 +99,13 @@ class CompetencyLevelController extends Controller
      */
     public function newAction()
     {
-        $entity = new CompetencyLevel();
-        $form   = $this->createCreateForm($entity);
+        $competencyLevel = $this->getCompetencyLevelManager()->createCompetencyLevel();
+        $form   = $this->createCreateForm($competencyLevel);
 
-        return array(
-            'entity' => $entity,
+        return [
+            'competencyLevel' => $competencyLevel,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -111,23 +114,23 @@ class CompetencyLevelController extends Controller
      * @Route("/{id}", name="competency_level_show")
      * @Method("GET")
      * @Template()
+     *
+     * @param CompetencyLevel $competencyLevel
+     *
+     * @return array
      */
-    public function showAction($id)
+    public function showAction(CompetencyLevel $competencyLevel)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:CompetencyLevel')->find($id);
-
-        if (!$entity) {
+        if (!$competencyLevel) {
             throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($competencyLevel->getId());
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'competencyLevel' => $competencyLevel,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -136,105 +139,107 @@ class CompetencyLevelController extends Controller
      * @Route("/{id}/edit", name="competency_level_edit")
      * @Method("GET")
      * @Template()
+     *
+     * @param CompetencyLevel $competencyLevel
+     *
+     * @return array
      */
-    public function editAction($id)
+    public function editAction(CompetencyLevel $competencyLevel)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:CompetencyLevel')->find($id);
-
-        if (!$entity) {
+        if (!$competencyLevel) {
             throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($competencyLevel);
+        $deleteForm = $this->createDeleteForm($competencyLevel->getId());
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'competencyLevel' => $competencyLevel,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
     * Creates a form to edit a CompetencyLevel entity.
     *
-    * @param CompetencyLevel $entity The entity
+    * @param CompetencyLevel $competencyLevel The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(CompetencyLevel $entity)
+    private function createEditForm(CompetencyLevel $competencyLevel)
     {
-        $form = $this->createForm(new CompetencyLevelType(), $entity, array(
-            'action' => $this->generateUrl('competency_level_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new CompetencyLevelType(), $competencyLevel, [
+            'action' => $this->generateUrl('competency_level_update', ['id' => $competencyLevel->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => $this->get('translator')->trans('navigation.update'),
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle'
-            )));
+            ]]);
 
         return $form;
     }
+
     /**
      * Edits an existing CompetencyLevel entity.
      *
      * @Route("/{id}", name="competency_level_update")
      * @Method("PUT")
      * @Template("FitchTutorBundle:CompetencyLevel:edit.html.twig")
+     *
+     * @param Request $request
+     * @param CompetencyLevel $competencyLevel
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, CompetencyLevel $competencyLevel)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:CompetencyLevel')->find($id);
-
-        if (!$entity) {
+        if (!$competencyLevel) {
             throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($competencyLevel->getId());
+        $editForm = $this->createEditForm($competencyLevel);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('competency_level_edit', array('id' => $id)));
+            $this->getCompetencyLevelManager()->saveCompetencyLevel($competencyLevel);
+            return $this->redirect($this->generateUrl('competency_level_edit', ['id' => $competencyLevel->getId()]));
         }
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'competencyLevel' => $competencyLevel,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
+
     /**
      * Deletes a CompetencyLevel entity.
      *
      * @Route("/{id}", name="competency_level_delete")
      * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param CompetencyLevel $competencyLevel
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, CompetencyLevel $competencyLevel)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($competencyLevel->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('FitchTutorBundle:CompetencyLevel')->find($id);
-
-            if (!$entity) {
+            if (!$competencyLevel) {
                 throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
             }
-
-            $em->remove($entity);
-            $em->flush();
+            $this->getCompetencyLevelManager()->removeCompetencyLevel($competencyLevel->getId());
         }
 
         return $this->redirect($this->generateUrl('competency_level'));
@@ -250,16 +255,24 @@ class CompetencyLevelController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('competency_level_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('competency_level_delete', ['id' => $id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit',
-                array(
+                [
                     'label' => $this->get('translator')->trans('navigation.delete'),
-                        'attr' => array(
+                        'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle'
-                )))
+                ]])
             ->getForm()
         ;
+    }
+
+    /**
+     * @return CompetencyLevelManager
+     */
+    public function getCompetencyLevelManager()
+    {
+        return $this->get('fitch.manager.competency_level');
     }
 }

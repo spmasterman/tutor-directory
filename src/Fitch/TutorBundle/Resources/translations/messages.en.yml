@@ -22,7 +22,7 @@ operatingregion:
         tagline: edit the details of operational region record
         success: The Region has been successfully updated.
     list:
-        verb: regions
+        verb: Regions
         tagline: regions available for use in the Tutor Directory
     new:
         verb: New Region
@@ -33,3 +33,40 @@ operatingregion:
         tagline: view the details of a Region record
     delete:
         success: The Region has been successfully removed.
+        
+competencytype:        
+    edit:
+        verb: Edit Competency Type
+        tagline: edit the details of competency type record
+        success: The Competency Type has been successfully updated.
+    list:
+        verb: Competency Types
+        tagline: competency types available for use in the Tutor Directory
+    new:
+        verb: New Competency Type
+        tagline: define a new competency type
+        success: The Competency Type has been successfully created.
+    show:
+        verb: Competency Type
+        tagline: view the details of a Competency Type record
+    delete:
+        success: The Competency Type has been successfully removed.
+        
+competencylevel:        
+    edit:
+        verb: Edit Competency Level
+        tagline: edit the details of competency level record
+        success: The Competency Level has been successfully updated.
+    list:
+        verb: Competency Levels
+        tagline: competency levels available for use in the Tutor Directory
+    new:
+        verb: New Competency Level
+        tagline: define a new competency level
+        success: The Competency Level has been successfully created.
+    show:
+        verb: Competency Level
+        tagline: view the details of a Competency Level record
+    delete:
+        success: The Competency Level has been successfully removed.
+                
