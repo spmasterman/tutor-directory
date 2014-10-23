@@ -1,0 +1,18 @@
+model: Fitch\TutorBundle\Entity\OperatingRegion
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    region-gl:
+        name: Global
+    region-uk:
+        name: United Kingdom
+    region-us:
+        name: United States of America
+    region-sg:
+        name: Singapore
+    region-mea:
+        name: Middle East and Africa
+    region-eu:
+        name: Europe
+

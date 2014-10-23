@@ -126,3 +126,8 @@ stof_doctrine_extensions:
         default:
             tree: true
             timestampable: true
+
+khepin_yaml_fixtures:
+    directory: Resources/fixtures
+    resources:
+        - FitchTutorBundle

@@ -30,7 +30,8 @@
         "components/underscore": "dev-master",
         "twbs/bootstrap-sass": "*",
         "FortAwesome/Font-Awesome": "*",
-        "digitalnature/php-ref": "dev-master"
+        "digitalnature/php-ref": "dev-master",
+        "khepin/yaml-fixtures-bundle": "~0.8.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

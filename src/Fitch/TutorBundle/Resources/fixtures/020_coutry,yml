@@ -1,0 +1,1601 @@
+model: Fitch\TutorBundle\Entity\Country
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+  country-AF:
+    name: Afghanistan
+    twoDigitCode: AF
+    threeDigitCode: AFG
+    dialingCode: +93
+    defaultRegion: region-gl
+    highlighted: false
+  country-AL:
+    name: Albania
+    twoDigitCode: AL
+    threeDigitCode: ALB
+    dialingCode: +355
+    defaultRegion: region-gl
+    highlighted: false
+    highlighted: false
+  country-DZ:
+    name: Algeria
+    twoDigitCode: DZ
+    threeDigitCode: DZA
+    dialingCode: +213
+    defaultRegion: region-gl
+    highlighted: false
+  country-AS:
+    name: American Samoa
+    twoDigitCode: AS
+    threeDigitCode: ASM
+    dialingCode: +1 684
+    defaultRegion: region-gl
+    highlighted: false
+  country-AD:
+    name: Andorra
+    twoDigitCode: AD
+    threeDigitCode: AND
+    dialingCode: +376
+    defaultRegion: region-gl
+    highlighted: false
+  country-AO:
+    name: Angola
+    twoDigitCode: AO
+    threeDigitCode: AGO
+    dialingCode: +244
+    defaultRegion: region-gl
+    highlighted: false
+  country-AI:
+    name: Anguilla
+    twoDigitCode: AI
+    threeDigitCode: AIA
+    dialingCode: +1 264
+    defaultRegion: region-gl
+    highlighted: false
+  country-AQ:
+    name: Antarctica
+    twoDigitCode: AQ
+    threeDigitCode: ATA
+    dialingCode: +672
+    defaultRegion: region-gl
+    highlighted: false
+  country-AG:
+    name: Antigua and Barbuda
+    twoDigitCode: AG
+    threeDigitCode: ATG
+    dialingCode: +1 268
+    defaultRegion: region-gl
+    highlighted: false
+  country-AR:
+    name: Argentina
+    twoDigitCode: AR
+    threeDigitCode: ARG
+    dialingCode: +54
+    defaultRegion: region-gl
+    highlighted: false
+  country-AM:
+    name: Armenia
+    twoDigitCode: AM
+    threeDigitCode: ARM
+    dialingCode: +374
+    defaultRegion: region-gl
+    highlighted: false
+  country-AW:
+    name: Aruba
+    twoDigitCode: AW
+    threeDigitCode: ABW
+    dialingCode: +297
+    defaultRegion: region-gl
+    highlighted: false
+  country-AU:
+    name: Australia
+    twoDigitCode: AU
+    threeDigitCode: AUS
+    dialingCode: +61
+    defaultRegion: region-gl
+    highlighted: false
+  country-AT:
+    name: Austria
+    twoDigitCode: AT
+    threeDigitCode: AUT
+    dialingCode: +43
+    defaultRegion: region-gl
+    highlighted: false
+  country-AZ:
+    name: Azerbaijan
+    twoDigitCode: AZ
+    threeDigitCode: AZE
+    dialingCode: +994
+    defaultRegion: region-gl
+    highlighted: false
+  country-BS:
+    name: Bahamas
+    twoDigitCode: BS
+    threeDigitCode: BHS
+    dialingCode: +1 242
+    defaultRegion: region-gl
+    highlighted: false
+  country-BH:
+    name: Bahrain
+    twoDigitCode: BH
+    threeDigitCode: BHR
+    dialingCode: +973
+    defaultRegion: region-mea
+    highlighted: false
+  country-BD:
+    name: Bangladesh
+    twoDigitCode: BD
+    threeDigitCode: BGD
+    dialingCode: +880
+    defaultRegion: region-gl
+    highlighted: false
+  country-BB:
+    name: Barbados
+    twoDigitCode: BB
+    threeDigitCode: BRB
+    dialingCode: +1 246
+    defaultRegion: region-gl
+    highlighted: false
+  country-BY:
+    name: Belarus
+    twoDigitCode: BY
+    threeDigitCode: BLR
+    dialingCode: +375
+    defaultRegion: region-gl
+    highlighted: false
+  country-BE:
+    name: Belgium
+    twoDigitCode: BE
+    threeDigitCode: BEL
+    dialingCode: +32
+    defaultRegion: region-gl
+    highlighted: false
+  country-BZ:
+    name: Belize
+    twoDigitCode: BZ
+    threeDigitCode: BLZ
+    dialingCode: +501
+    defaultRegion: region-gl
+    highlighted: false
+  country-BJ:
+    name: Benin
+    twoDigitCode: BJ
+    threeDigitCode: BEN
+    dialingCode: +229
+    defaultRegion: region-gl
+    highlighted: false
+  country-BM:
+    name: Bermuda
+    twoDigitCode: BM
+    threeDigitCode: BMU
+    dialingCode: +1 441
+    defaultRegion: region-gl
+    highlighted: false
+  country-BT:
+    name: Bhutan
+    twoDigitCode: BT
+    threeDigitCode: BTN
+    dialingCode: +975
+    defaultRegion: region-gl
+    highlighted: false
+  country-BO:
+    name: Bolivia
+    twoDigitCode: BO
+    threeDigitCode: BOL
+    dialingCode: +591
+    defaultRegion: region-gl
+    highlighted: false
+  country-BA:
+    name: Bosnia and Herzegovina
+    twoDigitCode: BA
+    threeDigitCode: BIH
+    dialingCode: +387
+    defaultRegion: region-gl
+    highlighted: false
+  country-BW:
+    name: Botswana
+    twoDigitCode: BW
+    threeDigitCode: BWA
+    dialingCode: +267
+    defaultRegion: region-gl
+    highlighted: false
+  country-BR:
+    name: Brazil
+    twoDigitCode: BR
+    threeDigitCode: BRA
+    dialingCode: +55
+    defaultRegion: region-gl
+    highlighted: false
+  country-VG:
+    name: British Virgin Islands
+    twoDigitCode: VG
+    threeDigitCode: VGB
+    dialingCode: +1 284
+    defaultRegion: region-gl
+    highlighted: false
+  country-BN:
+    name: Brunei
+    twoDigitCode: BN
+    threeDigitCode: BRN
+    dialingCode: +673
+    defaultRegion: region-mea
+    highlighted: false
+  country-BG:
+    name: Bulgaria
+    twoDigitCode: BG
+    threeDigitCode: BGR
+    dialingCode: +359
+    defaultRegion: region-gl
+    highlighted: false
+  country-BF:
+    name: Burkina Faso
+    twoDigitCode: BF
+    threeDigitCode: BFA
+    dialingCode: +226
+    defaultRegion: region-gl
+    highlighted: false
+  country-MM:
+    name: Burma (Myanmar)
+    twoDigitCode: MM
+    threeDigitCode: MMR
+    dialingCode: +95
+    defaultRegion: region-gl
+    highlighted: false
+  country-BI:
+    name: Burundi
+    twoDigitCode: BI
+    threeDigitCode: BDI
+    dialingCode: +257
+    defaultRegion: region-gl
+    highlighted: false
+  country-KH:
+    name: Cambodia
+    twoDigitCode: KH
+    threeDigitCode: KHM
+    dialingCode: +855
+    defaultRegion: region-gl
+    highlighted: false
+  country-CM:
+    name: Cameroon
+    twoDigitCode: CM
+    threeDigitCode: CMR
+    dialingCode: +237
+    defaultRegion: region-gl
+    highlighted: false
+  country-CA:
+    name: Canada
+    twoDigitCode: CA
+    threeDigitCode: CAN
+    dialingCode: +1
+    defaultRegion: region-us
+    highlighted: false
+  country-CV:
+    name: Cape Verde
+    twoDigitCode: CV
+    threeDigitCode: CPV
+    dialingCode: +238
+    defaultRegion: region-gl
+    highlighted: false
+  country-KY:
+    name: Cayman Islands
+    twoDigitCode: KY
+    threeDigitCode: CYM
+    dialingCode: +1 345
+    defaultRegion: region-us
+    highlighted: false
+  country-CF:
+    name: Central African Republic
+    twoDigitCode: CF
+    threeDigitCode: CAF
+    dialingCode: +236
+    defaultRegion: region-gl
+    highlighted: false
+  country-TD:
+    name: Chad
+    twoDigitCode: TD
+    threeDigitCode: TCD
+    dialingCode: +235
+    defaultRegion: region-gl
+    highlighted: false
+  country-CL:
+    name: Chile
+    twoDigitCode: CL
+    threeDigitCode: CHL
+    dialingCode: +56
+    defaultRegion: region-gl
+    highlighted: false
+  country-CN:
+    name: China
+    twoDigitCode: CN
+    threeDigitCode: CHN
+    dialingCode: +86
+    defaultRegion: region-gl
+    highlighted: false
+  country-CX:
+    name: Christmas Island
+    twoDigitCode: CX
+    threeDigitCode: CXR
+    dialingCode: +61
+    defaultRegion: region-gl
+    highlighted: false
+  country-CC:
+    name: Cocos (Keeling) Islands
+    twoDigitCode: CC
+    threeDigitCode: CCK
+    dialingCode: +61
+    defaultRegion: region-gl
+    highlighted: false
+  country-CO:
+    name: Colombia
+    twoDigitCode: CO
+    threeDigitCode: COL
+    dialingCode: +57
+    defaultRegion: region-gl
+    highlighted: false
+  country-KM:
+    name: Comoros
+    twoDigitCode: KM
+    threeDigitCode: COM
+    dialingCode: +269
+    defaultRegion: region-gl
+    highlighted: false
+  country-CK:
+    name: Cook Islands
+    twoDigitCode: CK
+    threeDigitCode: COK
+    dialingCode: +682
+    defaultRegion: region-gl
+    highlighted: false
+  country-CR:
+    name: Costa Rica
+    twoDigitCode: CR
+    threeDigitCode: CRC
+    dialingCode: +506
+    defaultRegion: region-gl
+    highlighted: false
+  country-HR:
+    name: Croatia
+    twoDigitCode: HR
+    threeDigitCode: HRV
+    dialingCode: +385
+    defaultRegion: region-gl
+    highlighted: false
+  country-CU:
+    name: Cuba
+    twoDigitCode: CU
+    threeDigitCode: CUB
+    dialingCode: +53
+    defaultRegion: region-gl
+    highlighted: false
+  country-CY:
+    name: Cyprus
+    twoDigitCode: CY
+    threeDigitCode: CYP
+    dialingCode: +357
+    defaultRegion: region-gl
+    highlighted: false
+  country-CZ:
+    name: Czech Republic
+    twoDigitCode: CZ
+    threeDigitCode: CZE
+    dialingCode: +420
+    defaultRegion: region-gl
+    highlighted: false
+  country-CD:
+    name: Democratic Republic of the Congo
+    twoDigitCode: CD
+    threeDigitCode: COD
+    dialingCode: +243
+    defaultRegion: region-gl
+    highlighted: false
+  country-DK:
+    name: Denmark
+    twoDigitCode: DK
+    threeDigitCode: DNK
+    dialingCode: +45
+    defaultRegion: region-gl
+    highlighted: false
+  country-DJ:
+    name: Djibouti
+    twoDigitCode: DJ
+    threeDigitCode: DJI
+    dialingCode: +253
+    defaultRegion: region-gl
+    highlighted: false
+  country-DM:
+    name: Dominica
+    twoDigitCode: DM
+    threeDigitCode: DMA
+    dialingCode: +1 767
+    defaultRegion: region-gl
+    highlighted: false
+  country-DO:
+    name: Dominican Republic
+    twoDigitCode: DO
+    threeDigitCode: DOM
+    dialingCode: +1 809
+    defaultRegion: region-gl
+    highlighted: false
+  country-EC:
+    name: Ecuador
+    twoDigitCode: EC
+    threeDigitCode: ECU
+    dialingCode: +593
+    defaultRegion: region-gl
+    highlighted: false
+  country-EG:
+    name: Egypt
+    twoDigitCode: EG
+    threeDigitCode: EGY
+    dialingCode: +20
+    defaultRegion: region-gl
+    highlighted: false
+  country-SV:
+    name: El Salvador
+    twoDigitCode: SV
+    threeDigitCode: SLV
+    dialingCode: +503
+    defaultRegion: region-gl
+    highlighted: false
+  country-GQ:
+    name: Equatorial Guinea
+    twoDigitCode: GQ
+    threeDigitCode: GNQ
+    dialingCode: +240
+    defaultRegion: region-gl
+    highlighted: false
+  country-ER:
+    name: Eritrea
+    twoDigitCode: ER
+    threeDigitCode: ERI
+    dialingCode: +291
+    defaultRegion: region-gl
+    highlighted: false
+  country-EE:
+    name: Estonia
+    twoDigitCode: EE
+    threeDigitCode: EST
+    dialingCode: +372
+    defaultRegion: region-gl
+    highlighted: false
+  country-ET:
+    name: Ethiopia
+    twoDigitCode: ET
+    threeDigitCode: ETH
+    dialingCode: +251
+    defaultRegion: region-gl
+    highlighted: false
+  country-FK:
+    name: Falkland Islands
+    twoDigitCode: FK
+    threeDigitCode: FLK
+    dialingCode: +500
+    defaultRegion: region-gl
+    highlighted: false
+  country-FO:
+    name: Faroe Islands
+    twoDigitCode: FO
+    threeDigitCode: FRO
+    dialingCode: +298
+    defaultRegion: region-gl
+    highlighted: false
+  country-FJ:
+    name: Fiji
+    twoDigitCode: FJ
+    threeDigitCode: FJI
+    dialingCode: +679
+    defaultRegion: region-gl
+    highlighted: false
+  country-FI:
+    name: Finland
+    twoDigitCode: FI
+    threeDigitCode: FIN
+    dialingCode: +358
+    defaultRegion: region-gl
+    highlighted: false
+  country-FR:
+    name: France
+    twoDigitCode: FR
+    threeDigitCode: FRA
+    dialingCode: +33
+    defaultRegion: region-gl
+    highlighted: false
+  country-PF:
+    name: French Polynesia
+    twoDigitCode: PF
+    threeDigitCode: PYF
+    dialingCode: +689
+    defaultRegion: region-gl
+    highlighted: false
+  country-GA:
+    name: Gabon
+    twoDigitCode: GA
+    threeDigitCode: GAB
+    dialingCode: +241
+    defaultRegion: region-gl
+    highlighted: false
+  country-GM:
+    name: Gambia
+    twoDigitCode: GM
+    threeDigitCode: GMB
+    dialingCode: +220
+    defaultRegion: region-gl
+    highlighted: false
+  country-GE:
+    name: Georgia
+    twoDigitCode: GE
+    threeDigitCode: GEO
+    dialingCode: +995
+    defaultRegion: region-gl
+    highlighted: false
+  country-DE:
+    name: Germany
+    twoDigitCode: DE
+    threeDigitCode: DEU
+    dialingCode: +49
+    defaultRegion: region-gl
+    highlighted: false
+  country-GH:
+    name: Ghana
+    twoDigitCode: GH
+    threeDigitCode: GHA
+    dialingCode: +233
+    defaultRegion: region-gl
+    highlighted: false
+  country-GI:
+    name: Gibraltar
+    twoDigitCode: GI
+    threeDigitCode: GIB
+    dialingCode: +350
+    defaultRegion: region-gl
+    highlighted: false
+  country-GR:
+    name: Greece
+    twoDigitCode: GR
+    threeDigitCode: GRC
+    dialingCode: +30
+    defaultRegion: region-gl
+    highlighted: false
+  country-GL:
+    name: Greenland
+    twoDigitCode: GL
+    threeDigitCode: GRL
+    dialingCode: +299
+    defaultRegion: region-gl
+    highlighted: false
+  country-GD:
+    name: Grenada
+    twoDigitCode: GD
+    threeDigitCode: GRD
+    dialingCode: +1 473
+    defaultRegion: region-gl
+    highlighted: false
+  country-GU:
+    name: Guam
+    twoDigitCode: GU
+    threeDigitCode: GUM
+    dialingCode: +1 671
+    defaultRegion: region-gl
+    highlighted: false
+  country-GT:
+    name: Guatemala
+    twoDigitCode: GT
+    threeDigitCode: GTM
+    dialingCode: +502
+    defaultRegion: region-gl
+    highlighted: false
+  country-GN:
+    name: Guinea
+    twoDigitCode: GN
+    threeDigitCode: GIN
+    dialingCode: +224
+    defaultRegion: region-gl
+    highlighted: false
+  country-GW:
+    name: Guinea-Bissau
+    twoDigitCode: GW
+    threeDigitCode: GNB
+    dialingCode: +245
+    defaultRegion: region-gl
+    highlighted: false
+  country-GY:
+    name: Guyana
+    twoDigitCode: GY
+    threeDigitCode: GUY
+    dialingCode: +592
+    defaultRegion: region-gl
+    highlighted: false
+  country-HT:
+    name: Haiti
+    twoDigitCode: HT
+    threeDigitCode: HTI
+    dialingCode: +509
+    defaultRegion: region-gl
+    highlighted: false
+  country-VA:
+    name: Holy See (Vatican City)
+    twoDigitCode: VA
+    threeDigitCode: VAT
+    dialingCode: +39
+    defaultRegion: region-gl
+    highlighted: false
+  country-HN:
+    name: Honduras
+    twoDigitCode: HN
+    threeDigitCode: HND
+    dialingCode: +504
+    defaultRegion: region-gl
+    highlighted: false
+  country-HK:
+    name: Hong Kong
+    twoDigitCode: HK
+    threeDigitCode: HKG
+    dialingCode: +852
+    defaultRegion: region-sg
+    highlighted: false
+  country-HU:
+    name: Hungary
+    twoDigitCode: HU
+    threeDigitCode: HUN
+    dialingCode: +36
+    defaultRegion: region-gl
+    highlighted: false
+  country-IS:
+    name: Iceland
+    twoDigitCode: IS
+    threeDigitCode: IS
+    dialingCode: +354
+    defaultRegion: region-gl
+    highlighted: false
+  country-IN:
+    name: India
+    twoDigitCode: IN
+    threeDigitCode: IND
+    dialingCode: +91
+    defaultRegion: region-gl
+    highlighted: false
+  country-ID:
+    name: Indonesia
+    twoDigitCode: ID
+    threeDigitCode: IDN
+    dialingCode: +62
+    defaultRegion: region-gl
+    highlighted: false
+  country-IR:
+    name: Iran
+    twoDigitCode: IR
+    threeDigitCode: IRN
+    dialingCode: +98
+    defaultRegion: region-mea
+    highlighted: false
+  country-IQ:
+    name: Iraq
+    twoDigitCode: IQ
+    threeDigitCode: IRQ
+    dialingCode: +964
+    defaultRegion: region-mea
+    highlighted: false
+  country-IE:
+    name: Ireland
+    twoDigitCode: IE
+    threeDigitCode: IRL
+    dialingCode: +353
+    defaultRegion: region-uk
+    highlighted: false
+  country-IM:
+    name: Isle of Man
+    twoDigitCode: IM
+    threeDigitCode: IMN
+    dialingCode: +44
+    defaultRegion: region-uk
+    highlighted: false
+  country-IL:
+    name: Israel
+    twoDigitCode: IL
+    threeDigitCode: ISR
+    dialingCode: +972
+    defaultRegion: region-gl
+    highlighted: false
+  country-IT:
+    name: Italy
+    twoDigitCode: IT
+    threeDigitCode: ITA
+    dialingCode: +39
+    defaultRegion: region-gl
+    highlighted: false
+  country-CI:
+    name: Ivory Coast
+    twoDigitCode: CI
+    threeDigitCode: CIV
+    dialingCode: +225
+    defaultRegion: region-gl
+    highlighted: false
+  country-JM:
+    name: Jamaica
+    twoDigitCode: JM
+    threeDigitCode: JAM
+    dialingCode: +1 876
+    defaultRegion: region-gl
+    highlighted: false
+  country-JP:
+    name: Japan
+    twoDigitCode: JP
+    threeDigitCode: JPN
+    dialingCode: +81
+    defaultRegion: region-gl
+    highlighted: false
+  country-JO:
+    name: Jordan
+    twoDigitCode: JO
+    threeDigitCode: JOR
+    dialingCode: +962
+    defaultRegion: region-gl
+    highlighted: false
+  country-KZ:
+    name: Kazakhstan
+    twoDigitCode: KZ
+    threeDigitCode: KAZ
+    dialingCode: +7
+    defaultRegion: region-gl
+    highlighted: false
+  country-KE:
+    name: Kenya
+    twoDigitCode: KE
+    threeDigitCode: KEN
+    dialingCode: +254
+    defaultRegion: region-gl
+    highlighted: false
+  country-KI:
+    name: Kiribati
+    twoDigitCode: KI
+    threeDigitCode: KIR
+    dialingCode: +686
+    defaultRegion: region-gl
+    highlighted: false
+  country-KW:
+    name: Kuwait
+    twoDigitCode: KW
+    threeDigitCode: KWT
+    dialingCode: +965
+    defaultRegion: region-mea
+    highlighted: false
+  country-KG:
+    name: Kyrgyzstan
+    twoDigitCode: KG
+    threeDigitCode: KGZ
+    dialingCode: +996
+    defaultRegion: region-gl
+    highlighted: false
+  country-LA:
+    name: Laos
+    twoDigitCode: LA
+    threeDigitCode: LAO
+    dialingCode: +856
+    defaultRegion: region-gl
+    highlighted: false
+  country-LV:
+    name: Latvia
+    twoDigitCode: LV
+    threeDigitCode: LVA
+    dialingCode: +371
+    defaultRegion: region-gl
+    highlighted: false
+  country-LB:
+    name: Lebanon
+    twoDigitCode: LB
+    threeDigitCode: LBN
+    dialingCode: +961
+    defaultRegion: region-gl
+    highlighted: false
+  country-LS:
+    name: Lesotho
+    twoDigitCode: LS
+    threeDigitCode: LSO
+    dialingCode: +266
+    defaultRegion: region-gl
+    highlighted: false
+  country-LR:
+    name: Liberia
+    twoDigitCode: LR
+    threeDigitCode: LBR
+    dialingCode: +231
+    defaultRegion: region-gl
+    highlighted: false
+  country-LY:
+    name: Libya
+    twoDigitCode: LY
+    threeDigitCode: LBY
+    dialingCode: +218
+    defaultRegion: region-gl
+    highlighted: false
+  country-LI:
+    name: Liechtenstein
+    twoDigitCode: LI
+    threeDigitCode: LIE
+    dialingCode: +423
+    defaultRegion: region-gl
+    highlighted: false
+  country-LT:
+    name: Lithuania
+    twoDigitCode: LT
+    threeDigitCode: LTU
+    dialingCode: +370
+    defaultRegion: region-gl
+    highlighted: false
+  country-LU:
+    name: Luxembourg
+    twoDigitCode: LU
+    threeDigitCode: LUX
+    dialingCode: +352
+    defaultRegion: region-gl
+    highlighted: false
+  country-MO:
+    name: Macau
+    twoDigitCode: MO
+    threeDigitCode: MAC
+    dialingCode: +853
+    defaultRegion: region-gl
+    highlighted: false
+  country-MK:
+    name: Macedonia
+    twoDigitCode: MK
+    threeDigitCode: MKD
+    dialingCode: +389
+    defaultRegion: region-gl
+    highlighted: false
+  country-MG:
+    name: Madagascar
+    twoDigitCode: MG
+    threeDigitCode: MDG
+    dialingCode: +261
+    defaultRegion: region-gl
+    highlighted: false
+  country-MW:
+    name: Malawi
+    twoDigitCode: MW
+    threeDigitCode: MWI
+    dialingCode: +265
+    defaultRegion: region-gl
+    highlighted: false
+  country-MY:
+    name: Malaysia
+    twoDigitCode: MY
+    threeDigitCode: MYS
+    dialingCode: +60
+    defaultRegion: region-gl
+    highlighted: false
+  country-MV:
+    name: Maldives
+    twoDigitCode: MV
+    threeDigitCode: MDV
+    dialingCode: +960
+    defaultRegion: region-gl
+    highlighted: false
+  country-ML:
+    name: Mali
+    twoDigitCode: ML
+    threeDigitCode: MLI
+    dialingCode: +223
+    defaultRegion: region-gl
+    highlighted: false
+  country-MT:
+    name: Malta
+    twoDigitCode: MT
+    threeDigitCode: MLT
+    dialingCode: +356
+    defaultRegion: region-gl
+    highlighted: false
+  country-MH:
+    name: Marshall Islands
+    twoDigitCode: MH
+    threeDigitCode: MHL
+    dialingCode: +692
+    defaultRegion: region-gl
+    highlighted: false
+  country-MR:
+    name: Mauritania
+    twoDigitCode: MR
+    threeDigitCode: MRT
+    dialingCode: +222
+    defaultRegion: region-gl
+    highlighted: false
+  country-MU:
+    name: Mauritius
+    twoDigitCode: MU
+    threeDigitCode: MUS
+    dialingCode: +230
+    defaultRegion: region-gl
+    highlighted: false
+  country-YT:
+    name: Mayotte
+    twoDigitCode: YT
+    threeDigitCode: MYT
+    dialingCode: +262
+    defaultRegion: region-gl
+    highlighted: false
+  country-MX:
+    name: Mexico
+    twoDigitCode: MX
+    threeDigitCode: MEX
+    dialingCode: +52
+    defaultRegion: region-us
+    highlighted: false
+  country-FM:
+    name: Micronesia
+    twoDigitCode: FM
+    threeDigitCode: FSM
+    dialingCode: +691
+    defaultRegion: region-gl
+    highlighted: false
+  country-MD:
+    name: Moldova
+    twoDigitCode: MD
+    threeDigitCode: MDA
+    dialingCode: +373
+    defaultRegion: region-gl
+    highlighted: false
+  country-MC:
+    name: Monaco
+    twoDigitCode: MC
+    threeDigitCode: MCO
+    dialingCode: +377
+    defaultRegion: region-gl
+    highlighted: false
+  country-MN:
+    name: Mongolia
+    twoDigitCode: MN
+    threeDigitCode: MNG
+    dialingCode: +976
+    defaultRegion: region-gl
+    highlighted: false
+  country-ME:
+    name: Montenegro
+    twoDigitCode: ME
+    threeDigitCode: MNE
+    dialingCode: +382
+    defaultRegion: region-gl
+    highlighted: false
+  country-MS:
+    name: Montserrat
+    twoDigitCode: MS
+    threeDigitCode: MSR
+    dialingCode: +1 664
+    defaultRegion: region-gl
+    highlighted: false
+  country-MA:
+    name: Morocco
+    twoDigitCode: MA
+    threeDigitCode: MAR
+    dialingCode: +212
+    defaultRegion: region-gl
+    highlighted: false
+  country-MZ:
+    name: Mozambique
+    twoDigitCode: MZ
+    threeDigitCode: MOZ
+    dialingCode: +258
+    defaultRegion: region-gl
+    highlighted: false
+  country-NA:
+    name: Namibia
+    twoDigitCode: NA
+    threeDigitCode: NAM
+    dialingCode: +264
+    defaultRegion: region-gl
+    highlighted: false
+  country-NR:
+    name: Nauru
+    twoDigitCode: NR
+    threeDigitCode: NRU
+    dialingCode: +674
+    defaultRegion: region-gl
+    highlighted: false
+  country-NP:
+    name: Nepal
+    twoDigitCode: NP
+    threeDigitCode: NPL
+    dialingCode: +977
+    defaultRegion: region-gl
+    highlighted: false
+  country-NL:
+    name: Netherlands
+    twoDigitCode: NL
+    threeDigitCode: NLD
+    dialingCode: +31
+    defaultRegion: region-gl
+    highlighted: false
+  country-AN:
+    name: Netherlands Antilles
+    twoDigitCode: AN
+    threeDigitCode: ANT
+    dialingCode: +599
+    defaultRegion: region-gl
+    highlighted: false
+  country-NC:
+    name: New Caledonia
+    twoDigitCode: NC
+    threeDigitCode: NCL
+    dialingCode: +687
+    defaultRegion: region-gl
+    highlighted: false
+  country-NZ:
+    name: New Zealand
+    twoDigitCode: NZ
+    threeDigitCode: NZL
+    dialingCode: +64
+    defaultRegion: region-gl
+    highlighted: false
+  country-NI:
+    name: Nicaragua
+    twoDigitCode: NI
+    threeDigitCode: NIC
+    dialingCode: +505
+    defaultRegion: region-gl
+    highlighted: false
+  country-NE:
+    name: Niger
+    twoDigitCode: NE
+    threeDigitCode: NER
+    dialingCode: +227
+    defaultRegion: region-gl
+    highlighted: false
+  country-NG:
+    name: Nigeria
+    twoDigitCode: NG
+    threeDigitCode: NGA
+    dialingCode: +234
+    defaultRegion: region-gl
+    highlighted: false
+  country-NU:
+    name: Niue
+    twoDigitCode: NU
+    threeDigitCode: NIU
+    dialingCode: +683
+    defaultRegion: region-gl
+    highlighted: false
+  country-MP:
+    name: Northern Mariana Islands
+    twoDigitCode: MP
+    threeDigitCode: MNP
+    dialingCode: +1 670
+    defaultRegion: region-gl
+    highlighted: false
+  country-NO:
+    name: Norway
+    twoDigitCode: NO
+    threeDigitCode: NOR
+    dialingCode: +47
+    defaultRegion: region-gl
+    highlighted: false
+  country-OM:
+    name: Oman
+    twoDigitCode: OM
+    threeDigitCode: OMN
+    dialingCode: +968
+    defaultRegion: region-gl
+    highlighted: false
+  country-PK:
+    name: Pakistan
+    twoDigitCode: PK
+    threeDigitCode: PAK
+    dialingCode: +92
+    defaultRegion: region-gl
+    highlighted: false
+  country-PW:
+    name: Palau
+    twoDigitCode: PW
+    threeDigitCode: PLW
+    dialingCode: +680
+    defaultRegion: region-gl
+    highlighted: false
+  country-PA:
+    name: Panama
+    twoDigitCode: PA
+    threeDigitCode: PAN
+    dialingCode: +507
+    defaultRegion: region-gl
+    highlighted: false
+  country-PG:
+    name: Papua New Guinea
+    twoDigitCode: PG
+    threeDigitCode: PNG
+    dialingCode: +675
+    defaultRegion: region-gl
+    highlighted: false
+  country-PY:
+    name: Paraguay
+    twoDigitCode: PY
+    threeDigitCode: PRY
+    dialingCode: +595
+    defaultRegion: region-gl
+    highlighted: false
+  country-PE:
+    name: Peru
+    twoDigitCode: PE
+    threeDigitCode: PER
+    dialingCode: +51
+    defaultRegion: region-gl
+    highlighted: false
+  country-PH:
+    name: Philippines
+    twoDigitCode: PH
+    threeDigitCode: PHL
+    dialingCode: +63
+    defaultRegion: region-gl
+    highlighted: false
+  country-PN:
+    name: Pitcairn Islands
+    twoDigitCode: PN
+    threeDigitCode: PCN
+    dialingCode: +870
+    defaultRegion: region-gl
+    highlighted: false
+  country-PL:
+    name: Poland
+    twoDigitCode: PL
+    threeDigitCode: POL
+    dialingCode: +48
+    defaultRegion: region-gl
+    highlighted: false
+  country-PT:
+    name: Portugal
+    twoDigitCode: PT
+    threeDigitCode: PRT
+    dialingCode: +351
+    defaultRegion: region-gl
+    highlighted: false
+  country-PR:
+    name: Puerto Rico
+    twoDigitCode: PR
+    threeDigitCode: PRI
+    dialingCode: +1
+    defaultRegion: region-gl
+    highlighted: false
+  country-QA:
+    name: Qatar
+    twoDigitCode: QA
+    threeDigitCode: QAT
+    dialingCode: +974
+    defaultRegion: region-gl
+    highlighted: false
+  country-CG:
+    name: Republic of the Congo
+    twoDigitCode: CG
+    threeDigitCode: COG
+    dialingCode: +242
+    defaultRegion: region-gl
+    highlighted: false
+  country-RO:
+    name: Romania
+    twoDigitCode: RO
+    threeDigitCode: ROU
+    dialingCode: +40
+    defaultRegion: region-gl
+    highlighted: false
+  country-RU:
+    name: Russia
+    twoDigitCode: RU
+    threeDigitCode: RUS
+    dialingCode: +7
+    defaultRegion: region-gl
+    highlighted: false
+  country-RW:
+    name: Rwanda
+    twoDigitCode: RW
+    threeDigitCode: RWA
+    dialingCode: +250
+    defaultRegion: region-gl
+    highlighted: false
+  country-BL:
+    name: Saint Barthelemy
+    twoDigitCode: BL
+    threeDigitCode: BLM
+    dialingCode: +590
+    defaultRegion: region-gl
+    highlighted: false
+  country-SH:
+    name: Saint Helena
+    twoDigitCode: SH
+    threeDigitCode: SHN
+    dialingCode: +290
+    defaultRegion: region-gl
+    highlighted: false
+  country-KN:
+    name: Saint Kitts and Nevis
+    twoDigitCode: KN
+    threeDigitCode: KNA
+    dialingCode: +1 869
+    defaultRegion: region-gl
+    highlighted: false
+  country-LC:
+    name: Saint Lucia
+    twoDigitCode: LC
+    threeDigitCode: LCA
+    dialingCode: +1 758
+    defaultRegion: region-gl
+    highlighted: false
+  country-MF:
+    name: Saint Martin
+    twoDigitCode: MF
+    threeDigitCode: MAF
+    dialingCode: +1 599
+    defaultRegion: region-gl
+    highlighted: false
+  country-PM:
+    name: Saint Pierre and Miquelon
+    twoDigitCode: PM
+    threeDigitCode: SPM
+    dialingCode: +508
+    defaultRegion: region-gl
+    highlighted: false
+  country-VC:
+    name: Saint Vincent and the Grenadines
+      twoDigitCode: VC
+      threeDigitCode: VCT
+      dialingCode: +1 784
+      defaultRegion: region-gl
+  country-WS:
+    name: Samoa
+    twoDigitCode: WS
+    threeDigitCode: WSM
+    dialingCode: +685
+    defaultRegion: region-gl
+    highlighted: false
+  country-SM:
+    name: San Marino
+    twoDigitCode: SM
+    threeDigitCode: SMR
+    dialingCode: +378
+    defaultRegion: region-gl
+    highlighted: false
+  country-ST:
+    name: Sao Tome and Principe
+    twoDigitCode: ST
+    threeDigitCode: STP
+    dialingCode: +239
+    defaultRegion: region-gl
+    highlighted: false
+  country-SA:
+    name: Saudi Arabia
+    twoDigitCode: SA
+    threeDigitCode: SAU
+    dialingCode: +966
+    defaultRegion: region-mea
+    highlighted: false
+  country-SN:
+    name: Senegal
+    twoDigitCode: SN
+    threeDigitCode: SEN
+    dialingCode: +221
+    defaultRegion: region-gl
+    highlighted: false
+  country-RS:
+    name: Serbia
+    twoDigitCode: RS
+    threeDigitCode: SRB
+    dialingCode: +381
+    defaultRegion: region-gl
+    highlighted: false
+  country-SC:
+    name: Seychelles
+    twoDigitCode: SC
+    threeDigitCode: SYC
+    dialingCode: +248
+    defaultRegion: region-gl
+    highlighted: false
+  country-SL:
+    name: Sierra Leone
+    twoDigitCode: SL
+    threeDigitCode: SLE
+    dialingCode: +232
+    defaultRegion: region-gl
+    highlighted: false
+  country-SG:
+    name: Singapore
+    twoDigitCode: SG
+    threeDigitCode: SGP
+    dialingCode: +65
+    defaultRegion: region-sg
+    highlighted: true
+  country-SK:
+    name: Slovakia
+    twoDigitCode: SK
+    threeDigitCode: SVK
+    dialingCode: +421
+    defaultRegion: region-gl
+    highlighted: false
+  country-SI:
+    name: Slovenia
+    twoDigitCode: SI
+    threeDigitCode: SVN
+    dialingCode: +386
+    defaultRegion: region-gl
+    highlighted: false
+  country-SB:
+    name: Solomon Islands
+    twoDigitCode: SB
+    threeDigitCode: SLB
+    dialingCode: +677
+    defaultRegion: region-gl
+    highlighted: false
+  country-SO:
+    name: Somalia
+    twoDigitCode: SO
+    threeDigitCode: SOM
+    dialingCode: +252
+    defaultRegion: region-gl
+    highlighted: false
+  country-ZA:
+    name: South Africa
+    twoDigitCode: ZA
+    threeDigitCode: ZAF
+    dialingCode: +27
+    defaultRegion: region-gl
+    highlighted: false
+  country-KR:
+    name: South Korea
+    twoDigitCode: KR
+    threeDigitCode: KOR
+    dialingCode: +82
+    defaultRegion: region-gl
+    highlighted: false
+  country-ES:
+    name: Spain
+    twoDigitCode: ES
+    threeDigitCode: ESP
+    dialingCode: +34
+    defaultRegion: region-gl
+    highlighted: false
+  country-LK:
+    name: Sri Lanka
+    twoDigitCode: LK
+    threeDigitCode: LKA
+    dialingCode: +94
+    defaultRegion: region-gl
+    highlighted: false
+  country-SD:
+    name: Sudan
+    twoDigitCode: SD
+    threeDigitCode: SDN
+    dialingCode: +249
+    defaultRegion: region-gl
+    highlighted: false
+  country-SR:
+    name: Suriname
+    twoDigitCode: SR
+    threeDigitCode: SUR
+    dialingCode: +597
+    defaultRegion: region-gl
+    highlighted: false
+  country-SZ:
+    name: Swaziland
+    twoDigitCode: SZ
+    threeDigitCode: SWZ
+    dialingCode: +268
+    defaultRegion: region-gl
+    highlighted: false
+  country-SE:
+    name: Sweden
+    twoDigitCode: SE
+    threeDigitCode: SWE
+    dialingCode: +46
+    defaultRegion: region-gl
+    highlighted: false
+  country-CH:
+    name: Switzerland
+    twoDigitCode: CH
+    threeDigitCode: CHE
+    dialingCode: +41
+    defaultRegion: region-gl
+    highlighted: false
+  country-SY:
+    name: Syria
+    twoDigitCode: SY
+    threeDigitCode: SYR
+    dialingCode: +963
+    defaultRegion: region-gl
+    highlighted: false
+  country-TW:
+    name: Taiwan
+    twoDigitCode: TW
+    threeDigitCode: TWN
+    dialingCode: +886
+    defaultRegion: region-gl
+    highlighted: false
+  country-TJ:
+    name: Tajikistan
+    twoDigitCode: TJ
+    threeDigitCode: TJK
+    dialingCode: +992
+    defaultRegion: region-gl
+    highlighted: false
+  country-TZ:
+    name: Tanzania
+    twoDigitCode: TZ
+    threeDigitCode: TZA
+    dialingCode: +255
+    defaultRegion: region-gl
+    highlighted: false
+  country-TH:
+    name: Thailand
+    twoDigitCode: TH
+    threeDigitCode: THA
+    dialingCode: +66
+    defaultRegion: region-gl
+    highlighted: false
+  country-TL:
+    name: Timor-Leste
+    twoDigitCode: TL
+    threeDigitCode: TLS
+    dialingCode: +670
+    defaultRegion: region-gl
+    highlighted: false
+  country-TG:
+    name: Togo
+    twoDigitCode: TG
+    threeDigitCode: TGO
+    dialingCode: +228
+    defaultRegion: region-gl
+    highlighted: false
+  country-TK:
+    name: Tokelau
+    twoDigitCode: TK
+    threeDigitCode: TKL
+    dialingCode: +690
+    defaultRegion: region-gl
+    highlighted: false
+  country-TO:
+    name: Tonga
+    twoDigitCode: TO
+    threeDigitCode: TON
+    dialingCode: +676
+    defaultRegion: region-gl
+    highlighted: false
+  country-TT:
+    name: Trinidad and Tobago
+    twoDigitCode: TT
+    threeDigitCode: TTO
+    dialingCode: +1 868
+    defaultRegion: region-gl
+    highlighted: false
+  country-TN:
+    name: Tunisia
+    twoDigitCode: TN
+    threeDigitCode: TUN
+    dialingCode: +216
+    defaultRegion: region-gl
+    highlighted: false
+  country-TR:
+    name: Turkey
+    twoDigitCode: TR
+    threeDigitCode: TUR
+    dialingCode: +90
+    defaultRegion: region-gl
+    highlighted: false
+  country-TM:
+    name: Turkmenistan
+    twoDigitCode: TM
+    threeDigitCode: TKM
+    dialingCode: +993
+    defaultRegion: region-gl
+    highlighted: false
+  country-TC:
+    name: Turks and Caicos Islands
+    twoDigitCode: TC
+    threeDigitCode: TCA
+    dialingCode: +1 649
+    defaultRegion: region-gl
+    highlighted: false
+  country-TV:
+    name: Tuvalu
+    twoDigitCode: TV
+    threeDigitCode: TUV
+    dialingCode: +688
+    defaultRegion: region-gl
+    highlighted: false
+  country-UG:
+    name: Uganda
+    twoDigitCode: UG
+    threeDigitCode: UGA
+    dialingCode: +256
+    defaultRegion: region-gl
+    highlighted: false
+  country-UA:
+    name: Ukraine
+    twoDigitCode: UA
+    threeDigitCode: UKR
+    dialingCode: +380
+    defaultRegion: region-gl
+    highlighted: false
+  country-AE:
+    name: United Arab Emirates
+    twoDigitCode: AE
+    threeDigitCode: ARE
+    dialingCode: +971
+    defaultRegion: region-mea
+    highlighted: true
+  country-GB:
+    name: United Kingdom
+    twoDigitCode: GB
+    threeDigitCode: GBR
+    dialingCode: +44
+    defaultRegion: region-uk
+    highlighted: true
+  country-US:
+    name: United States
+    twoDigitCode: US
+    threeDigitCode: USA
+    dialingCode: +1
+    defaultRegion: region-us
+    highlighted: true
+  country-UY:
+    name: Uruguay
+    twoDigitCode: UY
+    threeDigitCode: URY
+    dialingCode: +598
+    defaultRegion: region-gl
+    highlighted: false
+  country-VI:
+    name: US Virgin Islands
+    twoDigitCode: VI
+    threeDigitCode: VIR
+    dialingCode: +1 340
+    defaultRegion: region-gl
+    highlighted: false
+  country-UZ:
+    name: Uzbekistan
+    twoDigitCode: UZ
+    threeDigitCode: UZB
+    dialingCode: +998
+    defaultRegion: region-gl
+    highlighted: false
+  country-VU:
+    name: Vanuatu
+    twoDigitCode: VU
+    threeDigitCode: VUT
+    dialingCode: +678
+    defaultRegion: region-gl
+    highlighted: false
+  country-VE:
+    name: Venezuela
+    twoDigitCode: VE
+    threeDigitCode: VEN
+    dialingCode: +58
+    defaultRegion: region-gl
+    highlighted: false
+  country-VN:
+    name: Vietnam
+    twoDigitCode: VN
+    threeDigitCode: VNM
+    dialingCode: +84
+    defaultRegion: region-gl
+    highlighted: false
+  country-WF:
+    name: Wallis and Futuna
+    twoDigitCode: WF
+    threeDigitCode: WLF
+    dialingCode: +681
+    defaultRegion: region-gl
+    highlighted: false
+  country-YE:
+    name: Yemen
+    twoDigitCode: YE
+    threeDigitCode: YEM
+    dialingCode: +967
+    defaultRegion: region-mea
+    highlighted: false
+  country-ZM:
+    name: Zambia
+    twoDigitCode: ZM
+    threeDigitCode: ZMB
+    dialingCode: +260
+    defaultRegion: region-gl
+    highlighted: false
+  country-ZW:
+    name: Zimbabwe
+    twoDigitCode: ZW
+    threeDigitCode: ZWE
+    dialingCode: +263
+    defaultRegion: region-gl
+    highlighted: false

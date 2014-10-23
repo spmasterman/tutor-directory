@@ -1,0 +1,7 @@
+model: Fitch\TutorBundle\Entity\CompetencyType
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+  type-fsa:
+    name:  Financial Statement Analysis

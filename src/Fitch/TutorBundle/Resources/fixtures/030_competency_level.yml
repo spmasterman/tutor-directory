@@ -1,0 +1,11 @@
+model: Fitch\TutorBundle\Entity\CompetencyLevel
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+  level-intern:
+    name: Intern
+  level-grad:
+    name: Graduate
+  level-practitioner:
+    name: Practitioner
