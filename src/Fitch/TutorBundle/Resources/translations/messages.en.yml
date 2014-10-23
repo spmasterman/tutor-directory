@@ -1,0 +1,35 @@
+country:
+    edit:
+        verb: Edit Country
+        tagline: edit the details of country record
+        success: The Country has been successfully updated.
+    list:
+        verb: Countries
+        tagline: countries available for use in the Tutor Directory
+    new:
+        verb: New Country
+        tagline: define a new country
+        success: The Country has been successfully created.
+    show:
+        verb: Country
+        tagline: view the details of a Country record
+    delete:
+        success: The Country has been successfully removed.
+
+operatingregion:
+    edit:
+        verb: Edit Region
+        tagline: edit the details of operational region record
+        success: The Region has been successfully updated.
+    list:
+        verb: regions
+        tagline: regions available for use in the Tutor Directory
+    new:
+        verb: New Region
+        tagline: define a new operational region
+        success: The Region has been successfully created.
+    show:
+        verb: Region
+        tagline: view the details of a Region record
+    delete:
+        success: The Region has been successfully removed.

@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\OperatingRegionBundle\Model\OperatingRegionManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -24,65 +25,67 @@ class OperatingRegionController extends Controller
      * @Route("/", name="region")
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('FitchTutorBundle:OperatingRegion')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
+        return [
+            'regions' => $this->getOperatingRegionManager()->findAll()
+        ];
     }
+
     /**
      * Creates a new OperatingRegion entity.
      *
      * @Route("/", name="region_create")
      * @Method("POST")
      * @Template("FitchTutorBundle:OperatingRegion:new.html.twig")
+     *
+     * @param Request $request
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function createAction(Request $request)
     {
-        $entity = new OperatingRegion();
-        $form = $this->createCreateForm($entity);
+        $operatingRegionManager = $this->getOperatingRegionManager();
+
+        $region = $operatingRegionManager->createOperatingRegion();
+        $form = $this->createCreateForm($region);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('region_show', array('id' => $entity->getId())));
+            $operatingRegionManager->saveOperatingRegion($region);
+            return $this->redirect($this->generateUrl('region_show', ['id' => $region->getId()]));
         }
 
-        return array(
-            'entity' => $entity,
+        return [
+            'region' => $region,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
     * Creates a form to create a OperatingRegion entity.
     *
-    * @param OperatingRegion $entity The entity
+    * @param OperatingRegion $region The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(OperatingRegion $entity)
+    private function createCreateForm(OperatingRegion $region)
     {
-        $form = $this->createForm(new OperatingRegionType(), $entity, array(
+        $form = $this->createForm(new OperatingRegionType(), $region, [
             'action' => $this->generateUrl('region_create'),
             'method' => 'POST',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => 'Create',
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle'
-        )));
+        ]]);
 
         return $form;
     }
@@ -96,13 +99,13 @@ class OperatingRegionController extends Controller
      */
     public function newAction()
     {
-        $entity = new OperatingRegion();
-        $form   = $this->createCreateForm($entity);
+        $region = $this->getOperatingRegionManager()->createOperatingRegion();
+        $form   = $this->createCreateForm($region);
 
-        return array(
-            'entity' => $entity,
+        return [
+            'region' => $region,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -111,23 +114,22 @@ class OperatingRegionController extends Controller
      * @Route("/{id}", name="region_show")
      * @Method("GET")
      * @Template()
+     *
+     * @param OperatingRegion $region
+     *
+     * @return array
      */
-    public function showAction($id)
+    public function showAction(OperatingRegion $region)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:OperatingRegion')->find($id);
-
-        if (!$entity) {
+        if (!$region) {
             throw $this->createNotFoundException('Unable to find OperatingRegion entity.');
         }
+        $deleteForm = $this->createDeleteForm($region->getId());
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
+        return [
+            'region'      => $region,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -136,105 +138,105 @@ class OperatingRegionController extends Controller
      * @Route("/{id}/edit", name="region_edit")
      * @Method("GET")
      * @Template()
+     *
+     * @param OperatingRegion $region
+     *
+     * @return array
      */
-    public function editAction($id)
+    public function editAction(OperatingRegion $region)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:OperatingRegion')->find($id);
-
-        if (!$entity) {
+        if (!$region) {
             throw $this->createNotFoundException('Unable to find OperatingRegion entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($region);
+        $deleteForm = $this->createDeleteForm($region->getId());
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'region'      => $region,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
     * Creates a form to edit a OperatingRegion entity.
     *
-    * @param OperatingRegion $entity The entity
+    * @param OperatingRegion $region The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(OperatingRegion $entity)
+    private function createEditForm(OperatingRegion $region)
     {
-        $form = $this->createForm(new OperatingRegionType(), $entity, array(
-            'action' => $this->generateUrl('region_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new OperatingRegionType(), $region, [
+            'action' => $this->generateUrl('region_update', ['id' => $region->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => $this->get('translator')->trans('navigation.update'),
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle'
-            )));
+            ]]);
 
         return $form;
     }
+
     /**
      * Edits an existing OperatingRegion entity.
      *
      * @Route("/{id}", name="region_update")
      * @Method("PUT")
      * @Template("FitchTutorBundle:OperatingRegion:edit.html.twig")
+     *
+     * @param Request $request
+     * @param OperatingRegion $region
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, OperatingRegion $region)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:OperatingRegion')->find($id);
-
-        if (!$entity) {
+        if (!$region) {
             throw $this->createNotFoundException('Unable to find OperatingRegion entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($region->getId());
+        $editForm = $this->createEditForm($region);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+            $this->getOperatingRegionManager()->saveOperatingRegion($region);
 
-            return $this->redirect($this->generateUrl('region_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('region_edit', ['id' => $region->getId()]));
         }
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'region'      => $region,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
+
     /**
      * Deletes a OperatingRegion entity.
      *
      * @Route("/{id}", name="region_delete")
      * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param OperatingRegion $region
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, OperatingRegion $region)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($region->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('FitchTutorBundle:OperatingRegion')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find OperatingRegion entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+            $this->getOperatingRegionManager()->removeOperatingRegion($region->getId());
         }
 
         return $this->redirect($this->generateUrl('region'));
@@ -250,16 +252,24 @@ class OperatingRegionController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('region_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('region_delete', ['id' => $id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit',
-                array(
+                [
                     'label' => $this->get('translator')->trans('navigation.delete'),
-                        'attr' => array(
+                        'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle'
-                )))
+                ]])
             ->getForm()
         ;
+    }
+
+    /**
+     * @return OperatingRegionManager
+     */
+    private function getOperatingRegionManager()
+    {
+        return $this->get('fitch.manager.operating_region');
     }
 }

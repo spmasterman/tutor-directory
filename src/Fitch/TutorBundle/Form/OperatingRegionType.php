@@ -16,8 +16,6 @@ class OperatingRegionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('created')
-            ->add('updated')
         ;
     }
     

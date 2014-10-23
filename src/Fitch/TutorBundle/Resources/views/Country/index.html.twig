@@ -47,10 +47,11 @@
                 {% endfor %}
                 </tbody>
             </table>
-
-            <a href="{{ path('country_new') }}" class="btn btn-default btn-s">
-                <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
-            </a>
         </div>
+    </div>
+    <div class="record_actions well">
+        <a href="{{ path('country_new') }}" class="btn btn-default btn-s">
+            <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+        </a>
     </div>
 {% endblock %}
