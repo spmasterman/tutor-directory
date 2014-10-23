@@ -78,4 +78,22 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
         $this->competencyType = $competencyType;
         return $this;
     }
+
+    /**
+     * @return Tutor
+     */
+    public function getTutor()
+    {
+        return $this->tutor;
+    }
+
+    /**
+     * @param Tutor $tutor
+     * @return $this
+     */
+    public function setTutor($tutor)
+    {
+        $this->tutor = $tutor;
+        return $this;
+    }
 }

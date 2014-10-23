@@ -16,9 +16,8 @@ class TutorType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('created')
-            ->add('updated')
             ->add('region')
+
         ;
     }
     

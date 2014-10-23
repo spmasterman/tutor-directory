@@ -20,12 +20,32 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="addresses")
+     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
+     *
+     * @var Tutor
+     */
+    protected $tutor;
+
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection
+     *
+     * INVERSE SIDE
+     * @ORM\OneToMany(targetEntity="Address",
+     *      mappedBy="tutor",
+     *      indexBy="id"
+     * )
+     */
+    private $addresses;
 
     /**
      * @var ArrayCollection
@@ -82,6 +102,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
 
     public function __construct()
     {
+        $this->addresses = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->emailAddresses = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();

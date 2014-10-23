@@ -25,8 +25,7 @@
                         <th>3 digit ISO code</th>
                         <th>Dialing code</th>
                         <th>Highlighted</th>
-                        <th>Created</th>
-                        <th>Updated</th>
+                        <th>Default Region</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -39,9 +38,10 @@
                         <td>{{ country.threeDigitCode }}</td>
                         <td>{{ country.dialingCode }}</td>
                         <td>{% if country.highlighted %}<span class="badge badge-success">Yes</span>{% endif %}</td>
-                        <td>{% if country.created %}{{ country.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if country.updated %}{{ country.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>                        <a href="{{ path('country_show', { 'id': country.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('country_edit', { 'id': country.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        <td>{% if country.getDefaultRegion %}{{ country.getDefaultRegion }}{% endif %}</td>
+                        <td>
+                            <a href="{{ path('country_show', { 'id': country.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                            <a href="{{ path('country_edit', { 'id': country.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}
