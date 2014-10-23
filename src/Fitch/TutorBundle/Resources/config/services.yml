@@ -1,0 +1,97 @@
+parameters:
+  fitch.manager.tutor.class: Fitch\TutorBundle\Model\TutorManager
+  fitch.manager.phone.class: Fitch\TutorBundle\Model\PhoneManager
+  fitch.manager.email.class: Fitch\TutorBundle\Model\EmailManager
+  fitch.manager.file.class: Fitch\TutorBundle\Model\FileManager
+  fitch.manager.operating_region.class: Fitch\TutorBundle\Model\OperatingRegionManager
+  fitch.manager.country.class: Fitch\TutorBundle\Model\CountryManager
+  fitch.manager.competency.class: Fitch\TutorBundle\Model\CompetencyManager
+  fitch.manager.competency_type.class: Fitch\TutorBundle\Model\CompetencyTypeManager
+  fitch.manager.competency_level.class: Fitch\TutorBundle\Model\CompetencyLevelManager
+
+  fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
+  fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
+  fitch.entity.email.class: Fitch\TutorBundle\Entity\Email
+  fitch.entity.file.class: Fitch\TutorBundle\Entity\File
+  fitch.entity.operating_region.class: Fitch\TutorBundle\Entity\OperatingRegion
+  fitch.entity.country.class: Fitch\TutorBundle\Entity\Country
+  fitch.entity.competency.class: Fitch\TutorBundle\Entity\Competency
+  fitch.entity.competency_type.class: Fitch\TutorBundle\Entity\Competency
+  fitch.entity.competency_level.class: Fitch\TutorBundle\Entity\Competency
+
+services:
+    #
+    # Model Managers
+    #
+    fitch.manager.tutor:
+        class: %fitch.manager.tutor.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.tutor.class%
+    fitch.manager.phone:
+        class: %fitch.manager.phone.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.phone.class%
+    fitch.manager.email:
+        class: %fitch.manager.email.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.email.class%
+    fitch.manager.file:
+        class: %fitch.manager.file.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.file.class%
+    fitch.manager.competency:
+        class: %fitch.manager.competency.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.competency.class%
+    fitch.manager.competency_level:
+        class: %fitch.manager.competency_level.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.competency_level.class%
+    fitch.manager.competency_type:
+        class: %fitch.manager.competency_type.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.competency_type.class%
+    fitch.manager.country:
+        class: %fitch.manager.country.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.country.class%
+    fitch.manager.operating_region:
+        class: %fitch.manager.operating_region.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.operating_region.class%

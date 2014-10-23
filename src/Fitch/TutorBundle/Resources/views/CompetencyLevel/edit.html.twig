@@ -1,0 +1,22 @@
+
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+        <h2>{% trans %}competencylevel.edit.verb{% endtrans %}</h2>
+        <em>{% trans %}competencylevel.edit.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% form_theme edit_form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+    {{ form(edit_form, {'attr': {'class': 'form-horizontal'} }) }}
+
+        
+<div class="record_actions well">
+    <a class="btn btn-default btn-s" href="{{ path('competency_level') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+    </a>
+
+
+    {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
+    {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
+</div>{% endblock %}

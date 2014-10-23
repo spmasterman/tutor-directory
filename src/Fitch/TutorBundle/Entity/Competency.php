@@ -20,6 +20,14 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
     use IdentityTrait, TimestampableTrait;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="competencies")
+     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
+     *
+     * @var Tutor
+     */
+    protected $tutor;
+
+    /**
      * @ORM\ManyToOne(targetEntity="CompetencyType")
      * @ORM\JoinColumn(name="competency_type_id", referencedColumnName="id")
      *

@@ -1,0 +1,36 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+    {% block main_header -%}
+    <h2>{% trans %}tutor.list.verb{% endtrans %}</h2>
+    <em>{% trans %}tutor.list.tagline{% endtrans %}</em>
+    {% endblock %}
+
+{% block main_content -%}
+    <table class="records_list table table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('tutor_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.id }}</td>
+                <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>                        <a href="{{ path('tutor_show', { 'id': entity.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('tutor_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
+        <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+    </a>
+    {% endblock %}

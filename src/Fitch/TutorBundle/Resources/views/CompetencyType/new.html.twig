@@ -1,0 +1,19 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+    {% block main_header -%}
+    <h2>{% trans %}competencytype.new.verb{% endtrans %}</h2>
+    <em>{% trans %}competencytype.new.tagline{% endtrans %}</em>
+    {% endblock %}
+
+{% block main_content -%}
+    {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+    {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
+
+        
+<div class="record_actions well">
+    <a class="btn btn-default btn-s" href="{{ path('competency_type') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+    </a>
+
+
+</div>{% endblock %}

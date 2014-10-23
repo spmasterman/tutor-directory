@@ -61,6 +61,17 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     protected $files;
 
     /**
+     * @var ArrayCollection
+     *
+     * INVERSE SIDE
+     * @ORM\OneToMany(targetEntity="Competency",
+     *      mappedBy="tutor",
+     *      indexBy="id"
+     * )
+     */
+    protected $competencies;
+
+    /**
      * @ORM\ManyToOne(targetEntity="OperatingRegion")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      *
@@ -201,6 +212,19 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         if (! $this->files->contains($file)) {
             $file->setTutor($this);
             $this->files->add($file);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Competency $competency
+     * @return $this
+     */
+    public function addCompetency (Competency $competency)
+    {
+        if (! $this->competencies->contains($competency)) {
+            $competency->setTutor($this);
+            $this->competencies->add($competency);
         }
         return $this;
     }

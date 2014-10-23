@@ -1,0 +1,56 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}country.list.verb{% endtrans %}</h2>
+    <em>{% trans %}country.list.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    <div class="widget widget-table">
+        <div class="widget-header">
+            <h3><i class="fa fa-flag-o"></i> Countries</h3>
+            <div class="btn-group widget-header-toolbar">
+                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="widget-content">
+            <table class="records_list table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>2 digit ISO code</th>
+                        <th>3 digit ISO code</th>
+                        <th>Dialing code</th>
+                        <th>Highlighted</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for country in countries %}
+                    <tr>
+                        <td>{{ country.id }}</td>
+                        <td><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name }}</a></td>
+                        <td>{{ country.twoDigitCode }}</td>
+                        <td>{{ country.threeDigitCode }}</td>
+                        <td>{{ country.dialingCode }}</td>
+                        <td>{% if country.highlighted %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <td>{% if country.created %}{{ country.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if country.updated %}{{ country.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>                        <a href="{{ path('country_show', { 'id': country.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('country_edit', { 'id': country.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('country_new') }}" class="btn btn-default btn-s">
+                <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

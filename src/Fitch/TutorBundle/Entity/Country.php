@@ -48,7 +48,7 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
     protected $dialingCode;
 
     /**
-     * @ORM\OneToOne(
+     * @ORM\ManyToOne(
      *      targetEntity="OperatingRegion"
      * )
      * @ORM\JoinColumn(name="default_region_id", referencedColumnName="id", onDelete="SET NULL")
@@ -61,7 +61,15 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @var boolean
      */
-    protected $highlighted;
+    protected $highlighted = false;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('%s (%s) %s', $this->getName(), $this->getThreeDigitCode(), $this->getDialingCode());
+    }
 
     /**
      * @return OperatingRegion

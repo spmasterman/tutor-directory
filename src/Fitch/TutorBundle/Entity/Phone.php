@@ -28,6 +28,14 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
     protected $tutor;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     *
+     * @var Country
+     */
+    protected $country;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="number", type="string", length=32)
@@ -40,6 +48,25 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
      * @ORM\Column(name="type", type="string", length=32)
      */
     private $type;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $stringRepresentation = '';
+        if ($this->getCountry()) {
+            $stringRepresentation = $this->getCountry()->getDialingCode() . ' ' . $stringRepresentation;
+        }
+
+        $stringRepresentation .= $this->getNumber();
+
+        if ($this->getType()) {
+            $stringRepresentation .= ' (' . $this->getType() . ')';
+        }
+
+        return $stringRepresentation;
+    }
 
     /**
      * @return string
@@ -92,6 +119,24 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country $country
+     * @return $this
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
         return $this;
     }
 }
