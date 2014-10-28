@@ -2,6 +2,8 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Entity\Address;
+use Fitch\TutorBundle\Model\CountryManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -71,7 +73,7 @@ class TutorController extends Controller
     */
     private function createCreateForm(Tutor $entity)
     {
-        $form = $this->createForm(new TutorType(), $entity, array(
+        $form = $this->createForm(new TutorType($this->get('translator')), $entity, array(
             'action' => $this->generateUrl('tutor_create'),
             'method' => 'POST',
         ));
@@ -136,22 +138,24 @@ class TutorController extends Controller
      * @Route("/{id}/edit", name="tutor_edit")
      * @Method("GET")
      * @Template()
+     *
+     * @param Tutor $tutor
+     *
+     * @return array
      */
-    public function editAction($id)
+    public function editAction(Tutor $tutor)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:Tutor')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Tutor entity.');
+        if (!$tutor->hasAddress()) {
+            $address = new Address();
+            $address->setCountry($this->getCountryManager()->getDefaultCountry());
+            $tutor->addAddress($address);
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($tutor);
+        $deleteForm = $this->createDeleteForm($tutor->getId());
 
         return array(
-            'entity'      => $entity,
+            'tutor'      => $tutor,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -166,7 +170,7 @@ class TutorController extends Controller
     */
     private function createEditForm(Tutor $entity)
     {
-        $form = $this->createForm(new TutorType(), $entity, array(
+        $form = $this->createForm(new TutorType($this->get('translator'), $this->getCountryManager()), $entity, array(
             'action' => $this->generateUrl('tutor_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -261,5 +265,13 @@ class TutorController extends Controller
                 )))
             ->getForm()
         ;
+    }
+
+    /**
+     * @return CountryManager
+     */
+    private function getCountryManager()
+    {
+        return $this->get('fitch.manager.country');
     }
 }

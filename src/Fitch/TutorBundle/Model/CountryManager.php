@@ -27,6 +27,24 @@ class CountryManager extends BaseModelManager
         return parent::findAll();
     }
 
+    public function buildChoicesForAddress()
+    {
+        return $this->findAll();
+    }
+
+    public function buildPreferredChoicesForAddress()
+    {
+        return $this->getRepo()->findBy(['highlighted' => true]);
+    }
+
+    /**
+     * @return Country
+     */
+    public function getDefaultCountry()
+    {
+        return $this->getRepo()->findOneBy(['twoDigitCode' => 'GB']);
+    }
+
     /**
      * @param Country $country
      * @param bool $withFlush

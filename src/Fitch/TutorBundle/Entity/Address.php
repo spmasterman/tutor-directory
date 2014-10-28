@@ -22,48 +22,63 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="addresses")
+     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
+     *
+     * @var Tutor
+     */
+    protected $tutor;
 
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=32)
      */
-    private $type;
+    private $type = 'Office';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street_primary", type="string", length=255)
+     * @ORM\Column(name="street_primary", type="string", length=255, nullable=true)
      */
     private $streetPrimary;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street_secondary", type="string", length=255)
+     * @ORM\Column(name="street_secondary", type="string", length=255, nullable=true)
      */
     private $streetSecondary;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="state", type="string", length=255)
+     * @ORM\Column(name="state", type="string", length=255, nullable=true)
      */
     private $state;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zip", type="string", length=32)
+     * @ORM\Column(name="zip", type="string", length=32, nullable=true)
      */
     private $zip;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     *
+     * @var Country
+     */
+    protected $country;
 
     /**
      * Set #streetPrimary
@@ -198,5 +213,39 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
 
+    /**
+     * @return Tutor
+     */
+    public function getTutor()
+    {
+        return $this->tutor;
+    }
 
+    /**
+     * @param Tutor $tutor
+     * @return $this
+     */
+    public function setTutor($tutor)
+    {
+        $this->tutor = $tutor;
+        return $this;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country $country
+     * @return $this
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+        return $this;
+    }
 }

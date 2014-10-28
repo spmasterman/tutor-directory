@@ -2,12 +2,26 @@
 
 namespace Fitch\TutorBundle\Form;
 
+use Fitch\TutorBundle\Model\CountryManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\Translator;
 
 class TutorType extends AbstractType
 {
+    /** @var  Translator */
+    protected $translator;
+
+    /** @var  CountryManager  */
+    protected $countryManager;
+
+    public function __construct($translator, $countryManager)
+    {
+        $this->translator = $translator;
+        $this->countryManager = $countryManager;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -16,6 +30,11 @@ class TutorType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('addresses', 'collection', [
+                'type'   => new AddressType($this->translator, $this->countryManager),
+                'allow_add' => true,
+                'allow_delete' => true
+            ])
             ->add('region')
 
         ;

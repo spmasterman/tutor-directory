@@ -1,22 +1,53 @@
-
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
 {% block main_header -%}
-        <h2>{% trans %}tutor.edit.verb{% endtrans %}</h2>
-        <em>{% trans %}tutor.edit.tagline{% endtrans %}</em>
+    <h2>{% trans %}tutor.edit.verb{% endtrans %}</h2>
+    <em>{% trans %}tutor.edit.tagline{% endtrans %}</em>
 {% endblock %}
 
 {% block main_content -%}
     {% form_theme edit_form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
-    {{ form(edit_form, {'attr': {'class': 'form-horizontal'} }) }}
 
-        
-<div class="record_actions well">
-    <a class="btn btn-default btn-s" href="{{ path('tutor') }}">
-            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
-    </a>
+    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'} })}}
+    {{ form_row(edit_form.name) }}
+
+    <div class="form-group row">
+        <label for="addresses" class="control-label col-xs-2">Address(es)</label>
+        <div class="col-xs-10" id="tutor-address-list-wrapper" data-prototype="{{ form_widget(edit_form.addresses.vars.prototype)|e }}">
+            <div id="tutor-address-list">
+                {% for address in edit_form.addresses %}
+                    <div class="row">
+                        <div class="tutor-address col-xs-11">
+                            {{ form_errors(address) }}
+                            {{ form_widget(address) }}
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="#" class="btn btn-danger btn-xs remove-address">Remove</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="#" class="btn btn-success btn-xs" id="add-another-address">Add</a>
+        </div>
+    </div>
+
+    {{ form_row(edit_form.region) }}
+    {{ form_end(edit_form) }}
+
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('tutor') }}">
+                <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
+
+        {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
+        {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
+    </div>
+{% endblock %}
 
 
-    {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
-    {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
-</div>{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@FitchTutorBundle/Resources/public/js/tutor.js'%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -17,8 +17,12 @@ class CountryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('twoDigitCode')
-            ->add('threeDigitCode')
+            ->add('twoDigitCode', null, [
+                'label' => 'ISO 3661-1 2 Digit Code'
+            ])
+            ->add('threeDigitCode', null, [
+                'label' => 'ISO 3661-1 3 Digit Code'
+            ])
             ->add('dialingCode')
             ->add('highlighted', new OnOffType(), [
                 'required' => false

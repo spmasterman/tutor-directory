@@ -20,15 +20,6 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="addresses")
-     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
-     *
-     * @var Tutor
-     */
-    protected $tutor;
-
     /**
      * @var string
      *
@@ -106,6 +97,24 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         $this->files = new ArrayCollection();
         $this->emailAddresses = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param ArrayCollection $addresses
+     * @return $this
+     */
+    public function setAddresses($addresses)
+    {
+        $this->addresses = $addresses;
+        return $this;
     }
 
     /**
@@ -248,5 +257,83 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
             $this->competencies->add($competency);
         }
         return $this;
+    }
+
+    /**
+     * @param Address $address
+     * @return $this
+     */
+    public function addAddress (Address $address)
+    {
+        if (! $this->addresses->contains($address)) {
+            $address->setTutor($this);
+            $this->addresses->add($address);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Address $address
+     * @return $this
+     */
+    public function removeAddress(Address $address)
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Email $email
+     * @return $this
+     */
+    public function removeEmail(Email $email)
+    {
+        if ($this->emailAddresses->contains($email)) {
+            $this->emailAddresses->removeElement($email);
+        }
+        return $this;
+    }
+
+    /**
+     * @param File $file
+     * @return $this
+     */
+    public function removeFile(File $file)
+    {
+        if ($this->files->contains($file)) {
+            $this->files->removeElement($file);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Phone $phone
+     * @return $this
+     */
+    public function removePhoneNumber(Phone $phone)
+    {
+        if ($this->phoneNumbers->contains($phone)) {
+            $this->phoneNumbers->removeElement($phone);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Competency $competency
+     * @return $this
+     */
+    public function removeCompetency(Competency $competency)
+    {
+        if ($this->competencies->contains($competency)) {
+            $this->competencies->removeElement($competency);
+        }
+        return $this;
+    }
+
+    public function hasAddress()
+    {
+        return $this->addresses->count() > 0;
     }
 }

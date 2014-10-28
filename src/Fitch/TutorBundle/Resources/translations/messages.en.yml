@@ -1,20 +1,20 @@
-country:
+tutor:
     edit:
-        verb: Edit Country
-        tagline: edit the details of country record
-        success: The Country has been successfully updated.
+        verb: Edit Tutor
+        tagline: edit the details of a tutor
+        success: The Tutor has been successfully updated.
     list:
-        verb: Countries
-        tagline: countries available for use in the Tutor Directory
+        verb: Tutors
+        tagline: all tutors
     new:
-        verb: New Country
-        tagline: define a new country
-        success: The Country has been successfully created.
+        verb: New Tutor
+        tagline: define a new tutur
+        success: The Tutor has been successfully created.
     show:
-        verb: Country
-        tagline: view the details of a Country record
+        verb: Tutor
+        tagline: view the details of a Tutor record
     delete:
-        success: The Country has been successfully removed.
+        success: The Tutor has been successfully removed.
 
 operatingregion:
     edit:
@@ -69,4 +69,35 @@ competencylevel:
         tagline: view the details of a Competency Level record
     delete:
         success: The Competency Level has been successfully removed.
-                
+
+country:
+    edit:
+        verb: Edit Country
+        tagline: edit the details of country record
+        success: The Country has been successfully updated.
+    list:
+        verb: Countries
+        tagline: countries available for use in the Tutor Directory
+    new:
+        verb: New Country
+        tagline: define a new country
+        success: The Country has been successfully created.
+    show:
+        verb: Country
+        tagline: view the details of a Country record
+    delete:
+        success: The Country has been successfully removed.
+
+address:
+    type:
+        placeholder: Type of Address (Home, Office, etc)
+    street_primary:
+        placeholder: Street Address
+    street_secondary:
+        placeholder: Street Address Line 2
+    city:
+        placeholder: City / Town
+    state:
+        placeholder: County / State / Province
+    zip:
+        placeholder: Postal Code / ZIP Code
