@@ -16,7 +16,7 @@ tutor:
     delete:
         success: The Tutor has been successfully removed.
 
-operatingregion:
+operating_region:
     edit:
         verb: Edit Region
         tagline: edit the details of operational region record
@@ -34,7 +34,7 @@ operatingregion:
     delete:
         success: The Region has been successfully removed.
         
-competencytype:        
+competency_type:
     edit:
         verb: Edit Competency Type
         tagline: edit the details of competency type record
@@ -52,7 +52,7 @@ competencytype:
     delete:
         success: The Competency Type has been successfully removed.
         
-competencylevel:        
+competency_level:
     edit:
         verb: Edit Competency Level
         tagline: edit the details of competency level record

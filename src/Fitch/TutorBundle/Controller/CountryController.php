@@ -30,9 +30,9 @@ class CountryController extends Controller
      */
     public function indexAction()
     {
-        return array(
+        return [
             'countries' => $this->getCountryManager()->findAll()
-        );
+        ];
     }
 
     /**
@@ -57,7 +57,13 @@ class CountryController extends Controller
         if ($form->isValid()) {
             $countryManager->saveCountry($country);
 
-            return $this->redirect($this->generateUrl('country_show', array('id' => $country->getId())));
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('country.new.success')
+            );
+
+
+            return $this->redirect($this->generateUrl('country_show', ['id' => $country->getId()]));
         }
 
         return array(
@@ -75,18 +81,18 @@ class CountryController extends Controller
     */
     private function createCreateForm(Country $entity)
     {
-        $form = $this->createForm(new CountryType(), $entity, array(
+        $form = $this->createForm(new CountryType(), $entity, [
             'action' => $this->generateUrl('country_create'),
             'method' => 'POST',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => 'Create',
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle'
-        )));
+        ]]);
 
         return $form;
     }
@@ -103,10 +109,10 @@ class CountryController extends Controller
         $country = $this->getCountryManager()->createCountry();
         $form   = $this->createCreateForm($country);
 
-        return array(
+        return [
             'entity' => $country,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -122,10 +128,6 @@ class CountryController extends Controller
      */
     public function showAction(Country $country)
     {
-        if (!$country) {
-            throw $this->createNotFoundException('Unable to find Country entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($country->getId());
 
         return [
@@ -147,10 +149,6 @@ class CountryController extends Controller
      */
     public function editAction(Country $country)
     {
-        if (!$country) {
-            throw $this->createNotFoundException('Unable to find Country entity.');
-        }
-
         $editForm = $this->createEditForm($country);
         $deleteForm = $this->createDeleteForm($country->getId());
 
@@ -211,6 +209,11 @@ class CountryController extends Controller
         if ($editForm->isValid()) {
             $this->getCountryManager()->saveCountry($country);
 
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('country.update.success')
+            );
+
             return $this->redirect($this->generateUrl('country_edit', ['id' => $country->getId()]));
         }
 
@@ -238,10 +241,12 @@ class CountryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            if (!$country) {
-                throw $this->createNotFoundException('Unable to find Country entity.');
-            }
             $this->getCountryManager()->removeCountry($country->getId());
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('country.delete.success')
+            );
         }
 
         return $this->redirect($this->generateUrl('country'));

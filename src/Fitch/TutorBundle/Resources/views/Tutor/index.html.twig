@@ -17,20 +17,20 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for tutor in tutors %}
             <tr>
-                <td><a href="{{ path('tutor_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-                <td>{{ entity.id }}</td>
-                <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>                        <a href="{{ path('tutor_show', { 'id': entity.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('tutor_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                <td><a href="{{ path('tutor_show', { 'id': tutor.id }) }}">{{ tutor.name }}</a></td>
+                <td>{{ tutor.id }}</td>
+                <td>{% if tutor.created %}{{ tutor.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if tutor.updated %}{{ tutor.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>                        <a href="{{ path('tutor_show', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('tutor_edit', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-        <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
+    <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
         <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
     </a>
-    {% endblock %}
+{% endblock %}

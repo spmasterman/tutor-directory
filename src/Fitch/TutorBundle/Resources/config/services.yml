@@ -8,6 +8,7 @@ parameters:
   fitch.manager.competency.class: Fitch\TutorBundle\Model\CompetencyManager
   fitch.manager.competency_type.class: Fitch\TutorBundle\Model\CompetencyTypeManager
   fitch.manager.competency_level.class: Fitch\TutorBundle\Model\CompetencyLevelManager
+  fitch.manager.address.class: Fitch\TutorBundle\Model\AddressManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -18,6 +19,7 @@ parameters:
   fitch.entity.competency.class: Fitch\TutorBundle\Entity\Competency
   fitch.entity.competency_type.class: Fitch\TutorBundle\Entity\CompetencyType
   fitch.entity.competency_level.class: Fitch\TutorBundle\Entity\CompetencyLevel
+  fitch.entity.address.class: Fitch\TutorBundle\Entity\Address
 
 services:
     #
@@ -95,3 +97,11 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.operating_region.class%
+    fitch.manager.address:
+        class: %fitch.manager.address.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.address.class%

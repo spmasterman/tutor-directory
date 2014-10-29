@@ -10,19 +10,19 @@
         <tbody>
             <tr>
                 <th class="col-xs-2">Name</th>
-                <td>{{ entity.name }}</td>
+                <td>{{ tutor.name }}</td>
             </tr>
             <tr>
                 <th class="col-xs-2">Id</th>
-                <td>{{ entity.id }}</td>
+                <td>{{ tutor.id }}</td>
             </tr>
             <tr>
                 <th class="col-xs-2">Created</th>
-                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+                <td>{{ tutor.created|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th class="col-xs-2">Updated</th>
-                <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
+                <td>{{ tutor.updated|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
@@ -33,7 +33,7 @@
             <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
     </a>
 
-    <a class="btn btn-default btn-s" href="{{ path('tutor_edit', { 'id': entity.id }) }}">
+    <a class="btn btn-default btn-s" href="{{ path('tutor_edit', { 'id': tutor.id }) }}">
         <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
     </a>
 

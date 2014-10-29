@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\OperatingRegionBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -56,6 +56,12 @@ class OperatingRegionController extends Controller
 
         if ($form->isValid()) {
             $operatingRegionManager->saveOperatingRegion($region);
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('operating_region.new.success')
+            );
+
             return $this->redirect($this->generateUrl('region_show', ['id' => $region->getId()]));
         }
 
@@ -121,9 +127,6 @@ class OperatingRegionController extends Controller
      */
     public function showAction(OperatingRegion $region)
     {
-        if (!$region) {
-            throw $this->createNotFoundException('Unable to find OperatingRegion entity.');
-        }
         $deleteForm = $this->createDeleteForm($region->getId());
 
         return [
@@ -145,10 +148,6 @@ class OperatingRegionController extends Controller
      */
     public function editAction(OperatingRegion $region)
     {
-        if (!$region) {
-            throw $this->createNotFoundException('Unable to find OperatingRegion entity.');
-        }
-
         $editForm = $this->createEditForm($region);
         $deleteForm = $this->createDeleteForm($region->getId());
 
@@ -209,6 +208,11 @@ class OperatingRegionController extends Controller
         if ($editForm->isValid()) {
             $this->getOperatingRegionManager()->saveOperatingRegion($region);
 
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('operating_region.update.success')
+            );
+
             return $this->redirect($this->generateUrl('region_edit', ['id' => $region->getId()]));
         }
 
@@ -237,6 +241,11 @@ class OperatingRegionController extends Controller
 
         if ($form->isValid()) {
             $this->getOperatingRegionManager()->removeOperatingRegion($region->getId());
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('operating_region.delete.success')
+            );
         }
 
         return $this->redirect($this->generateUrl('region'));

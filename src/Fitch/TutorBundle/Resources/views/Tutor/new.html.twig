@@ -1,19 +1,49 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
-    {% block main_header -%}
+{% block main_header -%}
     <h2>{% trans %}tutor.new.verb{% endtrans %}</h2>
     <em>{% trans %}tutor.new.tagline{% endtrans %}</em>
-    {% endblock %}
+{% endblock %}
 
 {% block main_content -%}
     {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
-    {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
 
-        
-<div class="record_actions well">
-    <a class="btn btn-default btn-s" href="{{ path('tutor') }}">
-            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
-    </a>
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'} })}}
+    {{ form_row(form.name) }}
 
+    <div class="form-group row">
+        <label for="addresses" class="control-label col-xs-2">Address(es)</label>
+        <div class="col-xs-10" id="tutor-address-list-wrapper" data-prototype="{{ form_widget(form.addresses.vars.prototype)|e }}">
+            <div id="tutor-address-list">
+                {% for address in form.addresses %}
+                    <div class="row">
+                        <div class="tutor-address col-xs-11">
+                            {{ form_errors(address) }}
+                            {{ form_widget(address) }}
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="#" class="btn btn-danger btn-xs remove-address">Remove</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="#" class="btn btn-success btn-xs" id="add-another-address">Add</a>
+        </div>
+    </div>
 
-</div>{% endblock %}
+    {{ form_row(form.region) }}
+    {{ form_end(form) }}
+
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('tutor') }}">
+             <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@FitchTutorBundle/Resources/public/js/tutor.js'%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

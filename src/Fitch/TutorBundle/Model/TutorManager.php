@@ -9,7 +9,7 @@ use Fitch\TutorBundle\Entity\Tutor;
 
 class TutorManager extends BaseModelManager
 {
-   /**
+    /**
      * @param $id
      * @throws EntityNotFoundException
      * @return Tutor
@@ -29,6 +29,24 @@ class TutorManager extends BaseModelManager
 
     /**
      * @param Tutor $tutor
+     * @param AddressManager $addressManager
+     * @param CountryManager $countryManager
+     */
+    public function createDefaultAddressIfRequired(
+        Tutor $tutor,
+        AddressManager $addressManager,
+        CountryManager $countryManager
+    ) {
+        if (!$tutor->hasAddress()) {
+            $address = $addressManager->createAddress();
+            $address->setCountry($countryManager->getDefaultCountry());
+            $tutor->addAddress($address);
+        }
+
+    }
+
+    /**
+     * @param Tutor $tutor
      * @param bool $withFlush
      */
     public function saveTutor($tutor, $withFlush = true)
@@ -41,11 +59,17 @@ class TutorManager extends BaseModelManager
      *
      * Set its default values
      *
+     * @param AddressManager $addressManager
+     * @param CountryManager $countryManager
+     *
      * @return Tutor
      */
-    public function createTutor()
+    public function createTutor(AddressManager $addressManager, CountryManager $countryManager)
     {
-        return parent::createEntity();
+        /** @var Tutor $tutor */
+        $tutor = parent::createEntity();
+        $this->createDefaultAddressIfRequired($tutor, $addressManager, $countryManager);
+        return $tutor;
     }
 
     /**

@@ -56,6 +56,12 @@ class CompetencyLevelController extends Controller
 
         if ($form->isValid()) {
             $competencyLevelManager->saveCompetencyLevel($competencyLevel);
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('competency_level.new.success')
+            );
+
             return $this->redirect($this->generateUrl('competency_level_show', ['id' => $competencyLevel->getId()]));
         }
 
@@ -100,11 +106,11 @@ class CompetencyLevelController extends Controller
     public function newAction()
     {
         $competencyLevel = $this->getCompetencyLevelManager()->createCompetencyLevel();
-        $form   = $this->createCreateForm($competencyLevel);
+        $form = $this->createCreateForm($competencyLevel);
 
         return [
             'competencyLevel' => $competencyLevel,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ];
     }
 
@@ -121,10 +127,6 @@ class CompetencyLevelController extends Controller
      */
     public function showAction(CompetencyLevel $competencyLevel)
     {
-        if (!$competencyLevel) {
-            throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($competencyLevel->getId());
 
         return [
@@ -146,10 +148,6 @@ class CompetencyLevelController extends Controller
      */
     public function editAction(CompetencyLevel $competencyLevel)
     {
-        if (!$competencyLevel) {
-            throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
-        }
-
         $editForm = $this->createEditForm($competencyLevel);
         $deleteForm = $this->createDeleteForm($competencyLevel->getId());
 
@@ -199,16 +197,18 @@ class CompetencyLevelController extends Controller
      */
     public function updateAction(Request $request, CompetencyLevel $competencyLevel)
     {
-        if (!$competencyLevel) {
-            throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($competencyLevel->getId());
         $editForm = $this->createEditForm($competencyLevel);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $this->getCompetencyLevelManager()->saveCompetencyLevel($competencyLevel);
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('competency_level.update.success')
+            );
+
             return $this->redirect($this->generateUrl('competency_level_edit', ['id' => $competencyLevel->getId()]));
         }
 
@@ -236,9 +236,12 @@ class CompetencyLevelController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            if (!$competencyLevel) {
-                throw $this->createNotFoundException('Unable to find CompetencyLevel entity.');
-            }
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('competency_level.delete.success')
+            );
+
             $this->getCompetencyLevelManager()->removeCompetencyLevel($competencyLevel->getId());
         }
 

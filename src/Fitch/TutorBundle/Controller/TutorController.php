@@ -3,7 +3,9 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\Address;
+use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\TutorManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -19,7 +21,6 @@ use Fitch\TutorBundle\Form\TutorType;
  */
 class TutorController extends Controller
 {
-
     /**
      * Lists all Tutor entities.
      *
@@ -29,39 +30,46 @@ class TutorController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('FitchTutorBundle:Tutor')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
+        return [
+            'tutors' => $this->getTutorManager()->findAll(),
+        ];
     }
+
     /**
      * Creates a new Tutor entity.
      *
      * @Route("/", name="tutor_create")
      * @Method("POST")
      * @Template("FitchTutorBundle:Tutor:new.html.twig")
+     *
+     * @param Request $request
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function createAction(Request $request)
     {
-        $entity = new Tutor();
-        $form = $this->createCreateForm($entity);
+        $tutorManager = $this->getTutorManager();
+
+        $tutor = $tutorManager->createTutor($this->getAddressManager(), $this->getCountryManager());
+
+        $form = $this->createCreateForm($tutor);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $tutorManager->saveTutor($tutor);
 
-            return $this->redirect($this->generateUrl('tutor_show', array('id' => $entity->getId())));
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('tutor.new.success')
+            );
+
+            return $this->redirect($this->generateUrl('tutor_show', ['id' => $tutor->getId()]));
         }
 
-        return array(
-            'entity' => $entity,
+        return [
+            'tutor' => $tutor,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -73,18 +81,18 @@ class TutorController extends Controller
     */
     private function createCreateForm(Tutor $entity)
     {
-        $form = $this->createForm(new TutorType($this->get('translator')), $entity, array(
+        $form = $this->createForm(new TutorType($this->get('translator'), $this->getCountryManager()), $entity, [
             'action' => $this->generateUrl('tutor_create'),
             'method' => 'POST',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => 'Create',
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle'
-        )));
+        ]]);
 
         return $form;
     }
@@ -98,13 +106,12 @@ class TutorController extends Controller
      */
     public function newAction()
     {
-        $entity = new Tutor();
-        $form   = $this->createCreateForm($entity);
-
-        return array(
-            'entity' => $entity,
+        $tutor = $this->getTutorManager()->createTutor($this->getAddressManager(), $this->getCountryManager());
+        $form   = $this->createCreateForm($tutor);
+        return [
+            'tutor' => $tutor ,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -113,23 +120,19 @@ class TutorController extends Controller
      * @Route("/{id}", name="tutor_show")
      * @Method("GET")
      * @Template()
+     *
+     * @param Tutor $tutor
+     *
+     * @return array
      */
-    public function showAction($id)
+    public function showAction(Tutor $tutor)
     {
-        $em = $this->getDoctrine()->getManager();
+        $deleteForm = $this->createDeleteForm($tutor->getId());
 
-        $entity = $em->getRepository('FitchTutorBundle:Tutor')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Tutor entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
+        return [
+            'tutor' => $tutor,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -145,20 +148,20 @@ class TutorController extends Controller
      */
     public function editAction(Tutor $tutor)
     {
-        if (!$tutor->hasAddress()) {
-            $address = new Address();
-            $address->setCountry($this->getCountryManager()->getDefaultCountry());
-            $tutor->addAddress($address);
-        }
+        $this->getTutorManager()->createDefaultAddressIfRequired(
+            $tutor,
+            $this->getAddressManager(),
+            $this->getCountryManager()
+        );
 
         $editForm = $this->createEditForm($tutor);
         $deleteForm = $this->createDeleteForm($tutor->getId());
 
-        return array(
+        return [
             'tutor'      => $tutor,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -170,75 +173,81 @@ class TutorController extends Controller
     */
     private function createEditForm(Tutor $entity)
     {
-        $form = $this->createForm(new TutorType($this->get('translator'), $this->getCountryManager()), $entity, array(
-            'action' => $this->generateUrl('tutor_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new TutorType($this->get('translator'), $this->getCountryManager()), $entity, [
+            'action' => $this->generateUrl('tutor_update', ['id' => $entity->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => $this->get('translator')->trans('navigation.update'),
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle'
-            )));
+            ]]);
 
         return $form;
     }
+
     /**
      * Edits an existing Tutor entity.
      *
      * @Route("/{id}", name="tutor_update")
      * @Method("PUT")
      * @Template("FitchTutorBundle:Tutor:edit.html.twig")
+     *
+     * @param Request $request
+     * @param Tutor $tutor
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, Tutor $tutor)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchTutorBundle:Tutor')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Tutor entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($tutor->getId());
+        $editForm = $this->createEditForm($tutor);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+            $this->getTutorManager()->saveTutor($tutor);
 
-            return $this->redirect($this->generateUrl('tutor_edit', array('id' => $id)));
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('tutor.update.success')
+            );
+
+            return $this->redirect($this->generateUrl('tutor_edit', ['id' => $tutor->getId()]));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'tutor' => $tutor,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
+
     /**
      * Deletes a Tutor entity.
      *
      * @Route("/{id}", name="tutor_delete")
      * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param Tutor $tutor
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, Tutor $tutor)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($tutor->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('FitchTutorBundle:Tutor')->find($id);
+            $this->getTutorManager()->removeTutor($tutor->getId());
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Tutor entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('tutor.delete.success')
+            );
         }
 
         return $this->redirect($this->generateUrl('tutor'));
@@ -254,15 +263,15 @@ class TutorController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('tutor_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('tutor_delete', ['id' => $id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit',
-                array(
+                [
                     'label' => $this->get('translator')->trans('navigation.delete'),
-                        'attr' => array(
+                        'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle'
-                )))
+                ]])
             ->getForm()
         ;
     }
@@ -273,5 +282,21 @@ class TutorController extends Controller
     private function getCountryManager()
     {
         return $this->get('fitch.manager.country');
+    }
+
+    /**
+     * @return TutorManager
+     */
+    private function getTutorManager()
+    {
+        return $this->get('fitch.manager.tutor');
+    }
+
+    /**
+     * @return AddressManager
+     */
+    private function getAddressManager()
+    {
+        return $this->get('fitch.manager.address');
     }
 }

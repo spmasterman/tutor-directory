@@ -9,7 +9,7 @@ use Fitch\TutorBundle\Entity\OperatingRegion;
 
 class OperatingRegionManager extends BaseModelManager
 {
-   /**
+    /**
      * @param $id
      * @throws EntityNotFoundException
      * @return OperatingRegion

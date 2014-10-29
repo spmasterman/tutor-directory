@@ -56,6 +56,12 @@ class CompetencyTypeController extends Controller
 
         if ($form->isValid()) {
             $competencyTypeManager->saveCompetencyType($competencyType);
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('competency_type.new.success')
+            );
+
             return $this->redirect($this->generateUrl('competency_type_show', ['id' => $competencyType->getId()]));
         }
 
@@ -121,10 +127,6 @@ class CompetencyTypeController extends Controller
      */
     public function showAction(CompetencyType $competencyType)
     {
-        if (!$competencyType) {
-            throw $this->createNotFoundException('Unable to find CompetencyType entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($competencyType->getId());
 
         return [
@@ -146,10 +148,6 @@ class CompetencyTypeController extends Controller
      */
     public function editAction(CompetencyType $competencyType)
     {
-        if (!$competencyType) {
-            throw $this->createNotFoundException('Unable to find CompetencyType entity.');
-        }
-
         $editForm = $this->createEditForm($competencyType);
         $deleteForm = $this->createDeleteForm($competencyType->getId());
 
@@ -199,16 +197,18 @@ class CompetencyTypeController extends Controller
      */
     public function updateAction(Request $request, CompetencyType $competencyType)
     {
-        if (!$competencyType) {
-            throw $this->createNotFoundException('Unable to find CompetencyType entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($competencyType->getId());
         $editForm = $this->createEditForm($competencyType);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $this->getCompetencyTypeManager()->saveCompetencyType($competencyType);
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('competency_type.update.success')
+            );
+
             return $this->redirect($this->generateUrl('competency_type_edit', ['id' => $competencyType->getId()]));
         }
 
@@ -236,9 +236,12 @@ class CompetencyTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            if (!$competencyType) {
-                throw $this->createNotFoundException('Unable to find CompetencyType entity.');
-            }
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('competency_type.delete.success')
+            );
+
             $this->getCompetencyTypeManager()->removeCompetencyType($competencyType->getId());
         }
 
