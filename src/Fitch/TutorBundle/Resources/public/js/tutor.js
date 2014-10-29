@@ -1,24 +1,26 @@
 jQuery(document).ready(function() {
     "use strict";
 
-    $('.inline').editable();
-    $('.inline-address').each(function(){
-        console.log($(this));
-       $(this).editable(getAddressOptions($(this)));
+    var countryData = [];
+
+    $.getJSON(Routing.generate('all_countries'), {}, function(data) {
+        countryData = data;
+
+        $('.inline').editable();
+        $('.inline-address').each(function(){
+            $(this).editable(getAddressOptions($(this)));
+        });
     });
 
     setupContactInfo($('.contact-info'));
 
     function setupContactInfo(contactInfo) {
-        // Set underscore to mustache compatible handlebars {{ yummy }}
-        //_.templateSettings = {
-        //    interpolate: /\{\{(.+?)\}\}/g
-        //};
 
         contactInfo.on('click', '.remove-address', function (e) {
             e.preventDefault();
             // ajax remove - onSuccess(
             $(this).closest('.data-row').remove();
+            //)
         });
 
         contactInfo.on('click', '.add-address', function (e) {
@@ -51,11 +53,12 @@ jQuery(document).ready(function() {
         return {
             value: {
                 type: addressHost.data('valueType'),
-                    streetPrimary: addressHost.data('valuePrimaryStreet'),
-                    streetSecondary: addressHost.data('valueSecondaryStreet'),
-                    city: addressHost.data('valueCity'),
-                    state: addressHost.data('valueState'),
-                    zip: addressHost.data('valueZip')
+                streetPrimary: addressHost.data('valuePrimaryStreet'),
+                streetSecondary: addressHost.data('valueSecondaryStreet'),
+                city: addressHost.data('valueCity'),
+                state: addressHost.data('valueState'),
+                zip: addressHost.data('valueZip'),
+                country: addressHost.data('valueCountry')
             },
             params: function(params) {
                 params.addressPk = addressHost.data('addressPk');
@@ -64,7 +67,8 @@ jQuery(document).ready(function() {
             success: function(response, newValue) {
                 addressHost.closest('.data-row').find('.data-name').text('Address (' + newValue.type +')');
                 addressHost.attr( "id", "Address" + newValue.id);
-            }
+            },
+            sourceCountry: countryData
         }
     }
 

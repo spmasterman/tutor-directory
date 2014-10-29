@@ -27,11 +27,6 @@ class AddressManager extends BaseModelManager
         return parent::findAll();
     }
 
-    public function buildChoicesForAddress()
-    {
-        return $this->findAll();
-    }
-
     /**
      * @param Address $address
      * @param bool $withFlush

@@ -27,14 +27,28 @@ class CountryManager extends BaseModelManager
         return parent::findAll();
     }
 
+    /**
+     * @return Country[]
+     */
     public function buildChoicesForAddress()
     {
         return $this->findAll();
     }
 
+    /**
+     * @return Country[]
+     */
     public function buildPreferredChoicesForAddress()
     {
         return $this->getRepo()->findBy(['highlighted' => true]);
+    }
+
+    /**
+     * @return Country[]
+     */
+    public function findAllSorted()
+    {
+        return $this->getRepo()->findBy([],  array('highlighted' => 'DESC', 'name' => 'ASC'));
     }
 
     /**

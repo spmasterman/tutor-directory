@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\CountryManager;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -118,7 +119,7 @@ class CountryController extends Controller
     /**
      * Finds and displays a Country entity.
      *
-     * @Route("/{id}", name="country_show")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="country_show")
      * @Method("GET")
      * @Template()
      *
@@ -139,7 +140,7 @@ class CountryController extends Controller
     /**
      * Displays a form to edit an existing Country entity.
      *
-     * @Route("/{id}/edit", name="country_edit")
+     * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="country_edit")
      * @Method("GET")
      * @Template()
      *
@@ -187,7 +188,7 @@ class CountryController extends Controller
     /**
      * Edits an existing Country entity.
      *
-     * @Route("/{id}", name="country_update")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="country_update")
      * @Method("PUT")
      * @Template("FitchTutorBundle:Country:edit.html.twig")
      *
@@ -227,7 +228,7 @@ class CountryController extends Controller
     /**
      * Deletes a Country entity.
      *
-     * @Route("/{id}", name="country_delete")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="country_delete")
      * @Method("DELETE")
      *
      * @param Request $request
@@ -273,6 +274,27 @@ class CountryController extends Controller
                 )])
             ->getForm()
         ;
+    }
+
+    /**
+     * Returns the countries as a JSON Array
+     *
+     * @Route("/all", name="all_countries", options={"expose"=true})
+     * @Method("GET")
+     * @Template()
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+
+    public function allAction(){
+        $out = [];
+        foreach($this->getCountryManager()->findAllSorted() as $country) {
+            $out[] = [
+                'value' => $country->getId(),
+                'text' => $country->getName()
+            ];
+        }
+        return new JsonResponse($out);
     }
 
     /**

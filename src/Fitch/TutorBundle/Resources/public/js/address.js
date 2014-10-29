@@ -27,7 +27,8 @@
             streetSecondary: "Building A",
             city: "San Francisco",
             state: "CA",
-            zip: "94109"
+            zip: "94109",
+            country: "USA"
         }
     });
 });
@@ -38,6 +39,7 @@
     "use strict";
 
     var Address = function (options) {
+        this.sourceCountryData = options.sourceCountry;
         this.init('address', options, Address.defaults);
     };
 
@@ -52,6 +54,28 @@
          **/
         render: function() {
             this.$input = this.$tpl.find('input');
+            this.$select = this.$tpl.find('select');
+
+            this.$select.empty();
+
+            var fillItems = function ($el, data) {
+                if ($.isArray(data)) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].children) {
+                            $el.append(fillItems($('<optgroup>', {
+                                label: data[i].text
+                            }), data[i].children));
+                        } else {
+                            $el.append($('<option>', {
+                                value: data[i].value
+                            }).text(data[i].text));
+                        }
+                    }
+                }
+                return $el;
+            };
+
+            fillItems(this.$select, this.sourceCountryData);
         },
 
         /**
@@ -69,8 +93,8 @@
                 $('<div>').text(value.streetSecondary).html() + ', ' +
                 $('<div>').text(value.city).html() + ', ' +
                 $('<div>').text(value.state).html() + ' ' +
-                $('<div>').text(value.zip).html();
-
+                $('<div>').text(value.zip).html() + ' ' +
+                $('<div>').text(value.country).html();
             $(element).html(html.replace(', ,',','));
         },
 
@@ -128,6 +152,7 @@
             this.$input.filter('[name="city"]').val(value.city);
             this.$input.filter('[name="state"]').val(value.state);
             this.$input.filter('[name="zip"]').val(value.zip);
+            this.$select.val(value.country);
         },
 
         /**
@@ -142,7 +167,8 @@
                 streetSecondary: this.$input.filter('[name="streetSecondary"]').val(),
                 city: this.$input.filter('[name="city"]').val(),
                 state: this.$input.filter('[name="state"]').val(),
-                zip: this.$input.filter('[name="zip"]').val()
+                zip: this.$input.filter('[name="zip"]').val(),
+                country: this.$select.val()
             };
         },
 
@@ -175,8 +201,10 @@
         '<div class="editable-address"><label ><span>&nbsp;</span></label><input type="text" name="streetSecondary" class="form-control input-small"></div>'+
         '<div class="editable-address"><label><span>City: </span></label><input type="text" name="city" class="form-control input-small"></div>'+
         '<div class="editable-address"><label><span>State: </span></label><input type="text" name="state" class="form-control input-small"></div>'+
-        '<div class="editable-address"><label><span>Zip: </span></label><input type="text" name="zip" class="form-control input-small"></div>',
-        inputclass: ''
+        '<div class="editable-address"><label><span>Zip: </span></label><input type="text" name="zip" class="form-control input-small"></div>'+
+        '<div class="editable-address"><label><span>Country: </span></label><select name="country" class="form-control input-small"></select></div>',
+        inputclass: '',
+        sourceCountry: []
     });
 
     $.fn.editabletypes.address = Address;

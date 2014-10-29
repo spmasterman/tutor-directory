@@ -65,7 +65,38 @@ class ProfileController extends Controller
         try {
             $tutor = $this->getTutorManager()->findById($request->request->get('pk'));
 
-            $setter = 'set' + ucfirst($request->request->get('pk'));
+            $name = $request->request->get('name');
+            $name = preg_replace('/\d/', '', $name);
+
+            $value = $request->request->get('value');
+
+            switch ($name) {
+                case 'Address' :
+                    $addressId = $request->request->get('addressPk');
+                    if ($addressId) {
+                        $address = $this->getAddressManager()->findById($addressId);
+                    } else {
+                        $address = $this->getAddressManager()->createAddress();
+                        $tutor->addAddress($address);
+                    }
+                    $address
+                        ->setType($value['type'])
+                        ->setStreetPrimary($value['streetPrimary'])
+                        ->setStreetSecondary($value['streetSecondary'])
+                        ->setCity($value['city'])
+                        ->setState($value['state'])
+                        ->setZip($value['zip'])
+                        ->setCountry($value['country'])
+                    ;
+                    break ;
+                default:
+                    $x=1;
+
+            }
+
+            $setter = 'set' . ucfirst();
+
+
 
             $newValue = $request->request->get('value');
 

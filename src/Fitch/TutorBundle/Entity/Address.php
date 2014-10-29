@@ -98,7 +98,7 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      * Set #streetPrimary
      *
      * @param string $streetPrimary
-     * @return Address
+     * @return $this
      */
     public function setStreetPrimary($streetPrimary)
     {
@@ -121,7 +121,7 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      * Set streetSecondary
      *
      * @param string $streetSecondary
-     * @return Address
+     * @return $this
      */
     public function setStreetSecondary($streetSecondary)
     {
@@ -144,7 +144,7 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      * Set city
      *
      * @param string $city
-     * @return Address
+     * @return $this
      */
     public function setCity($city)
     {
@@ -167,7 +167,7 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      * Set state
      *
      * @param string $state
-     * @return Address
+     * @return $this
      */
     public function setState($state)
     {
@@ -190,7 +190,7 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      * Set zip
      *
      * @param string $zip
-     * @return Address
+     * @return $this
      */
     public function setZip($zip)
     {
