@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Fitch\TutorBundle\Entity\Address;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
@@ -203,11 +204,29 @@ class TutorController extends Controller
      */
     public function updateAction(Request $request, Tutor $tutor)
     {
+        $addressManager = $this->getAddressManager();
+        $originalAddresses = new ArrayCollection();
+        foreach ($tutor->getAddresses() as $address) {
+            $originalAddresses->add($address);
+        }
+
         $deleteForm = $this->createDeleteForm($tutor->getId());
         $editForm = $this->createEditForm($tutor);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            foreach ($originalAddresses as $address) {
+                /** @var Address $address */
+                if (false === $tutor->getAddresses()->contains($address)) {
+                    // remove the Address from the tutor
+                    $tutor->getAddresses()->removeElement($address);
+                    $address->setTutor(null);
+                    $addressManager->removeAddress($address->getId());
+                }
+            }
+            // This corrects the bidirectional relationship, by calling addAddress on each (remaining) address
+            $tutor->setAddresses($tutor->getAddresses());
+
             $this->getTutorManager()->saveTutor($tutor);
 
             $this->get('session')->getFlashBag()->add(

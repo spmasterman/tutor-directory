@@ -113,7 +113,32 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function setAddresses($addresses)
     {
-        $this->addresses = $addresses;
+        foreach ($addresses as $address) {
+            $this->addAddress($address);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Address $address
+     * @return $this
+     */
+    public function addAddress (Address $address)
+    {
+        $this->addresses->add($address);
+        $address->setTutor($this);
+        return $this;
+    }
+
+    /**
+     * @param Address $address
+     * @return $this
+     */
+    public function removeAddress(Address $address)
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+        }
         return $this;
     }
 
@@ -255,31 +280,6 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         if (! $this->competencies->contains($competency)) {
             $competency->setTutor($this);
             $this->competencies->add($competency);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Address $address
-     * @return $this
-     */
-    public function addAddress (Address $address)
-    {
-        if (! $this->addresses->contains($address)) {
-            $address->setTutor($this);
-            $this->addresses->add($address);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Address $address
-     * @return $this
-     */
-    public function removeAddress(Address $address)
-    {
-        if ($this->addresses->contains($address)) {
-            $this->addresses->removeElement($address);
         }
         return $this;
     }
