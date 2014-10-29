@@ -28,6 +28,14 @@ class OperatingRegionManager extends BaseModelManager
     }
 
     /**
+     * @return null|OperatingRegion
+     */
+    public function findDefaultOperatingRegion()
+    {
+        return $this->getRepo()->findOneBy(['default' => true]);
+    }
+
+    /**
      * @param OperatingRegion $operatingRegion
      * @param bool $withFlush
      */

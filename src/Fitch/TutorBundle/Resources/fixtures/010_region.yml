@@ -5,13 +5,19 @@ persistence: orm
 fixtures:
     region-gl:
         name: Global
+        default: true
     region-uk:
         name: United Kingdom
+        default: false
     region-us:
         name: United States of America
+        default: false
     region-sg:
         name: Singapore
+        default: false
     region-mea:
         name: Middle East and Africa
+        default: false
     region-eu:
         name: Europe
+        default: false

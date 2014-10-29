@@ -1,0 +1,124 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}tutor.show.verb{% endtrans %}</h2>
+    <em>{% trans %}tutor.show.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    <!-- NAV TABS -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#profile-tab" data-toggle="tab"><i class="fa fa-user"></i> Personal Information</a></li>
+        <li><a href="#engagement-tab" data-toggle="tab"><i class="fa fa-rss"></i> Terms of Engagement</a></li>
+        <li><a href="#competency-tab" data-toggle="tab"><i class="fa fa-gear"></i> Competencies</a></li>
+    </ul>
+    <!-- END NAV TABS -->
+
+    <div class="tab-content profile-page">
+        <!-- PROFILE TAB CONTENT -->
+        <div class="tab-pane profile active" id="profile-tab">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="user-info-left">
+                        <img src="#" alt="Profile Picture" />
+                        <h2> {{ tutor.name }} </h2>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="user-info-right">
+                        <div class="basic-info">
+                            <h3><i class="fa fa-square"></i> Basic Information</h3>
+                            <p class="data-row">
+                                <span class="data-name">Full Name</span>
+                                <span class="data-value"><a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Full Name">{{ tutor.name }}</a></span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Status</span>
+                                <span class="data-value"><a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Status">{{ tutor.getStatus.getName }}</a></span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Region</span>
+                                <span class="data-value"><a href="#" id="region" class="inline" data-source="{{ path('all_regions') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Region">{{ tutor.getRegion.getName }}</a></span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Date Created</span>
+                                <span class="data-value">{{ tutor.created|localizeddate('medium','none') }} </span>
+                            </p>
+                        </div>
+                        <div class="contact-info">
+                            <h3><i class="fa fa-square"></i> Contact Information</h3>
+                            <p class="data-row">
+                                <span class="data-name">Email</span>
+                                <span class="data-value"> xx </span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Phone</span>
+                                <span class="data-value"> xx </span>
+                            </p>
+                            {% for address in tutor.getAddresses %}
+                            <p class="data-row">
+                                <span class="data-name">Address ({{ address.getType }})</span>
+                                <span class="data-value">
+                                    <a href="#" id="address{{ address.getId }}" class="inline-address"
+                                       data-type="address"
+                                       data-pk="{{ tutor.getId }}"
+                                       data-address-pk="{{ address.getId }}"
+                                       data-url="{{ path('tutor_ajax_update')}}"
+                                       data-title="Enter Address"
+                                       data-value-type="{{ address.getType }}"
+                                       data-value-primary-street="{{ address.getStreetPrimary }}"
+                                       data-value-secondary-street="{{ address.getStreetSecondary }}"
+                                       data-value-city="{{ address.getCity }}"
+                                       data-value-state="{{ address.getState }}"
+                                       data-value-zip="{{ address.getZip }}"
+                                    >{{ address }}</a>
+                                </span>
+                                <span class="data-action">
+                                    <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i> Remove</a>
+                                </span>
+                            </p>
+                            {% endfor %}
+                            <p class="data-row">
+                                <span class="data-name">Address...</span>
+                                <span class="data-action">
+                                    <a href="#" class="btn btn-success btn-xs add-address"><i class="fa fa-plus"></i> Add</a>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="about">
+                            <h3><i class="fa fa-square"></i> Biography</h3>
+                            <p> xx </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PROFILE TAB CONTENT -->
+
+        <!-- ENGAGEMENT TAB CONTENT -->
+        <div class="tab-pane engagement" id="engagement-tab">
+
+            <div class="alert alert-info">THIS TAB ONLY SHOWS WITH APPROPRIATE RIGHTS</div>
+
+            <p>Rate</p>
+            <p>Files (contract, resume etc)</p>
+
+        </div>
+        <!-- END ACTIVITY TAB CONTENT -->
+
+        <!-- COMPETENCY TAB CONTENT -->
+        <div class="tab-pane competency" id="competency-tab">
+
+            <p> competencies show here</p>
+        </div>
+        <!-- END SETTINGS TAB CONTENT -->
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@FitchTutorBundle/Resources/public/js/tutor.js' '@FitchTutorBundle/Resources/public/js/address.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

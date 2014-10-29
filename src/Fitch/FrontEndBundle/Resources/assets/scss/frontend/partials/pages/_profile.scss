@@ -3,8 +3,8 @@
 /*------------------------------------------------*/
 
 .profile,
-.activity,
-.settings {
+.engagement,
+.competency {
 	h3 {
 		font-family: $base-font-family;
 		font-size: 1.2em;
@@ -39,28 +39,7 @@
 			font-family: $base-font-family;
 			font-size: 1.3em;
 			margin-bottom: 20px;
-
-			i {
-				font-size: 0.6em;
-				position: relative;
-				top: -8px;
-			}
-
 		}
-
-		ul.social {
-			margin: 20px 0;
-
-			a {
-				font-size: 20px;
-				color: darken($body-bg-color, 20%);
-
-				&:hover {
-					color: darken($body-bg-color, 40%);
-				}
-			}
-		}
-
 	}
 
 	.user-info-right {
@@ -76,53 +55,15 @@
 			padding-left: 0;
 		}
 	}
-
 }
 
-/* activity tab */
-ul.activity-list {
-	li {
-		padding-bottom: 15px;
+.editable-address {
+  label {
+    width:70px;
+  }
+  padding-bottom: 5px;
 
-		&:not(:last-child) {
-			border-bottom: 1px solid $line-color;
-		}
-		
-		&:not(:first-child) {
-			padding-top: 15px;
-		}
+  input {
 
-		.activity-icon {
-			@include inline-block;
-			@include border-radius(30px);
-
-			width: 30px;
-			height: 30px;
-			background-color: #e4e4e4;
-			color: darken(#e4e4e4, 50%);
-			line-height: 30px;
-			text-align: center;
-			margin-right: 10px;
-		}
-			
-		p {
-			margin-bottom: 0;
-			padding-left: 40px;
-		}	
-
-		.timestamp {
-			display: block;
-			font-size: 0.85em;
-			color: darken(#e4e4e4, 20%);
-		}
-		
-	}
-}
-
-.activity {
-	.more i {
-		margin-left: 3px;
-		position: relative;
-		top: 1px;
-	}
+  }
 }

@@ -206,7 +206,7 @@ class CompetencyLevelController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('competency_level.update.success')
+                $this->get('translator')->trans('competency_level.edit.success')
             );
 
             return $this->redirect($this->generateUrl('competency_level_edit', ['id' => $competencyLevel->getId()]));

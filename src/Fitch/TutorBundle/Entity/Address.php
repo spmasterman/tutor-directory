@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Feel free to get All-Anglican on this code if you feel strongly enough.
  *
  * @ORM\Table(name="address")
- * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\AddressRepository")
+ * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\AddressRepository")
  */
 class Address implements IdentityTraitInterface, TimestampableTraitInterface
 {
@@ -79,6 +79,20 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      * @var Country
      */
     protected $country;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $string =
+            $this->getStreetPrimary() . ', ' .
+            $this->getStreetSecondary() . ', ' .
+            $this->getCity() . ', ' .
+            $this->getState() . ' ' .
+            $this->getZip();
+        return str_replace(', ,', ',', $string);
+    }
 
     /**
      * Set #streetPrimary

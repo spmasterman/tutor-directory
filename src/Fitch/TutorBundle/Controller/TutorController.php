@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Fitch\TutorBundle\Entity\Address;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,7 +18,11 @@ use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Form\TutorType;
 
 /**
- * Tutor controller.
+ * Tutor CRUD controller - most tutor interaction is expected to be via specific tailored pages - handled by the
+ * TutorProfileController
+ *
+ * The templates associated with this controller aren't finished - and wont be unless there is some need to have
+ * basic CRUD pages. Given the heavy use of related entities a basic form with embedded collections is not a great UI.
  *
  * @Route("/tutor")
  */
@@ -51,7 +57,12 @@ class TutorController extends Controller
     {
         $tutorManager = $this->getTutorManager();
 
-        $tutor = $tutorManager->createTutor($this->getAddressManager(), $this->getCountryManager());
+        $tutor = $tutorManager->createTutor(
+            $this->getAddressManager(),
+            $this->getCountryManager(),
+            $this->getStatusManager(),
+            $this->getOperatingRegionManager()
+        );
 
         $form = $this->createCreateForm($tutor);
         $form->handleRequest($request);
@@ -107,7 +118,12 @@ class TutorController extends Controller
      */
     public function newAction()
     {
-        $tutor = $this->getTutorManager()->createTutor($this->getAddressManager(), $this->getCountryManager());
+        $tutor = $this->getTutorManager()->createTutor(
+            $this->getAddressManager(),
+            $this->getCountryManager(),
+            $this->getStatusManager(),
+            $this->getOperatingRegionManager()
+        );
         $form   = $this->createCreateForm($tutor);
         return [
             'tutor' => $tutor ,
@@ -231,7 +247,7 @@ class TutorController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('tutor.update.success')
+                $this->get('translator')->trans('tutor.edit.success')
             );
 
             return $this->redirect($this->generateUrl('tutor_edit', ['id' => $tutor->getId()]));
@@ -318,4 +334,21 @@ class TutorController extends Controller
     {
         return $this->get('fitch.manager.address');
     }
+
+    /**
+     * @return OperatingRegionManager
+     */
+    private function getOperatingRegionManager()
+    {
+        return $this->get('fitch.manager.operating_region');
+    }
+
+    /**
+     * @return StatusManager
+     */
+    private function getStatusManager()
+    {
+        return $this->get('fitch.manager.status');
+    }
+
 }

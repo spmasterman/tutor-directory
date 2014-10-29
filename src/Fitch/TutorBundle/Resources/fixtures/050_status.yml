@@ -1,0 +1,23 @@
+model: Fitch\TutorBundle\Entity\Status
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    status-unknown:
+        name: Unspecified
+        default: true
+    status-active:
+        name: Active
+        default: false
+    status-prospective:
+        name: Prospective
+        default: false
+    status-unavailable:
+        name: Temporarily Unavailable
+        default: false
+    status-inactive:
+        name: Inactive
+        default: false
+    status-terminated:
+        name: Terminated - Do Not Use
+        default: false

@@ -11,9 +11,10 @@
 //// Import main
 //@import "frontend/vendors/bootstrap-switch";
 @import "frontend/vendors/bootstrap-multiselect";
+@import "frontend/vendors/bootstrap-editable";
 //@import "vendors/bootstrap-colorpicker";
 //@import "vendors/simplecolorpicker";
-//@import "vendors/datepicker";
+@import "frontend/vendors/datepicker";
 //@import "vendors/daterangepicker-bs3";
 //@import "vendors/ui.jqgrid";
 //@import "vendors/jquery.gritter";
@@ -44,7 +45,6 @@
 @import "frontend/partials/pages/notifications";
 @import "frontend/partials/footer";
 @import "frontend/partials/wizard";
-
 
 // Page specific
 @import "frontend/partials/pages/recipes";

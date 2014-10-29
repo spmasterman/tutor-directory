@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
+use Fitch\TutorBundle\Entity\OperatingRegion;
 use Fitch\TutorBundle\Entity\Repository\TutorRepository;
 use Fitch\TutorBundle\Entity\Tutor;
 
@@ -45,6 +46,21 @@ class TutorManager extends BaseModelManager
 
     }
 
+    public function setDefaultRegionIfRequired(Tutor $tutor, OperatingRegionManager $operatingRegionManager)
+    {
+        if (!$tutor->getRegion()) {
+            $region = $operatingRegionManager->getDefaultRegion();
+            $tutor->setRegion($region);
+        }
+    }
+
+
+
+
+
+
+
+
     /**
      * @param Tutor $tutor
      * @param bool $withFlush
@@ -61,15 +77,42 @@ class TutorManager extends BaseModelManager
      *
      * @param AddressManager $addressManager
      * @param CountryManager $countryManager
+     * @param StatusManager $statusManager
+     * @param OperatingRegionManager $operatingRegionManager
      *
      * @return Tutor
      */
-    public function createTutor(AddressManager $addressManager, CountryManager $countryManager)
-    {
+    public function createTutor(
+        AddressManager $addressManager,
+        CountryManager $countryManager,
+        StatusManager $statusManager,
+        OperatingRegionManager $operatingRegionManager
+    ) {
         /** @var Tutor $tutor */
         $tutor = parent::createEntity();
         $this->createDefaultAddressIfRequired($tutor, $addressManager, $countryManager);
+        $this->setDefaultRegion($tutor, $operatingRegionManager);
+        $this->setDefaultStatus($tutor, $statusManager);
+
         return $tutor;
+    }
+
+    /**
+     * @param Tutor $tutor
+     * @param OperatingRegionManager $operatingRegionManager
+     */
+    public function setDefaultRegion(Tutor $tutor, OperatingRegionManager $operatingRegionManager)
+    {
+        $tutor->setRegion($operatingRegionManager->findDefaultOperatingRegion());
+    }
+
+    /**
+     * @param Tutor $tutor
+     * @param StatusManager $statusManager
+     */
+    public function setDefaultStatus(Tutor $tutor, StatusManager $statusManager)
+    {
+        $tutor->setStatus($statusManager->findDefaultStatus());
     }
 
     /**

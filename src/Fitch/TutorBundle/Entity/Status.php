@@ -8,22 +8,31 @@ use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
- * OperatingRegion
+ * Email
  *
- * @ORM\Table(name="region")
- * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository")
+ * @ORM\Table(name="status")
+ * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\StatusRepository")
  */
-class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInterface
+class Status implements IdentityTraitInterface, TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="status")
+     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
+     *
+     * @var Tutor
+     */
+    protected $tutor;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64)
+     * @ORM\Column(name="name", type="string", length=32)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var boolean
@@ -32,9 +41,6 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
      */
     protected $default;
 
-    /**
-     * @return string
-     */
     public function __toString()
     {
         return $this->getName();
@@ -55,6 +61,24 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return Tutor
+     */
+    public function getTutor()
+    {
+        return $this->tutor;
+    }
+
+    /**
+     * @param Tutor $tutor
+     * @return $this
+     */
+    public function setTutor($tutor)
+    {
+        $this->tutor = $tutor;
         return $this;
     }
 

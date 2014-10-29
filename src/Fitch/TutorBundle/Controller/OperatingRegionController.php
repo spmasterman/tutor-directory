@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -117,7 +118,7 @@ class OperatingRegionController extends Controller
     /**
      * Finds and displays a OperatingRegion entity.
      *
-     * @Route("/{id}", name="region_show")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="region_show")
      * @Method("GET")
      * @Template()
      *
@@ -138,7 +139,7 @@ class OperatingRegionController extends Controller
     /**
      * Displays a form to edit an existing OperatingRegion entity.
      *
-     * @Route("/{id}/edit", name="region_edit")
+     * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="region_edit")
      * @Method("GET")
      * @Template()
      *
@@ -186,7 +187,7 @@ class OperatingRegionController extends Controller
     /**
      * Edits an existing OperatingRegion entity.
      *
-     * @Route("/{id}", name="region_update")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="region_update")
      * @Method("PUT")
      * @Template("FitchTutorBundle:OperatingRegion:edit.html.twig")
      *
@@ -210,7 +211,7 @@ class OperatingRegionController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('operating_region.update.success')
+                $this->get('translator')->trans('operating_region.edit.success')
             );
 
             return $this->redirect($this->generateUrl('region_edit', ['id' => $region->getId()]));
@@ -226,7 +227,7 @@ class OperatingRegionController extends Controller
     /**
      * Deletes a OperatingRegion entity.
      *
-     * @Route("/{id}", name="region_delete")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="region_delete")
      * @Method("DELETE")
      *
      * @param Request $request
@@ -272,6 +273,27 @@ class OperatingRegionController extends Controller
                 ]])
             ->getForm()
         ;
+    }
+
+    /**
+     * Returns the regions as a JSON Array
+     *
+     * @Route("/all", name="all_regions")
+     * @Method("GET")
+     * @Template()
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+
+    public function allAction(){
+        $out = [];
+        foreach($this->getOperatingRegionManager()->findAll() as $region) {
+            $out[] = [
+                'value' => $region->getId(),
+                'text' => $region->getName()
+            ];
+        }
+        return new JsonResponse($out);
     }
 
     /**

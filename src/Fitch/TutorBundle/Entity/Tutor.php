@@ -28,12 +28,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
+     *
+     * @var Status
+     */
+    private $status;
+
+    /**
      * @var ArrayCollection
      *
      * INVERSE SIDE
      * @ORM\OneToMany(targetEntity="Address",
      *      mappedBy="tutor",
-     *      indexBy="id"
+     *      indexBy="id",
+     *      cascade={"persist", "remove"}
      * )
      */
     private $addresses;
@@ -44,7 +53,8 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      * INVERSE SIDE
      * @ORM\OneToMany(targetEntity="Phone",
      *      mappedBy="tutor",
-     *      indexBy="id"
+     *      indexBy="id",
+     *      cascade={"persist", "remove"}
      * )
      */
     protected $phoneNumbers;
@@ -55,7 +65,8 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      * INVERSE SIDE
      * @ORM\OneToMany(targetEntity="Email",
      *      mappedBy="tutor",
-     *      indexBy="id"
+     *      indexBy="id",
+     *      cascade={"persist", "remove"}
      * )
      */
     protected $emailAddresses;
@@ -66,7 +77,8 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      * INVERSE SIDE
      * @ORM\OneToMany(targetEntity="File",
      *      mappedBy="tutor",
-     *      indexBy="id"
+     *      indexBy="id",
+     *      cascade={"persist", "remove"}
      * )
      */
     protected $files;
@@ -77,7 +89,8 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      * INVERSE SIDE
      * @ORM\OneToMany(targetEntity="Competency",
      *      mappedBy="tutor",
-     *      indexBy="id"
+     *      indexBy="id",
+     *      cascade={"persist", "remove"}
      * )
      */
     protected $competencies;
@@ -140,6 +153,11 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
             $this->addresses->removeElement($address);
         }
         return $this;
+    }
+
+    public function hasAddress()
+    {
+        return $this->addresses->count() > 0;
     }
 
     /**
@@ -332,8 +350,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
 
-    public function hasAddress()
+    /**
+     * @return string
+     */
+    public function getStatus()
     {
-        return $this->addresses->count() > 0;
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
     }
 }

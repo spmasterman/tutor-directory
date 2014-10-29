@@ -12,7 +12,7 @@ tutor:
         success: The Tutor has been successfully created.
     show:
         verb: Tutor
-        tagline: view the details of a Tutor record
+        tagline: view and edit a tutor profile
     delete:
         success: The Tutor has been successfully removed.
 
@@ -33,6 +33,24 @@ operating_region:
         tagline: view the details of a Region record
     delete:
         success: The Region has been successfully removed.
+
+status:
+    edit:
+        verb: Edit Tutor Status
+        tagline: edit the details of tutor status record
+        success: The Status has been successfully updated.
+    list:
+        verb: Statuses
+        tagline: tutor statuses available for use in the Tutor Directory
+    new:
+        verb: New Status
+        tagline: define a new tutor status
+        success: The Status has been successfully created.
+    show:
+        verb: Status
+        tagline: view the details of a Status record
+    delete:
+        success: The Status has been successfully removed.
         
 competency_type:
     edit:

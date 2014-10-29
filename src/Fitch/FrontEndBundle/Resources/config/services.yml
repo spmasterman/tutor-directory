@@ -4,6 +4,7 @@ services:
         arguments: [@translator]
         tags:
         - { name: twig.extension }
+
     #
     # Event Listeners
     #

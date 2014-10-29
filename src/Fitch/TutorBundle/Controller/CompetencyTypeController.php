@@ -206,7 +206,7 @@ class CompetencyTypeController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('competency_type.update.success')
+                $this->get('translator')->trans('competency_type.edit.success')
             );
 
             return $this->redirect($this->generateUrl('competency_type_edit', ['id' => $competencyType->getId()]));

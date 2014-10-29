@@ -18,6 +18,7 @@ class MenuBuilder extends ContainerAware
         ;
 
         $this
+            ->addStatus($menu)
             ->addRegions($menu)
             ->addCountries($menu)
             ->addCompetencyTypes($menu)
@@ -65,6 +66,21 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-power-off fa-fw')
                 ->getParent();
         return $menu;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addStatus(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Statuses', array('route' => 'status'))
+            ->setAttribute('icon', 'fa fa-tag fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
     }
 
     /**

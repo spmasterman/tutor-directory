@@ -211,7 +211,7 @@ class CountryController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('country.update.success')
+                $this->get('translator')->trans('country.edit.success')
             );
 
             return $this->redirect($this->generateUrl('country_edit', ['id' => $country->getId()]));

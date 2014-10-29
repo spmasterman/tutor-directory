@@ -1,0 +1,212 @@
+//colors
+$color_red_approx: rgba(255, 0, 0, 1);
+$color_lochmara_approx: rgba(0, 136, 204, 1);
+$color_chicago_approx: rgba(88, 88, 88, 1);
+$color_crimson_approx: rgba(221, 17, 68, 1);
+
+//@extend-elements
+//original selectors
+//.editable-click.editable-disabled, a.editable-click.editable-disabled, a.editable-click.editable-disabled:hover
+%extend_1 {
+  color: $color_chicago_approx;
+  cursor: default;
+  border-bottom: none;
+}
+
+//original selectors
+//.editable-empty, .editable-empty:hover, .editable-empty:focus
+%extend_2 {
+  font-style: italic;
+  color: #DD1144;
+  text-decoration: none;
+}
+
+.editableform {
+  margin-bottom: 0;
+  .control-group {
+    margin-bottom: 0;
+    white-space: nowrap;
+    line-height: 20px;
+  }
+  .form-control {
+    width: auto;
+  }
+  .editable-date {
+    padding: 0;
+    margin: 0;
+    float: left;
+  }
+}
+
+.editable-buttons {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 7px;
+  zoom: 1;
+  *display: inline;
+  &.editable-buttons-bottom {
+    display: block;
+    margin-top: 7px;
+    margin-left: 0;
+  }
+  .editable-cancel {
+    margin-left: 7px;
+  }
+  button.ui-button-icon-only {
+    height: 24px;
+    width: 30px;
+  }
+}
+
+.editable-input {
+  vertical-align: top;
+  display: inline-block;
+  width: auto;
+  white-space: normal;
+  zoom: 1;
+  *display: inline;
+}
+
+.editableform-loading {
+  background: url('/bundles/fitchfrontend/images/loading.gif') center center no-repeat;
+  height: 25px;
+  width: auto;
+  min-width: 25px;
+}
+
+.editable-inline {
+  .editableform-loading {
+    background-position: left 5px;
+  }
+  .add-on .icon-th {
+    margin-top: 3px;
+    margin-left: 1px;
+  }
+}
+
+.editable-error-block {
+  max-width: 300px;
+  margin: 5px 0 0;
+  width: auto;
+  white-space: normal;
+  &.ui-state-error {
+    padding: 3px;
+  }
+}
+
+.editable-error {
+  color: $color_red_approx;
+}
+
+.editable-wysihtml5 {
+  width: 566px;
+  height: 250px;
+}
+
+.editable-clear {
+  clear: both;
+  font-size: 0.9em;
+  text-decoration: none;
+  text-align: right;
+}
+
+.editable-clear-x {
+  background: url('/bundles/fitchfrontend/images/clear.png') center center no-repeat;
+  display: block;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  opacity: 0.6;
+  z-index: 100;
+  top: 50%;
+  right: 6px;
+  margin-top: -6px;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.editable-pre-wrapped {
+  white-space: pre-wrap;
+}
+
+.editable-container {
+  &.editable-popup {
+    max-width: none !important;
+  }
+  &.popover {
+    width: auto;
+  }
+  &.editable-inline {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    zoom: 1;
+    *display: inline;
+  }
+  &.ui-widget {
+    font-size: inherit;
+    z-index: 9990;
+  }
+}
+
+.editable-click {
+  text-decoration: none;
+  border-bottom: dashed 1px $color_lochmara_approx;
+  &.editable-disabled {
+    @extend %extend_1;
+  }
+}
+
+.editable-empty {
+  @extend %extend_2;
+  &:hover {
+    @extend %extend_2;
+  }
+  &:focus {
+    @extend %extend_2;
+  }
+}
+
+.editable-unsaved {
+  font-weight: bold;
+  &:after {
+  }
+}
+
+.editable-bg-transition {
+  //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: background-color 1400ms ease-out;
+}
+
+.editable-checklist label {
+  white-space: nowrap;
+  input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0;
+  }
+  span {
+    vertical-align: middle;
+    margin: 0;
+  }
+}
+
+a.editable-click {
+  text-decoration: none;
+  border-bottom: dashed 1px $color_lochmara_approx;
+  &:hover {
+    text-decoration: none;
+    border-bottom: dashed 1px $color_lochmara_approx;
+  }
+  &.editable-disabled {
+    @extend %extend_1;
+    &:hover {
+      @extend %extend_1;
+    }
+  }
+}
+
+.form-horizontal .editable {
+  padding-top: 5px;
+  display: inline-block;
+}
