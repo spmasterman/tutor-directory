@@ -89,12 +89,25 @@
                 return;
             }
             var html =
-                $('<div>').text(value.streetPrimary).html() + ', ' +
-                $('<div>').text(value.streetSecondary).html() + ', ' +
-                $('<div>').text(value.city).html() + ', ' +
-                $('<div>').text(value.state).html() + ' ' +
-                $('<div>').text(value.zip).html() + ' ' +
-                $('<div>').text(value.country).html();
+                    $('<div>').text(value.streetPrimary).html() + ', ' +
+                    $('<div>').text(value.streetSecondary).html() + ', ' +
+                    $('<div>').text(value.city).html() + ', ' +
+                    $('<div>').text(value.state).html() + ' ' +
+                    $('<div>').text(value.zip).html(),
+                countryId = value.country,
+                countryText = ''
+            ;
+
+            $.each(this.sourceCountryData, function (i, v) {
+                if (v.value == countryId) {
+                    countryText = v.text;
+                }
+            });
+
+            if (countryText !== '') {
+                html += ' ' + $('<div>').text(countryText).html();
+            }
+
             $(element).html(html.replace(', ,',','));
         },
 

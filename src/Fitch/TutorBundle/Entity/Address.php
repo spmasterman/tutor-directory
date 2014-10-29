@@ -90,7 +90,9 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
             $this->getStreetSecondary() . ', ' .
             $this->getCity() . ', ' .
             $this->getState() . ' ' .
-            $this->getZip();
+            $this->getZip() . ' ' .
+            $this->getCountry()->getName()
+        ;
         return str_replace(', ,', ',', $string);
     }
 
