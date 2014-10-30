@@ -69,5 +69,44 @@
     width:70px;
   }
   padding-bottom: 5px;
+}
 
+.remove-email,
+.remove-phone,
+.remove-address {
+  padding:0 0 0 2px;
+  @include border-radius(12px);
+  width: 20px;
+  height: 20px;
+  border-color: darken($body-bg-color, 20%);
+  background-color: $body-bg-color;
+  color: darken($body-bg-color, 20%);
+}
+
+$color-toolbar-button: #333333;
+$color-toolbar-background: #ebebeb;
+
+.note-toolbar {
+  .btn-default {
+    color: $color-toolbar-button;
+    background-color: $color-toolbar-background;
+    border-color: darken($color-toolbar-background, 5%);
+
+    &:hover, &:focus, &:active, &.active {
+      color: $color-toolbar-button;
+      background-color: darken($color-toolbar-background, 10%);
+      border-color: darken($color-toolbar-background, 5%);
+    }
+
+    &.disabled, &[disabled], &.disabled:hover, &[disabled]:hover,
+    &.disabled:focus, &[disabled]:focus, &.disabled:active, &[disabled]:active,
+    &.disabled.active, &[disabled].active {
+      background-color: lighten($color-toolbar-background, 10%);
+      border-color: darken($color-toolbar-background, 5%);
+    }
+
+    .caret {
+      border-top-color: $color-toolbar-button;
+    }
+  }
 }

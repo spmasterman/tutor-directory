@@ -41,12 +41,26 @@
                                 <span class="data-value"><a href="#" id="region" class="inline" data-source="{{ path('all_regions') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Region">{{ tutor.getRegion.getName }}</a></span>
                             </p>
                             <p class="data-row">
+                                <span class="data-name"><i class="fa fa-linkedin"></i> LinkedIn Profile</span>
+                                <span class="data-value">
+                                    {% if tutor.getLinkedInURL %}
+                                        <a href="{{ tutor.getLinkedInURL }}" target="_blank">View Profile</a>
+                                    {% endif %}
+                                    <a href="#" id="linkedInURL" class="inline" data-type="url" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getLinkedInURL }}" data-title="Enter URL of LinkedIn Profile">Edit</a>
+                                </span>
+                            </p>
+                            <p class="data-row">
                                 <span class="data-name">Date Created</span>
                                 <span class="data-value">{{ tutor.created|localizeddate('medium','none') }} </span>
                             </p>
                         </div>
                         <div class="contact-info">
-                            <h3><i class="fa fa-square"></i> Contact Information</h3>
+                            <h3 class="data-row" data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Contact Information
+                                <a href="#" class="btn btn-default btn-xs add-email"><i class="fa fa-at"></i> New Email</a>
+                                <a href="#" class="btn btn-default btn-xs add-phone"><i class="fa fa-phone"></i> New Phone</a>
+                                <a href="#" class="btn btn-default btn-xs add-address"><i class="fa fa-envelope-o"></i> New Address</a>
+                            </h3>
+
                             <div class="email-container">
                                 {% for email in tutor.getEmailAddresses %}
                                     <p class="data-row"  data-id="{{ tutor.getId }}">
@@ -63,23 +77,19 @@
                                                >{{ email }}</a>
                                         </span>
                                         <span class="data-action">
-                                            <a href="#" data-pk="{{ email.getId }}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i> Remove</a>
+                                            <a href="#" data-pk="{{ email.getId }}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i></a>
                                         </span>
                                     </p>
                                 {% endfor %}
                             </div>
-                            <p class="data-row" data-id="{{ tutor.getId }}">
-                                <span class="data-name">Email...</span>
-                                <span class="data-value"></span>
-                                <span class="data-action">
-                                    <a href="#" class="btn btn-success btn-xs add-email"><i class="fa fa-plus"></i> Add</a>
-                                </span>
-                            </p>
 
-                            <p class="data-row">
-                                <span class="data-name">Phone</span>
-                                <span class="data-value"> xx </span>
-                            </p>
+                            <div class="phone-container">
+                                <p class="data-row">
+                                    <span class="data-name">Phone</span>
+                                    <span class="data-value"> xx </span>
+                                </p>
+                            </div>
+
                             <div class="address-container">
                                 {% for address in tutor.getAddresses %}
                                     <p class="data-row" data-id="{{ tutor.getId }}">
@@ -101,22 +111,17 @@
                                             >{{ address }}</a>
                                         </span>
                                         <span class="data-action">
-                                            <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i> Remove</a>
+                                            <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i></a>
                                         </span>
                                     </p>
                                 {% endfor %}
                             </div>
-                            <p class="data-row" data-id="{{ tutor.getId }}">
-                                <span class="data-name">Address...</span>
-                                <span class="data-value"></span>
-                                <span class="data-action">
-                                    <a href="#" class="btn btn-success btn-xs add-address"><i class="fa fa-plus"></i> Add</a>
-                                </span>
-                            </p>
                         </div>
-                        <div class="about">
-                            <h3><i class="fa fa-square"></i> Biography</h3>
-                            <p> xx </p>
+                        <div class="bio data-row" data-id="{{ tutor.getId }}">
+                            <h3><i class="fa fa-square"></i> Biography <a href="#" class="btn btn-default btn-xs edit-bio"><i class="fa fa-pencil"></i> Edit</a></h3>
+                            <div id="bio">{{ tutor.getBio|raw }}</div>
+
+                            <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
                         </div>
                     </div>
                 </div>

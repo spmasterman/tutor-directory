@@ -84,6 +84,7 @@ assetic:
                 - '@FitchFrontEndBundle/Resources/assets/js/generic-div-ajax.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/bootstrap-multiselect.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/bootstrap-editable.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/summernote.js'
             filters: [?yui_js]
 
 # Doctrine Configuration

@@ -175,12 +175,12 @@
     });
 
     Address.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
-        tpl: '<div class="editable-address"><label><span>Type: </span></label><input type="text" name="type" class="form-control input-small"></div>'+
+        tpl: '<div class="editable-address"><label><span>Type: </span></label><input type="text" name="type" class="form-control input-small" placeholder="Home, Office, etc"></div>'+
         '<div class="editable-address"><label><span>Street: </span></label><input type="text" name="streetPrimary" class="form-control input-small"></div>'+
         '<div class="editable-address"><label ><span>&nbsp;</span></label><input type="text" name="streetSecondary" class="form-control input-small"></div>'+
-        '<div class="editable-address"><label><span>City: </span></label><input type="text" name="city" class="form-control input-small"></div>'+
-        '<div class="editable-address"><label><span>State: </span></label><input type="text" name="state" class="form-control input-small"></div>'+
-        '<div class="editable-address"><label><span>Zip: </span></label><input type="text" name="zip" class="form-control input-small"></div>'+
+        '<div class="editable-address"><label><span>City: </span></label><input type="text" name="city" class="form-control input-small" placeholder="City or Postal Town"></div>'+
+        '<div class="editable-address"><label><span>State: </span></label><input type="text" name="state" class="form-control input-small" placeholder="State, Province, County"></div>'+
+        '<div class="editable-address"><label><span>Zip: </span></label><input type="text" name="zip" class="form-control input-small" placeholder="Zip or Postal Code"></div>'+
         '<div class="editable-address"><label><span>Country: </span></label><select name="country" class="form-control input-small"></select></div>',
         inputclass: '',
         sourceCountry: []

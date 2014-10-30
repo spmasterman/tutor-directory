@@ -1,0 +1,589 @@
+// This is actually a CSS file from the distribution. Including it as scss as its valid to do so, and also
+// at some point we might want to scss-ify this and use some scss features. The original project uses less to generate
+// this file, so we could also bring a less compiler into the build process and use those source files also...
+
+//colors
+$color_shady_lady_approx: rgba(169, 169, 169, 1);
+$color_malibu_approx: rgba(135, 206, 250, 1);
+$white: rgba(255, 255, 255, 1);
+$color_cerulean_approx: rgba(9, 141, 223, 1);
+$color_wild_sand_approx: rgba(245, 245, 245, 1);
+$mercury: rgba(229, 229, 229, 1);
+$color_celeste_approx: rgba(204, 204, 204, 1);
+$color_log_cabin_approx: rgba(34, 34, 34, 1);
+$color_gallery_approx: rgba(238, 238, 238, 1);
+$black: rgba(0, 0, 0, 1);
+$color_quill_gray_approx: rgba(211, 211, 211, 1);
+$color_bitter_lemon_approx: rgba(221, 221, 0, 1);
+
+//fonts
+$font_0: Menlo;
+$font_1: Monaco;
+$font_2: monospace;
+$font_3: sans-serif;
+$font_4: Courier New;
+
+.note-editor {
+  position: relative;
+  border: 1px solid $color_shady_lady_approx;
+  .note-dropzone {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    color: $color_malibu_approx;
+    background-color: $white;
+    border: 2px dashed $color_malibu_approx;
+    opacity: .95;
+    pointer-event: none;
+    .note-dropzone-message {
+      display: table-cell;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+    }
+    &.hover {
+      color: $color_cerulean_approx;
+      border: 2px dashed $color_cerulean_approx;
+    }
+  }
+  .note-toolbar {
+    background-color: $color_wild_sand_approx;
+    border-bottom: 1px solid $color_shady_lady_approx;
+  }
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    .note-editable {
+      background-color: $white;
+    }
+    .note-resizebar {
+      display: none;
+    }
+  }
+  &.codeview {
+    .note-editable {
+      display: none;
+    }
+    .note-codable {
+      display: block;
+    }
+  }
+  .note-statusbar {
+    background-color: $color_wild_sand_approx;
+    .note-resizebar {
+      width: 100%;
+      height: 8px;
+      cursor: ns-resize;
+      border-top: 1px solid $color_shady_lady_approx;
+      .note-icon-bar {
+        width: 20px;
+        margin: 1px auto;
+        border-top: 1px solid $color_shady_lady_approx;
+      }
+    }
+  }
+  .note-editable {
+    padding: 10px;
+    overflow: auto;
+    outline: 0;
+  }
+  .note-editable[contenteditable="false"] {
+    background-color: $mercury;
+  }
+  .note-codable {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0;
+    font-family: $font_0, $font_1, $font_2, $font_3;
+    font-size: 14px;
+    color: $color_celeste_approx;
+    background-color: $color_log_cabin_approx;
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 0;
+    //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+    resize: none;
+  }
+  &.dragover .note-dropzone {
+    display: table;
+  }
+}
+.note-air-editor {
+  outline: 0;
+}
+.note-toolbar {
+  padding: 0 0 5px 5px;
+  margin: 0;
+  .note-style {
+    h1 {
+      margin: 0;
+    }
+    h2 {
+      margin: 0;
+    }
+    h3 {
+      margin: 0;
+    }
+    h4 {
+      margin: 0;
+    }
+    h5 {
+      margin: 0;
+    }
+    h6 {
+      margin: 0;
+    }
+    blockquote {
+      margin: 0;
+    }
+  }
+  .note-color {
+    .dropdown-toggle {
+      width: 20px;
+      padding-left: 5px;
+    }
+    .dropdown-menu {
+      min-width: 340px;
+      .btn-group {
+        margin: 0;
+        &:first-child {
+          margin: 0 5px;
+        }
+        .note-palette-title {
+          margin: 2px 7px;
+          font-size: 12px;
+          text-align: center;
+          border-bottom: 1px solid $color_gallery_approx;
+        }
+        .note-color-reset {
+          padding: 0 3px;
+          margin: 3px;
+          font-size: 11px;
+          cursor: pointer;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+          border-radius: 5px;
+          &:hover {
+            background: $color_gallery_approx;
+          }
+        }
+        .note-color-row {
+          height: 20px;
+        }
+      }
+    }
+  }
+  .dropdown-menu {
+    min-width: 90px;
+    &.right {
+      right: 0;
+      left: auto;
+      &::before {
+        right: 9px;
+        left: auto !important;
+      }
+      &::after {
+        right: 10px;
+        left: auto !important;
+      }
+    }
+    li a {
+      i {
+        color: $color_cerulean_approx;
+        visibility: hidden;
+      }
+      &.checked i {
+        visibility: visible;
+      }
+    }
+  }
+  .note-fontsize-10 {
+    font-size: 10px;
+  }
+  .note-color-palette {
+    line-height: 1;
+    div .note-color-btn {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      margin: 0;
+      border: 1px solid $white;
+      &:hover {
+        border: 1px solid $black;
+      }
+    }
+  }
+  > .btn-group {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 0;
+  }
+  .btn-group .note-table {
+    min-width: 0;
+    padding: 5px;
+    .note-dimension-picker {
+      font-size: 18px;
+      .note-dimension-picker-mousecatcher {
+        position: absolute !important;
+        z-index: 3;
+        width: 10em;
+        height: 10em;
+        cursor: pointer;
+      }
+      .note-dimension-picker-unhighlighted {
+        position: relative !important;
+        z-index: 1;
+        width: 5em;
+        height: 5em;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+      }
+      .note-dimension-picker-highlighted {
+        position: absolute !important;
+        z-index: 2;
+        width: 1em;
+        height: 1em;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+      }
+    }
+  }
+  .note-para .dropdown-menu {
+    min-width: 216px;
+    padding: 5px;
+    > div:first-child {
+      margin-right: 5px;
+    }
+  }
+}
+.note-dialog {
+  .note-modal-form {
+    margin: 0;
+  }
+  .note-help-dialog {
+    font-size: 12px;
+    color: $color_celeste_approx;
+    background: transparent;
+    background-color: $color_log_cabin_approx !important;
+    border: 0;
+    -webkit-opacity: .9;
+    -khtml-opacity: .9;
+    -moz-opacity: .9;
+    opacity: .9;
+    -ms-filter: alpha(opacity=90);
+    filter: alpha(opacity=90);
+    .modal-content {
+      background: transparent;
+      border: 1px solid $white;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+      border-radius: 5px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+    a {
+      font-size: 12px;
+      color: $white;
+    }
+    .title {
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: $white;
+      border-bottom: $white 1px solid;
+    }
+    .modal-close {
+      font-size: 14px;
+      color: $color_bitter_lemon_approx;
+      cursor: pointer;
+    }
+    .text-center {
+      margin: 10px 0 0;
+    }
+    .note-shortcut {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    .note-shortcut-row {
+      margin-right: -5px;
+      margin-left: -5px;
+    }
+    .note-shortcut-col {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+    .note-shortcut-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: $color_bitter_lemon_approx;
+    }
+    .note-shortcut-key {
+      font-family: $font_4;
+      color: $color_bitter_lemon_approx;
+      text-align: right;
+    }
+  }
+  > div {
+    display: none;
+  }
+  .note-image-dialog .note-dropzone {
+    min-height: 100px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    line-height: 4;
+    color: $color_quill_gray_approx;
+    text-align: center;
+    border: 4px dashed $color_quill_gray_approx;
+  }
+}
+.note-popover .popover {
+  max-width: none;
+  .popover-content {
+    padding: 0 0 5px 5px;
+    margin: 0;
+    a {
+      display: inline-block;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .note-style {
+      h1 {
+        margin: 0;
+      }
+      h2 {
+        margin: 0;
+      }
+      h3 {
+        margin: 0;
+      }
+      h4 {
+        margin: 0;
+      }
+      h5 {
+        margin: 0;
+      }
+      h6 {
+        margin: 0;
+      }
+      blockquote {
+        margin: 0;
+      }
+    }
+    .note-color {
+      .dropdown-toggle {
+        width: 20px;
+        padding-left: 5px;
+      }
+      .dropdown-menu {
+        min-width: 340px;
+        .btn-group {
+          margin: 0;
+          &:first-child {
+            margin: 0 5px;
+          }
+          .note-palette-title {
+            margin: 2px 7px;
+            font-size: 12px;
+            text-align: center;
+            border-bottom: 1px solid $color_gallery_approx;
+          }
+          .note-color-reset {
+            padding: 0 3px;
+            margin: 3px;
+            font-size: 11px;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+            border-radius: 5px;
+            &:hover {
+              background: $color_gallery_approx;
+            }
+          }
+          .note-color-row {
+            height: 20px;
+          }
+        }
+      }
+    }
+    .dropdown-menu {
+      min-width: 90px;
+      &.right {
+        right: 0;
+        left: auto;
+        &::before {
+          right: 9px;
+          left: auto !important;
+        }
+        &::after {
+          right: 10px;
+          left: auto !important;
+        }
+      }
+      li a {
+        i {
+          color: $color_cerulean_approx;
+          visibility: hidden;
+        }
+        &.checked i {
+          visibility: visible;
+        }
+      }
+    }
+    .note-fontsize-10 {
+      font-size: 10px;
+    }
+    .note-color-palette {
+      line-height: 1;
+      div .note-color-btn {
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        margin: 0;
+        border: 1px solid $white;
+        &:hover {
+          border: 1px solid $black;
+        }
+      }
+    }
+    > .btn-group {
+      margin-top: 5px;
+      margin-right: 5px;
+      margin-left: 0;
+    }
+    .btn-group .note-table {
+      min-width: 0;
+      padding: 5px;
+      .note-dimension-picker {
+        font-size: 18px;
+        .note-dimension-picker-mousecatcher {
+          position: absolute !important;
+          z-index: 3;
+          width: 10em;
+          height: 10em;
+          cursor: pointer;
+        }
+        .note-dimension-picker-unhighlighted {
+          position: relative !important;
+          z-index: 1;
+          width: 5em;
+          height: 5em;
+          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+        }
+        .note-dimension-picker-highlighted {
+          position: absolute !important;
+          z-index: 2;
+          width: 1em;
+          height: 1em;
+          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+        }
+      }
+    }
+    .note-para .dropdown-menu {
+      min-width: 216px;
+      padding: 5px;
+      > div:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+  .arrow {
+    left: 20px;
+  }
+}
+.note-handle .note-control-selection {
+  position: absolute;
+  display: none;
+  border: 1px solid $black;
+  .note-control-selection-bg {
+    width: 100%;
+    height: 100%;
+    background-color: $black;
+    -webkit-opacity: .3;
+    -khtml-opacity: .3;
+    -moz-opacity: .3;
+    opacity: .3;
+    -ms-filter: alpha(opacity=30);
+    filter: alpha(opacity=30);
+  }
+  .note-control-handle {
+    width: 7px;
+    height: 7px;
+    border: 1px solid $black;
+  }
+  .note-control-holder {
+    width: 7px;
+    height: 7px;
+    border: 1px solid $black;
+  }
+  .note-control-sizing {
+    width: 7px;
+    height: 7px;
+    background-color: $white;
+    border: 1px solid $black;
+  }
+  .note-control-nw {
+    top: -5px;
+    left: -5px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .note-control-ne {
+    top: -5px;
+    right: -5px;
+    border-bottom: 0;
+    border-left: none;
+  }
+  .note-control-sw {
+    bottom: -5px;
+    left: -5px;
+    border-top: 0;
+    border-right: 0;
+  }
+  .note-control-se {
+    right: -5px;
+    bottom: -5px;
+    cursor: se-resize;
+  }
+  .note-control-selection-info {
+    right: 0;
+    bottom: 0;
+    padding: 5px;
+    margin: 5px;
+    font-size: 12px;
+    color: $white;
+    background-color: $black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 5px;
+    -webkit-opacity: .7;
+    -khtml-opacity: .7;
+    -moz-opacity: .7;
+    opacity: .7;
+    -ms-filter: alpha(opacity=70);
+    filter: alpha(opacity=70);
+  }
+  > div {
+    position: absolute;
+  }
+}

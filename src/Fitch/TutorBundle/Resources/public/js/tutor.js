@@ -17,13 +17,45 @@ jQuery(document).ready(function() {
 
     setupContactInfo($('.contact-info'));
 
+    $('.bio').on('click', '.edit-bio', function(e){
+        e.preventDefault();
+        $('#bio').summernote({
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+            ]
+        });
+        $('.bio').find('.save-bio').show();
+        $(this).hide();
+    });
+
+    $('.bio').on('click', '.save-bio', function(e){
+        e.preventDefault();
+
+        $.post(Routing.generate('tutor_ajax_update'), {
+            'pk' : $(this).closest('.data-row').data('id'),
+            'name' : 'bio',
+            'value' : $('#bio').code()
+        }, function(data) {
+            if (data.success) {
+                $('#bio').destroy();
+                $('.bio').find('.edit-bio').show();
+                $(this).hide();
+            }
+        }, "json");
+    });
+
     function setupContactInfo(contactInfo) {
         contactInfo.on('click', '.remove-address', function(e) {
             e.preventDefault();
             var row = $(this).closest('.data-row'),
                 addressPk = row.find('span.data-value a').attr('data-address-pk');
 
-            if (addressPk) {
+            if (addressPk != '0') {
                 $.post(Routing.generate('address_ajax_remove'), {'pk' : addressPk }, function(data) {
                     if (data.success) {
                         row.remove();
@@ -51,7 +83,7 @@ jQuery(document).ready(function() {
                 "<span class='data-action'>"+
                     "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-address'>"+
                         "<i class='fa fa-remove'></i>"+
-                    "Remove</a>"+
+                    "</a>"+
                 "</span> "+
             "</p>";
 
@@ -67,7 +99,7 @@ jQuery(document).ready(function() {
             var row = $(this).closest('.data-row'),
                 emailPk = row.find('span.data-value a').attr('data-email-pk');
 
-            if (emailPk) {
+            if (emailPk != '0') {
                 $.post(Routing.generate('email_ajax_remove'), {'pk' : emailPk }, function(data) {
                     if (data.success) {
                         row.remove();
@@ -90,12 +122,13 @@ jQuery(document).ready(function() {
                     "data-email-pk='0' " +
                     "data-url='" + Routing.generate('tutor_ajax_update') + "' "+
                     "data-title='Enter Email' "+
+                    "data-value-type='" + ($('.inline-email').length > 0 ? 'other' : 'primary') + "' "+
                     "></a>"+
                     "</span> "+
                     "<span class='data-action'>"+
                     "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-email'>"+
                     "<i class='fa fa-remove'></i>"+
-                    "Remove</a>"+
+                    "</a>"+
                     "</span> "+
                     "</p>";
 

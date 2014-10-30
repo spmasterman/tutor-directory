@@ -28,6 +28,20 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedin_url", type="string", length=255, nullable=true)
+     */
+    private $linkedInURL;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bio", type="text", nullable=true)
+     */
+    private $bio;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      *
@@ -155,6 +169,9 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function hasAddress()
     {
         return $this->addresses->count() > 0;
@@ -365,6 +382,42 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @param string $bio
+     * @return $this
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLinkedInURL()
+    {
+        return $this->linkedInURL;
+    }
+
+    /**
+     * @param string $linkedInURL
+     * @return $this
+     */
+    public function setLinkedInURL($linkedInURL)
+    {
+        $this->linkedInURL = $linkedInURL;
         return $this;
     }
 }

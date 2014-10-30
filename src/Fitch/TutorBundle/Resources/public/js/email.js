@@ -19,6 +19,28 @@
          **/
         render: function() {
             this.$input = this.$tpl.find('input');
+            this.$select = this.$tpl.find('select');
+
+            this.$select.empty();
+
+            var fillItems = function ($el, data) {
+                if ($.isArray(data)) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].children) {
+                            $el.append(fillItems($('<optgroup>', {
+                                label: data[i].text
+                            }), data[i].children));
+                        } else {
+                            $el.append($('<option>', {
+                                value: data[i].value
+                            }).text(data[i].text));
+                        }
+                    }
+                }
+                return $el;
+            };
+
+            fillItems(this.$select, [{value:'primary', text:'Primary'},{value:'other', text:'Other'}]);
         },
 
         /**
@@ -84,7 +106,7 @@
             if(!value) {
                 return;
             }
-            this.$input.filter('[name="type"]').val(value.type);
+            this.$select.filter('[name="type"]').val(value.type);
             this.$input.filter('[name="address"]').val(value.address);
         },
 
@@ -95,7 +117,7 @@
          **/
         input2value: function() {
             return {
-                type: this.$input.filter('[name="type"]').val(),
+                type: this.$select.filter('[name="type"]').val(),
                 address: this.$input.filter('[name="address"]').val()
             };
         },
@@ -124,7 +146,7 @@
     });
 
     EmailContact.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
-        tpl: '<div class="editable-email"><label><span>Type: </span></label><input type="text" name="type" class="form-control input-small"></div>'+
+        tpl: '<div class="editable-email"><label><span>Type: </span></label><select name="type" class="form-control input-small"></select></div>'+
         '<div class="editable-email"><label><span>Email: </span></label><input type="email" name="address" class="form-control input-small"></div>',
         inputclass: ''
     });

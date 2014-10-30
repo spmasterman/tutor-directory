@@ -7,6 +7,7 @@ use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\EmailManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
@@ -94,6 +95,20 @@ class ProfileController extends Controller
                     ;
                     $newRelatedEntity = $address;
                     break ;
+                case 'email' :
+                    $emailId = $request->request->get('emailPk');
+                    if ($emailId) {
+                        $email = $this->getEmailManager()->findById($emailId);
+                    } else {
+                        $email = $this->getEmailManager()->createEmail();
+                        $tutor->addEmailAddress($email);
+                    }
+                    $email
+                        ->setType($value['type'])
+                        ->setAddress($value['address'])
+                    ;
+                    $newRelatedEntity = $email;
+                    break ;
                 case 'status':
                     $status = $this->getStatusManager()->findById($value);
                     $tutor->setStatus($status);
@@ -146,6 +161,14 @@ class ProfileController extends Controller
     private function getAddressManager()
     {
         return $this->get('fitch.manager.address');
+    }
+
+    /**
+     * @return EmailManager
+     */
+    private function getEmailManager()
+    {
+        return $this->get('fitch.manager.email');
     }
 
     /**

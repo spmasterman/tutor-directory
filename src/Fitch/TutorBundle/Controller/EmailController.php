@@ -3,10 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\AddressManager;
-use Fitch\TutorBundle\Model\CountryManager;
-use Fitch\TutorBundle\Model\TutorManager;
+use Fitch\TutorBundle\Model\EmailManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -15,18 +12,18 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Address controller
+ * Email controller
  *
- * @Route("/address")
+ * @Route("/email")
  */
-class AddressController extends Controller
+class EmailController extends Controller
 {
     /**
-     * Removes an Address
+     * Removes an Email
      *
      * @Route(
      *      "/remove",
-     *      name="address_ajax_remove",
+     *      name="email_ajax_remove",
      *      options={"expose"=true},
      *      condition="
                 request.request.has('pk') and request.request.get('pk') != '0'
@@ -42,7 +39,7 @@ class AddressController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getAddressManager()->removeAddress($request->request->get('pk'));
+            $this->getEmailManager()->removeEmail($request->request->get('pk'));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -54,12 +51,11 @@ class AddressController extends Controller
         ]);
     }
 
-
     /**
-     * @return AddressManager
+     * @return EmailManager
      */
-    private function getAddressManager()
+    private function getEmailManager()
     {
-        return $this->get('fitch.manager.address');
+        return $this->get('fitch.manager.email');
     }
 }

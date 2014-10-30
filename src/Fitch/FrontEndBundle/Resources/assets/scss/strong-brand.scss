@@ -71,11 +71,12 @@ a {
 }
 
 .bottom {
-  border-top: 1px solid lighten($brand-primary, 5%);
-  border-bottom: 1px solid darken($brand-primary, 5%);
-
-  .container .content-wrapper {
-    background-color: #fff;
+  .container {
+    border-top: 1px solid lighten($brand-primary, 5%);
+    border-bottom: 1px solid darken($brand-primary, 5%);
+    .content-wrapper {
+      background-color: #fff;
+    }
   }
 }
 
