@@ -5,11 +5,13 @@ jQuery(document).ready(function() {
         phoneCountryData =[]
         ;
 
-
     $.getJSON(Routing.generate('all_countries'), {}, function(data) {
+        // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
+        // format. Only initialise the x-editable elements once the data has been retrieved
+
         $(data).each(function(i, k){
             addressCountryData.push(k);
-            phoneCountryData.push({text: k.text + ' ('+ k.dialingCode+')', value: k.value})
+            phoneCountryData.push({text: k['text'] + ' ('+ k['dialingCode']+')', value: k['value']});
         });
 
         $('.inline').editable();
@@ -24,40 +26,14 @@ jQuery(document).ready(function() {
         });
     });
 
+    // Setup DOM event handlers
     setupContactInfo($('.contact-info'));
+    setupBio($('.bio'));
 
-    $('.bio').on('click', '.edit-bio', function(e){
-        e.preventDefault();
-        $('#bio').summernote({
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-            ]
-        });
-        $('.bio').find('.save-bio').show();
-        $(this).hide();
-    });
-
-    $('.bio').on('click', '.save-bio', function(e){
-        e.preventDefault();
-        var btn = $(this);
-        $.post(Routing.generate('tutor_ajax_update'), {
-            'pk' : $(this).closest('.data-row').data('id'),
-            'name' : 'bio',
-            'value' : $('#bio').code()
-        }, function(data) {
-            if (data.success) {
-                $('#bio').destroy();
-                $('.bio').find('.edit-bio').show();
-                btn.hide();
-            }
-        }, "json");
-    });
-
+    /**
+     * Handlers for Add/Remove contact info
+     * @param contactInfo
+     */
     function setupContactInfo(contactInfo) {
         contactInfo.on('click', '.remove-address', function(e) {
             e.preventDefault();
@@ -194,6 +170,52 @@ jQuery(document).ready(function() {
 
     }
 
+    /**
+     * Handlers for Edit/Save Bio
+     *
+     * @param bioContainer
+     */
+    function setupBio(bioContainer) {
+        bioContainer.on('click', '.edit-bio', function(e){
+            e.preventDefault();
+            $('#bio').summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
+            $('.bio').find('.save-bio').show();
+            $(this).hide();
+        });
+
+        bioContainer.on('click', '.save-bio', function(e){
+            e.preventDefault();
+            var btn = $(this);
+            $.post(Routing.generate('tutor_ajax_update'), {
+                'pk' : $(this).closest('.data-row').data('id'),
+                'name' : 'bio',
+                'value' : $('#bio').code()
+            }, function(data) {
+                if (data.success) {
+                    $('#bio').destroy();
+                    $('.bio').find('.edit-bio').show();
+                    btn.hide();
+                }
+            }, "json");
+        });
+
+    }
+
+    /**
+     * Get x-editable options for a given element, that is going to be made an x-editable Address (custom type)
+     *
+     * @param addressHost
+     * @returns {{value: {type: *, streetPrimary: *, streetSecondary: *, city: *, state: *, zip: *, country: *}, params: Function, success: Function, sourceCountry: Array}}
+     */
     function getAddressOptions(addressHost) {
         return {
             value: {
@@ -218,6 +240,12 @@ jQuery(document).ready(function() {
         }
     }
 
+    /**
+     * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
+     *
+     * @param emailHost
+     * @returns {{value: {type: *, address: *}, params: Function, success: Function}}
+     */
     function getEmailOptions(emailHost) {
         return {
             value: {
@@ -236,6 +264,12 @@ jQuery(document).ready(function() {
         }
     }
 
+    /**
+     * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
+     *
+     * @param phoneHost
+     * @returns {{value: {type: *, number: *, country: *}, params: Function, success: Function, sourceCountry: Array}}
+     */
     function getPhoneOptions(phoneHost) {
         return {
             value: {
