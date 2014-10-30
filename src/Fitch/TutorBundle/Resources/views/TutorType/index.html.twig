@@ -1,0 +1,49 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}tutor_type.list.verb{% endtrans %}</h2>
+    <em>{% trans %}tutor_type.list.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    <div class="widget widget-table">
+        <div class="widget-header">
+            <h3><i class="fa fa-tasks"></i> Tutor Types</h3>
+            <div class="btn-group widget-header-toolbar">
+                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="widget-content">
+            <table class="records_list table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for tutor_type in tutor_types %}
+                    <tr>
+                        <td>{{ tutor_type.id }}{% if tutor_type.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
+                        <td><a href="{{ path('tutor_type_show', { 'id': tutor_type.id }) }}">{{ tutor_type.name }}</a></td>
+                        <td>
+                            <a href="{{ path('tutor_type_show', { 'id': tutor_type.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                            <a href="{{ path('tutor_type_edit', { 'id': tutor_type.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <small><i class="fa fa-asterisk yellow-font"></i> = Default Tutor Type assigned to new Tutors</small>
+        </div>
+    </div>
+
+    <div class="record_actions well">
+        <a href="{{ path('tutor_type_new') }}" class="btn btn-default btn-s">
+            <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+        </a>
+    </div>
+{% endblock %}

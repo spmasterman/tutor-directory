@@ -1,0 +1,21 @@
+model: Fitch\TutorBundle\Entity\Address
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    address-shaun-home:
+        type: Home
+        streetPrimary: 32 Hillcrest Ave
+        streetSecondary:
+        city: Chandler's Ford
+        state: Hampshire
+        zip: SO53 2JP
+        country: country-GB
+    address-shaun-work:
+        type: Office
+        streetPrimary: Fitch Learning
+        streetSecondary: 4 Chiswell Street
+        city: London
+        state:
+        zip: EC1Y 4UP
+        country: country-GB

@@ -57,11 +57,11 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
     protected $defaultRegion;
 
     /**
-     * @ORM\Column(name="highlight", type="boolean")
+     * @ORM\Column(name="preferred", type="boolean")
      *
      * @var boolean
      */
-    protected $highlighted = false;
+    protected $preferred = false;
 
     /**
      * @return string
@@ -110,18 +110,18 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
     /**
      * @return boolean
      */
-    public function isHighlighted()
+    public function isPreferred()
     {
-        return $this->highlighted;
+        return $this->preferred;
     }
 
     /**
-     * @param boolean $highlighted
+     * @param boolean $preferred
      * @return $this
      */
-    public function setHighlighted($highlighted)
+    public function setPreferred($preferred)
     {
-        $this->highlighted = $highlighted;
+        $this->preferred = $preferred;
         return $this;
     }
 

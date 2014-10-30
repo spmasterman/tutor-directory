@@ -1,0 +1,14 @@
+model: Fitch\TutorBundle\Entity\TutorType
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    tutor-type-unspecified:
+        name: Unspecified
+        default: true
+    tutor-type-associate:
+        name: Associate
+        default: false
+    tutor-type-staff:
+        name: Staff
+        default: false

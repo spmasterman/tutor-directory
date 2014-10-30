@@ -1,0 +1,18 @@
+model: Fitch\TutorBundle\Entity\Phone
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    phone-shaun-home:
+        type: Home
+        number: 2380 481132
+        country: country-GB
+    phone-shaun-mobile:
+        type: Mobile
+        number: 7551 662750
+        country: country-GB
+    phone-shaun-mobile-us:
+        type: US Mobile
+        number: 925 324-0555
+        country: country-US
+

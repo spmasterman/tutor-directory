@@ -40,7 +40,7 @@ class CountryManager extends BaseModelManager
      */
     public function buildPreferredChoicesForAddress()
     {
-        return $this->getRepo()->findBy(['highlighted' => true]);
+        return $this->getRepo()->findBy(['preferred' => true]);
     }
 
     /**
@@ -48,7 +48,7 @@ class CountryManager extends BaseModelManager
      */
     public function findAllSorted()
     {
-        return $this->getRepo()->findBy([],  array('highlighted' => 'DESC', 'name' => 'ASC'));
+        return $this->getRepo()->findBy([],  array('preferred' => 'DESC', 'name' => 'ASC'));
     }
 
     /**

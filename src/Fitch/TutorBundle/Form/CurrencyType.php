@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OperatingRegionType extends AbstractType
+class CurrencyType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,9 +17,11 @@ class OperatingRegionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('default', new OnOffType(), [
-                'required' => false,
-                'type' => 'yesno'
+            ->add('threeDigitCode', null, [
+                'label' => 'ISO 4217 3 Digit Code'
+            ])
+            ->add('preferred', new OnOffType(), [
+                'required' => false
             ])
         ;
     }
@@ -30,7 +32,7 @@ class OperatingRegionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\OperatingRegion'
+            'data_class' => 'Fitch\TutorBundle\Entity\Currency'
         ));
     }
 
@@ -39,6 +41,6 @@ class OperatingRegionType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_operatingregion';
+        return 'fitch_tutorbundle_currency';
     }
 }

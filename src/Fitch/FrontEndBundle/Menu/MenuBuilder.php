@@ -18,9 +18,11 @@ class MenuBuilder extends ContainerAware
         ;
 
         $this
+            ->addTutorTypes($menu)
             ->addStatus($menu)
             ->addRegions($menu)
             ->addCountries($menu)
+            ->addCurrencies($menu)
             ->addCompetencyTypes($menu)
             ->addCompetencyLevels($menu)
         ;
@@ -72,6 +74,21 @@ class MenuBuilder extends ContainerAware
      * @param ItemInterface $menu
      * @return $this
      */
+    private function addTutorTypes(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Tutor Types', array('route' => 'tutor_type'))
+            ->setAttribute('icon', 'fa fa-tasks fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
     private function addStatus(ItemInterface $menu)
     {
         $menu
@@ -107,6 +124,21 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Countries', array('route' => 'country'))
             ->setAttribute('icon', 'fa fa-flag-o fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addCurrencies(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('Currencies', array('route' => 'currency'))
+            ->setAttribute('icon', 'fa fa-money fa-fw')
             ->getParent()
         ;
 

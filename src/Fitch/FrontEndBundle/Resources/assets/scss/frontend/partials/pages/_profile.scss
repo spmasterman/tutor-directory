@@ -74,13 +74,14 @@
 .remove-email,
 .remove-phone,
 .remove-address {
-  padding:0 0 0 2px;
-  @include border-radius(12px);
-  width: 20px;
-  height: 20px;
+  padding:1px 0 0 3px;
+  @include border-radius(7px);
+  width: 14px;
+  height: 14px;
   border-color: darken($body-bg-color, 20%);
   background-color: $body-bg-color;
   color: darken($body-bg-color, 20%);
+  font-size: 8px;
 }
 
 $color-toolbar-button: #333333;

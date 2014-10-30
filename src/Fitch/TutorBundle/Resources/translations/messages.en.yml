@@ -34,6 +34,24 @@ operating_region:
     delete:
         success: The Region has been successfully removed.
 
+tutor_type:
+    edit:
+        verb: Edit Tutor Type
+        tagline: edit the details of tutor type record
+        success: The Tutor Type has been successfully updated.
+    list:
+        verb: Tutor Types
+        tagline: tutor types available for use in the Tutor Directory
+    new:
+        verb: New Tutor Type
+        tagline: define a new tutor type
+        success: The Tutor Type has been successfully created.
+    show:
+        verb: Tutor Type
+        tagline: view the details of a Tutor Type record
+    delete:
+        success: The Tutor Type has been successfully removed.
+
 status:
     edit:
         verb: Edit Tutor Status
@@ -105,6 +123,24 @@ country:
         tagline: view the details of a Country record
     delete:
         success: The Country has been successfully removed.
+
+currency:
+    edit:
+        verb: Edit Currency
+        tagline: edit the details of currency record
+        success: The Currency has been successfully updated.
+    list:
+        verb: Currencies
+        tagline: currencies available for use in the Tutor Directory
+    new:
+        verb: New Currency
+        tagline: define a new currency
+        success: The Currency has been successfully created.
+    show:
+        verb: Currency
+        tagline: view the details of a Currency record
+    delete:
+        success: The Currency has been successfully removed.
 
 address:
     type:

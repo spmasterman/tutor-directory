@@ -1,0 +1,33 @@
+model: Fitch\TutorBundle\Entity\Tutor
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    tutor-shaun:
+        name: Shaun Masterman
+        tutorType: tutor-type-unspecified
+        linkedInURL: http://uk.linkedin.com/pub/shaun-masterman/7/389/969/
+        bio: <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt ut nisl quis vulputate. Mauris tempus massa in ex dapibus, eget volutpat arcu porttitor. Vivamus fermentum hendrerit rutrum. Maecenas eget urna at dolor pulvinar mattis ac a nunc. Donec fringilla aliquam molestie. Praesent sollicitudin ac neque quis euismod. Etiam molestie, nulla at placerat tempus, est orci hendrerit urna, vel tempus diam dui eget mauris. Phasellus vestibulum tortor fermentum felis efficitur vulputate. Mauris ullamcorper nulla urna. Proin iaculis purus ac pulvinar vestibulum. Sed laoreet ligula est, at ultricies magna cursus ac. Mauris dapibus nunc ipsum, sit amet dignissim sapien tristique non.</p><p>Donec malesuada sem vel odio tempus, elementum maximus nulla blandit. Morbi id ligula lacus. Cras pellentesque vitae purus sodales finibus. Nam ullamcorper, lacus nec congue tincidunt, magna neque porta nibh, vel tempor urna augue at leo. Integer efficitur dolor non lorem fermentum, a suscipit justo accumsan. Praesent ut est ut lorem tempus iaculis. Vestibulum egestas in risus id porttitor. Ut varius purus ut turpis condimentum, sit amet consectetur ex convallis. Phasellus efficitur sapien sit amet ex suscipit congue. Fusce mollis lectus a mollis cursus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eget aliquet justo. Vivamus quis ligula tellus.</p>
+        status: status-active
+        addresses:
+            - address-shaun-home
+            - address-shaun-work
+        phoneNumbers:
+            - phone-shaun-home
+            - phone-shaun-mobile
+            - phone-shaun-mobile-us
+        emailAddresses:
+            - email-shaun-primary
+            - email-shaun-other_1
+            - email-shaun-other_2
+#        files:
+#        competencies:
+#        notes:
+        region: region-uk
+        currency: currency-GBP
+        dayRate: 0.00
+        eveningRate: 0.00
+        travelRate: 0.00
+        materialRate: 0.00
+
+

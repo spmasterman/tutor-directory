@@ -10,6 +10,8 @@ parameters:
   fitch.manager.competency_level.class: Fitch\TutorBundle\Model\CompetencyLevelManager
   fitch.manager.address.class: Fitch\TutorBundle\Model\AddressManager
   fitch.manager.status.class: Fitch\TutorBundle\Model\StatusManager
+  fitch.manager.tutor_type.class: Fitch\TutorBundle\Model\TutorTypeManager
+  fitch.manager.currency.class: Fitch\TutorBundle\Model\CurrencyManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -22,6 +24,8 @@ parameters:
   fitch.entity.competency_level.class: Fitch\TutorBundle\Entity\CompetencyLevel
   fitch.entity.address.class: Fitch\TutorBundle\Entity\Address
   fitch.entity.status.class: Fitch\TutorBundle\Entity\Status
+  fitch.entity.tutor_type.class: Fitch\TutorBundle\Entity\TutorType
+  fitch.entity.currency.class: Fitch\TutorBundle\Entity\Currency
 
 services:
     #
@@ -115,3 +119,19 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.status.class%
+    fitch.manager.tutor_type:
+        class: %fitch.manager.tutor_type.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.tutor_type.class%
+    fitch.manager.currency:
+        class: %fitch.manager.currency.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.currency.class%

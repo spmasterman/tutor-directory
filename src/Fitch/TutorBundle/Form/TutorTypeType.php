@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OperatingRegionType extends AbstractType
+class TutorTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -30,7 +30,7 @@ class OperatingRegionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\OperatingRegion'
+            'data_class' => 'Fitch\TutorBundle\Entity\TutorType'
         ));
     }
 
@@ -39,6 +39,6 @@ class OperatingRegionType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_operatingregion';
+        return 'fitch_tutorbundle_tutor_type';
     }
 }

@@ -9,8 +9,10 @@
     <!-- NAV TABS -->
     <ul class="nav nav-tabs">
         <li class="active"><a href="#profile-tab" data-toggle="tab"><i class="fa fa-user"></i> Personal Information</a></li>
-        <li><a href="#engagement-tab" data-toggle="tab"><i class="fa fa-rss"></i> Terms of Engagement</a></li>
-        <li><a href="#competency-tab" data-toggle="tab"><i class="fa fa-gear"></i> Competencies</a></li>
+        <li><a href="#engagement-tab" data-toggle="tab"><i class="fa fa-briefcase"></i> Terms of Engagement</a></li>
+        <li><a href="#competency-tab" data-toggle="tab"><i class="fa fa-puzzle-piece"></i> Competencies</a></li>
+        <li><a href="#notes-tab" data-toggle="tab"><i class="fa fa-comments-o"></i> Notes</a></li>
+        <li><a href="#files-tab" data-toggle="tab"><i class="fa fa-cloud-upload"></i> Files</a></li>
     </ul>
     <!-- END NAV TABS -->
 
@@ -147,14 +149,24 @@
 
         <!-- ENGAGEMENT TAB CONTENT -->
         <div class="tab-pane engagement" id="engagement-tab">
-
             <div class="alert alert-info">THIS TAB ONLY SHOWS WITH APPROPRIATE RIGHTS</div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="user-info-left">
+                        <div class="rates-info">
+                            <h3><i class="fa fa-square"></i> Rates</h3>
+                            <p class="data-row">
+                                <span class="data-name">Daily Rate</span>
+                                <span class="data-value"><a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Daily Rate">{{ tutor.getDayRate }}</a></span>
+                            </p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="user-info-right">
 
-
-
-            <p>Rate</p>
-            <p>Files (contract, resume etc)</p>
-
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- END ACTIVITY TAB CONTENT -->
 
@@ -164,6 +176,21 @@
             <p> competencies show here</p>
         </div>
         <!-- END SETTINGS TAB CONTENT -->
+
+        <!-- NOTES TAB CONTENT -->
+        <div class="tab-pane notes" id="notes-tab">
+
+            <p> notes show here</p>
+        </div>
+        <!-- END NOTES TAB CONTENT -->
+
+        <!-- FILES TAB CONTENT -->
+        <div class="tab-pane files" id="files-tab">
+
+            <p> file uploads show here</p>
+        </div>
+        <!-- END FILES TAB CONTENT -->
+
     </div>
 
 {% endblock %}

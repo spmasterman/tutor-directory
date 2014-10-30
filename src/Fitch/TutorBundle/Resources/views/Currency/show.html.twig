@@ -1,65 +1,57 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
     {% block main_header -%}
-    <h2>{% trans %}country.show.verb{% endtrans %}</h2>
-    <em>{% trans %}country.show.tagline{% endtrans %}</em>
+    <h2>{% trans %}currency.show.verb{% endtrans %}</h2>
+    <em>{% trans %}currency.show.tagline{% endtrans %}</em>
     {% endblock %}
 
 {% block main_content -%}
     <div class="widget widget-table">
         <div class="widget-header">
-            <h3><i class="fa fa-flag-o"></i> {{ country }}</h3>
+            <h3><i class="fa fa-money"></i> {{ currency }}</h3>
             <div class="btn-group widget-header-toolbar">
                 <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
                 <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
                 <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
             </div>
         </div>
+
         <div class="widget-content">
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
                         <th class="col-xs-2">Id</th>
-                        <td>{{ country.id }}</td>
+                        <td>{{ currency.id }}</td>
                     </tr>
                     <tr>
                         <th class="col-xs-2">Name</th>
-                        <td>{{ country.name }}</td>
+                        <td>{{ currency.name }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">ISO 3661-1 2 digit code</th>
-                        <td>{{ country.twoDigitCode }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">ISO 3661-1 3 digit code</th>
-                        <td>{{ country.threeDigitCode }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Dialing Code</th>
-                        <td>{{ country.dialingCode }}</td>
+                        <th class="col-xs-2">ISO 4217 3 digit code</th>
+                        <td>{{ currency.threeDigitCode }}</td>
                     </tr>
                     <tr>
                         <th class="col-xs-2">Preferred</th>
-                        <td>{% if country.idPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <td>{% if currency.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
-
                     <tr>
                         <th class="col-xs-2">Created</th>
-                        <td>{{ country.created|date('Y-m-d H:i:s') }}</td>
+                        <td>{{ currency.created|date('Y-m-d H:i:s') }}</td>
                     </tr>
                     <tr>
                         <th class="col-xs-2">Updated</th>
-                        <td>{{ country.updated|date('Y-m-d H:i:s') }}</td>
+                        <td>{{ currency.updated|date('Y-m-d H:i:s') }}</td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="record_actions well">
-                <a class="btn btn-default btn-s" href="{{ path('country') }}">
+                <a class="btn btn-default btn-s" href="{{ path('currency') }}">
                     <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
                 </a>
 
-                <a class="btn btn-default btn-s" href="{{ path('country_edit', { 'id': country.id }) }}">
+                <a class="btn btn-default btn-s" href="{{ path('currency_edit', { 'id': currency.id }) }}">
                     <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
                 </a>
 

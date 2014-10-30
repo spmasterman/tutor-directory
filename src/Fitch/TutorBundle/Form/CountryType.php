@@ -24,7 +24,7 @@ class CountryType extends AbstractType
                 'label' => 'ISO 3661-1 3 Digit Code'
             ])
             ->add('dialingCode')
-            ->add('highlighted', new OnOffType(), [
+            ->add('preferred', new OnOffType(), [
                 'required' => false
             ])
             ->add('defaultRegion')
