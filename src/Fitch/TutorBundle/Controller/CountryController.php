@@ -291,7 +291,8 @@ class CountryController extends Controller
         foreach($this->getCountryManager()->findAllSorted() as $country) {
             $out[] = [
                 'value' => $country->getId(),
-                'text' => $country->getName()
+                'text' => $country->getName(),
+                'dialingCode' => $country->getDialingCode()
             ];
         }
         return new JsonResponse($out);

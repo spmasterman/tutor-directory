@@ -9,6 +9,7 @@ use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
 use Fitch\TutorBundle\Model\EmailManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\PhoneManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -109,6 +110,21 @@ class ProfileController extends Controller
                     ;
                     $newRelatedEntity = $email;
                     break ;
+                case 'phone' :
+                    $phoneId = $request->request->get('phonePk');
+                    if ($phoneId) {
+                        $phone = $this->getPhoneManager()->findById($phoneId);
+                    } else {
+                        $phone = $this->getPhoneManager()->createPhone();
+                        $tutor->addPhoneNumber($phone);
+                    }
+                    $phone
+                        ->setType($value['type'])
+                        ->setNumber($value['number'])
+                        ->setCountry($this->getCountryManager()->findById($value['country']))
+                    ;
+                    $newRelatedEntity = $phone;
+                    break ;
                 case 'status':
                     $status = $this->getStatusManager()->findById($value);
                     $tutor->setStatus($status);
@@ -169,6 +185,14 @@ class ProfileController extends Controller
     private function getEmailManager()
     {
         return $this->get('fitch.manager.email');
+    }
+
+    /**
+     * @return PhoneManager
+     */
+    private function getPhoneManager()
+    {
+        return $this->get('fitch.manager.phone');
     }
 
     /**

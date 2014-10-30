@@ -54,17 +54,26 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function __toString()
     {
+        $stringRepresentation = $this->getFullNumber();
+
+        if ($this->getType()) {
+            $stringRepresentation .= ' (' . $this->getType() . ')';
+        }
+
+        return $stringRepresentation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullNumber()
+    {
         $stringRepresentation = '';
         if ($this->getCountry()) {
             $stringRepresentation = $this->getCountry()->getDialingCode() . ' ' . $stringRepresentation;
         }
 
         $stringRepresentation .= $this->getNumber();
-
-        if ($this->getType()) {
-            $stringRepresentation .= ' (' . $this->getType() . ')';
-        }
-
         return $stringRepresentation;
     }
 

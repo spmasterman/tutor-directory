@@ -1,10 +1,16 @@
 jQuery(document).ready(function() {
     "use strict";
 
-    var countryData = [];
+    var addressCountryData = [],
+        phoneCountryData =[]
+        ;
+
 
     $.getJSON(Routing.generate('all_countries'), {}, function(data) {
-        countryData = data;
+        $(data).each(function(i, k){
+            addressCountryData.push(k);
+            phoneCountryData.push({text: k.text + ' ('+ k.dialingCode+')', value: k.value})
+        });
 
         $('.inline').editable();
         $('.inline-address').each(function() {
@@ -12,6 +18,9 @@ jQuery(document).ready(function() {
         });
         $('.inline-email').each(function() {
             $(this).editable(getEmailOptions($(this)));
+        });
+        $('.inline-phone').each(function() {
+            $(this).editable(getPhoneOptions($(this)));
         });
     });
 
@@ -138,6 +147,51 @@ jQuery(document).ready(function() {
                 $(this).editable(getEmailOptions($(this)));
             });
         });
+
+        contactInfo.on('click', '.remove-phone', function(e) {
+            e.preventDefault();
+            var row = $(this).closest('.data-row'),
+                phonePk = row.find('span.data-value a').attr('data-phone-pk');
+
+            if (phonePk != '0') {
+                $.post(Routing.generate('phone_ajax_remove'), {'pk' : phonePk }, function(data) {
+                    if (data.success) {
+                        row.remove();
+                    }
+                }, "json");
+            } else {
+                row.remove();
+            }
+        });
+
+        contactInfo.on('click', '.add-phone', function(e) {
+            e.preventDefault();
+            var tutorId = $(this).closest('.data-row').data('id'),
+                newRow = "<p class='data-row' data-id='" + tutorId + "'> " +
+                    "<span class='data-name'>New Phone</span> "+
+                    "<span class='data-value'>"+
+                    "<a href='#'  id='phone0' class='inline-phone' "+
+                    "data-type='phone' "+
+                    "data-pk='" + tutorId + "' " +
+                    "data-phone-pk='0' " +
+                    "data-url='" + Routing.generate('tutor_ajax_update') + "' "+
+                    "data-title='Enter Phone' "+
+                    "></a>"+
+                    "</span> "+
+                    "<span class='data-action'>"+
+                    "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-phone'>"+
+                    "<i class='fa fa-remove'></i>"+
+                    "</a>"+
+                    "</span> "+
+                    "</p>";
+
+            $('.phone-container').append(newRow);
+
+            $('#phone0').each(function(){
+                $(this).editable(getPhoneOptions($(this)));
+            });
+        });
+
     }
 
     function getAddressOptions(addressHost) {
@@ -160,7 +214,7 @@ jQuery(document).ready(function() {
                 addressHost.attr('data-address-pk', response.id);
                 addressHost.attr( "id", "Address" + response.id);
             },
-            sourceCountry: countryData
+            sourceCountry: addressCountryData
         }
     }
 
@@ -179,6 +233,26 @@ jQuery(document).ready(function() {
                 emailHost.attr('data-email-pk', response.id);
                 emailHost.attr( "id", "Email" + response.id);
             }
+        }
+    }
+
+    function getPhoneOptions(phoneHost) {
+        return {
+            value: {
+                type: phoneHost.data('valueType'),
+                number: phoneHost.data('valueNumber'),
+                country: phoneHost.data('valueCountry')
+            },
+            params: function(params) {
+                params.phonePk = phoneHost.attr('data-phone-pk');
+                return params;
+            },
+            success: function(response, newValue) {
+                phoneHost.closest('.data-row').find('.data-name').text('Phone (' + newValue.type +')');
+                phoneHost.attr('data-phone-pk', response.id);
+                phoneHost.attr( "id", "Phone" + response.id);
+            },
+            sourceCountry: phoneCountryData
         }
     }
 });

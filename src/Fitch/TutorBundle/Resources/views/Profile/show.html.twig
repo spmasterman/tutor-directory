@@ -84,10 +84,26 @@
                             </div>
 
                             <div class="phone-container">
-                                <p class="data-row">
-                                    <span class="data-name">Phone</span>
-                                    <span class="data-value"> xx </span>
-                                </p>
+                                {% for phone in tutor.getPhoneNumbers %}
+                                    <p class="data-row"  data-id="{{ tutor.getId }}">
+                                        <span class="data-name">Phone ({{ phone.getType }})</span>
+                                        <span class="data-value">
+                                            <a href="#" id="phone{{ phone.getId }}" class="inline-phone"
+                                               data-type="phone"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-phone-pk="{{ phone.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Phone"
+                                               data-value-type="{{ phone.getType }}"
+                                               data-value-country="{{ phone.getCountry.getId }}"
+                                               data-value-number="{{ phone.getNumber }}"
+                                            >{{ phone.getFullNumber }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ phone.getId }}" class="btn btn-danger btn-xs remove-phone"><i class="fa fa-remove"></i></a>
+                                        </span>
+                                    </p>
+                                {% endfor %}
                             </div>
 
                             <div class="address-container">
@@ -156,6 +172,7 @@
         '@FitchTutorBundle/Resources/public/js/tutor.js'
         '@FitchTutorBundle/Resources/public/js/address.js'
         '@FitchTutorBundle/Resources/public/js/email.js'
+        '@FitchTutorBundle/Resources/public/js/phone.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
