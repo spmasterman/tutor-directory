@@ -35,7 +35,7 @@ jQuery(document).ready(function() {
 
     $('.bio').on('click', '.save-bio', function(e){
         e.preventDefault();
-
+        var btn = $(this);
         $.post(Routing.generate('tutor_ajax_update'), {
             'pk' : $(this).closest('.data-row').data('id'),
             'name' : 'bio',
@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
             if (data.success) {
                 $('#bio').destroy();
                 $('.bio').find('.edit-bio').show();
-                $(this).hide();
+                btn.hide();
             }
         }, "json");
     });
