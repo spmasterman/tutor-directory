@@ -19,7 +19,7 @@ use Fitch\TutorBundle\Form\TutorType;
 
 /**
  * Tutor CRUD controller - most tutor interaction is expected to be via specific tailored pages - handled by the
- * TutorProfileController
+ * ProfileController
  *
  * The templates associated with this controller aren't finished - and wont be unless there is some need to have
  * basic CRUD pages. Given the heavy use of related entities a basic form with embedded collections is not a great UI.
