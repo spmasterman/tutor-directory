@@ -40,14 +40,14 @@
 			font-size: 1.3em;
 			margin-bottom: 20px;
 		}
-	}
+    }
 
 	.user-info-right {
 		border-left: 1px solid $line-color;
 		padding-left: 30px;
 
 		> div {
-			margin-bottom: 60px;
+			margin-bottom: 40px;
 		}
 
 		@include max-screen($break-medium) {
@@ -56,6 +56,32 @@
 		}
 	}
 }
+
+.engagement {
+  .user-info-left,
+  .user-info-right {
+    padding: 10px 0;
+  }
+
+  .user-info-left {
+    > div {
+      margin-bottom: 40px;
+    }
+  }
+
+  .user-info-right {
+    border-left: 1px solid $line-color;
+    padding-left: 30px;
+
+    // NOTES AREA
+
+    @include max-screen($break-medium) {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+}
+
 
 .editable-address {
   label {

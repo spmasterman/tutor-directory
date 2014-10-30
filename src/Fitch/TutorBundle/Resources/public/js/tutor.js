@@ -15,6 +15,17 @@ jQuery(document).ready(function() {
         });
 
         $('.inline').editable();
+        $('.inline-rate').editable({
+            validate: function(value) {
+                if (!$.isNumeric(value)) {
+                    return {newValue: '0.00', msg: 'Non Numeric values entered'}
+                }
+                if (Math.round(100 * value) != 100 * value) {
+                    return {newValue: Math.round(100 * value)/100, msg: 'Rate will be rounded to two decimal places'}
+                }
+            }
+        });
+        // These must all be instantiated passing the host in, so that the value etc can be set
         $('.inline-address').each(function() {
             $(this).editable(getAddressOptions($(this)));
         });
@@ -213,28 +224,28 @@ jQuery(document).ready(function() {
     /**
      * Get x-editable options for a given element, that is going to be made an x-editable Address (custom type)
      *
-     * @param addressHost
+     * @param host
      * @returns {{value: {type: *, streetPrimary: *, streetSecondary: *, city: *, state: *, zip: *, country: *}, params: Function, success: Function, sourceCountry: Array}}
      */
-    function getAddressOptions(addressHost) {
+    function getAddressOptions(host) {
         return {
             value: {
-                type: addressHost.data('valueType'),
-                streetPrimary: addressHost.data('valueStreetPrimary'),
-                streetSecondary: addressHost.data('valueStreetSecondary'),
-                city: addressHost.data('valueCity'),
-                state: addressHost.data('valueState'),
-                zip: addressHost.data('valueZip'),
-                country: addressHost.data('valueCountry')
+                type: host.data('valueType'),
+                streetPrimary: host.data('valueStreetPrimary'),
+                streetSecondary: host.data('valueStreetSecondary'),
+                city: host.data('valueCity'),
+                state: host.data('valueState'),
+                zip: host.data('valueZip'),
+                country: host.data('valueCountry')
             },
             params: function(params) {
-                params.addressPk = addressHost.attr('data-address-pk');
+                params.addressPk = host.attr('data-address-pk');
                 return params;
             },
             success: function(response, newValue) {
-                addressHost.closest('.data-row').find('.data-name').text('Address (' + newValue.type +')');
-                addressHost.attr('data-address-pk', response.id);
-                addressHost.attr( "id", "Address" + response.id);
+                host.closest('.data-row').find('.data-name').text('Address (' + newValue.type +')');
+                host.attr('data-address-pk', response.id);
+                host.attr( "id", "Address" + response.id);
             },
             sourceCountry: addressCountryData
         }
@@ -243,23 +254,23 @@ jQuery(document).ready(function() {
     /**
      * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
      *
-     * @param emailHost
+     * @param host
      * @returns {{value: {type: *, address: *}, params: Function, success: Function}}
      */
-    function getEmailOptions(emailHost) {
+    function getEmailOptions(host) {
         return {
             value: {
-                type: emailHost.data('valueType'),
-                address: emailHost.data('valueAddress')
+                type: host.data('valueType'),
+                address: host.data('valueAddress')
             },
             params: function(params) {
-                params.emailPk = emailHost.attr('data-email-pk');
+                params.emailPk = host.attr('data-email-pk');
                 return params;
             },
             success: function(response, newValue) {
-                emailHost.closest('.data-row').find('.data-name').text('Email (' + newValue.type +')');
-                emailHost.attr('data-email-pk', response.id);
-                emailHost.attr( "id", "Email" + response.id);
+                host.closest('.data-row').find('.data-name').text('Email (' + newValue.type +')');
+                host.attr('data-email-pk', response.id);
+                host.attr( "id", "Email" + response.id);
             }
         }
     }
@@ -267,24 +278,24 @@ jQuery(document).ready(function() {
     /**
      * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
      *
-     * @param phoneHost
+     * @param host
      * @returns {{value: {type: *, number: *, country: *}, params: Function, success: Function, sourceCountry: Array}}
      */
-    function getPhoneOptions(phoneHost) {
+    function getPhoneOptions(host) {
         return {
             value: {
-                type: phoneHost.data('valueType'),
-                number: phoneHost.data('valueNumber'),
-                country: phoneHost.data('valueCountry')
+                type: host.data('valueType'),
+                number: host.data('valueNumber'),
+                country: host.data('valueCountry')
             },
             params: function(params) {
-                params.phonePk = phoneHost.attr('data-phone-pk');
+                params.phonePk = host.attr('data-phone-pk');
                 return params;
             },
             success: function(response, newValue) {
-                phoneHost.closest('.data-row').find('.data-name').text('Phone (' + newValue.type +')');
-                phoneHost.attr('data-phone-pk', response.id);
-                phoneHost.attr( "id", "Phone" + response.id);
+                host.closest('.data-row').find('.data-name').text('Phone (' + newValue.type +')');
+                host.attr('data-phone-pk', response.id);
+                host.attr( "id", "Phone" + response.id);
             },
             sourceCountry: phoneCountryData
         }

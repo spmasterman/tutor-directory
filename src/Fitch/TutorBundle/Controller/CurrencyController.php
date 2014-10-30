@@ -291,7 +291,7 @@ class CurrencyController extends Controller
         foreach($this->getCurrencyManager()->findAllSorted() as $currency) {
             $out[] = [
                 'value' => $currency->getId(),
-                'text' => $currency->getName(),
+                'text' => (string)$currency,
             ];
         }
         return new JsonResponse($out);

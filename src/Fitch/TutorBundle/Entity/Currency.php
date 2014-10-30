@@ -45,7 +45,7 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function __toString()
     {
-        return $this->getThreeDigitCode();
+        return $this->getThreeDigitCode() . ' - ' . $this->getName();
     }
 
     /**

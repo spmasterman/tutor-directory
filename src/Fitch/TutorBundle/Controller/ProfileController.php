@@ -4,9 +4,11 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\EmailManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
@@ -18,6 +20,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Tutor Profile controller
@@ -30,18 +33,21 @@ class ProfileController extends Controller
     /**
      * Finds and displays a Tutor entity.
      *
-     * @Route("/{id}", requirements={"id" = "\d+"}, name="tutor_profile")
+     * @Route("/{id}/{tab}", requirements={"id" = "\d+"}, name="tutor_profile")
      * @Method("GET")
      * @Template()
      *
      * @param Tutor $tutor
      *
+     * @param $tab
      * @return array
      */
-    public function showAction(Tutor $tutor)
+    public function showAction(Tutor $tutor, $tab = 'profile')
     {
         return [
             'tutor' => $tutor,
+            'user' => $this->getUser(),
+            'tab' => $tab
         ];
     }
 
@@ -133,10 +139,16 @@ class ProfileController extends Controller
                     $region = $this->getOperatingRegionManager()->findById($value);
                     $tutor->setRegion($region);
                     break ;
+                case 'currency':
+                    $currency = $this->getCurrencyManager()->findById($value);
+                    $tutor->setCurrency($currency);
+                    break ;
                 default :
                     $setter = 'set' . ucfirst($name);
                     if (is_callable([$tutor, $setter])) {
                         $tutor->$setter($value);
+                    } else {
+                        throw new UnknownMethodException($setter . ' is not a valid Tutor method');
                     }
             }
 
@@ -146,7 +158,7 @@ class ProfileController extends Controller
             return new JsonResponse([
                 'success' => false,
                 'message' => $e->getMessage()
-            ]);
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         return new JsonResponse([
@@ -193,6 +205,14 @@ class ProfileController extends Controller
     private function getPhoneManager()
     {
         return $this->get('fitch.manager.phone');
+    }
+
+    /**
+     * @return CurrencyManager
+     */
+    private function getCurrencyManager()
+    {
+        return $this->get('fitch.manager.currency');
     }
 
     /**

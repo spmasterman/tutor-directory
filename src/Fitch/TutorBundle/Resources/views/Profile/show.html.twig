@@ -8,17 +8,17 @@
 {% block main_content -%}
     <!-- NAV TABS -->
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#profile-tab" data-toggle="tab"><i class="fa fa-user"></i> Personal Information</a></li>
-        <li><a href="#engagement-tab" data-toggle="tab"><i class="fa fa-briefcase"></i> Terms of Engagement</a></li>
-        <li><a href="#competency-tab" data-toggle="tab"><i class="fa fa-puzzle-piece"></i> Competencies</a></li>
-        <li><a href="#notes-tab" data-toggle="tab"><i class="fa fa-comments-o"></i> Notes</a></li>
-        <li><a href="#files-tab" data-toggle="tab"><i class="fa fa-cloud-upload"></i> Files</a></li>
+        <li {% if tab == 'profile' %}class="active"{% endif %}><a href="#profile-tab" data-toggle="tab"><i class="fa fa-user"></i> Personal Information</a></li>
+        <li {% if tab == 'engagement' %}class="active"{% endif %}><a href="#engagement-tab" data-toggle="tab"><i class="fa fa-briefcase"></i> Terms of Engagement</a></li>
+        <li {% if tab == 'competency' %}class="active"{% endif %}><a href="#competency-tab" data-toggle="tab"><i class="fa fa-puzzle-piece"></i> Competencies</a></li>
+        <li {% if tab == 'notes' %}class="active"{% endif %}><a href="#notes-tab" data-toggle="tab"><i class="fa fa-comments-o"></i> Notes</a></li>
+        <li {% if tab == 'files' %}class="active"{% endif %}><a href="#files-tab" data-toggle="tab"><i class="fa fa-cloud-upload"></i> Files</a></li>
     </ul>
     <!-- END NAV TABS -->
 
     <div class="tab-content profile-page">
         <!-- PROFILE TAB CONTENT -->
-        <div class="tab-pane profile active" id="profile-tab">
+        <div class="tab-pane profile{% if tab == 'profile' %} active{% endif %}" id="profile-tab">
             <div class="row">
                 <div class="col-md-3">
                     <div class="user-info-left">
@@ -138,7 +138,6 @@
                         <div class="bio data-row" data-id="{{ tutor.getId }}">
                             <h3><i class="fa fa-square"></i> Biography <a href="#" class="btn btn-default btn-xs edit-bio"><i class="fa fa-pencil"></i> Edit</a></h3>
                             <div id="bio">{{ tutor.getBio|raw }}</div>
-
                             <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
                         </div>
                     </div>
@@ -148,44 +147,83 @@
         <!-- END PROFILE TAB CONTENT -->
 
         <!-- ENGAGEMENT TAB CONTENT -->
-        <div class="tab-pane engagement" id="engagement-tab">
-            <div class="alert alert-info">THIS TAB ONLY SHOWS WITH APPROPRIATE RIGHTS</div>
+        <div class="tab-pane engagement{% if tab == 'engagement' %} active{% endif %}" id="engagement-tab">
             <div class="row">
                 <div class="col-md-5">
                     <div class="user-info-left">
                         <div class="rates-info">
                             <h3><i class="fa fa-square"></i> Rates</h3>
                             <p class="data-row">
-                                <span class="data-name">Daily Rate</span>
-                                <span class="data-value"><a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Daily Rate">{{ tutor.getDayRate }}</a></span>
+                                <span class="data-name">Currency</span>
+                                <span class="data-value"><a href="#" id="currency" class="inline" data-source="{{ path('all_currencies') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getCurrency.getId }}" data-title="Select Currency">{{ tutor.getCurrency }}</a></span>
                             </p>
+                            <p class="data-row">
+                                <span class="data-name">Day Rate</span>
+                                <span class="data-value"><a href="#" id="dayRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Day Rate">{{ tutor.getDayRate }}</a></span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Evening Rate</span>
+                                <span class="data-value"><a href="#" id="eveningRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Evening Rate">{{ tutor.getEveningRate }}</a></span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Travel Rate</span>
+                                <span class="data-value"><a href="#" id="travelRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Travel Rate">{{ tutor.getTravelRate }}</a></span>
+                            </p>
+                            <p class="data-row">
+                                <span class="data-name">Material Rate</span>
+                                <span class="data-value"><a href="#" id="materialRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Material Rate">{{ tutor.getMaterialRate }}</a></span>
+                            </p>
+                        </div>
+
+                        <div class="contracts-info">
+                            <h3><i class="fa fa-square"></i> Contracts</h3>
+                            <p><em>private files shown here</em></p>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="user-info-right">
-
+                        <div class="notes-info">
+                            <h3><i class="fa fa-square"></i> Notes</h3>
+                            {% for note in tutor.getNotes %}
+                                <p class="data-row" data-id="{{ tutor.getId }}">
+                                    <span class="data-name">{{ note.getAuthor }}</span>
+                                    <span class="data-value">
+                                        <div id="bio">{{ note.getBody|raw }}</div>
+                                    </span>
+                                    <span class="data-action" data-pk="{{ note.getId }}">
+                                        <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
+                                        <a href="#" class="btn btn-default btn-xs remove-note"><i class="fa fa-edit"></i> Edit</a>
+                                        <a href="#" class="btn btn-danger btn-xs remove-note"><i class="fa fa-remove"></i> Remove</a>
+                                    </span>
+                                </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="alert alert-danger">DEBUG - THIS TAB WILL (EVENTUALLY!) ONLY DISPLAY WITH APPROPRIATE RIGHTS - Your roles are {{ dump(user.getRoles) }}</div>
         </div>
         <!-- END ACTIVITY TAB CONTENT -->
 
         <!-- COMPETENCY TAB CONTENT -->
-        <div class="tab-pane competency" id="competency-tab">
+        <div class="tab-pane competency{% if tab == 'competency' %} active{% endif %}" id="competency-tab">
 
             <p> competencies show here</p>
         </div>
         <!-- END SETTINGS TAB CONTENT -->
 
         <!-- NOTES TAB CONTENT -->
-        <div class="tab-pane notes" id="notes-tab">
+        <div class="tab-pane notes{% if tab == 'notes' %} active{% endif %}" id="notes-tab">
 
             <p> notes show here</p>
         </div>
         <!-- END NOTES TAB CONTENT -->
 
         <!-- FILES TAB CONTENT -->
-        <div class="tab-pane files" id="files-tab">
+        <div class="tab-pane files{% if tab == 'files' %} active{% endif %}" id="files-tab">
 
             <p> file uploads show here</p>
         </div>
