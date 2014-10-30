@@ -350,5 +350,4 @@ class TutorController extends Controller
     {
         return $this->get('fitch.manager.status');
     }
-
 }

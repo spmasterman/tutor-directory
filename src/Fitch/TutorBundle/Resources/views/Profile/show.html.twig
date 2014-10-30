@@ -55,8 +55,9 @@
                                 <span class="data-name">Phone</span>
                                 <span class="data-value"> xx </span>
                             </p>
+                            <div class="address-container">
                             {% for address in tutor.getAddresses %}
-                            <p class="data-row">
+                            <p class="data-row" data-id="{{ tutor.getId }}">
                                 <span class="data-name">Address ({{ address.getType }})</span>
                                 <span class="data-value">
                                     <a href="#" id="address{{ address.getId }}" class="inline-address"
@@ -66,8 +67,8 @@
                                        data-url="{{ path('tutor_ajax_update')}}"
                                        data-title="Enter Address"
                                        data-value-type="{{ address.getType }}"
-                                       data-value-primary-street="{{ address.getStreetPrimary }}"
-                                       data-value-secondary-street="{{ address.getStreetSecondary }}"
+                                       data-value-street-primary="{{ address.getStreetPrimary }}"
+                                       data-value-street-secondary="{{ address.getStreetSecondary }}"
                                        data-value-city="{{ address.getCity }}"
                                        data-value-state="{{ address.getState }}"
                                        data-value-zip="{{ address.getZip }}"
@@ -79,8 +80,10 @@
                                 </span>
                             </p>
                             {% endfor %}
-                            <p class="data-row">
+                            </div>
+                            <p class="data-row" data-id="{{ tutor.getId }}">
                                 <span class="data-name">Address...</span>
+                                <span class="data-value"></span>
                                 <span class="data-action">
                                     <a href="#" class="btn btn-success btn-xs add-address"><i class="fa fa-plus"></i> Add</a>
                                 </span>

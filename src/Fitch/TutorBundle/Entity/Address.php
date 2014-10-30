@@ -86,11 +86,11 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     public function __toString()
     {
         $string =
-            $this->getStreetPrimary() . ', ' .
-            $this->getStreetSecondary() . ', ' .
-            $this->getCity() . ', ' .
-            $this->getState() . ' ' .
-            $this->getZip() . ' ' .
+            ($this->getStreetPrimary() ? $this->getStreetPrimary() . ', ' : '') .
+            ($this->getStreetSecondary() ? $this->getStreetSecondary() . ', ' : '') .
+            ($this->getCity() ? $this->getCity() . ', ' : '') .
+            ($this->getState() ? $this->getState() . ' ' : '') .
+            ($this->getZip() ? $this->getZip() . ' ' : '') .
             $this->getCountry()->getName()
         ;
         return str_replace(', ,', ',', $string);

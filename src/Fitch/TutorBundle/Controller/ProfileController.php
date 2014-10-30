@@ -3,9 +3,12 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
+use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -66,12 +69,13 @@ class ProfileController extends Controller
             $tutor = $this->getTutorManager()->findById($request->request->get('pk'));
 
             $name = $request->request->get('name');
-            $name = preg_replace('/\d/', '', $name);
+            $name = preg_replace('/\d/', '', $name); // collections are numbered address1, address2 etc
 
             $value = $request->request->get('value');
+            $newRelatedEntity = null;
 
             switch ($name) {
-                case 'Address' :
+                case 'address':
                     $addressId = $request->request->get('addressPk');
                     if ($addressId) {
                         $address = $this->getAddressManager()->findById($addressId);
@@ -86,19 +90,26 @@ class ProfileController extends Controller
                         ->setCity($value['city'])
                         ->setState($value['state'])
                         ->setZip($value['zip'])
-                        ->setCountry($value['country'])
+                        ->setCountry($this->getCountryManager()->findById($value['country']))
                     ;
+                    $newRelatedEntity = $address;
                     break ;
-                default:
-                    $x=1;
-
+                case 'status':
+                    $status = $this->getStatusManager()->findById($value);
+                    $tutor->setStatus($status);
+                    break ;
+                case 'region':
+                    $region = $this->getOperatingRegionManager()->findById($value);
+                    $tutor->setRegion($region);
+                    break ;
+                default :
+                    $setter = 'set' . ucfirst($name);
+                    if (is_callable([$tutor, $setter])) {
+                        $tutor->$setter($value);
+                    }
             }
 
-            $setter = 'set' . ucfirst();
-
-
-
-            $newValue = $request->request->get('value');
+            $this->getTutorManager()->saveTutor($tutor);
 
         } catch (Exception $e) {
             return new JsonResponse([
@@ -109,40 +120,7 @@ class ProfileController extends Controller
 
         return new JsonResponse([
             'success' => true,
-            'newValue' => $newValue,
-        ]);
-
-    }
-
-    /**
-     * Returns the allowable statuses for a tutor record (this is expected to be related to security of the user and
-     * so is not hard coded into the template
-     *
-     * @Route("/statuses", name="tutor_profile_status")
-     * @Method("GET")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-
-    public function statusAction(){
-        return new JsonResponse([
-            [
-                'value' => 'unspecified',
-                'text' => 'Not Specified'
-            ],
-            [
-                'value' => 'active',
-                'text' => 'Active'
-            ],
-            [
-                'value' => 'unavailable',
-                'text' => 'Temporarily Unavailable'
-            ],
-            [
-                'value' => 'inactive',
-                'text' => 'Not Active'
-            ],
+            'id' => $newRelatedEntity instanceof IdentityTraitInterface ? $newRelatedEntity->getId() : null,
         ]);
     }
 
@@ -168,5 +146,21 @@ class ProfileController extends Controller
     private function getAddressManager()
     {
         return $this->get('fitch.manager.address');
+    }
+
+    /**
+     * @return StatusManager
+     */
+    private function getStatusManager()
+    {
+        return $this->get('fitch.manager.status');
+    }
+
+    /**
+     * @return OperatingRegionManager
+     */
+    private function getOperatingRegionManager()
+    {
+        return $this->get('fitch.manager.operating_region');
     }
 }

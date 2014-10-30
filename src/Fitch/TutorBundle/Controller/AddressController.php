@@ -21,43 +21,45 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AddressController extends Controller
 {
+    /**
+     * Removes an Address
+     *
+     * @Route(
+     *      "/remove",
+     *      name="address_ajax_remove",
+     *      options={"expose"=true},
+     *      condition="
+                request.request.has('pk') and request.request.get('pk') > 0
+        "
+     * )
+     * @Method("POST")
+     * @Template()
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function removeAction(Request $request)
+    {
+        try {
+            $this->getAddressManager()->removeAddress($request->request->get('pk'));
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+        return new JsonResponse([
+            'success' => true,
+        ]);
+    }
 
 
-//    /**
-//     * Updates a (simple) field on an address record
-//     *
-//     * @Route(
-//     *      "/update",
-//     *      name="address_ajax_update",
-//     *      options={"expose"=true},
-//     *      condition="
-//                request.request.has('pk') and request.request.get('pk') >= 0
-//            and request.request.has('name') and request.request.get('name') > ''
-//            and request.request.has('value')
-//        "
-//     * )
-//     * @Method("POST")
-//     * @Template()
-//     *
-//     * @param Request $request
-//     *
-//     * @return \Symfony\Component\HttpFoundation\JsonResponse
-//     */
-//    public function updateAction(Request $request)
-//    {
-//        try {
-//            $newValue = $request->request->get('value');
-//
-//        } catch (Exception $e) {
-//            return new JsonResponse([
-//                'success' => false,
-//                'message' => $e->getMessage()
-//            ]);
-//        }
-//
-//        return new JsonResponse([
-//            'success' => true,
-//            'newValue' => $newValue,
-//        ]);
-//    }
+    /**
+     * @return AddressManager
+     */
+    private function getAddressManager()
+    {
+        return $this->get('fitch.manager.address');
+    }
 }

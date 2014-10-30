@@ -89,11 +89,11 @@
                 return;
             }
             var html =
-                    $('<div>').text(value.streetPrimary).html() + ', ' +
-                    $('<div>').text(value.streetSecondary).html() + ', ' +
-                    $('<div>').text(value.city).html() + ', ' +
-                    $('<div>').text(value.state).html() + ' ' +
-                    $('<div>').text(value.zip).html(),
+                    (value.streetPrimary ? $('<div>').text(value.streetPrimary).html() + ', ' : '') +
+                    (value.streetSecondary ? $('<div>').text(value.streetSecondary).html() + ', ' : '') +
+                    (value.city ? $('<div>').text(value.city).html() + ', ' : '') +
+                    (value.state ? $('<div>').text(value.state).html() + ' ' : '') +
+                    (value.zip ? $('<div>').text(value.zip).html() : ''),
                 countryId = value.country,
                 countryText = ''
             ;
@@ -108,7 +108,7 @@
                 html += ' ' + $('<div>').text(countryText).html();
             }
 
-            $(element).html(html.replace(', ,',','));
+            $(element).html(html);
         },
 
         /**
