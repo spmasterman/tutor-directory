@@ -10,6 +10,9 @@ jQuery(document).ready(function() {
         $('.inline-address').each(function() {
             $(this).editable(getAddressOptions($(this)));
         });
+        $('.inline-email').each(function() {
+            $(this).editable(getEmailOptions($(this)));
+        });
     });
 
     setupContactInfo($('.contact-info'));
@@ -58,6 +61,50 @@ jQuery(document).ready(function() {
                 $(this).editable(getAddressOptions($(this)));
             });
         });
+
+        contactInfo.on('click', '.remove-email', function(e) {
+            e.preventDefault();
+            var row = $(this).closest('.data-row'),
+                emailPk = row.find('span.data-value a').attr('data-email-pk');
+
+            if (emailPk) {
+                $.post(Routing.generate('email_ajax_remove'), {'pk' : emailPk }, function(data) {
+                    if (data.success) {
+                        row.remove();
+                    }
+                }, "json");
+            } else {
+                row.remove();
+            }
+        });
+
+        contactInfo.on('click', '.add-email', function(e) {
+            e.preventDefault();
+            var tutorId = $(this).closest('.data-row').data('id'),
+                newRow = "<p class='data-row' data-id='" + tutorId + "'> " +
+                    "<span class='data-name'>New Email</span> "+
+                    "<span class='data-value'>"+
+                    "<a href='#'  id='email0' class='inline-email' "+
+                    "data-type='emailContact' "+
+                    "data-pk='" + tutorId + "' " +
+                    "data-email-pk='0' " +
+                    "data-url='" + Routing.generate('tutor_ajax_update') + "' "+
+                    "data-title='Enter Email' "+
+                    "></a>"+
+                    "</span> "+
+                    "<span class='data-action'>"+
+                    "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-email'>"+
+                    "<i class='fa fa-remove'></i>"+
+                    "Remove</a>"+
+                    "</span> "+
+                    "</p>";
+
+            $('.email-container').append(newRow);
+
+            $('#email0').each(function(){
+                $(this).editable(getEmailOptions($(this)));
+            });
+        });
     }
 
     function getAddressOptions(addressHost) {
@@ -77,11 +124,28 @@ jQuery(document).ready(function() {
             },
             success: function(response, newValue) {
                 addressHost.closest('.data-row').find('.data-name').text('Address (' + newValue.type +')');
-                console.log(addressHost);
                 addressHost.attr('data-address-pk', response.id);
                 addressHost.attr( "id", "Address" + response.id);
             },
             sourceCountry: countryData
+        }
+    }
+
+    function getEmailOptions(emailHost) {
+        return {
+            value: {
+                type: emailHost.data('valueType'),
+                address: emailHost.data('valueAddress')
+            },
+            params: function(params) {
+                params.emailPk = emailHost.attr('data-email-pk');
+                return params;
+            },
+            success: function(response, newValue) {
+                emailHost.closest('.data-row').find('.data-name').text('Email (' + newValue.type +')');
+                emailHost.attr('data-email-pk', response.id);
+                emailHost.attr( "id", "Email" + response.id);
+            }
         }
     }
 });

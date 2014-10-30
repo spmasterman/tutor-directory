@@ -1,39 +1,5 @@
 /**
- Address editable input.
-
- Internally value stored as {
-    type: "Office",
-    primary: "1 Main St",
-    secondary: "Building A",
-    city: "San Francisco",
-    state: "CA",
-    zip: "94109"
- }
-
- @class address
- @extends abstractinput
- @final
- @example
-
- <a href="#" id="address" data-type="address" data-pk="1">awesome</a>
- <script>
- $(function(){
-    $('#address').editable({
-        url: '/post',
-        title: 'Enter city, street and building #',
-        value: {
-            type: "Office",
-            streetPrimary: "1 Main St",
-            streetSecondary: "Building A",
-            city: "San Francisco",
-            state: "CA",
-            zip: "94109",
-            country: "USA"
-        }
-    });
-});
-</script>
-
+ * Address editable input.
  **/
 (function ($) {
     "use strict";

@@ -47,39 +47,64 @@
                         </div>
                         <div class="contact-info">
                             <h3><i class="fa fa-square"></i> Contact Information</h3>
-                            <p class="data-row">
-                                <span class="data-name">Email</span>
-                                <span class="data-value"> xx </span>
+                            <div class="email-container">
+                                {% for email in tutor.getEmailAddresses %}
+                                    <p class="data-row"  data-id="{{ tutor.getId }}">
+                                        <span class="data-name">Email ({{ email.getType }})</span>
+                                        <span class="data-value">
+                                            <a href="#" id="email{{ email.getId }}" class="inline-email"
+                                               data-type="emailContact"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-email-pk="{{ email.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Email"
+                                               data-value-type="{{ email.getType }}"
+                                               data-value-address="{{ email.getAddress }}"
+                                               >{{ email }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ email.getId }}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i> Remove</a>
+                                        </span>
+                                    </p>
+                                {% endfor %}
+                            </div>
+                            <p class="data-row" data-id="{{ tutor.getId }}">
+                                <span class="data-name">Email...</span>
+                                <span class="data-value"></span>
+                                <span class="data-action">
+                                    <a href="#" class="btn btn-success btn-xs add-email"><i class="fa fa-plus"></i> Add</a>
+                                </span>
                             </p>
+
                             <p class="data-row">
                                 <span class="data-name">Phone</span>
                                 <span class="data-value"> xx </span>
                             </p>
                             <div class="address-container">
-                            {% for address in tutor.getAddresses %}
-                            <p class="data-row" data-id="{{ tutor.getId }}">
-                                <span class="data-name">Address ({{ address.getType }})</span>
-                                <span class="data-value">
-                                    <a href="#" id="address{{ address.getId }}" class="inline-address"
-                                       data-type="address"
-                                       data-pk="{{ tutor.getId }}"
-                                       data-address-pk="{{ address.getId }}"
-                                       data-url="{{ path('tutor_ajax_update')}}"
-                                       data-title="Enter Address"
-                                       data-value-type="{{ address.getType }}"
-                                       data-value-street-primary="{{ address.getStreetPrimary }}"
-                                       data-value-street-secondary="{{ address.getStreetSecondary }}"
-                                       data-value-city="{{ address.getCity }}"
-                                       data-value-state="{{ address.getState }}"
-                                       data-value-zip="{{ address.getZip }}"
-                                       data-value-country="{{ address.getCountry.getId }}"
-                                    >{{ address }}</a>
-                                </span>
-                                <span class="data-action">
-                                    <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i> Remove</a>
-                                </span>
-                            </p>
-                            {% endfor %}
+                                {% for address in tutor.getAddresses %}
+                                    <p class="data-row" data-id="{{ tutor.getId }}">
+                                        <span class="data-name">Address ({{ address.getType }})</span>
+                                        <span class="data-value">
+                                            <a href="#" id="address{{ address.getId }}" class="inline-address"
+                                               data-type="address"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-address-pk="{{ address.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Address"
+                                               data-value-type="{{ address.getType }}"
+                                               data-value-street-primary="{{ address.getStreetPrimary }}"
+                                               data-value-street-secondary="{{ address.getStreetSecondary }}"
+                                               data-value-city="{{ address.getCity }}"
+                                               data-value-state="{{ address.getState }}"
+                                               data-value-zip="{{ address.getZip }}"
+                                               data-value-country="{{ address.getCountry.getId }}"
+                                            >{{ address }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i> Remove</a>
+                                        </span>
+                                    </p>
+                                {% endfor %}
                             </div>
                             <p class="data-row" data-id="{{ tutor.getId }}">
                                 <span class="data-name">Address...</span>
@@ -122,7 +147,11 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@FitchTutorBundle/Resources/public/js/tutor.js' '@FitchTutorBundle/Resources/public/js/address.js' %}
+    {% javascripts
+        '@FitchTutorBundle/Resources/public/js/tutor.js'
+        '@FitchTutorBundle/Resources/public/js/address.js'
+        '@FitchTutorBundle/Resources/public/js/email.js'
+    %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
