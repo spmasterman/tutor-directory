@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Phone controller
  *
- * @Route("/address")
+ * @Route("/phone")
  */
 class PhoneController extends Controller
 {
