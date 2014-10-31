@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new Fitch\UserBundle\FitchUserBundle(),
             new Fitch\TutorBundle\FitchTutorBundle(),
             new Khepin\YamlFixturesBundle\KhepinYamlFixturesBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

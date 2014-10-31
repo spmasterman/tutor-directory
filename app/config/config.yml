@@ -85,6 +85,7 @@ assetic:
                 - '@FitchFrontEndBundle/Resources/assets/js/bootstrap-multiselect.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/bootstrap-editable.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/summernote.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/dropzone.js'
             filters: [?yui_js]
 
 # Doctrine Configuration
@@ -126,3 +127,23 @@ khepin_yaml_fixtures:
     directory: Resources/fixtures
     resources:
         - FitchTutorBundle
+
+oneup_uploader:
+    mappings:
+        tutor:
+            frontend: dropzone
+            storage:
+              type: gaufrette
+              filesystem: gaufrette.tutor_filesystem
+              sync_buffer_size: 1M
+
+knp_gaufrette:
+    adapters:
+        tutor:
+            local:
+                directory: %kernel.root_dir%/../filestore/tutor
+                create: true
+
+    filesystems:
+        tutor:
+            adapter: tutor

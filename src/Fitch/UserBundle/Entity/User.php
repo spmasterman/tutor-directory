@@ -31,8 +31,6 @@ class User extends BaseUser implements TimestampableTraitInterface
      */
     protected $fullName;
 
-
-
     public function __construct()
     {
         parent::__construct();

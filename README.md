@@ -85,8 +85,12 @@ Set permissions:
 3. if/once acl is installed:
 
         HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
-        sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
-        sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+        sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs filestore
+        sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs filestore
+
+Note the addition of filestore. This is a local filesystem used by gaufrette, as a file upload location. In production
+We should be switching this out for an s3 or other backupable/offsite/cloud basedfilesystem. Gaufrette the system 
+insulates our code from that.
 
 Look here for details [Symfony Docs](http://symfony.com/doc/current/book/installation.html)
 

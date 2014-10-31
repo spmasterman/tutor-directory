@@ -232,8 +232,13 @@
 
         <!-- FILES TAB CONTENT -->
         <div class="tab-pane files{% if tab == 'files' %} active{% endif %}" id="files-tab">
+            <div class="widget">
+                <div class="widget-header"><h3><i class="fa fa-cloud-upload"></i> File Upload</h3></div>
+                <div class="widget-content">
+                    <form action="{{ oneup_uploader_endpoint('tutor') }}" class="dropzone dz-clickable"><div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
+                </div>
+            </div>
 
-            <p> file uploads show here</p>
         </div>
         <!-- END FILES TAB CONTENT -->
 
