@@ -241,7 +241,7 @@
                     </div>
                 </div>
                 <div class="widget-content">
-                    <form action="{{ oneup_uploader_endpoint('tutor') }}" class="dropzone dz-clickable">
+                    <form id="file_upload" action="{{ oneup_uploader_endpoint('tutor') }}" class="dropzone dz-clickable">
                         <input type="hidden" name="tutorPk" value="{{ tutor.getId }}">
                         <div class="dz-default dz-message">
                             <span>Drop files here to upload</span>
@@ -258,14 +258,11 @@
                     </div>
                 </div>
                 <div class="widget-content">
+                    <div id="files-container">
                     {% for file in tutor.getFiles %}
-                        <p class="data-row">
-                            <span class="data-name">{{ file.getName }}</span>
-                            <span class="data-value">
-                                <a href="#" id="fileType{{ file.getId }}" class="inline" data-source="{{ path('all_file_types') }}" data-type="select" data-pk="{{ file.getId }}" data-url="{{ path('file_ajax_update')}}" data-value="{{ file.getFileType.getId }}" data-title="Select File Type">{{ file.getFileType }}</a>
-                            </span>
-                        </p>
+                        {% include 'FitchTutorBundle:Profile:file_row.html.twig' %}
                     {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

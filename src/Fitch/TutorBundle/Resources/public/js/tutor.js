@@ -1,5 +1,9 @@
+Dropzone.autoDiscover = false;
+
 jQuery(document).ready(function() {
     "use strict";
+
+
 
     var addressCountryData = [],
         phoneCountryData =[],
@@ -52,6 +56,14 @@ jQuery(document).ready(function() {
     setupContactInfo($('.contact-info'));
     setupBio($('.bio'));
     setupNotes($('.notes-container'));
+    setupFiles();
+
+    function setupFiles() {
+        var tutorDropzone = new Dropzone("#file_upload");
+        tutorDropzone.on("success", function(file, response) {
+            $('#files-container').append(response.fileRow)
+        });
+    }
 
     /**
      * Handlers for Edit/Save Notes

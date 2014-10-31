@@ -164,5 +164,7 @@ services:
             tutorManager: "@fitch.manager.tutor"
             fileManager: "@fitch.manager.file"
             fileTypeManager: "@fitch.manager.file_type"
+            templating: "@templating"
         tags:
             - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload}
+
