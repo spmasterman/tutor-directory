@@ -1,9 +1,8 @@
+// Stop Dropzone doing its thing
 Dropzone.autoDiscover = false;
 
 jQuery(document).ready(function() {
     "use strict";
-
-
 
     var addressCountryData = [],
         phoneCountryData =[],
@@ -61,7 +60,13 @@ jQuery(document).ready(function() {
     function setupFiles() {
         var tutorDropzone = new Dropzone("#file_upload");
         tutorDropzone.on("success", function(file, response) {
-            $('#files-container').append(response.fileRow)
+            $('#files-container').append(response.fileRow);
+
+            var regex = /.*data-pk="(\d+)".*/gi,
+                match = regex.exec(response.fileRow),
+                id = match[1]
+            ;
+            $('#fileType' + id).editable();
         });
     }
 
