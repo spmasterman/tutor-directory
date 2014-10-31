@@ -69,7 +69,25 @@ status:
         tagline: view the details of a Status record
     delete:
         success: The Status has been successfully removed.
-        
+
+file_type:
+    edit:
+        verb: Edit File Type
+        tagline: edit the details of file type record
+        success: The File Type has been successfully updated.
+    list:
+        verb: File Types
+        tagline: file types available for use in the Tutor Directory
+    new:
+        verb: New File Type
+        tagline: define a new file type
+        success: The File Type has been successfully created.
+    show:
+        verb: File Type
+        tagline: view the details of a File Type record
+    delete:
+        success: The File Type has been successfully removed.
+
 competency_type:
     edit:
         verb: Edit Competency Type

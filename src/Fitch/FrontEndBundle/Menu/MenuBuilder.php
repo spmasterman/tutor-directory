@@ -23,6 +23,7 @@ class MenuBuilder extends ContainerAware
             ->addRegions($menu)
             ->addCountries($menu)
             ->addCurrencies($menu)
+            ->addFileTypes($menu)
             ->addCompetencyTypes($menu)
             ->addCompetencyLevels($menu)
         ;
@@ -43,8 +44,12 @@ class MenuBuilder extends ContainerAware
             ->setAttribute('icon', 'fa fa-home fa-fw');
 
         $this
+            ->addTutorTypes($homeNode)
+            ->addStatus($homeNode)
             ->addRegions($homeNode)
             ->addCountries($homeNode)
+            ->addCurrencies($homeNode)
+            ->addFileTypes($homeNode)
             ->addCompetencyTypes($homeNode)
             ->addCompetencyLevels($homeNode)
         ;
@@ -139,6 +144,21 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Currencies', array('route' => 'currency'))
             ->setAttribute('icon', 'fa fa-money fa-fw')
+            ->getParent()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addFileTypes(ItemInterface $menu)
+    {
+        $menu
+            ->addChild('File Types', array('route' => 'file_type'))
+            ->setAttribute('icon', 'fa fa-files-o fa-fw')
             ->getParent()
         ;
 

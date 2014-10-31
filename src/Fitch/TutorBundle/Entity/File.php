@@ -28,11 +28,26 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     protected $tutor;
 
     /**
+     * @ORM\ManyToOne(targetEntity="FileType")
+     * @ORM\JoinColumn(name="file_type_id", referencedColumnName="id")
+     *
+     * @var FileType
+     */
+    protected $fileType;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fs_key", type="string", length=255)
+     */
+    private $fileSystemKey;
 
     /**
      * @return string
@@ -67,6 +82,42 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileSystemKey()
+    {
+        return $this->fileSystemKey;
+    }
+
+    /**
+     * @param string $fileSystemKey
+     * @return $this
+     */
+    public function setFileSystemKey($fileSystemKey)
+    {
+        $this->fileSystemKey = $fileSystemKey;
+        return $this;
+    }
+
+    /**
+     * @return FileType
+     */
+    public function getFileType()
+    {
+        return $this->fileType;
+    }
+
+    /**
+     * @param FileType $fileType
+     * @return $this
+     */
+    public function setFileType($fileType)
+    {
+        $this->fileType = $fileType;
         return $this;
     }
 }

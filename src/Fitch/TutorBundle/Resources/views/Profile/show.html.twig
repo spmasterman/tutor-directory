@@ -233,17 +233,41 @@
         <!-- FILES TAB CONTENT -->
         <div class="tab-pane files{% if tab == 'files' %} active{% endif %}" id="files-tab">
             <div class="widget">
-                <div class="widget-header"><h3><i class="fa fa-cloud-upload"></i> File Upload</h3></div>
+                <div class="widget-header"><h3><i class="fa fa-cloud-upload"></i> File Upload</h3>
+                    <div class="btn-group widget-header-toolbar">
+                        <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                        <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
                 <div class="widget-content">
                     <form action="{{ oneup_uploader_endpoint('tutor') }}" class="dropzone dz-clickable">
-                        <input type="hidden" name="test" value="blah">
+                        <input type="hidden" name="tutorPk" value="{{ tutor.getId }}">
                         <div class="dz-default dz-message">
                             <span>Drop files here to upload</span>
                         </div>
                     </form>
                 </div>
             </div>
-
+            <div class="widget">
+                <div class="widget-header"><h3><i class="fa fa-files-o"></i> Files</h3>
+                    <div class="btn-group widget-header-toolbar">
+                        <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                        <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    {% for file in tutor.getFiles %}
+                        <p class="data-row">
+                            <span class="data-name">{{ file.getName }}</span>
+                            <span class="data-value">
+                                <a href="#" id="fileType{{ file.getId }}" class="inline" data-source="{{ path('all_file_types') }}" data-type="select" data-pk="{{ file.getId }}" data-url="{{ path('file_ajax_update')}}" data-value="{{ file.getFileType }}" data-title="Select File Type">{{ file.getFileType }}</a>
+                            </span>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
         <!-- END FILES TAB CONTENT -->
 

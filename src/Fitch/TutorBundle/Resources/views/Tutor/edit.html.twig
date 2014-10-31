@@ -9,10 +9,7 @@
 
     <a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a>
 
-
     {% form_theme edit_form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
-
-
 
     {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'} })}}
     {{ form_row(edit_form.name) }}

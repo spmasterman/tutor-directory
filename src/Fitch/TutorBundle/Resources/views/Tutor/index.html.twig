@@ -11,8 +11,6 @@
             <tr>
                 <th>Name</th>
                 <th>Id</th>
-                <th>Created</th>
-                <th>Updated</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,9 +19,9 @@
             <tr>
                 <td><a href="{{ path('tutor_show', { 'id': tutor.id }) }}">{{ tutor.name }}</a></td>
                 <td>{{ tutor.id }}</td>
-                <td>{% if tutor.created %}{{ tutor.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if tutor.updated %}{{ tutor.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>                        <a href="{{ path('tutor_show', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('tutor_edit', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                <td>
+                    <a href="{{ path('tutor_show', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                    <a href="{{ path('tutor_edit', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}

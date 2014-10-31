@@ -1,0 +1,29 @@
+model: Fitch\TutorBundle\Entity\FileType
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    filetype-unknown:
+        name: Unspecified
+        default: true
+        private: true
+    filetype-avatar:
+        name: Avatar
+        default: false
+        private: false
+    filetype-contract:
+        name: Contract
+        default: false
+        private: true
+    filetype-resume:
+        name: CV / Resume
+        default: false
+        private: true
+    filetype-misc_private:
+        name: Miscellaneous Private
+        default: false
+        private: true
+    filetype-misc_public:
+        name: Miscellaneous Public
+        default: false
+        private: false

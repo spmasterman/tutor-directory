@@ -3,6 +3,7 @@ parameters:
   fitch.manager.phone.class: Fitch\TutorBundle\Model\PhoneManager
   fitch.manager.email.class: Fitch\TutorBundle\Model\EmailManager
   fitch.manager.file.class: Fitch\TutorBundle\Model\FileManager
+  fitch.manager.file_type.class: Fitch\TutorBundle\Model\FileTypeManager
   fitch.manager.operating_region.class: Fitch\TutorBundle\Model\OperatingRegionManager
   fitch.manager.country.class: Fitch\TutorBundle\Model\CountryManager
   fitch.manager.competency.class: Fitch\TutorBundle\Model\CompetencyManager
@@ -18,6 +19,7 @@ parameters:
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
   fitch.entity.email.class: Fitch\TutorBundle\Entity\Email
   fitch.entity.file.class: Fitch\TutorBundle\Entity\File
+  fitch.entity.file_type.class: Fitch\TutorBundle\Entity\FileType
   fitch.entity.operating_region.class: Fitch\TutorBundle\Entity\OperatingRegion
   fitch.entity.country.class: Fitch\TutorBundle\Entity\Country
   fitch.entity.competency.class: Fitch\TutorBundle\Entity\Competency
@@ -65,6 +67,14 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.file.class%
+    fitch.manager.file_type:
+        class: %fitch.manager.file_type.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.file_type.class%
     fitch.manager.competency:
         class: %fitch.manager.competency.class%
         calls:
@@ -145,3 +155,14 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.note.class%
+#
+# Event Listener
+#
+    fitch.upload_listener:
+        class: Fitch\TutorBundle\Listener\UploadListener
+        arguments:
+            tutorManager: "@fitch.manager.tutor"
+            fileManager: "@fitch.manager.file"
+            fileTypeManager: "@fitch.manager.file_type"
+        tags:
+            - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload}
