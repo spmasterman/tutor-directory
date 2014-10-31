@@ -4,18 +4,13 @@ $color_lochmara_approx: rgba(0, 136, 204, 1);
 $color_chicago_approx: rgba(88, 88, 88, 1);
 $color_crimson_approx: rgba(221, 17, 68, 1);
 
-//@extend-elements
-//original selectors
-//.editable-click.editable-disabled, a.editable-click.editable-disabled, a.editable-click.editable-disabled:hover
-%extend_1 {
+%disabled_click {
   color: $color_chicago_approx;
   cursor: default;
   border-bottom: none;
 }
 
-//original selectors
-//.editable-empty, .editable-empty:hover, .editable-empty:focus
-%extend_2 {
+%empty {
   font-style: italic;
   color: $color_crimson_approx;
   text-decoration: none;
@@ -152,19 +147,19 @@ $color_crimson_approx: rgba(221, 17, 68, 1);
 
 .editable-click {
   text-decoration: none;
-  border-bottom: dashed 1px $color_lochmara_approx;
+  border-bottom: dashed 1px lighten($color_lochmara_approx,45%);
   &.editable-disabled {
-    @extend %extend_1;
+    @extend %disabled_click;
   }
 }
 
 .editable-empty {
-  @extend %extend_2;
+  @extend %empty;
   &:hover {
-    @extend %extend_2;
+    @extend %empty;
   }
   &:focus {
-    @extend %extend_2;
+    @extend %empty;
   }
 }
 
@@ -193,15 +188,15 @@ $color_crimson_approx: rgba(221, 17, 68, 1);
 
 a.editable-click {
   text-decoration: none;
-  border-bottom: dashed 1px $color_lochmara_approx;
+  border-bottom: dashed 1px lighten($color_lochmara_approx,45%);
   &:hover {
     text-decoration: none;
-    border-bottom: dashed 1px $color_lochmara_approx;
+    border-bottom: dashed 1px lighten($color_lochmara_approx,20%);
   }
   &.editable-disabled {
-    @extend %extend_1;
+    @extend %disabled_click;
     &:hover {
-      @extend %extend_1;
+      @extend %disabled_click;
     }
   }
 }

@@ -12,6 +12,7 @@ parameters:
   fitch.manager.status.class: Fitch\TutorBundle\Model\StatusManager
   fitch.manager.tutor_type.class: Fitch\TutorBundle\Model\TutorTypeManager
   fitch.manager.currency.class: Fitch\TutorBundle\Model\CurrencyManager
+  fitch.manager.note.class: Fitch\TutorBundle\Model\NoteManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -26,6 +27,7 @@ parameters:
   fitch.entity.status.class: Fitch\TutorBundle\Entity\Status
   fitch.entity.tutor_type.class: Fitch\TutorBundle\Entity\TutorType
   fitch.entity.currency.class: Fitch\TutorBundle\Entity\Currency
+  fitch.entity.note.class: Fitch\TutorBundle\Entity\Note
 
 services:
     #
@@ -135,3 +137,11 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.currency.class%
+    fitch.manager.note:
+        class: %fitch.manager.note.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.note.class%

@@ -4,7 +4,9 @@
 
 .profile,
 .engagement,
-.competency {
+.competency,
+.notes,
+.files {
 	h3 {
 		font-family: $base-font-family;
 		font-size: 1.2em;
@@ -73,11 +75,21 @@
     border-left: 1px solid $line-color;
     padding-left: 30px;
 
-    // NOTES AREA
-
     @include max-screen($break-medium) {
       border-left: none;
       padding-left: 0;
+    }
+
+    .input-note {
+      width:400px;
+    }
+
+    .note {
+      clear: both;
+    }
+
+    .notes-new {
+      margin-top:40px;
     }
   }
 }

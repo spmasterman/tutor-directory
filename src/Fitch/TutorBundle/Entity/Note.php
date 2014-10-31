@@ -29,14 +29,14 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
     protected $tutor;
 
     /**
-     * @ORM\Column(name="key", type="string", length=32)
+     * @ORM\Column(name="note_key", type="string", length=32)
      *
      * @var string
      */
     private $key;
 
     /**
-     * @ORM\Column(name="body", type="string", length=32)
+     * @ORM\Column(name="body", type="text")
      *
      * @var string
      */
@@ -146,5 +146,23 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
     {
         $this->key = $key;
         return $this;
+    }
+
+    public function getProvenance()
+    {
+        $author = $this->getAuthor();
+        if ($author) {
+            $fullname = $author->getFullName();
+            $string = $fullname ? $fullname : $author->getUsername();
+        } else {
+            $string = 'Anonymous';
+        }
+
+        $string .= ' on ' . $this->getCreated()->format('M d, Y');
+
+        if ($this->getUpdated() != $this->getCreated()) {
+            $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
+        }
+        return $string;
     }
 }

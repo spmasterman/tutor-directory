@@ -149,7 +149,7 @@
         <!-- ENGAGEMENT TAB CONTENT -->
         <div class="tab-pane engagement{% if tab == 'engagement' %} active{% endif %}" id="engagement-tab">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="user-info-left">
                         <div class="rates-info">
                             <h3><i class="fa fa-square"></i> Rates</h3>
@@ -182,29 +182,37 @@
 
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="user-info-right">
-                        <div class="notes-info">
-                            <h3><i class="fa fa-square"></i> Notes</h3>
-                            {% for note in tutor.getNotes %}
-                                <p class="data-row" data-id="{{ tutor.getId }}">
-                                    <span class="data-name">{{ note.getAuthor }}</span>
-                                    <span class="data-value">
-                                        <div id="bio">{{ note.getBody|raw }}</div>
-                                    </span>
-                                    <span class="data-action" data-pk="{{ note.getId }}">
-                                        <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
-                                        <a href="#" class="btn btn-default btn-xs remove-note"><i class="fa fa-edit"></i> Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs remove-note"><i class="fa fa-remove"></i> Remove</a>
-                                    </span>
-                                </p>
-                            {% endfor %}
+                        <div class="notes-info" data-note-key="terms" data-id="{{ tutor.getId }}">
+                            <div class="notes-container">
+                                <h3><i class="fa fa-square"></i> Notes for Terms of Engagement</h3>
+                                {% for note in tutor.getNotes %}
+                                    {% if note.getKey == 'terms' %}
+                                    <div class="data-row">
+                                        <div class="note">
+                                            <a href="#" id="note{{ note.getId }}" class="inline-note"
+                                               data-inputclass="input-note"
+                                               data-type="textarea"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Note"
+                                               data-note-pk="{{ note.getId }}"
+                                            >{{ note.getBody }}</a></div>
+                                        <div class="note-provenance pull-right">{{ note.getProvenance }}</div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="notes-new">
+                                <a href="#" class="btn btn-default btn-xs add-note"><i class="fa fa-file-text-o"></i> New Note</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="alert alert-danger">DEBUG - THIS TAB WILL (EVENTUALLY!) ONLY DISPLAY WITH APPROPRIATE RIGHTS - Your roles are {{ dump(user.getRoles) }}</div>
+            <div class="alert alert-danger">DEBUG - THIS TAB WILL (EVENTUALLY!) ONLY DISPLAY WITH APPROPRIATE RIGHTS - Your roles are {% if user %}{{ dump(user.getRoles) }}{% else %}Not Logged In{% endif %}</div>
         </div>
         <!-- END ACTIVITY TAB CONTENT -->
 
@@ -218,7 +226,7 @@
         <!-- NOTES TAB CONTENT -->
         <div class="tab-pane notes{% if tab == 'notes' %} active{% endif %}" id="notes-tab">
 
-            <p> notes show here</p>
+            <p> all notes show here - based on your roles</p>
         </div>
         <!-- END NOTES TAB CONTENT -->
 

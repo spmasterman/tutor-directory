@@ -24,6 +24,15 @@ class User extends BaseUser implements TimestampableTraitInterface
      */
     protected $id;
 
+    /**
+     * @ORM\Column(name="full_name", type="string", length=128)
+     *
+     * @var string
+     */
+    protected $fullName;
+
+
+
     public function __construct()
     {
         parent::__construct();
@@ -37,5 +46,23 @@ class User extends BaseUser implements TimestampableTraitInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param mixed $fullName
+     * @return $this
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+        return $this;
     }
 }

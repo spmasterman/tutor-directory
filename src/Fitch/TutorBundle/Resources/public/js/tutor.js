@@ -2,7 +2,15 @@ jQuery(document).ready(function() {
     "use strict";
 
     var addressCountryData = [],
-        phoneCountryData =[]
+        phoneCountryData =[],
+        defaultToolbar = [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+        ]
         ;
 
     $.getJSON(Routing.generate('all_countries'), {}, function(data) {
@@ -26,6 +34,9 @@ jQuery(document).ready(function() {
             }
         });
         // These must all be instantiated passing the host in, so that the value etc can be set
+        $('.inline-note').each(function() {
+            $(this).editable(getNoteOptions($(this)));
+        });
         $('.inline-address').each(function() {
             $(this).editable(getAddressOptions($(this)));
         });
@@ -40,6 +51,40 @@ jQuery(document).ready(function() {
     // Setup DOM event handlers
     setupContactInfo($('.contact-info'));
     setupBio($('.bio'));
+    setupNotes($('.notes-container'));
+
+    /**
+     * Handlers for Edit/Save Notes
+     *
+     * @param notesContainer
+     */
+    function setupNotes(notesContainer) {
+        $('.add-note').on('click', function(e) {
+            e.preventDefault();
+            var tutorId = $(this).closest('[data-id]').data('id'),
+                newRow =
+                '    <div class="data-row">                                                     '+
+                '        <div class="note">                                                     '+
+                '           <a href="#" id="note0" class="inline-note"                          '+
+                '               data-inputclass="input-note"                                    '+
+                '               data-type="textarea"                                            '+
+                '               data-pk="' + tutorId + '"                                       '+
+                '               data-url="' + Routing.generate('tutor_ajax_update')+'"          '+
+                '               data-title="Enter Note"                                         '+
+                '               data-note-pk="0"                                                '+
+                '            ></a></div>                                                        '+
+                '        <div class="note-provenance pull-right"></div>                         '+
+                '    </div>                                                                     '
+            ;
+            notesContainer.append(newRow);
+
+            $('#note0').each(function(){
+                $(this).editable(getNoteOptions($(this)));
+            });
+        })
+    }
+
+
 
     /**
      * Handlers for Add/Remove contact info
@@ -65,24 +110,25 @@ jQuery(document).ready(function() {
         contactInfo.on('click', '.add-address', function(e) {
             e.preventDefault();
             var tutorId = $(this).closest('.data-row').data('id'),
-                newRow = "<p class='data-row' data-id='" + tutorId + "'> " +
-                "<span class='data-name'>New Address</span> "+
-                "<span class='data-value'>"+
-                    "<a href='#'  id='address0' class='inline-address' "+
-                    "data-type='address' "+
-                    "data-pk='" + tutorId + "' " +
-                    "data-address-pk='0' " +
-                    "data-url='" + Routing.generate('tutor_ajax_update') + "' "+
-                    "data-title='Enter Address' "+
-                    "></a>"+
-                "</span> "+
-                "<span class='data-action'>"+
-                    "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-address'>"+
-                        "<i class='fa fa-remove'></i>"+
-                    "</a>"+
-                "</span> "+
-            "</p>";
-
+                newRow =
+                    '    <p class="data-row" data-id="' + tutorId + '">                                     '+
+                    '        <span class="data-name">New Address</span>                                     '+
+                    '        <span class="data-value">                                                      '+
+                    '            <a href="#"  id="address0" class="inline-address"                          '+
+                    '                data-type="address"                                                    '+
+                    '                data-pk="' + tutorId + '"                                              '+
+                    '                data-address-pk="0"                                                    '+
+                    '                data-url="' + Routing.generate('tutor_ajax_update') + '"               '+
+                    '                data-title="Enter Address"                                             '+
+                    '            ></a>                                                                      '+
+                    '        </span>                                                                        '+
+                    '        <span class="data-action">                                                     '+
+                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-address">      '+
+                    '                <i class="fa fa-remove"></i>                                           '+
+                    '            </a>                                                                       '+
+                    '        </span>                                                                        '+
+                    '    </p>                                                                               '
+            ;
             $('.address-container').append(newRow);
 
             $('#address0').each(function(){
@@ -109,25 +155,26 @@ jQuery(document).ready(function() {
         contactInfo.on('click', '.add-email', function(e) {
             e.preventDefault();
             var tutorId = $(this).closest('.data-row').data('id'),
-                newRow = "<p class='data-row' data-id='" + tutorId + "'> " +
-                    "<span class='data-name'>New Email</span> "+
-                    "<span class='data-value'>"+
-                    "<a href='#'  id='email0' class='inline-email' "+
-                    "data-type='emailContact' "+
-                    "data-pk='" + tutorId + "' " +
-                    "data-email-pk='0' " +
-                    "data-url='" + Routing.generate('tutor_ajax_update') + "' "+
-                    "data-title='Enter Email' "+
-                    "data-value-type='" + ($('.inline-email').length > 0 ? 'other' : 'primary') + "' "+
-                    "></a>"+
-                    "</span> "+
-                    "<span class='data-action'>"+
-                    "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-email'>"+
-                    "<i class='fa fa-remove'></i>"+
-                    "</a>"+
-                    "</span> "+
-                    "</p>";
-
+                newRow =
+                    '    <p class="data-row" data-id="' + tutorId + '">                                               '+
+                    '        <span class="data-name">New Email</span>                                                 '+
+                    '        <span class="data-value">                                                                '+
+                    '            <a href="#"  id="email0" class="inline-email"                                        '+
+                    '                data-type="emailContact"                                                         '+
+                    '                data-pk="' + tutorId + '"                                                        '+
+                    '                data-email-pk="0"                                                                '+
+                    '                data-url="' + Routing.generate('tutor_ajax_update') + '"                         '+
+                    '                data-title="Enter Email"                                                         '+
+                    '                data-value-type="' + ($('.inline-email').length > 0 ? 'other' : 'primary') + '"  '+
+                    '            ></a>                                                                                '+
+                    '        </span>                                                                                  '+
+                    '        <span class="data-action">                                                               '+
+                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-email">                  '+
+                    '                <i class="fa fa-remove"></i>                                                     '+
+                    '            </a>                                                                                 '+
+                    '        </span>                                                                                  '+
+                    '    </p>                                                                                         '
+                ;
             $('.email-container').append(newRow);
 
             $('#email0').each(function(){
@@ -154,24 +201,25 @@ jQuery(document).ready(function() {
         contactInfo.on('click', '.add-phone', function(e) {
             e.preventDefault();
             var tutorId = $(this).closest('.data-row').data('id'),
-                newRow = "<p class='data-row' data-id='" + tutorId + "'> " +
-                    "<span class='data-name'>New Phone</span> "+
-                    "<span class='data-value'>"+
-                    "<a href='#'  id='phone0' class='inline-phone' "+
-                    "data-type='phone' "+
-                    "data-pk='" + tutorId + "' " +
-                    "data-phone-pk='0' " +
-                    "data-url='" + Routing.generate('tutor_ajax_update') + "' "+
-                    "data-title='Enter Phone' "+
-                    "></a>"+
-                    "</span> "+
-                    "<span class='data-action'>"+
-                    "<a href='#' data-pk=0 class='btn btn-danger btn-xs remove-phone'>"+
-                    "<i class='fa fa-remove'></i>"+
-                    "</a>"+
-                    "</span> "+
-                    "</p>";
-
+                newRow =
+                    '    <p class="data-row" data-id="' + tutorId + '">                                        '+
+                    '        <span class="data-name">New Phone</span>                                          '+
+                    '        <span class="data-value">                                                         '+
+                    '            <a href="#"  id="phone0" class="inline-phone"                                 '+
+                    '                data-type="phone"                                                         '+
+                    '                data-pk="' + tutorId + '"                                                 '+
+                    '                data-phone-pk="0"                                                         '+
+                    '                data-url="' + Routing.generate('tutor_ajax_update') + '"                  '+
+                    '                data-title="Enter Phone"                                                  '+
+                    '            ></a>                                                                         '+
+                    '        </span>                                                                           '+
+                    '        <span class="data-action">                                                        '+
+                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-phone">           '+
+                    '                <i class="fa fa-remove"></i>                                              '+
+                    '            </a>                                                                          '+
+                    '        </span>                                                                           '+
+                    '    </p>                                                                                  '
+                ;
             $('.phone-container').append(newRow);
 
             $('#phone0').each(function(){
@@ -190,14 +238,7 @@ jQuery(document).ready(function() {
         bioContainer.on('click', '.edit-bio', function(e){
             e.preventDefault();
             $('#bio').summernote({
-                toolbar: [
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']]
-                ]
+                toolbar: defaultToolbar
             });
             $('.bio').find('.save-bio').show();
             $(this).hide();
@@ -218,7 +259,6 @@ jQuery(document).ready(function() {
                 }
             }, "json");
         });
-
     }
 
     /**
@@ -300,4 +340,22 @@ jQuery(document).ready(function() {
             sourceCountry: phoneCountryData
         }
     }
+
+    function getNoteOptions(host) {
+        return {
+            params: function(params) {
+                params.notePk = host.attr('data-note-pk');
+                params.noteKey = host.closest('[data-note-key]').data('noteKey');
+                return params;
+            },
+            success: function(response, newValue) {
+                host.attr('data-phone-pk', response.id);
+                host.attr( "id", "note" + response.id);
+                console.log(host.closest('data-row').find('.note-provenance'))
+                host.closest('.data-row').find('.note-provenance').text(response.detail);
+            },
+            sourceCountry: phoneCountryData
+        }
+    }
+
 });

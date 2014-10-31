@@ -5,11 +5,13 @@ namespace Fitch\TutorBundle\Controller;
 use Exception;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
+use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\NoteManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
 use Fitch\TutorBundle\Model\StatusManager;
@@ -80,7 +82,7 @@ class ProfileController extends Controller
             $name = preg_replace('/\d/', '', $name); // collections are numbered address1, address2 etc
 
             $value = $request->request->get('value');
-            $newRelatedEntity = null;
+            $relatedEntity = null;
 
             switch ($name) {
                 case 'address':
@@ -100,7 +102,7 @@ class ProfileController extends Controller
                         ->setZip($value['zip'])
                         ->setCountry($this->getCountryManager()->findById($value['country']))
                     ;
-                    $newRelatedEntity = $address;
+                    $relatedEntity = $address;
                     break ;
                 case 'email' :
                     $emailId = $request->request->get('emailPk');
@@ -114,7 +116,7 @@ class ProfileController extends Controller
                         ->setType($value['type'])
                         ->setAddress($value['address'])
                     ;
-                    $newRelatedEntity = $email;
+                    $relatedEntity = $email;
                     break ;
                 case 'phone' :
                     $phoneId = $request->request->get('phonePk');
@@ -129,7 +131,7 @@ class ProfileController extends Controller
                         ->setNumber($value['number'])
                         ->setCountry($this->getCountryManager()->findById($value['country']))
                     ;
-                    $newRelatedEntity = $phone;
+                    $relatedEntity = $phone;
                     break ;
                 case 'status':
                     $status = $this->getStatusManager()->findById($value);
@@ -143,6 +145,21 @@ class ProfileController extends Controller
                     $currency = $this->getCurrencyManager()->findById($value);
                     $tutor->setCurrency($currency);
                     break ;
+                case 'note':
+                    $noteId = $request->request->get('notePk');
+                    if ($noteId) {
+                        $note = $this->getNoteManager()->findById($noteId);
+                    } else {
+                        $note = $this->getNoteManager()->createNote();
+                        $note
+                            ->setAuthor($this->getUser())
+                            ->setKey($request->request->get('noteKey'))
+                        ;
+                        $tutor->addNote($note);
+                    }
+                    $note->setBody($value);
+                    $relatedEntity = $note;
+                    break;
                 default :
                     $setter = 'set' . ucfirst($name);
                     if (is_callable([$tutor, $setter])) {
@@ -163,7 +180,8 @@ class ProfileController extends Controller
 
         return new JsonResponse([
             'success' => true,
-            'id' => $newRelatedEntity instanceof IdentityTraitInterface ? $newRelatedEntity->getId() : null,
+            'id' => $relatedEntity instanceof IdentityTraitInterface ? $relatedEntity->getId() : null,
+            'detail' => $relatedEntity instanceof Note ? $relatedEntity->getProvenance() : null,
         ]);
     }
 
@@ -213,6 +231,14 @@ class ProfileController extends Controller
     private function getCurrencyManager()
     {
         return $this->get('fitch.manager.currency');
+    }
+
+    /**
+     * @return NoteManager
+     */
+    private function getNoteManager()
+    {
+        return $this->get('fitch.manager.note');
     }
 
     /**
