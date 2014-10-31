@@ -25,7 +25,7 @@ class User extends BaseUser implements TimestampableTraitInterface
     protected $id;
 
     /**
-     * @ORM\Column(name="full_name", type="string", length=128)
+     * @ORM\Column(name="full_name", type="string", length=128, nullable=true)
      *
      * @var string
      */
