@@ -4,8 +4,10 @@ Dropzone.autoDiscover = false;
 jQuery(document).ready(function() {
     "use strict";
 
+    // Module wide variables
     var addressCountryData = [],
         phoneCountryData =[],
+        // Default toolbar style for inline summer note editor
         defaultToolbar = [
             ['style', ['bold', 'italic', 'underline', 'clear']],
             ['font', ['strikethrough']],
@@ -16,45 +18,44 @@ jQuery(document).ready(function() {
         ]
         ;
 
+    // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
+    // format. Only initialise the x-editable elements which use the data, once the data has been retrieved
     $.getJSON(Routing.generate('all_countries'), {}, function(data) {
-        // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
-        // format. Only initialise the x-editable elements once the data has been retrieved
-
         $(data).each(function(i, k){
             addressCountryData.push(k);
             phoneCountryData.push({text: k['text'] + ' ('+ k['dialingCode']+')', value: k['value']});
         });
 
-        $('.inline').editable();
-        $('.inline-rate').editable({
-            validate: function(value) {
-                if (!$.isNumeric(value)) {
-                    return {newValue: '0.00', msg: 'Non Numeric values entered'}
-                }
-                if (Math.round(100 * value) != 100 * value) {
-                    return {newValue: Math.round(100 * value)/100, msg: 'Rate will be rounded to two decimal places'}
-                }
-            }
-        });
-        $('.inline-file-type').editable({
-            success: function (response) {
-                $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
-            }
-        });
-
-        // These must all be instantiated passing the host in, so that the value etc can be set
-        $('.inline-note').each(function() {
-            $(this).editable(getNoteOptions($(this)));
-        });
         $('.inline-address').each(function() {
             $(this).editable(getAddressOptions($(this)));
-        });
-        $('.inline-email').each(function() {
-            $(this).editable(getEmailOptions($(this)));
         });
         $('.inline-phone').each(function() {
             $(this).editable(getPhoneOptions($(this)));
         });
+    });
+
+    // Initialise the other x-editable elements
+    $('.inline').editable();
+    $('.inline-rate').editable({
+        validate: function(value) {
+            if (!$.isNumeric(value)) {
+                return {newValue: '0.00', msg: 'Non Numeric values entered'}
+            }
+            if (Math.round(100 * value) != 100 * value) {
+                return {newValue: Math.round(100 * value)/100, msg: 'Rate will be rounded to two decimal places'}
+            }
+        }
+    });
+    $('.inline-file-type').editable({
+        success: function (response) {
+            $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
+        }
+    });
+    $('.inline-note').each(function() {
+        $(this).editable(getNoteOptions($(this)));
+    });
+    $('.inline-email').each(function() {
+        $(this).editable(getEmailOptions($(this)));
     });
 
     // Setup DOM event handlers
@@ -62,66 +63,6 @@ jQuery(document).ready(function() {
     setupBio($('.bio'));
     setupNotes($('.notes-container'));
     setupFiles($('#files-container'));
-
-    function setupFiles(filesContainer) {
-        var tutorDropzone = new Dropzone("#file_upload");
-        tutorDropzone.on("success", function(file, response) {
-            $('#files-container').append(response.fileRow);
-
-            var regex = /.*data-pk="(\d+)".*/gi,
-                match = regex.exec(response.fileRow),
-                id = match[1]
-            ;
-            $('#fileType' + id).editable();
-        });
-
-        filesContainer.on('click', '.remove-file', function(e){
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                filePk = row.data('id')
-            ;
-            $.post(Routing.generate('file_ajax_remove'), {'pk' : filePk}, function(data) {
-                if (data.success) {
-                    row.remove();
-                } else {
-                    console.log(data);
-                }
-            }, "json");
-        })
-    }
-
-    /**
-     * Handlers for Edit/Save Notes
-     *
-     * @param notesContainer
-     */
-    function setupNotes(notesContainer) {
-        $('.add-note').on('click', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('[data-id]').data('id'),
-                newRow =
-                '    <div class="data-row">                                                     '+
-                '        <div class="note">                                                     '+
-                '           <a href="#" id="note0" class="inline-note"                          '+
-                '               data-inputclass="input-note"                                    '+
-                '               data-type="textarea"                                            '+
-                '               data-pk="' + tutorId + '"                                       '+
-                '               data-url="' + Routing.generate('tutor_ajax_update')+'"          '+
-                '               data-title="Enter Note"                                         '+
-                '               data-note-pk="0"                                                '+
-                '            ></a></div>                                                        '+
-                '        <div class="note-provenance pull-right"></div>                         '+
-                '    </div>                                                                     '
-            ;
-            notesContainer.append(newRow);
-
-            $('#note0').each(function(){
-                $(this).editable(getNoteOptions($(this)));
-            });
-        })
-    }
-
-
 
     /**
      * Handlers for Add/Remove contact info
@@ -299,6 +240,67 @@ jQuery(document).ready(function() {
     }
 
     /**
+     * Handlers for Edit/Save Notes
+     *
+     * @param notesContainer
+     */
+    function setupNotes(notesContainer) {
+        $('.add-note').on('click', function(e) {
+            e.preventDefault();
+            var tutorId = $(this).closest('[data-id]').data('id'),
+                newRow =
+                    '    <div class="data-row">                                                     '+
+                    '        <div class="note">                                                     '+
+                    '           <a href="#" id="note0" class="inline-note"                          '+
+                    '               data-inputclass="input-note"                                    '+
+                    '               data-type="textarea"                                            '+
+                    '               data-pk="' + tutorId + '"                                       '+
+                    '               data-url="' + Routing.generate('tutor_ajax_update')+'"          '+
+                    '               data-title="Enter Note"                                         '+
+                    '               data-note-pk="0"                                                '+
+                    '            ></a></div>                                                        '+
+                    '        <div class="note-provenance pull-right"></div>                         '+
+                    '    </div>                                                                     '
+                ;
+            notesContainer.append(newRow);
+
+            $('#note0').each(function(){
+                $(this).editable(getNoteOptions($(this)));
+            });
+        })
+    }
+
+    /**
+     * Handler for interacting with Files, and dropzone initialisation
+     */
+    function setupFiles(filesContainer) {
+        var tutorDropzone = new Dropzone("#file_upload");
+        tutorDropzone.on("success", function(file, response) {
+            $('#files-container').append(response.fileRow);
+
+            var regex = /.*data-pk="(\d+)".*/gi,
+                match = regex.exec(response.fileRow),
+                id = match[1]
+                ;
+            $('#fileType' + id).editable();
+        });
+
+        filesContainer.on('click', '.remove-file', function(e){
+            e.preventDefault();
+            var row = $(this).closest('.data-row'),
+                filePk = row.data('id')
+                ;
+            $.post(Routing.generate('file_ajax_remove'), {'pk' : filePk}, function(data) {
+                if (data.success) {
+                    row.remove();
+                } else {
+                    console.log(data);
+                }
+            }, "json");
+        })
+    }
+
+    /**
      * Get x-editable options for a given element, that is going to be made an x-editable Address (custom type)
      *
      * @param host
@@ -380,23 +382,17 @@ jQuery(document).ready(function() {
 
     function getNoteOptions(host) {
         return {
-            params: function(params) {
+            params: function (params) {
                 params.notePk = host.attr('data-note-pk');
                 params.noteKey = host.closest('[data-note-key]').data('noteKey');
                 return params;
             },
-            success: function(response, newValue) {
+            success: function (response) {
                 host.attr('data-phone-pk', response.id);
-                host.attr( "id", "note" + response.id);
+                host.attr("id", "note" + response.id);
                 host.closest('.data-row').find('.note-provenance').text(response.detail);
             },
             sourceCountry: phoneCountryData
-        }
-    }
-
-    function getFileTypeOptions(host) {
-        return {
-
         }
     }
 });
