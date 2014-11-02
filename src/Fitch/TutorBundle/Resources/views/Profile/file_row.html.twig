@@ -3,12 +3,15 @@
     <span class="data-value">
         <a href="#"
            id="fileType{{ file.getId }}"
-           class="inline"
+           class="inline-file-type"
            data-source="{{ path('all_file_types') }}"
            data-type="select"
            data-pk="{{ file.getId }}"
            data-url="{{ path('file_ajax_update')}}"
            data-value="{{ file.getFileType.getId }}"
            data-title="Select File Type">{{ file.getFileType }}</a>
+    </span>
+    <span class="details-holder">
+        {% include 'FitchTutorBundle:Profile:file_row_inner.html.twig' %}
     </span>
 </p>

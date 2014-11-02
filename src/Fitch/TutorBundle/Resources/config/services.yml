@@ -166,5 +166,6 @@ services:
             fileTypeManager: "@fitch.manager.file_type"
             templating: "@templating"
         tags:
-            - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload}
+            - {name: kernel.event_listener, event: oneup_uploader.pre_upload, method: onPreUpload}
+            - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onPostPersist}
 

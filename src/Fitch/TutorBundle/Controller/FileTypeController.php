@@ -291,7 +291,7 @@ class FileTypeController extends Controller
         foreach($this->getFileTypeManager()->findAll() as $fileType) {
             $out[] = [
                 'value' => $fileType->getId(),
-                'text' => $fileType->getName(),
+                'text' => (string)$fileType,
             ];
         }
         return new JsonResponse($out);

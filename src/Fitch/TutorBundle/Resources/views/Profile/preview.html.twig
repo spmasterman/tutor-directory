@@ -1,0 +1,20 @@
+<div class="modal fade" id="modal-compose{{ file.getId }}" tabindex="-1" role="dialog" aria-labelledby="modal-compose-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal-compose-label"> {{ file.getName }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="preview-image">
+                    <img src="{{ path('get_file_stream', {'id':file.getId}) }}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                {% for metatype, metadata in file.getMetadata %}
+                    <div class="preview-metadata">{{ metatype }}: {{ metadata }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

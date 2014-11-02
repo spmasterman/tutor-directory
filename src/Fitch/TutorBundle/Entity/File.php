@@ -45,9 +45,16 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="fs_key", type="string", length=255)
+     * @ORM\Column(name="fs_key", type="string", length=32)
      */
     private $fileSystemKey;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mime_type", type="string", length=32)
+     */
+    private $mimeType;
 
     /**
      * @return string
@@ -119,5 +126,39 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     {
         $this->fileType = $fileType;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * @param mixed $mimeType
+     * @return $this
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+        return $this;
+    }
+
+    public function isImage()
+    {
+        return explode('/', $this->getMimeType(), 2)[0] == 'image';
+    }
+
+    /**
+     * @return array
+     */
+    public function getMetaData()
+    {
+        return [
+            "Dimensions" => "200 x 300",
+            "Size" => "23.4k"
+        ];
     }
 }

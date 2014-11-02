@@ -94,6 +94,44 @@
   }
 }
 
+.files {
+  .user-info-left,
+  .user-info-right {
+    padding: 10px 0;
+  }
+
+  .user-info-right {
+    border-left: 1px solid $line-color;
+    padding-left: 30px;
+
+    @include max-screen($break-medium) {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .data-action,
+    .data-link {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+}
+
+.preview-image{
+  border: 1px solid #ccc;
+}
+
+.preview-metadata {
+  color:#6e4d15;
+  font-style: italic;
+}
+
+.modal-dialog {
+  min-width: 200px;
+  margin: 30px auto;
+
+  display: table;
+}
 
 .editable-address {
   label {
@@ -109,6 +147,7 @@
   padding-bottom: 5px;
 }
 
+.remove-file,
 .remove-email,
 .remove-phone,
 .remove-address {

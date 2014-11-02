@@ -6,6 +6,7 @@ use Fitch\TutorBundle\Model\FileManager;
 use Fitch\TutorBundle\Model\FileTypeManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
+use Oneup\UploaderBundle\Event\PreUploadEvent;
 use Oneup\UploaderBundle\Uploader\File\GaufretteFile;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Templating\EngineInterface;
@@ -24,6 +25,9 @@ class UploadListener
     /** @var  EngineInterface */
     protected $templatingService;
 
+    /** @var  string */
+    protected $mimeType;
+
     public function __construct(
         TutorManager $tutorManager,
         FileManager $fileManager,
@@ -37,9 +41,21 @@ class UploadListener
     }
 
     /**
+     * @param PreUploadEvent $event
+     */
+    public function onPreUpload(PreUploadEvent $event)
+    {
+        // Save the mimeType before the file gets put into storage (and potentially needs streaming back to find the it)
+        $request = $event->getRequest();
+        /** @var UploadedFile $uploadedFile */
+        $uploadedFile = $request->files->get('file');
+        $this->mimeType = $uploadedFile->getMimeType();
+    }
+
+    /**
      * @param PostPersistEvent $event
      */
-    public function onUpload(PostPersistEvent $event)
+    public function onPostPersist(PostPersistEvent $event)
     {
         $response = $event->getResponse();
 
@@ -49,7 +65,6 @@ class UploadListener
             $tutor = $this->tutorManager->findById($request->request->get('tutorPk'));
             $file = $this->fileManager->createFile();
             $tutor->addFile($file);
-
 
             // Get a reference to the UploadedFile - so we can get meta info (f.ex. the original name)
             /** @var UploadedFile $uploadedFile */
@@ -63,7 +78,10 @@ class UploadListener
             $file
                 ->setName($uploadedFile->getClientOriginalName())
                 ->setFileSystemKey($gaufretteFile->getKey())
-                ->setFileType($this->fileTypeManager->findDefaultFileType());
+                ->setFileType($this->fileTypeManager->findDefaultFileType())
+                ->setMimeType($this->mimeType);
+            ;
+            $this->mimeType = null;
 
             // And finally persist the whole thing
             $this->tutorManager->saveTutor($tutor);

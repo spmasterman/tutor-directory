@@ -36,6 +36,12 @@ jQuery(document).ready(function() {
                 }
             }
         });
+        $('.inline-file-type').editable({
+            success: function (response) {
+                $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
+            }
+        });
+
         // These must all be instantiated passing the host in, so that the value etc can be set
         $('.inline-note').each(function() {
             $(this).editable(getNoteOptions($(this)));
@@ -368,11 +374,15 @@ jQuery(document).ready(function() {
             success: function(response, newValue) {
                 host.attr('data-phone-pk', response.id);
                 host.attr( "id", "note" + response.id);
-                console.log(host.closest('data-row').find('.note-provenance'))
                 host.closest('.data-row').find('.note-provenance').text(response.detail);
             },
             sourceCountry: phoneCountryData
         }
     }
 
+    function getFileTypeOptions(host) {
+        return {
+
+        }
+    }
 });

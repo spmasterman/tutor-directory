@@ -147,3 +147,5 @@ knp_gaufrette:
     filesystems:
         tutor:
             adapter: tutor
+
+    stream_wrapper: ~

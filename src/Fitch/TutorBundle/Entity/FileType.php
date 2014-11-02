@@ -45,7 +45,9 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function __toString()
     {
-        return $this->getName();
+
+
+        return $this->getName() . ($this->isPrivate() ? ' (Private)' :'');
     }
 
     /**
