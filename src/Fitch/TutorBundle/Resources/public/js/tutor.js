@@ -61,9 +61,9 @@ jQuery(document).ready(function() {
     setupContactInfo($('.contact-info'));
     setupBio($('.bio'));
     setupNotes($('.notes-container'));
-    setupFiles();
+    setupFiles($('#files-container'));
 
-    function setupFiles() {
+    function setupFiles(filesContainer) {
         var tutorDropzone = new Dropzone("#file_upload");
         tutorDropzone.on("success", function(file, response) {
             $('#files-container').append(response.fileRow);
@@ -74,6 +74,20 @@ jQuery(document).ready(function() {
             ;
             $('#fileType' + id).editable();
         });
+
+        filesContainer.on('click', '.remove-file', function(e){
+            e.preventDefault();
+            var row = $(this).closest('.data-row'),
+                filePk = row.data('id')
+            ;
+            $.post(Routing.generate('file_ajax_remove'), {'pk' : filePk}, function(data) {
+                if (data.success) {
+                    row.remove();
+                } else {
+                    console.log(data);
+                }
+            }, "json");
+        })
     }
 
     /**

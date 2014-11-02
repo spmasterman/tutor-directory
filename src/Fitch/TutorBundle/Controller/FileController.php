@@ -46,7 +46,6 @@ class FileController extends Controller
      *
      * @param Request $request
      *
-     * @throws UnknownMethodException
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function updateAction(Request $request)
@@ -98,7 +97,7 @@ class FileController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function fileStreamAction(File $file)
+    public function streamAction(File $file)
     {
         $filePath = 'gaufrette://tutor/'.$file->getFileSystemKey();
         $response = new BinaryFileResponse($filePath);
@@ -114,7 +113,7 @@ class FileController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function fileDownloadAction(File $fileEntity)
+    public function downloadAction(File $fileEntity)
     {
         $fileSystem = $this->getFileSystemMapService()->get('tutor');
         $file = $fileSystem->read($fileEntity->getFileSystemKey());
@@ -139,6 +138,48 @@ class FileController extends Controller
         $response->setContent($file);
 
         return $response;
+    }
+
+    /**
+     * @Route(
+     *      "/remove",
+     *      name="file_ajax_remove",
+     *      options={"expose"=true},
+     *      condition="
+                request.request.has('pk') and request.request.get('pk') > 0
+            "
+     * )
+     * @Method("POST")
+     * @Template()
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function removeAction(Request $request)
+    {
+        try {
+            $fileEntity = $this->getFileManager()->findById($request->request->get('pk'));
+
+            $fileSystem = $this->getFileSystemMapService()->get('tutor');
+            $file = $fileSystem->get($fileEntity->getFileSystemKey());
+
+            if(!$file) {
+                throw new NotFoundHttpException('File does not exist!');
+            }
+
+            $file->delete();
+            $this->getFileManager()->removeFile($fileEntity->getId());
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return new JsonResponse([
+            'success' => true,
+        ]);
     }
 
     /**

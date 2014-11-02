@@ -101,7 +101,6 @@
   }
 
   .user-info-right {
-    border-left: 1px solid $line-color;
     padding-left: 30px;
 
     @include max-screen($break-medium) {
