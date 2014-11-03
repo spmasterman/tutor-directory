@@ -22,7 +22,7 @@ class CompetencyType implements IdentityTraitInterface, TimestampableTraitInterf
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64)
+     * @ORM\Column(name="name", type="string", length=128)
      */
     private $name;
 

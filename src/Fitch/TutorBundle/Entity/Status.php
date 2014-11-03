@@ -20,7 +20,7 @@ class Status implements IdentityTraitInterface, TimestampableTraitInterface
     use IdentityTrait, TimestampableTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="status")
+     * @ORM\OneToMany(targetEntity="Tutor", mappedBy="status")
      * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
      *
      * @var Tutor

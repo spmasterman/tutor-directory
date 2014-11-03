@@ -50,7 +50,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     private $bio;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="tutor")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      *
      * @var Status
