@@ -87,4 +87,4 @@
     </span>
 {% endblock %}
 
-{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw }}{% else %}<span class="text">{{ item.label }}</span>{% endif %}{% endblock %}
+{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|purify }}{% else %}<span class="text">{{ item.label }}</span>{% endif %}{% endblock %}
