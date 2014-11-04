@@ -2,7 +2,6 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-use DateTime;
 
 trait TimestampableTrait
 {
