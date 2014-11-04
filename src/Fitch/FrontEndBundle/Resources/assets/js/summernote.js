@@ -2876,7 +2876,7 @@
 
     /**
      * fontsize
-     * FIXME: Still buggy
+     * FIX ME: Still buggy
      *
      * @param {jQuery} $editable
      * @param {String} value - px
