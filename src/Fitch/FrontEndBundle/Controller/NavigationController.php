@@ -15,7 +15,7 @@ class NavigationController extends Controller
      *
      * @Route("/mainbar", name="dashboard_main_bar")
      * @Template
-     * @Method("GET)
+     * @Method("GET")
      */
     public function mainbarAction()
     {
