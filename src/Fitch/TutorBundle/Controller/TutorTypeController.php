@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\TutorType;
-use Fitch\TutorBundle\Form\TutorTypeType;
+use Fitch\TutorBundle\Form\Type\TutorTypeType;
 
 /**
  * TutorType controller.

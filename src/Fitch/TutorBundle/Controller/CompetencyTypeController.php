@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\CompetencyType;
-use Fitch\TutorBundle\Form\CompetencyTypeType;
+use Fitch\TutorBundle\Form\Type\CompetencyTypeType;
 
 /**
  * CompetencyType controller.

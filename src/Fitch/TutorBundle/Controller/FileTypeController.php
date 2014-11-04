@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\FileType;
-use Fitch\TutorBundle\Form\FileTypeType;
+use Fitch\TutorBundle\Form\Type\FileTypeType;
 
 /**
  * FileType controller.

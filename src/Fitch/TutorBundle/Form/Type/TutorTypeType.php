@@ -1,13 +1,13 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FileTypeType extends AbstractType
+class TutorTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,12 +18,8 @@ class FileTypeType extends AbstractType
         $builder
             ->add('name')
             ->add('default', new OnOffType(), [
-                'type' => 'yesno',
-                'required' => false
-            ])
-            ->add('private', new OnOffType(), [
-                'type' => 'yesno',
-                'required' => false
+                'required' => false,
+                'type' => 'yesno'
             ])
         ;
     }
@@ -34,7 +30,7 @@ class FileTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\FileType'
+            'data_class' => 'Fitch\TutorBundle\Entity\TutorType'
         ));
     }
 
@@ -43,6 +39,6 @@ class FileTypeType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_filetype';
+        return 'fitch_tutorbundle_tutor_type';
     }
 }

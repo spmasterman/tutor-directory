@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\TutorBundle\Model\CountryManager;
 use Symfony\Component\Form\AbstractType;

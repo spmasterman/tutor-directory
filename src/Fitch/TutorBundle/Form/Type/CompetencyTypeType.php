@@ -1,13 +1,12 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CountryType extends AbstractType
+class CompetencyTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,17 +16,6 @@ class CountryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('twoDigitCode', null, [
-                'label' => 'ISO 3661-1 2 Digit Code'
-            ])
-            ->add('threeDigitCode', null, [
-                'label' => 'ISO 3661-1 3 Digit Code'
-            ])
-            ->add('dialingCode')
-            ->add('preferred', new OnOffType(), [
-                'required' => false
-            ])
-            ->add('defaultRegion')
         ;
     }
     
@@ -37,7 +25,7 @@ class CountryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Country'
+            'data_class' => 'Fitch\TutorBundle\Entity\CompetencyType'
         ));
     }
 
@@ -46,6 +34,6 @@ class CountryType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_country';
+        return 'fitch_tutorbundle_competencytype';
     }
 }

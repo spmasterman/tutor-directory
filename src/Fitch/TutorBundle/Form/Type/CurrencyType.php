@@ -1,13 +1,13 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class StatusType extends AbstractType
+class CurrencyType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,8 +17,10 @@ class StatusType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('default', new OnOffType(), [
-                'type' => 'yesno',
+            ->add('threeDigitCode', null, [
+                'label' => 'ISO 4217 3 Digit Code'
+            ])
+            ->add('preferred', new OnOffType(), [
                 'required' => false
             ])
         ;
@@ -30,7 +32,7 @@ class StatusType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Status'
+            'data_class' => 'Fitch\TutorBundle\Entity\Currency'
         ));
     }
 
@@ -39,6 +41,6 @@ class StatusType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_status';
+        return 'fitch_tutorbundle_currency';
     }
 }

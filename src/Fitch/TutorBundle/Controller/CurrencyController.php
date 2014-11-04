@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\Currency;
-use Fitch\TutorBundle\Form\CurrencyType;
+use Fitch\TutorBundle\Form\Type\CurrencyType;
 
 /**
  * Currency controller.

@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\Country;
-use Fitch\TutorBundle\Form\CountryType;
+use Fitch\TutorBundle\Form\Type\CountryType;
 
 /**
  * Country controller.
@@ -281,7 +281,6 @@ class CountryController extends Controller
      *
      * @Route("/all", name="all_countries", options={"expose"=true})
      * @Method("GET")
-     * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */

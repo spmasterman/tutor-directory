@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\OperatingRegion;
-use Fitch\TutorBundle\Form\OperatingRegionType;
+use Fitch\TutorBundle\Form\Type\OperatingRegionType;
 
 /**
  * OperatingRegion controller.

@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Form\TutorType;
+use Fitch\TutorBundle\Form\Type\TutorType;
 
 /**
  * Tutor CRUD controller - most tutor interaction is expected to be via specific tailored pages - handled by the

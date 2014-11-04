@@ -1,13 +1,13 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CurrencyType extends AbstractType
+class CountryType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,12 +17,17 @@ class CurrencyType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('threeDigitCode', null, [
-                'label' => 'ISO 4217 3 Digit Code'
+            ->add('twoDigitCode', null, [
+                'label' => 'ISO 3661-1 2 Digit Code'
             ])
+            ->add('threeDigitCode', null, [
+                'label' => 'ISO 3661-1 3 Digit Code'
+            ])
+            ->add('dialingCode')
             ->add('preferred', new OnOffType(), [
                 'required' => false
             ])
+            ->add('defaultRegion')
         ;
     }
     
@@ -32,7 +37,7 @@ class CurrencyType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Currency'
+            'data_class' => 'Fitch\TutorBundle\Entity\Country'
         ));
     }
 
@@ -41,6 +46,6 @@ class CurrencyType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_currency';
+        return 'fitch_tutorbundle_country';
     }
 }

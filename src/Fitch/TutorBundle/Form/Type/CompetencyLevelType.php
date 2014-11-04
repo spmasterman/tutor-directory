@@ -1,12 +1,12 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CompetencyTypeType extends AbstractType
+class CompetencyLevelType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -25,7 +25,7 @@ class CompetencyTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\CompetencyType'
+            'data_class' => 'Fitch\TutorBundle\Entity\CompetencyLevel'
         ));
     }
 
@@ -34,6 +34,6 @@ class CompetencyTypeType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_competencytype';
+        return 'fitch_tutorbundle_competencylevel';
     }
 }

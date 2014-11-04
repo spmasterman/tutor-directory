@@ -1,12 +1,13 @@
 <?php
 
-namespace Fitch\TutorBundle\Form;
+namespace Fitch\TutorBundle\Form\Type;
 
+use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CompetencyLevelType extends AbstractType
+class StatusType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,6 +17,10 @@ class CompetencyLevelType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('default', new OnOffType(), [
+                'type' => 'yesno',
+                'required' => false
+            ])
         ;
     }
     
@@ -25,7 +30,7 @@ class CompetencyLevelType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\CompetencyLevel'
+            'data_class' => 'Fitch\TutorBundle\Entity\Status'
         ));
     }
 
@@ -34,6 +39,6 @@ class CompetencyLevelType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_competencylevel';
+        return 'fitch_tutorbundle_status';
     }
 }
