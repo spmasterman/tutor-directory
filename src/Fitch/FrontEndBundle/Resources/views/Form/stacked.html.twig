@@ -1,14 +1,7 @@
 {% block form_row %}
     {% spaceless %}
         <div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
-        {{ form_label(form, null, {'label_attr': {'class': 'sr-only'} }) }}
-        {{ form_errors(form) }}
-
-        {% if label is empty %}
-            {% set label = name|humanize %}
-        {% endif %}
-        {% set placeholder = label|trans({}, translation_domain) %}
-        {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': placeholder } }) }}
+            {{ block(form_row_inner) }}
         </div>
     {% endspaceless %}
 {% endblock form_row %}
@@ -16,14 +9,7 @@
 
 {% block trigger_row %}
     {% spaceless %}
-        {{ form_label(form, null, {'label_attr': {'class': 'sr-only'} }) }}
-        {{ form_errors(form) }}
-
-        {% if label is empty %}
-            {% set label = name|humanize %}
-        {% endif %}
-        {% set placeholder = label|trans({}, translation_domain) %}
-        {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': placeholder } }) }}
+        {{ block(form_row_inner) }}
     {% endspaceless %}
 {% endblock trigger_row %}
 
@@ -37,3 +23,14 @@
         {% endif %}
     {% endspaceless %}
 {% endblock form_errors %}
+
+{% block form_row_inner %}
+    {{ form_label(form, null, {'label_attr': {'class': 'sr-only'} }) }}
+    {{ form_errors(form) }}
+
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    {% set placeholder = label|trans({}, translation_domain) %}
+    {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': placeholder } }) }}
+{% endblock %}

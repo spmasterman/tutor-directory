@@ -76,6 +76,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addTutorTypes(ItemInterface $menu)
