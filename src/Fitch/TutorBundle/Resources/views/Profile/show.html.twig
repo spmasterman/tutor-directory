@@ -137,7 +137,7 @@
                         </div>
                         <div class="bio data-row" data-id="{{ tutor.getId }}">
                             <h3><i class="fa fa-square"></i> Biography <a href="#" class="btn btn-default btn-xs edit-bio"><i class="fa fa-pencil"></i> Edit</a></h3>
-                            <div id="bio">{{ tutor.getBio|raw }}</div>
+                            <div id="bio">{{ tutor.getBio|purify }}</div>
                             <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
                         </div>
                     </div>

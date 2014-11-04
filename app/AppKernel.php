@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Khepin\YamlFixturesBundle\KhepinYamlFixturesBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
