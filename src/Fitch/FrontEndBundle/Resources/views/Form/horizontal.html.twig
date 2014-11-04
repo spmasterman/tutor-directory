@@ -70,16 +70,6 @@
     {% endspaceless %}
 {% endblock onoff_row %}
 
-{#{% block button_row %}#}
-    {#{% spaceless %}#}
-        {#<div class="form-group">#}
-            {#<div class="col-xs-offset-2 col-xs-10">#}
-                {#{{ form_widget(form) }}#}
-            {#</div>#}
-        {#</div>#}
-    {#{% endspaceless %}#}
-{#{% endblock button_row %}#}
-
 {% block button_row %}
     {% spaceless %}
         {% if 'data-no-open-row' not in attr %}
@@ -115,12 +105,7 @@
             {% set label = name|humanize %}
         {% endif %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-s')|trim}) %}
-        {% if attr.submit_glyph is defined %}
-            {% set glyph = '<i class="fa ' ~ attr.submit_glyph ~ '"></i>' %}
-        {% else %}
-            {% set glyph = '' %}
-        {% endif %}
-        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ glyph|raw }} {{ label|trans({}, translation_domain) }}</button>
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if attr.submit_glyph is defined %}<i class="fa {{ attr.submit_glyph }}"></i>'{% endif %} {{ label|trans({}, translation_domain) }}</button>
     {% endspaceless %}
 {% endblock button_widget %}
 
