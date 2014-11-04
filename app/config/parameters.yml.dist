@@ -14,7 +14,7 @@ parameters:
     mailer_password:   ~
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            scokazpert
 
     debug_toolbar:          true
     debug_redirects:        false

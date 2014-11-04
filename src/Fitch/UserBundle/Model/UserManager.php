@@ -47,7 +47,7 @@ class UserManager extends BaseModelManager
      */
     public function createUser()
     {
-        throw new InappropriateActionException("Please dont create users manually. Use the command line tools");
+        throw new InappropriateActionException("Please don't create users manually. Use the command line tools");
     }
 
     /**
@@ -56,7 +56,7 @@ class UserManager extends BaseModelManager
      */
     public function removeUser($id)
     {
-        throw new InappropriateActionException("Please dont delete users manually. Use the command line tools");
+        throw new InappropriateActionException("Please don't delete users manually. Use the command line tools");
     }
 
     /**

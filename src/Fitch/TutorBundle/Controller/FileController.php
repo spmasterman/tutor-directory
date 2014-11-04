@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\File;
 use Fitch\TutorBundle\Model\FileManager;
@@ -18,7 +17,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**

@@ -274,7 +274,7 @@ class CompetencyTypeController extends Controller
     /**
      * @return CompetencyTypeManager
      */
-    public function getCompetencyTypeManager()
+    private function getCompetencyTypeManager()
     {
         return $this->get('fitch.manager.competency_type');
     }

@@ -2,7 +2,6 @@
 
 namespace Fitch\FrontEndBundle\Menu;
 
-use Fitch\BotBundle\Entity\Bot;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;

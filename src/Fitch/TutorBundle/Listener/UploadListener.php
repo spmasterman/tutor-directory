@@ -93,12 +93,8 @@ class UploadListener
                     'file' => $file,
                 ]
             );
-
-           // \Oneup\UploaderBundle\Uploader\Response\EmptyResponse
-           // $response->setSuccess(true);
         } catch (\Exception $e) {
-           // $response->setSuccess(false);
-           // $response->setError($e->getMessage());
+            // TODO make response BAD_REPSONSE
         }
     }
 }

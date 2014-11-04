@@ -2,8 +2,6 @@
 
 namespace Fitch\TutorBundle\Form;
 
-use Doctrine\ORM\EntityRepository;
-use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Fitch\TutorBundle\Model\CountryManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
