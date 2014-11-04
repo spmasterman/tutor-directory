@@ -255,3 +255,13 @@ line which defines the font location - use the existing value
 
 6. re-link the assets via symlink (assets:install --symlink)
 
+7) Performance in Production
+----------------------------
+
+1) Make sure you are using APC
+
+2) Dump the autoloader (so that classes locations are known - need to redo this every pull however)
+ 
+    php composer.phar dump-autoload --optimize
+
+3) consider apc.stat=0 in php for very static installs 
