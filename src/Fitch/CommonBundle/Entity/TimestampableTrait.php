@@ -8,7 +8,7 @@ trait TimestampableTrait
 {
 
     /**
-     * @var datetime $created
+     * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -16,7 +16,7 @@ trait TimestampableTrait
     private $created;
 
     /**
-     * @var datetime $updated
+     * @var \DateTime $updated
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -24,7 +24,7 @@ trait TimestampableTrait
     private $updated;
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -32,7 +32,7 @@ trait TimestampableTrait
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdated()
     {

@@ -12,4 +12,3 @@ fixtures:
     email-shaun-other_2:
         type: other
         address: shaun.masterman@gmail.com
-
