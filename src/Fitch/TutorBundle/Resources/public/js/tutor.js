@@ -66,13 +66,69 @@ jQuery(document).ready(function() {
 
     /////// TEMP Move me to function
 
-    $('#crop-zoom').on('click', function(e){
+    var cropping = false,
+        jcrop_api = null,
+        avatar = $('#avatar');
+
+    $('#crop-zoom').on('click', function(e) {
         e.preventDefault();
 
+        var btn = $(this),
+            id = btn.data('id');
 
-        console.log('bing!');
+        if (jcrop_api == null) {
+            $('.user-info-right').hide();
+            avatar.attr('src', Routing.generate('get_file_stream', {id: id}));
+            avatar.Jcrop({
+                boxWidth: 450,
+                boxHeight: 400,
+                onSelect:    updateCropCoordinates,
+                bgColor:     'black',
+                bgOpacity:   .4,
+                setSelect:   [
+                    btn.data('cropX'),
+                    btn.data('cropY'),
+                    btn.data('cropX') + btn.data('cropWidth'),
+                    btn.data('cropY') + btn.data('cropHeight')
+                ],
+                aspectRatio: 1
+            }, function() {
+                jcrop_api = this;
+            });
+
+            $(this).html('<i class="fa fa-save"></i> Save Crop/Zoom');
+        } else {
+            $.post(Routing.generate('file_ajax_crop'), {
+                pk: id,
+                originX: btn.data('cropX'),
+                originY: btn.data('cropY'),
+                width: btn.data('cropHeight'),
+                height: btn.data('cropWidth')
+            }, function() {
+                jcrop_api.destroy();
+                avatar.attr({
+                    src: Routing.generate('get_file_as_avatar', {
+                        id: id
+                    }),
+                    style: {
+                        width: '150px',
+                        height: '150px'
+                    }
+                });
+                $('.user-info-right').show();
+                btn.html('<i class="fa fa-crop"></i> Crop/Zoom Image');
+                jcrop_api = null;
+            });
+        }
     });
 
+    function updateCropCoordinates(coordinates) {
+        var cropInfoHolder = $('#crop-zoom');
+        cropInfoHolder.data('cropX', coordinates.x);
+        cropInfoHolder.data('cropY', coordinates.y);
+        cropInfoHolder.data('cropWidth', coordinates.w);
+        cropInfoHolder.data('cropHeight', coordinates.h);
+    }
 
     /////// END TEMP Move me to function
 

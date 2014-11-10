@@ -87,6 +87,7 @@ assetic:
                 - '@FitchFrontEndBundle/Resources/assets/js/bootstrap-editable.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/summernote.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/dropzone.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/jquery.jcrop.js'
             filters: [?yui_js]
 
 # Doctrine Configuration

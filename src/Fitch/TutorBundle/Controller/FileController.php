@@ -3,8 +3,10 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
+use Fitch\CommonBundle\Exception\UnhandledMimeTypeException;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\File;
+use Fitch\TutorBundle\Model\CropInfoManager;
 use Fitch\TutorBundle\Model\FileManager;
 use Fitch\TutorBundle\Model\FileTypeManager;
 use Knp\Bundle\GaufretteBundle\FilesystemMap;
@@ -13,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\Exception\UnexpectedTypeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +29,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class FileController extends Controller
 {
-    const AVATAR_WIDTH = 90;
+    const AVATAR_WIDTH = 150;
     const AVATAR_HEIGHT = 150;
     const AVATAR_QUALITY = 90;
 
@@ -91,7 +94,7 @@ class FileController extends Controller
     }
 
     /**
-     * @Route("/stream/{id}", name="get_file_stream")
+     * @Route("/stream/{id}", name="get_file_stream", options={"expose"=true})
      * @Method("GET")
      * @Template()
      *
@@ -107,33 +110,121 @@ class FileController extends Controller
     }
 
     /**
-     * @Route("/avatar/{id}", name="get_file_as_avatar")
+     * @Route("/avatar/{id}", name="get_file_as_avatar", options={"expose"=true})
      * @Method("GET")
      * @Template()
      *
      * @param File $file
      *
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function avatarAction(File $file)
     {
-
-
-        $targ_w = $targ_h = 150;
-        $jpeg_quality = 90;
+        $targetWidth = self::AVATAR_WIDTH;
+        $targetHeight = self::AVATAR_HEIGHT;
+        $jpeg_quality = self::AVATAR_QUALITY;
 
         $src = 'gaufrette://tutor/'.$file->getFileSystemKey();
-        $img_r = imagecreatefromjpeg($src);
-        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
-        imagecopyresampled($dst_r,$img_r,0,0,0,0,
-            $targ_w,$targ_h,$targ_w,$targ_h);
+        switch($file->getMimeType()) {
+            case 'image/jpeg':
+            case 'image/pjpeg':
+            case 'image/jpg':
+                $sourceImage = imagecreatefromjpeg($src);
+                break;
+            case 'image/png':
+                $sourceImage = imagecreatefrompng($src);
+                break;
+            case 'image/gif':
+                $sourceImage = imagecreatefromgif($src);
+                break;
+            default:
+                throw new UnhandledMimeTypeException(
+                    $file->getMimeType() . ' is not a suitable image type for an avatar'
+                );
+        }
 
-        header('Content-type: image/jpeg');
-        imagejpeg($dst_r, null, $jpeg_quality);
+        $destinationImage = ImageCreateTrueColor($targetWidth, $targetHeight);
 
+        $cropInfo = $file->getCropInfo();
+        if ($cropInfo) {
+            imagecopyresampled(
+                $destinationImage,
+                $sourceImage,
+                0, 0, $cropInfo->getOriginX(), $cropInfo->getOriginY(),
+                $targetWidth, $targetHeight, $cropInfo->getWidth(), $cropInfo->getHeight()
+            );
+        } else {
+            imagecopyresampled(
+                $destinationImage,
+                $sourceImage,
+                0, 0, 0, 0,
+                $targetWidth, $targetHeight, $targetWidth, $targetHeight
+            );
+        }
+
+        // Use Output buffering to catch the result of the GD call (imagejpeg)
+        ob_start();
+        imagejpeg($destinationImage, null, $jpeg_quality);
+        $image = ob_get_contents();
+        ob_end_clean();
+
+        // Then construct a response and set the content directly
+        $response = new Response();
+        $response->headers->set('Content-Type', 'image/jpeg');
+        $response->setContent($image);
+        return $response;
     }
 
+    /**
+     * Updates the CropInfo for a file record
+     *
+     * @Route(
+     *      "/crop",
+     *      name="file_ajax_crop",
+     *      options={"expose"=true},
+     *      condition="
+                request.request.has('pk') and request.request.get('pk') > 0
+            and request.request.has('originX')
+            and request.request.has('originY')
+            and request.request.has('width') and request.request.get('width') > 0
+            and request.request.has('height') and request.request.get('height') > 0
+       "
+     * )
+     * @Method("POST")
+     * @Template()
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function cropAction(Request $request)
+    {
+        try {
+            $file = $this->getFileManager()->findById($request->request->get('pk'));
+
+            $cropInfo = $file->getCropInfo();
+            if (!$cropInfo) {
+                $cropInfo = $this->getCropInfoManager()->createCropInfo();
+            }
+
+            $cropInfo->setOriginX($request->request->get('originX'));
+            $cropInfo->setOriginY($request->request->get('originY'));
+            $cropInfo->setWidth($request->request->get('width'));
+            $cropInfo->setHeight($request->request->get('height'));
+            $file->setCropInfo($cropInfo);
+            $this->getCropInfoManager()->saveCropInfo($cropInfo);
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return new JsonResponse([
+            'success' => true,
+        ]);
+    }
 
     /**
      * @Route("/download/{id}", name="get_file_download")
@@ -220,6 +311,15 @@ class FileController extends Controller
     {
         return $this->get('fitch.manager.file');
     }
+
+    /**
+     * @return CropInfoManager
+     */
+    private function getCropInfoManager()
+    {
+        return $this->get('fitch.manager.crop_info');
+    }
+
 
     /**
      * @return FileTypeManager

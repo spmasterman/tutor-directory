@@ -7,6 +7,7 @@ use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\TutorBundle\Controller\FileController;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -187,4 +188,58 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
             "Size" => "23.4k"
         ];
     }
+
+    public function hasCropInfo()
+    {
+        return (bool)$this->getCropInfo();
+    }
+
+    /**
+     * @return int
+     */
+    public function getCropX()
+    {
+        if ($this->hasCropInfo()) {
+            return $this->getCropInfo()->getOriginX();
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getCropY()
+    {
+        if ($this->hasCropInfo()) {
+            return $this->getCropInfo()->getOriginY();
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getCropWidth()
+    {
+        if ($this->hasCropInfo()) {
+            return $this->getCropInfo()->getWidth();
+        } else {
+            return FileController::AVATAR_WIDTH;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getCropHeight()
+    {
+        if ($this->hasCropInfo()) {
+            return $this->getCropInfo()->getHeight();
+        } else {
+            return FileController::AVATAR_HEIGHT;
+        }
+    }
+
 }

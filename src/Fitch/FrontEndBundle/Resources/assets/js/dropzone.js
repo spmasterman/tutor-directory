@@ -1870,4 +1870,4 @@
     } else {
         this["Dropzone"] = require("dropzone");
     }
-})()
+})();

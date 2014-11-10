@@ -14,6 +14,7 @@ parameters:
   fitch.manager.tutor_type.class: Fitch\TutorBundle\Model\TutorTypeManager
   fitch.manager.currency.class: Fitch\TutorBundle\Model\CurrencyManager
   fitch.manager.note.class: Fitch\TutorBundle\Model\NoteManager
+  fitch.manager.crop_info.class: Fitch\TutorBundle\Model\CropInfoManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -30,6 +31,7 @@ parameters:
   fitch.entity.tutor_type.class: Fitch\TutorBundle\Entity\TutorType
   fitch.entity.currency.class: Fitch\TutorBundle\Entity\Currency
   fitch.entity.note.class: Fitch\TutorBundle\Entity\Note
+  fitch.entity.crop_info.class: Fitch\TutorBundle\Entity\CropInfo
 
 services:
     #
@@ -155,6 +157,15 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.note.class%
+    fitch.manager.crop_info:
+        class: %fitch.manager.crop_info.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.crop_info.class%
+
 #
 # Event Listener
 #
@@ -168,4 +179,3 @@ services:
         tags:
             - {name: kernel.event_listener, event: oneup_uploader.pre_upload, method: onPreUpload}
             - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onPostPersist}
-
