@@ -36,6 +36,14 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     protected $fileType;
 
     /**
+     * @ORM\OneToOne(targetEntity="CropInfo")
+     * @ORM\JoinColumn(name="crop_info_id", referencedColumnName="id")
+     *
+     * @var CropInfo
+     */
+    protected $cropInfo;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -143,6 +151,24 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     public function setMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
+        return $this;
+    }
+
+    /**
+     * @return CropInfo
+     */
+    public function getCropInfo()
+    {
+        return $this->cropInfo;
+    }
+
+    /**
+     * @param CropInfo $cropInfo
+     * @return $this
+     */
+    public function setCropInfo($cropInfo)
+    {
+        $this->cropInfo = $cropInfo;
         return $this;
     }
 

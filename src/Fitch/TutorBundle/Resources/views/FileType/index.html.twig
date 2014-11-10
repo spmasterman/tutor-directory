@@ -22,6 +22,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Private</th>
+                        <th>Use as Profile Picture</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,6 +32,7 @@
                         <td>{{ file_type.id }}{% if file_type.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
                         <td><a href="{{ path('file_type_show', { 'id': file_type.id }) }}">{{ file_type.name }}</a></td>
                         <td>{% if file_type.isPrivate %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <td>{% if file_type.isProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                         <td>
                             <a href="{{ path('file_type_show', { 'id': file_type.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('file_type_edit', { 'id': file_type.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

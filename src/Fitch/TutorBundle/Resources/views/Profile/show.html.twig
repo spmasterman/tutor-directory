@@ -21,7 +21,11 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="user-info-left">
-                        <img src="#" alt="Profile Picture" />
+                        {% set profile = tutor.getProfilePicture %}
+                        {% if profile %}
+                        <img id="avatar" src="{{ path('get_file_as_avatar', { 'id':profile.getId }) }}" alt="Profile Picture" width="200" height="200"/>
+                        <a href="#" id="crop-zoom" class="btn btn-default btn-xs"><i class="fa fa-crop"></i> Crop/Zoom Image</a>
+                        {% endif %}
                         <h2> {{ tutor.name }} </h2>
                     </div>
                 </div>

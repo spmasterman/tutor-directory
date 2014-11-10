@@ -31,6 +31,10 @@
                         <td>{% if file_type.isDefault %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
                     <tr>
+                        <th class="col-xs-2">Use as Profile Picture</th>
+                        <td>{% if file_type.isProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                    </tr>
+                    <tr>
                         <th class="col-xs-2">Private</th>
                         <td>{% if file_type.isPrivate %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>

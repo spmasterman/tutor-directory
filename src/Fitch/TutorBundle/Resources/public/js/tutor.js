@@ -1,4 +1,4 @@
-// Stop Dropzone doing its thing
+// Stop Dropzone doing its automatic thing
 Dropzone.autoDiscover = false;
 
 jQuery(document).ready(function() {
@@ -63,6 +63,18 @@ jQuery(document).ready(function() {
     setupBio($('.bio'));
     setupNotes($('.notes-container'));
     setupFiles($('#files-container'));
+
+    /////// TEMP Move me to function
+
+    $('#crop-zoom').on('click', function(e){
+        e.preventDefault();
+
+
+        console.log('bing!');
+    });
+
+
+    /////// END TEMP Move me to function
 
     /**
      * Handlers for Add/Remove contact info
@@ -297,7 +309,7 @@ jQuery(document).ready(function() {
                     console.log(data);
                 }
             }, "json");
-        })
+        });
     }
 
     /**

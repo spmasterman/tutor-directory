@@ -41,6 +41,13 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface
     protected $default;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_profile_picture", type="boolean")
+     */
+    protected $isProfilePicture;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -101,6 +108,24 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface
     public function setPrivate($private)
     {
         $this->private = $private;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isProfilePicture()
+    {
+        return $this->isProfilePicture;
+    }
+
+    /**
+     * @param boolean $isProfilePicture
+     * @return $this
+     */
+    public function setIsProfilePicture($isProfilePicture)
+    {
+        $this->isProfilePicture = $isProfilePicture;
         return $this;
     }
 }

@@ -26,6 +26,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class FileController extends Controller
 {
+    const AVATAR_WIDTH = 90;
+    const AVATAR_HEIGHT = 150;
+    const AVATAR_QUALITY = 90;
+
     /**
      * Updates a (simple) field on a file record
      *
@@ -101,6 +105,35 @@ class FileController extends Controller
         $response = new BinaryFileResponse($filePath);
         return $response;
     }
+
+    /**
+     * @Route("/avatar/{id}", name="get_file_as_avatar")
+     * @Method("GET")
+     * @Template()
+     *
+     * @param File $file
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function avatarAction(File $file)
+    {
+
+
+        $targ_w = $targ_h = 150;
+        $jpeg_quality = 90;
+
+        $src = 'gaufrette://tutor/'.$file->getFileSystemKey();
+        $img_r = imagecreatefromjpeg($src);
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+        imagecopyresampled($dst_r,$img_r,0,0,0,0,
+            $targ_w,$targ_h,$targ_w,$targ_h);
+
+        header('Content-type: image/jpeg');
+        imagejpeg($dst_r, null, $jpeg_quality);
+
+    }
+
 
     /**
      * @Route("/download/{id}", name="get_file_download")

@@ -81,4 +81,5 @@ class TutorType implements IdentityTraitInterface, TimestampableTraitInterface
         $this->default = $default;
         return $this;
     }
+
 }

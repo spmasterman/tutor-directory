@@ -379,7 +379,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return File[]
      */
     public function getFiles()
     {
@@ -664,5 +664,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     {
         $this->currency = $currency;
         return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getProfilePicture()
+    {
+        foreach($this->getFiles() as $file) {
+            if ($file->isImage()) {
+                $fileType = $file->getFileType();
+                if ($fileType->isProfilePicture() && ! $fileType->isPrivate()) {
+                    return $file;
+                }
+            }
+        }
+        return null;
     }
 }

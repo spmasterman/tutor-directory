@@ -21,6 +21,11 @@ class FileTypeType extends AbstractType
                 'type' => 'yesno',
                 'required' => false
             ])
+            ->add('isProfilePicture', new OnOffType(), [
+                'type' => 'yesno',
+                'required' => false,
+                'label' => 'Use as Profile Picture',
+            ])
             ->add('private', new OnOffType(), [
                 'type' => 'yesno',
                 'required' => false
