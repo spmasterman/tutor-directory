@@ -15,7 +15,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\File\Exception\UnexpectedTypeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,6 +89,10 @@ class FileController extends Controller
                 'FitchTutorBundle:Profile:file_row_inner.html.twig',
                 ['file' => $file]
             ),
+            'renderedAvatar' => $this->renderView(
+                'FitchTutorBundle:Profile:avatar.html.twig',
+                ['tutor' => $file->getTutor()]
+            )
         ]);
     }
 

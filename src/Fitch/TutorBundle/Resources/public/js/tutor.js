@@ -49,6 +49,7 @@ jQuery(document).ready(function() {
     $('.inline-file-type').editable({
         success: function (response) {
             $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
+            $('#avatar-container').html(response.renderedAvatar);
         }
     });
     $('.inline-note').each(function() {
@@ -63,74 +64,72 @@ jQuery(document).ready(function() {
     setupBio($('.bio'));
     setupNotes($('.notes-container'));
     setupFiles($('#files-container'));
+    setupAvatar($('#avatar-container'));
 
-    /////// TEMP Move me to function
+    function setupAvatar(avatarContainer) {
+        var jcrop_api = null,
+            avatar = $('#avatar');
 
-    var cropping = false,
-        jcrop_api = null,
-        avatar = $('#avatar');
+        avatarContainer.on('click', '#crop-zoom', function (e) {
+            e.preventDefault();
 
-    $('#crop-zoom').on('click', function(e) {
-        e.preventDefault();
+            var btn = $(this),
+                id = btn.data('id');
 
-        var btn = $(this),
-            id = btn.data('id');
-
-        if (jcrop_api == null) {
-            $('.user-info-right').hide();
-            avatar.attr('src', Routing.generate('get_file_stream', {id: id}));
-            avatar.Jcrop({
-                boxWidth: 450,
-                boxHeight: 400,
-                onSelect:    updateCropCoordinates,
-                bgColor:     'black',
-                bgOpacity:   .4,
-                setSelect:   [
-                    btn.data('cropX'),
-                    btn.data('cropY'),
-                    btn.data('cropX') + btn.data('cropWidth'),
-                    btn.data('cropY') + btn.data('cropHeight')
-                ],
-                aspectRatio: 1
-            }, function() {
-                jcrop_api = this;
-            });
-
-            $(this).html('<i class="fa fa-save"></i> Save Crop/Zoom');
-        } else {
-            $.post(Routing.generate('file_ajax_crop'), {
-                pk: id,
-                originX: btn.data('cropX'),
-                originY: btn.data('cropY'),
-                width: btn.data('cropHeight'),
-                height: btn.data('cropWidth')
-            }, function() {
-                jcrop_api.destroy();
-                avatar.attr({
-                    src: Routing.generate('get_file_as_avatar', {
-                        id: id
-                    }),
-                    style: {
-                        width: '150px',
-                        height: '150px'
-                    }
+            if (jcrop_api == null) {
+                $('.user-info-right').hide();
+                avatar.attr('src', Routing.generate('get_file_stream', {id: id}));
+                avatar.Jcrop({
+                    boxWidth: 450,
+                    boxHeight: 400,
+                    onSelect: updateCropCoordinates,
+                    bgColor: 'black',
+                    bgOpacity: .4,
+                    setSelect: [
+                        btn.data('cropX'),
+                        btn.data('cropY'),
+                        btn.data('cropX') + btn.data('cropWidth'),
+                        btn.data('cropY') + btn.data('cropHeight')
+                    ],
+                    aspectRatio: 1
+                }, function () {
+                    jcrop_api = this;
                 });
-                $('.user-info-right').show();
-                btn.html('<i class="fa fa-crop"></i> Crop/Zoom Image');
-                jcrop_api = null;
-            });
+
+                $(this).html('<i class="fa fa-save"></i> Save Crop/Zoom');
+            } else {
+                $.post(Routing.generate('file_ajax_crop'), {
+                    pk: id,
+                    originX: btn.data('cropX'),
+                    originY: btn.data('cropY'),
+                    width: btn.data('cropHeight'),
+                    height: btn.data('cropWidth')
+                }, function () {
+                    jcrop_api.destroy();
+                    avatar.attr({
+                        src: Routing.generate('get_file_as_avatar', {
+                            id: id
+                        }),
+                        style: {
+                            width: '150px',
+                            height: '150px'
+                        }
+                    });
+                    $('.user-info-right').show();
+                    btn.html('<i class="fa fa-crop"></i> Crop/Zoom Image');
+                    jcrop_api = null;
+                });
+            }
+        });
+
+        function updateCropCoordinates(coordinates) {
+            var cropInfoHolder = $('#crop-zoom');
+            cropInfoHolder.data('cropX', coordinates.x);
+            cropInfoHolder.data('cropY', coordinates.y);
+            cropInfoHolder.data('cropWidth', coordinates.w);
+            cropInfoHolder.data('cropHeight', coordinates.h);
         }
-    });
-
-    function updateCropCoordinates(coordinates) {
-        var cropInfoHolder = $('#crop-zoom');
-        cropInfoHolder.data('cropX', coordinates.x);
-        cropInfoHolder.data('cropY', coordinates.y);
-        cropInfoHolder.data('cropWidth', coordinates.w);
-        cropInfoHolder.data('cropHeight', coordinates.h);
     }
-
-    /////// END TEMP Move me to function
 
     /**
      * Handlers for Add/Remove contact info
