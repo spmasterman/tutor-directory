@@ -35,6 +35,10 @@
                                 <span class="data-value"><a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Full Name">{{ tutor.name }}</a></span>
                             </p>
                             <p class="data-row">
+                                <span class="data-name">Tutor Type</span>
+                                <span class="data-value"><a href="#" id="tutor_type" class="inline" data-source="{{ path('all_tutor_types') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getTutorType.getId }}" data-title="Select Tutor Type">{{ tutor.getTutorType.getName }}</a></span>
+                            </p>
+                            <p class="data-row">
                                 <span class="data-name">Status</span>
                                 <span class="data-value"><a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Status">{{ tutor.getStatus.getName }}</a></span>
                             </p>

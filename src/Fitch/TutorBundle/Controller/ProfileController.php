@@ -16,6 +16,7 @@ use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
+use Fitch\TutorBundle\Model\TutorTypeManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -132,6 +133,10 @@ class ProfileController extends Controller
                         ->setCountry($this->getCountryManager()->findById($value['country']))
                     ;
                     $relatedEntity = $phone;
+                    break ;
+                case 'tutor_type':
+                    $tutorType = $this->getTutorTypeManager()->findById($value);
+                    $tutor->setTutorType($tutorType);
                     break ;
                 case 'status':
                     $status = $this->getStatusManager()->findById($value);
@@ -255,5 +260,13 @@ class ProfileController extends Controller
     private function getOperatingRegionManager()
     {
         return $this->get('fitch.manager.operating_region');
+    }
+
+    /**
+     * @return TutorTypeManager
+     */
+    private function getTutorTypeManager()
+    {
+        return $this->get('fitch.manager.tutor_type');
     }
 }
