@@ -152,8 +152,8 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
     {
         $author = $this->getAuthor();
         if ($author) {
-            $fullname = $author->getFullName();
-            $string = $fullname ? $fullname : $author->getUsername();
+            $fullName = $author->getFullName();
+            $string = $fullName ? $fullName : $author->getUsername();
         } else {
             $string = 'Anonymous';
         }
