@@ -68,7 +68,6 @@ class ProfileController extends Controller
         "
      * )
      * @Method("POST")
-     * @Template()
      *
      * @param Request $request
      *

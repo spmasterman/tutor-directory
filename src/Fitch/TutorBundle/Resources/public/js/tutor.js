@@ -32,20 +32,13 @@ jQuery(document).ready(function() {
         $('.inline-phone').each(function() {
             $(this).editable(getPhoneOptions($(this)));
         });
+        $('.inline-rate').each(function() {
+            $(this).editable(getRateOptions($(this)));
+        });
     });
 
     // Initialise the other x-editable elements
     $('.inline').editable();
-    $('.inline-rate').editable({
-        validate: function(value) {
-            if (!$.isNumeric(value)) {
-                return {newValue: '0.00', msg: 'Non Numeric values entered'}
-            }
-            if (Math.round(100 * value) != 100 * value) {
-                return {newValue: Math.round(100 * value)/100, msg: 'Rate will be rounded to two decimal places'}
-            }
-        }
-    });
     $('.inline-file-type').editable({
         success: function (response) {
             $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
@@ -62,6 +55,7 @@ jQuery(document).ready(function() {
     // Setup DOM event handlers
     setupContactInfo($('.contact-info'));
     setupBio($('.bio'));
+    setupRates($('.rates-container'));
     setupNotes($('.notes-container'));
     setupFiles($('#files-container'));
     setupAvatar($('#avatar-container'));
@@ -269,7 +263,66 @@ jQuery(document).ready(function() {
             $('#note0').each(function(){
                 $(this).editable(getNoteOptions($(this)));
             });
-        })
+        });
+
+        notesContainer.on('click', '.remove-note', function(e){
+            e.preventDefault();
+            var row = $(this).closest('.data-row'),
+                notePk = row.data('id')
+                ;
+            $.post(Routing.generate('note_ajax_remove'), {'pk' : notePk}, function(data) {
+                if (data.success) {
+                    row.remove();
+                } else {
+                    console.log(data);
+                }
+            }, "json");
+        });
+    }
+
+    /**
+     * Handlers for Edit/Save rates
+     *
+     * @param ratesContainer
+     */
+    function setupRates(ratesContainer) {
+        $('.add-rate').on('click', function(e) {
+            e.preventDefault();
+            var tutorId = $(this).closest('[data-id]').data('id'),
+                newRow =
+                    '    <div class="data-row">                                                     '+
+                    '        <div class="note">                                                     '+
+                    '           <a href="#" id="note0" class="inline-note"                          '+
+                    '               data-inputclass="input-note"                                    '+
+                    '               data-type="textarea"                                            '+
+                    '               data-pk="' + tutorId + '"                                       '+
+                    '               data-url="' + Routing.generate('tutor_ajax_update')+'"          '+
+                    '               data-title="Enter Note"                                         '+
+                    '               data-note-pk="0"                                                '+
+                    '            ></a></div>                                                        '+
+                    '        <div class="note-provenance pull-right"></div>                         '+
+                    '    </div>                                                                     '
+                ;
+            ratesContainer.append(newRow);
+
+            $('#rate0').each(function(){
+                $(this).editable(getRateOptions($(this)));
+            });
+        });
+
+        ratesContainer.on('click', '.remove-rate', function(e){
+            e.preventDefault();
+            var row = $(this).closest('.data-row'),
+                ratePk = row.data('id')
+                ;
+            $.post(Routing.generate('rate_ajax_remove'), {'pk' : ratePk}, function(data) {
+                if (data.success) {
+                    row.remove();
+                } else {
+                    console.log(data);
+                }
+            }, "json");
+        });
     }
 
     /**
@@ -447,6 +500,12 @@ jQuery(document).ready(function() {
         }
     }
 
+    /**
+     * Get x-editable options for a given element, that is going to be made an x-editable Note (custom type)
+     *
+     * @param host
+     * @returns {{params: Function, success: Function, sourceCountry: Array}}
+     */
     function getNoteOptions(host) {
         return {
             params: function (params) {
@@ -460,6 +519,38 @@ jQuery(document).ready(function() {
                 host.closest('.data-row').find('.note-provenance').text(response.detail);
             },
             sourceCountry: phoneCountryData
+        }
+    }
+
+    /**
+     * Get x-editable options for a given element, that is going to be made an x-editable Rate (custom type)
+     *
+     * @param host
+     * @returns {{value: {name: *, amount: *}, params: Function, success: Function}}
+     */
+    function getRateOptions(host) {
+        return {
+            value: {
+                name: host.data('valueName'),
+                amount: host.data('valueAmount')
+            },
+            params: function(params) {
+                params.ratePk = host.attr('data-rate-pk');
+                return params;
+            },
+            validate: function(value) {
+                if (!$.isNumeric(value)) {
+                    return {newValue: '0.00', msg: 'Non Numeric values entered'}
+                }
+                if (Math.round(100 * value) != 100 * value) {
+                    return {newValue: Math.round(100 * value)/100, msg: 'Rate will be rounded to two decimal places'}
+                }
+            },
+            success: function(response, newValue) {
+                host.closest('.data-row').find('.data-name').text(newValue.name + ' Rate');
+                host.attr('data-rate-pk', response.id);
+                host.attr( "id", "Rate" + response.id);
+            }
         }
     }
 });

@@ -146,33 +146,17 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     protected $currency;
 
     /**
-     * @ORM\Column(name="day_rate", type="decimal", precision=8, scale=2)
+     * @var ArrayCollection
      *
-     * @var string
+     * INVERSE SIDE
+     * @ORM\OneToMany(targetEntity="Rate",
+     *      mappedBy="tutor",
+     *      indexBy="id",
+     *      cascade={"persist", "remove"}
+     * )
      */
-    protected $dayRate = '0.00';
-
-    /**
-     * @ORM\Column(name="evening_rate", type="decimal", precision=8, scale=2)
-     *
-     * @var string
-     */
-    protected $eveningRate = '0.00';
-
-    /**
-     * @ORM\Column(name="travel_rate", type="decimal", precision=8, scale=2)
-     *
-     * @var string
-     */
-    protected $travelRate = '0.00';
-
-    /**
-     * @ORM\Column(name="material_rate", type="decimal", precision=8, scale=2)
-     *
-     * @var string
-     */
-    protected $materialRate = '0.00';
-
+    protected $rates;
+    
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
@@ -180,6 +164,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         $this->emailAddresses = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->rates = new ArrayCollection();
     }
 
     /**
@@ -463,10 +448,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         }
         return $this;
     }
-
-
-
-
+    
     /**
      * @return string
      */
@@ -577,78 +559,6 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * @return string
-     */
-    public function getDayRate()
-    {
-        return $this->dayRate;
-    }
-
-    /**
-     * @param string $dayRate
-     * @return $this
-     */
-    public function setDayRate($dayRate)
-    {
-        $this->dayRate = $dayRate;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEveningRate()
-    {
-        return $this->eveningRate;
-    }
-
-    /**
-     * @param string $eveningRate
-     * @return $this
-     */
-    public function setEveningRate($eveningRate)
-    {
-        $this->eveningRate = $eveningRate;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMaterialRate()
-    {
-        return $this->materialRate;
-    }
-
-    /**
-     * @param string $materialRate
-     * @return $this
-     */
-    public function setMaterialRate($materialRate)
-    {
-        $this->materialRate = $materialRate;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTravelRate()
-    {
-        return $this->travelRate;
-    }
-
-    /**
-     * @param string $travelRate
-     * @return $this
-     */
-    public function setTravelRate($travelRate)
-    {
-        $this->travelRate = $travelRate;
-        return $this;
-    }
-
-    /**
      * @return Currency
      */
     public function getCurrency()
@@ -666,6 +576,50 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
 
+
+    /**
+     * @return Rate[]
+     */
+    public function getRates()
+    {
+        return $this->rates;
+    }
+
+    /**
+     * @param ArrayCollection $rates
+     * @return $this
+     */
+    public function setRates($rates)
+    {
+        foreach($rates as $rate) {
+            $this->addRate($rate);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Rate $rate
+     * @return $this
+     */
+    public function addRate (Rate $rate)
+    {
+        $rate->setTutor($this);
+        $this->rates->add($rate);
+        return $this;
+    }
+
+    /**
+     * @param Rate $rate
+     * @return $this
+     */
+    public function removeRate(Rate $rate)
+    {
+        if ($this->rates->contains($rate)) {
+            $this->rates->removeElement($rate);
+        }
+        return $this;
+    }
+    
     /**
      * @return File|null
      */

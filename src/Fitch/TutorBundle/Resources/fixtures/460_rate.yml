@@ -1,0 +1,17 @@
+model: Fitch\TutorBundle\Entity\Rate
+tags: [ test, dev, prod ]
+save_in_reverse: false
+persistence: orm
+fixtures:
+    rate-day:
+        name: Day
+        amount: 123.00
+    rate-evening:
+        name: Evening
+        amount: 234.00
+    rate-travel:
+        name: Travel
+        amount: 100.00
+    rate-material:
+        name: Material
+        amount: 100.00

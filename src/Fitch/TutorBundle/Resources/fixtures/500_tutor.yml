@@ -25,7 +25,8 @@ fixtures:
 #        notes:
         region: region-uk
         currency: currency-GBP
-        dayRate: 0.00
-        eveningRate: 0.00
-        travelRate: 0.00
-        materialRate: 0.00
+        rates:
+            - rate-day
+            - rate-evening
+            - rate-material
+            - rate-travel

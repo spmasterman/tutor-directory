@@ -119,6 +119,7 @@ class FileController extends Controller
      *
      * @param File $file
      *
+     * @throws UnhandledMimeTypeException
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function avatarAction(File $file)

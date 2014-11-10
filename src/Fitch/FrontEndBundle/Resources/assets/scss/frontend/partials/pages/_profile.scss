@@ -91,6 +91,13 @@
     .notes-new {
       margin-top:40px;
     }
+
+    .note-provenance {
+      font-style: italic;
+      font-size: smaller;
+      color: #ccc;
+      margin-right:10px;
+    }
   }
 }
 
@@ -146,10 +153,19 @@
   padding-bottom: 5px;
 }
 
+.editable-rate {
+  label {
+    width:70px;
+  }
+  padding-bottom: 5px;
+}
+
 .remove-file,
 .remove-email,
 .remove-phone,
-.remove-address {
+.remove-address,
+.remove-note,
+.remove-rate {
   padding:1px 0 0 3px;
   @include border-radius(7px);
   width: 14px;

@@ -15,6 +15,7 @@ parameters:
   fitch.manager.currency.class: Fitch\TutorBundle\Model\CurrencyManager
   fitch.manager.note.class: Fitch\TutorBundle\Model\NoteManager
   fitch.manager.crop_info.class: Fitch\TutorBundle\Model\CropInfoManager
+  fitch.manager.rate.class: Fitch\TutorBundle\Model\RateManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -32,6 +33,7 @@ parameters:
   fitch.entity.currency.class: Fitch\TutorBundle\Entity\Currency
   fitch.entity.note.class: Fitch\TutorBundle\Entity\Note
   fitch.entity.crop_info.class: Fitch\TutorBundle\Entity\CropInfo
+  fitch.entity.rate.class: Fitch\TutorBundle\Entity\Rate
 
 services:
     #
@@ -165,6 +167,14 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.crop_info.class%
+    fitch.manager.rate:
+        class: %fitch.manager.rate.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.rate.class%
 
 #
 # Event Listener

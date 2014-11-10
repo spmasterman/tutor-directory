@@ -157,32 +157,47 @@
                 <div class="col-md-4">
                     <div class="user-info-left">
                         <div class="rates-info">
-                            <h3><i class="fa fa-square"></i> Rates</h3>
-                            <p class="data-row">
-                                <span class="data-name">Currency</span>
-                                <span class="data-value"><a href="#" id="currency" class="inline" data-source="{{ path('all_currencies') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getCurrency.getId }}" data-title="Select Currency">{{ tutor.getCurrency }}</a></span>
-                            </p>
-                            <p class="data-row">
-                                <span class="data-name">Day Rate</span>
-                                <span class="data-value"><a href="#" id="dayRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Day Rate">{{ tutor.getDayRate }}</a></span>
-                            </p>
-                            <p class="data-row">
-                                <span class="data-name">Evening Rate</span>
-                                <span class="data-value"><a href="#" id="eveningRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Evening Rate">{{ tutor.getEveningRate }}</a></span>
-                            </p>
-                            <p class="data-row">
-                                <span class="data-name">Travel Rate</span>
-                                <span class="data-value"><a href="#" id="travelRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Travel Rate">{{ tutor.getTravelRate }}</a></span>
-                            </p>
-                            <p class="data-row">
-                                <span class="data-name">Material Rate</span>
-                                <span class="data-value"><a href="#" id="materialRate" class="inline-rate" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Material Rate">{{ tutor.getMaterialRate }}</a></span>
-                            </p>
+                            <div class="rates-container">
+                                <h3><i class="fa fa-square"></i> Rates
+                                    <a href="#" class="btn btn-default btn-xs add-rate"><i class="fa fa-money"></i> New Rate</a>
+                                </h3>
+                                <p class="data-row">
+                                    <span class="data-name">Currency</span>
+                                    <span class="data-value"><a href="#" id="currency" class="inline" data-source="{{ path('all_currencies') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getCurrency.getId }}" data-title="Select Currency">{{ tutor.getCurrency }}</a></span>
+                                </p>
+                                {% for rate in tutor.getRates %}
+                                    <p class="data-row"  data-id="{{ tutor.getId }}">
+                                        <span class="data-name">{{ rate.getName }} Rate</span>
+                                        <span class="data-value">
+                                            <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
+                                               data-type="rate"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-rate-pk="{{ rate.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Rate"
+                                               data-value-name="{{ rate.getName }}"
+                                               data-value-amount="{{ rate.getAmount }}"
+                                               >{{ rate.getAmount }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
+                                        </span>
+                                    </p>
+                                {% endfor %}
+                            </div>
                         </div>
 
                         <div class="contracts-info">
                             <h3><i class="fa fa-square"></i> Contracts</h3>
-                            <p><em>private files shown here</em></p>
+                            <div id="contracts-container">
+                                <ul>
+                                {% for file in tutor.getFiles %}
+                                    {% if file.getFileType.isPrivate %}
+                                        <li><a href="{{ path('get_file_download', {'id':file.getId}) }}">{{ file.getName() }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
@@ -194,7 +209,7 @@
                                 <h3><i class="fa fa-square"></i> Notes for Terms of Engagement</h3>
                                 {% for note in tutor.getNotes %}
                                     {% if note.getKey == 'terms' %}
-                                    <div class="data-row">
+                                    <div data-id="{{ note.getId }}" class="data-row">
                                         <div class="note">
                                             <a href="#" id="note{{ note.getId }}" class="inline-note"
                                                data-inputclass="input-note"
@@ -203,8 +218,14 @@
                                                data-url="{{ path('tutor_ajax_update')}}"
                                                data-title="Enter Note"
                                                data-note-pk="{{ note.getId }}"
-                                            >{{ note.getBody }}</a></div>
-                                        <div class="note-provenance pull-right">{{ note.getProvenance }}</div>
+                                            >{{ note.getBody }}</a>
+
+                                        </div>
+                                        <div class="note-provenance pull-right">{{ note.getProvenance }}
+                                            <span class="data-action">
+                                                <a href="#" data-pk="{{ note.getId }}" class="btn btn-danger btn-xs remove-note"><i class="fa fa-remove"></i></a>
+                                            </span>
+                                        </div>
                                     </div>
                                     {% endif %}
                                 {% endfor %}
@@ -280,6 +301,7 @@
         '@FitchTutorBundle/Resources/public/js/address.js'
         '@FitchTutorBundle/Resources/public/js/email.js'
         '@FitchTutorBundle/Resources/public/js/phone.js'
+        '@FitchTutorBundle/Resources/public/js/rate.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
