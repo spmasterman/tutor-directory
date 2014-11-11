@@ -94,7 +94,7 @@ class UploadListener
                 ]
             );
         } catch (\Exception $e) {
-            // TODO make response BAD_REPSONSE
+            $response['success'] = false;
         }
     }
 }

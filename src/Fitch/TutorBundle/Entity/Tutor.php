@@ -469,7 +469,6 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
 
-
     /**
      * @return OperatingRegion
      */
