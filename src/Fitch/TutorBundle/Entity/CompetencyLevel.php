@@ -24,7 +24,15 @@ class CompetencyLevel implements IdentityTraitInterface, TimestampableTraitInter
      *
      * @ORM\Column(name="name", type="string", length=32)
      */
-    private $name;
+    protected $name;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=16)
+     */
+    protected $color = '#cccccc';
 
     /**
      * @return string
@@ -55,5 +63,23 @@ class CompetencyLevel implements IdentityTraitInterface, TimestampableTraitInter
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     * @return $this
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+        return $this;
     }
 }

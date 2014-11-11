@@ -5,7 +5,10 @@ persistence: orm
 fixtures:
   level-intern:
     name: Intern
+    color: '#8abfda'
   level-grad:
     name: Graduate
+    color: '#8b9edb'
   level-practitioner:
     name: Practitioner
+    color: '#998adb'

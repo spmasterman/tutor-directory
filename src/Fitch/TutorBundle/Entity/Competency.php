@@ -44,6 +44,18 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
     protected $competencyLevel;
 
     /**
+     * @ORM\Column(name="note", type="text", nullable=true)
+     *
+     * @var string;
+     */
+    protected $note;
+
+
+    public function __toString() {
+       return $this->getCompetencyType()->getName();
+    }
+
+    /**
      * @return CompetencyLevel
      */
     public function getCompetencyLevel()
@@ -94,6 +106,24 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param string $note
+     * @return $this
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
         return $this;
     }
 }

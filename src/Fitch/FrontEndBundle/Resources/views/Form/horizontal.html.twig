@@ -4,7 +4,8 @@
             {{ form_label(form, null, {'label_attr': {'class': 'control-label col-xs-2'} }) }}
 
             <div class="col-xs-10">
-                {{ form_widget(form, {'attr': {'class': 'form-control'} }) }}
+                {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+                {{ form_widget(form, {'attr': attr }) }}
                 {{ form_errors(form) }}
             </div>
         </div>

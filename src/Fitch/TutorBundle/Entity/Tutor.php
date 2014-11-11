@@ -165,6 +165,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         $this->phoneNumbers = new ArrayCollection();
         $this->notes = new ArrayCollection();
         $this->rates = new ArrayCollection();
+        $this->competencies = new ArrayCollection();
     }
 
     /**
@@ -430,8 +431,9 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      * @param Competency $competency
      * @return $this
      */
-    public function addCompetency (Competency $competency)
+    public function addCompetency(Competency $competency)
     {
+
         $competency->setTutor($this);
         $this->competencies->add($competency);
         return $this;

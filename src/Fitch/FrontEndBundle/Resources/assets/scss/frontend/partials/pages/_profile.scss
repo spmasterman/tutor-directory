@@ -59,6 +59,7 @@
 	}
 }
 
+/** Terms of Engagement Tab */
 .engagement {
   .user-info-left,
   .user-info-right {
@@ -101,6 +102,24 @@
   }
 }
 
+/** Copetencies Tab */
+.competency {
+  .competency-info {
+    padding: 10px 0;
+  }
+
+  .competency-info {
+    > div {
+      margin-bottom: 40px;
+    }
+  }
+
+  .data-name {
+    color:#555555;
+  }
+}
+
+/** File Tab */
 .files {
   .user-info-left,
   .user-info-right {
@@ -139,20 +158,8 @@
   display: table;
 }
 
-.editable-address {
-  label {
-    width:70px;
-  }
-  padding-bottom: 5px;
-}
-
-.editable-email {
-  label {
-    width:70px;
-  }
-  padding-bottom: 5px;
-}
-
+.editable-address,
+.editable-email,
 .editable-rate {
   label {
     width:90px;
@@ -165,7 +172,8 @@
 .remove-phone,
 .remove-address,
 .remove-note,
-.remove-rate {
+.remove-rate,
+.remove-competency {
   padding:1px 0 0 3px;
   @include border-radius(7px);
   width: 14px;

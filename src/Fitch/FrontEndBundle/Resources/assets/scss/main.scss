@@ -14,7 +14,7 @@
 @import "frontend/vendors/bootstrap-editable";
 @import "frontend/vendors/summernote";
 //@import "vendors/bootstrap-colorpicker";
-//@import "vendors/simplecolorpicker";
+@import "frontend/vendors/simplecolorpicker";
 @import "frontend/vendors/datepicker";
 //@import "vendors/daterangepicker-bs3";
 //@import "vendors/ui.jqgrid";
@@ -40,17 +40,9 @@
 //@import "partials/components";
 @import "frontend/partials/pages/profile";
 //@import "partials/pages/invoice";
-//@import "partials/pages/knowledgebase";
 @import "frontend/partials/pages/404";
 @import "frontend/partials/pages/login";
 @import "frontend/partials/pages/register";
 //@import "frontend/partials/pages/inbox";
 @import "frontend/partials/pages/notifications";
 @import "frontend/partials/footer";
-//@import "frontend/partials/wizard";
-
-
-// Page specific
-//@import "frontend/partials/pages/recipes";
-//@import "frontend/partials/pages/endpoints";
-//@import "frontend/partials/pages/wordlist";

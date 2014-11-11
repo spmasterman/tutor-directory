@@ -365,6 +365,10 @@ jQuery(document).ready(function() {
         });
     }
 
+    /**
+     * Handle crop and Zoom settings for Avatar
+     *
+     */
     function setupAvatar(avatarContainer) {
         var jcrop_api = null,
             avatar = $('#avatar');

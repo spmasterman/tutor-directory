@@ -21,7 +21,9 @@ fixtures:
             - email-shaun-other_1
             - email-shaun-other_2
 #        files:
-#        competencies:
+        competencies:
+            - competency-1
+            - competency-2
 #        notes:
         region: region-uk
         currency: currency-GBP
