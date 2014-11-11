@@ -190,10 +190,10 @@
                         <div class="contracts-info">
                             <h3><i class="fa fa-square"></i> Contracts</h3>
                             <div id="contracts-container">
-                                <ul>
+                                <ul class="fa-ul">
                                 {% for file in tutor.getFiles %}
                                     {% if file.getFileType.isPrivate %}
-                                        <li><a href="{{ path('get_file_download', {'id':file.getId}) }}">{{ file.getName() }}</a></li>
+                                        <li><i class="fa-li fa fa-file-o"></i><a href="{{ path('get_file_download', {'id':file.getId}) }}">{{ file.getName() }}</a></li>
                                     {% endif %}
                                 {% endfor %}
                                 </ul>
