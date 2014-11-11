@@ -92,7 +92,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addStatus(ItemInterface $menu)
     {
@@ -107,7 +107,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addRegions(ItemInterface $menu)
     {
@@ -122,7 +122,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addCountries(ItemInterface $menu)
     {
@@ -137,7 +137,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addCurrencies(ItemInterface $menu)
     {
@@ -152,7 +152,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addFileTypes(ItemInterface $menu)
     {
@@ -167,7 +167,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addCompetencyTypes(ItemInterface $menu)
     {
@@ -182,7 +182,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return $this
+     * @return MenuBuilder
      */
     private function addCompetencyLevels(ItemInterface $menu)
     {

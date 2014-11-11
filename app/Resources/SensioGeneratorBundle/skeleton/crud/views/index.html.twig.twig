@@ -3,10 +3,10 @@
 {% endblock extends %}
 
 {% block content %}
-    {{ "{% block main_header -%}" }}
+{{ "{% block main_header -%}" }}
     <h2>{{ "{% trans %}" }}{{ entity|lower }}.list.verb{{ "{% endtrans %}" }}</h2>
     <em>{{ "{% trans %}" }}{{ entity|lower }}.list.tagline{{ "{% endtrans %}" }}</em>
-    {{ "{% endblock %}" }}
+{{ "{% endblock %}" }}
 
 {{ "{% block main_content -%}" }}
     <table class="records_list table table-condensed table-striped">
