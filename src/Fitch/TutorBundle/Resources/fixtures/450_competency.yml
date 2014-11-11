@@ -8,5 +8,5 @@ fixtures:
         competencyLevel: level-intern
         note: Taught this in 'Nam, back in sixty eight. Brutal man.
     competency-2:
-        competencyType: type-13
+        competencyType: type-33
         competencyLevel: level-practitioner

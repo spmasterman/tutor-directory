@@ -21,8 +21,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Created</th>
-                        <th>Updated</th>
+                        <th>Color</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,9 +30,10 @@
                     <tr>
                         <td>{{ competencyLevel.id }}</td>
                         <td><a href="{{ path('competency_level_show', { 'id': competencyLevel.id }) }}">{{ competencyLevel.name }}</a></td>
-                        <td>{% if competencyLevel.created %}{{ competencyLevel.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if competencyLevel.updated %}{{ competencyLevel.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td><a href="{{ path('competency_level_show', { 'id': competencyLevel.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>                        <a href="{{ path('competency_level_edit', { 'id': competencyLevel.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        <td><span style="background-color: {{ competencyLevel.getColor }}; padding:3px;">{{ competencyLevel.getColor }}</span></td>
+                        <td>
+                            <a href="{{ path('competency_level_show', { 'id': competencyLevel.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                            <a href="{{ path('competency_level_edit', { 'id': competencyLevel.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}
