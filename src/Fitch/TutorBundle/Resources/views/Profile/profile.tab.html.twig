@@ -1,0 +1,132 @@
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="user-info-left">
+                <div id="avatar-container">
+                    {% include 'FitchTutorBundle:Profile:avatar.html.twig' %}
+                </div>
+                <h2> {{ tutor.name }} </h2>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="user-info-right">
+                <div class="basic-info">
+                    <h3><i class="fa fa-square"></i> Basic Information</h3>
+                    <p class="data-row">
+                        <span class="data-name">Full Name</span>
+                        <span class="data-value"><a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Full Name">{{ tutor.name }}</a></span>
+                    </p>
+                    <p class="data-row">
+                        <span class="data-name">Tutor Type</span>
+                        <span class="data-value"><a href="#" id="tutor_type" class="inline" data-source="{{ path('all_tutor_types') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getTutorType.getId }}" data-title="Select Tutor Type">{{ tutor.getTutorType.getName }}</a></span>
+                    </p>
+                    <p class="data-row">
+                        <span class="data-name">Status</span>
+                        <span class="data-value"><a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Status">{{ tutor.getStatus.getName }}</a></span>
+                    </p>
+                    <p class="data-row">
+                        <span class="data-name">Region</span>
+                        <span class="data-value"><a href="#" id="region" class="inline" data-source="{{ path('all_regions') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Region">{{ tutor.getRegion.getName }}</a></span>
+                    </p>
+                    <p class="data-row">
+                        <span class="data-name"><i class="fa fa-linkedin-square"></i> LinkedIn Profile</span>
+                                <span class="data-value">
+                                    {% if tutor.getLinkedInURL %}
+                                        <a href="{{ tutor.getLinkedInURL }}" target="_blank">View Profile</a>
+                                    {% endif %}
+                                    <a href="#" id="linkedInURL" class="inline" data-type="url" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getLinkedInURL }}" data-title="Enter URL of LinkedIn Profile">Edit</a>
+                                </span>
+                    </p>
+                    <p class="data-row">
+                        <span class="data-name">Date Created</span>
+                        <span class="data-value">{{ tutor.created|localizeddate('medium','none') }} </span>
+                    </p>
+                </div>
+                <div class="contact-info">
+                    <h3 class="data-row" data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Contact Information
+                        <a href="#" class="btn btn-default btn-xs add-email"><i class="fa fa-at"></i> New Email</a>
+                        <a href="#" class="btn btn-default btn-xs add-phone"><i class="fa fa-phone"></i> New Phone</a>
+                        <a href="#" class="btn btn-default btn-xs add-address"><i class="fa fa-envelope-o"></i> New Address</a>
+                    </h3>
+
+                    <div class="email-container">
+                        {% for email in tutor.getEmailAddresses %}
+                            <p class="data-row"  data-id="{{ tutor.getId }}">
+                                <span class="data-name">Email ({{ email.getType }})</span>
+                                        <span class="data-value">
+                                            <a href="#" id="email{{ email.getId }}" class="inline-email"
+                                               data-type="emailContact"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-email-pk="{{ email.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Email"
+                                               data-value-type="{{ email.getType }}"
+                                               data-value-address="{{ email.getAddress }}"
+                                                    >{{ email }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ email.getId }}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i></a>
+                                        </span>
+                            </p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="phone-container">
+                        {% for phone in tutor.getPhoneNumbers %}
+                            <p class="data-row"  data-id="{{ tutor.getId }}">
+                                <span class="data-name">Phone ({{ phone.getType }})</span>
+                                        <span class="data-value">
+                                            <a href="#" id="phone{{ phone.getId }}" class="inline-phone"
+                                               data-type="phone"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-phone-pk="{{ phone.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Phone"
+                                               data-value-type="{{ phone.getType }}"
+                                               data-value-country="{{ phone.getCountry.getId }}"
+                                               data-value-number="{{ phone.getNumber }}"
+                                                    >{{ phone.getFullNumber }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ phone.getId }}" class="btn btn-danger btn-xs remove-phone"><i class="fa fa-remove"></i></a>
+                                        </span>
+                            </p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="address-container">
+                        {% for address in tutor.getAddresses %}
+                            <p class="data-row" data-id="{{ tutor.getId }}">
+                                <span class="data-name">Address ({{ address.getType }})</span>
+                                        <span class="data-value">
+                                            <a href="#" id="address{{ address.getId }}" class="inline-address"
+                                               data-type="address"
+                                               data-pk="{{ tutor.getId }}"
+                                               data-address-pk="{{ address.getId }}"
+                                               data-url="{{ path('tutor_ajax_update')}}"
+                                               data-title="Enter Address"
+                                               data-value-type="{{ address.getType }}"
+                                               data-value-street-primary="{{ address.getStreetPrimary }}"
+                                               data-value-street-secondary="{{ address.getStreetSecondary }}"
+                                               data-value-city="{{ address.getCity }}"
+                                               data-value-state="{{ address.getState }}"
+                                               data-value-zip="{{ address.getZip }}"
+                                               data-value-country="{{ address.getCountry.getId }}"
+                                                    >{{ address }}</a>
+                                        </span>
+                                        <span class="data-action">
+                                            <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i></a>
+                                        </span>
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="bio data-row" data-id="{{ tutor.getId }}">
+                    <h3><i class="fa fa-square"></i> Biography <a href="#" class="btn btn-default btn-xs edit-bio"><i class="fa fa-pencil"></i> Edit</a></h3>
+                    <div id="bio">{{ tutor.getBio|purify }}</div>
+                    <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+

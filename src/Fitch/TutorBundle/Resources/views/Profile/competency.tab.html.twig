@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="competency-info">
+        <div class="col-md-12">
+            <div class="competency-container">
+                <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Competencies
+                    <a href="#" class="btn btn-default btn-xs add-competency"><i class="fa fa-puzzle-piece"></i> New Competency</a>
+                </h3>
+                {% for competency in tutor.getCompetencies %}
+                    <div class="data-row" data-id="{{ tutor.getId }}">
+                        <span class="data-name" style="background-color: {{ competency.getCompetencyLevel.getColor }}">{{ competency.getCompetencyLevel.getName }}</span>
+                                    <span class="data-value">
+                                        <a href="#" id="rate{{ competency.getId }}" class="inline-competency"
+                                           data-type="competency"
+                                           data-pk="{{ tutor.getId }}"
+                                           data-rate-pk="{{ competency.getId }}"
+                                           data-url="{{ path('tutor_ajax_update')}}"
+                                           data-title="Enter Competency Details"
+                                           data-value-competency-type="{{ competency.getCompetencyType.getId }}"
+                                           data-value-competency-level="{{ competency.getCompetencyLevel.getId }}"
+                                           data-value-note="{{ competency.getNote }}"
+                                                >{{ competency }}</a>
+                                    </span>
+                                    <span class="data-action">
+                                        <a href="#" data-pk="{{ competency.getId }}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
+                                    </span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-6 user-info-left">
+        <div class="widget">
+            <div class="widget-header"><h3><i class="fa fa-cloud-upload"></i> File Upload</h3>
+                <div class="btn-group widget-header-toolbar">
+                    <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                    <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="widget-content">
+                <form id="file_upload" action="{{ oneup_uploader_endpoint('tutor') }}" class="dropzone dz-clickable">
+                    <input type="hidden" name="tutorPk" value="{{ tutor.getId }}">
+                    <div class="dz-default dz-message">
+                        <span>Drop files here to upload</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 user-info-right">
+        <div class="widget">
+            <div class="widget-header"><h3><i class="fa fa-files-o"></i> Files</h3>
+                <div class="btn-group widget-header-toolbar">
+                    <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                    <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="widget-content">
+                <div id="files-container">
+                    {% for file in tutor.getFiles %}
+                        {% include 'FitchTutorBundle:Profile:file_row.html.twig' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
