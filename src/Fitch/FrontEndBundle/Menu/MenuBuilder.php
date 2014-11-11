@@ -84,7 +84,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Tutor Types', array('route' => 'tutor_type'))
             ->setAttribute('icon', 'fa fa-tasks fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -99,7 +98,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Statuses', array('route' => 'status'))
             ->setAttribute('icon', 'fa fa-tag fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -114,7 +112,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Regions', array('route' => 'region'))
             ->setAttribute('icon', 'fa fa-globe fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -129,7 +126,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Countries', array('route' => 'country'))
             ->setAttribute('icon', 'fa fa-flag-o fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -144,7 +140,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Currencies', array('route' => 'currency'))
             ->setAttribute('icon', 'fa fa-money fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -159,7 +154,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('File Types', array('route' => 'file_type'))
             ->setAttribute('icon', 'fa fa-files-o fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -174,7 +168,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Competency Types', array('route' => 'competency_type'))
             ->setAttribute('icon', 'fa fa-bullseye fa-fw')
-            ->getParent()
         ;
 
         return $this;
@@ -189,7 +182,6 @@ class MenuBuilder extends ContainerAware
         $menu
             ->addChild('Competency Levels', array('route' => 'competency_level'))
             ->setAttribute('icon', 'fa fa-signal fa-fw')
-            ->getParent()
         ;
 
         return $this;
