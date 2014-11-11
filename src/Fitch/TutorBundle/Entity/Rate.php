@@ -52,10 +52,12 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $amount
+     * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+        return $this;
     }
 
     /**
@@ -68,10 +70,12 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -84,11 +88,11 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param Tutor $tutor
+     * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+        return $this;
     }
-
-
 }

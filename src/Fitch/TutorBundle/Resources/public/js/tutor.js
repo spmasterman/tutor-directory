@@ -290,19 +290,24 @@ jQuery(document).ready(function() {
             e.preventDefault();
             var tutorId = $(this).closest('[data-id]').data('id'),
                 newRow =
-                    '    <div class="data-row">                                                     '+
-                    '        <div class="note">                                                     '+
-                    '           <a href="#" id="note0" class="inline-note"                          '+
-                    '               data-inputclass="input-note"                                    '+
-                    '               data-type="textarea"                                            '+
-                    '               data-pk="' + tutorId + '"                                       '+
-                    '               data-url="' + Routing.generate('tutor_ajax_update')+'"          '+
-                    '               data-title="Enter Note"                                         '+
-                    '               data-note-pk="0"                                                '+
-                    '            ></a></div>                                                        '+
-                    '        <div class="note-provenance pull-right"></div>                         '+
+                    '    <div class="data-row" data-id="0">                                                     '+
+                    '        <span class="data-name">New Rate</span>                                '+
+                    '        <span class="data-value">                                              '+
+                    '           <a href="#" id="rate0" class="inline-rate"                          '+
+                    '           data-type="rate"                                                    '+
+                    '           data-pk="' + tutorId + '"                                           '+
+                    '           data-rate-pk="0"                                                    '+
+                    '           data-url="' + Routing.generate('tutor_ajax_update')+'"              '+
+                    '           data-title="Enter Rate"                                             '+
+                    '            ></a>                                                              '+
+                    '        </span>                                                                '+
+                    '        <span class="data-action">                                             '+
+                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-rate"> '+
+                    '               <i class="fa fa-remove"></i>                                    '+
+                    '            </a>                                                               '+
+                    '        </span>                                                                '+
                     '    </div>                                                                     '
-                ;
+            ;
             ratesContainer.append(newRow);
 
             $('#rate0').each(function(){
@@ -313,15 +318,20 @@ jQuery(document).ready(function() {
         ratesContainer.on('click', '.remove-rate', function(e){
             e.preventDefault();
             var row = $(this).closest('.data-row'),
-                ratePk = row.data('id')
+                ratePk = row.find('span.data-value a').attr('data-rate-pk')
                 ;
-            $.post(Routing.generate('rate_ajax_remove'), {'pk' : ratePk}, function(data) {
-                if (data.success) {
-                    row.remove();
-                } else {
-                    console.log(data);
-                }
-            }, "json");
+
+            if (ratePk != '0') {
+                $.post(Routing.generate('rate_ajax_remove'), {'pk' : ratePk}, function(data) {
+                    if (data.success) {
+                        row.remove();
+                    } else {
+                        console.log(data);
+                    }
+                }, "json");
+            } else {
+                row.remove();
+            }
         });
     }
 
@@ -539,11 +549,11 @@ jQuery(document).ready(function() {
                 return params;
             },
             validate: function(value) {
-                if (!$.isNumeric(value)) {
-                    return {newValue: '0.00', msg: 'Non Numeric values entered'}
+                if (!$.isNumeric(value.amount)) {
+                    return {newValue: {name: value.name, amount: '0.00'}, msg: 'Non Numeric values entered'}
                 }
-                if (Math.round(100 * value) != 100 * value) {
-                    return {newValue: Math.round(100 * value)/100, msg: 'Rate will be rounded to two decimal places'}
+                if (Math.round(100 * value.amount) != 100 * value.amount) {
+                    return {newValue: {name: value.name, amount: Math.round(100 * value.amount)/100}, msg: 'Rate will be rounded to two decimal places'}
                 }
             },
             success: function(response, newValue) {

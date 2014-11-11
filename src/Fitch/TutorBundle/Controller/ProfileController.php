@@ -14,6 +14,7 @@ use Fitch\TutorBundle\Model\EmailManager;
 use Fitch\TutorBundle\Model\NoteManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
+use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Fitch\TutorBundle\Model\TutorTypeManager;
@@ -133,6 +134,20 @@ class ProfileController extends Controller
                     ;
                     $relatedEntity = $phone;
                     break ;
+                case 'rate':
+                    $rateId = $request->request->get('ratePk');
+                    if ($rateId) {
+                        $rate = $this->getRateManager()->findById($rateId);
+                    } else {
+                        $rate = $this->getRateManager()->createRate();
+                        $tutor->addRate($rate);
+                    }
+                    $rate
+                        ->setName($value['name'])
+                        ->setAmount($value['amount'])
+                    ;
+                    $relatedEntity = $rate;
+                    break ;
                 case 'tutor_type':
                     $tutorType = $this->getTutorTypeManager()->findById($value);
                     $tutor->setTutorType($tutorType);
@@ -227,6 +242,14 @@ class ProfileController extends Controller
     private function getPhoneManager()
     {
         return $this->get('fitch.manager.phone');
+    }
+
+    /**
+     * @return RateManager
+     */
+    private function getRateManager()
+    {
+        return $this->get('fitch.manager.rate');
     }
 
     /**

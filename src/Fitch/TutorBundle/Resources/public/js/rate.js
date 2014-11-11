@@ -92,8 +92,8 @@
          */
         input2value: function() {
             return {
-                type: this.$input.filter('[name="name"]').val(),
-                streetPrimary: this.$input.filter('[name="amount"]').val()
+                name: this.$input.filter('[name="name"]').val(),
+                amount: this.$input.filter('[name="amount"]').val()
             };
         },
 

@@ -158,15 +158,15 @@
                     <div class="user-info-left">
                         <div class="rates-info">
                             <div class="rates-container">
-                                <h3><i class="fa fa-square"></i> Rates
+                                <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Rates
                                     <a href="#" class="btn btn-default btn-xs add-rate"><i class="fa fa-money"></i> New Rate</a>
                                 </h3>
-                                <p class="data-row">
+                                <div class="data-row">
                                     <span class="data-name">Currency</span>
                                     <span class="data-value"><a href="#" id="currency" class="inline" data-source="{{ path('all_currencies') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getCurrency.getId }}" data-title="Select Currency">{{ tutor.getCurrency }}</a></span>
-                                </p>
+                                </div>
                                 {% for rate in tutor.getRates %}
-                                    <p class="data-row"  data-id="{{ tutor.getId }}">
+                                    <div class="data-row" data-id="{{ tutor.getId }}">
                                         <span class="data-name">{{ rate.getName }} Rate</span>
                                         <span class="data-value">
                                             <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
@@ -182,7 +182,7 @@
                                         <span class="data-action">
                                             <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
                                         </span>
-                                    </p>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
