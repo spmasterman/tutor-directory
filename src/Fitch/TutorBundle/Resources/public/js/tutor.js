@@ -290,7 +290,7 @@ jQuery(document).ready(function() {
             e.preventDefault();
             var tutorId = $(this).closest('[data-id]').data('id'),
                 newRow =
-                    '    <div class="data-row" data-id="0">                                                     '+
+                    '    <div class="data-row" data-id="0">                                         '+
                     '        <span class="data-name">New Rate</span>                                '+
                     '        <span class="data-value">                                              '+
                     '           <a href="#" id="rate0" class="inline-rate"                          '+
