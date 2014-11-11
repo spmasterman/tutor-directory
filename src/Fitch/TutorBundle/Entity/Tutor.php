@@ -630,7 +630,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         foreach($this->getFiles() as $file) {
             if ($file->isImage()) {
                 $fileType = $file->getFileType();
-                if ($fileType->isProfilePicture() && ! $fileType->isPrivate()) {
+                if ($fileType->isSuitableForProfilePicture() && ! $fileType->isPrivate()) {
                     return $file;
                 }
             }
