@@ -2,12 +2,17 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Exception;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
+use Fitch\TutorBundle\Model\CompetencyManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Competency controller
@@ -48,48 +53,41 @@ class CompetencyController extends Controller
         ]);
     }
 
+    /**
+     * @Route(
+     *      "/remove",
+     *      name="competency_ajax_remove",
+     *      options={"expose"=true},
+     *      condition="
+                request.request.has('pk') and request.request.get('pk') > 0
+            "
+     * )
+     * @Method("POST")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function removeAction(Request $request)
+    {
+        try {
+            $competency = $this->getCompetencyManager()->findById($request->request->get('pk'));
+            if(!$competency) {
+                throw new NotFoundHttpException('Competency does not exist!');
+            }
 
-//    /**
-//     * @Route(
-//     *      "/remove",
-//     *      name="competency_ajax_remove",
-//     *      options={"expose"=true},
-//     *      condition="
-//                request.request.has('pk') and request.request.get('pk') > 0
-//            "
-//     * )
-//     * @Method("POST")
-//     * @Template()
-//     *
-//     * @param Request $request
-//     *
-//     * @return \Symfony\Component\HttpFoundation\JsonResponse
-//     */
-//    public function removeAction(Request $request)
-//    {
-//        try {
-//            $fileEntity = $this->getFileManager()->findById($request->request->get('pk'));
-//
-//            $fileSystem = $this->getFileSystemMapService()->get('tutor');
-//            $file = $fileSystem->get($fileEntity->getFileSystemKey());
-//
-//            if(!$file) {
-//                throw new NotFoundHttpException('File does not exist!');
-//            }
-//
-//            $file->delete();
-//            $this->getFileManager()->removeFile($fileEntity->getId());
-//        } catch (Exception $e) {
-//            return new JsonResponse([
-//                'success' => false,
-//                'message' => $e->getMessage()
-//            ], Response::HTTP_BAD_REQUEST);
-//        }
-//
-//        return new JsonResponse([
-//            'success' => true,
-//        ]);
-//    }
+            $this->getCompetencyManager()->removeCompetency($competency->getId());
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return new JsonResponse([
+            'success' => true,
+        ]);
+    }
 
     /**
      * @return CompetencyTypeManager
@@ -100,11 +98,18 @@ class CompetencyController extends Controller
     }
 
     /**
+     * @return CompetencyManager
+     */
+    private function getCompetencyManager()
+    {
+        return $this->get('fitch.manager.competency');
+    }
+
+    /**
      * @return CompetencyLevelManager
      */
     private function getCompetencyLevelManager()
     {
         return $this->get('fitch.manager.competency_level');
     }
-
 }
