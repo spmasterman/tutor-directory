@@ -7,6 +7,8 @@ jQuery(document).ready(function() {
     // Module wide variables
     var addressCountryData = [],
         phoneCountryData =[],
+        competencyTypes = [],
+        competencyLevels = [],
         // Default toolbar style for inline summer note editor
         defaultToolbar = [
             ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -34,6 +36,20 @@ jQuery(document).ready(function() {
         });
         $('.inline-rate').each(function() {
             $(this).editable(getRateOptions($(this)));
+        });
+    });
+
+    // Build data for Competency selects in custom type. Only initialise the x-editable elements which use the data,
+    // once the data has been retrieved
+    $.getJSON(Routing.generate('competency_lookups'), {}, function(data) {
+        $(data.types).each(function(i, k){
+            competencyTypes.push(k);
+        });
+        $(data.levels).each(function(i, k){
+            competencyLevels.push(k);
+        });
+        $('.inline-competency').each(function() {
+            $(this).editable(getCompetencyOptions($(this)));
         });
     });
 
@@ -565,6 +581,33 @@ jQuery(document).ready(function() {
                 host.attr('data-rate-pk', response.id);
                 host.attr( "id", "Rate" + response.id);
             }
+        }
+    }
+
+    /**
+     * Get x-editable options for a given element, that is going to be made an x-editable Competency (custom type)
+     *
+     * @param host
+     * @returns {{value: {type: *, level: *, note: *}, params: Function, success: Function, sourceCompetencyTypes: Array, sourceCompetencyLevels: Array}}
+     */
+    function getCompetencyOptions(host) {
+        return {
+            value: {
+                type: host.data('valueCompetencyType'),
+                level: host.data('valueCompetencyLevel'),
+                note: host.data('valueNote')
+            },
+            params: function(params) {
+                params.competencyPk = host.attr('data-competency-pk');
+                return params;
+            },
+            success: function(response, newValue) {
+//                host.closest('.data-row').find('.data-name').text('Phone (' + newValue.type +')');
+                host.attr('data-competency-pk', response.id);
+                host.attr( "id", "Phone" + response.id);
+            },
+            sourceCompetencyTypes: competencyTypes,
+            sourceCompetencyLevels: competencyLevels
         }
     }
 });

@@ -284,7 +284,6 @@ class CountryController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-
     public function allAction(){
         $out = [];
         foreach($this->getCountryManager()->findAllSorted() as $country) {
