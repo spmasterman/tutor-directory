@@ -1,0 +1,31 @@
+<span class="data-name">
+    <span class="data-tag" {% if competency.getCompetencyLevel %}style="background-color: {{ competency.getCompetencyLevel.getColor }}"{% endif %}>&nbsp;</span>
+    <a href="#" id="competency-level{{ competency.getId }}" class="inline-competency-level"
+       data-type="typeaheadjs"
+       data-pk="{{ tutor.getId }}"
+       data-competency-pk="{{ competency.getId }}"
+       data-url="{{ path('competency_ajax_update')}}"
+       data-title="Level of Competency"
+            >{% if competency.getCompetencyLevel %}{{ competency.getCompetencyLevel.getName }}{% endif %}</a>
+</span>
+<span class="data-value">
+    <a href="#" id="competency-type{{ competency.getId }}" class="inline-competency-type"
+       data-type="typeaheadjs"
+       data-pk="{{ tutor.getId }}"
+       data-competency-pk="{{ competency.getId }}"
+       data-url="{{ path('competency_ajax_update')}}"
+       data-title="Competency"
+            >{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}</a>
+</span>
+<span class="data-action">
+    <a href="#" data-pk="{{ competency.getId }}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
+</span>
+<span class="data-note">
+    <a href="#" id="competency-note{{ competency.getId }}" class="inline-competency-note"
+       data-type="textarea"
+       data-pk="{{ tutor.getId }}"
+       data-competency-pk="{{ competency.getId }}"
+       data-url="{{ path('competency_ajax_update')}}"
+       data-title="Note"
+            >{{ competency.getNote }}</a>
+</span>

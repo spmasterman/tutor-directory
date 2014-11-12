@@ -13,7 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Competency
  *
  * @ORM\Table(name="competency")
- * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\Competency")
+ * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyRepository")
  */
 class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 {

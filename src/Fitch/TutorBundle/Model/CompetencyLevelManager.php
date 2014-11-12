@@ -28,6 +28,24 @@ class CompetencyLevelManager extends BaseModelManager
     }
 
     /**
+     * @param $levelName
+     *
+     * @return CompetencyLevel
+     */
+    public function findOrCreate($levelName)
+    {
+        $competencyLevel = $this->getRepo()->findOneBy(['name' => $levelName]);
+
+        if (!$competencyLevel) {
+            $competencyLevel = $this->createCompetencyLevel();
+            $competencyLevel->setName($levelName);
+            $this->saveCompetencyLevel($competencyLevel);
+        }
+
+        return $competencyLevel;
+    }
+
+    /**
      * @param CompetencyLevel $competencyLevel
      * @param bool $withFlush
      */

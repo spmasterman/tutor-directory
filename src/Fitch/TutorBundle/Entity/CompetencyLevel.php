@@ -24,8 +24,7 @@ class CompetencyLevel implements IdentityTraitInterface, TimestampableTraitInter
      *
      * @ORM\Column(name="name", type="string", length=32)
      */
-    protected $name;
-
+    protected $name='unspecified';
 
     /**
      * @var string

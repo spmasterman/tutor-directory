@@ -6,35 +6,7 @@
                     <a href="#" class="btn btn-default btn-xs add-competency"><i class="fa fa-puzzle-piece"></i> New Competency</a>
                 </h3>
                 {% for competency in tutor.getCompetencies %}
-                    <div class="data-row" data-id="{{ tutor.getId }}">
-                        <span class="data-name" style="background-color: {{ competency.getCompetencyLevel.getColor }}">
-                           <a href="#" id="competency-level{{ competency.getId }}" class="inline-competency-level"
-                              data-type="typeaheadjs"
-                              data-pk="{{ competency.getId }}"
-                              data-url="/post"
-                              data-title="Level of Competency"
-                                   >{{ competency.getCompetencyLevel.getName }}</a>
-                        </span>
-                        <span class="data-value">
-                            <a href="#" id="competency-type{{ competency.getId }}" class="inline-competency-type"
-                               data-type="typeaheadjs"
-                               data-pk="{{ competency.getId }}"
-                               data-url="/post"
-                               data-title="Competency"
-                                    >{{ competency.getCompetencyType.getName }}</a>
-                        </span>
-                        <span class="data-action">
-                            <a href="#" data-pk="{{ competency.getId }}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
-                        </span>
-                        <span class="data-note">
-                            <a href="#" id="competency-note{{ competency.getId }}" class="inline"
-                               data-type="textarea"
-                               data-pk="{{ competency.getId }}"
-                               data-url="/post"
-                               data-title="Note"
-                                    >{{ competency.getNote }}</a>
-                        </span>
-                    </div>
+                    {% include 'FitchTutorBundle:Profile:competency_row.html.twig' %}
                 {% endfor %}
             </div>
         </div>

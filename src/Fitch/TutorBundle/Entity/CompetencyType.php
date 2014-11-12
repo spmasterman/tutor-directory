@@ -24,7 +24,7 @@ class CompetencyType implements IdentityTraitInterface, TimestampableTraitInterf
      *
      * @ORM\Column(name="name", type="string", length=128)
      */
-    private $name;
+    private $name='...';
 
     /**
      * @return string

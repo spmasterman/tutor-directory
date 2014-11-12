@@ -114,9 +114,30 @@
     }
   }
 
+  .data-tag {
+    width: 10px;
+  }
   .data-name {
     color:#555555;
   }
+  .data-value {
+    width: 300px;
+  }
+  .data-action {
+    width: 20px;
+  }
+  .data-note {
+    padding-left: 20px;
+    a {
+      color: #555555;
+    }
+
+    .empty-note {
+      color: #888888;
+      font-style: italic;
+    }
+  }
+
 }
 
 /** File Tab */

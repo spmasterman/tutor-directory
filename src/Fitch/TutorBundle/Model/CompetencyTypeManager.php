@@ -28,6 +28,24 @@ class CompetencyTypeManager extends BaseModelManager
     }
 
     /**
+     * @param $typeName
+     *
+     * @return CompetencyType
+     */
+    public function findOrCreate($typeName)
+    {
+        $competencyType = $this->getRepo()->findOneBy(['name' => $typeName]);
+
+        if (!$competencyType) {
+            $competencyType = $this->createCompetencyType();
+            $competencyType->setName($typeName);
+            $this->saveCompetencyType($competencyType);
+        }
+
+        return $competencyType;
+    }
+
+    /**
      * @param CompetencyType $competencyType
      * @param bool $withFlush
      */

@@ -53,13 +53,6 @@ class TutorManager extends BaseModelManager
         }
     }
 
-
-
-
-
-
-
-
     /**
      * @param Tutor $tutor
      * @param bool $withFlush
