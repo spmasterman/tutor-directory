@@ -1,34 +1,36 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
-    {% block main_header -%}
-    <h2>{% trans %}tutor.list.verb{% endtrans %}</h2>
-    <em>{% trans %}tutor.list.tagline{% endtrans %}</em>
-    {% endblock %}
+{% block main_header -%}
+    <h2>{% trans %}home.title{% endtrans %}</h2><em>{% trans %}home.tagline{% endtrans %}</em>
+{% endblock %}
 
 {% block main_content -%}
-    <table class="records_list table table-condensed table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tutor in tutors %}
-            <tr>
-                <td><a href="{{ path('tutor_show', { 'id': tutor.id }) }}">{{ tutor.name }}</a></td>
-                <td>{{ tutor.id }}</td>
-                <td>
-                    <a href="{{ path('tutor_show', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
-                    <a href="{{ path('tutor_edit', { 'id': tutor.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="widget widget-table">
+    <div class="widget-header"><h3><i class="fa fa-table"></i> Featured Table</h3> <em> - <a href="http://datatables.net/">jQuery Data Table</a> with sorting feature, live search and pagination</em></div>
+    <div class="widget-content">
+        <table id="tutor_table" class="table table-sorting table-striped table-hover datatable" cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Type</th>
+                    <th>Region</th>
+                    <th>Status</th>
+                    <th>Competencies</th>
+                    <th>Competencies Search</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}
 
-    <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
-        <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
-    </a>
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@datatable_js'
+    '@FitchTutorBundle/Resources/public/js/tutor-table.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

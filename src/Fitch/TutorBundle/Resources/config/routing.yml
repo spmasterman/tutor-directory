@@ -1,0 +1,4 @@
+fitch_tutor_annotation:
+    resource: "@FitchTutorBundle/Controller/"
+    type:     annotation
+    prefix:   /

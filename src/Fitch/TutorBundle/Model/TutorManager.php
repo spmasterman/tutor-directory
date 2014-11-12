@@ -27,6 +27,11 @@ class TutorManager extends BaseModelManager
         return parent::findAll();
     }
 
+    public function populateTable()
+    {
+        return $this->getRepo()->findAllForTable();
+    }
+
     /**
      * @param Tutor $tutor
      * @param AddressManager $addressManager

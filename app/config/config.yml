@@ -51,6 +51,11 @@ assetic:
             inputs:
                 - '%kernel.root_dir%/../components/jquery/jquery.js'
             filters: [?yui_js]
+        datatable_js:
+            inputs:
+#                - '%kernel.root_dir%/../components/moment/moment.js'
+                - '%kernel.root_dir%/../vendor/datatables/datatables/media/js/jquery.dataTables.js'
+            filters: [?yui_js]
         jqueryui_js:
             inputs:
                 - '%kernel.root_dir%/../components/jquery-ui/jquery-ui.js'

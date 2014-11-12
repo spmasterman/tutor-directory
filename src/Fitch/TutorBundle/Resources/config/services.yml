@@ -189,3 +189,4 @@ services:
         tags:
             - {name: kernel.event_listener, event: oneup_uploader.pre_upload, method: onPreUpload}
             - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onPostPersist}
+

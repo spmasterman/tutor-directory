@@ -1,6 +1,5 @@
 fitch_tutor:
-    resource: "@FitchTutorBundle/Controller/"
-    type:     annotation
+    resource: "@FitchTutorBundle/Resources/config/routing.yml"
     prefix:   /
 
 fitch_common:

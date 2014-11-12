@@ -33,7 +33,8 @@
         "khepin/yaml-fixtures-bundle": "~0.8.1",
         "oneup/uploader-bundle": "~1.3",
         "knplabs/knp-gaufrette-bundle": "0.1.*",
-        "exercise/htmlpurifier-bundle": "*"
+        "exercise/htmlpurifier-bundle": "*",
+        "datatables/datatables": "1.10.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

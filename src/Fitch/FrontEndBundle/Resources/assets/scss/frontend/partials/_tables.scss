@@ -34,6 +34,9 @@
 .dataTables_length {
 	float: left;
 	margin-bottom: 5px;
+  select {
+    color:red;
+  }
 }
 
 .dataTables_filter {

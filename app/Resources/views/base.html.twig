@@ -25,12 +25,19 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        {% block head_javascripts %}
+            {% javascripts '@jquery_js' '@jqueryui_js' filter='?yui_js' combine=true %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+
     </head>
     <body {% block body_attrs %}{% endblock %}>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' '@frontend_js' filter='?yui_js' combine=true %}
-                <script src="{{ asset_url }}"></script>
+            {% javascripts '@bootstrap_js' '@frontend_js' filter='?yui_js' combine=true %}
+            <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}
     </body>
