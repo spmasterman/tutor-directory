@@ -6,30 +6,30 @@ fixtures:
     filetype-unknown:
         name: Unspecified
         default: true
-        isProfilePicture: false
+        suitableForProfilePicture: false
         private: true
     filetype-avatar:
         name: Avatar
         default: false
-        isProfilePicture: true
+        suitableForProfilePicture: true
         private: false
     filetype-contract:
         name: Contract
         default: false
-        isProfilePicture: false
+        suitableForProfilePicture: false
         private: true
     filetype-resume:
         name: CV / Resume
         default: false
-        isProfilePicture: false
+        suitableForProfilePicture: false
         private: true
     filetype-misc_private:
         name: Miscellaneous Private
         default: false
-        isProfilePicture: false
+        suitableForProfilePicture: false
         private: true
     filetype-misc_public:
         name: Miscellaneous Public
         default: false
-        isProfilePicture: false
+        suitableForProfilePicture: false
         private: false
