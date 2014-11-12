@@ -48,9 +48,13 @@ jQuery(document).ready(function() {
         $(data.levels).each(function(i, k){
             competencyLevels.push(k);
         });
-        $('.inline-competency').each(function() {
-            $(this).editable(getCompetencyOptions($(this)));
+        $('.inline-competency-level').each(function() {
+            $(this).editable(getCompetencyLevelOptions($(this)));
         });
+        $('.inline-competency-type').each(function() {
+            $(this).editable(getCompetencyTypeOptions($(this)));
+        });
+
     });
 
     // Initialise the other x-editable elements
@@ -584,30 +588,38 @@ jQuery(document).ready(function() {
         }
     }
 
-    /**
-     * Get x-editable options for a given element, that is going to be made an x-editable Competency (custom type)
-     *
-     * @param host
-     * @returns {{value: {type: *, level: *, note: *}, params: Function, success: Function, sourceCompetencyTypes: Array, sourceCompetencyLevels: Array}}
-     */
-    function getCompetencyOptions(host) {
+    function getCompetencyLevelOptions(host) {
         return {
-            value: {
-                type: host.data('valueCompetencyType'),
-                level: host.data('valueCompetencyLevel'),
-                note: host.data('valueNote')
-            },
-            params: function(params) {
-                params.competencyPk = host.attr('data-competency-pk');
-                return params;
-            },
-            success: function(response, newValue) {
-//                host.closest('.data-row').find('.data-name').text('Phone (' + newValue.type +')');
-                host.attr('data-competency-pk', response.id);
-                host.attr( "id", "Phone" + response.id);
-            },
-            sourceCompetencyTypes: competencyTypes,
-            sourceCompetencyLevels: competencyLevels
+            value: 'ru',
+            typeahead: {
+                name: 'country',
+                local: [
+                    {value: 'ru', tokens: ['Russia']},
+                    {value: 'gb', tokens: ['Great Britain']},
+                    {value: 'us', tokens: ['United States']}
+                ],
+                template: function(item) {
+                    return item.tokens[0] + ' (' + item.value + ')';
+                }
+            }
         }
     }
+
+    function getCompetencyTypeOptions(host) {
+        return {
+            value: 'ru',
+            typeahead: {
+                name: 'country',
+                local: [
+                    {value: 'ru', tokens: ['Russia']},
+                    {value: 'gb', tokens: ['Great Britain']},
+                    {value: 'us', tokens: ['United States']}
+                ],
+                template: function(item) {
+                    return item.tokens[0] + ' (' + item.value + ')';
+                }
+            }
+        }
+    }
+
 });

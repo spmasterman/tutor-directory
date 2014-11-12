@@ -89,6 +89,8 @@ assetic:
                 - '@FitchFrontEndBundle/Resources/assets/js/dropzone.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/jquery.jcrop.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/jquery.simplecolorpicker.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/jquery.typeahead.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/typeaheadjs.js'
             filters: [?yui_js]
 
 # Doctrine Configuration

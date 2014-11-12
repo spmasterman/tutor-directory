@@ -7,22 +7,33 @@
                 </h3>
                 {% for competency in tutor.getCompetencies %}
                     <div class="data-row" data-id="{{ tutor.getId }}">
-                        <span class="data-name" style="background-color: {{ competency.getCompetencyLevel.getColor }}">{{ competency.getCompetencyLevel.getName }}</span>
-                                    <span class="data-value">
-                                        <a href="#" id="rate{{ competency.getId }}" class="inline-competency"
-                                           data-type="competency"
-                                           data-pk="{{ tutor.getId }}"
-                                           data-rate-pk="{{ competency.getId }}"
-                                           data-url="{{ path('tutor_ajax_update')}}"
-                                           data-title="Enter Competency Details"
-                                           data-value-competency-type="{{ competency.getCompetencyType.getId }}"
-                                           data-value-competency-level="{{ competency.getCompetencyLevel.getId }}"
-                                           data-value-note="{{ competency.getNote }}"
-                                                >{{ competency }}</a>
-                                    </span>
-                                    <span class="data-action">
-                                        <a href="#" data-pk="{{ competency.getId }}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
-                                    </span>
+                        <span class="data-name" style="background-color: {{ competency.getCompetencyLevel.getColor }}">
+                           <a href="#" id="competency-level{{ competency.getId }}" class="inline-competency-level"
+                              data-type="typeaheadjs"
+                              data-pk="{{ competency.getId }}"
+                              data-url="/post"
+                              data-title="Level of Competency"
+                                   >{{ competency.getCompetencyLevel.getName }}</a>
+                        </span>
+                        <span class="data-value">
+                            <a href="#" id="competency-type{{ competency.getId }}" class="inline-competency-type"
+                               data-type="typeaheadjs"
+                               data-pk="{{ competency.getId }}"
+                               data-url="/post"
+                               data-title="Competency"
+                                    >{{ competency.getCompetencyType.getName }}</a>
+                        </span>
+                        <span class="data-action">
+                            <a href="#" data-pk="{{ competency.getId }}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
+                        </span>
+                        <span class="data-note">
+                            <a href="#" id="competency-note{{ competency.getId }}" class="inline"
+                               data-type="textarea"
+                               data-pk="{{ competency.getId }}"
+                               data-url="/post"
+                               data-title="Note"
+                                    >{{ competency.getNote }}</a>
+                        </span>
                     </div>
                 {% endfor %}
             </div>
