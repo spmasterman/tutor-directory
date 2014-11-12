@@ -30,7 +30,7 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="FileType")
-     * @ORM\JoinColumn(name="file_type_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="file_type_id", referencedColumnName="id", onDelete="SET NULL")
      *
      * @var FileType
      */

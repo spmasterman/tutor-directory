@@ -83,7 +83,7 @@ class MenuBuilder extends ContainerAware
     {
         $menu
             ->addChild('Tutor Types', array('route' => 'tutor_type'))
-            ->setAttribute('icon', 'fa fa-tasks fa-fw')
+            ->setAttribute('icon', 'fa fa-child fa-fw')
         ;
 
         return $this;

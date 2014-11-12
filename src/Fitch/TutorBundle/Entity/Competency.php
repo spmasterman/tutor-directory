@@ -29,7 +29,7 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="CompetencyType")
-     * @ORM\JoinColumn(name="competency_type_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="competency_type_id", referencedColumnName="id", onDelete="SET NULL")
      *
      * @var CompetencyType
      */
@@ -37,7 +37,7 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="CompetencyLevel")
-     * @ORM\JoinColumn(name="competency_level_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="competency_level_id", referencedColumnName="id", onDelete="SET NULL")
      *
      * @var CompetencyLevel
      */
