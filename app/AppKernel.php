@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new Fitch\CommonBundle\FitchCommonBundle(),
             new Fitch\UserBundle\FitchUserBundle(),
             new Fitch\TutorBundle\FitchTutorBundle(),
-//            new Khepin\YamlFixturesBundle\KhepinYamlFixturesBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),

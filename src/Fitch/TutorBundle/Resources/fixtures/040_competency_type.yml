@@ -1,7 +1,3 @@
 Fitch\TutorBundle\Entity\CompetencyType:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
   type-{1..30}:
     name (unique): <competencyName()>

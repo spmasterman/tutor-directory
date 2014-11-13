@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\NoteVisibility:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
     visibility-all:
         name: All
         default: true

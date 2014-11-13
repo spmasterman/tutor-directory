@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\OperatingRegion:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
     region-gl:
         name: Global
         default: true

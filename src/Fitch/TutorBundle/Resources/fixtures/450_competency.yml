@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\Competency:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
     competency-{1..60}:
         competencyType: @type-*
         competencyLevel: @level-*

@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\Currency:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
   currency-AED:
     threeDigitCode: AED
     preferred: true

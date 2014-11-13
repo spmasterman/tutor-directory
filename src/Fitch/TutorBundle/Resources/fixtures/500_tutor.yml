@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\Tutor:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
     tutor-{1..60}:
         name (unique): <name()>
         tutorType: @tutor-type-*

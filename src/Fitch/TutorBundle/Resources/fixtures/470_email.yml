@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\Email:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
     email-{1..100}:
         type: <randomElement(['primary','other'])>
         address: <safeEmail()>

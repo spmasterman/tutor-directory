@@ -1,8 +1,4 @@
 Fitch\TutorBundle\Entity\Address:
-#tags: [ test, dev, prod ]
-#save_in_reverse: false
-#persistence: orm
-#fixtures:
     address-{1..100}:
         type: <randomElement(['Home', 'Office'])>
         streetPrimary: <streetAddress()>
