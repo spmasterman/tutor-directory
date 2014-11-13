@@ -7,7 +7,7 @@ application:
 
 home:
     title: Tutor Directory
-    tagline: a global resource for the Fitch faculty
+    tagline: a global faculty resource
 
 error:
     search_intro: You can also use search below to find the page you are looking for.
