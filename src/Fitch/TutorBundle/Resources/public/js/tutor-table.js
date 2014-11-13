@@ -1,14 +1,14 @@
-$(document).ready(function () {
+$(document).ready( function () {
 
     var tableContainer = $('#tutor_table');
 
     // Setup - add a text input to each footer cell
-    tableContainer.find('tfoot th').each(function() {
+    tableContainer.find('tfoot th').each( function () {
         var title = tableContainer.find('thead th').eq($(this).index()).text();
         if (title != ''){
             $(this).html( '<input type="text" class="form-control input-sm" placeholder="Search '+title+'" />' );
         }
-    });
+    } );
 
     // Create the table
     var table = tableContainer.DataTable({
@@ -52,8 +52,7 @@ $(document).ready(function () {
             header: "bootstrap",
             pageButton: "bootstrap"
         },
-        pagingType: "simple_numbers",
-        stateSave: true
+        pagingType: "simple_numbers"
     });
 
     // Add handlers to search the table on a column
@@ -104,6 +103,15 @@ $(document).ready(function () {
         }
     });
 
+    // Add handler to keyup in filter
+    var filter = $('.dataTables_filter input');
+    filter.keyup( function() {
+        tableContainer.find('td').removeHighlight();
+        if (filter.val() != "") {
+            tableContainer.find('td').highlight(filter.val());
+        }
+    });
+
     /**
      * Formatting function for sub-row
      *
@@ -112,7 +120,7 @@ $(document).ready(function () {
      */
     function format (data) {
         if (data.competency_details != null) {
-            var subTable = '<table class="table sub-table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
+            var subTable = '<table class="table sub-table">'
                 + '<tr><th>Competency</th><th>Level</th><th>Notes</th></tr>'
                 ,
                 rows = data.competency_details.split(' ~ '),
@@ -134,5 +142,4 @@ $(document).ready(function () {
             return "<p>There are no competencies setup for this tutor</p>"
         }
     }
-
-});
+} );
