@@ -76,6 +76,7 @@ class TutorManager extends BaseModelManager
      * @param CountryManager $countryManager
      * @param StatusManager $statusManager
      * @param OperatingRegionManager $operatingRegionManager
+     * @param TutorTypeManager $tutorTypeManager
      *
      * @return Tutor
      */
@@ -83,13 +84,15 @@ class TutorManager extends BaseModelManager
         AddressManager $addressManager,
         CountryManager $countryManager,
         StatusManager $statusManager,
-        OperatingRegionManager $operatingRegionManager
+        OperatingRegionManager $operatingRegionManager,
+        TutorTypeManager $tutorTypeManager
     ) {
         /** @var Tutor $tutor */
         $tutor = parent::createEntity();
         $this->createDefaultAddressIfRequired($tutor, $addressManager, $countryManager);
         $this->setDefaultRegion($tutor, $operatingRegionManager);
         $this->setDefaultStatus($tutor, $statusManager);
+        $this->setDefaultTutorType($tutor, $tutorTypeManager);
 
         return $tutor;
     }
@@ -100,7 +103,11 @@ class TutorManager extends BaseModelManager
      */
     public function setDefaultRegion(Tutor $tutor, OperatingRegionManager $operatingRegionManager)
     {
-        $tutor->setRegion($operatingRegionManager->findDefaultOperatingRegion());
+        $region = $operatingRegionManager->findDefaultOperatingRegion();
+        if ($region) {
+            $tutor->setRegion($region);
+            $tutor->setCurrency($region->getDefaultCurrency());
+        }
     }
 
     /**
@@ -110,6 +117,15 @@ class TutorManager extends BaseModelManager
     public function setDefaultStatus(Tutor $tutor, StatusManager $statusManager)
     {
         $tutor->setStatus($statusManager->findDefaultStatus());
+    }
+
+    /**
+     * @param Tutor $tutor
+     * @param TutorTypeManager $tutorTypeManager
+     */
+    public function setDefaultTutorType(Tutor $tutor, TutorTypeManager $tutorTypeManager)
+    {
+        $tutor->setTutorType($tutorTypeManager->findDefaultTutorType());
     }
 
     /**

@@ -13,6 +13,7 @@ class TestLoader extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
+            __DIR__ . '/../../Resources/fixtures/005_currency.yml',
             __DIR__ . '/../../Resources/fixtures/010_region.yml',
             __DIR__ . '/../../Resources/fixtures/020_country.yml',
             __DIR__ . '/../../Resources/fixtures/030_competency_level.yml',
@@ -20,7 +21,7 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/050_status.yml',
             __DIR__ . '/../../Resources/fixtures/060_tutor_type.yml',
             __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
-            __DIR__ . '/../../Resources/fixtures/080_currency.yml',
+
             __DIR__ . '/../../Resources/fixtures/090_filetypes.yml',
             __DIR__ . '/../../Resources/fixtures/450_competency.yml',
             __DIR__ . '/../../Resources/fixtures/460_rate.yml',

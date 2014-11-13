@@ -8,7 +8,7 @@ tutor:
         tagline: all tutors
     new:
         verb: NEW TUTOR
-        tagline: define a new tutur
+        tagline: define a new tutor
         success: The Tutor has been successfully created.
     show:
         verb: TUTOR
