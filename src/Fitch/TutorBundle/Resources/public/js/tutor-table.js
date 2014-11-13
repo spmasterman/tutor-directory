@@ -52,7 +52,11 @@ $(document).ready( function () {
             header: "bootstrap",
             pageButton: "bootstrap"
         },
-        pagingType: "simple_numbers"
+        lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        pagingType: "simple_numbers",
+        drawCallback: function() {
+            applyHighlight(tableContainer.find('td'))
+        }
     });
 
     // Add handlers to search the table on a column
@@ -70,15 +74,15 @@ $(document).ready( function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
-        if ( row.child.isShown() ) {
+        if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
             tr.removeClass('shown');
-        }
-        else {
+        } else {
             // Open this row
             row.child(format(row.data())).show();
             tr.addClass('shown');
+            applyHighlight(row.child());
         }
     });
 
@@ -103,14 +107,13 @@ $(document).ready( function () {
         }
     });
 
-    // Add handler to keyup in filter
-    var filter = $('.dataTables_filter input');
-    filter.keyup( function() {
-        tableContainer.find('td').removeHighlight();
+    function applyHighlight(selector) {
+        var filter = $('.dataTables_filter input');
+        selector.removeHighlight();
         if (filter.val() != "") {
-            tableContainer.find('td').highlight(filter.val());
+            selector.highlight(filter.val());
         }
-    });
+    }
 
     /**
      * Formatting function for sub-row

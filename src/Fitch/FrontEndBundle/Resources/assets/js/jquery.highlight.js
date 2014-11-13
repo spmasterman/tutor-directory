@@ -1,20 +1,4 @@
-/*
-
- highlight v4
-
- Highlights arbitrary terms.
-
- <http://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-jquery-plugin.html>
-
- MIT license.
-
- Johann Burkard
- <http://johannburkard.de>
- <mailto:jb@eaio.com>
-
- */
-
-jQuery.fn.highlight = function(pat) {
+$.fn.highlight = function(pat) {
     function innerHighlight(node, pat) {
         var skip = 0;
         if (node.nodeType == 3) {
@@ -42,7 +26,7 @@ jQuery.fn.highlight = function(pat) {
     }) : this;
 };
 
-jQuery.fn.removeHighlight = function() {
+$.fn.removeHighlight = function() {
     return this.find("span.highlight").each(function() {
         this.parentNode.firstChild.nodeName;
         with (this.parentNode) {
