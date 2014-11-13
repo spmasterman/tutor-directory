@@ -21,15 +21,14 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/050_status.yml',
             __DIR__ . '/../../Resources/fixtures/060_tutor_type.yml',
             __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
-
             __DIR__ . '/../../Resources/fixtures/090_filetypes.yml',
             __DIR__ . '/../../Resources/fixtures/450_competency.yml',
             __DIR__ . '/../../Resources/fixtures/460_rate.yml',
             __DIR__ . '/../../Resources/fixtures/470_email.yml',
             __DIR__ . '/../../Resources/fixtures/480_phone.yml',
             __DIR__ . '/../../Resources/fixtures/490_address.yml',
+            __DIR__ . '/../../Resources/fixtures/495_note.yml',
             __DIR__ . '/../../Resources/fixtures/500_tutor.yml',
-
         );
     }
 

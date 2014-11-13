@@ -12,3 +12,4 @@ Fitch\TutorBundle\Entity\Tutor:
         region: @region-*
         currency: @currency-*
         rates (unique): <numberBetween(2, 5)>x @rate-*
+        notes (unique): <numberBetween(0, 2)>x @note-*
