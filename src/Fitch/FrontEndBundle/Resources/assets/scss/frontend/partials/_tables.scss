@@ -52,6 +52,20 @@ table.dataTable {
   .filterMatches {
     background-color: #BFFF00
   }
+
+  .sub-table {
+    td {
+      &:nth-child(1) {
+        width:20%;
+      }
+      &:nth-child(2) {
+        width:20%;
+      }
+      &:nth-child(3) {
+        width:60%;
+      }
+    }
+  }
 }
 
 .dataTables_length {

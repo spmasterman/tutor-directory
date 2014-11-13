@@ -112,7 +112,7 @@ $(document).ready( function () {
      */
     function format (data) {
         if (data.competency_details != null) {
-            var subTable = '<table class="table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
+            var subTable = '<table class="table sub-table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
                 + '<tr><th>Competency</th><th>Level</th><th>Notes</th></tr>'
                 ,
                 rows = data.competency_details.split(' ~ '),
