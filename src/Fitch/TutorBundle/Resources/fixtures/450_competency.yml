@@ -1,4 +1,4 @@
 Fitch\TutorBundle\Entity\Competency:
-    competency-{1..60}:
+    competency-{1..600}:
         competencyType: @type-*
         competencyLevel: @level-*

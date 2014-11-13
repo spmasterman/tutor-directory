@@ -41,10 +41,12 @@ class TestLoader extends DataFixtureLoader
             'Forex',
             'Lifecycle',
             'Equity',
+            'Equity & Option',
+            'Derivative',
             'Fixed Income',
             'European',
             'Accounting',
-            'BackOffice',
+            'Back Office',
             'Mission Critical',
             'Business',
             'Banking',
@@ -53,15 +55,17 @@ class TestLoader extends DataFixtureLoader
 
         $secondWords = [
             'Trade',
-            'Statement',
+            'Statement Preparation',
+            'Statement Analysis',
             'Analysis',
-            'Trade',
+            'Trading',
             'Management',
             'Reporting',
             'Human Resources',
             'Ethics',
             'Auditing',
             'Compliance',
+            'Assessment',
         ];
 
         return $firstWords[array_rand($firstWords)] .' '. $secondWords[array_rand($secondWords)];
