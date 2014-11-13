@@ -1,20 +1,23 @@
 $(document).ready( function () {
 
+    var tableContainer = $('#tutor_table');
+
     // Setup - add a text input to each footer cell
-    $('#tutor_table tfoot th').each( function () {
-        var title = $('#tutor_table thead th').eq( $(this).index() ).text();
+    tableContainer.find('tfoot th').each( function () {
+        var title = tableContainer.find('thead th').eq($(this).index()).text();
         if (title != ''){
             $(this).html( '<input type="text" class="form-control input-sm" placeholder="Search '+title+'" />' );
         }
     } );
 
-    var table = $('#tutor_table').DataTable({
+    // Create the table
+    var table = tableContainer.DataTable({
         "ajax": Routing.generate('all_tutors'),
         "columns": [
             {
-                "class":          'details-control',
-                "orderable":      false,
-                "data":           null,
+                "class": 'details-control',
+                "orderable": false,
+                "data": null,
                 "defaultContent": '',
                 "width": "4%"
             },
@@ -26,13 +29,19 @@ $(document).ready( function () {
         ],
         "columnDefs": [
             {
-                "targets": [ 1 ],
-                "render": function ( data, type, full, meta ) {
+                "targets": [1],
+                /**
+                 * @param data
+                 * @param type
+                 * @param {{fullname: string}} full
+                 * @returns {string}
+                 */
+                "render": function(data, type, full/*, meta*/) {
                     return '<a href="' + Routing.generate('tutor_profile',{id: full.id}) + '">'+full.fullname+'</a>';
                 }
             },
             {
-                "targets": [ 5 ],
+                "targets": [5],
                 "visible": false,
                 "searchable": true
             }
@@ -57,9 +66,9 @@ $(document).ready( function () {
     } );
 
     // Add event listener for opening and closing details
-    $('#tutor_table tbody').on('click', 'td.details-control', function () {
+    tableContainer.find('tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
-        var row = table.row( tr );
+        var row = table.row(tr);
 
         if ( row.child.isShown() ) {
             // This row is already open - close it
@@ -68,19 +77,45 @@ $(document).ready( function () {
         }
         else {
             // Open this row
-            row.child( format(row.data()) ).show();
+            row.child(format(row.data())).show();
             tr.addClass('shown');
         }
-    } );
+    });
 
-    /* Formatting function for sub-row */
-    function format ( d ) {
-        // `d` is the original data object for the row
-        if (d.competency_details != null) {
+    // Add handler for opening closing ALL rows
+    tableContainer.on('click', '#open-all', function(){
+        if ($(this).hasClass('fa-plus-square')) {
+            $(this).removeClass('fa-plus-square');
+            $(this).addClass('fa-minus-square');
+            tableContainer.find('tr').each(function(){
+                if (!$(this).hasClass('shown')) {
+                    $(this).find('td.details-control').trigger('click');
+                }
+            });
+        } else {
+            $(this).removeClass('fa-minus-square');
+            $(this).addClass('fa-plus-square');
+            tableContainer.find('tr').each(function(){
+                if ($(this).hasClass('shown')) {
+                    $(this).find('td.details-control').trigger('click');
+                }
+            });
+        }
+    });
+
+
+    /**
+     * Formatting function for sub-row
+     *
+     * @param {{competency_details: string|null}} data
+     * @returns {string}
+     */
+    function format (data) {
+        if (data.competency_details != null) {
             var subTable = '<table class="table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
                 + '<tr><th>Competency</th><th>Level</th><th>Notes</th></tr>'
                 ,
-                rows = d.competency_details.split(' ~ '),
+                rows = data.competency_details.split(' ~ '),
                 fields,
                 rowIndex,
                 fieldIndex;
@@ -88,8 +123,8 @@ $(document).ready( function () {
             for (rowIndex = 0; rowIndex < rows.length; ++rowIndex) {
                 subTable += '<tr>';
                 fields = rows[rowIndex].split('|');
-                for (fieldsIndex = 0; fieldsIndex < fields.length; ++fieldsIndex) {
-                    subTable += '<td>' + fields[fieldsIndex] + '</td>'
+                for (fieldIndex = 0; fieldIndex < fields.length; ++fieldIndex) {
+                    subTable += '<td>' + fields[fieldIndex] + '</td>'
                 }
                 subTable += '</tr>';
             }

@@ -41,12 +41,12 @@ table.dataTable {
   }
   td.details-control:before {
     font-family: FontAwesome;
-    content: $fa-var-caret-right;
+    content: $fa-var-plus-square-o;
     cursor: pointer;
   }
   tr.shown td.details-control:before {
     font-family: FontAwesome;
-    content: $fa-var-caret-down;
+    content: $fa-var-minus-square-o;
   }
 
   .filterMatches {

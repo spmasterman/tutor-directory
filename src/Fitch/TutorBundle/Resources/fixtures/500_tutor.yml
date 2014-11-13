@@ -8,7 +8,7 @@ Fitch\TutorBundle\Entity\Tutor:
         addresses (unique): <numberBetween(1, 3)>x @address-*
         phoneNumbers (unique): <numberBetween(1, 3)>x @phone-*
         emailAddresses (unique): <numberBetween(1, 3)>x @email-*
-        competencies: 90%? <numberBetween(2, 6)>x @competency-*
+        competencies (unique): <numberBetween(1, 6)>x @competency-*
         region: @region-*
         currency: @currency-*
         rates (unique): <numberBetween(2, 5)>x @rate-*
