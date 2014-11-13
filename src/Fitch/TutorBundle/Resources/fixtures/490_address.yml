@@ -2,7 +2,7 @@ Fitch\TutorBundle\Entity\Address:
     address-{1..1000}:
         type: <randomElement(['Home', 'Office'])>
         streetPrimary: <streetAddress()>
-        streetSecondary: 10%?<secondaryAddress()>
+        streetSecondary: 10%? <secondaryAddress()>
         city: <city()>
         state: <state()>
         zip: <postcode()>

@@ -26,6 +26,12 @@ $(document).ready( function () {
         ],
         "columnDefs": [
             {
+                "targets": [ 1 ],
+                "render": function ( data, type, full, meta ) {
+                    return '<a href="' + Routing.generate('tutor_profile',{id: full.id}) + '">'+full.fullname+'</a>';
+                }
+            },
+            {
                 "targets": [ 5 ],
                 "visible": false,
                 "searchable": true

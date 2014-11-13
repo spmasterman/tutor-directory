@@ -48,6 +48,10 @@ table.dataTable {
     font-family: FontAwesome;
     content: $fa-var-caret-down;
   }
+
+  .filterMatches {
+    background-color: #BFFF00
+  }
 }
 
 .dataTables_length {

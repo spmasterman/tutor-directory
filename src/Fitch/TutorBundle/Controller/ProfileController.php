@@ -40,7 +40,7 @@ class ProfileController extends Controller
     /**
      * Finds and displays a Tutor entity.
      *
-     * @Route("/{id}/{tab}", requirements={"id" = "\d+"}, name="tutor_profile")
+     * @Route("/{id}/{tab}", requirements={"id" = "\d+"}, name="tutor_profile", options={"expose"=true})
      * @Method("GET")
      * @Template()
      *
