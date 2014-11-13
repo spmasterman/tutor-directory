@@ -55,7 +55,7 @@ $(document).ready( function () {
         lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         pagingType: "simple_numbers",
         drawCallback: function() {
-            applyHighlight(tableContainer.find('td'))
+            applyHighlight(tableContainer)
         }
     });
 
@@ -109,9 +109,9 @@ $(document).ready( function () {
 
     function applyHighlight(selector) {
         var filter = $('.dataTables_filter input');
-        selector.removeHighlight();
+        selector.unhighlight();
         if (filter.val() != "") {
-            selector.highlight(filter.val());
+            selector.highlight(filter.val().split(" "));
         }
     }
 
