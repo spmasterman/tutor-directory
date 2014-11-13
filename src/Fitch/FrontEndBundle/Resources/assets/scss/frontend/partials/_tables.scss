@@ -67,6 +67,15 @@ table.dataTable {
       &:nth-child(3) {
         width:50%;
       }
+
+      border-top: none;
+      border-bottom: none;
+    }
+
+    th {
+      border-top: none;
+      border-bottom: 1px dotted #CCCCCC;
+
     }
   }
 }

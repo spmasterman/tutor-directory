@@ -24,8 +24,9 @@ $(document).ready( function () {
             { data: "fullname", width: "24%" },
             { data: "ttype", width: "24%" },
             { data: "region", width: "24%" },
-            { data: "status" },
-            { data: "competency_details" }
+            { data: "status"},
+            { data: "competency_details" },
+            { data: "search_dump" }
         ],
         columnDefs: [
             {
@@ -41,7 +42,7 @@ $(document).ready( function () {
                 }
             },
             {
-                targets: [5],
+                targets: [5, 6],
                 visible: false,
                 searchable: true
             }
@@ -60,14 +61,14 @@ $(document).ready( function () {
     });
 
     // Add handlers to search the table on a column
-    table.columns().eq(0).each(function(colIdx) {
+    table.columns().flatten().each(function(colIdx) {
         $('input', table.column(colIdx).footer()).on('keyup change', function() {
             table
                 .column(colIdx)
                 .search(this.value)
                 .draw();
-        } );
-    } );
+        });
+    });
 
     // Add event listener for opening and closing details
     tableContainer.find('tbody').on('click', 'td.details-control', function () {
