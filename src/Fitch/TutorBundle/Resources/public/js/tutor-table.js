@@ -1,58 +1,59 @@
-$(document).ready( function () {
+$(document).ready(function () {
 
     var tableContainer = $('#tutor_table');
 
     // Setup - add a text input to each footer cell
-    tableContainer.find('tfoot th').each( function () {
+    tableContainer.find('tfoot th').each(function() {
         var title = tableContainer.find('thead th').eq($(this).index()).text();
         if (title != ''){
             $(this).html( '<input type="text" class="form-control input-sm" placeholder="Search '+title+'" />' );
         }
-    } );
+    });
 
     // Create the table
     var table = tableContainer.DataTable({
-        "ajax": Routing.generate('all_tutors'),
-        "columns": [
+        ajax: Routing.generate('all_tutors'),
+        columns: [
             {
-                "class": 'details-control',
-                "orderable": false,
-                "data": null,
-                "defaultContent": '',
-                "width": "4%"
+                class: 'details-control',
+                orderable: false,
+                data: null,
+                defaultContent: '',
+                width: "4%"
             },
-            { "data": "fullname", "width": "24%" },
-            { "data": "ttype", "width": "24%" },
-            { "data": "region", "width": "24%" },
-            { "data": "status" },
-            { "data": "competency_details" }
+            { data: "fullname", width: "24%" },
+            { data: "ttype", width: "24%" },
+            { data: "region", width: "24%" },
+            { data: "status" },
+            { data: "competency_details" }
         ],
-        "columnDefs": [
+        columnDefs: [
             {
-                "targets": [1],
+                targets: [1],
                 /**
                  * @param data
                  * @param type
                  * @param {{fullname: string}} full
                  * @returns {string}
                  */
-                "render": function(data, type, full/*, meta*/) {
+                render: function(data, type, full/*, meta*/) {
                     return '<a href="' + Routing.generate('tutor_profile',{id: full.id}) + '">'+full.fullname+'</a>';
                 }
             },
             {
-                "targets": [5],
-                "visible": false,
-                "searchable": true
+                targets: [5],
+                visible: false,
+                searchable: true
             }
         ],
-        "order": [[1, 'asc']],
+        order: [[1, 'asc']],
         dom: "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
         renderer: {
-            "header": "bootstrap",
-            "pageButton": "bootstrap"
+            header: "bootstrap",
+            pageButton: "bootstrap"
         },
-        "pagingType": "simple_numbers"
+        pagingType: "simple_numbers",
+        stateSave: true
     });
 
     // Add handlers to search the table on a column
@@ -103,7 +104,6 @@ $(document).ready( function () {
         }
     });
 
-
     /**
      * Formatting function for sub-row
      *
@@ -135,4 +135,4 @@ $(document).ready( function () {
         }
     }
 
-} );
+});
