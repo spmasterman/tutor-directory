@@ -23,10 +23,9 @@ class TutorRepository extends EntityRepository
               tutor_type.name AS ttype,
               region.name AS region,
               status.name AS status,
-              GROUP_CONCAT(competency_type.name SEPARATOR ', ') AS competency,
               GROUP_CONCAT(
-                CONCAT_WS(competency_type.name, competency_level.name, competency.note)
-              ) AS competency_search
+                  CONCAT(competency_type.name, '|' ,competency_level.name, '|',IFNULL(competency.note,''))
+              SEPARATOR ' ~ ') AS competency_details
             FROM tutor
             JOIN status ON status.id = tutor.status_id
             JOIN region ON region.id = tutor.region_id

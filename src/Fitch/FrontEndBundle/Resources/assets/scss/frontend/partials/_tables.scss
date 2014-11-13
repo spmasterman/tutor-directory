@@ -39,6 +39,15 @@ table.dataTable {
     box-sizing: border-box;
     font-weight: normal;
   }
+  td.details-control:before {
+    font-family: FontAwesome;
+    content: $fa-var-caret-right;
+    cursor: pointer;
+  }
+  tr.shown td.details-control:before {
+    font-family: FontAwesome;
+    content: $fa-var-caret-down;
+  }
 }
 
 .dataTables_length {
