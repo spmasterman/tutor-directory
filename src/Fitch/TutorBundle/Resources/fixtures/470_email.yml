@@ -1,14 +1,8 @@
-model: Fitch\TutorBundle\Entity\Email
-tags: [ test, dev, prod ]
-save_in_reverse: false
-persistence: orm
-fixtures:
-    email-shaun-primary:
-        type: primary
-        address: shaun@masterman.com
-    email-shaun-other_1:
-        type: other
-        address: shaun@southbase.com
-    email-shaun-other_2:
-        type: other
-        address: shaun.masterman@gmail.com
+Fitch\TutorBundle\Entity\Email:
+#tags: [ test, dev, prod ]
+#save_in_reverse: false
+#persistence: orm
+#fixtures:
+    email-{1..100}:
+        type: <randomElement(['primary','other'])>
+        address: <safeEmail()>

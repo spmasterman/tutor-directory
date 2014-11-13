@@ -30,11 +30,12 @@
         "twbs/bootstrap-sass": "*",
         "FortAwesome/Font-Awesome": "*",
         "digitalnature/php-ref": "dev-master",
-        "khepin/yaml-fixtures-bundle": "~0.8.1",
+        //"khepin/yaml-fixtures-bundle": "~0.8.1",
         "oneup/uploader-bundle": "~1.3",
         "knplabs/knp-gaufrette-bundle": "0.1.*",
         "exercise/htmlpurifier-bundle": "*",
-        "datatables/datatables": "1.10.4"
+        "datatables/datatables": "1.10.4",
+        "hautelook/alice-bundle": "~0.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

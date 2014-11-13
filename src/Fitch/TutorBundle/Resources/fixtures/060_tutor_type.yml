@@ -1,8 +1,8 @@
-model: Fitch\TutorBundle\Entity\TutorType
-tags: [ test, dev, prod ]
-save_in_reverse: false
-persistence: orm
-fixtures:
+Fitch\TutorBundle\Entity\TutorType:
+#tags: [ test, dev, prod ]
+#save_in_reverse: false
+#persistence: orm
+#fixtures:
     tutor-type-unspecified:
         name: Unspecified
         default: true

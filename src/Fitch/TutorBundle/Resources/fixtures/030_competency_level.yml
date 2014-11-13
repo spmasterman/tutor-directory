@@ -1,8 +1,8 @@
-model: Fitch\TutorBundle\Entity\CompetencyLevel
-tags: [ test, dev, prod ]
-save_in_reverse: false
-persistence: orm
-fixtures:
+Fitch\TutorBundle\Entity\CompetencyLevel:
+#tags: [ test, dev, prod ]
+#save_in_reverse: false
+#persistence: orm
+#fixtures:
   level-intern:
     name: Intern
     color: '#8abfda'

@@ -22,7 +22,7 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="notes")
-     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id", onDelete="CASCADE")
      *
      * @var Tutor
      */
@@ -44,7 +44,7 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitch\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", onDelete="SET NULL")
      *
      * @var User
      */

@@ -55,6 +55,7 @@ assetic:
             inputs:
 #                - '%kernel.root_dir%/../components/moment/moment.js'
                 - '%kernel.root_dir%/../vendor/datatables/datatables/media/js/jquery.dataTables.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/dataTables.bootstrap.js'
             filters: [?yui_js]
         jqueryui_js:
             inputs:
@@ -133,10 +134,10 @@ stof_doctrine_extensions:
             tree: true
             timestampable: true
 
-khepin_yaml_fixtures:
-    directory: Resources/fixtures
-    resources:
-        - FitchTutorBundle
+#khepin_yaml_fixtures:
+#    directory: Resources/fixtures
+#    resources:
+#        - FitchTutorBundle
 
 oneup_uploader:
     mappings:

@@ -1,12 +1,8 @@
-model: Fitch\TutorBundle\Entity\Competency
-tags: [ test, dev, prod ]
-save_in_reverse: false
-persistence: orm
-fixtures:
-    competency-1:
-        competencyType: type-1
-        competencyLevel: level-intern
-        note: Taught this in 'Nam, back in sixty eight. Brutal man.
-    competency-2:
-        competencyType: type-33
-        competencyLevel: level-practitioner
+Fitch\TutorBundle\Entity\Competency:
+#tags: [ test, dev, prod ]
+#save_in_reverse: false
+#persistence: orm
+#fixtures:
+    competency-{1..60}:
+        competencyType: @type-*
+        competencyLevel: @level-*

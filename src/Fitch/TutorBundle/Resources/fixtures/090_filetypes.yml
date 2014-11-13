@@ -1,8 +1,8 @@
-model: Fitch\TutorBundle\Entity\FileType
-tags: [ test, dev, prod ]
-save_in_reverse: false
-persistence: orm
-fixtures:
+Fitch\TutorBundle\Entity\FileType:
+#tags: [ test, dev, prod ]
+#save_in_reverse: false
+#persistence: orm
+#fixtures:
     filetype-unknown:
         name: Unspecified
         default: true
