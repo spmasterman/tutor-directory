@@ -2,6 +2,7 @@
 {% if profile %}
     <img id="avatar" src="{{ path('get_file_as_avatar', { 'id':profile.getId }) }}" alt="Profile Picture"/>
     <br/>
+    {% if editor %}
     <a href="#" id="crop-zoom" class="btn btn-default btn-xs"
        data-id="{{ profile.getId }}"
        data-crop-x="{{ profile.getCropX }}"
@@ -9,4 +10,5 @@
        data-crop-height="{{ profile.getCropHeight }}"
        data-crop-width="{{ profile.getCropWidth }}"
     ><i class="fa fa-crop"></i> Crop/Zoom Image</a>
+    {% endif %}
 {% endif %}
