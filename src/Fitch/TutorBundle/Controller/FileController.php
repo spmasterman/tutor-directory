@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * File controller
  *
- * @Route("/editor/file")
+
  */
 class FileController extends Controller
 {
@@ -36,7 +36,7 @@ class FileController extends Controller
      * Updates a (simple) field on a file record
      *
      * @Route(
-     *      "/update",
+     *      "/editor/file/update",
      *      name="file_ajax_update",
      *      options={"expose"=true},
      *      condition="
@@ -184,7 +184,7 @@ class FileController extends Controller
      * Updates the CropInfo for a file record
      *
      * @Route(
-     *      "/crop",
+     *      "/editor/file/crop",
      *      name="file_ajax_crop",
      *      options={"expose"=true},
      *      condition="
@@ -268,7 +268,7 @@ class FileController extends Controller
 
     /**
      * @Route(
-     *      "/remove",
+     *      "/editor/file/remove",
      *      name="file_ajax_remove",
      *      options={"expose"=true},
      *      condition="
