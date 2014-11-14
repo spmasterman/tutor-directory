@@ -18,10 +18,9 @@
 		<div class="bottom">
 			<div class="container">
 				<div class="row">
-					<!-- left sidebar -->
+                    {% set showSidebar = is_granted('ROLE_ADMIN') %}
+                    {% if showSidebar %}
 					<div class="col-md-2 left-sidebar">
-
-						<!-- main-nav -->
                         <nav class="main-nav">
                             {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:sidebarMenu', {
                                 'currentClass' : 'active',
@@ -30,22 +29,19 @@
                                 'depth' : 2
                             }) }}
                         </nav>
-						<!-- /main-nav -->
 
 						<div class="sidebar-minified js-toggle-minified">
 							<i class="fa fa-angle-left"></i>
 						</div>
 
-						<!-- sidebar content -->
                         {% block sidebar_content %}
                         {% endblock %}
-						<!-- end sidebar content -->
 					</div>
-					<!-- end left sidebar -->
+                    {% endif %}
 
-					<!-- content-wrapper -->
-					<div class="col-md-10 content-wrapper">
-						<div class="row">
+                    <!-- content-wrapper -->
+					<div class="{% if showSidebar %}col-md-10{% else %}col-md-12{% endif %} content-wrapper">
+                    	<div class="row">
                             <div class="col-md-4">
                                 {% block breadcrumb %}
                                     {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:breadcrumbMenu', {
