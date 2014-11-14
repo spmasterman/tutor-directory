@@ -17,7 +17,7 @@ use Fitch\TutorBundle\Form\Type\CountryType;
  *
  * As a design decision we don't use the entity manager here, but perform all work through the ModelManager class
  *
- * @Route("/country")
+ * @Route("/admin/country")
  */
 class CountryController extends Controller
 {
@@ -274,26 +274,6 @@ class CountryController extends Controller
                 )])
             ->getForm()
         ;
-    }
-
-    /**
-     * Returns the countries as a JSON Array
-     *
-     * @Route("/all", name="all_countries", options={"expose"=true})
-     * @Method("GET")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function allAction(){
-        $out = [];
-        foreach($this->getCountryManager()->findAllSorted() as $country) {
-            $out[] = [
-                'value' => $country->getId(),
-                'text' => $country->getName(),
-                'dialingCode' => $country->getDialingCode()
-            ];
-        }
-        return new JsonResponse($out);
     }
 
     /**

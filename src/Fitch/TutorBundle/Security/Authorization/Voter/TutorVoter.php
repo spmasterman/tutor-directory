@@ -26,10 +26,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class TutorVoter implements VoterInterface
 {
-    const VIEW = 'view';
-    const LIMITED_EDIT = 'edit';
-    const FULL_EDIT = 'all';
-
     /** @var  RoleHierarchy */
     private $rh;
 
@@ -40,9 +36,9 @@ class TutorVoter implements VoterInterface
     public function supportsAttribute($attribute)
     {
         return in_array($attribute, array(
-            self::VIEW,
-            self::LIMITED_EDIT,
-            self::FULL_EDIT,
+            Tutor::ACCESS_LEVEL_VIEW,
+            Tutor::ACCESS_LEVEL_LIMITED_EDIT,
+            Tutor::ACCESS_LEVEL_FULL_EDIT,
         ));
     }
 
@@ -91,15 +87,15 @@ class TutorVoter implements VoterInterface
         }
 
         switch($attribute) {
-            case self::VIEW:
+            case Tutor::ACCESS_LEVEL_VIEW:
                 return VoterInterface::ACCESS_GRANTED;
                 break;
-            case self::LIMITED_EDIT:
+            case Tutor::ACCESS_LEVEL_LIMITED_EDIT:
                 if ($this->userHasRole($user, 'ROLE_EDITOR')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
                 break;
-            case self::FULL_EDIT:
+            case Tutor::ACCESS_LEVEL_FULL_EDIT:
                 if ($this->userHasRole($user, 'ROLE_ADMIN')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }

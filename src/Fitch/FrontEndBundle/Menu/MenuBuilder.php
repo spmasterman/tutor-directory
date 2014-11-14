@@ -8,6 +8,11 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class MenuBuilder extends ContainerAware
 {
+    /**
+     * @param FactoryInterface $factory
+     * @param array $options
+     * @return ItemInterface
+     */
     public function sidebarMenu(FactoryInterface $factory, array $options)
     {
 
@@ -31,7 +36,11 @@ class MenuBuilder extends ContainerAware
         return $menu;
     }
 
-
+    /**
+     * @param FactoryInterface $factory
+     * @param array $options
+     * @return ItemInterface
+     */
     public function breadcrumbMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory
@@ -58,6 +67,11 @@ class MenuBuilder extends ContainerAware
         return $menu;
     }
 
+    /**
+     * @param FactoryInterface $factory
+     * @param array $options
+     * @return ItemInterface
+     */
     public function userMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root')

@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * File controller
  *
- * @Route("/file")
+ * @Route("/editor/file")
  */
 class FileController extends Controller
 {

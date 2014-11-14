@@ -1,0 +1,7 @@
+<p class="data-row" data-id="{{ file.getId }}">
+    <span class="data-name">{{ file.getName }}</span>
+    <span class="data-value">{{ file.getFileType }}</span>
+    <span class="details-holder">
+        {% include 'FitchTutorBundle:Profile:file_row_inner.html.twig' %}
+    </span>
+</p>

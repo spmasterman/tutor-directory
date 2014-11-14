@@ -15,7 +15,7 @@ use Fitch\TutorBundle\Form\Type\OperatingRegionType;
 /**
  * OperatingRegion controller.
  *
- * @Route("/region")
+ * @Route("/admin/region")
  */
 class OperatingRegionController extends Controller
 {

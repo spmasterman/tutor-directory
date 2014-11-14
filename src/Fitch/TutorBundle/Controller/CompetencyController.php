@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Competency controller
  *
- * @Route("/competency")
+ * @Route("/editor/competency")
  */
 class CompetencyController extends Controller
 {

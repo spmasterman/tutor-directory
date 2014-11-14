@@ -41,11 +41,13 @@
             </table>
         </div>
     </div>
+    {%  if (is_granted('ROLE_EDITOR')) %}
     <div class="record_actions well">
         <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
             <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
         </a>
     </div>
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}

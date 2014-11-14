@@ -17,7 +17,7 @@ use Fitch\TutorBundle\Form\Type\StatusType;
  *
  * As a design decision we don't use the entity manager here, but perform all work through the ModelManager class
  *
- * @Route("/status")
+ * @Route("/admin/status")
  */
 class StatusController extends Controller
 {

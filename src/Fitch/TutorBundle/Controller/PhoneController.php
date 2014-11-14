@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Phone controller
  *
- * @Route("/phone")
+ * @Route("/editor/phone")
  */
 class PhoneController extends Controller
 {

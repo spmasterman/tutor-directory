@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Email controller
  *
- * @Route("/email")
+ * @Route("/editor/email")
  */
 class EmailController extends Controller
 {

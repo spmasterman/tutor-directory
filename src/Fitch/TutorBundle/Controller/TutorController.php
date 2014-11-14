@@ -28,68 +28,6 @@ class TutorController extends Controller
 {
 
     /**
-     * TEST
-     *
-     * @Route("/sec/user/{id}", name="test_user")
-     * @Method("GET")
-     * @Template()
-     * @param Tutor $tutor
-     * @throws AccessDeniedException
-     * @return array
-     */
-    public function testUserAction(Tutor $tutor)
-    {
-        // keep in mind, this will call all registered security voters
-        if (false === $this->get('security.context')->isGranted(TutorVoter::VIEW, $tutor)) {
-            throw new AccessDeniedException('Unauthorised access!');
-        }
-
-        return [];
-    }
-
-    /**
-     * TEST
-     *
-     * @Route("/sec/editor/{id}", name="test_editor")
-     * @Method("GET")
-     * @Template()
-     * @param Tutor $tutor
-     * @throws AccessDeniedException
-     * @return array
-     */
-    public function testEditorAction(Tutor $tutor)
-    {
-        // keep in mind, this will call all registered security voters
-        if (false === $this->get('security.context')->isGranted(TutorVoter::LIMITED_EDIT, $tutor)) {
-            throw new AccessDeniedException('Unauthorised access!');
-        }
-
-        return [];
-    }
-
-    /**
-     * TEST
-     *
-     * @Route("/sec/admin/{id}", name="test_admin")
-     * @Method("GET")
-     * @Template()
-     * @param Tutor $tutor
-     * @throws AccessDeniedException
-     * @return array
-     */
-    public function testAdminAction(Tutor $tutor)
-    {
-        // keep in mind, this will call all registered security voters
-        if (false === $this->get('security.context')->isGranted(TutorVoter::FULL_EDIT, $tutor)) {
-            throw new AccessDeniedException('Unauthorised access!');
-        }
-
-        return [];
-    }
-
-
-
-    /**
      * Lists all Tutor entities.
      *
      * @Route("", name="home")
@@ -128,6 +66,10 @@ class TutorController extends Controller
      */
     public function createAction(Request $request)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_EDITOR')) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
         $tutorManager = $this->getTutorManager();
 
         $tutor = $tutorManager->createTutor(
@@ -192,6 +134,10 @@ class TutorController extends Controller
      */
     public function newAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_EDITOR')) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
         $tutor = $this->getTutorManager()->createTutor(
             $this->getAddressManager(),
             $this->getCountryManager(),

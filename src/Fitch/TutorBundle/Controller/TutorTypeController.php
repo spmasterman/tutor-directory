@@ -15,7 +15,7 @@ use Fitch\TutorBundle\Form\Type\TutorTypeType;
 /**
  * TutorType controller.
  *
- * @Route("/type/tutor")
+ * @Route("/admin/type/tutor")
  */
 class TutorTypeController extends Controller
 {

@@ -208,6 +208,26 @@ class ProfileController extends Controller
     }
 
     /**
+     * Returns the countries as a JSON Array
+     *
+     * @Route("/all/countries", name="all_countries", options={"expose"=true})
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function allCountriesAction(){
+        $out = [];
+        foreach($this->getCountryManager()->findAllSorted() as $country) {
+            $out[] = [
+                'value' => $country->getId(),
+                'text' => $country->getName(),
+                'dialingCode' => $country->getDialingCode()
+            ];
+        }
+        return new JsonResponse($out);
+    }
+
+    /**
      * @return CountryManager
      */
     private function getCountryManager()
