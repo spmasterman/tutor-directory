@@ -10,10 +10,12 @@ use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Fitch\TutorBundle\Model\TutorTypeManager;
+use Fitch\TutorBundle\Security\Authorization\Voter\TutorVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +28,69 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TutorController extends Controller
 {
+
+    /**
+     * TEST
+     *
+     * @Route("/sec/user/{id}", name="test_user")
+     * @Method("GET")
+     * @Template()
+     * @param Tutor $tutor
+     * @throws AccessDeniedException
+     * @return array
+     */
+    public function testUserAction(Tutor $tutor)
+    {
+        // keep in mind, this will call all registered security voters
+        if (false === $this->get('security.context')->isGranted(TutorVoter::VIEW, $tutor)) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
+        return [];
+    }
+
+    /**
+     * TEST
+     *
+     * @Route("/sec/editor/{id}", name="test_editor")
+     * @Method("GET")
+     * @Template()
+     * @param Tutor $tutor
+     * @throws AccessDeniedException
+     * @return array
+     */
+    public function testEditorAction(Tutor $tutor)
+    {
+        // keep in mind, this will call all registered security voters
+        if (false === $this->get('security.context')->isGranted(TutorVoter::LIMITED_EDIT, $tutor)) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
+        return [];
+    }
+
+    /**
+     * TEST
+     *
+     * @Route("/sec/admin/{id}", name="test_admin")
+     * @Method("GET")
+     * @Template()
+     * @param Tutor $tutor
+     * @throws AccessDeniedException
+     * @return array
+     */
+    public function testAdminAction(Tutor $tutor)
+    {
+        // keep in mind, this will call all registered security voters
+        if (false === $this->get('security.context')->isGranted(TutorVoter::FULL_EDIT, $tutor)) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
+        return [];
+    }
+
+
+
     /**
      * Lists all Tutor entities.
      *

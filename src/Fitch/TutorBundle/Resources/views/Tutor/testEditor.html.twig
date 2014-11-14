@@ -1,0 +1,19 @@
+{% extends "FitchFrontEndBundle::fullpage.html.twig" %}
+
+{% block stylesheets -%}
+    {% include "::weakly-branded.html.twig" %}
+{% endblock %}
+
+{% block wrapper_classes %}main{% endblock %}
+
+{% block content %}
+    <div class="content col-md-offset-1 col-md-10">
+        <div class="main-header">
+            <h2>TEST ACCESS</h2>
+            <em>editor access</em>
+        </div>
+        <div class="main-content">
+            <p>You can see this page!</p>
+        </div>
+    </div>
+{% endblock %}
