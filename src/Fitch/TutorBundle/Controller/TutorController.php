@@ -23,8 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Tutor controller - most tutor interaction is expected to be via specific tailored pages - handled by the
  * ProfileController
- *
- * @Route()
  */
 class TutorController extends Controller
 {
@@ -94,7 +92,7 @@ class TutorController extends Controller
     /**
      * Lists all Tutor entities.
      *
-     * @Route("/", name="home")
+     * @Route("", name="home")
      * @Method("GET")
      * @Template()
      */
