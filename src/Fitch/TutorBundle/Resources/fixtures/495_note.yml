@@ -1,4 +1,4 @@
 Fitch\TutorBundle\Entity\Note:
-    note-{1..1500}:
+    note-{1..150}:
         key: terms
         body: <paragraph(2)>

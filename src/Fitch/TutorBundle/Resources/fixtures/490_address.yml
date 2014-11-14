@@ -1,5 +1,5 @@
 Fitch\TutorBundle\Entity\Address:
-    address-{1..1000}:
+    address-{1..100}:
         type: <randomElement(['Home', 'Office'])>
         streetPrimary: <streetAddress()>
         streetSecondary: 10%? <secondaryAddress()>
