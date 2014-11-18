@@ -96,7 +96,7 @@
     .note-provenance {
       font-style: italic;
       font-size: smaller;
-      color: #ccc;
+      color: $text-muted;
       margin-right:10px;
     }
   }
@@ -153,6 +153,17 @@
     @include max-screen($break-medium) {
       border-left: none;
       padding-left: 0;
+    }
+
+    .data-uploader {
+      padding-right:25px;
+      height:40px;
+      width:100%;
+      text-align: right;
+      display: block;
+      font-style: italic;
+      color: $text-muted;
+      font-size: smaller;
     }
 
     .data-action,

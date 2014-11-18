@@ -276,4 +276,22 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
         $this->uploader = $uploader;
         return $this;
     }
+
+    public function getProvenance()
+    {
+        $uploader = $this->getUploader();
+        if ($uploader) {
+            $fullName = $uploader->getFullName();
+            $string = $fullName ? $fullName : $uploader->getUsername();
+        } else {
+            $string = 'Anonymous';
+        }
+
+        $string .= ' on ' . $this->getCreated()->format('M d, Y');
+
+        if ($this->getUpdated() != $this->getCreated()) {
+            $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
+        }
+        return $string;
+    }
 }
