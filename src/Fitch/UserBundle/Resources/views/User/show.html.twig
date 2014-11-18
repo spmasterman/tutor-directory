@@ -1,0 +1,43 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+    {% block main_header -%}
+    <h2>{% trans %}user.show.verb{% endtrans %}</h2>
+    <em>{% trans %}user.show.tagline{% endtrans %}</em>
+    {% endblock %}
+
+{% block main_content -%}
+    <table class="record_properties table table-condensed table-striped">
+        <tbody>
+            <tr>
+                <th class="col-xs-2">Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2">Fullname</th>
+                <td>{{ entity.fullName }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2">Created</th>
+                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2">Updated</th>
+                <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        
+<div class="record_actions well">
+    <a class="btn btn-default btn-s" href="{{ path('user') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+    </a>
+
+    <a class="btn btn-default btn-s" href="{{ path('user_edit', { 'id': entity.id }) }}">
+        <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
+    </a>
+
+    {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
+    {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
+</div>
+{% endblock %}

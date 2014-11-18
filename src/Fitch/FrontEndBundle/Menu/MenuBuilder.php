@@ -209,7 +209,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             $menu
-                ->addChild('User Management', array('route' => 'competency_level'))
+                ->addChild('User Management', array('route' => 'user'))
                 ->setAttribute('icon', 'fa fa-users fa-fw');
         }
 
