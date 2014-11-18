@@ -10,6 +10,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Fitch\TutorBundle\Controller\FileController;
 use Fitch\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 
 /**
  * File
@@ -289,7 +290,12 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
 
         $string .= ' on ' . $this->getCreated()->format('M d, Y');
 
-        if ($this->getUpdated() != $this->getCreated()) {
+        // give an hours grace before we mark something as edited
+        $timestampTransformer = new DateTimeToTimestampTransformer();
+        $editedTime = $timestampTransformer->transform($this->getUpdated())
+            - $timestampTransformer->transform($this->getCreated());
+
+        if ($editedTime > 3600) {
             $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
         }
         return $string;

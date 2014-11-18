@@ -72,6 +72,16 @@
     }
   }
 
+
+  .data-file {
+    padding-left:25px;
+    text-align: right;
+    float: right;
+    font-style: italic;
+    color: $text-muted;
+    font-size: smaller;
+  }
+
   .user-info-right {
     border-left: 1px solid $line-color;
     padding-left: 30px;
@@ -102,7 +112,7 @@
   }
 }
 
-/** Copetencies Tab */
+/** Competencies Tab */
 .competency {
   .competency-info {
     padding: 10px 0;
