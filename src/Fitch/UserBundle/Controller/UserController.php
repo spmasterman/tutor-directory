@@ -2,6 +2,7 @@
 
 namespace Fitch\UserBundle\Controller;
 
+use Fitch\UserBundle\Model\UserManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -28,13 +29,9 @@ class UserController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('FitchUserBundle:User')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
+        return [
+            'users' => $this->getUserManager()->findAll(),
+        ];
     }
 
     /**
@@ -43,40 +40,41 @@ class UserController extends Controller
      * @Route("/", name="user_create")
      * @Method("POST")
      * @Template("FitchUserBundle:User:new.html.twig")
+     *
+     * @param Request $request
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function createAction(Request $request)
     {
-        $entity = new User();
-        $form = $this->createCreateForm($entity);
+        $user = $this->getUserManager()->createUser();
+        $form = $this->createCreateForm($user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            $this->getUserManager()->saveUser($user);
+            return $this->redirect($this->generateUrl('user_show', array('id' => $user->getId())));
         }
 
-        return array(
-            'entity' => $entity,
+        return [
+            'user' => $user,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
-    * Creates a form to create a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(User $entity)
+     * Creates a form to create a User entity.
+     *
+     * @param User $user
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(User $user)
     {
-        $form = $this->createForm(new NewUserType(), $entity, array(
+        $form = $this->createForm(new NewUserType(), $user, [
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
             array(
@@ -98,13 +96,13 @@ class UserController extends Controller
      */
     public function newAction()
     {
-        $entity = new User();
-        $form   = $this->createCreateForm($entity);
+        $user = $this->getUserManager()->createUser();
+        $form   = $this->createCreateForm($user);
 
-        return array(
-            'entity' => $entity,
+        return [
+            'user' => $user,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -113,23 +111,18 @@ class UserController extends Controller
      * @Route("/{id}", name="user_show")
      * @Method("GET")
      * @Template()
+     *
+     * @param User $user
+     *
+     * @return array
      */
-    public function showAction($id)
+    public function showAction(User $user)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchUserBundle:User')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
+        $deleteForm = $this->createDeleteForm($user->getId());
+        return [
+            'user'      => $user,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -138,48 +131,44 @@ class UserController extends Controller
      * @Route("/{id}/edit", name="user_edit")
      * @Method("GET")
      * @Template()
+     *
+     * @param User $user
+     *
+     * @return array
      */
-    public function editAction($id)
+    public function editAction(User $user)
     {
-        $em = $this->getDoctrine()->getManager();
+        $editForm = $this->createEditForm($user);
+        $deleteForm = $this->createDeleteForm($user->getId());
 
-        $entity = $em->getRepository('FitchUserBundle:User')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
+        return [
+            'user'      => $user,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
-    * Creates a form to edit a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(User $entity)
+     * Creates a form to edit a User entity.
+     *
+     * @param User $user
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(User $user)
     {
-        $form = $this->createForm(new EditUserType(), $entity, array(
-            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new EditUserType(), $user, [
+            'action' => $this->generateUrl('user_update', ['id' => $user->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
         $form->add('submit', 'submit',
-            array(
+            [
                 'label' => $this->get('translator')->trans('navigation.update'),
-                'attr' => array(
+                'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle'
-            )));
+            ]]);
 
         return $form;
     }
@@ -190,32 +179,29 @@ class UserController extends Controller
      * @Route("/{id}", name="user_update")
      * @Method("PUT")
      * @Template("FitchUserBundle:User:edit.html.twig")
+     *
+     * @param Request $request
+     * @param User $user
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, User $user)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FitchUserBundle:User')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($user->getId());
+        $editForm = $this->createEditForm($user);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+            $this->getUserManager()->saveUser($user);
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $user->getId())));
         }
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'user'      => $user,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -224,21 +210,13 @@ class UserController extends Controller
      * @Route("/{id}", name="user_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, User $user)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($user->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('FitchUserBundle:User')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+            $this->getUserManager()->removeUser($user->getId());
         }
 
         return $this->redirect($this->generateUrl('user'));
@@ -254,16 +232,24 @@ class UserController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('user_delete', ['id' => $id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit',
-                array(
+                [
                     'label' => $this->get('translator')->trans('navigation.delete'),
-                        'attr' => array(
+                        'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle'
-                )))
+                ]])
             ->getForm()
         ;
+    }
+
+    /**
+     * @return UserManager
+     */
+    public function getUserManager()
+    {
+        return $this->get('fitch.manager.user');
     }
 }

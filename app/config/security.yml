@@ -40,3 +40,5 @@ security:
         - { path: ^/profile, role: ROLE_USER }
         - { path: ^/editor, role: ROLE_EDITOR }
         - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/user, role: ROLE_SUPER_ADMIN }
+
