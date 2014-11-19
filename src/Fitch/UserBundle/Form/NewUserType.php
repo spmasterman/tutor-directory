@@ -28,7 +28,10 @@ class NewUserType extends AbstractType
                     'ROLE_SUPER_ADMIN' => 'Full Access',
                 ],
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'attr' => [
+                    'class' => "control-inline simple-checkbox"
+                ]
             ])
             ->add('enabled', new OnOffType(), [
                 'type' => 'yesno',

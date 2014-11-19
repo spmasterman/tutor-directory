@@ -18,7 +18,7 @@ class EditUserType extends AbstractType
         $builder
             ->add('userName')
             ->add('fullName')
-            ->add('email')
+            ->add('email', 'email')
             ->add('roles', 'choice',[
                 'choices' => [
                  //   'ROLE_USER' => 'Read Only user',
@@ -27,7 +27,10 @@ class EditUserType extends AbstractType
                     'ROLE_SUPER_ADMIN' => 'Full Access',
                 ],
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'attr' => [
+                    'class' => "control-inline simple-checkbox"
+                ]
             ])
             ->add('enabled', new OnOffType(), [
                 'type' => 'yesno',
