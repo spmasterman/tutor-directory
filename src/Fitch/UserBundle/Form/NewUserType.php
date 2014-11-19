@@ -23,9 +23,9 @@ class NewUserType extends AbstractType
             ->add('roles', 'choice',[
                 'choices' => [
                  //   'ROLE_USER' => 'Read Only user',
-                    'ROLE_EDITOR' => 'Read and Edit Non sensitive information',
-                    'ROLE_ADMIN' => 'Read and Edit sensitive information',
-                    'ROLE_SUPER_ADMIN' => 'Full Access',
+                    'ROLE_EDITOR' => 'Manage PUBLIC tutor details',
+                    'ROLE_ADMIN' => 'Manage ALL tutor details',
+                    'ROLE_SUPER_ADMIN' => 'Full Access (Including User Management)',
                 ],
                 'multiple' => true,
                 'expanded' => true,
