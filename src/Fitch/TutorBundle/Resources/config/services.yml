@@ -195,7 +195,6 @@ services:
 ### "@security.token_storage" rather than the whole container. If you are reading this after 2.6 is released please
 ### make the approprate change.
 
-
 #
 # Security Voter
 #
@@ -205,3 +204,13 @@ services:
         arguments: ['%security.role_hierarchy.roles%']
         tags:
            - { name: security.voter }
+
+#
+# Amazon S3 Bucket
+#
+    amazonS3:
+        class: AmazonS3
+        arguments:
+            options:
+                key:      '%aws_key%'
+                secret:   '%aws_secret_key%'
