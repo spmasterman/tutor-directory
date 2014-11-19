@@ -23,12 +23,13 @@ class NewUserType extends AbstractType
             ->add('roles', 'choice',[
                 'choices' => [
                  //   'ROLE_USER' => 'Read Only user',
-                    'ROLE_EDITOR' => 'Manage PUBLIC tutor details',
-                    'ROLE_ADMIN' => 'Manage ALL tutor details',
+                    'ROLE_EDITOR' => 'Edit PUBLIC tutor details',
+                    'ROLE_ADMIN' => 'Edit ALL tutor details',
                     'ROLE_SUPER_ADMIN' => 'Full Access (Including User Management)',
                 ],
                 'multiple' => true,
                 'expanded' => true,
+                'label' => 'Additional Roles',
                 'attr' => [
                     'class' => "control-inline simple-checkbox"
                 ]
