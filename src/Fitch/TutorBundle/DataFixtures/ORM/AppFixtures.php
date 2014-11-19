@@ -12,7 +12,8 @@ class TestLoader extends DataFixtureLoader
      */
     protected function getFixtures()
     {
-        return  array(
+        // These are the lookup tables etc that should be deployed
+        $productionFixtures = array(
             __DIR__ . '/../../Resources/fixtures/005_currency.yml',
             __DIR__ . '/../../Resources/fixtures/010_region.yml',
             __DIR__ . '/../../Resources/fixtures/020_country.yml',
@@ -22,6 +23,10 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/060_tutor_type.yml',
             __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
             __DIR__ . '/../../Resources/fixtures/090_filetypes.yml',
+        );
+
+        // This is test data (generated via Faker etc)
+        $developmentFixtures = array_merge($productionFixtures, [
             __DIR__ . '/../../Resources/fixtures/450_competency.yml',
             __DIR__ . '/../../Resources/fixtures/460_rate.yml',
             __DIR__ . '/../../Resources/fixtures/470_email.yml',
@@ -29,9 +34,22 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/490_address.yml',
             __DIR__ . '/../../Resources/fixtures/495_note.yml',
             __DIR__ . '/../../Resources/fixtures/500_tutor.yml',
-        );
+        ]);
+
+        // only production fixtures
+        if ($this->container->get('kernel')->getEnvironment() == 'prod') {
+            return $productionFixtures;
+        }
+
+        // else we're testing, insert all fixtures
+        return  $developmentFixtures;
     }
 
+    /**
+     * Generate a plausible sounding competency type - used in development fixtures
+     *
+     * @return string
+     */
     public function competencyName()
     {
         $firstWords = [
