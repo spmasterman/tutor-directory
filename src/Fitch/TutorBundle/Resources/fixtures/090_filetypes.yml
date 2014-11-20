@@ -5,7 +5,7 @@ Fitch\TutorBundle\Entity\FileType:
         suitableForProfilePicture: false
         private: true
     filetype-avatar:
-        name: Avatar
+        name: Profile Picture
         default: false
         suitableForProfilePicture: true
         private: false
