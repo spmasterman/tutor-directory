@@ -15,9 +15,9 @@ parameters:
     mailer_password: ~
 
     locale:            en
-    secret:            scokazpert
+    secret:            ThisIsASecretChangeItToSomethingSpecificToThisInstallation
 
-    debug_toolbar:          true
+    debug_toolbar:          false
     debug_redirects:        false
     use_assetic_controller: true
 
