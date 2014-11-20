@@ -18,7 +18,6 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/010_region.yml',
             __DIR__ . '/../../Resources/fixtures/020_country.yml',
             __DIR__ . '/../../Resources/fixtures/030_competency_level.yml',
-            __DIR__ . '/../../Resources/fixtures/040_competency_type.yml',
             __DIR__ . '/../../Resources/fixtures/050_status.yml',
             __DIR__ . '/../../Resources/fixtures/060_tutor_type.yml',
             __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
@@ -27,6 +26,7 @@ class TestLoader extends DataFixtureLoader
 
         // This is test data (generated via Faker etc)
         $developmentFixtures = array_merge($productionFixtures, [
+            __DIR__ . '/../../Resources/fixtures/440_competency_type.yml',
             __DIR__ . '/../../Resources/fixtures/450_competency.yml',
             __DIR__ . '/../../Resources/fixtures/460_rate.yml',
             __DIR__ . '/../../Resources/fixtures/470_email.yml',
