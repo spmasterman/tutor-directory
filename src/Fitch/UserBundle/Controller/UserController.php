@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\UserBundle\Entity\User;
 use Fitch\UserBundle\Form\NewUserType;
 use Fitch\UserBundle\Form\EditUserType;
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
 /**
  * User controller.
@@ -29,8 +30,18 @@ class UserController extends Controller
      */
     public function indexAction()
     {
+        $security = $this->get('security.context');
+        $allowedToSwitch = false;
+        $originalUser = null;
+
+        if ($security->isGranted('ROLE_SUPER_ADMIN') or $security->isGranted('ROLE_PREVIOUS_ADMIN')) {
+            $allowedToSwitch = true;
+        }
+
         return [
             'users' => $this->getUserManager()->findAll(),
+            'allowedToSwitch' => $allowedToSwitch,
+            'originalUser' => $originalUser
         ];
     }
 

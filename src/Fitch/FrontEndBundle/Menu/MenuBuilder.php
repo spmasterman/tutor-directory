@@ -5,6 +5,7 @@ namespace Fitch\FrontEndBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
 class MenuBuilder extends ContainerAware
 {
@@ -84,6 +85,27 @@ class MenuBuilder extends ContainerAware
              ->addChild('Logout', array('route' => 'fos_user_security_logout'))
                 ->setAttribute('icon', 'fa fa-power-off fa-fw')
                 ->getParent();
+
+        $security = $this->container->get('security.context');
+        if ($security->isGranted('ROLE_PREVIOUS_ADMIN')) {
+            $originalUser = $security->getToken();
+            foreach ($security->getToken()->getRoles() as $role) {
+                if ($role instanceof SwitchUserRole) {
+                    $originalUser = $role->getSource();
+                    break;
+                }
+            }
+
+            $menu->addChild($originalUser->getUsername(), [
+                    'route' => 'home',
+                    'routeParameters' => [
+                        '_impersonate' => '_exit'
+                    ]
+                ])
+                ->setAttribute('icon', 'fa fa-eject fa-fw')
+                ->getParent();
+        }
+
         return $menu;
     }
 
