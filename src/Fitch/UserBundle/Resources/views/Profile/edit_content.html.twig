@@ -1,12 +1,14 @@
 {% trans_default_domain 'FitchUserBundle' %}
 
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    <p class="title">Update your details</p>
+<div class="profile-box center-block">
+    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+        <p class="title">Update your password (and other details)</p>
 
-    {% form_theme form 'FitchFrontEndBundle:Form:stacked.html.twig' %}
-    {{ form_widget(form) }}
+        {% form_theme form 'FitchFrontEndBundle:Form:stacked.html.twig' %}
+        {{ form_widget(form) }}
 
-    <div>
-        <button class="btn btn-custom-primary btn-lg btn-block btn-update"><i class="fa fa-check-circle"></i> {{ 'profile.edit.submit'|trans }}</button>
-    </div>
-</form>
+        <div>
+            <button class="btn btn-custom-primary btn-lg btn-block btn-update"><i class="fa fa-check-circle"></i> {% trans from "FOSUserBundle" %}profile.edit.submit{% endtrans %}</button>
+        </div>
+    </form>
+</div>

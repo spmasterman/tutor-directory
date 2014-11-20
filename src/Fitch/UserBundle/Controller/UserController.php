@@ -9,9 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fitch\UserBundle\Entity\User;
-use Fitch\UserBundle\Form\NewUserType;
-use Fitch\UserBundle\Form\EditUserType;
-use Symfony\Component\Security\Core\Role\SwitchUserRole;
+use Fitch\UserBundle\Form\Type\NewUserType;
+use Fitch\UserBundle\Form\Type\EditUserType;
 
 /**
  * User controller.

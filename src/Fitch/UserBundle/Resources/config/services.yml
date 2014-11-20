@@ -13,3 +13,8 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: Fitch\UserBundle\Entity\User
+
+    fitch_user.registration.form.type:
+        class: Fitch\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: fitch_user_registration }

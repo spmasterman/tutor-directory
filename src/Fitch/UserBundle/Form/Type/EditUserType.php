@@ -1,13 +1,13 @@
 <?php
 
-namespace Fitch\UserBundle\Form;
+namespace Fitch\UserBundle\Form\Type;
 
 use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class NewUserType extends AbstractType
+class EditUserType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,11 +18,10 @@ class NewUserType extends AbstractType
         $builder
             ->add('userName')
             ->add('fullName')
-            ->add('email')
-            ->add('plainPassword', 'password', [])
+            ->add('email', 'email')
             ->add('roles', 'choice',[
                 'choices' => [
-                 //   'ROLE_USER' => 'Read Only user',
+                    //   'ROLE_USER' => 'Read Only user',
                     'ROLE_EDITOR' => 'Edit PUBLIC tutor details',
                     'ROLE_ADMIN' => 'Edit ALL tutor details',
                     'ROLE_SUPER_ADMIN' => 'Full Access (Including User Management)',
@@ -31,7 +30,7 @@ class NewUserType extends AbstractType
                 'expanded' => true,
                 'label' => 'Additional Roles',
                 'attr' => [
-                    'class' => "control-inline simple-checkbox"
+                    'class' => "control-inline simple-checkbox",
                 ]
             ])
             ->add('enabled', new OnOffType(), [
@@ -56,6 +55,6 @@ class NewUserType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_userbundle_user_new';
+        return 'fitch_userbundle_user';
     }
 }

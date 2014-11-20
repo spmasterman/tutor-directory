@@ -319,13 +319,46 @@ sync then the files are effectively useless as you wont know who they are for et
 9 User Registration/Management
 ------------------------------
  
+### Register:
+
 The system has implemented a "register" feature, allowing people to register to use it. On request this has been 
-disabled and uses must be managed manually. Any person with super-admin roles (the account you created in Step 1) can 
-add more users using the interface. A plain password must be supplied. The mechanism for updating a password, relies on 
-the email address on the account, so make sure its set up. Without email support, all you can do is DELETE the user 
-account and recreate it - which will allow you to set a new password.    
+disabled and uses must be managed manually. 
+
+### Adding Users through the interface:
+
+Any person with super-admin roles (the account you created in Step 1) can add more users using the interface. 
+
+A plain password must be supplied as part of the new user. The mechanism for updating a password once set, relies on 
+the email address on the account, so make sure its set up properly. This is a potential gap that's created by not 
+having users register and the email address being tested during that process. But whatevs :) There's a link to "reset 
+my password" on the login page, that will allow a user to reset their password in the usual email verification way. 
+If they haven't set up their email, or the server email isn't set up then you'll have to administer them manually which 
+is a bit painful.
+
+### Updating Passwords manually:
+
+If you need to update someones password, on their behalf, there is a way, but its a bit convoluted:
+ 
+    Log in as a super-admin
+    go to the User Management page
+    Switch to the user that you want to change. This should take you to the home page, as that user
+    Choose "Profile" in the drop down User Menu (top right)
+    Choose "Edit Password"
+    Enter the new password, twice
+    Hit back on the browser a few times till you get to the home page again (alternatively just get to the home page)
+    Choose the "Eject" option at the bottom of the user menu, which should set you back as the Super admin you started on
+
+To be honest if your doing this, then your not really doing things in the spirit of good security - so I don't feel too 
+bad about it being eight steps :)   
+
+Don't be tempted to delete the user and recreate just to change the password, else you'll kill any association to 
+notes, files etc that have an Author field. 
+
+### Account suspension
 
 An account can be suspended by setting its 'enabled' flag to false/off in the interface.
+
+### The command line
 
 Users can be setup from the command line:
 
@@ -345,11 +378,16 @@ Don't give SUPER_ADMIN to anyone apart from people that know what they are doing
 from a backup quite frequently. I would make it a DevOps only set of privileges. But that means DevOps must take 
 care of user administration too... up to you.
 
+### Editing roles
+
 Changing roles around is pretty simple - check the app/config/security.yml file you can see that a hierarchy of roles is 
 defined at the top, and the URLs that can be accessed down the bottom - so add new roles at your leisure. They don't 
 have to be hierarchical in nature. If you (for instance) want to create a role that allows access to the 'Operating 
 Regions' crud interface separately from everything else, - just add ROLE_REGION_MANAGER at the top, and set the 
 URL "/admin/region" to require that role down at the bottom of the security.yml file. Then add the role to the 
-src/Fitch/UserBundle/Form/NewUserType.php and src/Fitch/UserBundle/Form/EditUserType.php files so that they appear as 
-options in the User Management interface - and that's probably all that's needed. 
+src/Fitch/UserBundle/Form/Type/NewUserType.php and src/Fitch/UserBundle/Form/Type/EditUserType.php files so that they 
+appear as options in the User Management interface - and that's probably all that's needed. 
   
+  
+  
+EOF  

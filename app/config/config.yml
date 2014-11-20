@@ -128,6 +128,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Fitch\UserBundle\Entity\User
+    profile:
+        form:
+            type: fitch_user_registration
 
 stof_doctrine_extensions:
     default_locale: en_US

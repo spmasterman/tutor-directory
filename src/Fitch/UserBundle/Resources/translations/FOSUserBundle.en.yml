@@ -26,6 +26,7 @@ profile:
     show:
         username: Username
         email: Email
+        fullname: Full Name
     edit:
         submit: Update
     flash:

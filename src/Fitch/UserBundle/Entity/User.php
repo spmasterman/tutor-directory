@@ -9,6 +9,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Fitch\UserBundle\Entity\Repository\UserRepository")
@@ -30,6 +31,15 @@ class User extends BaseUser implements TimestampableTraitInterface
 
     /**
      * @ORM\Column(name="full_name", type="string", length=128, nullable=true)
+     *
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      *
      * @var string
      */
