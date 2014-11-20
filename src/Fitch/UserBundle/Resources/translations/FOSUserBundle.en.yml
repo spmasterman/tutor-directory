@@ -20,8 +20,6 @@ security:
         password: "password"
         remember_me: Remember me next time
         submit: Login
-        with:
-            twitter: Login via Twitter
 
 # Profile
 profile:
@@ -42,20 +40,20 @@ change_password:
 # Registration
 registration:
     check_email: An email has been sent to %email%. It contains an activation link you must click to activate your account.
-    confirmed: Congrats %username%, your account is now activated.
+    confirmed: Congrats %username%, your account has been set up. An Administrator will check your details, and set you up with the appropriate roles so that you can use the site.
     back: Back to the originating page.
     submit: Create Account
     flash:
         user_created: The user has been created successfully
     email:
-        subject: Welcome %username%!
+        subject: Fitch Learning Tutor Directory - Welcome %username%!
         message: |
             Hello %username%!
 
             To finish activating your account - please visit %confirmationUrl%
 
-            Regards,
-            the Team.
+            Thanks,
+            Fitch Tutor Directory Administration.
     with:
         twitter: Connect using Twitter
 
@@ -73,14 +71,14 @@ resetting:
     flash:
         success: The password has been reset successfully
     email:
-        subject: Reset Password
+        subject: Fitch Learning Tutor Directory Password Reset
         message: |
             Hello %username%!
 
             To reset your password - please visit %confirmationUrl%
 
-            Regards,
-            the Team.
+            Thanks!
+            Fitch Tutor Directory Administration.
 
 # Global strings
 layout:

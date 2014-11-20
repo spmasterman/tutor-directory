@@ -1,0 +1,64 @@
+
+.page-profile {
+  .profile-box {
+    width: 100%;
+    border: 1px solid $line-color;
+    padding: 25px;
+    text-align: left;
+    background-color: #f1f1f1;
+
+    .title {
+      font-size: 1.2em;
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .input-group {
+      width: 100%;
+      margin-bottom: 10px;
+
+      .input-group-addon {
+        width: 36px;
+        background-color: #fff;
+      }
+
+      input {
+        border-right: none;
+
+        &:focus {
+          border-color: #ccc;
+        }
+      }
+    }
+
+    .btn-update {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    @include min-screen($break-small) {
+      width: 50%;
+    }
+
+    @include min-screen($break-medium) {
+      width: 30%;
+    }
+  }
+
+  .links {
+    text-align: center;
+
+    p {
+      margin-bottom: 0;
+      font-size: 0.9em;
+
+      &.alert {
+        margin-top: 25px;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

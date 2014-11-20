@@ -1,4 +1,6 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "FitchUserBundle::layout.html.twig" %}
+
+{% block wrapper_classes %}{{parent()}} page-profile{% endblock %}
 
 {% block fos_user_content %}
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}

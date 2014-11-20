@@ -1,4 +1,4 @@
 Fitch\TutorBundle\Entity\Rate:
-    rate-{1..2000}:
+    rate-{1..200}:
         name: <randomElement(['Day','Evening','Material','Travel','Night','Weekend'])>
         amount: <numberBetween(400, 1500)>

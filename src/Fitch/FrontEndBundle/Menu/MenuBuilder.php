@@ -78,7 +78,10 @@ class MenuBuilder extends ContainerAware
                         ->setChildrenAttribute('class', 'dropdown-menu')
                         ->setChildrenAttribute('role', 'menu');
 
-        $menu->addChild('Logout', array('route' => 'fos_user_security_logout'))
+        $menu->addChild('Profile', array('route' => 'fos_user_profile_show'))
+                ->setAttribute('icon', 'fa fa-user fa-fw')
+                ->getParent()
+             ->addChild('Logout', array('route' => 'fos_user_security_logout'))
                 ->setAttribute('icon', 'fa fa-power-off fa-fw')
                 ->getParent();
         return $menu;

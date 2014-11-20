@@ -2,25 +2,16 @@
 
 <div class="logo">
     <a href="index.html">
-        <img src="{{ asset('bundles/fitchdashboard/images/logo.png') }}" alt="" />
+        <img src="{{ asset('bundles/fitchfrontend/images/logo.png') }}" alt="" />
     </a>
-</div>
-
-<a class="btn btn-register-twitter" href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}" alt="{% trans %}registration.with.twitter{% endtrans %}">{% trans %}registration.with.twitter{% endtrans %}</a>
-
-<div class="separator">
-    <span>OR</span>
 </div>
 
 <div class="register-box center-block">
     <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
         <p class="title">Create Your Account</p>
 
-        {% form_theme form 'FitchDashboardBundle:Form:stacked.html.twig' %}
+        {% form_theme form 'FitchFrontEndBundle:Form:stacked.html.twig' %}
         {{ form_widget(form) }}
-
-        <input type="checkbox" id="agree" name="agree" required>
-        <label for="agree">I accept the <a href="{{ path('terms') }}">Terms &amp; Agreements</a></label>
 
         <button class="btn btn-custom-primary btn-lg btn-block btn-register"><i class="fa fa-check-circle"></i> {{ 'registration.submit'|trans }}</button>
     </form>
