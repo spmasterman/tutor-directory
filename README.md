@@ -130,12 +130,26 @@ OR link assets in development
 
     php app/console assets:install --symlink
 
+Check that Doctrine thinks the DB is setup properly for the production environment
+    
+    php app/console doctrine:ensure-production-settings
+
+Check PHP environment
+
+    php app/check.php
+    
+from a bare ubuntu install you will need to set the timezone to Europe/London
+
+    sudo nano /etc/php5/cli/php.ini
+    sudo nano /etc/php5/apache2/php.ini
+
+You should also remove the memory limit (set it to -1) and also set an appropriate file size for file uploads. I don't 
+know whats appropriate, but you should put some limit there that's probably bigger than the default.
+
+Possibly you will need to update the php.ini for php-fpm also (See section 2)
+        
 Run the shell script scratch/reset_db.sh This performs the following steps (you can execute these manually if you want)
 
-    Check that Doctrine thinks the DB is setup properly for the production environment
-    
-        php app/console doctrine:ensure-production-settings
-    
     Create the database
     
         php app/console doctrine:database:create
@@ -151,20 +165,6 @@ Run the shell script scratch/reset_db.sh This performs the following steps (you 
     
 If at any time you want to reset the system, just run that script. Be warned that it just drops and recreates the 
 database, so don't run it unless you are really sure about it.
-
-Check PHP environment
-
-    php app/check.php
-
-from a bare ubuntu install you will need to set the timezone to Europe/London
-
-    sudo nano /etc/php5/cli/php.ini
-    sudo nano /etc/php5/apache2/php.ini
-
-You should also remove the memory limit (set it to -1) and also set an appropriate file size for file uploads. I don't 
-know whats appropriate, but you should put some limit there that's probably bigger than the default.
-
-Possibly you will need to update the php.ini for php-fpm also (See next section)
 
 2 Install php-fpm
 -----------------
@@ -243,7 +243,7 @@ the production assets - go ahead. I haven't for time constraint reasons.
 
 Dumping Assets through assetic may give you permission issues (its a bug in Compass support for assetic)
 If you get an unthemed page, find the sass-cache folder in /tmp/ and empty it. Seemed to fix the problem for me on my
-dev machines.
+dev machines - it may have just been me sudoing the wrong part of the install however.
 
     php app/console assetic:dump --force
     
@@ -343,7 +343,7 @@ where role is
     
 Don't give SUPER_ADMIN to anyone apart from people that know what they are doing, else you'll be restoring 
 from a backup quite frequently. I would make it a DevOps only set of privileges. But that means DevOps must take 
-care of user administration too.
+care of user administration too... up to you.
 
 Changing roles around is pretty simple - check the app/config/security.yml file you can see that a hierarchy of roles is 
 defined at the top, and the URLs that can be accessed down the bottom - so add new roles at your leisure. They don't 
@@ -351,7 +351,5 @@ have to be hierarchical in nature. If you (for instance) want to create a role t
 Regions' crud interface separately from everything else, - just add ROLE_REGION_MANAGER at the top, and set the 
 URL "/admin/region" to require that role down at the bottom of the security.yml file. Then add the role to the 
 src/Fitch/UserBundle/Form/NewUserType.php and src/Fitch/UserBundle/Form/EditUserType.php files so that they appear as 
-options in the User Management - and that's probably all that's needed. 
+options in the User Management interface - and that's probably all that's needed. 
   
-
-         
