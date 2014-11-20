@@ -1,0 +1,29 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}tutor.new.verb{% endtrans %}</h2>
+    <em>{% trans %}tutor.new.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    <div class="widget widget-table">
+        <div class="widget-header">
+            <h3><i class="fa fa-mortar-board"></i> New Tutor</h3>
+            <div class="btn-group widget-header-toolbar">
+                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="widget-content">
+            <div class="alert alert-info">Enter the Tutor name and click the Create button - you will be taken to the Tutor Profile page to complete the tutors details.</div>
+            {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+            {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
+        </div>
+    </div>
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('home') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
+    </div>
+{% endblock %}

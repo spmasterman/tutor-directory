@@ -28,6 +28,14 @@ class TutorTypeManager extends BaseModelManager
     }
 
     /**
+     * @return null|TutorType
+     */
+    public function findDefaultTutorType()
+    {
+        return $this->getRepo()->findOneBy(['default' => true]);
+    }
+
+    /**
      * @param TutorType $tutortype
      * @param bool $withFlush
      */

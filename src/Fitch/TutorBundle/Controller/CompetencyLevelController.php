@@ -14,7 +14,7 @@ use Fitch\TutorBundle\Form\Type\CompetencyLevelType;
 /**
  * CompetencyLevel controller.
  *
- * @Route("/level/competency/")
+ * @Route("/admin/level/competency/")
  */
 class CompetencyLevelController extends Controller
 {

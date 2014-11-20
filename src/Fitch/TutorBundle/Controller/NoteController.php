@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Note controller
  *
- * @Route("/note")
+ * @Route("/editor/note")
  */
 class NoteController extends Controller
 {

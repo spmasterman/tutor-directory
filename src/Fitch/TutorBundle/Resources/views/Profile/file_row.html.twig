@@ -1,3 +1,4 @@
+<div class="file-entry">
 <p class="data-row" data-id="{{ file.getId }}">
     <span class="data-name">{{ file.getName }}</span>
     <span class="data-value">
@@ -15,3 +16,9 @@
         {% include 'FitchTutorBundle:Profile:file_row_inner.html.twig' %}
     </span>
 </p>
+<p class="data-row" >
+    <span class="data-uploader">
+        {{ file.getProvenance }}
+    </span>
+</p>
+</div>

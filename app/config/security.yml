@@ -3,25 +3,43 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_TUTOR:       ROLE_USER
-        ROLE_ADMIN:       ROLE_TUTOR
+        ROLE_USER:        ~
+        ROLE_EDITOR:      ROLE_USER
+        ROLE_ADMIN:       ROLE_EDITOR
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                login_path: /login
+                check_path: /login_check
             logout:       true
             anonymous:    true
+            remember_me:
+                key: "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path: /
+                domain: ~ # Defaults to the current domain from $_SERVER
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+# disable register by it available only to super admins
+        - { path: ^/register, role: ROLE_SUPER_ADMIN }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/$, role: ROLE_USER }
+        - { path: ^/profile, role: ROLE_USER }
+        - { path: ^/editor, role: ROLE_EDITOR }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/user, role: ROLE_SUPER_ADMIN }
+

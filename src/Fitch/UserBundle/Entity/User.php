@@ -8,10 +8,14 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Fitch\UserBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="person")
+ *
+ * @UniqueEntity(fields="email", message="Email is already in use")
+ * @UniqueEntity(fields="username", message="Username is already in use")
  */
 class User extends BaseUser implements TimestampableTraitInterface
 {

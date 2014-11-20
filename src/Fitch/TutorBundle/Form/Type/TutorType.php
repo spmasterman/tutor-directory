@@ -30,13 +30,9 @@ class TutorType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('addresses', 'collection', [
-                'type'   => new AddressType($this->translator, $this->countryManager),
-                'allow_add' => true,
-                'allow_delete' => true
-            ])
             ->add('region')
-
+            ->add('status')
+            ->add('tutorType')
         ;
     }
     

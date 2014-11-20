@@ -5,10 +5,13 @@ namespace Fitch\TutorBundle\Listener;
 use Fitch\TutorBundle\Model\FileManager;
 use Fitch\TutorBundle\Model\FileTypeManager;
 use Fitch\TutorBundle\Model\TutorManager;
+use Fitch\UserBundle\Entity\User;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Oneup\UploaderBundle\Event\PreUploadEvent;
 use Oneup\UploaderBundle\Uploader\File\GaufretteFile;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Templating\EngineInterface;
 
 class UploadListener
@@ -28,16 +31,21 @@ class UploadListener
     /** @var  string */
     protected $mimeType;
 
+    /** @var  ContainerInterface */
+    protected  $container;
+
     public function __construct(
         TutorManager $tutorManager,
         FileManager $fileManager,
         FileTypeManager $fileTypeManager,
-        EngineInterface $templatingService
+        EngineInterface $templatingService,
+        ContainerInterface $container
     ) {
         $this->fileManager = $fileManager;
         $this->fileTypeManager = $fileTypeManager;
         $this->tutorManager = $tutorManager;
         $this->templatingService = $templatingService;
+        $this->container = $container;
     }
 
     /**
@@ -74,12 +82,16 @@ class UploadListener
             /** @var GaufretteFile $gaufretteFile */
             $gaufretteFile = $event->getFile();
 
+            $security = $this->container->get('security.context');
+            $currentUser = $security->getToken()->getUser();
+
             // Save both those things in our doctrine entity
             $file
                 ->setName($uploadedFile->getClientOriginalName())
                 ->setFileSystemKey($gaufretteFile->getKey())
                 ->setFileType($this->fileTypeManager->findDefaultFileType())
-                ->setMimeType($this->mimeType);
+                ->setMimeType($this->mimeType)
+                ->setUploader($currentUser)
             ;
             $this->mimeType = null;
 
@@ -91,10 +103,16 @@ class UploadListener
                 'FitchTutorBundle:Profile:file_row.html.twig',
                 [
                     'file' => $file,
+                    'editor' => (bool) $security->isGranted('ROLE_EDITOR'),
+                    'admin' => (bool) $security->isGranted('ROLE_ADMIN'),
                 ]
             );
+            $response['success'] = true;
+
         } catch (\Exception $e) {
+
             $response['success'] = false;
+            $response['message'] = $e->getMessage();
         }
     }
 }

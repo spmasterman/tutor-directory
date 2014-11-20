@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Rate controller
  *
- * @Route("/rate")
+ * @Route("/admin/rate")
  */
 class RateController extends Controller
 {
     /**
-     * Removes a Phone Number
+     * Removes a Rate
      *
      * @Route(
      *      "/remove",

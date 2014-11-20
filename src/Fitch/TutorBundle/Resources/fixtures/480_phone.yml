@@ -1,5 +1,5 @@
 Fitch\TutorBundle\Entity\Phone:
-    phone-{1..1000}:
+    phone-{1..100}:
         type: <randomElement(['Home', 'Office', 'Mobile'])>
         number: <randomNumber(4)> <randomNumber(6)>
         country: @country-*

@@ -7,7 +7,7 @@ application:
 
 home:
     title: Tutor Directory
-    tagline: a global resource for the Fitch faculty
+    tagline: a global faculty resource
 
 error:
     search_intro: You can also use search below to find the page you are looking for.
@@ -23,6 +23,11 @@ error:
     500:
         status: Ooops!<br/>Internal Server Error
         long: <p>The server ran into a problem doing what you asked and reported the error code '500 Internal Server Error'</p><p>Please <a href="#">let us know</a> what you were doing when this happened. We'll get our best detectives on the case and fix it as soon as possible. Sorry for any inconvenience caused.</p>
+    429:
+        status: Hold on!<br/>Too Many Requests
+        long: <p>This server limits the number of some requests you can make in a period of time. What you're trying to do is breaking one of these limits.</p>
+
+
 
 navigation:
     back: Go Back

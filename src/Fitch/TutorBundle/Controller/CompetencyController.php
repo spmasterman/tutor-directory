@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Competency controller
  *
- * @Route("/competency")
+ * @Route("/editor/competency")
  */
 class CompetencyController extends Controller
 {
@@ -118,6 +118,7 @@ class CompetencyController extends Controller
                 [
                     'tutor' => $tutor,
                     'competency' => $competency,
+                    'editor' => (bool) $this->get('security.context')->isGranted('ROLE_EDITOR')
                 ]
             ),
         ]);

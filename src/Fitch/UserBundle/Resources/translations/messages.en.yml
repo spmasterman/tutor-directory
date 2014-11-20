@@ -1,0 +1,17 @@
+user:
+    edit:
+        verb: EDIT USER
+        tagline: edit the details of a user
+        success: The User has been successfully updated.
+    list:
+        verb: USERS
+        tagline: all users
+    new:
+        verb: NEW USER
+        tagline: define a new user
+        success: The User has been successfully created.
+    show:
+        verb: USER
+        tagline: view and edit a user profile
+    delete:
+        success: The User has been successfully removed.

@@ -12,73 +12,78 @@ $(document).ready( function () {
 
     // Create the table
     var table = tableContainer.DataTable({
-        "ajax": Routing.generate('all_tutors'),
-        "columns": [
+        ajax: Routing.generate('all_tutors'),
+        columns: [
             {
-                "class": 'details-control',
-                "orderable": false,
-                "data": null,
-                "defaultContent": '',
-                "width": "4%"
+                class: 'details-control',
+                orderable: false,
+                data: null,
+                defaultContent: '',
+                width: "4%"
             },
-            { "data": "fullname", "width": "24%" },
-            { "data": "ttype", "width": "24%" },
-            { "data": "region", "width": "24%" },
-            { "data": "status" },
-            { "data": "competency_details" }
+            { data: "fullname", width: "24%" },
+            { data: "ttype", width: "24%" },
+            { data: "region", width: "24%" },
+            { data: "status"},
+            { data: "competency_details" },
+            { data: "search_dump" }
         ],
-        "columnDefs": [
+        columnDefs: [
             {
-                "targets": [1],
+                targets: [1],
                 /**
                  * @param data
                  * @param type
                  * @param {{fullname: string}} full
                  * @returns {string}
                  */
-                "render": function(data, type, full/*, meta*/) {
+                render: function(data, type, full/*, meta*/) {
                     return '<a href="' + Routing.generate('tutor_profile',{id: full.id}) + '">'+full.fullname+'</a>';
                 }
             },
             {
-                "targets": [5],
-                "visible": false,
-                "searchable": true
+                targets: [5, 6],
+                visible: false,
+                searchable: true
             }
         ],
-        "order": [[1, 'asc']],
+        order: [[1, 'asc']],
         dom: "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
         renderer: {
-            "header": "bootstrap",
-            "pageButton": "bootstrap"
+            header: "bootstrap",
+            pageButton: "bootstrap"
         },
-        "pagingType": "simple_numbers"
+        lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        pagingType: "simple_numbers",
+        drawCallback: function() {
+            applyHighlight(tableContainer)
+        }
     });
 
     // Add handlers to search the table on a column
-    table.columns().eq(0).each(function(colIdx) {
+    table.columns().flatten().each(function(colIdx) {
         $('input', table.column(colIdx).footer()).on('keyup change', function() {
             table
                 .column(colIdx)
                 .search(this.value)
                 .draw();
-        } );
-    } );
+        });
+    });
 
     // Add event listener for opening and closing details
     tableContainer.find('tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
-        if ( row.child.isShown() ) {
+        if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
             tr.removeClass('shown');
-        }
-        else {
+        } else {
             // Open this row
             row.child(format(row.data())).show();
             tr.addClass('shown');
+            applyHighlight(row.child());
         }
     });
 
@@ -103,6 +108,13 @@ $(document).ready( function () {
         }
     });
 
+    function applyHighlight(selector) {
+        var filter = $('.dataTables_filter input');
+        selector.unhighlight();
+        if (filter.val() != "") {
+            selector.highlight(filter.val().split(" "));
+        }
+    }
 
     /**
      * Formatting function for sub-row
@@ -112,7 +124,7 @@ $(document).ready( function () {
      */
     function format (data) {
         if (data.competency_details != null) {
-            var subTable = '<table class="table sub-table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
+            var subTable = '<table class="table sub-table">'
                 + '<tr><th>Competency</th><th>Level</th><th>Notes</th></tr>'
                 ,
                 rows = data.competency_details.split(' ~ '),
@@ -134,5 +146,4 @@ $(document).ready( function () {
             return "<p>There are no competencies setup for this tutor</p>"
         }
     }
-
 } );

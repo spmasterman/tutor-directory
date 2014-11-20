@@ -1,5 +1,5 @@
 Fitch\TutorBundle\Entity\Competency:
-    competency-{1..3000}:
+    competency-{1..300}:
         competencyType: @type-*
         competencyLevel: @level-*
         note: 20%? <sentence()>

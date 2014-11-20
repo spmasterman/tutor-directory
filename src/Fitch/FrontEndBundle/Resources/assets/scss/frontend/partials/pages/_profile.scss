@@ -72,6 +72,16 @@
     }
   }
 
+
+  .data-file {
+    padding-left:25px;
+    text-align: right;
+    float: right;
+    font-style: italic;
+    color: $text-muted;
+    font-size: smaller;
+  }
+
   .user-info-right {
     border-left: 1px solid $line-color;
     padding-left: 30px;
@@ -96,13 +106,13 @@
     .note-provenance {
       font-style: italic;
       font-size: smaller;
-      color: #ccc;
+      color: $text-muted;
       margin-right:10px;
     }
   }
 }
 
-/** Copetencies Tab */
+/** Competencies Tab */
 .competency {
   .competency-info {
     padding: 10px 0;
@@ -153,6 +163,17 @@
     @include max-screen($break-medium) {
       border-left: none;
       padding-left: 0;
+    }
+
+    .data-uploader {
+      padding-right:25px;
+      height:40px;
+      width:100%;
+      text-align: right;
+      display: block;
+      font-style: italic;
+      color: $text-muted;
+      font-size: smaller;
     }
 
     .data-action,

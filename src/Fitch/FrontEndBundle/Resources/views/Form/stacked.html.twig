@@ -1,7 +1,7 @@
 {% block form_row %}
     {% spaceless %}
         <div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
-            {{ block(form_row_inner) }}
+            {{ block('form_row_inner') }}
         </div>
     {% endspaceless %}
 {% endblock form_row %}

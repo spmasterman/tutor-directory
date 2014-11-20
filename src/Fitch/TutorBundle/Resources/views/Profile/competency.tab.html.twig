@@ -3,7 +3,9 @@
         <div class="col-md-12">
             <div class="competency-container">
                 <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Competencies
+                    {% if editor %}
                     <a href="#" class="btn btn-default btn-xs add-competency"><i class="fa fa-puzzle-piece"></i> New Competency</a>
+                    {% endif %}
                 </h3>
                 {% for competency in tutor.getCompetencies %}
                     {% include 'FitchTutorBundle:Profile:competency_row.html.twig' %}

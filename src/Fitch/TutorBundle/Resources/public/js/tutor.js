@@ -443,13 +443,17 @@ jQuery(document).ready(function() {
     function setupFiles(filesContainer) {
         var tutorDropzone = new Dropzone("#file_upload");
         tutorDropzone.on("success", function(file, response) {
-            $('#files-container').append(response.fileRow);
+            if (response.success) {
+                $('#files-container').append(response.fileRow);
 
-            var regex = /.*data-pk="(\d+)".*/gi,
-                match = regex.exec(response.fileRow),
-                id = match[1]
-                ;
-            $('#fileType' + id).editable();
+                var regex = /.*data-pk="(\d+)".*/gi;
+                var match = regex.exec(response.fileRow);
+                var id = match[1];
+
+                $('#fileType' + id).editable();
+            } else {
+                console.log(response);
+            }
         });
 
         filesContainer.on('click', '.remove-file', function(e){
@@ -459,7 +463,7 @@ jQuery(document).ready(function() {
                 ;
             $.post(Routing.generate('file_ajax_remove'), {'pk' : filePk}, function(data) {
                 if (data.success) {
-                    row.remove();
+                    row.closest('.file-entry').remove();
                 } else {
                     console.log(data);
                 }

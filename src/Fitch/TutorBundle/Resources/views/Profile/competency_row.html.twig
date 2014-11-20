@@ -1,3 +1,7 @@
 <div class="data-row" data-id="{{ tutor.getId }}" data-competency-pk="{{ competency.getId }}">
-    {% include 'FitchTutorBundle:Profile:competency_row_inner.html.twig' %}
+    {% if editor %}
+        {% include 'FitchTutorBundle:Profile:competency_row_inner.html.twig' %}
+    {% else %}
+        {% include 'FitchTutorBundle:Profile:competency_row_inner.readonly.html.twig' %}
+    {% endif %}
 </div>

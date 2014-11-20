@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="user-info-left">
             <div class="rates-info">
                 <div class="rates-container">
@@ -13,32 +13,32 @@
                     {% for rate in tutor.getRates %}
                         <div class="data-row" data-id="{{ tutor.getId }}">
                             <span class="data-name">{{ rate.getName }} Rate</span>
-                                        <span class="data-value">
-                                            <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
-                                               data-type="rate"
-                                               data-pk="{{ tutor.getId }}"
-                                               data-rate-pk="{{ rate.getId }}"
-                                               data-url="{{ path('tutor_ajax_update')}}"
-                                               data-title="Enter Rate"
-                                               data-value-name="{{ rate.getName }}"
-                                               data-value-amount="{{ rate.getAmount }}"
-                                                    >{{ rate.getAmount }}</a>
-                                        </span>
-                                        <span class="data-action">
-                                            <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
-                                        </span>
+                                <span class="data-value">
+                                    <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
+                                       data-type="rate"
+                                       data-pk="{{ tutor.getId }}"
+                                       data-rate-pk="{{ rate.getId }}"
+                                       data-url="{{ path('tutor_ajax_update')}}"
+                                       data-title="Enter Rate"
+                                       data-value-name="{{ rate.getName }}"
+                                       data-value-amount="{{ rate.getAmount }}"
+                                            >{{ rate.getAmount }}</a>
+                                </span>
+                                <span class="data-action">
+                                    <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
+                                </span>
                         </div>
                     {% endfor %}
                 </div>
             </div>
 
             <div class="contracts-info">
-                <h3><i class="fa fa-square"></i> Contracts</h3>
+                <h3><i class="fa fa-square"></i> Files</h3>
                 <div id="contracts-container">
                     <ul class="fa-ul">
                         {% for file in tutor.getFiles %}
                             {% if file.getFileType.isPrivate %}
-                                <li><i class="fa-li fa fa-file-o"></i><a href="{{ path('get_file_download', {'id':file.getId}) }}">{{ file.getName() }}</a></li>
+                                <li><i class="fa-li fa fa-file-o"></i><a href="{{ path('get_file_download', {'id':file.getId}) }}">{{ file.getName() }}</a><span class="data-file">{{ file.getProvenance }}</span></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -47,7 +47,7 @@
 
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="user-info-right">
             <div class="notes-info" data-note-key="terms" data-id="{{ tutor.getId }}">
                 <div class="notes-container">
@@ -82,5 +82,3 @@
         </div>
     </div>
 </div>
-
-<div class="alert alert-danger">DEBUG - THIS TAB WILL (EVENTUALLY!) ONLY DISPLAY WITH APPROPRIATE RIGHTS </div>

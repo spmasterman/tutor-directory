@@ -1,0 +1,4 @@
+Fitch\TutorBundle\Entity\Note:
+    note-{1..150}:
+        key: terms
+        body: <paragraph(2)>

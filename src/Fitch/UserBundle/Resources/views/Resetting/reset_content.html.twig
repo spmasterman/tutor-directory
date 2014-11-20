@@ -1,8 +1,17 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
-    </div>
-</form>
+<div class="logo">
+    <a href="index.html">
+        <img src="{{ asset('bundles/fitchfrontend/images/logo.png') }}" alt="" />
+    </a>
+</div>
+
+<div class="reset-box center-block">
+    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+        {% form_theme form 'FitchFrontEndBundle:Form:stacked.html.twig' %}
+        {{ form_widget(form) }}
+        <div>
+            <button class="btn btn-custom-primary btn-lg btn-block btn-login"><i class="fa fa-arrow-circle-o-right"></i> {{ 'resetting.reset.submit'|trans }}</button>
+        </div>
+    </form>
+</div>

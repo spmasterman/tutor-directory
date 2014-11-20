@@ -6,15 +6,15 @@
 
 {% block fos_user_content %}
 
-{% if error %}
-    <div class="alert alert-danger"><i class="fa fa-exclamation"></i>
-        <span>{{ error|trans }}</span>
-    </div>
-{% endif %}
+    {% if error %}
+        <div class="alert alert-danger"><i class="fa fa-exclamation"></i>
+            <span>{{ error|trans }}</span>
+        </div>
+    {% endif %}
 
     <div class="logo">
         <a href="index.html">
-            <img src="{{ asset('bundles/fitchdashboard/images/logo.png') }}" alt="" />
+            <img src="{{ asset('bundles/fitchfrontend/images/logo.png') }}" alt="" />
         </a>
     </div>
 
@@ -22,7 +22,7 @@
         <form action="{{ path("fos_user_security_check") }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-            <p class="title">Use your username</p>
+            <p class="title">Use your username or email</p>
 
             <div class="input-group">
                 <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
@@ -44,7 +44,7 @@
 
         <div class="links">
             <p><a href="{{ path('fos_user_resetting_request') }}">Forgot Username or Password?</a></p>
-            <p><a href="{{ path('fos_user_registration_register') }}">Create New Account</a></p>
+            <p class="alert alert-info">If you think you should have access to this system please contact your regional planning manager.</p>
         </div>
     </div>
 

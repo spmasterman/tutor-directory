@@ -8,7 +8,9 @@ use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Fitch\TutorBundle\Controller\FileController;
+use Fitch\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 
 /**
  * File
@@ -64,6 +66,14 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
      * @ORM\Column(name="mime_type", type="string", length=32)
      */
     private $mimeType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Fitch\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="uploader_id", referencedColumnName="id", onDelete="SET NULL")
+     *
+     * @var User
+     */
+    private $uploader;
 
     /**
      * @return string
@@ -173,6 +183,9 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function isImage()
     {
         return explode('/', $this->getMimeType(), 2)[0] == 'image';
@@ -183,12 +196,17 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function getMetaData()
     {
-        return [
-            "Dimensions" => "200 x 300",
-            "Size" => "23.4k"
-        ];
+        return [];
+        // Not yet implemented
+//        return [
+//            "Dimensions" => "200 x 300",
+//            "Size" => "23.4k"
+//        ];
     }
 
+    /**
+     * @return bool
+     */
     public function hasCropInfo()
     {
         return (bool)$this->getCropInfo();
@@ -242,4 +260,44 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
         }
     }
 
+    /**
+     * @return User
+     */
+    public function getUploader()
+    {
+        return $this->uploader;
+    }
+
+    /**
+     * @param User $uploader
+     * @return $this
+     */
+    public function setUploader($uploader)
+    {
+        $this->uploader = $uploader;
+        return $this;
+    }
+
+    public function getProvenance()
+    {
+        $uploader = $this->getUploader();
+        if ($uploader) {
+            $fullName = $uploader->getFullName();
+            $string = $fullName ? $fullName : $uploader->getUsername();
+        } else {
+            $string = 'Anonymous';
+        }
+
+        $string .= ' on ' . $this->getCreated()->format('M d, Y');
+
+        // give an hours grace before we mark something as edited
+        $timestampTransformer = new DateTimeToTimestampTransformer();
+        $editedTime = $timestampTransformer->transform($this->getUpdated())
+            - $timestampTransformer->transform($this->getCreated());
+
+        if ($editedTime > 3600) {
+            $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
+        }
+        return $string;
+    }
 }

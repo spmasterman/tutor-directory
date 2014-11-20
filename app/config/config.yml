@@ -56,6 +56,7 @@ assetic:
 #                - '%kernel.root_dir%/../components/moment/moment.js'
                 - '%kernel.root_dir%/../vendor/datatables/datatables/media/js/jquery.dataTables.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/dataTables.bootstrap.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/jquery.highlight.js'
             filters: [?yui_js]
         jqueryui_js:
             inputs:
@@ -117,6 +118,7 @@ doctrine:
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
+    port:      "%mailer_port%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
@@ -151,9 +153,11 @@ oneup_uploader:
 knp_gaufrette:
     adapters:
         tutor:
-            local:
-                directory: %kernel.root_dir%/../filestore/tutor
-                create: true
+            amazon_s3:
+                amazon_s3_id:   amazonS3
+                bucket_name:    %aws_bucket%
+                options:
+                    directory:  %aws_file_directory%
 
     filesystems:
         tutor:

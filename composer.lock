@@ -4,8 +4,61 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4216214ff021572cd9cb32e63530b079",
+    "hash": "1123946999083f7836116bac729c930b",
     "packages": [
+        {
+            "name": "amazonwebservices/aws-sdk-for-php",
+            "version": "1.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amazonwebservices/aws-sdk-for-php.git",
+                "reference": "65d6bc82d6e0cd095709c342a23c749dc2f3a012"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amazonwebservices/aws-sdk-for-php/zipball/65d6bc82d6e0cd095709c342a23c749dc2f3a012",
+                "reference": "65d6bc82d6e0cd095709c342a23c749dc2f3a012",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "You should consider upgrading to version 2 of the AWS SDK for PHP"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "authentication/",
+                    "extensions/",
+                    "lib/",
+                    "services/",
+                    "utilities/",
+                    "sdk.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "AWS SDK for PHP",
+            "homepage": "http://aws.amazon.com/sdkforphp/",
+            "keywords": [
+                "amazon",
+                "aws",
+                "dynamodb",
+                "ec2",
+                "s3",
+                "sdk"
+            ],
+            "time": "2013-03-15 19:43:06"
+        },
         {
             "name": "components/jquery",
             "version": "2.1.1",
@@ -1179,12 +1232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "9714a92e968f7e12431ccf5fecb1346f0d5adc65"
+                "reference": "3565dfb22df2b0791137d5244d34d528d887f73e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/9714a92e968f7e12431ccf5fecb1346f0d5adc65",
-                "reference": "9714a92e968f7e12431ccf5fecb1346f0d5adc65",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3565dfb22df2b0791137d5244d34d528d887f73e",
+                "reference": "3565dfb22df2b0791137d5244d34d528d887f73e",
                 "shasum": ""
             },
             "require": {
@@ -1238,7 +1291,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-10-20 09:15:23"
+            "time": "2014-11-19 10:34:13"
         },
         {
             "name": "fzaninotto/faker",
@@ -1527,57 +1580,6 @@
                 "sql"
             ],
             "time": "2014-01-12 16:20:24"
-        },
-        {
-            "name": "khepin/yaml-fixtures-bundle",
-            "version": "v0.8.1",
-            "target-dir": "Khepin/YamlFixturesBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/khepin/KhepinYamlFixturesBundle.git",
-                "reference": "7d2a640a333ca08a17a4530c784b67141b93541c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/khepin/KhepinYamlFixturesBundle/zipball/7d2a640a333ca08a17a4530c784b67141b93541c",
-                "reference": "7d2a640a333ca08a17a4530c784b67141b93541c",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/data-fixtures": "1.*@alpha",
-                "doctrine/doctrine-bundle": "*",
-                "doctrine/doctrine-fixtures-bundle": "2.*@alpha",
-                "doctrine/orm": "2.*"
-            },
-            "require-dev": {
-                "doctrine/mongodb": "*@beta",
-                "doctrine/mongodb-odm": "*@beta",
-                "doctrine/mongodb-odm-bundle": "3.*@beta",
-                "mockery/mockery": "dev-master"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Khepin\\YamlFixturesBundle": "",
-                    "Khepin": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sébastien Armand",
-                    "email": "khepin@gmail.com"
-                }
-            ],
-            "description": "Symfony bundle for easy loading of YAML based fixtures.",
-            "homepage": "https://github.com/khepin/KhepinYamlFixturesBundle",
-            "keywords": [
-                "data fixtures doctrine yaml"
-            ],
-            "time": "2013-03-14 06:13:58"
         },
         {
             "name": "knplabs/gaufrette",
@@ -2751,16 +2753,16 @@
         },
         {
             "name": "twbs/bootstrap-sass",
-            "version": "v3.3.0",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap-sass.git",
-                "reference": "d07374afdbe86e6a415c5ea68474b3d142e8fd72"
+                "reference": "93f42bc913bdd4c9df3d4652bd5168b4ede870c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap-sass/zipball/d07374afdbe86e6a415c5ea68474b3d142e8fd72",
-                "reference": "d07374afdbe86e6a415c5ea68474b3d142e8fd72",
+                "url": "https://api.github.com/repos/twbs/bootstrap-sass/zipball/93f42bc913bdd4c9df3d4652bd5168b4ede870c6",
+                "reference": "93f42bc913bdd4c9df3d4652bd5168b4ede870c6",
                 "shasum": ""
             },
             "type": "library",
@@ -2800,7 +2802,7 @@
                 "css",
                 "sass"
             ],
-            "time": "2014-10-29 23:25:58"
+            "time": "2014-11-12 17:19:30"
         },
         {
             "name": "twig/extensions",

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Address controller
  *
- * @Route("/address")
+ * @Route("/editor/address")
  */
 class AddressController extends Controller
 {

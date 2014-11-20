@@ -21,6 +21,7 @@ class OperatingRegionType extends AbstractType
                 'required' => false,
                 'type' => 'yesno'
             ])
+            ->add('defaultCurrency')
         ;
     }
     

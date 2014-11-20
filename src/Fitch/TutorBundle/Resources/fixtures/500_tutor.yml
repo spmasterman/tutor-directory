@@ -1,5 +1,5 @@
 Fitch\TutorBundle\Entity\Tutor:
-    tutor-{1..600}:
+    tutor-{1..60}:
         name (unique): <name()>
         tutorType: @tutor-type-*
         linkedInURL: 5%? http://uk.linkedin.com/pub/shaun-masterman/7/389/969/
@@ -12,3 +12,4 @@ Fitch\TutorBundle\Entity\Tutor:
         region: @region-*
         currency: @currency-*
         rates (unique): <numberBetween(2, 5)>x @rate-*
+        notes (unique): <numberBetween(0, 2)>x @note-*

@@ -17,7 +17,7 @@ use Fitch\TutorBundle\Form\Type\FileTypeType;
  *
  * As a design decision we don't use the entity manager here, but perform all work through the ModelManager class
  *
- * @Route("/type/file")
+ * @Route("/admin/type/file")
  */
 class FileTypeController extends Controller
 {

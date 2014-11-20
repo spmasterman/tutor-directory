@@ -33,6 +33,15 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
     protected $default;
 
     /**
+     * @ORM\ManyToOne(
+     *      targetEntity="Currency"
+     * )
+     * @ORM\JoinColumn(name="default_currency_id", referencedColumnName="id", onDelete="SET NULL")
+     * @var Currency
+     */
+    protected $defaultCurrency;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -73,6 +82,24 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
     public function setDefault($default)
     {
         $this->default = $default;
+        return $this;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getDefaultCurrency()
+    {
+        return $this->defaultCurrency;
+    }
+
+    /**
+     * @param Currency $defaultCurrency
+     * @return $this
+     */
+    public function setDefaultCurrency($defaultCurrency)
+    {
+        $this->defaultCurrency = $defaultCurrency;
         return $this;
     }
 }
