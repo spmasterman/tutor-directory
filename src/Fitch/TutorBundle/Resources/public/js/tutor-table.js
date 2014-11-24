@@ -125,7 +125,7 @@ $(document).ready( function () {
     function format (data) {
         if (data.competency_details != null) {
             var subTable = '<table class="table sub-table">'
-                + '<tr><th>Competency</th><th>Level</th><th>Notes</th></tr>'
+                + '<tr><th>Skill</th><th>Level</th><th>Notes</th></tr>'
                 ,
                 rows = data.competency_details.split(' ~ '),
                 fields,
@@ -143,7 +143,7 @@ $(document).ready( function () {
             subTable += '</table>';
             return subTable;
         } else {
-            return "<p>There are no competencies setup for this tutor</p>"
+            return "<p>There are no skills setup for this trainer</p>"
         }
     }
 } );

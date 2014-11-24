@@ -217,6 +217,52 @@ currency:
         preferred: Preferred
         actions: Actions
 
+profile:
+    tab:
+        profile: Personal Information
+        terms: Terms of Engagement
+        competencies: Skills
+        files: Files
+    section:
+        competencies: Skills
+        rates: Rates
+        files: Files
+        terms: Notes for Terms of Engagement
+        basic_info: Basic Information
+        contact_info: Contact Information
+        bio: Biography
+        rate_history: Rate History
+    button:
+        new_competency: New Skill
+        new_rate: New Rate
+        history: History
+        new_note: New Note
+        download: Download
+        preview: Preview
+        new_email: New Email
+        new_address: New Address
+        new_phone: New Phone
+    field:
+        currency: Currency
+        log:
+            action: Action
+            rate: Rate Name
+            qty: Rate Qty
+            date: On
+            user: By
+        rate_suffix: Rate
+        fullname: Full Name
+        tutor_type: Trainer Type
+        status: Status
+        region: Region
+        linked_in: LinkedIn Profile
+        created: Date Created
+    files:
+        upload: Drop files here to upload
+        files_header: Files
+        file_upload_header: File Upload
+
+
 address:
     type:
         placeholder: Type of Address (Home, Office, etc)

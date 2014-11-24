@@ -3,16 +3,16 @@
         <div class="user-info-left">
             <div class="rates-info">
                 <div class="rates-container">
-                    <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Rates
-                        <a href="#" class="btn btn-default btn-xs add-rate"><i class="fa fa-money"></i> New Rate</a>
+                    <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.rates{% endtrans %}
+                        <a href="#" class="btn btn-default btn-xs add-rate"><i class="fa fa-money"></i> {% trans %}profile.button.new_rate{% endtrans %}</a>
                     </h3>
                     <div class="data-row">
-                        <span class="data-name">Currency</span>
+                        <span class="data-name">{% trans %}profile.field.currency{% endtrans %}</span>
                         <span class="data-value"><a href="#" id="currency" class="inline" data-source="{{ path('all_currencies') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getCurrency.getId }}" data-title="Select Currency">{{ tutor.getCurrency }}</a></span>
                     </div>
                     {% for rate in tutor.getRates %}
                         <div class="data-row" data-id="{{ tutor.getId }}">
-                            <span class="data-name">{{ rate.getName }} Rate</span>
+                            <span class="data-name">{{ rate.getName }} {% trans %}profile.field.rate_suffix{% endtrans %}</span>
                             <span class="data-value">
                                 <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
                                    data-type="rate"
@@ -32,11 +32,11 @@
                                     <table class="records_list table table-condensed table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Action</th>
-                                                <th>Rate Name</th>
-                                                <th>Rate Qty</th>
-                                                <th>On</th>
-                                                <th>By</th>
+                                                <th>{% trans %}profile.field.log.action{% endtrans %}</th>
+                                                <th>{% trans %}profile.field.log.rate{% endtrans %}</th>
+                                                <th>{% trans %}profile.field.log.qty{% endtrans %}</th>
+                                                <th>{% trans %}profile.field.log.date{% endtrans %}</th>
+                                                <th>{% trans %}profile.field.log.user{% endtrans %}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,7 +52,7 @@
                                         </tbody>
                                     </table>
                                 </span>
-                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-history"></i> History</a>
+                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-history"></i> {% trans %}profile.button.history{% endtrans %}</a>
                             </span>
                         </div>
                     {% endfor %}
@@ -60,7 +60,7 @@
             </div>
 
             <div class="contracts-info">
-                <h3><i class="fa fa-square"></i> Files</h3>
+                <h3><i class="fa fa-square"></i> {% trans %}profile.section.files{% endtrans %}</h3>
                 <div id="contracts-container">
                     <ul class="fa-ul">
                         {% for file in tutor.getFiles %}
@@ -71,14 +71,13 @@
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="col-md-6">
         <div class="user-info-right">
             <div class="notes-info" data-note-key="terms" data-id="{{ tutor.getId }}">
                 <div class="notes-container">
-                    <h3><i class="fa fa-square"></i> Notes for Terms of Engagement</h3>
+                    <h3><i class="fa fa-square"></i> {% trans %}profile.section.terms{% endtrans %}</h3>
                     {% for note in tutor.getNotes %}
                         {% if note.getKey == 'terms' %}
                             <div data-id="{{ note.getId }}" class="data-row">
@@ -95,15 +94,15 @@
                                 </div>
                                 <div class="note-provenance pull-right">{{ note.getProvenance }}
                                     <span class="data-action">
-                                                <a href="#" data-pk="{{ note.getId }}" class="btn btn-danger btn-xs remove-note"><i class="fa fa-remove"></i></a>
-                                            </span>
+                                        <a href="#" data-pk="{{ note.getId }}" class="btn btn-danger btn-xs remove-note"><i class="fa fa-remove"></i></a>
+                                    </span>
                                 </div>
                             </div>
                         {% endif %}
                     {% endfor %}
                 </div>
                 <div class="notes-new">
-                    <a href="#" class="btn btn-default btn-xs add-note"><i class="fa fa-file-text-o"></i> New Note</a>
+                    <a href="#" class="btn btn-default btn-xs add-note"><i class="fa fa-file-text-o"></i> {% trans %}profile.button.new_note{% endtrans %}</a>
                 </div>
             </div>
         </div>

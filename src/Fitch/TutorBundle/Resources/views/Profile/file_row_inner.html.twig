@@ -5,10 +5,10 @@
 </span>
 <span class="data-link">
     {% if (not file.getFileType.isPrivate) or admin %}
-        <a href="" class="btn btn-default btn-xs"><i class="fa fa-cloud-download"></i> Download</a>
+        <a href="" class="btn btn-default btn-xs"><i class="fa fa-cloud-download"></i> {% trans %}profile.button.download{% endtrans %}</a>
     {% endif %}
     {% if ((not file.getFileType.isPrivate) or admin) and file.isImage %}
-    <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-compose{{ file.getId }}"><i class="fa fa-eye"></i> Preview</button>
+    <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-compose{{ file.getId }}"><i class="fa fa-eye"></i> {% trans %}profile.button.preview{% endtrans %}</button>
         {% include 'FitchTutorBundle:Profile:preview.html.twig' %}
     {% endif %}
 </span>

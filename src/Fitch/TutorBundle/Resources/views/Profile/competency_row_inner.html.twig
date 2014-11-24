@@ -5,7 +5,7 @@
        data-pk="{{ tutor.getId }}"
        data-competency-pk="{{ competency.getId }}"
        data-url="{{ path('competency_ajax_update')}}"
-       data-title="Level of Competency"
+       data-title="Level of Skill"
             >{% if competency.getCompetencyLevel %}{{ competency.getCompetencyLevel.getName }}{% endif %}</a>
 </span>
 <span class="data-value">
@@ -14,7 +14,7 @@
        data-pk="{{ tutor.getId }}"
        data-competency-pk="{{ competency.getId }}"
        data-url="{{ path('competency_ajax_update')}}"
-       data-title="Competency"
+       data-title="Skill"
             >{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}</a>
 </span>
 <span class="data-action">

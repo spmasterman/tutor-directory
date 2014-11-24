@@ -2,9 +2,9 @@
     <div class="competency-info">
         <div class="col-md-12">
             <div class="competency-container">
-                <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> Competencies
+                <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.competencies{% endtrans %}
                     {% if editor %}
-                    <a href="#" class="btn btn-default btn-xs add-competency"><i class="fa fa-puzzle-piece"></i> New Competency</a>
+                    <a href="#" class="btn btn-default btn-xs add-competency"><i class="fa fa-puzzle-piece"></i> {% trans %}profile.button.new_competency{% endtrans %}</a>
                     {% endif %}
                 </h3>
                 {% for competency in tutor.getCompetencies %}
