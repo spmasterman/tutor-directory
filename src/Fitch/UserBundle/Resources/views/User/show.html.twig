@@ -1,9 +1,9 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
-    {% block main_header -%}
+{% block main_header -%}
     <h2>{% trans %}user.show.verb{% endtrans %}</h2>
     <em>{% trans %}user.show.tagline{% endtrans %}</em>
-    {% endblock %}
+{% endblock %}
 
 {% block main_content -%}
     <div class="widget widget-table">
@@ -37,14 +37,6 @@
                     <tr>
                         <th class="col-xs-2">Roles</th>
                         <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Created</th>
-                        <td>{{ user.created|date('Y-m-d H:i:s') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Updated</th>
-                        <td>{{ user.updated|date('Y-m-d H:i:s') }}</td>
                     </tr>
                 </tbody>
             </table>
