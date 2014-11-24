@@ -135,6 +135,7 @@ class ProfileController extends Controller
                         ->setType($value['type'])
                         ->setNumber($value['number'])
                         ->setCountry($this->getCountryManager()->findById($value['country']))
+                        ->setPreferred($value['isPreferred'] == "true")
                     ;
                     $relatedEntity = $phone;
                     break ;

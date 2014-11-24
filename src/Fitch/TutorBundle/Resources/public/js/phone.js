@@ -71,6 +71,10 @@
                 html = $('<div>').text(countryText).html() + ' ' + html;
             }
 
+            if (value.isPreferred) {
+                html += $('<div>').text(' (preferred)').html() ;
+            }
+
             $(element).html(html);
         },
 
@@ -121,6 +125,9 @@
             this.$input.filter('[name="type"]').val(value.type);
             this.$input.filter('[name="number"]').val(value.number);
             this.$select.val(value.country);
+            if (value.isPreferred) {
+                this.$input.filter('[name="preferred"]').attr('checked', 'checked');
+            }
         },
 
         /**
@@ -132,7 +139,8 @@
             return {
                 type: this.$input.filter('[name="type"]').val(),
                 number: this.$input.filter('[name="number"]').val(),
-                country: this.$select.val()
+                country: this.$select.val(),
+                isPreferred: this.$input.filter('[name="preferred"]').is(':checked')
             };
         },
 
@@ -162,7 +170,8 @@
     Phone.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         tpl: '<div class="editable-address"><label><span>Type: </span></label><input type="text" name="type" class="form-control input-small" placeholder="Home, Mobile, Office, etc"></div>'+
         '<div class="editable-address"><label><span>Country: </span></label><select name="country" class="form-control input-small"></select></div>'+
-        '<div class="editable-address"><label><span>Number: </span></label><input type="tel" name="number" class="form-control input-small"></div>'
+        '<div class="editable-address"><label><span>Number: </span></label><input type="tel" name="number" class="form-control input-small"></div>'+
+        '<div class="editable-address"><label><span>Preferred: </span></label><input type="checkbox" name="preferred" ></div>'
         ,
         inputclass: '',
         sourceCountry: []

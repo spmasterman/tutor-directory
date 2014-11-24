@@ -50,6 +50,13 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
     private $type;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="preferred", type="boolean")
+     */
+    private $preferred;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -146,6 +153,24 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
     public function setCountry($country)
     {
         $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPreferred()
+    {
+        return $this->preferred;
+    }
+
+    /**
+     * @param boolean $preferred
+     * @return $this
+     */
+    public function setPreferred($preferred)
+    {
+        $this->preferred = $preferred;
         return $this;
     }
 }

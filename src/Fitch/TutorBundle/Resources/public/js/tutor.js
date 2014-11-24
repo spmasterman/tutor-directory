@@ -438,9 +438,6 @@ jQuery(document).ready(function() {
 
         ratesContainer.on('click', 'span.data-history', function(){
             $('.modal-body').html($(this).find('.data-history-content').html());
-
-
-
         });
     }
 
@@ -605,14 +602,15 @@ jQuery(document).ready(function() {
      * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
      *
      * @param host
-     * @returns {{value: {type: *, number: *, country: *}, params: Function, success: Function, sourceCountry: Array}}
+     * @returns {{value: {type: *, number: *, country: *, isPreferred: *}, params: Function, success: Function, sourceCountry: Array}}
      */
     function getPhoneOptions(host) {
         return {
             value: {
                 type: host.data('valueType'),
                 number: host.data('valueNumber'),
-                country: host.data('valueCountry')
+                country: host.data('valueCountry'),
+                isPreferred: host.data('valueIsPreferred')
             },
             params: function(params) {
                 params.phonePk = host.attr('data-phone-pk');

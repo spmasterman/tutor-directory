@@ -113,7 +113,8 @@
                                        data-value-type="{{ phone.getType }}"
                                        data-value-country="{{ phone.getCountry.getId }}"
                                        data-value-number="{{ phone.getNumber }}"
-                                    >{% endif %}{{ phone.getFullNumber }}{% if editor %}</a>{% endif %}
+                                       data-value-is-preferred="{{ phone.isPreferred }}"
+                                    >{% endif %}{{ phone.getFullNumber }}{% if phone.isPreferred %} (preferred){% endif %}{% if editor %}</a>{% endif %}
                                 </span>
                                 {% if editor %}
                                 <span class="data-action">
