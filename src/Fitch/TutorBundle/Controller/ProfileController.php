@@ -54,7 +54,8 @@ class ProfileController extends Controller
         return [
             'tutor' => $tutor,
             'user' => $this->getUser(),
-            'tab' => $tab
+            'tab' => $tab,
+            'rateManager' => $this->getRateManager()
         ];
     }
 

@@ -72,6 +72,17 @@
     }
   }
 
+  .data-action,
+  .data-history {
+    float: right;
+    margin-left: 10px;
+  }
+
+  .no-change {
+    color: $text-muted;
+    font-style: italic;
+    font-size: smaller;
+  }
 
   .data-file {
     padding-left:25px;

@@ -113,6 +113,14 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        mappings:
+            gedmo_loggable:
+                type: annotation
+                prefix: Gedmo\Loggable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -138,11 +146,7 @@ stof_doctrine_extensions:
         default:
             tree: true
             timestampable: true
-
-#khepin_yaml_fixtures:
-#    directory: Resources/fixtures
-#    resources:
-#        - FitchTutorBundle
+            loggable: true
 
 oneup_uploader:
     mappings:

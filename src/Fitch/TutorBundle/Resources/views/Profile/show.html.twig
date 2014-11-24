@@ -23,6 +23,7 @@
             {% include 'FitchTutorBundle:Profile:profile.tab.html.twig' %}
         </div>
         <div class="tab-pane engagement{% if tab == 'engagement' %} active{% endif %}" id="engagement-tab">
+            {% include 'FitchTutorBundle:Profile:ratehistory.html.twig' %}
             {% include 'FitchTutorBundle:Profile:engagement.tab.html.twig' %}
         </div>
         <div class="tab-pane competency{% if tab == 'competency' %} active{% endif %}" id="competency-tab">

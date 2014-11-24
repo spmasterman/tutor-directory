@@ -435,6 +435,13 @@ jQuery(document).ready(function() {
                 row.remove();
             }
         });
+
+        ratesContainer.on('click', 'span.data-history', function(){
+            $('.modal-body').html($(this).find('.data-history-content').html());
+
+
+
+        });
     }
 
     /**

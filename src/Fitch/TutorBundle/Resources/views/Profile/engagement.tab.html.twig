@@ -13,20 +13,47 @@
                     {% for rate in tutor.getRates %}
                         <div class="data-row" data-id="{{ tutor.getId }}">
                             <span class="data-name">{{ rate.getName }} Rate</span>
-                                <span class="data-value">
-                                    <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
-                                       data-type="rate"
-                                       data-pk="{{ tutor.getId }}"
-                                       data-rate-pk="{{ rate.getId }}"
-                                       data-url="{{ path('tutor_ajax_update')}}"
-                                       data-title="Enter Rate"
-                                       data-value-name="{{ rate.getName }}"
-                                       data-value-amount="{{ rate.getAmount }}"
-                                            >{{ rate.getAmount }}</a>
+                            <span class="data-value">
+                                <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
+                                   data-type="rate"
+                                   data-pk="{{ tutor.getId }}"
+                                   data-rate-pk="{{ rate.getId }}"
+                                   data-url="{{ path('tutor_ajax_update')}}"
+                                   data-title="Enter Rate"
+                                   data-value-name="{{ rate.getName }}"
+                                   data-value-amount="{{ rate.getAmount }}"
+                                        >{{ rate.getAmount }}</a>
+                            </span>
+                            <span class="data-action">
+                                <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
+                            </span>
+                            <span class="data-history" data-toggle="modal" data-target="#modal-ratehistory">
+                                <span class="data-history-content hide">
+                                    <table class="records_list table table-condensed table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Rate Name</th>
+                                                <th>Rate Qty</th>
+                                                <th>On</th>
+                                                <th>By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for logEntry in rateManager.getLogs(rate)|reverse %}
+                                            <tr>
+                                                <td>{{ logEntry.action }}</td>
+                                                <td>{{ logEntry.data.name|default('<span class="no-change">No Change</span>')|raw }}</td>
+                                                <td>{{ logEntry.data.amount|default('<span class="no-change">No Change</span>')|raw }}</td>
+                                                <td>{{ logEntry.loggedAt|date("F jS \\a\\t g:ia")  }}</td>
+                                                <td>{{ logEntry.username}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
                                 </span>
-                                <span class="data-action">
-                                    <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
-                                </span>
+                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-history"></i> History</a>
+                            </span>
                         </div>
                     {% endfor %}
                 </div>

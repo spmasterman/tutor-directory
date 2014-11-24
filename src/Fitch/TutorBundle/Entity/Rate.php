@@ -13,6 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * File
  *
+ * @Gedmo\Loggable
  * @ORM\Table(name="rate")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\RateRepository")
  */
@@ -29,13 +30,15 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface
     private $tutor;
 
     /**
-     * @var string
-     *
+     * @Gedmo\Versioned
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @var string
      */
     private $name;
 
     /**
+     * @Gedmo\Versioned
      * @ORM\Column(name="amount", type="decimal", precision=8, scale=2)
      *
      * @var string

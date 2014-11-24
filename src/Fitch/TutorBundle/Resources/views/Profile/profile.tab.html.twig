@@ -48,14 +48,14 @@
                     {% if editor or tutor.getLinkedInURL %}
                     <p class="data-row">
                         <span class="data-name"><i class="fa fa-linkedin-square"></i> LinkedIn Profile</span>
-                                <span class="data-value">
-                                    {% if tutor.getLinkedInURL %}
-                                        <a href="{{ tutor.getLinkedInURL }}" target="_blank">View Profile</a>
-                                    {% endif %}
-                                    {% if editor %}
-                                        <a href="#" id="linkedInURL" class="inline" data-type="url" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getLinkedInURL }}" data-title="Enter URL of LinkedIn Profile">Edit</a>
-                                    {% endif %}
-                                </span>
+                        <span class="data-value">
+                            {% if tutor.getLinkedInURL %}
+                                <a href="{{ tutor.getLinkedInURL }}" target="_blank">View Profile</a>
+                            {% endif %}
+                            {% if editor %}
+                                <a href="#" id="linkedInURL" class="inline" data-type="url" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getLinkedInURL }}" data-title="Enter URL of LinkedIn Profile">Edit</a>
+                            {% endif %}
+                        </span>
                     </p>
                     {% endif %}
 
