@@ -35,12 +35,12 @@
                         <td>{{ country.threeDigitCode }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">{% trans %}country.column.dialling_code{% endtrans %}</th>
+                        <th class="col-xs-2">{% trans %}country.column.dialing_code{% endtrans %}</th>
                         <td>{{ country.dialingCode }}</td>
                     </tr>
                     <tr>
                         <th class="col-xs-2">{% trans %}country.column.preferred{% endtrans %}</th>
-                        <td>{% if country.idPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <td>{% if country.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
                 </tbody>
             </table>
