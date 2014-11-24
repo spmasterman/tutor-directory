@@ -260,7 +260,7 @@ profile:
     files:
         upload: Drop files here to upload
         files_header: Files
-        file_upload_header: File Upload
+        files_upload_header: File Upload
 
 
 address:
