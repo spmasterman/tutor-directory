@@ -129,6 +129,9 @@ class UserController extends Controller
     public function showAction(User $user)
     {
         $deleteForm = $this->createDeleteForm($user->getId());
+
+        $x = $this->getUserManager()->getLogs($user);
+
         return [
             'user'      => $user,
             'delete_form' => $deleteForm->createView(),

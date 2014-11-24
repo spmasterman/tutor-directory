@@ -58,7 +58,7 @@
                                     <tr>
                                         <td>{{ logEntry.action }}</td>
                                         <td>{{ logEntry.data.username|default('<span class="no-change">No Change</span>')|raw }}</td>
-                                        <td>{{ logEntry.data.fullname|default('<span class="no-change">No Change</span>')|raw }}</td>
+                                        <td>{{ logEntry.data.fullName|default('<span class="no-change">No Change</span>')|raw }}</td>
                                         <td>{{ logEntry.data.email|default('<span class="no-change">No Change</span>')|raw }}</td>
                                         <td>{% if logEntry.data.roles is defined %}
                                                 <ul class="fa-ul">{% for role in logEntry.data.roles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul>
