@@ -20,28 +20,20 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">{% trans %}currency.column.id{% endtrans %}</th>
                         <td>{{ currency.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-2">{% trans %}currency.column.name{% endtrans %}</th>
                         <td>{{ currency.name }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">ISO 4217 3 digit code</th>
+                        <th class="col-xs-2">{% trans %}currency.column.code{% endtrans %}</th>
                         <td>{{ currency.threeDigitCode }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Preferred</th>
+                        <th class="col-xs-2">{% trans %}currency.column.preferred{% endtrans %}</th>
                         <td>{% if currency.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Created</th>
-                        <td>{{ currency.created|date('Y-m-d H:i:s') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Updated</th>
-                        <td>{{ currency.updated|date('Y-m-d H:i:s') }}</td>
                     </tr>
                 </tbody>
             </table>

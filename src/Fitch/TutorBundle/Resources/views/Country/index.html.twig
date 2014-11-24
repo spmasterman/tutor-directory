@@ -8,7 +8,7 @@
 {% block main_content -%}
     <div class="widget widget-table">
         <div class="widget-header">
-            <h3><i class="fa fa-flag-o"></i> Countries</h3>
+            <h3><i class="fa fa-flag-o"></i> {% trans %}country.list.verb{% endtrans %}</h3>
             <div class="btn-group widget-header-toolbar">
                 <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
                 <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
@@ -19,14 +19,14 @@
             <table class="records_list table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>ISO 3661-1 2 digit code</th>
-                        <th>ISO 3661-1 3 digit code</th>
-                        <th>Dialing code</th>
-                        <th>Preferred</th>
-                        <th>Default Region</th>
-                        <th>Actions</th>
+                        <th>{% trans %}country.column.id{% endtrans %}</th>
+                        <th>{% trans %}country.column.name{% endtrans %}</th>
+                        <th>{% trans %}country.column.code_2{% endtrans %}</th>
+                        <th>{% trans %}country.column.code_3{% endtrans %}</th>
+                        <th>{% trans %}country.column.dialling_code{% endtrans %}</th>
+                        <th>{% trans %}country.column.preferred{% endtrans %}</th>
+                        <th>{% trans %}country.column.default_region{% endtrans %}</th>
+                        <th>{% trans %}country.column.actions{% endtrans %}</th>
                     </tr>
                 </thead>
                 <tbody>

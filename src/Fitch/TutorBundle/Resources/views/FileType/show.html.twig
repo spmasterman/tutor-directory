@@ -19,23 +19,23 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">{% trans %}file_type.column.id{% endtrans %}</th>
                         <td>{{ file_type.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-2">{% trans %}file_type.column.name{% endtrans %}</th>
                         <td>{{ file_type.name }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Default</th>
+                        <th class="col-xs-2">{% trans %}file_type.column.default{% endtrans %}</th>
                         <td>{% if file_type.isDefault %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Use as Profile Picture</th>
-                        <td>{% if file_type.isProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <th class="col-xs-2">{% trans %}file_type.column.profile{% endtrans %}</th>
+                        <td>{% if file_type.suitableForProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Private</th>
+                        <th class="col-xs-2">{% trans %}file_type.column.private{% endtrans %}</th>
                         <td>{% if file_type.isPrivate %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
                 </tbody>

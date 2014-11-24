@@ -19,20 +19,16 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">{% trans %}competency_level.column.id{% endtrans %}</th>
                         <td>{{ competencyLevel.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-2">{% trans %}competency_level.column.name{% endtrans %}</th>
                         <td>{{ competencyLevel.name }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Created</th>
-                        <td>{{ competencyLevel.created|date('Y-m-d H:i:s') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Updated</th>
-                        <td>{{ competencyLevel.updated|date('Y-m-d H:i:s') }}</td>
+                        <th class="col-xs-2">{% trans %}competency_level.column.color{% endtrans %}</th>
+                        <td><span style="background-color: {{ competencyLevel.getColor }}; padding:3px;">{{ competencyLevel.getColor }}</span></td>
                     </tr>
                 </tbody>
             </table>

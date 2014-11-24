@@ -8,7 +8,7 @@
 {% block main_content -%}
     <div class="widget widget-table">
         <div class="widget-header">
-            <h3><i class="fa fa-mortar-board"></i> New Tutor</h3>
+            <h3><i class="fa fa-mortar-board"></i> {% trans %}tutor.new.verb{% endtrans %}</h3>
             <div class="btn-group widget-header-toolbar">
                 <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
                 <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="widget-content">
-            <div class="alert alert-info">Enter the Tutor name and click the Create button - you will be taken to the Tutor Profile page to complete the tutors details.</div>
+            <div class="alert alert-info">{% trans %}tutor.new.intro{% endtrans %}</div>
             {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
             {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
         </div>

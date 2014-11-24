@@ -1,9 +1,9 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
-    {% block main_header -%}
+{% block main_header -%}
     <h2>{% trans %}country.show.verb{% endtrans %}</h2>
     <em>{% trans %}country.show.tagline{% endtrans %}</em>
-    {% endblock %}
+{% endblock %}
 
 {% block main_content -%}
     <div class="widget widget-table">
@@ -19,37 +19,28 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">{% trans %}country.column.id{% endtrans %}</th>
                         <td>{{ country.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-2">{% trans %}country.column.name{% endtrans %}</th>
                         <td>{{ country.name }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">ISO 3661-1 2 digit code</th>
+                        <th class="col-xs-2">{% trans %}country.column.code_2{% endtrans %}</th>
                         <td>{{ country.twoDigitCode }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">ISO 3661-1 3 digit code</th>
+                        <th class="col-xs-2">{% trans %}country.column.code_3{% endtrans %}</th>
                         <td>{{ country.threeDigitCode }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Dialing Code</th>
+                        <th class="col-xs-2">{% trans %}country.column.dialling_code{% endtrans %}</th>
                         <td>{{ country.dialingCode }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Preferred</th>
+                        <th class="col-xs-2">{% trans %}country.column.preferred{% endtrans %}</th>
                         <td>{% if country.idPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
-                    </tr>
-
-                    <tr>
-                        <th class="col-xs-2">Created</th>
-                        <td>{{ country.created|date('Y-m-d H:i:s') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Updated</th>
-                        <td>{{ country.updated|date('Y-m-d H:i:s') }}</td>
                     </tr>
                 </tbody>
             </table>

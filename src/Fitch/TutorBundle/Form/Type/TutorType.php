@@ -32,7 +32,9 @@ class TutorType extends AbstractType
             ->add('name')
             ->add('region')
             ->add('status')
-            ->add('tutorType')
+            ->add('tutorType', null, [
+                'label' => 'Trainer Type'
+            ])
         ;
     }
     

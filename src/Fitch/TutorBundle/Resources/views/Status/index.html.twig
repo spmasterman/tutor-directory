@@ -19,9 +19,9 @@
             <table class="records_list table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Actions</th>
+                        <th>{% trans %}status.column.id{% endtrans %}</th>
+                        <th>{% trans %}status.column.name{% endtrans %}</th>
+                        <th>{% trans %}status.column.actions{% endtrans %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <small><i class="fa fa-asterisk yellow-font"></i> = Default status assigned to new Tutors</small>
+            <small><i class="fa fa-asterisk yellow-font"></i>{% trans %}status.default_message{% endtrans %}</small>
         </div>
     </div>
     <div class="record_actions well">

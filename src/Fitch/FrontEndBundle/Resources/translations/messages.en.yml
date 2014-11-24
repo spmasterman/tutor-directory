@@ -6,7 +6,7 @@ application:
     copyright: &nbsp; &copy; 2014 Fitch Learning
 
 home:
-    title: Tutor Directory
+    title: Trainer Directory
     tagline: a global faculty resource
 
 error:
@@ -26,8 +26,6 @@ error:
     429:
         status: Hold on!<br/>Too Many Requests
         long: <p>This server limits the number of some requests you can make in a period of time. What you're trying to do is breaking one of these limits.</p>
-
-
 
 navigation:
     back: Go Back

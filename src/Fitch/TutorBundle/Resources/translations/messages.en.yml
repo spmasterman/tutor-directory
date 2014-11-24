@@ -1,164 +1,221 @@
 tutor:
     edit:
-        verb: EDIT TUTOR
-        tagline: edit the details of a tutor
-        success: The Tutor has been successfully updated.
+        verb: Edit Trainer
+        tagline: edit the details of a trainer
+        success: The trainer has been successfully updated.
     list:
-        verb: TUTORS
-        tagline: all tutors
+        verb: Trainers
+        tagline: all trainers
     new:
-        verb: NEW TUTOR
-        tagline: define a new tutor
-        success: The Tutor has been successfully created.
+        verb: New Trainer
+        tagline: define a new trainer
+        success: The trainer has been successfully created.
+        intro: Enter the trainer's name and click the Create button - you will be taken to the Trainer Profile page to complete the trainer's details.
     show:
-        verb: TUTOR
-        tagline: view and edit a tutor profile
+        verb: Trainer
+        tagline: view and edit a trainer profile
     delete:
-        success: The Tutor has been successfully removed.
+        success: The trainer has been successfully removed.
+    column:
+        name: Trainer Name
+        type: Type
+        region: Region
+        status: Status
+        competencies: Skills
+        notes: Notes<
 
 operating_region:
     edit:
-        verb: EDIT REGION
-        tagline: edit the details of operational region record
-        success: The Region has been successfully updated.
+        verb: Edit Region
+        tagline: edit the details of an operating region
+        success: The region has been successfully updated.
     list:
-        verb: REGIONS
-        tagline: regions available for use in the Tutor Directory
+        verb: Regions
+        tagline: all operating regions
     new:
-        verb: NEW REGION
-        tagline: define a new operational region
-        success: The Region has been successfully created.
+        verb: New Region
+        tagline: define a new region of operation
+        success: The region has been successfully created.
     show:
-        verb: REGION
-        tagline: view the details of a Region record
+        verb: Region
+        tagline: view the details of a region record
     delete:
-        success: The Region has been successfully removed.
+        success: The region has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        actions: Actions
+    default_message:  = Default operating region assigned to new trainers
+
 
 tutor_type:
     edit:
-        verb: EDIT TUTOR TYPE
-        tagline: edit the details of tutor type record
-        success: The Tutor Type has been successfully updated.
+        verb: Edit Trainer Type
+        tagline: edit the details of trainer type record
+        success: The trainer type has been successfully updated.
     list:
-        verb: TUTOR TYPES
-        tagline: tutor types available for use in the Tutor Directory
+        verb: Trainer Types
+        tagline: trainer types available for use in the Trainer Directory
     new:
-        verb: NEW TUTOR TYPE
-        tagline: define a new tutor type
-        success: The Tutor Type has been successfully created.
+        verb: New Trainer Type
+        tagline: define a new trainer type
+        success: The trainer type has been successfully created.
     show:
-        verb: TUTOR TYPE
-        tagline: view the details of a Tutor Type record
+        verb: Trainer Type
+        tagline: view the details of a trainer type record
     delete:
-        success: The Tutor Type has been successfully removed.
+        success: The trainer type has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        actions: Actions
+    default_message:  = Default trainer type assigned to new trainers
 
 status:
     edit:
-        verb: EDIT TUTOR STATUS
-        tagline: edit the details of tutor status record
-        success: The Status has been successfully updated.
+        verb: Edit Trainer Status
+        tagline: edit the details of trainer status record
+        success: The status has been successfully updated.
     list:
-        verb: STATUSES
-        tagline: tutor statuses available for use in the Tutor Directory
+        verb: Statuses
+        tagline: trainer statuses available for use in the Trainer Directory
     new:
-        verb: NEW STATUS
-        tagline: define a new tutor status
-        success: The Status has been successfully created.
+        verb: New Status
+        tagline: define a new trainer status
+        success: The status has been successfully created.
     show:
-        verb: STATUS
+        verb: Status
         tagline: view the details of a Status record
     delete:
-        success: The Status has been successfully removed.
+        success: The status has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        actions: Actions
+    default_message:  = Default status assigned to new trainers
 
 file_type:
     edit:
-        verb: EDIT FILE TYPE
+        verb: Edit File Type
         tagline: edit the details of file type record
-        success: The File Type has been successfully updated.
+        success: The file type has been successfully updated.
     list:
-        verb: FILE TYPES
-        tagline: file types available for use in the Tutor Directory
+        verb: File Types
+        tagline: file types available for use in the Trainer Directory
     new:
-        verb: NEW FILE TYPE
+        verb: New File Type
         tagline: define a new file type
-        success: The File Type has been successfully created.
+        success: The file type has been successfully created.
     show:
-        verb: FILE TYPE
-        tagline: view the details of a File Type record
+        verb: File Type
+        tagline: view the details of a file type record
     delete:
-        success: The File Type has been successfully removed.
+        success: The file type has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        default: Default
+        private: Private
+        profile: Use as Profile Picture
+        actions: Actions
+    default_message:  = Default file type assigned to new files
 
 competency_type:
     edit:
-        verb: EDIT COMPETENCY TYPE
-        tagline: edit the details of competency type record
-        success: The Competency Type has been successfully updated.
+        verb: Edit Skill Type
+        tagline: edit the details of skill type record
+        success: The skill type has been successfully updated.
     list:
-        verb: COMPETENCY TYPES
-        tagline: competency types available for use in the Tutor Directory
+        verb: Skill Types
+        tagline: skill types available for use in the Trainer Directory
     new:
-        verb: NEW COMPETENCY TYPE
-        tagline: define a new competency type
-        success: The Competency Type has been successfully created.
+        verb: New Skill Type
+        tagline: define a new skill type
+        success: The skill type has been successfully created.
     show:
-        verb: COMPETENCY TYPE
-        tagline: view the details of a Competency Type record
+        verb: Skill Type
+        tagline: view the details of a skill type record
     delete:
-        success: The Competency Type has been successfully removed.
-        
+        success: The skill type has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        actions: Actions
+
 competency_level:
     edit:
-        verb: EDIT COMPETENCY LEVEL
-        tagline: edit the details of competency level record
-        success: The Competency Level has been successfully updated.
+        verb: Edit Skill Level
+        tagline: edit the details of skill level record
+        success: The skill level has been successfully updated.
     list:
-        verb: COMPETENCY LEVELS
-        tagline: competency levels available for use in the Tutor Directory
+        verb: Skill Levels
+        tagline: skill levels available for use in the Trainer Directory
     new:
-        verb: NEW COMPETENCY LEVEL
-        tagline: define a new competency level
-        success: The Competency Level has been successfully created.
+        verb: New Skill Level
+        tagline: define a new skill level
+        success: The skill level has been successfully created.
     show:
-        verb: COMPETENCY LEVEL
-        tagline: view the details of a Competency Level record
+        verb: Skill Level
+        tagline: view the details of a skill level record
     delete:
-        success: The Competency Level has been successfully removed.
+        success: The skill level has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        color: Color
+        actions: Actions
 
 country:
     edit:
-        verb: EDIT COUNTRY
+        verb: Edit Country
         tagline: edit the details of country record
-        success: The Country has been successfully updated.
+        success: The country has been successfully updated.
     list:
-        verb: COUNTRIES
-        tagline: countries available for use in the Tutor Directory
+        verb: Countries
+        tagline: countries available for use in the Trainer Directory
     new:
-        verb: NEW COUNTRY
+        verb: New Country
         tagline: define a new country
-        success: The Country has been successfully created.
+        success: The country has been successfully created.
     show:
-        verb: COUNTRY
-        tagline: view the details of a Country record
+        verb: Country
+        tagline: view the details of a country record
     delete:
-        success: The Country has been successfully removed.
+        success: The country has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        code_2: ISO 3661-1 2 digit code
+        code_3: ISO 3661-1 3 digit code
+        dialing_code: Dialing code
+        preferred: Preferred
+        default_region: Default Region
+        actions: Actions
+
 
 currency:
     edit:
-        verb: EDIT CURRENCY
+        verb: Edit Currency
         tagline: edit the details of currency record
-        success: The Currency has been successfully updated.
+        success: The currency has been successfully updated.
     list:
-        verb: CURRENCIES
-        tagline: currencies available for use in the Tutor Directory
+        verb: Currencies
+        tagline: currencies available for use in the Trainer Directory
     new:
-        verb: NEW CURRENCY
+        verb: New Currency
         tagline: define a new currency
-        success: The Currency has been successfully created.
+        success: The currency has been successfully created.
     show:
-        verb: CURRENCY
-        tagline: view the details of a Currency record
+        verb: Currency
+        tagline: view the details of a currency record
     delete:
-        success: The Currency has been successfully removed.
+        success: The currency has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        code: ISO 4217 3 digit code
+        preferred: Preferred
+        actions: Actions
 
 address:
     type:

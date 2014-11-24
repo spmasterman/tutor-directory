@@ -6,10 +6,6 @@
 	<!-- WRAPPER -->
 	<div class="wrapper">
 
-        {% block top_alert %}
-            {{ render(controller('FitchFrontEndBundle:Alert:index', {})) }}
-        {% endblock %}
-
         {% block top_bar %}
             {{ render(controller('FitchFrontEndBundle:Navigation:mainbar', {})) }}
         {% endblock %}
@@ -45,9 +41,9 @@
                             <div class="col-md-4">
                                 {% block breadcrumb %}
                                     {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:breadcrumbMenu', {
-                                    'currentClass' : 'active',
-                                    'ancestorClass': 'active open',
-                                    'template': 'FitchFrontEndBundle:Menu:breadcrumb.html.twig',
+                                        'currentClass' : 'active',
+                                        'ancestorClass': 'active open',
+                                        'template': 'FitchFrontEndBundle:Menu:breadcrumb.html.twig'
                                     }) }}
                                 {% endblock %}
                             </div>

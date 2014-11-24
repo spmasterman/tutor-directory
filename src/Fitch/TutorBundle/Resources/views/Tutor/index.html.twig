@@ -7,7 +7,7 @@
 {% block main_content -%}
     <div class="widget widget-table">
         <div class="widget-header">
-            <h3><i class="fa fa-mortar-board"></i> Tutors</h3>
+            <h3><i class="fa fa-mortar-board"></i> {% trans %}tutor.list.verb{% endtrans %}</h3>
             <div class="btn-group widget-header-toolbar">
                 <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
                 <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
@@ -19,23 +19,23 @@
                 <thead>
                     <tr>
                         <th><i id="open-all" class="fa fa-plus-square"></i></th>
-                        <th>Tutor Name</th>
-                        <th>Type</th>
-                        <th>Region</th>
-                        <th>Status</th>
-                        <th>Competencies</th>
-                        <th>Notes</th>
+                        <th>{% trans %}tutor.column.name{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.type{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.region{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.status{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.competencies{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.notes{% endtrans %}</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th></th>
-                        <th>Tutor Name</th>
-                        <th>Type</th>
-                        <th>Region</th>
-                        <th>Status</th>
-                        <th>Competencies</th>
-                        <th>Notes</th>
+                        <th>{% trans %}tutor.column.name{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.type{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.region{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.status{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.competencies{% endtrans %}</th>
+                        <th>{% trans %}tutor.column.notes{% endtrans %}</th>
                     </tr>
                 </tfoot>
             </table>

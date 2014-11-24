@@ -25,6 +25,7 @@ class CountryType extends AbstractType
             ])
             ->add('dialingCode')
             ->add('preferred', new OnOffType(), [
+                'type' => 'yesno',
                 'required' => false
             ])
             ->add('defaultRegion')

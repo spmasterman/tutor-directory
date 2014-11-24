@@ -1,0 +1,14 @@
+menu:
+    home: Home
+    user:
+        profile: Profile
+        logout: Logout
+    tutor_type: Trainer Types
+    tutor_status: Trainer Statuses
+    regions: Regions
+    countries: Countries
+    currencies: Currencies
+    file_type: File Types
+    competency_type: Skill Types
+    competency_level: Skill Levels
+    user_management: User Management

@@ -1,9 +1,9 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
-    {% block main_header -%}
+{% block main_header -%}
     <h2>{% trans %}status.show.verb{% endtrans %}</h2>
     <em>{% trans %}status.show.tagline{% endtrans %}</em>
-    {% endblock %}
+{% endblock %}
 
 {% block main_content -%}
     <div class="widget widget-table">
@@ -19,11 +19,11 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">{% trans %}status.column.id{% endtrans %}</th>
                         <td>{{ status.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-2">{% trans %}status.column.name{% endtrans %}</th>
                         <td>{{ status.name }}</td>
                     </tr>
                 </tbody>

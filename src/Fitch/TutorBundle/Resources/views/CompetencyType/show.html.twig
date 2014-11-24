@@ -19,20 +19,12 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">{% trans %}competency_type.column.id{% endtrans %}</th>
                         <td>{{ competencyType.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-2">{% trans %}competency_type.column.name{% endtrans %}</th>
                         <td>{{ competencyType.name }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Created</th>
-                        <td>{{ competencyType.created|date('Y-m-d H:i:s') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Updated</th>
-                        <td>{{ competencyType.updated|date('Y-m-d H:i:s') }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -8,7 +8,7 @@
 {% block main_content -%}
     <div class="widget widget-table">
         <div class="widget-header">
-            <h3><i class="fa fa-money"></i> Currencies</h3>
+            <h3><i class="fa fa-money"></i> {% trans %}currency.list.verb{% endtrans %}</h3>
             <div class="btn-group widget-header-toolbar">
                 <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
                 <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
@@ -19,12 +19,12 @@
             <table class="records_list table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>ISO 4217 3 digit code</th>
-                        <th>Preferred</th>
-                        <th>Actions</th>
-                    </tr>
+                        <th>{% trans %}currency.column.id{% endtrans %}</th>
+                        <th>{% trans %}currency.column.name{% endtrans %}</th>
+                        <th>{% trans %}currency.column.code{% endtrans %}</th>
+                        <th>{% trans %}currency.column.preferred{% endtrans %}</th>
+                        <th>{% trans %}currency.column.actions{% endtrans %}</th>
+                     </tr>
                 </thead>
                 <tbody>
                 {% for currency in currencies %}

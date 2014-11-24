@@ -18,22 +18,14 @@
         <div class="widget-content">
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
-                    <tr>
-                        <th class="col-xs-2">Id</th>
-                        <td>{{ region.id }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Name</th>
-                        <td>{{ region.name }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Created</th>
-                        <td>{{ region.created|date('Y-m-d H:i:s') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">Updated</th>
-                        <td>{{ region.updated|date('Y-m-d H:i:s') }}</td>
-                    </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}operating_region.column.id{% endtrans %}</th>
+                    <td>{{ region.id }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}operating_region.column.name{% endtrans %}</th>
+                    <td>{{ region.name }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
