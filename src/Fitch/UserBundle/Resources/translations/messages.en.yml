@@ -15,3 +15,12 @@ user:
         tagline: view and edit a user profile
     delete:
         success: The User has been successfully removed.
+    field:
+        log:
+            action: Action
+            username: Username
+            fullname: Fullname
+            email: Email
+            roles: Roles
+            date: On
+            user: By

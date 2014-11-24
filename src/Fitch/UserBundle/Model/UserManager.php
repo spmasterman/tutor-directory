@@ -30,6 +30,16 @@ class UserManager extends BaseModelManager
 
     /**
      * @param User $user
+     * @return array
+     */
+    public function getLogs(User $user)
+    {
+        return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($user);
+    }
+
+
+    /**
+     * @param User $user
      * @param bool $withFlush
      */
     public function saveUser(User $user, $withFlush = true)

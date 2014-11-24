@@ -38,6 +38,43 @@
                         <th class="col-xs-2">Roles</th>
                         <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
                     </tr>
+                    <tr>
+                        <th class="col-xs-2">Audit Log</th>
+                        <td>
+                            <table class="records_list table table-condensed table-striped">
+                                <thead>
+                                <tr>
+                                    <th>{% trans %}user.field.log.action{% endtrans %}</th>
+                                    <th>{% trans %}user.field.log.username{% endtrans %}</th>
+                                    <th>{% trans %}user.field.log.fullname{% endtrans %}</th>
+                                    <th>{% trans %}user.field.log.email{% endtrans %}</th>
+                                    <th>{% trans %}user.field.log.roles{% endtrans %}</th>
+                                    <th>{% trans %}user.field.log.date{% endtrans %}</th>
+                                    <th>{% trans %}user.field.log.user{% endtrans %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for logEntry in logs %}
+                                    <tr>
+                                        <td>{{ logEntry.action }}</td>
+                                        <td>{{ logEntry.data.username|default('<span class="no-change">No Change</span>')|raw }}</td>
+                                        <td>{{ logEntry.data.fullname|default('<span class="no-change">No Change</span>')|raw }}</td>
+                                        <td>{{ logEntry.data.email|default('<span class="no-change">No Change</span>')|raw }}</td>
+                                        <td>{% if logEntry.data.roles is defined %}
+                                                <ul class="fa-ul">{% for role in logEntry.data.roles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul>
+                                            {% else %}
+                                                <span class="no-change">No Change</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ logEntry.loggedAt|date("F jS \\a\\t g:ia")  }}</td>
+                                        <td>{{ logEntry.username}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

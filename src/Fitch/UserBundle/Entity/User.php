@@ -5,7 +5,6 @@ namespace Fitch\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -14,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Fitch\UserBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="person")
+ * @Gedmo\Loggable
  *
  * @UniqueEntity(fields="email", message="Email is already in use")
  * @UniqueEntity(fields="username", message="Username is already in use")
@@ -31,6 +31,7 @@ class User extends BaseUser implements TimestampableTraitInterface
 
     /**
      * @ORM\Column(name="full_name", type="string", length=128, nullable=true)
+     * @Gedmo\Versioned
      *
      * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -44,6 +45,24 @@ class User extends BaseUser implements TimestampableTraitInterface
      * @var string
      */
     protected $fullName;
+
+    // Re-declare these fields so that we can make them loggable
+    // When/if this PR is accepted we will be able to do this in the class annotation
+
+    /**
+     * @Gedmo\Versioned
+     */
+    protected $email;
+
+    /**
+     * @Gedmo\Versioned
+     */
+    protected $username;
+
+    /**
+     * @Gedmo\Versioned
+     */
+    protected $roles;
 
     public function __construct()
     {

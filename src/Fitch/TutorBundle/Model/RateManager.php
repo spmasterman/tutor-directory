@@ -27,7 +27,10 @@ class RateManager extends BaseModelManager
         return parent::findAll();
     }
 
-
+    /**
+     * @param Rate $rate
+     * @return array
+     */
     public function getLogs(Rate $rate)
     {
         return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($rate);

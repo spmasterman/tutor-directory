@@ -132,6 +132,7 @@ class UserController extends Controller
         return [
             'user'      => $user,
             'delete_form' => $deleteForm->createView(),
+            'logs' => $this->getUserManager()->getLogs($user)
         ];
     }
 
