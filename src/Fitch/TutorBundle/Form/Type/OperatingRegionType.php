@@ -17,6 +17,7 @@ class OperatingRegionType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('code')
             ->add('default', new OnOffType(), [
                 'required' => false,
                 'type' => 'yesno'

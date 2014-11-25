@@ -44,6 +44,7 @@ operating_region:
     column:
         id: ID
         name: Name
+        code: Code
         actions: Actions
     default_message:  = Default operating region assigned to new trainers
 

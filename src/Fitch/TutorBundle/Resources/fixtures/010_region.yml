@@ -2,24 +2,30 @@ Fitch\TutorBundle\Entity\OperatingRegion:
     region-gl:
         name: Global
         default: true
+        code: ALL
         defaultCurrency: @currency-GBP
     region-uk:
         name: United Kingdom
         default: false
+        code: UK
         defaultCurrency: @currency-GBP
     region-us:
         name: United States of America
         default: false
+        code: US
         defaultCurrency: @currency-USD
     region-sg:
         name: Singapore
         default: false
+        code: SG
         defaultCurrency: @currency-SGD
     region-mea:
         name: Middle East and Africa
         default: false
+        code: MEA
         defaultCurrency: @currency-AED
     region-eu:
         name: Europe
         default: false
+        code: EU
         defaultCurrency: @currency-EUR

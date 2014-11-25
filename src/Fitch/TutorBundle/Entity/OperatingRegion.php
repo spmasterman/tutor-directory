@@ -42,6 +42,13 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
     protected $defaultCurrency;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=5)
+     */
+    protected $code;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -100,6 +107,24 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
     public function setDefaultCurrency($defaultCurrency)
     {
         $this->defaultCurrency = $defaultCurrency;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     * @return $this
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
         return $this;
     }
 }

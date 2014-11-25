@@ -3,4 +3,5 @@ Fitch\TutorBundle\Entity\Phone:
         type: <randomElement(['Home', 'Office', 'Mobile'])>
         number: <randomNumber(4)> <randomNumber(6)>
         country: @country-*
+        preferred: false
 

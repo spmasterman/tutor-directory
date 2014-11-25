@@ -20,7 +20,7 @@ class TutorRepository extends EntityRepository
             SELECT
               tutor.name AS fullname,
               tutor_type.name AS ttype,
-              region.name AS region,
+              concat(region.name, ' (', region.code, ')') AS region,
               status.name AS status,
               GROUP_CONCAT(DISTINCT
                   CONCAT(competency_type.name, '|' ,competency_level.name, '|',IFNULL(competency.note,''))
