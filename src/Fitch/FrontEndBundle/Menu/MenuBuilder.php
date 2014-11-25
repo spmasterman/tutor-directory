@@ -4,6 +4,9 @@ namespace Fitch\FrontEndBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Knp\Menu\Matcher\Matcher;
+use Knp\Menu\Matcher\Voter\UriVoter;
+use Knp\Menu\Renderer\ListRenderer;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
@@ -64,6 +67,7 @@ class MenuBuilder extends ContainerAware
             ->addCompetencyTypes($homeNode)
             ->addCompetencyLevels($homeNode)
             ->addUsers($homeNode)
+            ->addProfile($homeNode)
         ;
 
         return $menu;
@@ -125,6 +129,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.tutor_type', array('route' => 'tutor_type'))
                 ->setAttribute('icon', 'fa fa-child fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/tutor_type/']
+                ])
             ;
         }
 
@@ -142,6 +149,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.tutor_status', array('route' => 'status'))
                 ->setAttribute('icon', 'fa fa-tag fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/status/']
+                ])
             ;
         }
 
@@ -159,6 +169,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.regions', array('route' => 'region'))
                 ->setAttribute('icon', 'fa fa-globe fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/region/']
+                ])
             ;
         }
 
@@ -176,6 +189,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.countries', array('route' => 'country'))
                 ->setAttribute('icon', 'fa fa-flag-o fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/country/']
+                ])
             ;
         }
 
@@ -193,6 +209,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.currencies', array('route' => 'currency'))
                 ->setAttribute('icon', 'fa fa-money fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/currency/']
+                ])
             ;
         }
 
@@ -210,6 +229,10 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.file_type', array('route' => 'file_type'))
                 ->setAttribute('icon', 'fa fa-files-o fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/file_type/']
+                ])
+
             ;
         }
 
@@ -227,6 +250,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.competency_type', array('route' => 'competency_type'))
                 ->setAttribute('icon', 'fa fa-bullseye fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/competency_type/']
+                ])
             ;
         }
 
@@ -244,6 +270,9 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.competency_level', array('route' => 'competency_level'))
                 ->setAttribute('icon', 'fa fa-signal fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/competency_level/']
+                ])
             ;
         }
 
@@ -257,9 +286,29 @@ class MenuBuilder extends ContainerAware
                 ->addChild('menu.user_management', array('route' => 'user'))
                 ->setAttribute('icon', 'fa fa-users fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/user/']
+                ])
             ;
         }
 
         return $this;
     }
+
+    private function addProfile(ItemInterface $menu)
+    {
+        if (false !== $this->container->get('security.context')->isGranted('ROLE_USER')) {
+            $menu
+                ->addChild('menu.profile')
+                ->setAttribute('icon', 'fa fa-mortar-board fa-fw')
+                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/profile/']
+                ])
+            ;
+        }
+
+        return $this;
+    }
+
 }
