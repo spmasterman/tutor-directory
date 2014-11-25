@@ -43,3 +43,6 @@
 # general unversioned
 /unversioned/
 filestore/*
+
+app/sqlite.db.cache
+app/phpunit.xml
