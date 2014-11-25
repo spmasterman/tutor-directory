@@ -1,6 +1,8 @@
 Tutor Directory Project
 =======================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/69812bee-6fc9-4434-bbc0-b94a7b8531db/mini.png)](https://insight.sensiolabs.com/projects/69812bee-6fc9-4434-bbc0-b94a7b8531db)
+
 This project was developed from the Spec below. I originally copy-pasted some bundles from the Twitter project - these 
 probably don't need to have a common ancestor as these projects are unrelated and code sharing between them serves 
 little purpose.  
