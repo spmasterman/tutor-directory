@@ -33,7 +33,7 @@ class UserController extends Controller
         $allowedToSwitch = false;
         $originalUser = null;
 
-        if ($security->isGranted('ROLE_SUPER_ADMIN') or $security->isGranted('ROLE_PREVIOUS_ADMIN')) {
+        if ($security->isGranted('ROLE_SUPER_ADMIN') || $security->isGranted('ROLE_PREVIOUS_ADMIN')) {
             $allowedToSwitch = true;
         }
 
@@ -260,7 +260,7 @@ class UserController extends Controller
     /**
      * @return UserManager
      */
-    public function getUserManager()
+    private function getUserManager()
     {
         return $this->get('fitch.manager.user');
     }

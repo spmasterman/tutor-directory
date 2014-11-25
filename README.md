@@ -2,7 +2,7 @@ Tutor Directory Project
 =======================
 
 This project was developed from the Spec below. I originally copy-pasted some bundles from the Twitter project - these 
-probably don't need to have a common ancestor as these projects are unrelated and code duplication between them serves 
+probably don't need to have a common ancestor as these projects are unrelated and code sharing between them serves 
 little purpose.  
 
 0) Spec
@@ -31,6 +31,13 @@ In terms of logging in because this is separated from the ERP the user auth will
  
 The Terms of engagement tab needs to be locked to specific users. Because we are holding personal data the system needs to be secure (not ridiculously so but all the basics need to be right – no open URLs etc).
 
+-- Addendum
+
+* On the phone number fields can we have a ‘preferred’ tickbox – some tutors hate being called on their home phones unless it is an emergency. Either that or text notes by each entry.
+* Rates. Sharon pointed out that as we change rates we should record this for audit purposes – she is right. Is there any way we can log changes as they happen and show who made the change and why?
+* Can we replace the word ‘competency’ with ‘skill’ wherever it is used (sorry!)
+* Can we replace the word ‘tutor’ with ‘trainer’ (sorry again and only need to change on the front-end!)
+
 1) Installing it
 ----------------
 
@@ -38,7 +45,9 @@ Before you install, gather the following information - you will be asked to supp
 
 Database - You can put the DB anywhere. I've used it locally, but if necessary it could be on any server that can be 
 accessed from the host. You'll be asked for a database Driver, Host, Port, Name, User and Password. The system is only 
-tested with MySQL, locally, but there's no reason it shouldn't work with any DB that has a pdo_ driver.    
+tested with MySQL, locally, but there's no reason it shouldn't work with any DB that has a pdo_ driver. The only 
+explicit SQL statement at the time of writing lives in src/Fitch/TutorBundle/Entity/Repository/TutorRepository.php - 
+everything else is done through Doctrine.   
  
 SMTP - I know sending email from an AWS server is complicated. But that's all I know :) I use mailcatcher in development
 to test the process, but beyond that is more ops/admin than it makes sense for me to know. You will be asked for 
@@ -166,8 +175,8 @@ Run the shell script scratch/reset_db.sh This performs the following steps (you 
 If at any time you want to reset the system, just run that script. Be warned that it just drops and recreates the 
 database, so don't run it unless you are really sure about it.
 
-2 Install php-fpm
------------------
+2) Install php-fpm
+------------------
 
 The recommended way to run production Symfony2 apps is with PHP Fast Process Management.
  
@@ -309,15 +318,15 @@ line which defines the font location - use the existing value
 
 3) consider apc.stat=0 in php for very static installs 
 
-8 Backups
----------
+8) Backups
+----------
 
 Two things need backing up - The database, and the S3 filestore. These backups need to be kept as a matching pair. The 
 file management renames files and stores the renamed file as the 'key' field in the file DB, so if these get out of 
 sync then the files are effectively useless as you wont know who they are for etc.
  
-9 User Registration/Management
-------------------------------
+9) User Registration/Management
+-------------------------------
  
 ### Register:
 
@@ -388,6 +397,23 @@ URL "/admin/region" to require that role down at the bottom of the security.yml 
 src/Fitch/UserBundle/Form/Type/NewUserType.php and src/Fitch/UserBundle/Form/Type/EditUserType.php files so that they 
 appear as options in the User Management interface - and that's probably all that's needed. 
   
+10) Translations
+----------------
   
+Most front end text is stored in locale files and outputted via the translation service. While its unlikely that the
+software will be ported to French (etc) it could be by just translating those files. More importantly random requests 
+to name things differently can be relatively quickly executed by just editing these files. There are occasional 
+exceptions to text coming via translations - the most obvious is where its embedded in javascript files. With some 
+effort this could be pulled out by dumping content into hidden divs. Its more effort than I can muster at this point 
+however - and is likely to just add complexity rather than clarity.     
   
-EOF  
+Translation files:
+
+  src/Fitch/UserBundle/Resources/translations/FOSUserBundle.en.yml - User Management templates (Login, Profile, Emails etc) 
+  src/Fitch/UserBundle/Resources/translations/messages.en.yml - User entity & User CRUD
+  src/Fitch/TutorBundle/Resources/translations/messages.en.yml - Other entities & their CRUD 
+  src/Fitch/FrontEndBundle/Resources/translations/FitchFrontEndBundle.en.yml - Menu Names
+  src/Fitch/FrontEndBundle/Resources/translations/messages.en.yml - General Front End (Navigation, Errors etc)
+  
+EOF
+  

@@ -4,9 +4,6 @@ namespace Fitch\FrontEndBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Knp\Menu\Matcher\Matcher;
-use Knp\Menu\Matcher\Voter\UriVoter;
-use Knp\Menu\Renderer\ListRenderer;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
@@ -120,7 +117,7 @@ class MenuBuilder extends ContainerAware
     /**
      * @param ItemInterface $menu
      *
-     * @return MenuBuilder
+     * @return $this
      */
     private function addTutorTypes(ItemInterface $menu)
     {
@@ -140,7 +137,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addStatus(ItemInterface $menu)
     {
@@ -160,7 +157,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addRegions(ItemInterface $menu)
     {
@@ -180,7 +177,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addCountries(ItemInterface $menu)
     {
@@ -200,7 +197,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addCurrencies(ItemInterface $menu)
     {
@@ -220,7 +217,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addFileTypes(ItemInterface $menu)
     {
@@ -241,7 +238,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addCompetencyTypes(ItemInterface $menu)
     {
@@ -261,7 +258,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
-     * @return MenuBuilder
+     * @return $this
      */
     private function addCompetencyLevels(ItemInterface $menu)
     {
@@ -279,6 +276,10 @@ class MenuBuilder extends ContainerAware
         return $this;
     }
 
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
     private function addUsers(ItemInterface $menu)
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
@@ -295,6 +296,10 @@ class MenuBuilder extends ContainerAware
         return $this;
     }
 
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
     private function addProfile(ItemInterface $menu)
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_USER')) {

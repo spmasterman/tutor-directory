@@ -2,15 +2,14 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Entity\Country;
+use Fitch\TutorBundle\Form\Type\CountryType;
 use Fitch\TutorBundle\Model\CountryManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\Country;
-use Fitch\TutorBundle\Form\Type\CountryType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Country controller.

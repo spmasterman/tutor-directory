@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyManager;

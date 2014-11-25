@@ -10,7 +10,6 @@ use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Fitch\TutorBundle\Model\TutorTypeManager;
-use Fitch\TutorBundle\Security\Authorization\Voter\TutorVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Tutor controller - most tutor interaction is expected to be via specific tailored pages - handled by the

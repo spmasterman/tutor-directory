@@ -5,13 +5,11 @@ namespace Fitch\TutorBundle\Listener;
 use Fitch\TutorBundle\Model\FileManager;
 use Fitch\TutorBundle\Model\FileTypeManager;
 use Fitch\TutorBundle\Model\TutorManager;
-use Fitch\UserBundle\Entity\User;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Oneup\UploaderBundle\Event\PreUploadEvent;
 use Oneup\UploaderBundle\Uploader\File\GaufretteFile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Templating\EngineInterface;
 
 class UploadListener
@@ -108,9 +106,7 @@ class UploadListener
                 ]
             );
             $response['success'] = true;
-
         } catch (\Exception $e) {
-
             $response['success'] = false;
             $response['message'] = $e->getMessage();
         }

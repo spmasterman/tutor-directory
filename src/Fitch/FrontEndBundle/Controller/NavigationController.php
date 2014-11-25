@@ -55,7 +55,7 @@ class NavigationController extends Controller
     /**
      * @return UserManager
      */
-    public function getUserManager()
+    private function getUserManager()
     {
         return $this->get('fitch.manager.user');
     }

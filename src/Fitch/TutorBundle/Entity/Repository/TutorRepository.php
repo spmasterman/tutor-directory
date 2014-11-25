@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * TutorRepository
