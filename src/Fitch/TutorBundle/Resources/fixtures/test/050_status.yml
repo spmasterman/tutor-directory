@@ -1,0 +1,10 @@
+Fitch\TutorBundle\Entity\Status:
+    status-1:
+        name: Test Status One
+        default: true
+    status-2:
+        name: Test Status One
+        default: false
+    status-3:
+        name: Test Status One
+        default: false

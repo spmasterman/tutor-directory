@@ -36,13 +36,17 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/500_tutor.yml',
         ]);
 
-        // only production fixtures
-        if ($this->container->get('kernel')->getEnvironment() == 'prod') {
-            return $productionFixtures;
-        }
+        $testFixtures = array_map(function($v) {
+            return str_replace('/fixtures/','fixtures/test/', $v);
+        }, $developmentFixtures);
 
-        // else we're testing, insert all fixtures
-        return  $developmentFixtures;
+        $environment = $this->container->get('kernel')->getEnvironment();
+
+        switch($environment) {
+            case 'prod': return $productionFixtures;
+            case 'test': return $testFixtures;
+            default : return $developmentFixtures;
+        }
     }
 
     /**

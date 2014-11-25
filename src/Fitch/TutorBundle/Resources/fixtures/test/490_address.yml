@@ -1,0 +1,49 @@
+Fitch\TutorBundle\Entity\Address:
+    address-1:
+        type: 'Home'
+        streetPrimary: 1 Main Street
+        streetSecondary: Test Address One
+        city: Test City One
+        state: Test State One
+        zip: 11111
+        country: @country-1
+    address-2:
+        type: 'Office'
+        streetPrimary: 2 Main Street
+        streetSecondary: Test Address Two
+        city: Test City Two
+        state: Test State Two
+        zip: 22222
+        country: @country-1
+    address-3:
+        type: 'Home'
+        streetPrimary: 3 Main Street
+        streetSecondary: Test Address Three
+        city: Test City Three
+        state: Test State Three
+        zip: 33333-333
+        country: @country-2
+    address-4:
+        type: 'Office'
+        streetPrimary: 4 Main Street
+        streetSecondary: Test Address Four
+        city: Test City Four
+        state: Test State Four
+        zip:
+        country: @country-2
+    address-5:
+        type: 'Home'
+        streetPrimary: 5 Main Street
+        streetSecondary: Test Address Five
+        city: Test City Five
+        state: Test State Five
+        zip: 555
+        country: @country-3
+    address-6:
+        type: 'Office'
+        streetPrimary: 6 Main Street
+        streetSecondary: Test Address Six
+        city: Test City Six
+        state: Test State Six
+        zip: 66666
+        country: @country-3

@@ -1,0 +1,31 @@
+Fitch\TutorBundle\Entity\Phone:
+    phone-1:
+        type: Home
+        number: 123 1111111
+        country: @country-1
+        preferred: true
+    phone-2:
+        type: Office
+        number: 123 222-222
+        country: @country-1
+        preferred: false
+    phone-3:
+        type: Home
+        number: 123 3
+        country: @country-2
+        preferred: true
+    phone-4:
+        type: Office
+        number: 123 444-4444
+        country: @country-2
+        preferred: false
+    phone-5:
+        type: Home
+        number: 123 555555
+        country: @country-3
+        preferred: true
+    phone-6:
+        type: Office
+        number: 123 666666
+        country: @country-3
+        preferred: false

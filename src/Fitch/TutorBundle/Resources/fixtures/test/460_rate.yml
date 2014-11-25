@@ -1,0 +1,11 @@
+Fitch\TutorBundle\Entity\Rate:
+    rate-1:
+        name: Test Rate One
+        amount: 1000
+    rate-2:
+        name: Test Rate Two
+        amount: 990.99
+    rate-4:
+        name: Test Rate Three
+        amount: 400.00
+

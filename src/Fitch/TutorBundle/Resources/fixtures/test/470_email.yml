@@ -1,0 +1,19 @@
+Fitch\TutorBundle\Entity\Email:
+    email-1:
+        type: primary
+        address: test_email_1@example.com
+    email-2:
+        type: other
+        address: test_email_2@example.com
+    email-3:
+        type: primary
+        address: test_email_3@example.com
+    email-4:
+        type: other
+        address: test_email_4@example.com
+    email-5:
+        type: primary
+        address: test_email_5@example.com
+    email-6:
+        type: other
+        address: test_email_6@example.com

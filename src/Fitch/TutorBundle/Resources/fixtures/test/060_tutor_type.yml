@@ -1,0 +1,10 @@
+Fitch\TutorBundle\Entity\TutorType:
+    tutor-type-1:
+        name: Test Tutor Type One
+        default: true
+    tutor-type-2:
+        name: Test Tutor Type Two
+        default: false
+    tutor-type-3:
+        name: Test Tutor Type Three
+        default: false

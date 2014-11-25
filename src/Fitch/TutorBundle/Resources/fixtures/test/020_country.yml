@@ -1,0 +1,22 @@
+Fitch\TutorBundle\Entity\Country:
+    country-1:
+        name: Test Country One
+        twoDigitCode: 01
+        threeDigitCode: ONE
+        dialingCode: '+1'
+        defaultRegion: @region-1
+        preferred: true
+    country-AL:
+        name: Test Country Two
+        twoDigitCode: 02
+        threeDigitCode: TWO
+        dialingCode: '+2'
+        defaultRegion: @region-2
+        preferred: false
+    country-DZ:
+        name: Test Country Three
+        twoDigitCode: 03
+        threeDigitCode: THR
+        dialingCode: '+3'
+        defaultRegion: @region-3
+        preferred: false

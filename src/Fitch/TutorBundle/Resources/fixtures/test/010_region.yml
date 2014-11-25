@@ -1,0 +1,16 @@
+Fitch\TutorBundle\Entity\OperatingRegion:
+    region-1:
+        name: Test Region One
+        default: true
+        code: ONE
+        defaultCurrency: @currency-1
+    region-2:
+        name: Test Region Two
+        default: false
+        code: TWO
+        defaultCurrency: @currency-2
+    region-3:
+        name: Test Region Three
+        default: false
+        code: THR
+        defaultCurrency: @currency-3

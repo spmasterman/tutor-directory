@@ -1,0 +1,13 @@
+Fitch\TutorBundle\Entity\Currency:
+  currency-1:
+    threeDigitCode: ONE
+    preferred: true
+    name: Test Currency One
+  currency-2:
+    threeDigitCode: TWO
+    preferred: false
+    name: Test Currency Two
+  currency-3:
+    threeDigitCode: THR
+    preferred: false
+    name: Test Currency Two

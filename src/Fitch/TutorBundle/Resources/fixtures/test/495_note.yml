@@ -1,0 +1,10 @@
+Fitch\TutorBundle\Entity\Note:
+    note-1:
+        key: terms
+        body: Test Note One
+    note-2:
+        key: terms
+        body: Test Note Two
+    note-3:
+        key: terms
+        body: Test Note Three
