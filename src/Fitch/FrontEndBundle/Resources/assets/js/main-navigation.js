@@ -27,23 +27,24 @@ $(document).ready(function(){
     /**
      * Main Menu Minify/Open
      */
-    $('.js-toggle-minified').clickToggle(
-        function() {
-            $('.left-sidebar').addClass('minified');
+    $('.js-toggle-minified').on("click", function(){
+        var sidebar = $('.left-sidebar');
+        if (sidebar.hasClass('minified')) {
+            sidebar.removeClass('minified');
+            $('.content-wrapper').removeClass('expanded');
+            $('.sidebar-minified').find('i').removeClass('fa-angle-right').addClass('fa-angle-left');
+        } else {
+            sidebar.addClass('minified');
             $('.content-wrapper').addClass('expanded');
 
-            $('.left-sidebar .sub-menu')
+            sidebar.find('.sub-menu')
                 .css('display', 'none')
                 .css('overflow', 'hidden');
 
-            $('.sidebar-minified').find('i.fa-angle-left').toggleClass('fa-angle-right');
-        },
-        function() {
-            $('.left-sidebar').removeClass('minified');
-            $('.content-wrapper').removeClass('expanded');
-            $('.sidebar-minified').find('i.fa-angle-left').toggleClass('fa-angle-right');
+            $('.sidebar-minified').find('i').removeClass('fa-angle-left').addClass('fa-angle-right');
         }
-    );
+        $.getJSON(Routing.generate('toggle_side_menu'), {}, function() {});
+    });
 
     /**
      * Main "responsive" nav toggle - when the responsive menu is displayed, react to the hamburger icon getting clicked

@@ -60,6 +60,12 @@ class User extends BaseUser implements TimestampableTraitInterface
     protected $username;
 
     /**
+     * @ORM\Column(name="is_sidebar_open", type="boolean")
+     * @var bool
+     */
+    protected $sideBarOpen = true;
+
+    /**
      * @Gedmo\Versioned
      */
     protected $roles;
@@ -94,6 +100,35 @@ class User extends BaseUser implements TimestampableTraitInterface
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSideBarOpen()
+    {
+        return $this->sideBarOpen;
+    }
+
+    /**
+     * @param boolean $sideBarOpen
+     * @return $this
+     */
+    public function setSideBarOpen($sideBarOpen)
+    {
+        $this->sideBarOpen = $sideBarOpen;
+        return $this;
+    }
+
+    /**
+     * Toggles the sidebar
+     *
+     * @return $this
+     */
+    public function toggleSidebar()
+    {
+        $this->setSideBarOpen(! $this->isSideBarOpen());
         return $this;
     }
 }

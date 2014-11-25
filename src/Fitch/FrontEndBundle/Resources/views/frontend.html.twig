@@ -14,29 +14,10 @@
 		<div class="bottom">
 			<div class="container">
 				<div class="row">
-                    {% set showSidebar = is_granted('ROLE_ADMIN') %}
-                    {% if showSidebar %}
-					<div class="col-md-2 left-sidebar">
-                        <nav class="main-nav">
-                            {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:sidebarMenu', {
-                                'currentClass' : 'active',
-                                'ancestorClass': 'active open',
-                                'template': 'FitchFrontEndBundle:Menu:sidemenu.html.twig',
-                                'depth' : 2
-                            }) }}
-                        </nav>
 
-						<div class="sidebar-minified js-toggle-minified">
-							<i class="fa fa-angle-left"></i>
-						</div>
-
-                        {% block sidebar_content %}
-                        {% endblock %}
-					</div>
-                    {% endif %}
-
+                    {{ render(controller('FitchFrontEndBundle:Navigation:sidemenu', {})) }}
                     <!-- content-wrapper -->
-					<div class="{% if showSidebar %}col-md-10{% else %}col-md-12{% endif %} content-wrapper">
+
                     	<div class="row">
                             <div class="col-md-4">
                                 {% block breadcrumb %}

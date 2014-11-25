@@ -1,0 +1,22 @@
+
+{% if is_granted('ROLE_ADMIN') %}
+    <div class="col-md-2 left-sidebar{% if not open %} minified{% endif %}">
+        <nav class="main-nav">
+            {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:sidebarMenu', {
+            'currentClass' : 'active',
+            'ancestorClass': 'active open',
+            'template': 'FitchFrontEndBundle:Menu:sidemenu.html.twig',
+            'depth' : 2
+            }) }}
+        </nav>
+
+        <div class="sidebar-minified js-toggle-minified">
+            <i class="fa {% if open %}fa-angle-left{% else %}fa-angle-right{% endif %}"></i>
+        </div>
+
+        {% block sidebar_content %}
+        {% endblock %}
+    </div>
+
+    <div class="{% if is_granted('ROLE_ADMIN') %}col-md-10{% else %}col-md-12{% endif %} content-wrapper{% if not open %} expanded{% endif %}">
+{% endif %}
