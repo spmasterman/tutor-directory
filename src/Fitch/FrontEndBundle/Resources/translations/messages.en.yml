@@ -1,8 +1,8 @@
 application:
-    fullname: Fitch Learning Tutor Directory
-    shortname: Tutor Directory
+    fullname: Fitch Learning Trainer Directory
+    shortname: Trainer Directory
     author: Shaun Masterman (shaun at masterman.com) / Southbase Limited
-    description: Tutor Directory for Fitch Learning
+    description: Trainer Directory for Fitch Learning
     copyright: &nbsp; &copy; 2014 Fitch Learning
 
 home:
