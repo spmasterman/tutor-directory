@@ -18,9 +18,9 @@ user:
     field:
         log:
             action: Action
-            username: Username
-            fullname: Fullname
-            email: Email
-            roles: Roles
             date: On
             user: By
+        username: Username
+        fullname: Fullname
+        email: Email
+        roles: Roles

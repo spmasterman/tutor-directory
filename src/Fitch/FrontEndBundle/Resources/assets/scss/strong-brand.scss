@@ -285,7 +285,7 @@ ul.main-menu {
 }
 
 .no-change {
-  color: $text-muted;
+  color: lighten($text-muted, 30%);
   font-style: italic;
   font-size: smaller;
 }

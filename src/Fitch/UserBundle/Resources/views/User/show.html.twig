@@ -8,7 +8,7 @@
 {% block main_content -%}
     <div class="widget widget-table">
         <div class="widget-header">
-            <h3><i class="fa fa-users"></i> {{ user.userName }}</h3>
+            <h3><i class="fa fa-users"></i> {% trans %}user.show.verb{% endtrans %}: {{ user.userName }}</h3>
             <div class="btn-group widget-header-toolbar">
                 <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
                 <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
@@ -19,42 +19,42 @@
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                     <tr>
-                        <th class="col-xs-2">Id</th>
+                        <th class="col-xs-2">ID</th>
                         <td>{{ user.id }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Username</th>
+                        <th class="col-xs-2">{% trans %}user.field.username{% endtrans %}</th>
                         <td>{{ user.userName }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Fullname</th>
+                        <th class="col-xs-2">{% trans %}user.field.fullname{% endtrans %}</th>
                         <td>{{ user.fullName }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Email</th>
+                        <th class="col-xs-2">{% trans %}user.field.email{% endtrans %}</th>
                         <td>{{ user.email }}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Roles</th>
+                        <th class="col-xs-2">{% trans %}user.field.roles{% endtrans %}</th>
                         <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">Audit Log</th>
-                        <td>
+                        <td colspan="2">
+                            <h2>Audit Log</h2>
                             <table class="records_list table table-condensed table-striped">
                                 <thead>
                                 <tr>
                                     <th>{% trans %}user.field.log.action{% endtrans %}</th>
-                                    <th>{% trans %}user.field.log.username{% endtrans %}</th>
-                                    <th>{% trans %}user.field.log.fullname{% endtrans %}</th>
-                                    <th>{% trans %}user.field.log.email{% endtrans %}</th>
-                                    <th>{% trans %}user.field.log.roles{% endtrans %}</th>
+                                    <th>{% trans %}user.field.username{% endtrans %}</th>
+                                    <th>{% trans %}user.field.fullname{% endtrans %}</th>
+                                    <th>{% trans %}user.field.email{% endtrans %}</th>
+                                    <th>{% trans %}user.field.roles{% endtrans %}</th>
                                     <th>{% trans %}user.field.log.date{% endtrans %}</th>
                                     <th>{% trans %}user.field.log.user{% endtrans %}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for logEntry in logs %}
+                                {% for logEntry in logs|reverse %}
                                     <tr>
                                         <td>{{ logEntry.action }}</td>
                                         <td>{{ logEntry.data.username|default('<span class="no-change">No Change</span>')|raw }}</td>
@@ -72,7 +72,6 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
-
                         </td>
                     </tr>
                 </tbody>
