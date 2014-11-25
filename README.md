@@ -122,8 +122,8 @@ Set permissions:
         sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs filestore
         sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs filestore
 
-Note the addition of filestore. This is a local filesystem used by gaufrette, as a file upload location. In production
-We switch this out for s3 - the details of which you should supply when initialising the system. 
+Note "filestore" - This is a local filesystem used by gaufrette, as a file upload location while developing. In production
+we use Amazon S3 - the details of which you should supply when initialising the system.  
 
 Look here for details [Symfony Docs](http://symfony.com/doc/current/book/installation.html)
 
@@ -164,7 +164,7 @@ Run the shell script scratch/reset_db.sh This performs the following steps (you 
         php app/console doctrine:database:create
         php app/console doctrine:schema:create
     
-    Load Fixtures (initial data - TODO REMOVE TEST DATA FROM FIXTURES :o)
+    Load Fixtures 
     
         php app/console doctrine:fixtures:load
     
@@ -401,11 +401,13 @@ appear as options in the User Management interface - and that's probably all tha
 ----------------
   
 Most front end text is stored in locale files and outputted via the translation service. While its unlikely that the
-software will be ported to French (etc) it could be by just translating those files. More importantly random requests 
-to name things differently can be relatively quickly executed by just editing these files. There are occasional 
-exceptions to text coming via translations - the most obvious is where its embedded in javascript files. With some 
-effort this could be pulled out by dumping content into hidden divs. Its more effort than I can muster at this point 
-however - and is likely to just add complexity rather than clarity.     
+software will be ported to French (etc) it could be by just duplicating those files, naming them fr instead of en. 
+Translating all the text entries (but not the keys!) and set the install locale to fr. eh voila!
+ 
+More importantly random requests to name things differently can be relatively quickly executed by just editing these 
+files. There are occasional exceptions to text coming via translations - the most obvious is where its embedded in 
+javascript files. With some effort this could be pulled out by dumping content into hidden divs. Its more effort than 
+I can muster at this point however, and is likely to just add complexity rather than clarity.     
   
 Translation files:
 
@@ -415,5 +417,51 @@ Translation files:
   src/Fitch/FrontEndBundle/Resources/translations/FitchFrontEndBundle.en.yml - Menu Names
   src/Fitch/FrontEndBundle/Resources/translations/messages.en.yml - General Front End (Navigation, Errors etc)
   
-EOF
+11) Source Code
+---------------
   
+### Code Quality
+This isn't the ERP codebase so I've tried to be a good code citizen. Dependency Injection is used everywhere and most 
+controllers are trivially small. Sensio Insight finds a few issues - a lot of which fall into 'false positive' territory
+
+1. For some reason it can't detect private method usage in the MenuBuilder class 
+2. It thinks my form theme is too complicated - when symfony2.6 hits there is a bootstrap theme that probably means my 
+themes can be destroyed
+3. php-ref (a pretty var_dump) isn't locked to a specific release in composer - its also only used when I need to debug
+ something so I don't really care
+4. it doesnt like the fact that one of my Entity fields is named 'key' - it assumes its a 'sensitive' key 
+5. .htaccess files could be moved server side (performance is not an issue this is early over-optimisation in my mind) 
+ 
+Jetbrains PHPStorm displays "green" on all files. 
+ 
+### Model Classes
+I have as a conscious decision moved ALL entityManager stuff out of the controllers, preferring a "Model" class that 
+handles the interaction with the persistence layer. This is a fairly typical thing to do if you are creating bundles for
+external consumption (so that the end user can decide if they want to use ODM or ORM etc). It makes for very simple 
+controllers in general so I do it even though the chances of these bundles being reused is close to zero.  
+
+### Repository Classes 
+There are Repository classes for all entities, the only one that's used is Tutor, but its a pattern I follow even if 
+it results boilerplate code.
+ 
+### Type-hinting 
+I always type hint pulls from the DI container by creating a one line function that wraps the container->get()  
+
+### Tests
+Yeah, this is where I fall down, because there aren't any automated tests
+
+### Data Fixtures
+I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 
+the dependency order. Non production fixtures are 500, 490, 480 etc and should only load in the Dev environment 
+  
+### Bundles
+There are 4 bundles :
+
+* "Common" contains any dependencies that the other three rely on (AbstractBase classes etc)
+* "FrontEnd" contains all the general web-sitey stuff. All the javascript libraries, SCSS files etc. Also controllers for 
+Menus, Header Bar etc.
+* "Tutor" contains the main entities, their CRUD controllers and the controller for the main Profile and the Lookup table
+* "User" contains all the user management stuff (and relies heavily on FOSUserBundle) 
+  
+  
+EOF

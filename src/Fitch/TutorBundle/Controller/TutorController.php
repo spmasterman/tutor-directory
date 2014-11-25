@@ -41,7 +41,7 @@ class TutorController extends Controller
      * Get all Tutor entities.
      *
      * @Route("/results", name="all_tutors", options={"expose"=true})
-     *
+     * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function allAction()

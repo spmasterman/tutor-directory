@@ -1,0 +1,7 @@
+{% macro logdata(data) %}
+    {% if data is not empty %}
+        {{ data }}
+    {% else %}
+        <span class="no-change"> No change</span>
+    {% endif %}
+{% endmacro %}

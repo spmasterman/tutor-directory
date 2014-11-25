@@ -22,8 +22,7 @@ class MenuBuilder extends ContainerAware
             ->setChildrenAttribute('class', 'main-menu')
         ;
 
-        $this
-            ->addTutorTypes($menu)
+        $this->addTutorTypes($menu)
             ->addStatus($menu)
             ->addRegions($menu)
             ->addCountries($menu)
@@ -54,8 +53,7 @@ class MenuBuilder extends ContainerAware
             ->setExtra('translation_domain', 'FitchFrontEndBundle')
             ->setAttribute('icon', 'fa fa-home fa-fw');
 
-        $this
-            ->addTutorTypes($homeNode)
+        $this->addTutorTypes($homeNode)
             ->addStatus($homeNode)
             ->addRegions($homeNode)
             ->addCountries($homeNode)
