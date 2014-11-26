@@ -41,6 +41,13 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface
     protected $preferred;
 
     /**
+     * @ORM\Column(name="active", type="boolean")
+     *
+     * @var boolean
+     */
+    protected $active = true;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -99,6 +106,24 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface
     public function setPreferred($preferred)
     {
         $this->preferred = $preferred;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     * @return $this
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
         return $this;
     }
 }

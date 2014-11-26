@@ -2,15 +2,16 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Entity\OperatingRegion;
+use Fitch\TutorBundle\Form\Type\OperatingRegionType;
+use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\OperatingRegion;
-use Fitch\TutorBundle\Form\Type\OperatingRegionType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * OperatingRegion controller.
@@ -84,6 +85,7 @@ class OperatingRegionController extends Controller
         $form = $this->createForm(new OperatingRegionType(), $region, [
             'action' => $this->generateUrl('region_create'),
             'method' => 'POST',
+            'currencyManager' => $this->getCurrencyManager()
         ]);
 
         $form->add('submit', 'submit',
@@ -171,6 +173,7 @@ class OperatingRegionController extends Controller
         $form = $this->createForm(new OperatingRegionType(), $region, [
             'action' => $this->generateUrl('region_update', ['id' => $region->getId()]),
             'method' => 'PUT',
+            'currencyManager' => $this->getCurrencyManager()
         ]);
 
         $form->add('submit', 'submit',
@@ -302,5 +305,13 @@ class OperatingRegionController extends Controller
     private function getOperatingRegionManager()
     {
         return $this->get('fitch.manager.operating_region');
+    }
+
+    /**
+     * @return CurrencyManager
+     */
+    private function getCurrencyManager()
+    {
+        return $this->get('fitch.manager.currency');
     }
 }

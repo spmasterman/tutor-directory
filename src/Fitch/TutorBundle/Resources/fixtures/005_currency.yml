@@ -3,651 +3,814 @@ Fitch\TutorBundle\Entity\Currency:
     threeDigitCode: AED
     preferred: true
     name: United Arab Emirates Dirham
+    active: true
   currency-AFN:
     threeDigitCode: AFN
     preferred: false
     name: Afghanistan Afghani
+    active: false
   currency-ALL:
     threeDigitCode: ALL
     preferred: false
     name: Albania Lek
+    active: false
   currency-AMD:
     threeDigitCode: AMD
     preferred: false
     name: Armenia Dram
+    active: false
   currency-ANG:
     threeDigitCode: ANG
     preferred: false
     name: Netherlands Antilles Guilder
+    active: false
   currency-AOA:
     threeDigitCode: AOA
     preferred: false
     name: Angola Kwanza
+    active: false
   currency-ARS:
     threeDigitCode: ARS
     preferred: false
     name: Argentina Peso
+    active: false
   currency-AUD:
     threeDigitCode: AUD
     preferred: false
     name: Australia Dollar
+    active: false
   currency-AWG:
     threeDigitCode: AWG
     preferred: false
     name: Aruba Guilder
+    active: false
   currency-AZN:
     threeDigitCode: AZN
     preferred: false
     name: Azerbaijan New Manat
+    active: false
   currency-BAM:
     threeDigitCode: BAM
     preferred: false
     name: Bosnia and Herzegovina Convertible Marka
+    active: false
   currency-BBD:
     threeDigitCode: BBD
     preferred: false
     name: Barbados Dollar
+    active: false
   currency-BDT:
     threeDigitCode: BDT
     preferred: false
     name: Bangladesh Taka
+    active: false
   currency-BGN:
     threeDigitCode: BGN
     preferred: false
     name: Bulgaria Lev
+    active: false
   currency-BHD:
     threeDigitCode: BHD
     preferred: false
     name: Bahrain Dinar
+    active: false
   currency-BIF:
     threeDigitCode: BIF
     preferred: false
     name: Burundi Franc
+    active: false
   currency-BMD:
     threeDigitCode: BMD
     preferred: false
     name: Bermuda Dollar
+    active: false
   currency-BND:
     threeDigitCode: BND
     preferred: false
     name: Brunei Darussalam Dollar
+    active: false
   currency-BOB:
     threeDigitCode: BOB
     preferred: false
     name: Bolivia Boliviano
+    active: false
   currency-BRL:
     threeDigitCode: BRL
     preferred: false
     name: Brazil Real
+    active: false
   currency-BSD:
     threeDigitCode: BSD
     preferred: false
     name: Bahamas Dollar
+    active: false
   currency-BTN:
     threeDigitCode: BTN
     preferred: false
     name: Bhutan Ngultrum
+    active: false
   currency-BWP:
     threeDigitCode: BWP
     preferred: false
     name: Botswana Pula
+    active: false
   currency-BYR:
     threeDigitCode: BYR
     preferred: false
     name: Belarus Ruble
+    active: false
   currency-BZD:
     threeDigitCode: BZD
     preferred: false
     name: Belize Dollar
+    active: false
   currency-CAD:
     threeDigitCode: CAD
     preferred: false
     name: Canada Dollar
+    active: true
   currency-CDF:
     threeDigitCode: CDF
     preferred: false
     name: Congo/Kinshasa Franc
+    active: false
   currency-CHF:
     threeDigitCode: CHF
     preferred: false
     name: Switzerland Franc
+    active: false
   currency-CLP:
     threeDigitCode: CLP
     preferred: false
     name: Chile Peso
+    active: false
   currency-CNY:
     threeDigitCode: CNY
     preferred: false
     name: China Yuan Renminbi
+    active: false
   currency-COP:
     threeDigitCode: COP
     preferred: false
     name: Colombia Peso
+    active: false
   currency-CRC:
     threeDigitCode: CRC
     preferred: false
     name: Costa Rica Colon
+    active: false
   currency-CUC:
     threeDigitCode: CUC
     preferred: false
     name: Cuba Convertible Peso
+    active: false
   currency-CUP:
     threeDigitCode: CUP
     preferred: false
     name: Cuba Peso
+    active: false
   currency-CVE:
     threeDigitCode: CVE
     preferred: false
     name: Cape Verde Escudo
+    active: false
   currency-CZK:
     threeDigitCode: CZK
     preferred: false
     name: Czech Republic Koruna
+    active: false
   currency-DJF:
     threeDigitCode: DJF
     preferred: false
     name: Djibouti Franc
+    active: false
   currency-DKK:
     threeDigitCode: DKK
     preferred: false
     name: Denmark Krone
+    active: false
   currency-DOP:
     threeDigitCode: DOP
     preferred: false
     name: Dominican Republic Peso
+    active: false
   currency-DZD:
     threeDigitCode: DZD
     preferred: false
     name: Algeria Dinar
+    active: false
   currency-EGP:
     threeDigitCode: EGP
     preferred: false
     name: Egypt Pound
+    active: false
   currency-ERN:
     threeDigitCode: ERN
     preferred: false
     name: Eritrea Nakfa
+    active: false
   currency-ETB:
     threeDigitCode: ETB
     preferred: false
     name: Ethiopia Birr
+    active: false
   currency-EUR:
     threeDigitCode: EUR
     preferred: false
     name: Euro
+    active: true
   currency-FJD:
     threeDigitCode: FJD
     preferred: false
     name: Fiji Dollar
+    active: false
   currency-FKP:
     threeDigitCode: FKP
     preferred: false
     name: Falkland Islands (Malvinas) Pound
+    active: false
   currency-GBP:
     threeDigitCode: GBP
     preferred: true
     name: United Kingdom Pound
+    active: true
   currency-GEL:
     threeDigitCode: GEL
     preferred: false
     name: Georgia Lari
+    active: false
   currency-GGP:
     threeDigitCode: GGP
     preferred: false
     name: Guernsey Pound
+    active: false
   currency-GHS:
     threeDigitCode: GHS
     preferred: false
     name: Ghana Cedi
+    active: false
   currency-GIP:
     threeDigitCode: GIP
     preferred: false
     name: Gibraltar Pound
+    active: false
   currency-GMD:
     threeDigitCode: GMD
     preferred: false
     name: Gambia Dalasi
+    active: false
   currency-GNF:
     threeDigitCode: GNF
     preferred: false
     name: Guinea Franc
+    active: false
   currency-GTQ:
     threeDigitCode: GTQ
     preferred: false
     name: Guatemala Quetzal
+    active: false
   currency-GYD:
     threeDigitCode: GYD
     preferred: false
     name: Guyana Dollar
+    active: false
   currency-HKD:
     threeDigitCode: HKD
     preferred: false
     name: Hong Kong Dollar
+    active: true
   currency-HNL:
     threeDigitCode: HNL
     preferred: false
     name: Honduras Lempira
+    active: false
   currency-HRK:
     threeDigitCode: HRK
     preferred: false
     name: Croatia Kuna
+    active: false
   currency-HTG:
     threeDigitCode: HTG
     preferred: false
     name: Haiti Gourde
+    active: false
   currency-HUF:
     threeDigitCode: HUF
     preferred: false
     name: Hungary Forint
+    active: false
   currency-IDR:
     threeDigitCode: IDR
     preferred: false
     name: Indonesia Rupiah
+    active: false
   currency-ILS:
     threeDigitCode: ILS
     preferred: false
     name: Israel Shekel
+    active: false
   currency-IMP:
     threeDigitCode: IMP
     preferred: false
     name: Isle of Man Pound
+    active: false
   currency-INR:
     threeDigitCode: INR
     preferred: false
     name: India Rupee
+    active: false
   currency-IQD:
     threeDigitCode: IQD
     preferred: false
     name: Iraq Dinar
+    active: false
   currency-IRR:
     threeDigitCode: IRR
     preferred: false
     name: Iran Rial
+    active: false
   currency-ISK:
     threeDigitCode: ISK
     preferred: false
     name: Iceland Krona
+    active: false
   currency-JEP:
     threeDigitCode: JEP
     preferred: false
     name: Jersey Pound
+    active: false
   currency-JMD:
     threeDigitCode: JMD
     preferred: false
     name: Jamaica Dollar
+    active: false
   currency-JOD:
     threeDigitCode: JOD
     preferred: false
     name: Jordan Dinar
+    active: false
   currency-JPY:
     threeDigitCode: JPY
     preferred: false
     name: Japan Yen
+    active: false
   currency-KES:
     threeDigitCode: KES
     preferred: false
     name: Kenya Shilling
+    active: false
   currency-KGS:
     threeDigitCode: KGS
     preferred: false
     name: Kyrgyzstan Som
+    active: false
   currency-KHR:
     threeDigitCode: KHR
     preferred: false
     name: Cambodia Riel
+    active: false
   currency-KMF:
     threeDigitCode: KMF
     preferred: false
     name: Comoros Franc
+    active: false
   currency-KPW:
     threeDigitCode: KPW
     preferred: false
     name: Korea (North) Won
+    active: false
   currency-KRW:
     threeDigitCode: KRW
     preferred: false
     name: Korea (South) Won
+    active: false
   currency-KWD:
     threeDigitCode: KWD
     preferred: false
     name: Kuwait Dinar
+    active: false
   currency-KYD:
     threeDigitCode: KYD
     preferred: false
     name: Cayman Islands Dollar
+    active: false
   currency-KZT:
     threeDigitCode: KZT
     preferred: false
     name: Kazakhstan Tenge
+    active: false
   currency-LAK:
     threeDigitCode: LAK
     preferred: false
     name: Laos Kip
+    active: false
   currency-LBP:
     threeDigitCode: LBP
     preferred: false
     name: Lebanon Pound
+    active: false
   currency-LKR:
     threeDigitCode: LKR
     preferred: false
     name: Sri Lanka Rupee
+    active: false
   currency-LRD:
     threeDigitCode: LRD
     preferred: false
     name: Liberia Dollar
+    active: false
   currency-LSL:
     threeDigitCode: LSL
     preferred: false
     name: Lesotho Loti
+    active: false
   currency-LTL:
     threeDigitCode: LTL
     preferred: false
     name: Lithuania Litas
+    active: false
   currency-LYD:
     threeDigitCode: LYD
     preferred: false
     name: Libya Dinar
+    active: false
   currency-MAD:
     threeDigitCode: MAD
     preferred: false
     name: Morocco Dirham
+    active: false
   currency-MDL:
     threeDigitCode: MDL
     preferred: false
     name: Moldova Leu
+    active: false
   currency-MGA:
     threeDigitCode: MGA
     preferred: false
     name: Madagascar Ariary
+    active: false
   currency-MKD:
     threeDigitCode: MKD
     preferred: false
     name: Macedonia Denar
+    active: false
   currency-MMK:
     threeDigitCode: MMK
     preferred: false
     name: Myanmar (Burma) Kyat
+    active: false
   currency-MNT:
     threeDigitCode: MNT
     preferred: false
     name: Mongolia Tughrik
+    active: false
   currency-MOP:
     threeDigitCode: MOP
     preferred: false
     name: Macau Pataca
+    active: false
   currency-MRO:
     threeDigitCode: MRO
     preferred: false
     name: Mauritania Ouguiya
+    active: false
   currency-MUR:
     threeDigitCode: MUR
     preferred: false
     name: Mauritius Rupee
+    active: false
   currency-MVR:
     threeDigitCode: MVR
     preferred: false
     name: Maldives (Maldive Islands) Rufiyaa
+    active: false
   currency-MWK:
     threeDigitCode: MWK
     preferred: false
     name: Malawi Kwacha
+    active: false
   currency-MXN:
     threeDigitCode: MXN
     preferred: false
     name: Mexico Peso
+    active: false
   currency-MYR:
     threeDigitCode: MYR
     preferred: false
     name: Malaysia Ringgit
+    active: false
   currency-MZN:
     threeDigitCode: MZN
     preferred: false
     name: Mozambique Metical
+    active: false
   currency-NAD:
     threeDigitCode: NAD
     preferred: false
     name: Namibia Dollar
+    active: false
   currency-NGN:
     threeDigitCode: NGN
     preferred: false
     name: Nigeria Naira
+    active: false
   currency-NIO:
     threeDigitCode: NIO
     preferred: false
     name: Nicaragua Cordoba
+    active: false
   currency-NOK:
     threeDigitCode: NOK
     preferred: false
     name: Norway Krone
+    active: false
   currency-NPR:
     threeDigitCode: NPR
     preferred: false
     name: Nepal Rupee
+    active: false
   currency-NZD:
     threeDigitCode: NZD
     preferred: false
     name: New Zealand Dollar
+    active: false
   currency-OMR:
     threeDigitCode: OMR
     preferred: false
     name: Oman Rial
+    active: false
   currency-PAB:
     threeDigitCode: PAB
     preferred: false
     name: Panama Balboa
+    active: false
   currency-PEN:
     threeDigitCode: PEN
     preferred: false
     name: Peru Nuevo Sol
+    active: false
   currency-PGK:
     threeDigitCode: PGK
     preferred: false
     name: Papua New Guinea Kina
+    active: false
   currency-PHP:
     threeDigitCode: PHP
     preferred: false
     name: Philippines Peso
+    active: false
   currency-PKR:
     threeDigitCode: PKR
     preferred: false
     name: Pakistan Rupee
+    active: false
   currency-PLN:
     threeDigitCode: PLN
     preferred: false
     name: Poland Zloty
+    active: false
   currency-PYG:
     threeDigitCode: PYG
     preferred: false
     name: Paraguay Guarani
+    active: false
   currency-QAR:
     threeDigitCode: QAR
     preferred: false
     name: Qatar Riyal
+    active: false
   currency-RON:
     threeDigitCode: RON
     preferred: false
     name: Romania New Leu
+    active: false
   currency-RSD:
     threeDigitCode: RSD
     preferred: false
     name: Serbia Dinar
+    active: false
   currency-RUB:
     threeDigitCode: RUB
     preferred: false
     name: Russia Ruble
+    active: false
   currency-RWF:
     threeDigitCode: RWF
     preferred: false
     name: Rwanda Franc
+    active: false
   currency-SAR:
     threeDigitCode: SAR
     preferred: false
     name: Saudi Arabia Riyal
+    active: false
   currency-SBD:
     threeDigitCode: SBD
     preferred: false
     name: Solomon Islands Dollar
+    active: false
   currency-SCR:
     threeDigitCode: SCR
     preferred: false
     name: Seychelles Rupee
+    active: false
   currency-SDG:
     threeDigitCode: SDG
     preferred: false
     name: Sudan Pound
+    active: false
   currency-SEK:
     threeDigitCode: SEK
     preferred: false
     name: Sweden Krona
+    active: false
   currency-SGD:
     threeDigitCode: SGD
     preferred: true
     name: Singapore Dollar
+    active: true
   currency-SHP:
     threeDigitCode: SHP
     preferred: false
     name: Saint Helena Pound
+    active: false
   currency-SLL:
     threeDigitCode: SLL
     preferred: false
     name: Sierra Leone Leone
+    active: false
   currency-SOS:
     threeDigitCode: SOS
     preferred: false
     name: Somalia Shilling
+    active: false
   currency-SPL:
     threeDigitCode: SPL
     preferred: false
     name: Seborga Luigino
+    active: false
   currency-SRD:
     threeDigitCode: SRD
     preferred: false
     name: Suriname Dollar
+    active: false
   currency-STD:
     threeDigitCode: STD
     preferred: false
     name: São Tomé and Príncipe Dobra
+    active: false
   currency-SVC:
     threeDigitCode: SVC
     preferred: false
     name: El Salvador Colon
+    active: false
   currency-SYP:
     threeDigitCode: SYP
     preferred: false
     name: Syria Pound
+    active: false
   currency-SZL:
     threeDigitCode: SZL
     preferred: false
     name: Swaziland Lilangeni
+    active: false
   currency-THB:
     threeDigitCode: THB
     preferred: false
     name: Thailand Baht
+    active: false
   currency-TJS:
     threeDigitCode: TJS
     preferred: false
     name: Tajikistan Somoni
+    active: false
   currency-TMT:
     threeDigitCode: TMT
     preferred: false
     name: Turkmenistan Manat
+    active: false
   currency-TND:
     threeDigitCode: TND
     preferred: false
     name: Tunisia Dinar
+    active: false
   currency-TOP:
     threeDigitCode: TOP
     preferred: false
     name: Tonga Pa'anga
+    active: false
   currency-TRY:
     threeDigitCode: TRY
     preferred: false
     name: Turkey Lira
+    active: false
   currency-TTD:
     threeDigitCode: TTD
     preferred: false
     name: Trinidad and Tobago Dollar
+    active: false
   currency-TVD:
     threeDigitCode: TVD
     preferred: false
     name: Tuvalu Dollar
+    active: false
   currency-TWD:
     threeDigitCode: TWD
     preferred: false
     name: Taiwan New Dollar
+    active: false
   currency-TZS:
     threeDigitCode: TZS
     preferred: false
     name: Tanzania Shilling
+    active: false
   currency-UAH:
     threeDigitCode: UAH
     preferred: false
     name: Ukraine Hryvnia
+    active: false
   currency-UGX:
     threeDigitCode: UGX
     preferred: false
     name: Uganda Shilling
+    active: false
   currency-USD:
     threeDigitCode: USD
     preferred: true
     name: United States Dollar
+    active: true
   currency-UYU:
     threeDigitCode: UYU
     preferred: false
     name: Uruguay Peso
+    active: false
   currency-UZS:
     threeDigitCode: UZS
     preferred: false
     name: Uzbekistan Som
+    active: false
   currency-VEF:
     threeDigitCode: VEF
     preferred: false
     name: Venezuela Bolivar
+    active: false
   currency-VND:
     threeDigitCode: VND
     preferred: false
     name: Viet Nam Dong
+    active: false
   currency-VUV:
     threeDigitCode: VUV
     preferred: false
     name: Vanuatu Vatu
+    active: false
   currency-WST:
     threeDigitCode: WST
     preferred: false
     name: Samoa Tala
+    active: false
   currency-XAF:
     threeDigitCode: XAF
     preferred: false
     name: Communauté Financière Africaine (BEAC) CFA Franc BEAC
+    active: false
   currency-XCD:
     threeDigitCode: XCD
     preferred: false
     name: East Caribbean Dollar
+    active: false
   currency-XDR:
     threeDigitCode: XDR
     preferred: false
     name: International Monetary Fund (IMF) Special Drawing Rights
+    active: false
   currency-XOF:
     threeDigitCode: XOF
     preferred: false
     name: Communauté Financière Africaine (BCEAO) Franc
+    active: false
   currency-XPF:
     threeDigitCode: XPF
     preferred: false
     name: Comptoirs Français du Pacifique (CFP) Franc
+    active: false
   currency-YER:
     threeDigitCode: YER
     preferred: false
     name: Yemen Rial
+    active: false
   currency-ZAR:
     threeDigitCode: ZAR
     preferred: false
     name: South Africa Rand
+    active: false
   currency-ZMW:
     threeDigitCode: ZMW
     preferred: false
     name: Zambia Kwacha
+    active: false
   currency-ZWD:
     threeDigitCode: ZWD
     preferred: false
     name: Zimbabwe Dollar
+    active: false

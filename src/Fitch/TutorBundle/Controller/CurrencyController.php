@@ -32,7 +32,7 @@ class CurrencyController extends Controller
     public function indexAction()
     {
         return [
-            'currencies' => $this->getCurrencyManager()->findAll()
+            'currencies' => $this->getCurrencyManager()->findAllSorted()
         ];
     }
 

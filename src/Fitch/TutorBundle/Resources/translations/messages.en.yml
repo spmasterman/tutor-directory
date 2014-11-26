@@ -194,7 +194,6 @@ country:
         actions: Actions
         active: Active
 
-
 currency:
     edit:
         verb: Edit Currency
@@ -218,6 +217,7 @@ currency:
         code: ISO 4217 3 digit code
         preferred: Preferred
         actions: Actions
+        active: Active
 
 profile:
     tab:

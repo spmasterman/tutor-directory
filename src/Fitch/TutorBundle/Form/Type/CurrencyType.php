@@ -20,6 +20,10 @@ class CurrencyType extends AbstractType
             ->add('threeDigitCode', null, [
                 'label' => 'ISO 4217 3 Digit Code'
             ])
+            ->add('active', new OnOffType(), [
+                'type' => 'yesno',
+                'required' => false
+            ])
             ->add('preferred', new OnOffType(), [
                 'type' => 'yesno',
                 'required' => false

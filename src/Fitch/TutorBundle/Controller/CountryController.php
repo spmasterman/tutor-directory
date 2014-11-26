@@ -31,7 +31,7 @@ class CountryController extends Controller
     public function indexAction()
     {
         return [
-            'countries' => $this->getCountryManager()->findAll()
+            'countries' => $this->getCountryManager()->findAllSorted()
         ];
     }
 

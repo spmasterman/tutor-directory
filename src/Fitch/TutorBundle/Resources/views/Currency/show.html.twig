@@ -35,6 +35,10 @@
                         <th class="col-xs-2">{% trans %}currency.column.preferred{% endtrans %}</th>
                         <td>{% if currency.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
+                    <tr>
+                        <th class="col-xs-2">{% trans %}currency.column.active{% endtrans %}</th>
+                        <td>{% if currency.isActive %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                    </tr>
                 </tbody>
             </table>
 

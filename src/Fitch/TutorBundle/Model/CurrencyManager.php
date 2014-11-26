@@ -32,7 +32,11 @@ class CurrencyManager extends BaseModelManager
      */
     public function findAllSorted()
     {
-        return $this->getRepo()->findBy([],  array('preferred' => 'DESC', 'name' => 'ASC'));
+        return $this->getRepo()->findBy([],  [
+            'preferred' => 'DESC',
+            'active' => 'DESC',
+            'name' => 'ASC'
+        ]);
     }
 
     /**
@@ -41,6 +45,22 @@ class CurrencyManager extends BaseModelManager
     public function getDefaultCurrency()
     {
         return $this->getRepo()->findOneBy(['threeDigitCode' => 'GBP']);
+    }
+
+    /**
+     * @return Currency[]
+     */
+    public function buildChoices()
+    {
+        return $this->getRepo()->findBy(['active' => true]);
+    }
+
+    /**
+     * @return Currency[]
+     */
+    public function buildPreferredChoices()
+    {
+        return $this->getRepo()->findBy(['active' => true, 'preferred' => true]);
     }
 
     /**

@@ -23,6 +23,7 @@
                         <th>{% trans %}currency.column.name{% endtrans %}</th>
                         <th>{% trans %}currency.column.code{% endtrans %}</th>
                         <th>{% trans %}currency.column.preferred{% endtrans %}</th>
+                        <th>{% trans %}currency.column.active{% endtrans %}</th>
                         <th>{% trans %}currency.column.actions{% endtrans %}</th>
                      </tr>
                 </thead>
@@ -33,6 +34,7 @@
                         <td><a href="{{ path('currency_show', { 'id': currency.id }) }}">{{ currency.name }}</a></td>
                         <td>{{ currency.threeDigitCode }}</td>
                         <td>{% if currency.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <td>{% if currency.isActive %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                         <td>
                             <a href="{{ path('currency_show', { 'id': currency.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('currency_edit', { 'id': currency.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
