@@ -279,20 +279,33 @@ class CurrencyController extends Controller
     /**
      * Returns the currencies as a JSON Array
      *
-     * @Route("/all", name="all_currencies", options={"expose"=true})
+     * @Route("/active", name="all_currencies", options={"expose"=true})
      * @Method("GET")
      * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
 
-    public function allAction(){
-        $out = [];
+    public function activeAction(){
+        $out = [
+            [
+                'text' => 'Preferred',
+                'children' => []
+            ],
+            [
+                'text' => 'Other',
+                'children' => []
+            ]
+        ];
+
         foreach($this->getCurrencyManager()->findAllSorted() as $currency) {
-            $out[] = [
-                'value' => $currency->getId(),
-                'text' => (string)$currency,
-            ];
+            if ($currency->isActive()) {
+                $key = $currency->isPreferred() ? 0 : 1;
+                $out[$key]['children'][] = [
+                    'value' => $currency->getId(),
+                    'text' => (string)$currency,
+                ];
+            }
         }
         return new JsonResponse($out);
     }

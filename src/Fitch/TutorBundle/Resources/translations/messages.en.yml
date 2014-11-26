@@ -189,10 +189,10 @@ country:
         code_2: ISO 3661-1 2 digit code
         code_3: ISO 3661-1 3 digit code
         dialing_code: Dialing code
-        preferred: Preferred
+        preferred: Show As Preferred
         default_region: Default Region
         actions: Actions
-        active: Active
+        active: Make Available
 
 currency:
     edit:
@@ -215,9 +215,9 @@ currency:
         id: ID
         name: Name
         code: ISO 4217 3 digit code
-        preferred: Preferred
+        preferred: Show As Preferred
         actions: Actions
-        active: Active
+        active: Make Available
 
 profile:
     tab:
