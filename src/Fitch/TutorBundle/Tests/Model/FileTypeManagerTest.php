@@ -10,61 +10,61 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
     public function testFindAll()
     {
-        $fileTypes = $this->getModelManager()->findAll();
-        $this->assertCount(3, $fileTypes, "Should return three file types");
+        $allEntities = $this->getModelManager()->findAll();
+        $this->assertCount(3, $allEntities, "Should return three file types");
 
-        $this->assertEquals('Test File Type One', $fileTypes[0]->getName());
-        $this->assertEquals('Test File Type Two', $fileTypes[1]->getName());
-        $this->assertEquals('Test File Type Three', $fileTypes[2]->getName());
+        $this->assertEquals('Test File Type One', $allEntities[0]->getName());
+        $this->assertEquals('Test File Type Two', $allEntities[1]->getName());
+        $this->assertEquals('Test File Type Three', $allEntities[2]->getName());
     }
 
     public function testFindById()
     {
-        $fileType = $this->getModelManager()->findById(1);
+        $entityOne = $this->getModelManager()->findById(1);
 
-        $this->assertEquals('Test File Type One', $fileType->getName());
+        $this->assertEquals('Test File Type One', $entityOne->getName());
     }
 
     public function testLifeCycle()
     {
         // Check that there are 3 entries
-        $fileTypes = $this->getModelManager()->findAll();
-        $this->assertCount(3, $fileTypes, "Should return three file types");
+        $allEntities = $this->getModelManager()->findAll();
+        $this->assertCount(3, $allEntities, "Should return three file types");
 
         // Creata new one
-        $newfileType = $this->getModelManager()->createFileType();
-        $newfileType
+        $newEntity = $this->getModelManager()->createFileType();
+        $newEntity
             ->setName('Test')
             ->setPrivate(false)
             ->setSuitableForProfilePicture(false)
             ->setDefault(false)
         ;
-        $this->getModelManager()->saveFileType($newfileType);
+        $this->getModelManager()->saveFileType($newEntity);
 
         // Check that there are 4 entries, and the new one is Timestamped correctly
-        $fileTypes = $this->getModelManager()->findAll();
-        $this->assertCount(4, $fileTypes, "Should return four file types");
-        $this->assertNotNull($fileTypes[3]->getCreated());
-        $this->assertEquals($fileTypes[3]->getCreated(), $fileTypes[3]->getUpdated());
+        $allEntities = $this->getModelManager()->findAll();
+        $this->assertCount(4, $allEntities, "Should return four file types");
+        $this->assertNotNull($allEntities[3]->getCreated());
+        $this->assertEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Updated shouldn't change until persisted
-        $newfileType->setName('Test (Updated)');
-        $this->assertEquals($fileTypes[3]->getCreated(), $fileTypes[3]->getUpdated());
+        $newEntity->setName('Test (Updated)');
+        $this->assertEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         sleep(1);
 
-        $this->getModelManager()->saveFileType($newfileType);
-        $this->assertNotEquals($fileTypes[3]->getCreated(), $fileTypes[3]->getUpdated());
+        $this->getModelManager()->saveFileType($newEntity);
+        $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
-        $newfileType->setName('Test (Abandoned Edit)');
-        $this->getModelManager()->refreshFileType($newfileType);
-        $this->assertEquals('Test (Updated)', $newfileType->getName());
+        $newEntity->setName('Test (Abandoned Edit)');
+        $this->getModelManager()->refreshFileType($newEntity);
+        $this->assertEquals('Test (Updated)', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeFileType($newfileType->getId());
-        $fileTypes = $this->getModelManager()->findAll();
-        $this->assertCount(3, $fileTypes, "Should return three file types");
+        $this->getModelManager()->removeFileType($newEntity->getId());
+        $allEntities = $this->getModelManager()->findAll();
+        $this->assertCount(3, $allEntities, "Should return three file types");
     }
 
     public function testFindDefaultFileType()

@@ -700,6 +700,11 @@ jQuery(document).ready(function() {
                 return params;
             },
             placeholder: 'Intern, Practitioner, etc',
+            validate: function(value) {
+                if($.trim(value) == '') {
+                    return 'This field is required';
+                }
+            },
             typeahead: {
                 name: 'Level',
                 local: competencyLevels
@@ -719,6 +724,11 @@ jQuery(document).ready(function() {
             typeahead: {
                 name: 'Type',
                 local: competencyTypes
+            },
+            validate: function(value) {
+                if($.trim(value) == '') {
+                    return 'This field is required';
+                }
             },
             success: function(response) {
                 reloadCompetencyRow(host.closest('.data-row'), response)

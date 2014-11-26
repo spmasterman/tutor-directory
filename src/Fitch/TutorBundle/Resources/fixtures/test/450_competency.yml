@@ -2,11 +2,11 @@ Fitch\TutorBundle\Entity\Competency:
     competency-1:
         competencyType: @type-1
         competencyLevel: @level-1
-        note: Test Note
+        note: Test Note One
     competency-2:
         competencyType: @type-2
         competencyLevel: @level-2
-        note: Test Note
+        note: Test Note Two
     competency-3:
         competencyType: @type-3
         competencyLevel: @level-3

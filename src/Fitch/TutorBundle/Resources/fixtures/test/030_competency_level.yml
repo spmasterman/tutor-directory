@@ -3,8 +3,8 @@ Fitch\TutorBundle\Entity\CompetencyLevel:
     name: Test Level One
     color: '#8abfda'
   level-2:
-    name: Test Country Two
+    name: Test Level Two
     color: '#8b9edb'
   level-3:
-    name: Test Country Three
+    name: Test Level Three
     color: '#998adb'

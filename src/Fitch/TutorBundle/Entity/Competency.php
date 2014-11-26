@@ -19,6 +19,8 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
+    const NOT_YET_SPECIFIED = 'Unspecified';
+
     /**
      * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="competencies")
      * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
@@ -52,7 +54,10 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
 
     public function __toString() {
-       return $this->getCompetencyType()->getName();
+        $type = $this->getCompetencyType() ? $this->getCompetencyType()->getName() : self::NOT_YET_SPECIFIED;
+        $level = $this->getCompetencyLevel() ? $this->getCompetencyLevel()->getName() : self::NOT_YET_SPECIFIED;
+
+        return sprintf("%s (%s)", $type, $level);
     }
 
     /**
