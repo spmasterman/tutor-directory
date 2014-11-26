@@ -450,7 +450,9 @@ it results boilerplate code.
 I always type hint pulls from the DI container by creating a one line function that wraps the container->get()  
 
 ### Tests
-Yeah, this is where I fall down, because there aren't any automated tests
+Tests run against an SQLLite database that gets created on bootstrap, and replaced when you call restoreDatabase() - 
+rather than this being in the setUp() for every test its called manually at the end of any test that disrupts the 
+database.
 
 ### Data Fixtures
 I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 

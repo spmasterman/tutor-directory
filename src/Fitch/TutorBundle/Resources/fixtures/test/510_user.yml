@@ -1,0 +1,36 @@
+Fitch\UserBundle\Entity\User:
+    user-1:
+        username: xuser
+        fullname: Plain User
+        email: user@plainuser.com
+        roles: ['ROLE_USER']
+        enabled: true
+        plainPassword: xxx
+    user-2:
+        username: xdisabled
+        fullname: Disabled User
+        email: user@disableduser.com
+        roles: ['ROLE_USER']
+        enabled: false
+        plainPassword: xxx
+    user-3:
+        username: xeditor
+        fullname: Editor User
+        email: user@editor.com
+        roles: ['ROLE_USER', 'ROLE_EDITOR']
+        enabled: true
+        plainPassword: xxx
+    user-4:
+        username: xadmin
+        fullname: Admin User
+        email: user@admin.com
+        roles: ['ROLE_USER', 'ROLE_ADMIN']
+        enabled: true
+        plainPassword: xxx
+    user-5:
+        username: xsuper
+        fullname: Super Admin User
+        email: user@superadmin.com
+        roles: ['ROLE_USER', 'ROLE_SUPER_ADMIN']
+        enabled: true
+        plainPassword: xxx

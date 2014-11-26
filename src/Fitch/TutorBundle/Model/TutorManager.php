@@ -27,6 +27,9 @@ class TutorManager extends BaseModelManager
         return parent::findAll();
     }
 
+    /**
+     * @return array
+     */
     public function populateTable()
     {
         return $this->getRepo()->findAllForTable();
@@ -46,15 +49,6 @@ class TutorManager extends BaseModelManager
             $address = $addressManager->createAddress();
             $address->setCountry($countryManager->getDefaultCountry());
             $tutor->addAddress($address);
-        }
-
-    }
-
-    public function setDefaultRegionIfRequired(Tutor $tutor, OperatingRegionManager $operatingRegionManager)
-    {
-        if (!$tutor->getRegion()) {
-            $region = $operatingRegionManager->getDefaultRegion();
-            $tutor->setRegion($region);
         }
     }
 

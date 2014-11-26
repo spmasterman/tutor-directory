@@ -34,6 +34,7 @@ class AppFixtures extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/490_address.yml',
             __DIR__ . '/../../Resources/fixtures/495_note.yml',
             __DIR__ . '/../../Resources/fixtures/500_tutor.yml',
+            __DIR__ . '/../../Resources/fixtures/510_user.yml',
         ]);
 
         $testFixtures = array_map(function($v) {

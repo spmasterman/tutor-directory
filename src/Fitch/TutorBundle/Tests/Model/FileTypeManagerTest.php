@@ -10,7 +10,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
     public function testFindAll()
     {
-        $fileTypes = $this->getFileTypeManager()->findAll();
+        $fileTypes = $this->getModelManager()->findAll();
         $this->assertCount(3, $fileTypes, "Should return three file types");
 
         $this->assertEquals('Test File Type One', $fileTypes[0]->getName());
@@ -20,7 +20,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
     public function testFindById()
     {
-        $fileType = $this->getFileTypeManager()->findById(1);
+        $fileType = $this->getModelManager()->findById(1);
 
         $this->assertEquals('Test File Type One', $fileType->getName());
     }
@@ -28,21 +28,21 @@ class FileTypeManagerTest extends FixturesWebTestCase
     public function testLifeCycle()
     {
         // Check that there are 3 entries
-        $fileTypes = $this->getFileTypeManager()->findAll();
+        $fileTypes = $this->getModelManager()->findAll();
         $this->assertCount(3, $fileTypes, "Should return three file types");
 
         // Creata new one
-        $newfileType = $this->getFileTypeManager()->createFileType();
+        $newfileType = $this->getModelManager()->createFileType();
         $newfileType
             ->setName('Test')
             ->setPrivate(false)
             ->setSuitableForProfilePicture(false)
             ->setDefault(false)
         ;
-        $this->getFileTypeManager()->saveFileType($newfileType);
+        $this->getModelManager()->saveFileType($newfileType);
 
         // Check that there are 4 entries, and the new one is Timestamped correctly
-        $fileTypes = $this->getFileTypeManager()->findAll();
+        $fileTypes = $this->getModelManager()->findAll();
         $this->assertCount(4, $fileTypes, "Should return four file types");
         $this->assertNotNull($fileTypes[3]->getCreated());
         $this->assertEquals($fileTypes[3]->getCreated(), $fileTypes[3]->getUpdated());
@@ -53,23 +53,23 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getFileTypeManager()->saveFileType($newfileType);
+        $this->getModelManager()->saveFileType($newfileType);
         $this->assertNotEquals($fileTypes[3]->getCreated(), $fileTypes[3]->getUpdated());
 
         // Check that when we refresh it refreshes
         $newfileType->setName('Test (Abandoned Edit)');
-        $this->getFileTypeManager()->refreshFileType($newfileType);
+        $this->getModelManager()->refreshFileType($newfileType);
         $this->assertEquals('Test (Updated)', $newfileType->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getFileTypeManager()->removeFileType($newfileType);
-        $fileTypes = $this->getFileTypeManager()->findAll();
+        $this->getModelManager()->removeFileType($newfileType->getId());
+        $fileTypes = $this->getModelManager()->findAll();
         $this->assertCount(3, $fileTypes, "Should return three file types");
     }
 
     public function testFindDefaultFileType()
     {
-        $fileType = $this->getFileTypeManager()->findDefaultFileType();
+        $fileType = $this->getModelManager()->findDefaultFileType();
 
         $this->assertTrue($fileType->isDefault());
     }
@@ -77,7 +77,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
     /**
      * @return FileTypeManager
      */
-    public function getFileTypeManager()
+    public function getModelManager()
     {
         return $this->container->get('fitch.manager.file_type');
     }

@@ -8,7 +8,11 @@
 
     {% if error %}
         <div class="alert alert-danger"><i class="fa fa-exclamation"></i>
+            {% if app.debug %}
             <span>{{ error|trans }}</span>
+            {% else %}
+            <span>There was an error. Please contact your regional planning manager.</span>
+            {% endif %}
         </div>
     {% endif %}
 
