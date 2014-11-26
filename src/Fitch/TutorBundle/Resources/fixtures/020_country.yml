@@ -6,6 +6,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+93'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AL:
         name: Albania
         twoDigitCode: AL
@@ -13,6 +14,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+355'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-DZ:
         name: Algeria
         twoDigitCode: DZ
@@ -20,6 +22,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+213'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AS:
         name: American Samoa
         twoDigitCode: AS
@@ -27,6 +30,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 684'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AD:
         name: Andorra
         twoDigitCode: AD
@@ -34,6 +38,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+376'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AO:
         name: Angola
         twoDigitCode: AO
@@ -41,6 +46,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+244'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AI:
         name: Anguilla
         twoDigitCode: AI
@@ -48,6 +54,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 264'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AQ:
         name: Antarctica
         twoDigitCode: AQ
@@ -55,6 +62,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+672'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AG:
         name: Antigua and Barbuda
         twoDigitCode: AG
@@ -62,6 +70,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 268'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AR:
         name: Argentina
         twoDigitCode: AR
@@ -69,6 +78,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+54'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AM:
         name: Armenia
         twoDigitCode: AM
@@ -76,6 +86,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+374'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AW:
         name: Aruba
         twoDigitCode: AW
@@ -83,6 +94,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+297'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-AU:
         name: Australia
         twoDigitCode: AU
@@ -90,6 +102,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+61'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-AT:
         name: Austria
         twoDigitCode: AT
@@ -97,6 +110,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+43'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-AZ:
         name: Azerbaijan
         twoDigitCode: AZ
@@ -104,6 +118,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+994'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BS:
         name: Bahamas
         twoDigitCode: BS
@@ -111,6 +126,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 242'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BH:
         name: Bahrain
         twoDigitCode: BH
@@ -118,6 +134,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+973'
         defaultRegion: @region-mea
         preferred: false
+        active: true
     country-BD:
         name: Bangladesh
         twoDigitCode: BD
@@ -125,6 +142,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+880'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BB:
         name: Barbados
         twoDigitCode: BB
@@ -132,6 +150,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 246'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BY:
         name: Belarus
         twoDigitCode: BY
@@ -139,6 +158,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+375'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BE:
         name: Belgium
         twoDigitCode: BE
@@ -146,6 +166,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+32'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-BZ:
         name: Belize
         twoDigitCode: BZ
@@ -153,6 +174,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+501'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BJ:
         name: Benin
         twoDigitCode: BJ
@@ -160,6 +182,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+229'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BM:
         name: Bermuda
         twoDigitCode: BM
@@ -167,6 +190,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 441'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BT:
         name: Bhutan
         twoDigitCode: BT
@@ -174,6 +198,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+975'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BO:
         name: Bolivia
         twoDigitCode: BO
@@ -181,6 +206,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+591'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BA:
         name: Bosnia and Herzegovina
         twoDigitCode: BA
@@ -188,6 +214,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+387'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BW:
         name: Botswana
         twoDigitCode: BW
@@ -195,6 +222,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+267'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BR:
         name: Brazil
         twoDigitCode: BR
@@ -202,6 +230,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+55'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-VG:
         name: British Virgin Islands
         twoDigitCode: VG
@@ -209,6 +238,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 284'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-BN:
         name: Brunei
         twoDigitCode: BN
@@ -216,6 +246,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+673'
         defaultRegion: @region-mea
         preferred: false
+        active: false
     country-BG:
         name: Bulgaria
         twoDigitCode: BG
@@ -223,6 +254,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+359'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BF:
         name: Burkina Faso
         twoDigitCode: BF
@@ -230,6 +262,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+226'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MM:
         name: Burma (Myanmar)
         twoDigitCode: MM
@@ -237,6 +270,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+95'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BI:
         name: Burundi
         twoDigitCode: BI
@@ -244,6 +278,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+257'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KH:
         name: Cambodia
         twoDigitCode: KH
@@ -251,6 +286,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+855'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CM:
         name: Cameroon
         twoDigitCode: CM
@@ -258,6 +294,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+237'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CA:
         name: Canada
         twoDigitCode: CA
@@ -265,6 +302,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1'
         defaultRegion: @region-us
         preferred: false
+        active: true
     country-CV:
         name: Cape Verde
         twoDigitCode: CV
@@ -272,6 +310,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+238'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KY:
         name: Cayman Islands
         twoDigitCode: KY
@@ -279,6 +318,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 345'
         defaultRegion: @region-us
         preferred: false
+        active: true
     country-CF:
         name: Central African Republic
         twoDigitCode: CF
@@ -286,6 +326,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+236'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TD:
         name: Chad
         twoDigitCode: TD
@@ -293,6 +334,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+235'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CL:
         name: Chile
         twoDigitCode: CL
@@ -300,6 +342,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+56'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CN:
         name: China
         twoDigitCode: CN
@@ -307,6 +350,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+86'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CX:
         name: Christmas Island
         twoDigitCode: CX
@@ -314,6 +358,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+61'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CC:
         name: Cocos (Keeling) Islands
         twoDigitCode: CC
@@ -321,6 +366,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+61'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CO:
         name: Colombia
         twoDigitCode: CO
@@ -328,6 +374,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+57'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KM:
         name: Comoros
         twoDigitCode: KM
@@ -335,6 +382,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+269'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CK:
         name: Cook Islands
         twoDigitCode: CK
@@ -342,6 +390,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+682'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CR:
         name: Costa Rica
         twoDigitCode: CR
@@ -349,6 +398,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+506'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-HR:
         name: Croatia
         twoDigitCode: HR
@@ -356,6 +406,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+385'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CU:
         name: Cuba
         twoDigitCode: CU
@@ -363,6 +414,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+53'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-CY:
         name: Cyprus
         twoDigitCode: CY
@@ -370,6 +422,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+357'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-CZ:
         name: Czech Republic
         twoDigitCode: CZ
@@ -377,6 +430,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+420'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-CD:
         name: Democratic Republic of the Congo
         twoDigitCode: CD
@@ -384,6 +438,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+243'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-DK:
         name: Denmark
         twoDigitCode: DK
@@ -391,6 +446,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+45'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-DJ:
         name: Djibouti
         twoDigitCode: DJ
@@ -398,6 +454,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+253'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-DM:
         name: Dominica
         twoDigitCode: DM
@@ -405,6 +462,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 767'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-DO:
         name: Dominican Republic
         twoDigitCode: DO
@@ -412,6 +470,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 809'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-EC:
         name: Ecuador
         twoDigitCode: EC
@@ -419,6 +478,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+593'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-EG:
         name: Egypt
         twoDigitCode: EG
@@ -426,6 +486,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+20'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SV:
         name: El Salvador
         twoDigitCode: SV
@@ -433,6 +494,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+503'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GQ:
         name: Equatorial Guinea
         twoDigitCode: GQ
@@ -440,6 +502,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+240'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ER:
         name: Eritrea
         twoDigitCode: ER
@@ -447,6 +510,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+291'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-EE:
         name: Estonia
         twoDigitCode: EE
@@ -454,6 +518,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+372'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ET:
         name: Ethiopia
         twoDigitCode: ET
@@ -461,6 +526,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+251'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-FK:
         name: Falkland Islands
         twoDigitCode: FK
@@ -468,6 +534,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+500'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-FO:
         name: Faroe Islands
         twoDigitCode: FO
@@ -475,6 +542,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+298'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-FJ:
         name: Fiji
         twoDigitCode: FJ
@@ -482,6 +550,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+679'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-FI:
         name: Finland
         twoDigitCode: FI
@@ -489,6 +558,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+358'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-FR:
         name: France
         twoDigitCode: FR
@@ -496,6 +566,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+33'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-PF:
         name: French Polynesia
         twoDigitCode: PF
@@ -503,6 +574,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+689'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GA:
         name: Gabon
         twoDigitCode: GA
@@ -510,6 +582,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+241'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GM:
         name: Gambia
         twoDigitCode: GM
@@ -517,6 +590,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+220'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GE:
         name: Georgia
         twoDigitCode: GE
@@ -524,6 +598,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+995'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-DE:
         name: Germany
         twoDigitCode: DE
@@ -531,6 +606,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+49'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-GH:
         name: Ghana
         twoDigitCode: GH
@@ -538,6 +614,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+233'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GI:
         name: Gibraltar
         twoDigitCode: GI
@@ -545,6 +622,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+350'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GR:
         name: Greece
         twoDigitCode: GR
@@ -552,6 +630,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+30'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-GL:
         name: Greenland
         twoDigitCode: GL
@@ -559,6 +638,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+299'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GD:
         name: Grenada
         twoDigitCode: GD
@@ -566,6 +646,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 473'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GU:
         name: Guam
         twoDigitCode: GU
@@ -573,6 +654,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 671'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GT:
         name: Guatemala
         twoDigitCode: GT
@@ -580,6 +662,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+502'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GN:
         name: Guinea
         twoDigitCode: GN
@@ -587,6 +670,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+224'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GW:
         name: Guinea-Bissau
         twoDigitCode: GW
@@ -594,6 +678,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+245'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-GY:
         name: Guyana
         twoDigitCode: GY
@@ -601,6 +686,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+592'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-HT:
         name: Haiti
         twoDigitCode: HT
@@ -608,6 +694,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+509'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-VA:
         name: Holy See (Vatican City)
         twoDigitCode: VA
@@ -615,6 +702,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+39'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-HN:
         name: Honduras
         twoDigitCode: HN
@@ -622,6 +710,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+504'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-HK:
         name: Hong Kong
         twoDigitCode: HK
@@ -629,6 +718,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+852'
         defaultRegion: @region-sg
         preferred: false
+        active: true
     country-HU:
         name: Hungary
         twoDigitCode: HU
@@ -636,6 +726,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+36'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-IS:
         name: Iceland
         twoDigitCode: IS
@@ -643,6 +734,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+354'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-IN:
         name: India
         twoDigitCode: IN
@@ -650,6 +742,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+91'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ID:
         name: Indonesia
         twoDigitCode: ID
@@ -657,6 +750,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+62'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-IR:
         name: Iran
         twoDigitCode: IR
@@ -664,6 +758,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+98'
         defaultRegion: @region-mea
         preferred: false
+        active: false
     country-IQ:
         name: Iraq
         twoDigitCode: IQ
@@ -671,6 +766,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+964'
         defaultRegion: @region-mea
         preferred: false
+        active: false
     country-IE:
         name: Ireland
         twoDigitCode: IE
@@ -678,6 +774,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+353'
         defaultRegion: @region-uk
         preferred: false
+        active: true
     country-IM:
         name: Isle of Man
         twoDigitCode: IM
@@ -685,6 +782,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+44'
         defaultRegion: @region-uk
         preferred: false
+        active: true
     country-IL:
         name: Israel
         twoDigitCode: IL
@@ -692,6 +790,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+972'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-IT:
         name: Italy
         twoDigitCode: IT
@@ -699,6 +798,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+39'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-CI:
         name: Ivory Coast
         twoDigitCode: CI
@@ -706,6 +806,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+225'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-JM:
         name: Jamaica
         twoDigitCode: JM
@@ -713,6 +814,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 876'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-JP:
         name: Japan
         twoDigitCode: JP
@@ -720,6 +822,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+81'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-JO:
         name: Jordan
         twoDigitCode: JO
@@ -727,6 +830,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+962'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KZ:
         name: Kazakhstan
         twoDigitCode: KZ
@@ -734,6 +838,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+7'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KE:
         name: Kenya
         twoDigitCode: KE
@@ -741,6 +846,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+254'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KI:
         name: Kiribati
         twoDigitCode: KI
@@ -748,6 +854,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+686'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KW:
         name: Kuwait
         twoDigitCode: KW
@@ -755,6 +862,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+965'
         defaultRegion: @region-mea
         preferred: false
+        active: true
     country-KG:
         name: Kyrgyzstan
         twoDigitCode: KG
@@ -762,6 +870,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+996'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LA:
         name: Laos
         twoDigitCode: LA
@@ -769,6 +878,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+856'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LV:
         name: Latvia
         twoDigitCode: LV
@@ -776,20 +886,23 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+371'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LB:
         name: Lebanon
         twoDigitCode: LB
         threeDigitCode: LBN
         dialingCode: '+961'
         defaultRegion: @region-gl
-        preferred: false
+        preferred: fa
+        active: falsese
     country-LS:
         name: Lesotho
         twoDigitCode: LS
         threeDigitCode: LSO
         dialingCode: '+266'
         defaultRegion: @region-gl
-        preferred: false
+        preferred: fa
+        active: falsese
     country-LR:
         name: Liberia
         twoDigitCode: LR
@@ -797,6 +910,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+231'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LY:
         name: Libya
         twoDigitCode: LY
@@ -804,6 +918,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+218'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LI:
         name: Liechtenstein
         twoDigitCode: LI
@@ -811,6 +926,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+423'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LT:
         name: Lithuania
         twoDigitCode: LT
@@ -818,6 +934,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+370'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LU:
         name: Luxembourg
         twoDigitCode: LU
@@ -825,6 +942,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+352'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-MO:
         name: Macau
         twoDigitCode: MO
@@ -832,6 +950,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+853'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MK:
         name: Macedonia
         twoDigitCode: MK
@@ -839,6 +958,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+389'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MG:
         name: Madagascar
         twoDigitCode: MG
@@ -846,6 +966,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+261'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MW:
         name: Malawi
         twoDigitCode: MW
@@ -853,6 +974,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+265'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MY:
         name: Malaysia
         twoDigitCode: MY
@@ -860,6 +982,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+60'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MV:
         name: Maldives
         twoDigitCode: MV
@@ -867,6 +990,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+960'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ML:
         name: Mali
         twoDigitCode: ML
@@ -874,6 +998,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+223'
         defaultRegion: @region-gl
         preferred: false
+        active: falsese
     country-MT:
         name: Malta
         twoDigitCode: MT
@@ -881,6 +1006,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+356'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-MH:
         name: Marshall Islands
         twoDigitCode: MH
@@ -888,6 +1014,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+692'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MR:
         name: Mauritania
         twoDigitCode: MR
@@ -895,6 +1022,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+222'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MU:
         name: Mauritius
         twoDigitCode: MU
@@ -902,6 +1030,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+230'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-YT:
         name: Mayotte
         twoDigitCode: YT
@@ -909,6 +1038,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+262'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MX:
         name: Mexico
         twoDigitCode: MX
@@ -916,6 +1046,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+52'
         defaultRegion: @region-us
         preferred: false
+        active: true
     country-FM:
         name: Micronesia
         twoDigitCode: FM
@@ -923,6 +1054,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+691'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MD:
         name: Moldova
         twoDigitCode: MD
@@ -930,6 +1062,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+373'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MC:
         name: Monaco
         twoDigitCode: MC
@@ -937,6 +1070,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+377'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MN:
         name: Mongolia
         twoDigitCode: MN
@@ -944,6 +1078,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+976'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ME:
         name: Montenegro
         twoDigitCode: ME
@@ -951,6 +1086,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+382'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MS:
         name: Montserrat
         twoDigitCode: MS
@@ -958,6 +1094,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 664'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MA:
         name: Morocco
         twoDigitCode: MA
@@ -965,6 +1102,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+212'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MZ:
         name: Mozambique
         twoDigitCode: MZ
@@ -972,6 +1110,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+258'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NA:
         name: Namibia
         twoDigitCode: NA
@@ -979,6 +1118,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+264'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NR:
         name: Nauru
         twoDigitCode: NR
@@ -986,6 +1126,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+674'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NP:
         name: Nepal
         twoDigitCode: NP
@@ -993,6 +1134,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+977'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NL:
         name: Netherlands
         twoDigitCode: NL
@@ -1000,6 +1142,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+31'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-AN:
         name: Netherlands Antilles
         twoDigitCode: AN
@@ -1007,6 +1150,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+599'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NC:
         name: New Caledonia
         twoDigitCode: NC
@@ -1014,6 +1158,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+687'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NZ:
         name: New Zealand
         twoDigitCode: NZ
@@ -1021,6 +1166,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+64'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-NI:
         name: Nicaragua
         twoDigitCode: NI
@@ -1028,6 +1174,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+505'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NE:
         name: Niger
         twoDigitCode: NE
@@ -1035,6 +1182,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+227'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NG:
         name: Nigeria
         twoDigitCode: NG
@@ -1042,6 +1190,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+234'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NU:
         name: Niue
         twoDigitCode: NU
@@ -1049,6 +1198,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+683'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-MP:
         name: Northern Mariana Islands
         twoDigitCode: MP
@@ -1056,6 +1206,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 670'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-NO:
         name: Norway
         twoDigitCode: NO
@@ -1063,6 +1214,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+47'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-OM:
         name: Oman
         twoDigitCode: OM
@@ -1070,6 +1222,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+968'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PK:
         name: Pakistan
         twoDigitCode: PK
@@ -1077,6 +1230,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+92'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PW:
         name: Palau
         twoDigitCode: PW
@@ -1084,6 +1238,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+680'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PA:
         name: Panama
         twoDigitCode: PA
@@ -1091,6 +1246,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+507'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PG:
         name: Papua New Guinea
         twoDigitCode: PG
@@ -1098,6 +1254,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+675'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PY:
         name: Paraguay
         twoDigitCode: PY
@@ -1105,6 +1262,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+595'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PE:
         name: Peru
         twoDigitCode: PE
@@ -1112,6 +1270,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+51'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PH:
         name: Philippines
         twoDigitCode: PH
@@ -1119,6 +1278,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+63'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PN:
         name: Pitcairn Islands
         twoDigitCode: PN
@@ -1126,6 +1286,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+870'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-PL:
         name: Poland
         twoDigitCode: PL
@@ -1133,6 +1294,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+48'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-PT:
         name: Portugal
         twoDigitCode: PT
@@ -1140,6 +1302,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+351'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-PR:
         name: Puerto Rico
         twoDigitCode: PR
@@ -1147,6 +1310,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-QA:
         name: Qatar
         twoDigitCode: QA
@@ -1154,6 +1318,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+974'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-CG:
         name: Republic of the Congo
         twoDigitCode: CG
@@ -1161,6 +1326,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+242'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-RO:
         name: Romania
         twoDigitCode: RO
@@ -1168,6 +1334,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+40'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-RU:
         name: Russia
         twoDigitCode: RU
@@ -1175,6 +1342,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+7'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-RW:
         name: Rwanda
         twoDigitCode: RW
@@ -1182,6 +1350,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+250'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-BL:
         name: Saint Barthelemy
         twoDigitCode: BL
@@ -1189,6 +1358,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+590'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SH:
         name: Saint Helena
         twoDigitCode: SH
@@ -1196,6 +1366,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+290'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-KN:
         name: Saint Kitts and Nevis
         twoDigitCode: KN
@@ -1203,33 +1374,39 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 869'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-LC:
         name: Saint Lucia
         twoDigitCode: LC
         threeDigitCode: LCA
         dialingCode: '+1 758'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
         preferred: false
+        active: false
     country-MF:
         name: Saint Martin
         twoDigitCode: MF
         threeDigitCode: MAF
         dialingCode: '+1 599'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
         preferred: false
+        active: false
     country-PM:
         name: Saint Pierre and Miquelon
         twoDigitCode: PM
         threeDigitCode: SPM
         dialingCode: '+508'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
         preferred: false
+        active: false
     country-VC:
         name: Saint Vincent and the Grenadines
         twoDigitCode: VC
         threeDigitCode: VCT
         dialingCode: '+1 784'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
+        preferred: false
+        active: false
     country-WS:
         name: Samoa
         twoDigitCode: WS
@@ -1237,6 +1414,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+685'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SM:
         name: San Marino
         twoDigitCode: SM
@@ -1244,6 +1422,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+378'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ST:
         name: Sao Tome and Principe
         twoDigitCode: ST
@@ -1251,6 +1430,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+239'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SA:
         name: Saudi Arabia
         twoDigitCode: SA
@@ -1258,6 +1438,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+966'
         defaultRegion: @region-mea
         preferred: false
+        active: true
     country-SN:
         name: Senegal
         twoDigitCode: SN
@@ -1265,6 +1446,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+221'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-RS:
         name: Serbia
         twoDigitCode: RS
@@ -1272,6 +1454,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+381'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SC:
         name: Seychelles
         twoDigitCode: SC
@@ -1279,6 +1462,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+248'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SL:
         name: Sierra Leone
         twoDigitCode: SL
@@ -1286,6 +1470,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+232'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SG:
         name: Singapore
         twoDigitCode: SG
@@ -1293,6 +1478,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+65'
         defaultRegion: @region-sg
         preferred: true
+        active: true
     country-SK:
         name: Slovakia
         twoDigitCode: SK
@@ -1300,6 +1486,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+421'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SI:
         name: Slovenia
         twoDigitCode: SI
@@ -1307,6 +1494,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+386'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SB:
         name: Solomon Islands
         twoDigitCode: SB
@@ -1314,6 +1502,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+677'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SO:
         name: Somalia
         twoDigitCode: SO
@@ -1321,6 +1510,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+252'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-ZA:
         name: South Africa
         twoDigitCode: ZA
@@ -1328,6 +1518,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+27'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-KR:
         name: South Korea
         twoDigitCode: KR
@@ -1335,6 +1526,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+82'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-ES:
         name: Spain
         twoDigitCode: ES
@@ -1342,6 +1534,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+34'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-LK:
         name: Sri Lanka
         twoDigitCode: LK
@@ -1349,6 +1542,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+94'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-SD:
         name: Sudan
         twoDigitCode: SD
@@ -1356,6 +1550,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+249'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SR:
         name: Suriname
         twoDigitCode: SR
@@ -1363,6 +1558,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+597'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SZ:
         name: Swaziland
         twoDigitCode: SZ
@@ -1370,6 +1566,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+268'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-SE:
         name: Sweden
         twoDigitCode: SE
@@ -1377,6 +1574,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+46'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-CH:
         name: Switzerland
         twoDigitCode: CH
@@ -1384,6 +1582,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+41'
         defaultRegion: @region-gl
         preferred: false
+        active: true
     country-SY:
         name: Syria
         twoDigitCode: SY
@@ -1391,6 +1590,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+963'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TW:
         name: Taiwan
         twoDigitCode: TW
@@ -1398,6 +1598,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+886'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TJ:
         name: Tajikistan
         twoDigitCode: TJ
@@ -1405,6 +1606,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+992'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TZ:
         name: Tanzania
         twoDigitCode: TZ
@@ -1412,6 +1614,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+255'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TH:
         name: Thailand
         twoDigitCode: TH
@@ -1419,6 +1622,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+66'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TL:
         name: Timor-Leste
         twoDigitCode: TL
@@ -1426,6 +1630,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+670'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TG:
         name: Togo
         twoDigitCode: TG
@@ -1433,6 +1638,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+228'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TK:
         name: Tokelau
         twoDigitCode: TK
@@ -1440,6 +1646,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+690'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TO:
         name: Tonga
         twoDigitCode: TO
@@ -1447,13 +1654,15 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+676'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TT:
         name: Trinidad and Tobago
         twoDigitCode: TT
         threeDigitCode: TTO
         dialingCode: '+1 868'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
         preferred: false
+        active: false
     country-TN:
         name: Tunisia
         twoDigitCode: TN
@@ -1461,13 +1670,15 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+216'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TR:
         name: Turkey
         twoDigitCode: TR
         threeDigitCode: TUR
         dialingCode: '+90'
-        defaultRegion: @region-gl
+        defaultRegion: @region-eu
         preferred: false
+        active: false
     country-TM:
         name: Turkmenistan
         twoDigitCode: TM
@@ -1475,13 +1686,15 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+993'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-TC:
         name: Turks and Caicos Islands
         twoDigitCode: TC
         threeDigitCode: TCA
         dialingCode: '+1 649'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
         preferred: false
+        active: false
     country-TV:
         name: Tuvalu
         twoDigitCode: TV
@@ -1489,20 +1702,23 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+688'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-UG:
         name: Uganda
         twoDigitCode: UG
         threeDigitCode: UGA
         dialingCode: '+256'
-        defaultRegion: @region-gl
+        defaultRegion: @region-mea
         preferred: false
+        active: false
     country-UA:
         name: Ukraine
         twoDigitCode: UA
         threeDigitCode: UKR
         dialingCode: '+380'
-        defaultRegion: @region-gl
+        defaultRegion: @region-eu
         preferred: false
+        active: false
     country-AE:
         name: United Arab Emirates
         twoDigitCode: AE
@@ -1510,6 +1726,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+971'
         defaultRegion: @region-mea
         preferred: true
+        active: true
     country-GB:
         name: United Kingdom
         twoDigitCode: GB
@@ -1517,6 +1734,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+44'
         defaultRegion: @region-uk
         preferred: true
+        active: true
     country-US:
         name: United States
         twoDigitCode: US
@@ -1524,6 +1742,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1'
         defaultRegion: @region-us
         preferred: true
+        active: true
     country-UY:
         name: Uruguay
         twoDigitCode: UY
@@ -1531,13 +1750,15 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+598'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-VI:
         name: US Virgin Islands
         twoDigitCode: VI
         threeDigitCode: VIR
         dialingCode: '+1 340'
-        defaultRegion: @region-gl
+        defaultRegion: @region-us
         preferred: false
+        active: false
     country-UZ:
         name: Uzbekistan
         twoDigitCode: UZ
@@ -1545,6 +1766,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+998'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-VU:
         name: Vanuatu
         twoDigitCode: VU
@@ -1552,6 +1774,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+678'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-VE:
         name: Venezuela
         twoDigitCode: VE
@@ -1559,6 +1782,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+58'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-VN:
         name: Vietnam
         twoDigitCode: VN
@@ -1566,6 +1790,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+84'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-WF:
         name: Wallis and Futuna
         twoDigitCode: WF
@@ -1573,6 +1798,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+681'
         defaultRegion: @region-gl
         preferred: false
+        active: false
     country-YE:
         name: Yemen
         twoDigitCode: YE
@@ -1580,17 +1806,20 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+967'
         defaultRegion: @region-mea
         preferred: false
+        active: true
     country-ZM:
         name: Zambia
         twoDigitCode: ZM
         threeDigitCode: ZMB
         dialingCode: '+260'
-        defaultRegion: @region-gl
+        defaultRegion: @region-mea
         preferred: false
+        active: false
     country-ZW:
         name: Zimbabwe
         twoDigitCode: ZW
         threeDigitCode: ZWE
         dialingCode: '+263'
-        defaultRegion: @region-gl
+        defaultRegion: @region-mea
         preferred: false
+        active: false

@@ -64,6 +64,13 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
     protected $preferred = false;
 
     /**
+     * @ORM\Column(name="active", type="boolean")
+     *
+     * @var boolean
+     */
+    protected $active = true;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -176,6 +183,24 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface
     public function setTwoDigitCode($twoDigitCode)
     {
         $this->twoDigitCode = $twoDigitCode;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     * @return $this
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
         return $this;
     }
 }

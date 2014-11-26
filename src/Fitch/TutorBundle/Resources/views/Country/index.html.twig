@@ -21,6 +21,7 @@
                     <tr>
                         <th>{% trans %}country.column.id{% endtrans %}</th>
                         <th>{% trans %}country.column.name{% endtrans %}</th>
+                        <th>{% trans %}country.column.active{% endtrans %}</th>
                         <th>{% trans %}country.column.code_2{% endtrans %}</th>
                         <th>{% trans %}country.column.code_3{% endtrans %}</th>
                         <th>{% trans %}country.column.dialing_code{% endtrans %}</th>
@@ -34,6 +35,7 @@
                     <tr>
                         <td>{{ country.id }}</td>
                         <td><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name }}</a></td>
+                        <td>{% if country.isActive %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                         <td>{{ country.twoDigitCode }}</td>
                         <td>{{ country.threeDigitCode }}</td>
                         <td>{{ country.dialingCode }}</td>

@@ -214,14 +214,27 @@ class ProfileController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function allCountriesAction(){
-        $out = [];
+    public function activeCountriesAction(){
+        $out = [
+            'children' => [
+                'preferred' => [
+                    'text' => 'Preferred',
+                ],
+                'other' => [
+                    'text' => 'Preferred',
+                ]
+            ]
+        ];
+
         foreach($this->getCountryManager()->findAllSorted() as $country) {
-            $out[] = [
-                'value' => $country->getId(),
-                'text' => $country->getName(),
-                'dialingCode' => $country->getDialingCode()
-            ];
+            if ($country->isActive()) {
+                $key = $country->isPreferred() ? 'preferred' : 'other';
+                $out['children'][$key]['children'] = [
+                    'value' => $country->getId(),
+                    'text' => $country->getName(),
+                    'dialingCode' => $country->getDialingCode()
+                ];
+            }
         }
         return new JsonResponse($out);
     }

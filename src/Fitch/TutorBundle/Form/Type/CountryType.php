@@ -28,6 +28,10 @@ class CountryType extends AbstractType
                 'type' => 'yesno',
                 'required' => false
             ])
+            ->add('active', new OnOffType(), [
+                'type' => 'yesno',
+                'required' => false
+            ])
             ->add('defaultRegion')
         ;
     }

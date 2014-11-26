@@ -6,6 +6,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1'
         defaultRegion: @region-1
         preferred: true
+        active: true
     country-2:
         name: Test Country Two
         twoDigitCode: 02
@@ -13,10 +14,20 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+2'
         defaultRegion: @region-2
         preferred: false
+        active: true
     country-3:
         name: Test Country Three
         twoDigitCode: 03
         threeDigitCode: THR
         dialingCode: '+3'
         defaultRegion: @region-3
+        preferred: true
+        active: true
+    country-4:
+        name: Test Country Four
+        twoDigitCode: 04
+        threeDigitCode: FOR
+        dialingCode: '+4'
+        defaultRegion: @region-3
         preferred: false
+        active: false

@@ -192,6 +192,7 @@ country:
         preferred: Preferred
         default_region: Default Region
         actions: Actions
+        active: Active
 
 
 currency:
