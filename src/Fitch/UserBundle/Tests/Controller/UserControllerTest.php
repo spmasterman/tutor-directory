@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
+    public function testThatTestHarnessIsWorking(){
+        $this->assertTrue(true);
+    }
+
     /*
     public function testCompleteScenario()
     {

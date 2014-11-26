@@ -9,6 +9,4 @@ class FixtureTest extends FixturesWebTestCase
     public function testThatTestHarnessIsWorking(){
         $this->assertTrue(true);
     }
-
-
 }

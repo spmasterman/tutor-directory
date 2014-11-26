@@ -5,7 +5,7 @@ namespace Fitch\TutorBundle\DataFixtures\ORM;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 use Nelmio\Alice\Fixtures;
 
-class TestLoader extends DataFixtureLoader
+class AppFixtures extends DataFixtureLoader
 {
     /**
      * {@inheritDoc}
@@ -20,7 +20,7 @@ class TestLoader extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/030_competency_level.yml',
             __DIR__ . '/../../Resources/fixtures/050_status.yml',
             __DIR__ . '/../../Resources/fixtures/060_tutor_type.yml',
-            __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
+//            __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
             __DIR__ . '/../../Resources/fixtures/090_filetypes.yml',
         );
 
@@ -37,7 +37,7 @@ class TestLoader extends DataFixtureLoader
         ]);
 
         $testFixtures = array_map(function($v) {
-            return str_replace('/fixtures/','fixtures/test/', $v);
+            return str_replace('/fixtures/','/fixtures/test/', $v);
         }, $developmentFixtures);
 
         $environment = $this->container->get('kernel')->getEnvironment();
