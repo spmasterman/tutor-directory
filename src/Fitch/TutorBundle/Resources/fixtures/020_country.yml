@@ -238,7 +238,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+1 284'
         defaultRegion: @region-gl
         preferred: false
-        active: true
+        active: false
     country-BN:
         name: Brunei
         twoDigitCode: BN
@@ -1006,7 +1006,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+356'
         defaultRegion: @region-gl
         preferred: false
-        active: true
+        active: false
     country-MH:
         name: Marshall Islands
         twoDigitCode: MH
@@ -1542,7 +1542,7 @@ Fitch\TutorBundle\Entity\Country:
         dialingCode: '+94'
         defaultRegion: @region-gl
         preferred: false
-        active: true
+        active: false
     country-SD:
         name: Sudan
         twoDigitCode: SD

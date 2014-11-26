@@ -34,7 +34,7 @@
                         } else {
                             $el.append($('<option>', {
                                 value: data[i].value
-                            }).text(data[i].text));
+                            }).text(data[i]['text'] + ' ('+ data[i]['dialingCode']+')'));
                         }
                     }
                 }
@@ -56,16 +56,27 @@
             }
             var html = $('<div>').text(value.number).html(),
                 countryId = value.country,
-                countryText = ''
+                countryText
             ;
 
-            $.each(this.sourceCountryData, function (i, v) {
-                if (v.value == countryId) {
-                    var regex = /.*\((.*)\)/gi,
-                        match = regex.exec(v.text);
-                    countryText = match[1];
+            function findDeep(data) {
+                var t = '';
+
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].children) {
+                        t = findDeep(data[i].children)
+                        if (t != '') {
+                            return t;
+                        }
+                    } else {
+                        if (data[i].value == countryId) {
+                            return data[i].dialingCode;
+                        }
+                    }
                 }
-            });
+                return '';
+            }
+            countryText = findDeep(this.sourceCountryData);
 
             if (countryText !== '') {
                 html = $('<div>').text(countryText).html() + ' ' + html;

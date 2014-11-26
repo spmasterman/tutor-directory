@@ -5,8 +5,7 @@ jQuery(document).ready(function() {
     "use strict";
 
     // Module wide variables
-    var addressCountryData = [],
-        phoneCountryData =[],
+    var countryData = [],
         competencyTypes = [],
         competencyLevels = [],
         // Default toolbar style for inline summer note editor
@@ -24,10 +23,7 @@ jQuery(document).ready(function() {
     // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
     // format. Only initialise the x-editable elements which use the data, once the data has been retrieved
     $.getJSON(Routing.generate('all_countries'), {}, function(data) {
-        $(data).each(function(i, k){
-            addressCountryData.push(k);
-            phoneCountryData.push({text: k['text'] + ' ('+ k['dialingCode']+')', value: k['value']});
-        });
+        countryData = data;
 
         $('.inline-address').each(function() {
             $(this).editable(getAddressOptions($(this)));
@@ -570,7 +566,7 @@ jQuery(document).ready(function() {
                 host.attr('data-address-pk', response.id);
                 host.attr( "id", "Address" + response.id);
             },
-            sourceCountry: addressCountryData
+            sourceCountry: countryData
         }
     }
 
@@ -621,7 +617,7 @@ jQuery(document).ready(function() {
                 host.attr('data-phone-pk', response.id);
                 host.attr( "id", "Phone" + response.id);
             },
-            sourceCountry: phoneCountryData
+            sourceCountry: countryData
         }
     }
 
@@ -643,7 +639,7 @@ jQuery(document).ready(function() {
                 host.attr("id", "note" + response.id);
                 host.closest('.data-row').find('.note-provenance').text(response.detail);
             },
-            sourceCountry: phoneCountryData
+            sourceCountry: countryData
         }
     }
 

@@ -61,14 +61,27 @@
                     (value.state ? $('<div>').text(value.state).html() + ' ' : '') +
                     (value.zip ? $('<div>').text(value.zip).html() : ''),
                 countryId = value.country,
-                countryText = ''
+                countryText
             ;
 
-            $.each(this.sourceCountryData, function (i, v) {
-                if (v.value == countryId) {
-                    countryText = v.text;
+            function findDeep(data) {
+                var t = '';
+
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].children) {
+                        t = findDeep(data[i].children)
+                        if (t != '') {
+                            return t;
+                        }
+                    } else {
+                        if (data[i].value == countryId) {
+                            return data[i].text;
+                        }
+                    }
                 }
-            });
+                return '';
+            }
+            countryText = findDeep(this.sourceCountryData);
 
             if (countryText !== '') {
                 html += ' ' + $('<div>').text(countryText).html();

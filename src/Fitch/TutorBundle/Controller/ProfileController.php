@@ -216,20 +216,20 @@ class ProfileController extends Controller
      */
     public function activeCountriesAction(){
         $out = [
-            'children' => [
-                'preferred' => [
-                    'text' => 'Preferred',
-                ],
-                'other' => [
-                    'text' => 'Preferred',
-                ]
+            [
+                'text' => 'Preferred',
+                'children' => []
+            ],
+            [
+                'text' => 'Other',
+                'children' => []
             ]
         ];
 
         foreach($this->getCountryManager()->findAllSorted() as $country) {
             if ($country->isActive()) {
-                $key = $country->isPreferred() ? 'preferred' : 'other';
-                $out['children'][$key]['children'] = [
+                $key = $country->isPreferred() ? 0 : 1;
+                $out[$key]['children'][] = [
                     'value' => $country->getId(),
                     'text' => $country->getName(),
                     'dialingCode' => $country->getDialingCode()
