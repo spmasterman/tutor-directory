@@ -45,7 +45,7 @@ class TutorType implements IdentityTraitInterface, TimestampableTraitInterface
      * Set name
      *
      * @param string $name
-     * @return CompetencyType
+     * @return $this
      */
     public function setName($name)
     {

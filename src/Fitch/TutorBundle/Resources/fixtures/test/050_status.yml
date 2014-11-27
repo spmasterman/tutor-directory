@@ -3,8 +3,8 @@ Fitch\TutorBundle\Entity\Status:
         name: Test Status One
         default: true
     status-2:
-        name: Test Status One
+        name: Test Status Two
         default: false
     status-3:
-        name: Test Status One
+        name: Test Status Three
         default: false

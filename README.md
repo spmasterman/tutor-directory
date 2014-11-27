@@ -451,7 +451,7 @@ I always type hint pulls from the DI container by creating a one line function t
 
 ### Tests
 Tests run against an SQLLite database that gets created on bootstrap, and replaced when you call restoreDatabase() - 
-this happens in the setUp() for FixturesWebTestCase classes - so if you want to test with test data, extend this 
+this happens in the setUp() for FixturesWebTestCase classes - so if you want to test with test data, extend this. 
 
 ### Data Fixtures
 I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 
