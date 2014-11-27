@@ -20,15 +20,23 @@ class NoteTest extends FixturesWebTestCase
 
         $this->assertStringStartsWith('(Edited', $entityOne->getProvenance());
 
-        $entityOne = $this->getModelManager()->findById(3);
-        $this->assertStringStartsWith('Anonymous on', $entityOne->getProvenance());
-
-
+        $entityThree = $this->getModelManager()->findById(3);
+        $this->assertStringStartsWith('Anonymous on', $entityThree->getProvenance());
     }
 
-    public function tearDown()
+    public function testAuthor()
     {
+        $entityOne = $this->getModelManager()->findById(1);
+        $entityThree = $this->getModelManager()->findById(3);
 
+        $this->assertEquals('terms', $entityOne->getKey());
+
+        $this->assertNotEquals($entityOne->getAuthor(), $entityThree->getAuthor());
+
+        $entityThree->setAuthor($entityOne->getAuthor());
+        $this->getModelManager()->saveNote($entityThree);
+
+        $this->assertEquals($entityOne->getAuthor(), $entityThree->getAuthor());
     }
 
     /**
