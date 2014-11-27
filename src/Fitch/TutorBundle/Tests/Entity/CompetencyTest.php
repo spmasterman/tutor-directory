@@ -25,9 +25,6 @@ class CompetencyTest extends FixturesWebTestCase
             Competency::NOT_YET_SPECIFIED . ' (' . Competency::NOT_YET_SPECIFIED .')',
             (string)$entityOne
         );
-
-        // As the kernel isn't rebooted between tests this can bleed-over into subsequent tests if we dont reset it
-        $this->getModelManager()->refreshCompetency($entityOne);
     }
 
     /**

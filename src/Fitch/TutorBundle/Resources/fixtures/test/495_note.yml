@@ -2,9 +2,11 @@ Fitch\TutorBundle\Entity\Note:
     note-1:
         key: terms
         body: Test Note One
+        author: @user-4
     note-2:
-        key: terms
+        key: something
         body: Test Note Two
+        author: @user-5
     note-3:
         key: terms
         body: Test Note Three

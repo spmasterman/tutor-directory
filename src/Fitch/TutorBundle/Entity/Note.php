@@ -51,14 +51,6 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="NoteVisibility")
-     * @ORM\JoinColumn(name="note_visibility_id", referencedColumnName="id")
-     *
-     * @var NoteVisibility
-     */
-    private $visibility;
-
-    /**
      * @return Tutor
      */
     public function getTutor()
@@ -73,24 +65,6 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
-        return $this;
-    }
-
-    /**
-     * @return NoteVisibility
-     */
-    public function getVisibility()
-    {
-        return $this->visibility;
-    }
-
-    /**
-     * @param NoteVisibility $visibility
-     * @return $this
-     */
-    public function setVisibility($visibility)
-    {
-        $this->visibility = $visibility;
         return $this;
     }
 

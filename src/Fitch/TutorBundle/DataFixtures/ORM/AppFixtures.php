@@ -26,6 +26,7 @@ class AppFixtures extends DataFixtureLoader
 
         // This is test data (generated via Faker etc)
         $developmentFixtures = array_merge($productionFixtures, [
+            __DIR__ . '/../../Resources/fixtures/430_user.yml',
             __DIR__ . '/../../Resources/fixtures/440_competency_type.yml',
             __DIR__ . '/../../Resources/fixtures/450_competency.yml',
             __DIR__ . '/../../Resources/fixtures/460_rate.yml',
@@ -34,7 +35,6 @@ class AppFixtures extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/490_address.yml',
             __DIR__ . '/../../Resources/fixtures/495_note.yml',
             __DIR__ . '/../../Resources/fixtures/500_tutor.yml',
-            __DIR__ . '/../../Resources/fixtures/510_user.yml',
         ]);
 
         $testFixtures = array_map(function($v) {

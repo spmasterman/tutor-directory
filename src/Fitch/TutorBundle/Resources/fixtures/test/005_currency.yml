@@ -3,11 +3,19 @@ Fitch\TutorBundle\Entity\Currency:
     threeDigitCode: ONE
     preferred: true
     name: Test Currency One
+    active: true
   currency-2:
     threeDigitCode: TWO
     preferred: false
     name: Test Currency Two
+    active: true
   currency-3:
     threeDigitCode: THR
     preferred: false
-    name: Test Currency Two
+    name: Test Currency Three
+    active: false
+  currency-4:
+    threeDigitCode: FOR
+    preferred: true
+    name: Test Currency Four
+    active: false

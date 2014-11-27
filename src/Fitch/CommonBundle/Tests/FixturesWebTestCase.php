@@ -2,11 +2,8 @@
 
 namespace Fitch\CommonBundle\Tests;
 
-use Fitch\CommonBundle\Model\BaseModelManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\DependencyInjection\Container;
 
 class FixturesWebTestCase extends WebTestCase
@@ -51,5 +48,12 @@ class FixturesWebTestCase extends WebTestCase
     protected function setUp()
     {
         restoreDatabase();
+    }
+
+    protected function tearDown()
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine')->getManager();
+        $em->clear();
     }
 }
