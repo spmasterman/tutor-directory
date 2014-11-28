@@ -5,33 +5,28 @@ Fitch\TutorBundle\Entity\Tutor:
         linkedInURL: http://www.example.com/test/1
         bio: Test Bio One
         status: @status-1
-        addresses : @address-1
-        addresses : @address-2
-        phoneNumbers : @phone-1
-        phoneNumbers : @phone-2
-        emailAddresses : @email-1
-        emailAddresses : @email-2
-        competencies: @competency-1
-        competencies: @competency-2
+        addresses : [@address-1, @address-2]
+        phoneNumbers : [@phone-1, @phone-2]
+        emailAddresses : [@email-1, @email-2]
+        competencies: [@competency-1, @competency-2]
         region: @region-1
         currency: @currency-1
-        rates : @rate-1
-        rates : @rate-2
-        notes : @note-1
+        rates : [@rate-1, @rate-2]
+        notes : [@note-1, @note-2]
     tutor-2:
         name: Test Tutor Two
         tutorType: @tutor-type-2
         linkedInURL: http://www.example.com/test/2
         bio: Test Bio Two
-        status: @status-1
-        addresses : @address-3
-        phoneNumbers : @phone-3
-        emailAddresses : @email-3
-        competencies: @competency-3
+        status: @status-2
+        addresses : [@address-3]
+        phoneNumbers : [@phone-3]
+        emailAddresses : [@email-3]
+        competencies: [@competency-3]
         region: @region-2
         currency: @currency-2
-        rates : @rate-3
-        notes : @note-2
+        rates : [@rate-3]
+        notes : [@note-3]
     tutor-3:
         name: Test Tutor Three
         tutorType: @tutor-type-3
@@ -40,4 +35,3 @@ Fitch\TutorBundle\Entity\Tutor:
         status: @status-3
         region: @region-3
         currency: @currency-3
-        notes : @note-3

@@ -13,6 +13,15 @@ class FileTypeTest extends FixturesWebTestCase
         $this->assertEquals('Test File Type One (Private)', (string)$entityOne);
     }
 
+    public function testSuitableForProfilePicture()
+    {
+        $entityOne = $this->getModelManager()->findById(1);
+
+        $this->assertFalse($entityOne->isSuitableForProfilePicture());
+        $entityOne->setSuitableForProfilePicture(true);
+        $this->assertTrue($entityOne->isSuitableForProfilePicture());
+    }
+
     /**
      * @return FileTypeManager
      */

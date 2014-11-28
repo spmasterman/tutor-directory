@@ -14,6 +14,16 @@ class AddressTest extends FixturesWebTestCase
             '1 Main Street, Test Address One, Test City One, Test State One 11111 Test Country One',
             (string)$entityOne
         );
+
+    }
+
+    public function testType()
+    {
+        $entityOne = $this->getModelManager()->findById(1);
+
+        $this->assertEquals('Home', $entityOne->getType());
+        $entityOne->setType('Office');
+        $this->assertEquals('Office', $entityOne->getType());
     }
 
     /**

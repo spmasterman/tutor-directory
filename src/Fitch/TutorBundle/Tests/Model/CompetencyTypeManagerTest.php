@@ -25,6 +25,20 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
         $this->assertEquals('Test Competency Type One', $entityOne->getName());
     }
 
+    public function testFindOrCreated()
+    {
+        $allEntities = $this->getModelManager()->findAll();
+        $this->assertCount(3, $allEntities, "Should return three entities");
+
+        $existingEntity = $this->getModelManager()->findOrCreate($allEntities[0]->getName());
+        $this->assertEquals($existingEntity, $allEntities[0]);
+
+        $newEntity = $this->getModelManager()->findOrCreate('c-new');
+        $allEntities = $this->getModelManager()->findAll();
+        $this->assertContains($newEntity, $allEntities);
+        $this->assertCount(4, $allEntities, "Should return three entities");
+    }
+
     public function testLifeCycle()
     {
         // Check that there are 6 entries

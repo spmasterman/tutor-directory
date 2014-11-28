@@ -199,7 +199,9 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addAddress (Address $address)
     {
-        $this->addresses->add($address);
+        if (!$this->addresses->contains($address)) {
+            $this->addresses->add($address);
+        }
         $address->setTutor($this);
         return $this;
     }
@@ -250,19 +252,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addPhoneNumber(Phone $phoneNumber)
     {
+        if (!$this->phoneNumbers->contains($phoneNumber)) {
+            $this->phoneNumbers->add($phoneNumber);
+        }
         $phoneNumber->setTutor($this);
-        $this->phoneNumbers->add($phoneNumber);
         return $this;
     }
 
     /**
-     * @param Phone $phone
+     * @param Phone $phoneNumber
      * @return $this
      */
-    public function removePhoneNumber(Phone $phone)
+    public function removePhoneNumber(Phone $phoneNumber)
     {
-        if ($this->phoneNumbers->contains($phone)) {
-            $this->phoneNumbers->removeElement($phone);
+        if ($this->phoneNumbers->contains($phoneNumber)) {
+            $this->phoneNumbers->removeElement($phoneNumber);
         }
         return $this;
     }
@@ -301,7 +305,9 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addNote (Note $note)
     {
-        $this->notes->add($note);
+        if (!$this->notes->contains($note)) {
+            $this->notes->add($note);
+        }
         $note->setTutor($this);
         return $this;
     }
@@ -352,19 +358,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addEmailAddress(Email $emailAddress)
     {
+        if (!$this->emailAddresses->contains($emailAddress)) {
+            $this->emailAddresses->add($emailAddress);
+        }
         $emailAddress->setTutor($this);
-        $this->emailAddresses->add($emailAddress);
         return $this;
     }
 
     /**
-     * @param Email $email
+     * @param Email $emailAddress
      * @return $this
      */
-    public function removeEmailAddress(Email $email)
+    public function removeEmailAddress(Email $emailAddress)
     {
-        if ($this->emailAddresses->contains($email)) {
-            $this->emailAddresses->removeElement($email);
+        if ($this->emailAddresses->contains($emailAddress)) {
+            $this->emailAddresses->removeElement($emailAddress);
         }
         return $this;
     }
@@ -395,8 +403,10 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addFile (File $file)
     {
+        if (!$this->files->contains($file)) {
+            $this->files->add($file);
+        }
         $file->setTutor($this);
-        $this->files->add($file);
         return $this;
     }
 
@@ -438,9 +448,10 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addCompetency(Competency $competency)
     {
-
+        if (!$this->competencies->contains($competency)) {
+            $this->competencies->add($competency);
+        }
         $competency->setTutor($this);
-        $this->competencies->add($competency);
         return $this;
     }
 
@@ -493,7 +504,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * @return string
+     * @return Status
      */
     public function getStatus()
     {
@@ -501,7 +512,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * @param string $status
+     * @param Status $status
      * @return $this
      */
     public function setStatus($status)
@@ -584,7 +595,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
 
 
     /**
-     * @return Rate[]
+     * @return ArrayCollection
      */
     public function getRates()
     {
@@ -609,8 +620,10 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function addRate (Rate $rate)
     {
+        if (!$this->rates->contains($rate)) {
+            $this->rates->add($rate);
+        }
         $rate->setTutor($this);
-        $this->rates->add($rate);
         return $this;
     }
 
