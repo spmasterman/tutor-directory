@@ -413,26 +413,26 @@ I can muster at this point however, and is likely to just add complexity rather 
   
 Translation files:
 
-  src/Fitch/UserBundle/Resources/translations/FOSUserBundle.en.yml - User Management templates (Login, Profile, Emails etc) 
-  src/Fitch/UserBundle/Resources/translations/messages.en.yml - User entity & User CRUD
-  src/Fitch/TutorBundle/Resources/translations/messages.en.yml - Other entities & their CRUD 
-  src/Fitch/FrontEndBundle/Resources/translations/FitchFrontEndBundle.en.yml - Menu Names
-  src/Fitch/FrontEndBundle/Resources/translations/messages.en.yml - General Front End (Navigation, Errors etc)
+  * src/Fitch/UserBundle/Resources/translations/FOSUserBundle.en.yml - User Management templates (Login, Profile, Emails etc) 
+  * src/Fitch/UserBundle/Resources/translations/messages.en.yml - User entity & User CRUD
+  * src/Fitch/TutorBundle/Resources/translations/messages.en.yml - Other entities & their CRUD 
+  * src/Fitch/FrontEndBundle/Resources/translations/FitchFrontEndBundle.en.yml - Menu Names
+  * src/Fitch/FrontEndBundle/Resources/translations/messages.en.yml - General Front End (Navigation, Errors etc)
   
 11) Source Code
 ---------------
   
 ### Code Quality
-This isn't the ERP codebase so I've tried to be a good code citizen. Dependency Injection is used everywhere and most 
-controllers are trivially small. Sensio Insight finds a few issues - a lot of which fall into 'false positive' territory
+Dependency Injection is used everywhere and most controllers are trivially small. Sensio Insight finds a few issues - a 
+lot of which fall into 'false positive' territory.
 
-1. For some reason it can't detect private method usage in the MenuBuilder class 
-2. It thinks my form theme is too complicated - when symfony2.6 hits there is a bootstrap theme that probably means my 
+* For some reason it can't detect private method usage in the MenuBuilder class 
+* It thinks my form theme is too complicated - when symfony2.6 hits there is a bootstrap theme that probably means my 
 themes can be destroyed
-3. php-ref (a pretty var_dump) isn't locked to a specific release in composer - its also only used when I need to debug
+* php-ref (a pretty var_dump) isn't locked to a specific release in composer - its also only used when I need to debug
  something so I don't really care
-4. it doesnt like the fact that one of my Entity fields is named 'key' - it assumes its a 'sensitive' key 
-5. .htaccess files could be moved server side (performance is not an issue this is early over-optimisation in my mind) 
+* it doesn't like the fact that one of my Entity fields is named 'key' - it assumes its a 'sensitive' key 
+* .htaccess files could be moved server side (performance is not an issue this is early over-optimisation in my mind) 
  
 Jetbrains PHPStorm displays "green" on all files. 
  
@@ -440,7 +440,9 @@ Jetbrains PHPStorm displays "green" on all files.
 I have as a conscious decision moved ALL entityManager stuff out of the controllers, preferring a "Model" class that 
 handles the interaction with the persistence layer. This is a fairly typical thing to do if you are creating bundles for
 external consumption (so that the end user can decide if they want to use ODM or ORM etc). It makes for very simple 
-controllers in general so I do it even though the chances of these bundles being reused is close to zero.  
+controllers in general so I do it even though the chances of these bundles being reused is close to zero. It might mean 
+more boilerplate code than you are used to (lots of empty repository classes, Type-hinted re-declarations of a BaseModel 
+class etc.)  
 
 ### Repository Classes 
 There are Repository classes for all entities, the only one that's used is Tutor, but its a pattern I follow even if 
@@ -459,16 +461,19 @@ I probably need to write a bunch more functional tests.
 
 phpUnit is declared as a composer dependency - so if you want to run these tests in phpStorm you must
 
- 1. Use a custom autoloader: pathtoproject/vendor/autoload.php
- 2. Configuration file: pathtoproject/app/phpunit.xml
- 3. Bootstrap file: pathtoproject/app/bootstrap.test.php
+ * Use a custom autoloader: pathtoproject/vendor/autoload.php
+ * Configuration file: pathtoproject/app/phpunit.xml
+ * Bootstrap file: pathtoproject/app/bootstrap.test.php
 
 ### Data Fixtures
 I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 
 the dependency order. Non production fixtures are 500, 490, 480 etc and should only load in the Dev environment. There
-is a separate folder for test fixtures - the tests themselves are intimately tied to these fixtures. There may be 
+is a separate folder for test fixtures - and the tests themselves are intimately tied to these fixtures. There may be 
 instances where the tests and the fixtures are tied too closely together and make for a brittle system i.e. if you 
-want to add things to the fixtures etc. If its too painful - just create a new environment for what you want to do    
+want to add things to the fixtures and a test starts to fail because its the number of records its expecting has grown.
+
+Testing a specific database state is probably bad practice, but I'm not really sure where these limitations will come up.
+If you find working with my tests and test data too painful - just create a new kernel environment for whatever you need to do, and create your own tests.    
   
 ### Bundles
 There are 4 bundles :
