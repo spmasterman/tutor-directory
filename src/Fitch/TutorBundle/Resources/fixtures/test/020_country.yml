@@ -25,7 +25,7 @@ Fitch\TutorBundle\Entity\Country:
         active: true
     country-4:
         name: Test Country Four
-        twoDigitCode: 04
+        twoDigitCode: GB
         threeDigitCode: FOR
         dialingCode: '+4'
         defaultRegion: @region-3

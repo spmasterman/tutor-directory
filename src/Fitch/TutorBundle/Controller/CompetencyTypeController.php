@@ -14,7 +14,7 @@ use Fitch\TutorBundle\Form\Type\CompetencyTypeType;
 /**
  * CompetencyType controller.
  *
- * @Route("/admin/type/competency/")
+ * @Route("/admin/type/competency")
  */
 class CompetencyTypeController extends Controller
 {

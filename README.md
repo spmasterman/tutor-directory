@@ -453,9 +453,22 @@ I always type hint pulls from the DI container by creating a one line function t
 Tests run against an SQLLite database that gets created on bootstrap, and replaced when you call restoreDatabase() - 
 this happens in the setUp() for FixturesWebTestCase classes - so if you want to test with test data, extend this. 
 
+There isn't anything like 100% coverage - I'm chipping away at it. Haven't yet worked out how to test file uploads etc,
+and haven't even started testing some of the ajax endpoints. They work - because the site works - but to be truly finished 
+I probably need to write a bunch more functional tests.
+
+phpUnit is declared as a composer dependency - so if you want to run these tests in phpStorm you must
+
+ 1. Use a custom autoloader: pathtoproject/vendor/autoload.php
+ 2. Configuration file: pathtoproject/app/phpunit.xml
+ 3. Bootstrap file: pathtoproject/app/bootstrap.test.php
+
 ### Data Fixtures
 I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 
-the dependency order. Non production fixtures are 500, 490, 480 etc and should only load in the Dev environment 
+the dependency order. Non production fixtures are 500, 490, 480 etc and should only load in the Dev environment. There
+is a separate folder for test fixtures - the tests themselves are intimately tied to these fixtures. There may be 
+instances where the tests and the fixtures are tied too closely together and make for a brittle system i.e. if you 
+want to add things to the fixtures etc. If its too painful - just create a new environment for what you want to do    
   
 ### Bundles
 There are 4 bundles :

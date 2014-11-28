@@ -6,6 +6,7 @@ Fitch\UserBundle\Entity\User:
         roles: ['ROLE_USER']
         enabled: true
         plainPassword: xxx
+        sidebarOpen: true
     user-2:
         username: xdisabled
         fullname: Disabled User
@@ -13,6 +14,7 @@ Fitch\UserBundle\Entity\User:
         roles: ['ROLE_USER']
         enabled: false
         plainPassword: xxx
+        sidebarOpen: true
     user-3:
         username: xeditor
         fullname: Editor User
@@ -20,6 +22,7 @@ Fitch\UserBundle\Entity\User:
         roles: ['ROLE_USER', 'ROLE_EDITOR']
         enabled: true
         plainPassword: xxx
+        sidebarOpen: true
     user-4:
         username: xadmin
         fullname: Admin User
@@ -27,6 +30,7 @@ Fitch\UserBundle\Entity\User:
         roles: ['ROLE_USER', 'ROLE_ADMIN']
         enabled: true
         plainPassword: xxx
+        sidebarOpen: true
     user-5:
         username: xsuper
         fullname: Super Admin User
@@ -34,3 +38,4 @@ Fitch\UserBundle\Entity\User:
         roles: ['ROLE_USER', 'ROLE_SUPER_ADMIN']
         enabled: true
         plainPassword: xxx
+        sidebarOpen: false

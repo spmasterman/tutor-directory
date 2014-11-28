@@ -30,14 +30,14 @@ class CountryManagerTest extends FixturesWebTestCase
     public function testFindDefaultCountry()
     {
         $entity = $this->getModelManager()->getDefaultCountry();
-        $this->assertNull($entity);
+        $this->assertEquals($entity->getTwoDigitCode(), 'GB');
 
-        $entityOne = $this->getModelManager()->findById(1);
-        $entityOne->setTwoDigitCode('GB');
+        $entityOne = $this->getModelManager()->findById(4);
+        $entityOne->setTwoDigitCode('XX');
         $this->getModelManager()->saveCountry($entityOne);
 
         $entity = $this->getModelManager()->getDefaultCountry();
-        $this->assertEquals($entity->getTwoDigitCode(), 'GB');
+        $this->assertNull($entity);
     }
 
     public function testPreferredChoices()

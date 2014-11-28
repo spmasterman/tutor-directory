@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -65,7 +65,7 @@ class TutorController extends Controller
     public function createAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_EDITOR')) {
-            throw new AccessDeniedException('Unauthorised access!');
+            throw new AccessDeniedHttpException('Unauthorised access!');
         }
 
         $tutorManager = $this->getTutorManager();
@@ -133,7 +133,7 @@ class TutorController extends Controller
     public function newAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_EDITOR')) {
-            throw new AccessDeniedException('Unauthorised access!');
+            throw new AccessDeniedHttpException('Unauthorised access!');
         }
 
         $tutor = $this->getTutorManager()->createTutor(

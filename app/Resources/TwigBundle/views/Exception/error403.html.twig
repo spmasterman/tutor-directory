@@ -7,19 +7,19 @@
 {% block wrapper_classes %}page-error text-center{% endblock %}
 
 {% block content %}
-            <h1>
-				<span class="clearfix title">
-					<span class="number">403</span>
-					<span class="text">{% trans %}error.403.status{% endtrans %}</span>
-				</span>
-			</h1>
+    <h1>
+        <span class="clearfix title">
+            <span class="number">403</span>
+            <span class="text">{% trans %}error.403.status{% endtrans %}</span>
+        </span>
+    </h1>
 
-			<p>{% trans %}error.403.long{% endtrans %}</p>
-            <p>
-                <a href="javascript:history.go(-1)" class="btn btn-custom-primary"><i class="fa fa-arrow-left"></i> {% trans %}navigation.back{% endtrans %}</a>
-                <a href="{{ path('fos_user_security_login') }}" class="btn btn-default"><i class="fa fa-user"></i> {% trans %}navigation.login{% endtrans %}</a>
-                <a href="#" class="btn btn-primary"><i class="fa fa-home"></i> {% trans %}navigation.home{% endtrans %}</a>
-            </p>
+    <p>{% trans %}error.403.long{% endtrans %}</p>
+    <p>
+        <a href="javascript:history.go(-1)" class="btn btn-custom-primary"><i class="fa fa-arrow-left"></i> {% trans %}navigation.back{% endtrans %}</a>
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default"><i class="fa fa-user"></i> {% trans %}navigation.login{% endtrans %}</a>
+        <a href="#" class="btn btn-primary"><i class="fa fa-home"></i> {% trans %}navigation.home{% endtrans %}</a>
+    </p>
 {% endblock %}
 
 

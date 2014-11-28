@@ -1,12 +1,12 @@
 <?php
 
-namespace Fitch\UserBundle\Tests\Controller;
+namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class UserControllerTest extends WebTestCase
+class CurrencyControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
@@ -17,32 +17,30 @@ class UserControllerTest extends WebTestCase
             'xuser' => 403,
             'xdisabled' => 403,
             'xeditor' => 403,
-            'xadmin' => 403,
+            'xadmin' => 200,
             'xsuper' => 200
         ];
 
-        $this->checkAccess('GET', '/user/', $users);
+        $this->checkAccess('GET', '/admin/currency/', $users);
     }
 
 
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
-        $client = $this->createAuthorizedClient('xsuper');
+        $client = $this->createAuthorizedClient('xadmin');
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/user/');
+        $crawler = $client->request('GET', '/admin/currency/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /user/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'fitch_userbundle_user_new[userName]'  => 'xtest',
-            'fitch_userbundle_user_new[fullName]'  => 'Test User Created',
-            'fitch_userbundle_user_new[email]'  => 'test@example.com',
-            'fitch_userbundle_user_new[plainPassword]'  => 'test',
-            'fitch_userbundle_user_new[roles]'  => ['ROLE_EDITOR'],
-            'fitch_userbundle_user_new[enabled]'  => true,
+            'fitch_tutorbundle_currency[name]'  => 'xtest',
+            'fitch_tutorbundle_currency[threeDigitCode]'  => 'xtt',
+            'fitch_tutorbundle_currency[preferred]'  => false,
+            'fitch_tutorbundle_currency[active]'  => false,
         ));
 
         $client->submit($form);
@@ -55,17 +53,16 @@ class UserControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'fitch_userbundle_user[userName]'  => 'xtest-edit',
-            'fitch_userbundle_user[fullName]'  => 'Test User Edited',
-            'fitch_userbundle_user[email]'  => 'test-edit@example.com',
+            'fitch_tutorbundle_currency[name]'  => 'xtest-edit',
+            'fitch_tutorbundle_currency[threeDigitCode]'  => 'xte',
+            'fitch_tutorbundle_currency[preferred]'  => true,
+            'fitch_tutorbundle_currency[active]'  => true,
         ));
 
         $client->submit($form);
         $crawler = $client->followRedirect();
 
         $this->assertGreaterThan(0, $crawler->filter('[value="xtest-edit"]')->count(), 'Missing element [value="xtest-edit"]');
-        $this->assertGreaterThan(0, $crawler->filter('[value="Test User Edited"]')->count(), 'Missing element [value="Test User Edited"]');
-        $this->assertGreaterThan(0, $crawler->filter('[value="test-edit@example.com"]')->count(), 'Missing element [value="test-edit@example.com"]');
 
         // Delete the entity
         $client->submit($crawler->selectButton('Delete')->form());
@@ -74,5 +71,4 @@ class UserControllerTest extends WebTestCase
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());
     }
-
 }
