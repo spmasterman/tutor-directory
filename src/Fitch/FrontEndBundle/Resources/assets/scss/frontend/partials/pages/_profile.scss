@@ -72,6 +72,16 @@
     }
   }
 
+  .notes-container {
+    .data-row {
+      clear:both;
+      margin-top: 30px;
+    }
+    .data-action {
+      float: none;
+    }
+  }
+
   .data-action,
   .data-history {
     float: right;

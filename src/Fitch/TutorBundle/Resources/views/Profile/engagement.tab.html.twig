@@ -78,9 +78,9 @@
     <div class="col-md-6">
         <div class="user-info-right">
             <div class="notes-info" data-note-key="terms" data-id="{{ tutor.getId }}">
+                <h3><i class="fa fa-square"></i> {% trans %}profile.section.terms{% endtrans %}</h3>
                 <div class="notes-container">
-                    <h3><i class="fa fa-square"></i> {% trans %}profile.section.terms{% endtrans %}</h3>
-                    {% for note in tutor.getNotes %}
+                    {% for note in tutor.getNotes|reverse %}
                         {% if note.getKey == 'terms' %}
                             <div data-id="{{ note.getId }}" class="data-row">
                                 <div class="note">

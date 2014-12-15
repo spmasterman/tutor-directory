@@ -356,7 +356,7 @@ jQuery(document).ready(function() {
                     '        <div class="note-provenance pull-right"></div>                         '+
                     '    </div>                                                                     '
                 ;
-            notesContainer.append(newRow);
+            notesContainer.prepend(newRow);
 
             $('#note0').each(function(){
                 $(this).editable(getNoteOptions($(this)));
@@ -639,7 +639,8 @@ jQuery(document).ready(function() {
                 host.attr("id", "note" + response.id);
                 host.closest('.data-row').find('.note-provenance').text(response.detail);
             },
-            sourceCountry: countryData
+            sourceCountry: countryData,
+            emptytext : 'New Note...'
         }
     }
 
