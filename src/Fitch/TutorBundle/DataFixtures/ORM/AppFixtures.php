@@ -13,7 +13,7 @@ class AppFixtures extends DataFixtureLoader
     protected function getFixtures()
     {
         // These are the lookup tables etc that should be deployed
-        $productionFixtures = array(
+        $productionFixtures = [
             __DIR__ . '/../../Resources/fixtures/005_currency.yml',
             __DIR__ . '/../../Resources/fixtures/010_region.yml',
             __DIR__ . '/../../Resources/fixtures/020_country.yml',
@@ -22,7 +22,8 @@ class AppFixtures extends DataFixtureLoader
             __DIR__ . '/../../Resources/fixtures/060_tutor_type.yml',
 //            __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
             __DIR__ . '/../../Resources/fixtures/090_filetypes.yml',
-        );
+            __DIR__ . '/../../Resources/fixtures/100_languages.yml',
+        ];
 
         // This is test data (generated via Faker etc)
         $developmentFixtures = array_merge($productionFixtures, [

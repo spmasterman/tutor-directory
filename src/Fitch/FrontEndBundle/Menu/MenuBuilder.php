@@ -27,6 +27,7 @@ class MenuBuilder extends ContainerAware
             ->addRegions($menu)
             ->addCountries($menu)
             ->addCurrencies($menu)
+            ->addLanguages($menu)
             ->addFileTypes($menu)
             ->addCompetencyTypes($menu)
             ->addCompetencyLevels($menu)
@@ -58,6 +59,7 @@ class MenuBuilder extends ContainerAware
             ->addRegions($homeNode)
             ->addCountries($homeNode)
             ->addCurrencies($homeNode)
+            ->addLanguages($homeNode)
             ->addFileTypes($homeNode)
             ->addCompetencyTypes($homeNode)
             ->addCompetencyLevels($homeNode)
@@ -206,6 +208,26 @@ class MenuBuilder extends ContainerAware
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
                     ['pattern' => '/currency/']
+                ])
+            ;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @return $this
+     */
+    private function addLanguages(ItemInterface $menu)
+    {
+        if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $menu
+                ->addChild('menu.languages', array('route' => 'language'))
+                ->setAttribute('icon', 'fa fa-language fa-fw')
+                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('routes', [
+                    ['pattern' => '/language/']
                 ])
             ;
         }

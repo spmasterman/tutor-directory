@@ -18,7 +18,7 @@ class CurrencyType extends AbstractType
         $builder
             ->add('name')
             ->add('threeDigitCode', null, [
-                'label' => 'ISO 4217 3 Digit Code'
+                'label' => '3 Digit Code (ISO 4217)'
             ])
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',

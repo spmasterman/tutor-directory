@@ -186,8 +186,8 @@ country:
     column:
         id: ID
         name: Name
-        code_2: ISO 3661-1 2 digit code
-        code_3: ISO 3661-1 3 digit code
+        code_2: 2 digit code (ISO 3661-1)
+        code_3: 3 digit code (ISO 3661-1)
         dialing_code: Dialing code
         preferred: Show As Preferred
         default_region: Default Region
@@ -214,10 +214,36 @@ currency:
     column:
         id: ID
         name: Name
-        code: ISO 4217 3 digit code
+        code: 3 digit code (ISO 4217)
         preferred: Show As Preferred
         actions: Actions
         active: Make Available
+
+language:
+    edit:
+        verb: Edit Language
+        tagline: edit the details of language record
+        success: The language has been successfully updated.
+    list:
+        verb: Languages
+        tagline: languages available for use in the Trainer Directory
+    new:
+        verb: New Language
+        tagline: define a new language
+        success: The language has been successfully created.
+    show:
+        verb: Language
+        tagline: view the details of a language record
+    delete:
+        success: The language has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        code: 3 Letter Code
+        preferred: Show As Preferred
+        actions: Actions
+        active: Make Available
+
 
 profile:
     tab:

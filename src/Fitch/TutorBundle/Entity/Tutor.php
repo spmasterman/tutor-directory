@@ -125,6 +125,15 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     /**
      * @var ArrayCollection
      *
+     * OWNING SIDE
+     * @ORM\ManyToMany(targetEntity="Language", inversedBy="tutors")
+     * @ORM\JoinTable(name="tutor_language")
+     */
+    protected $languages;
+
+    /**
+     * @var ArrayCollection
+     *
      * INVERSE SIDE
      * @ORM\OneToMany(targetEntity="Note",
      *      mappedBy="tutor",
@@ -171,6 +180,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         $this->notes = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->competencies = new ArrayCollection();
+        $this->languages = new ArrayCollection();
     }
 
     /**
@@ -653,5 +663,49 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
             }
         }
         return null;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param ArrayCollection $languages
+     * @return $this
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+        return $this;
+    }
+
+    /**
+     * @param Language $language
+     * @return $this
+     */
+    public function addLanguage (Language $language)
+    {
+        if (!$this->languages->contains($language)) {
+            $this->languages->add($language);
+        }
+        $language->addTutor($this);
+        return $this;
+    }
+
+    /**
+     * @param Language $language
+     * @return $this
+     */
+    public function removeLanguage(Language $language)
+    {
+        $language->removeTutor($this);
+        if ($this->languages->contains($language)) {
+            $this->languages->removeElement($language);
+        }
+        return $this;
     }
 }

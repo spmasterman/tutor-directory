@@ -1,0 +1,541 @@
+Fitch\TutorBundle\Entity\Language:
+    language-CHN:
+        name: Chinese, Mandarin
+        threeLetterCode: CHN
+        preferred: true
+        active: true
+    language-SPN:
+        name: Spanish
+        threeLetterCode: SPN
+        preferred: true
+        active: true
+    language-ENG:
+        name: English
+        threeLetterCode: ENG
+        preferred: true
+        active: true
+    language-BNG:
+        name: Bengali
+        threeLetterCode: BNG
+        preferred: false
+        active: true
+    language-HND:
+        name: Hindi
+        threeLetterCode: HND
+        preferred: false
+        active: true
+    language-POR:
+        name: Portuguese
+        threeLetterCode: POR
+        preferred: false
+        active: true
+    language-RUS:
+        name: Russian
+        threeLetterCode: RUS
+        preferred: false
+        active: true
+    language-JPN:
+        name: Japanese
+        threeLetterCode: JPN
+        preferred: false
+        active: true
+    language-GER:
+        name: German, Standard
+        threeLetterCode: GER
+        preferred: false
+        active: true
+    language-WUU:
+        name: Chinese, Wu
+        threeLetterCode: WUU
+        preferred: false
+        active: true
+    language-JAN:
+        name: Javanese
+        threeLetterCode: JAN
+        preferred: false
+        active: true
+    language-KKN:
+        name: Korean
+        threeLetterCode: KKN
+        preferred: false
+        active: true
+    language-FRN:
+        name: French
+        threeLetterCode: FRN
+        preferred: true
+        active: true
+    language-VIE:
+        name: Vietnamese
+        threeLetterCode: VIE
+        preferred: false
+        active: true
+    language-TCW:
+        name: Telugu
+        threeLetterCode: TCW
+        preferred: false
+        active: false
+    language-YUH:
+        name: Chinese, Yue (Cantonese)
+        threeLetterCode: YUH
+        preferred: true
+        active: true
+    language-MRT:
+        name: Marathi
+        threeLetterCode: MRT
+        preferred: false
+        active: false
+    language-TCV:
+        name: Tamil
+        threeLetterCode: TCV
+        preferred: false
+        active: false
+    language-TRK:
+        name: Turkish
+        threeLetterCode: TRK
+        preferred: false
+        active: false
+    language-URD:
+        name: Urdu
+        threeLetterCode: URD
+        preferred: false
+        active: true
+    language-CFR:
+        name: Chinese, Min Nan
+        threeLetterCode: CFR
+        preferred: false
+        active: false
+    language-CJY:
+        name: Chinese, Jinyu
+        threeLetterCode: CJY
+        preferred: false
+        active: false
+    language-GJR:
+        name: Gujarati
+        threeLetterCode: GJR
+        preferred: false
+        active: false
+    language-PQL:
+        name: Polish
+        threeLetterCode: PQL
+        preferred: false
+        active: true
+    language-ARZ:
+        name: Arabic, Egyptian Spoken
+        threeLetterCode: ARZ
+        preferred: false
+        active: false
+    language-UKR:
+        name: Ukrainian
+        threeLetterCode: UKR
+        preferred: false
+        active: false
+    language-ITN:
+        name: Italian
+        threeLetterCode: ITN
+        preferred: false
+        active: true
+    language-HSN:
+        name: Chinese, Xiang
+        threeLetterCode: HSN
+        preferred: false
+        active: false
+    language-MJS:
+        name: Malayalam
+        threeLetterCode: MJS
+        preferred: false
+        active: false
+    language-HAK:
+        name: Chinese, Hakka
+        threeLetterCode: HAK
+        preferred: false
+        active: false
+    language-KJV:
+        name: Kannada
+        threeLetterCode: KJV
+        preferred: false
+        active: false
+    language-ORY:
+        name: Oriya
+        threeLetterCode: ORY
+        preferred: false
+        active: false
+    language-PNB:
+        name: Panjabi, Western
+        threeLetterCode: PNB
+        preferred: false
+        active: false
+    language-SUO:
+        name: Sunda
+        threeLetterCode: SUO
+        preferred: false
+        active: false
+    language-PNJ:
+        name: Panjabi, Eastern
+        threeLetterCode: PNJ
+        preferred: false
+        active: false
+    language-RUM:
+        name: Romanian
+        threeLetterCode: RUM
+        preferred: false
+        active: false
+    language-BHJ:
+        name: Bhojpuri
+        threeLetterCode: BHJ
+        preferred: false
+        active: false
+    language-AZB:
+        name: Azerbaijani, South
+        threeLetterCode: AZB
+        preferred: false
+        active: false
+    language-PES:
+        name: Farsi, western
+        threeLetterCode: PES
+        preferred: false
+        active: true
+    language-MKP:
+        name: Maithili
+        threeLetterCode: MKP
+        preferred: false
+        active: false
+    language-HUA:
+        name: Hausa
+        threeLetterCode: HUA
+        preferred: false
+        active: false
+    language-ARQ:
+        name: Arabic, Algerian Spoken
+        threeLetterCode: ARQ
+        preferred: false
+        active: false
+    language-BMS:
+        name: Burmese
+        threeLetterCode: BMS
+        preferred: false
+        active: false
+    language-SRC:
+        name: Serbo-croatian
+        threeLetterCode: SRC
+        preferred: false
+        active: false
+    language-KNN:
+        name: Chinese, Gan
+        threeLetterCode: KNN
+        preferred: false
+        active: false
+    language-AWD:
+        name: Awadhi
+        threeLetterCode: AWD
+        preferred: false
+        active: false
+    language-THJ:
+        name: Thai
+        threeLetterCode: THJ
+        preferred: false
+        active: true
+    language-DUT:
+        name: Dutch
+        threeLetterCode: DUT
+        preferred: false
+        active: true
+    language-YOR:
+        name: Yoruba
+        threeLetterCode: YOR
+        preferred: false
+        active: false
+    language-SND:
+        name: Sindhi
+        threeLetterCode: SND
+        preferred: false
+        active: false
+    language-ARY:
+        name: Arabic, Moroccan Spoken
+        threeLetterCode: ARY
+        preferred: false
+        active: false
+    language-AEC:
+        name: Arabic, Saidi Spoken
+        threeLetterCode: AEC
+        preferred: false
+        active: false
+    language-UZB:
+        name: Uzbek, Northern
+        threeLetterCode: UZB
+        preferred: false
+        active: false
+    language-MLI:
+        name: Malay
+        threeLetterCode: MLI
+        preferred: false
+        active: false
+    language-AMH:
+        name: Amharic
+        threeLetterCode: AMH
+        preferred: false
+        active: false
+    language-INZ:
+        name: Indonesian
+        threeLetterCode: INZ
+        preferred: false
+        active: false
+    language-IGR:
+        name: Igbo
+        threeLetterCode: IGR
+        preferred: false
+        active: false
+    language-TGL:
+        name: Tagalog
+        threeLetterCode: TGL
+        preferred: false
+        active: false
+    language-NEP:
+        name: Nepali
+        threeLetterCode: NEP
+        preferred: false
+        active: false
+    language-APD:
+        name: Arabic, Sudanese Spoken
+        threeLetterCode: APD
+        preferred: false
+        active: false
+    language-SKR:
+        name: Saraiki
+        threeLetterCode: SKR
+        preferred: false
+        active: false
+    language-CEB:
+        name: Cebuano
+        threeLetterCode: CEB
+        preferred: false
+        active: false
+    language-APC:
+        name: Arabic, North Levantine Spoken
+        threeLetterCode: APC
+        preferred: false
+        active: false
+    language-TTS:
+        name: Thai, northeastern
+        threeLetterCode: TTS
+        preferred: false
+        active: false
+    language-ASM:
+        name: Assamese
+        threeLetterCode: ASM
+        preferred: false
+        active: false
+    language-HNG:
+        name: Hungarian
+        threeLetterCode: HNG
+        preferred: false
+        active: false
+    language-CIT:
+        name: Chittagonian
+        threeLetterCode: CIT
+        preferred: false
+        active: false
+    language-ACM:
+        name: Arabic, Mesopotamian Spoken
+        threeLetterCode: ACM
+        preferred: false
+        active: false
+    language-MHJ:
+        name: Madura
+        threeLetterCode: MHJ
+        preferred: false
+        active: false
+    language-SNH:
+        name: Sinhala
+        threeLetterCode: SNH
+        preferred: false
+        active: false
+    language-BGC:
+        name: Haryanvi
+        threeLetterCode: BGC
+        preferred: false
+        active: false
+    language-MKD:
+        name: Marwari
+        threeLetterCode: MKD
+        preferred: false
+        active: false
+    language-CZC:
+        name: Czech
+        threeLetterCode: CZC
+        preferred: false
+        active: false
+    language-GRK:
+        name: Greek
+        threeLetterCode: GRK
+        preferred: false
+        active: false
+    language-MQM:
+        name: Magahi
+        threeLetterCode: MQM
+        preferred: false
+        active: false
+    language-HNE:
+        name: Chhattisgarhi
+        threeLetterCode: HNE
+        preferred: false
+        active: false
+    language-DCC:
+        name: Deccan
+        threeLetterCode: DCC
+        preferred: false
+        active: false
+    language-MNP:
+        name: Chinese, Min Bei
+        threeLetterCode: MNP
+        preferred: false
+        active: false
+    language-RUW:
+        name: Belarusan
+        threeLetterCode: RUW
+        preferred: false
+        active: false
+    language-CCX:
+        name: Zhuang, Northern
+        threeLetterCode: CCX
+        preferred: false
+        active: false
+    language-ARS:
+        name: Arabic, Najdi Spoken
+        threeLetterCode: ARS
+        preferred: false
+        active: false
+    language-PBU:
+        name: Pashto, Northern
+        threeLetterCode: PBU
+        preferred: false
+        active: false
+    language-SOM:
+        name: Somali
+        threeLetterCode: SOM
+        preferred: false
+        active: false
+    language-MEX:
+        name: Malagasy
+        threeLetterCode: MEX
+        preferred: false
+        active: false
+    language-AEB:
+        name: Arabic, Tunisian Spoken
+        threeLetterCode: AEB
+        preferred: false
+        active: false
+    language-RUA:
+        name: Rwanda
+        threeLetterCode: RUA
+        preferred: false
+        active: false
+    language-ZUU:
+        name: Zulu
+        threeLetterCode: ZUU
+        preferred: false
+        active: false
+    language-BLG:
+        name: Bulgarian
+        threeLetterCode: BLG
+        preferred: false
+        active: false
+    language-SWD:
+        name: Swedish
+        threeLetterCode: SWD
+        preferred: false
+        active: false
+    language-LMO:
+        name: Lombard
+        threeLetterCode: LMO
+        preferred: false
+        active: false
+    language-GAZ:
+        name: Oromo, West-central
+        threeLetterCode: GAZ
+        preferred: false
+        active: false
+    language-PBT:
+        name: Pashto, Southern
+        threeLetterCode: PBT
+        preferred: false
+        active: false
+    language-KAZ:
+        name: Kazakh
+        threeLetterCode: KAZ
+        preferred: false
+        active: false
+    language-ILO:
+        name: Ilocano
+        threeLetterCode: ILO
+        preferred: false
+        active: false
+    language-TTR:
+        name: Tatar
+        threeLetterCode: TTR
+        preferred: false
+        active: false
+    language-FUV:
+        name: Fulfulde, Nigerian
+        threeLetterCode: FUV
+        preferred: false
+        active: false
+    language-AYN:
+        name: Arabic, Sanaani Spoken
+        threeLetterCode: AYN
+        preferred: false
+        active: false
+    language-UIG:
+        name: Uyghur
+        threeLetterCode: UIG
+        preferred: false
+        active: false
+    language-HAT:
+        name: Haitian Creole French
+        threeLetterCode: HAT
+        preferred: false
+        active: false
+    language-AZE:
+        name: Azerbaijani, North
+        threeLetterCode: AZE
+        preferred: false
+        active: false
+    language-NPL:
+        name: Napoletano-calabrese
+        threeLetterCode: NPL
+        preferred: false
+        active: false
+    language-KMR:
+        name: Khmer, Central
+        threeLetterCode: KMR
+        preferred: false
+        active: false
+    language-PRS:
+        name: Farsi, Eastern
+        threeLetterCode: PRS
+        preferred: false
+        active: false
+    language-TWS:
+        name: Akan
+        threeLetterCode: TWS
+        preferred: false
+        active: false
+    language-HIL:
+        name: Hiligaynon
+        threeLetterCode: HIL
+        preferred: false
+        active: false
+    language-KUR:
+        name: Kurmanji
+        threeLetterCode: KUR
+        preferred: false
+        active: false
+    language-SHD:
+        name: Shona
+        threeLetterCode: SHD
+        preferred: false
+        active: false
+    language-MSA:
+        name: Arabic, Modern Standard
+        threeLetterCode: MSA
+        preferred: true
+        active: true

@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CountryType extends AbstractType
+class LanguageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,22 +17,15 @@ class CountryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('twoDigitCode', null, [
-                'label' => '2 Digit Code (ISO 3661-1)'
-            ])
-            ->add('threeDigitCode', null, [
-                'label' => '3 Digit Code (ISO 3661-1)'
-            ])
-            ->add('dialingCode')
-            ->add('preferred', new OnOffType(), [
-                'type' => 'yesno',
-                'required' => false
-            ])
+            ->add('threeLetterCode')
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',
                 'required' => false
             ])
-            ->add('defaultRegion')
+            ->add('preferred', new OnOffType(), [
+                'type' => 'yesno',
+                'required' => false
+            ])
         ;
     }
     
@@ -42,7 +35,7 @@ class CountryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Country'
+            'data_class' => 'Fitch\TutorBundle\Entity\Language'
         ));
     }
 
@@ -51,6 +44,6 @@ class CountryType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_country';
+        return 'fitch_tutorbundle_currency';
     }
 }
