@@ -56,7 +56,22 @@
 			border-left: none;
 			padding-left: 0;
 		}
-	}
+
+        .data-file {
+            padding-left:25px;
+            text-align: right;
+            float: right;
+            font-style: italic;
+            color: $text-muted;
+            font-size: smaller;
+        }
+
+      #bio-files-container {
+        margin-top: 30px;
+        max-width: 450px;
+      }
+
+    }
 }
 
 /** Terms of Engagement Tab */
@@ -142,6 +157,11 @@
   .competency-right {
     border-left: 1px solid $line-color;
     padding-left: 30px;
+
+    @include max-screen($break-medium) {
+      border-left: none;
+      padding-left: 0;
+    }
 
     .data-name {
       width: 10px;

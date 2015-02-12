@@ -118,6 +118,7 @@ file_type:
         default: Default
         private: Private
         profile: Use as Profile Picture
+        bio: Display as part of Bio
         actions: Actions
     default_message:  = Default file type assigned to new files
 

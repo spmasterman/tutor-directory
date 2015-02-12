@@ -23,6 +23,7 @@
                         <th>{% trans %}file_type.column.name{% endtrans %}</th>
                         <th>{% trans %}file_type.column.private{% endtrans %}</th>
                         <th>{% trans %}file_type.column.profile{% endtrans %}</th>
+                        <th>{% trans %}file_type.column.bio{% endtrans %}</th>
                         <th>{% trans %}file_type.column.actions{% endtrans %}</th>
                     </tr>
                 </thead>
@@ -33,6 +34,7 @@
                         <td><a href="{{ path('file_type_show', { 'id': file_type.id }) }}">{{ file_type.name }}</a></td>
                         <td>{% if file_type.isPrivate %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                         <td>{% if file_type.isSuitableForProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                        <td>{% if file_type.isDisplayWithBio %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                         <td>
                             <a href="{{ path('file_type_show', { 'id': file_type.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('file_type_edit', { 'id': file_type.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

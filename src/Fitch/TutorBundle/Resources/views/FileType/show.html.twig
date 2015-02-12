@@ -31,13 +31,18 @@
                         <td>{% if file_type.isDefault %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
                     <tr>
-                        <th class="col-xs-2">{% trans %}file_type.column.profile{% endtrans %}</th>
-                        <td>{% if file_type.suitableForProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
-                    </tr>
-                    <tr>
                         <th class="col-xs-2">{% trans %}file_type.column.private{% endtrans %}</th>
                         <td>{% if file_type.isPrivate %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                     </tr>
+                    <tr>
+                        <th class="col-xs-2">{% trans %}file_type.column.bio{% endtrans %}</th>
+                        <td>{% if file_type.isDisplayWithBio %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-xs-2">{% trans %}file_type.column.profile{% endtrans %}</th>
+                        <td>{% if file_type.suitableForProfilePicture %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                    </tr>
+
                 </tbody>
             </table>
 
