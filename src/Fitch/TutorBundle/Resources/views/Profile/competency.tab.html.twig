@@ -1,6 +1,6 @@
 <div class="row">
     <div class="competency-info">
-        <div class="col-md-12">
+        <div class="col-md-6 competency-left">
             <div class="competency-container">
                 <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.competencies{% endtrans %}
                     {% if editor %}
@@ -12,5 +12,18 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="col-md-6 competency-right">
+            <div class="languages-container">
+                <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.languages{% endtrans %}
+                    {% if editor %}
+                        <a href="#" class="btn btn-default btn-xs add-language"><i class="fa fa-language"></i> {% trans %}profile.button.new_language{% endtrans %}</a>
+                    {% endif %}
+                </h3>
+                {% for tutorLanguage in tutor.getTutorLanguages %}
+                    {% include 'FitchTutorBundle:Profile:language_row.html.twig' %}
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
 </div>

@@ -249,7 +249,7 @@ profile:
     tab:
         profile: Personal Information
         terms: Terms of Engagement
-        competencies: Skills
+        competencies: Skills & Languages
         files: Files
     section:
         competencies: Skills
@@ -260,6 +260,7 @@ profile:
         contact_info: Contact Information
         bio: Biography
         rate_history: Rate History
+        languages: Languages
     button:
         new_competency: New Skill
         new_rate: New Rate
@@ -270,6 +271,7 @@ profile:
         new_email: New Email
         new_address: New Address
         new_phone: New Phone
+        new_language: New Language
     field:
         currency: Currency
         log:

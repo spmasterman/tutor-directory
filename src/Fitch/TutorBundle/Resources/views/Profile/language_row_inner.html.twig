@@ -1,0 +1,24 @@
+<span class="data-name">
+    &nbsp;
+</span>
+<span class="data-value">
+    <a href="#" id="tutor-language{{ tutorLanguage.getId }}" class="inline-tutor-language"
+       data-type="typeaheadjs"
+       data-pk="{{ tutor.getId }}"
+       data-tutor-language-pk="{{ tutorLanguage.getId }}"
+       data-url="{{ path('tutor_language_ajax_update')}}"
+       data-title="Language"
+            >{% if tutorLanguage.getLanguage %}{{ tutorLanguage.getLanguage.getName }}{% endif %}</a>
+</span>
+<span class="data-action">
+    <a href="#" data-pk="{{ tutorLanguage.getId }}" class="btn btn-danger btn-xs remove-tutor-language"><i class="fa fa-remove"></i></a>
+</span>
+<span class="data-note">
+    <a href="#" id="tutor-language-note{{ tutorLanguage.getId }}" class="inline-tutor-language-note"
+       data-type="textarea"
+       data-pk="{{ tutor.getId }}"
+       data-tutor-language-pk="{{ tutorLanguage.getId }}"
+       data-url="{{ path('tutor_language_ajax_update')}}"
+       data-title="Note"
+            >{{ tutorLanguage.getNote }}</a>
+</span>

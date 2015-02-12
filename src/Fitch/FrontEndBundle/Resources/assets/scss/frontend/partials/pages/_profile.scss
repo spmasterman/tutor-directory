@@ -139,24 +139,37 @@
     padding: 10px 0;
   }
 
-  .competency-info {
-    > div {
-      margin-bottom: 40px;
+  .competency-right {
+    border-left: 1px solid $line-color;
+    padding-left: 30px;
+
+    .data-name {
+      width: 10px;
+    }
+
+    .data-value {
+      width: 250px;
+    }
+  }
+
+  .competency-left {
+    .data-value {
+      width: 300px;
     }
   }
 
   .data-tag {
     width: 10px;
   }
+
   .data-name {
     color:#555555;
   }
-  .data-value {
-    width: 300px;
-  }
+
   .data-action {
     width: 20px;
   }
+
   .data-note {
     padding-left: 20px;
     a {
@@ -237,7 +250,9 @@
 .remove-address,
 .remove-note,
 .remove-rate,
-.remove-competency {
+.remove-competency,
+.remove-tutor-language
+{
   padding:1px 0 0 3px;
   @include border-radius(7px);
   width: 14px;

@@ -28,6 +28,28 @@ class LanguageManager extends BaseModelManager
     }
 
     /**
+     * @param $languageName
+     *
+     * @return Language
+     */
+    public function findOrCreate($languageName)
+    {
+        $language = $this->getRepo()->findOneBy(['name' => $languageName]);
+
+        if (!$language) {
+            $language = $this->createLanguage();
+            $language
+                ->setName($languageName)
+                ->setActive(true)
+                ->setThreeLetterCode('')
+            ;
+            $this->saveLanguage($language);
+        }
+
+        return $language;
+    }
+
+    /**
      * @return Language[]
      */
     public function findAllSorted()
@@ -38,7 +60,6 @@ class LanguageManager extends BaseModelManager
             'name' => 'ASC'
         ]);
     }
-
 
     /**
      * @param Language $language

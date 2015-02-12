@@ -1,0 +1,7 @@
+<div class="data-row" data-id="{{ tutor.getId }}" data-tutor-language-pk="{{ tutorLanguage.getId }}">
+    {% if editor %}
+        {% include 'FitchTutorBundle:Profile:language_row_inner.html.twig' %}
+    {% else %}
+        {% include 'FitchTutorBundle:Profile:language_row_inner.readonly.html.twig' %}
+    {% endif %}
+</div>

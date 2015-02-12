@@ -17,6 +17,7 @@ parameters:
   fitch.manager.crop_info.class: Fitch\TutorBundle\Model\CropInfoManager
   fitch.manager.rate.class: Fitch\TutorBundle\Model\RateManager
   fitch.manager.language.class: Fitch\TutorBundle\Model\LanguageManager
+  fitch.manager.tutor_language.class: Fitch\TutorBundle\Model\TutorLanguageManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -36,6 +37,7 @@ parameters:
   fitch.entity.crop_info.class: Fitch\TutorBundle\Entity\CropInfo
   fitch.entity.rate.class: Fitch\TutorBundle\Entity\Rate
   fitch.entity.language.class: Fitch\TutorBundle\Entity\Language
+  fitch.entity.tutor_language.class: Fitch\TutorBundle\Entity\TutorLanguage
 
 services:
     #
@@ -185,9 +187,19 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.language.class%
+    fitch.manager.tutor_language:
+        class: %fitch.manager.tutor_language.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.tutor_language.class%
+
 #
 # Event Listener
 #
+
     fitch.upload_listener:
         class: Fitch\TutorBundle\Listener\UploadListener
         arguments:

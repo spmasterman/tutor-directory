@@ -20,14 +20,18 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
-    const NOT_YET_SPECIFIED = 'Unspecified';
-
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Tutor", mappedBy="languages")
+     * INVERSE SIDE
+     * @ORM\OneToMany(targetEntity="TutorLanguage",
+     *      mappedBy="language",
+     *      indexBy="id",
+     *      cascade={"remove"},
+     *      orphanRemoval=true
+     * )
      */
-    protected $tutors;
+    protected $tutorLanguages;
 
     /**
      * @ORM\Column(name="name", type="string", length=100)
@@ -48,7 +52,7 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @var boolean
      */
-    protected $preferred;
+    protected $preferred = false;
 
     /**
      * @ORM\Column(name="active", type="boolean")
@@ -62,7 +66,7 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface
      */
     public function __construct()
     {
-        $this->tutors = new ArrayCollection();
+        $this->tutorLanguages = new ArrayCollection();
     }
 
     /**
@@ -91,43 +95,43 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
-    public function getTutors()
+    public function getTutorLanguages()
     {
-        return $this->tutors;
+        return $this->tutorLanguages;
     }
 
     /**
-     * @param mixed $tutors
+     * @param ArrayCollection $languages
      * @return $this
      */
-    public function setTutors($tutors)
+    public function setTutorLanguages($languages)
     {
-        $this->tutors = $tutors;
+        $this->tutorLanguages = $languages;
         return $this;
     }
 
     /**
-     * @param Tutor $tutor
+     * @param TutorLanguage $tutorLanguage
      * @return $this
      */
-    public function addTutor (Tutor $tutor)
+    public function addTutorLanguage (TutorLanguage $tutorLanguage)
     {
-        if (!$this->tutors->contains($tutor)) {
-            $this->tutors->add($tutor);
+        if (!$this->tutorLanguages->contains($tutorLanguage)) {
+            $this->tutorLanguages->add($tutorLanguage);
         }
         return $this;
     }
 
     /**
-     * @param Tutor $tutor
+     * @param TutorLanguage $tutorLanguage
      * @return $this
      */
-    public function removeTutor(Tutor $tutor)
+    public function removeTutorLanguage(TutorLanguage $tutorLanguage)
     {
-        if ($this->tutors->contains($tutor)) {
-            $this->tutors->removeElement($tutor);
+        if ($this->tutorLanguages->contains($tutorLanguage)) {
+            $this->tutorLanguages->removeElement($tutorLanguage);
         }
         return $this;
     }
