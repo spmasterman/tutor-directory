@@ -8,8 +8,10 @@ use Fitch\TutorBundle\Model\TutorManager;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Oneup\UploaderBundle\Event\PreUploadEvent;
 use Oneup\UploaderBundle\Uploader\File\GaufretteFile;
+use Smalot\PdfParser\Parser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Acl\Exception\Exception;
 use Symfony\Component\Templating\EngineInterface;
 
 class UploadListener
@@ -29,6 +31,9 @@ class UploadListener
     /** @var  string */
     protected $mimeType;
 
+    /** @var  string */
+    protected $textContent;
+
     /** @var  ContainerInterface */
     protected  $container;
 
@@ -47,15 +52,28 @@ class UploadListener
     }
 
     /**
+     * Happens once the file os on the server, but before its been put into its final storage. Use this to
+     * grab info about the file etc - reading it back from storage could be a slow operation (i.e. FTP)
+     *
      * @param PreUploadEvent $event
      */
     public function onPreUpload(PreUploadEvent $event)
     {
-        // Save the mimeType before the file gets put into storage (and potentially needs streaming back to find the it)
         $request = $event->getRequest();
         /** @var UploadedFile $uploadedFile */
         $uploadedFile = $request->files->get('file');
         $this->mimeType = $uploadedFile->getMimeType();
+
+        if ($this->mimeType == 'application/pdf') {
+            try {
+                $parser = new Parser();
+                $this->textContent = $parser->parseFile($uploadedFile->getRealPath())->getText();
+            } catch (Exception $e) {
+                $this->textContent = $e->getMessage();
+            }
+        } else {
+            $this->textContent = '';
+        }
     }
 
     /**
@@ -90,6 +108,7 @@ class UploadListener
                 ->setFileType($this->fileTypeManager->findDefaultFileType())
                 ->setMimeType($this->mimeType)
                 ->setUploader($currentUser)
+                ->setTextContent($this->textContent)
             ;
             $this->mimeType = null;
 

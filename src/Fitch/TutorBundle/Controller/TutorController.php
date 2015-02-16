@@ -46,8 +46,10 @@ class TutorController extends Controller
      */
     public function allAction()
     {
+
+        $tableData = $this->getTutorManager()->populateTable();
         return new JsonResponse([
-            'data' => $this->getTutorManager()->populateTable()
+            'data' => $tableData
         ]);
     }
 

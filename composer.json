@@ -35,7 +35,8 @@
         "amazonwebservices/aws-sdk-for-php": "1.6.2",
         "exercise/htmlpurifier-bundle": "~0.1",
         "datatables/datatables": "1.10.4",
-        "hautelook/alice-bundle": "~0.2"
+        "hautelook/alice-bundle": "~0.2",
+        "smalot/pdfparser": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

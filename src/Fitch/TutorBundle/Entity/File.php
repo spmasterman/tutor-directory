@@ -76,6 +76,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
     private $uploader;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="text_content", type="text")
+     */
+    private $textContent;
+
+    /**
      * @return string
      */
     public function getName()
@@ -299,5 +306,23 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface
             $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
         }
         return $string;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextContent()
+    {
+        return $this->textContent;
+    }
+
+    /**
+     * @param string $textContent
+     * @return $this
+     */
+    public function setTextContent($textContent)
+    {
+        $this->textContent = $textContent;
+        return $this;
     }
 }
