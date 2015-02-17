@@ -6,23 +6,16 @@
 {% endblock %}
 
 {% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        <div class="widget-header">
-            <h3><i class="fa fa-child"></i> {% trans %}tutor_type.list.verb{% endtrans %}</h3>
-            <div class="btn-group widget-header-toolbar">
-                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-            </div>
-        </div>
-        <div class="widget-content">
+        {{ helper.widget_header('tutor_type.list.verb', 'fa fa-child', 'widget-tutortype-index') }}
             <table class="records_list table table-condensed table-striped">
                 <thead>
-                    <tr>
-                        <th>{% trans %}tutor_type.column.id{% endtrans %}</th>
-                        <th>{% trans %}tutor_type.column.name{% endtrans %}</th>
-                        <th>{% trans %}tutor_type.column.actions{% endtrans %}</th>
-                    </tr>
+                <tr>
+                    <th>{% trans %}tutor_type.column.id{% endtrans %}</th>
+                    <th>{% trans %}tutor_type.column.name{% endtrans %}</th>
+                    <th>{% trans %}tutor_type.column.actions{% endtrans %}</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for tutor_type in tutor_types %}
@@ -38,9 +31,8 @@
                 </tbody>
             </table>
             <small><i class="fa fa-asterisk yellow-font"></i>{% trans %}tutor_type.default_message{% endtrans %}</small>
-        </div>
+        {{ helper.widget_footer() }}
     </div>
-
     <div class="record_actions well">
         <a href="{{ path('tutor_type_new') }}" class="btn btn-default btn-s">
             <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}

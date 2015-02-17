@@ -5,48 +5,42 @@
 {% endblock %}
 
 {% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        <div class="widget-header">
-            <h3><i class="fa fa-mortar-board"></i> {% trans %}tutor.list.verb{% endtrans %}</h3>
-            <div class="btn-group widget-header-toolbar">
-                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-            </div>
-        </div>
-        <div class="widget-content">
+        {{ helper.widget_header('tutor.list.verb', 'fa fa-mortar-board', 'widget-tutor-index') }}
             <table id="tutor_table" class="table table-sorting table-striped table-hover datatable" cellpadding="0" cellspacing="0" width="100%">
                 <thead>
-                    <tr>
-                        <th><i id="open-all" class="fa fa-plus-square"></i></th>
-                        <th>{% trans %}tutor.column.name{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.type{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.region{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.status{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.competencies{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.notes{% endtrans %}</th>
-                    </tr>
+                <tr>
+                    <th><i id="open-all" class="fa fa-plus-square"></i></th>
+                    <th>{% trans %}tutor.column.name{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.type{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.region{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.status{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.competencies{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.notes{% endtrans %}</th>
+                </tr>
                 </thead>
                 <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>{% trans %}tutor.column.name{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.type{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.region{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.status{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.competencies{% endtrans %}</th>
-                        <th>{% trans %}tutor.column.notes{% endtrans %}</th>
-                    </tr>
+                <tr>
+                    <th></th>
+                    <th>{% trans %}tutor.column.name{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.type{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.region{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.status{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.competencies{% endtrans %}</th>
+                    <th>{% trans %}tutor.column.notes{% endtrans %}</th>
+                </tr>
                 </tfoot>
             </table>
-        </div>
+        {{ helper.widget_footer() }}
     </div>
+
     {%  if (is_granted('ROLE_EDITOR')) %}
-    <div class="record_actions well">
-        <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
-            <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
-        </a>
-    </div>
+        <div class="record_actions well">
+            <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
+                <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+            </a>
+        </div>
     {% endif %}
 {% endblock %}
 

@@ -6,78 +6,71 @@
 {% endblock %}
 
 {% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        <div class="widget-header">
-            <h3><i class="fa fa-users"></i> {% trans %}user.show.verb{% endtrans %}: {{ user.userName }}</h3>
-            <div class="btn-group widget-header-toolbar">
-                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-            </div>
-        </div>
-        <div class="widget-content">
+        {{ helper.widget_header('user.show.verb'|trans ~ ': ' ~ user.userName, 'fa fa-users', 'widget-user-show') }}
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
-                    <tr>
-                        <th class="col-xs-2">ID</th>
-                        <td>{{ user.id }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}user.field.username{% endtrans %}</th>
-                        <td>{{ user.userName }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}user.field.fullname{% endtrans %}</th>
-                        <td>{{ user.fullName }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}user.field.email{% endtrans %}</th>
-                        <td>{{ user.email }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}user.field.roles{% endtrans %}</th>
-                        <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <h2>Audit Log</h2>
-                            <table class="records_list table table-condensed table-striped">
-                                <thead>
+                <tr>
+                    <th class="col-xs-2">ID</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}user.field.username{% endtrans %}</th>
+                    <td>{{ user.userName }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}user.field.fullname{% endtrans %}</th>
+                    <td>{{ user.fullName }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}user.field.email{% endtrans %}</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}user.field.roles{% endtrans %}</th>
+                    <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h2>Audit Log</h2>
+                        <table class="records_list table table-condensed table-striped">
+                            <thead>
+                            <tr>
+                                <th>{% trans %}user.field.log.action{% endtrans %}</th>
+                                <th>{% trans %}user.field.username{% endtrans %}</th>
+                                <th>{% trans %}user.field.fullname{% endtrans %}</th>
+                                <th>{% trans %}user.field.email{% endtrans %}</th>
+                                <th>{% trans %}user.field.roles{% endtrans %}</th>
+                                <th>{% trans %}user.field.log.date{% endtrans %}</th>
+                                <th>{% trans %}user.field.log.user{% endtrans %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% import "FitchCommonBundle::macro.html.twig" as fitch %}
+                            {% for logEntry in logs|reverse %}
                                 <tr>
-                                    <th>{% trans %}user.field.log.action{% endtrans %}</th>
-                                    <th>{% trans %}user.field.username{% endtrans %}</th>
-                                    <th>{% trans %}user.field.fullname{% endtrans %}</th>
-                                    <th>{% trans %}user.field.email{% endtrans %}</th>
-                                    <th>{% trans %}user.field.roles{% endtrans %}</th>
-                                    <th>{% trans %}user.field.log.date{% endtrans %}</th>
-                                    <th>{% trans %}user.field.log.user{% endtrans %}</th>
+                                    <td>{{ logEntry.action }}</td>
+                                    <td>{{ fitch.logdata(logEntry.data.username|default('')) }}</td>
+                                    <td>{{ fitch.logdata(logEntry.data.fullName|default('')) }}</td>
+                                    <td>{{ fitch.logdata(logEntry.data.email|default('')) }}</td>
+                                    <td>{% if logEntry.data.roles is defined %}
+                                            <ul class="fa-ul">{% for role in logEntry.data.roles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul>
+                                        {% else %}
+                                            {{ fitch.logdata('') }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ logEntry.loggedAt|date("F jS \\a\\t g:ia")  }}</td>
+                                    <td>{{ logEntry.username}}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                {% import "FitchCommonBundle::macro.html.twig" as fitch %}
-                                {% for logEntry in logs|reverse %}
-                                    <tr>
-                                        <td>{{ logEntry.action }}</td>
-                                        <td>{{ fitch.logdata(logEntry.data.username|default('')) }}</td>
-                                        <td>{{ fitch.logdata(logEntry.data.fullName|default('')) }}</td>
-                                        <td>{{ fitch.logdata(logEntry.data.email|default('')) }}</td>
-                                        <td>{% if logEntry.data.roles is defined %}
-                                                <ul class="fa-ul">{% for role in logEntry.data.roles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul>
-                                            {% else %}
-                                                {{ fitch.logdata('') }}
-                                            {% endif %}
-                                        </td>
-                                        <td>{{ logEntry.loggedAt|date("F jS \\a\\t g:ia")  }}</td>
-                                        <td>{{ logEntry.username}}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
                 </tbody>
             </table>
-        </div>
+        {{ helper.widget_footer() }}
     </div>
     <div class="record_actions well">
         <a class="btn btn-default btn-s" href="{{ path('user') }}">

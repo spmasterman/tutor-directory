@@ -6,29 +6,22 @@
 {% endblock %}
 
 {% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        <div class="widget-header">
-            <h3><i class="fa fa-flag-o"></i> {% trans %}country.list.verb{% endtrans %}</h3>
-            <div class="btn-group widget-header-toolbar">
-                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-            </div>
-        </div>
-        <div class="widget-content">
+        {{ helper.widget_header('country.list.verb', 'fa fa-flag-o', 'widget-country-index') }}
             <table class="records_list table table-condensed table-striped">
                 <thead>
-                    <tr>
-                        <th>{% trans %}country.column.id{% endtrans %}</th>
-                        <th>{% trans %}country.column.name{% endtrans %}</th>
-                        <th>{% trans %}country.column.code_2{% endtrans %}</th>
-                        <th>{% trans %}country.column.code_3{% endtrans %}</th>
-                        <th>{% trans %}country.column.dialing_code{% endtrans %}</th>
-                        <th>{% trans %}country.column.default_region{% endtrans %}</th>
-                        <th>{% trans %}country.column.preferred{% endtrans %}</th>
-                        <th>{% trans %}country.column.active{% endtrans %}</th>
-                        <th>{% trans %}country.column.actions{% endtrans %}</th>
-                    </tr>
+                <tr>
+                    <th>{% trans %}country.column.id{% endtrans %}</th>
+                    <th>{% trans %}country.column.name{% endtrans %}</th>
+                    <th>{% trans %}country.column.code_2{% endtrans %}</th>
+                    <th>{% trans %}country.column.code_3{% endtrans %}</th>
+                    <th>{% trans %}country.column.dialing_code{% endtrans %}</th>
+                    <th>{% trans %}country.column.default_region{% endtrans %}</th>
+                    <th>{% trans %}country.column.preferred{% endtrans %}</th>
+                    <th>{% trans %}country.column.active{% endtrans %}</th>
+                    <th>{% trans %}country.column.actions{% endtrans %}</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for country in countries %}
@@ -49,7 +42,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-        </div>
+        {{ helper.widget_footer() }}
     </div>
     <div class="record_actions well">
         <a href="{{ path('country_new') }}" class="btn btn-default btn-s">

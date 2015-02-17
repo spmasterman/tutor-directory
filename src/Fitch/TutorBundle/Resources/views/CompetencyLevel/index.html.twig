@@ -6,16 +6,9 @@
 {% endblock %}
 
 {% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        <div class="widget-header">
-            <h3><i class="fa fa-signal"></i> {% trans %}competency_level.list.verb{% endtrans %}</h3>
-            <div class="btn-group widget-header-toolbar">
-                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-            </div>
-        </div>
-        <div class="widget-content">
+        {{ helper.widget_header('competency_level.list.verb', 'fa fa-signal', 'widget-index-competency-level') }}
             <table class="records_list table table-condensed table-striped">
                 <thead>
                     <tr>
@@ -39,7 +32,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-         </div>
+        {{ helper.widget_footer() }}
     </div>
     <div class="record_actions well">
         <a href="{{ path('competency_level_new') }}" class="btn btn-default btn-s">

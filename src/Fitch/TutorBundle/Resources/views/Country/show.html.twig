@@ -6,57 +6,50 @@
 {% endblock %}
 
 {% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        <div class="widget-header">
-            <h3><i class="fa fa-flag-o"></i> {{ country }}</h3>
-            <div class="btn-group widget-header-toolbar">
-                <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-                <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-                <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-            </div>
-        </div>
-        <div class="widget-content">
+        {{ helper.widget_header(country, 'fa fa-flag-o', 'widget-country-show') }}
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}country.column.id{% endtrans %}</th>
-                        <td>{{ country.id }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}country.column.name{% endtrans %}</th>
-                        <td>{{ country.name }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}country.column.code_2{% endtrans %}</th>
-                        <td>{{ country.twoDigitCode }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}country.column.code_3{% endtrans %}</th>
-                        <td>{{ country.threeDigitCode }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}country.column.dialing_code{% endtrans %}</th>
-                        <td>{{ country.dialingCode }}</td>
-                    </tr>
-                    <tr>
-                        <th class="col-xs-2">{% trans %}country.column.preferred{% endtrans %}</th>
-                        <td>{% if country.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
-                    </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}country.column.id{% endtrans %}</th>
+                    <td>{{ country.id }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}country.column.name{% endtrans %}</th>
+                    <td>{{ country.name }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}country.column.code_2{% endtrans %}</th>
+                    <td>{{ country.twoDigitCode }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}country.column.code_3{% endtrans %}</th>
+                    <td>{{ country.threeDigitCode }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}country.column.dialing_code{% endtrans %}</th>
+                    <td>{{ country.dialingCode }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}country.column.preferred{% endtrans %}</th>
+                    <td>{% if country.isPreferred %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                </tr>
                 </tbody>
             </table>
+        {{ helper.widget_footer() }}
+    </div>
 
-            <div class="record_actions well">
-                <a class="btn btn-default btn-s" href="{{ path('country') }}">
-                    <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
-                </a>
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('country') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
 
-                <a class="btn btn-default btn-s" href="{{ path('country_edit', { 'id': country.id }) }}">
-                    <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
-                </a>
+        <a class="btn btn-default btn-s" href="{{ path('country_edit', { 'id': country.id }) }}">
+            <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
+        </a>
 
-                {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
-                {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
-            </div>
-        </div>
+        {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
+        {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
     </div>
 {% endblock %}
