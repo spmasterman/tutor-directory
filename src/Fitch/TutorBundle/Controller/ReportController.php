@@ -40,7 +40,7 @@ class ReportController extends Controller
     /**
      * View a report entities.
      *
-     * @Route("view", name="report_view")
+     * @Route("/view", name="report_view")
      * @Method("GET")
      *
      * @Template()
