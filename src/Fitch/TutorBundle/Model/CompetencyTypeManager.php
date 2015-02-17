@@ -28,6 +28,14 @@ class CompetencyTypeManager extends BaseModelManager
     }
 
     /**
+     * @return array
+     */
+    public function buildChoices()
+    {
+        return $this->findAll();
+    }
+
+    /**
      * @param $typeName
      *
      * @return CompetencyType

@@ -28,6 +28,15 @@ class RateManager extends BaseModelManager
     }
 
     /**
+     * @return array
+     */
+    public function buildChoices()
+    {
+        return ['Day' => 'Day', 'Evening' => 'Evening'];
+        //return $this->getRepo()->findBy(['active' => true]);
+    }
+
+    /**
      * @param Rate $rate
      * @return array
      */

@@ -28,6 +28,14 @@ class CompetencyLevelManager extends BaseModelManager
     }
 
     /**
+     * @return array
+     */
+    public function buildChoices()
+    {
+        return $this->findAll();
+    }
+
+    /**
      * @param $levelName
      *
      * @return CompetencyLevel
