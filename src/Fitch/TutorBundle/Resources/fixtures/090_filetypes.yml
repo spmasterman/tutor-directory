@@ -4,28 +4,40 @@ Fitch\TutorBundle\Entity\FileType:
         default: true
         suitableForProfilePicture: false
         private: true
+        displayWithBio: false
     filetype-avatar:
         name: Profile Picture
         default: false
         suitableForProfilePicture: true
         private: false
+        displayWithBio: false
     filetype-contract:
         name: Contract
         default: false
         suitableForProfilePicture: false
         private: true
+        displayWithBio: false
     filetype-resume:
         name: CV / Resume
         default: false
         suitableForProfilePicture: false
         private: true
+        displayWithBio: false
     filetype-misc_private:
         name: Miscellaneous Private
         default: false
         suitableForProfilePicture: false
         private: true
+        displayWithBio: false
     filetype-misc_public:
         name: Miscellaneous Public
         default: false
         suitableForProfilePicture: false
         private: false
+        displayWithBio: false
+    filetype-biography:
+        name: Biography
+        default: false
+        suitableForProfilePicture: false
+        private: false
+        displayWithBio: true

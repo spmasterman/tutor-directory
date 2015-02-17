@@ -57,13 +57,13 @@ class CountryController extends Controller
         if ($form->isValid()) {
             $countryManager->saveCountry($country);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('country.new.success')
             );
 
 
-            return $this->redirect($this->generateUrl('country_show', ['id' => $country->getId()]));
+            return $this->redirectToRoute('country_show', ['id' => $country->getId()]);
         }
 
         return array(
@@ -209,12 +209,12 @@ class CountryController extends Controller
         if ($editForm->isValid()) {
             $this->getCountryManager()->saveCountry($country);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('country.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('country_edit', ['id' => $country->getId()]));
+            return $this->redirectToRoute('country_edit', ['id' => $country->getId()]);
         }
 
         return [
@@ -243,13 +243,13 @@ class CountryController extends Controller
         if ($form->isValid()) {
             $this->getCountryManager()->removeCountry($country->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('country.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('country'));
+        return $this->redirectToRoute('country');
     }
 
     /**

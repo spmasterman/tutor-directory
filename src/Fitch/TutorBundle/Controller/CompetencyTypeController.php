@@ -57,12 +57,12 @@ class CompetencyTypeController extends Controller
         if ($form->isValid()) {
             $competencyTypeManager->saveCompetencyType($competencyType);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_type.new.success')
             );
 
-            return $this->redirect($this->generateUrl('competency_type_show', ['id' => $competencyType->getId()]));
+            return $this->redirectToRoute('competency_type_show', ['id' => $competencyType->getId()]);
         }
 
         return [
@@ -204,12 +204,12 @@ class CompetencyTypeController extends Controller
         if ($editForm->isValid()) {
             $this->getCompetencyTypeManager()->saveCompetencyType($competencyType);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_type.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('competency_type_edit', ['id' => $competencyType->getId()]));
+            return $this->redirectToRoute('competency_type_edit', ['id' => $competencyType->getId()]);
         }
 
         return [
@@ -237,7 +237,7 @@ class CompetencyTypeController extends Controller
 
         if ($form->isValid()) {
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_type.delete.success')
             );
@@ -245,7 +245,7 @@ class CompetencyTypeController extends Controller
             $this->getCompetencyTypeManager()->removeCompetencyType($competencyType->getId());
         }
 
-        return $this->redirect($this->generateUrl('competency_type'));
+        return $this->redirectToRoute('competency_type');
     }
 
     /**

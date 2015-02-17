@@ -2,10 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Doctrine\ORM\NoResultException;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CurrencyRepository;
 use Fitch\TutorBundle\Entity\Currency;
+use Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface;
 
 class CurrencyManager extends BaseModelManager
 {
@@ -70,6 +72,42 @@ class CurrencyManager extends BaseModelManager
     public function saveCurrency($currency, $withFlush = true)
     {
         parent::saveEntity($currency, $withFlush);
+    }
+
+
+    /**
+     * @param ProviderInterface $provider
+     * @return bool
+     */
+    public function performExchangeRateUpdateIfRequired(ProviderInterface $provider)
+    {
+        // Find the oldest currency exchange rate
+        try {
+            $currency = $this->getRepo()->getCandidateForExchangeRateUpdate(7 * 24); // a week old is fine
+            if ($currency) {
+                return $this->updateExchangeRate($provider, $currency);
+            }
+        } catch (NoResultException $e) {
+            // do nothing
+        }
+        return true;
+    }
+
+    /**
+     * @param ProviderInterface $provider
+     * @param Currency $currency
+     * @return bool
+     */
+    public function updateExchangeRate(ProviderInterface $provider, Currency $currency)
+    {
+        $rate = $provider->getRate($currency->getThreeDigitCode(), 'GBP');
+        if (!$rate) {
+            return false;
+        }
+
+        $currency->setToGBP($rate)->setRateUpdated(new \DateTime);
+        $this->saveCurrency($currency);
+        return true;
     }
 
     /**

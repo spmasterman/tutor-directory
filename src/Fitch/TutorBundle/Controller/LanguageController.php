@@ -58,13 +58,13 @@ class LanguageController extends Controller
         if ($form->isValid()) {
             $languageManager->saveLanguage($language);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('language.new.success')
             );
 
 
-            return $this->redirect($this->generateUrl('language_show', ['id' => $language->getId()]));
+            return $this->redirectToRoute('language_show', ['id' => $language->getId()]);
         }
 
         return array(
@@ -210,12 +210,12 @@ class LanguageController extends Controller
         if ($editForm->isValid()) {
             $this->getLanguageManager()->saveLanguage($language);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('language.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('language_edit', ['id' => $language->getId()]));
+            return $this->redirectToRoute('language_edit', ['id' => $language->getId()]);
         }
 
         return [
@@ -244,13 +244,13 @@ class LanguageController extends Controller
         if ($form->isValid()) {
             $this->getLanguageManager()->removeLanguage($language->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('language.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('language'));
+        return $this->redirectToRoute('language');
     }
 
     /**

@@ -81,11 +81,11 @@ class MenuBuilder extends ContainerAware
                         ->setChildrenAttribute('class', 'dropdown-menu')
                         ->setChildrenAttribute('role', 'menu');
 
-        $menu->addChild('menu.user.profile', array('route' => 'fos_user_profile_show'))
+        $menu->addChild('menu.user.profile', ['route' => 'fos_user_profile_show'])
                 ->setAttribute('icon', 'fa fa-user fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->getParent()
-             ->addChild('menu.user.logout', array('route' => 'fos_user_security_logout'))
+             ->addChild('menu.user.logout', ['route' => 'fos_user_security_logout'])
                 ->setAttribute('icon', 'fa fa-power-off fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->getParent();
@@ -123,7 +123,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.tutor_type', array('route' => 'tutor_type'))
+                ->addChild('menu.tutor_type', ['route' => 'tutor_type'])
                 ->setAttribute('icon', 'fa fa-child fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -143,7 +143,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.tutor_status', array('route' => 'status'))
+                ->addChild('menu.tutor_status', ['route' => 'status'])
                 ->setAttribute('icon', 'fa fa-tag fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -163,7 +163,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.regions', array('route' => 'region'))
+                ->addChild('menu.regions', ['route' => 'region'])
                 ->setAttribute('icon', 'fa fa-globe fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -183,7 +183,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.countries', array('route' => 'country'))
+                ->addChild('menu.countries', ['route' => 'country'])
                 ->setAttribute('icon', 'fa fa-flag-o fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -203,7 +203,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.currencies', array('route' => 'currency'))
+                ->addChild('menu.currencies', ['route' => 'currency'])
                 ->setAttribute('icon', 'fa fa-money fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -223,7 +223,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.languages', array('route' => 'language'))
+                ->addChild('menu.languages', ['route' => 'language'])
                 ->setAttribute('icon', 'fa fa-language fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -243,7 +243,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.file_type', array('route' => 'file_type'))
+                ->addChild('menu.file_type', ['route' => 'file_type'])
                 ->setAttribute('icon', 'fa fa-files-o fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -264,7 +264,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.competency_type', array('route' => 'competency_type'))
+                ->addChild('menu.competency_type', ['route' => 'competency_type'])
                 ->setAttribute('icon', 'fa fa-bullseye fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -284,7 +284,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $menu
-                ->addChild('menu.competency_level', array('route' => 'competency_level'))
+                ->addChild('menu.competency_level', ['route' => 'competency_level'])
                 ->setAttribute('icon', 'fa fa-signal fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -304,7 +304,7 @@ class MenuBuilder extends ContainerAware
     {
         if (false !== $this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             $menu
-                ->addChild('menu.user_management', array('route' => 'user'))
+                ->addChild('menu.user_management', ['route' => 'user'])
                 ->setAttribute('icon', 'fa fa-users fa-fw')
                 ->setExtra('translation_domain', 'FitchFrontEndBundle')
                 ->setExtra('routes', [
@@ -335,5 +335,4 @@ class MenuBuilder extends ContainerAware
 
         return $this;
     }
-
 }

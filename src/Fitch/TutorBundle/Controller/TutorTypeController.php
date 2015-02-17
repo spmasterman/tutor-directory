@@ -58,12 +58,12 @@ class TutorTypeController extends Controller
         if ($form->isValid()) {
             $tutorTypeManager->saveTutorType($tutorType);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('tutor_type.new.success')
             );
 
-            return $this->redirect($this->generateUrl('tutor_type_show', ['id' => $tutorType->getId()]));
+            return $this->redirectToRoute('tutor_type_show', ['id' => $tutorType->getId()]);
         }
 
         return [
@@ -209,12 +209,12 @@ class TutorTypeController extends Controller
         if ($editForm->isValid()) {
             $this->getTutorTypeManager()->saveTutorType($tutorType);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('tutor_type.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('tutor_type_edit', ['id' => $tutorType->getId()]));
+            return $this->redirectToRoute('tutor_type_edit', ['id' => $tutorType->getId()]);
         }
 
         return [
@@ -243,13 +243,13 @@ class TutorTypeController extends Controller
         if ($form->isValid()) {
             $this->getTutorTypeManager()->removeTutorType($tutorType->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('tutor_type.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('tutor_type'));
+        return $this->redirectToRoute('tutor_type');
     }
 
     /**

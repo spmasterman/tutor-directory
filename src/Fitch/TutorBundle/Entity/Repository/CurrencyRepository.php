@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Fitch\TutorBundle\Entity\Currency;
 
 /**
  * CurrencyRepository
@@ -12,4 +13,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class CurrencyRepository extends EntityRepository
 {
+
+    /**
+     * @param int $hoursOld
+     * @return Currency
+     */
+    public function getCandidateForExchangeRateUpdate($hoursOld)
+    {
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->where('(c.rateUpdated is null) OR (c.rateUpdated < :cutoff)')
+            ->andWhere('c.threeDigitCode != \'GBP\'')
+            ->orderBy('c.rateUpdated', 'DESC')
+            ->addOrderBy('c.preferred', 'DESC')
+            ->addOrderBy('c.active', 'DESC')
+            ->setMaxResults(1);
+        ;
+
+        $cutoff = new \DateTime();
+        $cutoff->sub(new \DateInterval('PT' . $hoursOld . 'H'));
+
+        return $qb
+            ->getQuery()
+            ->setParameter('cutoff', $cutoff)
+            ->getSingleResult()
+            ;
+    }
+
 }

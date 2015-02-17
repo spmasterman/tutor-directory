@@ -171,3 +171,25 @@ knp_gaufrette:
             adapter: tutor
 
     stream_wrapper: ~
+
+services:
+    introspection_service:
+        class: Monolog\Processor\IntrospectionProcessor
+        tags:
+            - { name: monolog.processor }
+    psr3_service:
+        class: Monolog\Processor\PsrLogMessageProcessor
+        tags:
+            - { name: monolog.processor }
+    pid_service:
+        class: Monolog\Processor\ProcessIdProcessor
+        tags:
+            - { name: monolog.processor }
+    twig.extension.text:
+            class: Twig_Extensions_Extension_Text
+            tags:
+                - { name: twig.extension }
+    twig.extension.date:
+        class: Twig_Extensions_Extension_Date
+        tags:
+             - { name: 'twig.extension' }

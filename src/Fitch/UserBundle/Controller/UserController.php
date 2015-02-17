@@ -63,7 +63,7 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $this->getUserManager()->saveUser($user);
-            return $this->redirect($this->generateUrl('user_show', array('id' => $user->getId())));
+            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
 
         return [
@@ -206,7 +206,7 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $this->getUserManager()->saveUser($user);
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $user->getId())));
+            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
         }
 
         return [
@@ -221,6 +221,11 @@ class UserController extends Controller
      *
      * @Route("/{id}", name="user_delete")
      * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param User $user
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, User $user)
     {
@@ -231,7 +236,7 @@ class UserController extends Controller
             $this->getUserManager()->removeUser($user->getId());
         }
 
-        return $this->redirect($this->generateUrl('user'));
+        return $this->redirectToRoute('user');
     }
 
     /**

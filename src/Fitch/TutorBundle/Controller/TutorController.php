@@ -86,12 +86,12 @@ class TutorController extends Controller
         if ($form->isValid()) {
             $tutorManager->saveTutor($tutor);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('tutor.new.success')
             );
 
-            return $this->redirect($this->generateUrl('tutor_profile', ['id' => $tutor->getId()]));
+            return $this->redirectToRoute('tutor_profile', ['id' => $tutor->getId()]);
         }
 
         return [

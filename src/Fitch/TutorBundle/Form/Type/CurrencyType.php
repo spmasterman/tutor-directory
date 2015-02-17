@@ -20,6 +20,9 @@ class CurrencyType extends AbstractType
             ->add('threeDigitCode', null, [
                 'label' => '3 Digit Code (ISO 4217)'
             ])
+            ->add('toGBP', null, [
+                'label' => 'Exchange Rate (to GBP)'
+            ])
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',
                 'required' => false

@@ -59,12 +59,12 @@ class OperatingRegionController extends Controller
         if ($form->isValid()) {
             $operatingRegionManager->saveOperatingRegion($region);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('operating_region.new.success')
             );
 
-            return $this->redirect($this->generateUrl('region_show', ['id' => $region->getId()]));
+            return $this->redirectToRoute('region_show', ['id' => $region->getId()]);
         }
 
         return [
@@ -212,12 +212,12 @@ class OperatingRegionController extends Controller
         if ($editForm->isValid()) {
             $this->getOperatingRegionManager()->saveOperatingRegion($region);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('operating_region.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('region_edit', ['id' => $region->getId()]));
+            return $this->redirectToRoute('region_edit', ['id' => $region->getId()]);
         }
 
         return [
@@ -246,13 +246,13 @@ class OperatingRegionController extends Controller
         if ($form->isValid()) {
             $this->getOperatingRegionManager()->removeOperatingRegion($region->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('operating_region.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('region'));
+        return $this->redirectToRoute('region');
     }
 
     /**

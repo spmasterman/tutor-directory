@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Model\Currency\Provider\YahooApi;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,13 +59,13 @@ class CurrencyController extends Controller
         if ($form->isValid()) {
             $currencyManager->saveCurrency($currency);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('currency.new.success')
             );
 
 
-            return $this->redirect($this->generateUrl('currency_show', ['id' => $currency->getId()]));
+            return $this->redirectToRoute('currency_show', ['id' => $currency->getId()]);
         }
 
         return array(
@@ -210,12 +211,12 @@ class CurrencyController extends Controller
         if ($editForm->isValid()) {
             $this->getCurrencyManager()->saveCurrency($currency);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('currency.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('currency_edit', ['id' => $currency->getId()]));
+            return $this->redirectToRoute('currency_edit', ['id' => $currency->getId()]);
         }
 
         return [
@@ -244,13 +245,13 @@ class CurrencyController extends Controller
         if ($form->isValid()) {
             $this->getCurrencyManager()->removeCurrency($currency->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('currency.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('currency'));
+        return $this->redirectToRoute('currency');
     }
 
     /**
@@ -308,6 +309,27 @@ class CurrencyController extends Controller
             }
         }
         return new JsonResponse($out);
+    }
+
+
+    /**
+     * Updates the Exchange Rate for a Currency
+     *
+     * @Route("/xr/{id}", requirements={"id" = "\d+"}, name="currency_xr_update")
+     * @Method("GET")
+     *
+     * @param Currency $currency
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateExchangeRateAction(Currency $currency)
+    {
+        if ($this->getCurrencyManager()->updateExchangeRate(new YahooApi(), $currency)) {
+            $this->addFlash('success', $this->get('translator')->trans('currency.update.xr-success'));
+        } else {
+            $this->addFlash('warning', $this->get('translator')->trans('currency.update.xr-failure'));
+        }
+        return $this->redirectToRoute('currency');
     }
 
     /**

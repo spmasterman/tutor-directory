@@ -212,6 +212,10 @@ currency:
         tagline: view the details of a currency record
     delete:
         success: The currency has been successfully removed.
+    update:
+        xr: Refresh Exchange Rate
+        xr-success: The Exchange Rate has been refreshed
+        xr-failure: An exchange rate was not returned from the Yahoo API
     column:
         id: ID
         name: Name
@@ -219,6 +223,8 @@ currency:
         preferred: Show As Preferred
         actions: Actions
         active: Make Available
+        togbp: Exchange Rate (to GBP)
+        rateupdated: Exchange Rate Updated
 
 language:
     edit:

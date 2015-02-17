@@ -57,12 +57,12 @@ class CompetencyLevelController extends Controller
         if ($form->isValid()) {
             $competencyLevelManager->saveCompetencyLevel($competencyLevel);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_level.new.success')
             );
 
-            return $this->redirect($this->generateUrl('competency_level_show', ['id' => $competencyLevel->getId()]));
+            return $this->redirectToRoute('competency_level_show', ['id' => $competencyLevel->getId()]);
         }
 
         return [
@@ -204,12 +204,12 @@ class CompetencyLevelController extends Controller
         if ($editForm->isValid()) {
             $this->getCompetencyLevelManager()->saveCompetencyLevel($competencyLevel);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_level.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('competency_level_edit', ['id' => $competencyLevel->getId()]));
+            return $this->redirectToRoute('competency_level_edit', ['id' => $competencyLevel->getId()]);
         }
 
         return [
@@ -237,7 +237,7 @@ class CompetencyLevelController extends Controller
 
         if ($form->isValid()) {
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_level.delete.success')
             );
@@ -245,7 +245,7 @@ class CompetencyLevelController extends Controller
             $this->getCompetencyLevelManager()->removeCompetencyLevel($competencyLevel->getId());
         }
 
-        return $this->redirect($this->generateUrl('competency_level'));
+        return $this->redirectToRoute('competency_level');
     }
 
     /**

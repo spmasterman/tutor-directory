@@ -58,19 +58,19 @@ class StatusController extends Controller
         if ($form->isValid()) {
             $statusManager->saveStatus($status);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('status.new.success')
             );
 
 
-            return $this->redirect($this->generateUrl('status_show', ['id' => $status->getId()]));
+            return $this->redirectToRoute('status_show', ['id' => $status->getId()]);
         }
 
-        return array(
+        return [
             'entity' => $status,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -210,12 +210,12 @@ class StatusController extends Controller
         if ($editForm->isValid()) {
             $this->getStatusManager()->saveStatus($status);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('status.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('status_edit', ['id' => $status->getId()]));
+            return $this->redirectToRoute('status_edit', ['id' => $status->getId()]);
         }
 
         return [
@@ -244,13 +244,13 @@ class StatusController extends Controller
         if ($form->isValid()) {
             $this->getStatusManager()->removeStatus($status->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('status.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('status'));
+        return $this->redirectToRoute('status');
     }
 
     /**

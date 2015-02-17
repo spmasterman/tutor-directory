@@ -1,9 +1,4 @@
 services:
-    fitch.twig.time_ago:
-        class: Fitch\FrontEndBundle\Twig\Extension\TimeAgoExtension
-        arguments: [@translator]
-        tags:
-        - { name: twig.extension }
 
     #
     # Event Listeners

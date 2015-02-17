@@ -58,19 +58,19 @@ class FileTypeController extends Controller
         if ($form->isValid()) {
             $fileTypeManager->saveFileType($fileType);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('file_type.new.success')
             );
 
 
-            return $this->redirect($this->generateUrl('file_type_show', ['id' => $fileType->getId()]));
+            return $this->redirectToRoute('file_type_show', ['id' => $fileType->getId()]);
         }
 
-        return array(
+        return [
             'fileType' => $fileType,
             'form'   => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -210,12 +210,12 @@ class FileTypeController extends Controller
         if ($editForm->isValid()) {
             $this->getFileTypeManager()->saveFileType($fileType);
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('file_type.edit.success')
             );
 
-            return $this->redirect($this->generateUrl('file_type_edit', ['id' => $fileType->getId()]));
+            return $this->redirectToRoute('file_type_edit', ['id' => $fileType->getId()]);
         }
 
         return [
@@ -244,13 +244,13 @@ class FileTypeController extends Controller
         if ($form->isValid()) {
             $this->getFileTypeManager()->removeFileType($fileType->getId());
 
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $this->get('translator')->trans('file_type.delete.success')
             );
         }
 
-        return $this->redirect($this->generateUrl('file_type'));
+        return $this->redirectToRoute('file_type');
     }
 
     /**

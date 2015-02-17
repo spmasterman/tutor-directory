@@ -48,6 +48,20 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface
     protected $active = true;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="x_rate_gbp", type="decimal", precision=16, scale=8)
+     */
+    protected $toGBP = 1.00;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="x_rate_updated", type="datetime", nullable=true)
+     */
+    protected $rateUpdated;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -124,6 +138,42 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getToGBP()
+    {
+        return $this->toGBP;
+    }
+
+    /**
+     * @param float $toGBP
+     * @return $this
+     */
+    public function setToGBP($toGBP)
+    {
+        $this->toGBP = $toGBP;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRateUpdated()
+    {
+        return $this->rateUpdated;
+    }
+
+    /**
+     * @param \DateTime $rateUpdated
+     * @return $this
+     */
+    public function setRateUpdated($rateUpdated)
+    {
+        $this->rateUpdated = $rateUpdated;
         return $this;
     }
 }
