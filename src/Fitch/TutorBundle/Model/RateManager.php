@@ -32,8 +32,11 @@ class RateManager extends BaseModelManager
      */
     public function buildChoices()
     {
-        return ['Day' => 'Day', 'Evening' => 'Evening'];
-        //return $this->getRepo()->findBy(['active' => true]);
+        $rateTypes = [];
+        foreach ($this->getRepo()->getActiveRateTypes() as $rateType) {
+            $rateTypes[$rateType['name']] = $rateType['name'];
+        };
+        return $rateTypes;
     }
 
     /**

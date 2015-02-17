@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class RateRepository extends EntityRepository
 {
+
+    public function getActiveRateTypes()
+    {
+        $rateTypesQuery = $this->createQueryBuilder('r')
+            ->select('r.name')
+            ->distinct()
+            ->orderBy('r.name')
+            ->getQuery();
+
+        return $rateTypesQuery->getResult();
+    }
 }
