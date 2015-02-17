@@ -55,7 +55,8 @@ class ReportController extends Controller
         $form->handleRequest($request);
 
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'data' => []
         ];
     }
 
@@ -83,7 +84,6 @@ class ReportController extends Controller
                 'method' => 'GET',
             ]
         )->getForm();
-
 
         $form->add('submit', 'submit',
             [

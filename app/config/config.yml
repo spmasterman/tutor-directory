@@ -57,6 +57,7 @@ assetic:
                 - '%kernel.root_dir%/../vendor/datatables/datatables/media/js/jquery.dataTables.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/dataTables.bootstrap.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/jquery.highlight.js'
+                - '%kernel.root_dir%/../vendor/drmonty/datatables-tabletools/js/dataTables.tableTools.min.js'
             filters: [?yui_js]
         jqueryui_js:
             inputs:

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8f3fdd8e36ceeead4cb1be8323ab8f8",
+    "hash": "3e9d932b83fe4f604c7a96a558d32fd2",
     "packages": [
         {
             "name": "amazonwebservices/aws-sdk-for-php",
@@ -285,16 +285,16 @@
         },
         {
             "name": "datatables/datatables",
-            "version": "1.10.4",
+            "version": "1.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DataTables/DataTables.git",
-                "reference": "06c1cbebdefe002b0bac853f16e685cae496146f"
+                "reference": "a5d77d99bcda1dd072f4f3d0717e69893d7425d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/DataTables/zipball/06c1cbebdefe002b0bac853f16e685cae496146f",
-                "reference": "06c1cbebdefe002b0bac853f16e685cae496146f",
+                "url": "https://api.github.com/repos/DataTables/DataTables/zipball/a5d77d99bcda1dd072f4f3d0717e69893d7425d1",
+                "reference": "a5d77d99bcda1dd072f4f3d0717e69893d7425d1",
                 "shasum": ""
             },
             "type": "library",
@@ -304,7 +304,7 @@
             ],
             "description": "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table.",
             "homepage": "http://www.datatables.net/",
-            "time": "2014-11-07 15:17:44"
+            "time": "2015-02-10 14:27:53"
         },
         {
             "name": "digitalnature/php-ref",
@@ -1168,6 +1168,47 @@
                 "orm"
             ],
             "time": "2014-12-16 13:45:01"
+        },
+        {
+            "name": "drmonty/datatables-tabletools",
+            "version": "v2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drmonty/datatables-tabletools.git",
+                "reference": "75d0cf86cc3157ed262da40068a9a50102e2224c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drmonty/datatables-tabletools/zipball/75d0cf86cc3157ed262da40068a9a50102e2224c",
+                "reference": "75d0cf86cc3157ed262da40068a9a50102e2224c",
+                "shasum": ""
+            },
+            "require": {
+                "components/jquery": ">=1.7"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "js/dataTables.tableTools.js"
+                    ],
+                    "files": [
+                        "js/dataTables.tableTools.min.js",
+                        "css/dataTables.tableTools.min.css",
+                        "images/*.png",
+                        "swf/*.swf"
+                    ],
+                    "shim": {
+                        "deps": [
+                            "jquery"
+                        ]
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "TableTools Plugin for DataTables",
+            "homepage": "http://www.datatables.net/",
+            "time": "2014-10-06 11:10:09"
         },
         {
             "name": "exercise/htmlpurifier-bundle",
