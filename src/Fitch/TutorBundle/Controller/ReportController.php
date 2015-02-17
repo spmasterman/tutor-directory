@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Report controller - manages a filterable, savable report that is a little more dynamic than the searchable table
@@ -43,11 +44,18 @@ class ReportController extends Controller
      * @Method("GET")
      *
      * @Template()
+     *
+     * @param Request $request
+     *
+     * @return array
      */
-    public function viewAction()
+    public function viewAction(Request $request)
     {
+        $form = $this->createReportForm();
+        $form->handleRequest($request);
+
         return [
-            'form' => $this->createReportForm()->createView()
+            'form' => $form->createView()
         ];
     }
 
@@ -59,7 +67,9 @@ class ReportController extends Controller
      */
     private function createReportForm()
     {
-        $form = $this->createForm(
+
+        //$form = $this->createForm(
+        $form =  $this->get('form.factory')->createNamedBuilder('ftbr',
             new ReportType(
                 $this->get('translator'),
                 $this->getCurrencyManager(),
@@ -72,7 +82,8 @@ class ReportController extends Controller
                 'action' => $this->generateUrl('report_view'),
                 'method' => 'GET',
             ]
-        );
+        )->getForm();
+
 
         $form->add('submit', 'submit',
             [

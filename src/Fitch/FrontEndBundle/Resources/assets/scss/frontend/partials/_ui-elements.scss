@@ -712,15 +712,15 @@ fieldset {
     margin-top:7px;
 }
 
-
 .form-control,
 .input-group .form-control {
 	@include border-radius(0);
 	@include box-shadow(none);
 
-  &.no-container {
+  &.inline-subform {
 	border: none;
 	background: none;
+	padding:0;
   }
 }
 

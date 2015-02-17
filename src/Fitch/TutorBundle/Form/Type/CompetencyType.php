@@ -43,7 +43,13 @@ class CompetencyType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'choices' => $this->competencyTypeManager->buildChoices(),
-                'placeholder' => 'Filter by Skill Type...'
+                'placeholder' => 'Filter by Skill Type...',
+                'required' => false,
+                'label' => 'Skill Type',
+                'attr' => [
+                    'class' => "control-inline",
+                ],
+                'label_attr' => ['class' => 'sr-only'],
             ])
             ->add('competencyLevel', 'entity', [
                 'class' => 'Fitch\TutorBundle\Entity\CompetencyLevel',
@@ -53,7 +59,10 @@ class CompetencyType extends AbstractType
                     'class' => "control-inline simple-checkbox",
                 ],
                 'choices' => $this->competencyLevelManager->buildChoices(),
-                'placeholder' => 'Filter by Skill Level...'
+                'placeholder' => 'Filter by Skill Level...',
+                'required' => false,
+                'label' => 'Skill Level',
+                'label_attr' => ['class' => 'sr-only'],
             ])
         ;
     }

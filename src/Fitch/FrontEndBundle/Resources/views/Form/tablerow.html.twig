@@ -10,7 +10,9 @@
                 {% set label = name|humanize %}
             {% endif %}
 
-            {{ form_label(form, null, {'label_attr': {'class': 'control-label'} }) }}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+
+            {{ form_label(form, null, {'label_attr':  label_attr }) }}
             {{ form_errors(form) }}
 
             <div {% if (attr.class is defined) and (attr.class is not empty) %}class="{{ attr.class }}"{% endif %}>

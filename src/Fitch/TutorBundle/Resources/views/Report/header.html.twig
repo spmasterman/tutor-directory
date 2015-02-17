@@ -1,0 +1,14 @@
+{% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+<div class="widget widget-table">
+    {{ helper.widget_header('Report Settings', 'fa fa-list-alt', 'widget-report_definition') }}
+    {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+    {% form_theme form.rate.rateType 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+    {% form_theme form.rate.operator 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+    {% form_theme form.rate.amount 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+    {% form_theme form.rate.currency 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+    {% form_theme form.competency.competencyType 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+    {% form_theme form.competency.competencyLevel 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+
+    {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
+    {{ helper.widget_footer() }}
+</div>

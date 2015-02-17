@@ -58,7 +58,8 @@ class ReportType extends AbstractType
                 'attr' => [
                     'class' => "control-inline simple-checkbox",
                 ],
-                'placeholder' => 'Filter by Tutor Type...'
+                'placeholder' => 'Filter by Tutor Type...',
+                'required' => false
             ])
             ->add('status', 'entity', [
                 'class' => 'FitchTutorBundle:Status',
@@ -68,7 +69,8 @@ class ReportType extends AbstractType
                 'attr' => [
                     'class' => "control-inline simple-checkbox",
                 ],
-                'placeholder' => 'Filter by Status...'
+                'placeholder' => 'Filter by Status...',
+                'required' => false
             ])
             ->add('operating_region', 'entity', [
                 'class' => 'FitchTutorBundle:OperatingRegion',
@@ -78,25 +80,28 @@ class ReportType extends AbstractType
                 'attr' => [
                     'class' => "control-inline simple-checkbox",
                 ],
-                'placeholder' => 'Filter by Region...'
+                'placeholder' => 'Filter by Region...',
+                'required' => false
             ])
             ->add('language', 'entity', [
                 'class' => 'FitchTutorBundle:Language',
                 'property' => 'name',
-                'placeholder' => 'Filter by Language...'
+                'placeholder' => 'Filter by Language...',
+                'required' => false
             ])
             ->add(
-                'rates',
+                'rate',
                 new RateType($this->translator, $this->currencyManager, $this->rateManager),
                 [
-                    'attr' => ['class' => 'no-container']
+                    'attr' => ['class' => 'inline-subform',],
                 ]
             )
             ->add(
-                'competencies',
+                'competency',
                 new CompetencyType($this->translator, $this->competencyTypeManager, $this->competencyLevelManager),
                 [
-                    'attr' => ['class' => 'no-container']
+                    'attr' => ['class' => 'inline-subform'],
+                    'label' => 'Skill'
                 ]
             )
         ;

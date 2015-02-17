@@ -199,4 +199,8 @@ code {
 
 .control-inline {
 	@include inline-block;
+  	&.form-group {
+	  margin-left: 0;
+	  margin-right: 5px;
+	}
 }

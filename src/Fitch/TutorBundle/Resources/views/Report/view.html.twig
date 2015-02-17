@@ -5,13 +5,10 @@
 {% endblock %}
 
 {% block main_content -%}
+
+    {% include 'FitchTutorBundle:Report:header.html.twig' %}
+
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
-    <div class="widget widget-table">
-    {{ helper.widget_header('Report Settings', 'fa fa-list-alt', 'widget-report_definition') }}
-        {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
-        {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
-    {{ helper.widget_footer() }}
-    </div>
     <div class="widget widget-table">
     {{ helper.widget_header('Report', 'fa fa-list-alt', 'widget-report_content') }}
         ...REPORT...

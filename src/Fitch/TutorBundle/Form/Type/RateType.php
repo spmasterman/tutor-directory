@@ -45,7 +45,10 @@ class RateType extends AbstractType
                     'class' => "control-inline simple-checkbox",
                 ],
                 'choices' => $this->rateManager->buildChoices(),
-                'placeholder' => 'Filter by Rate...'
+                'placeholder' => 'Filter by Rate...',
+                'required' => false,
+                'label' => 'Rate Type',
+                'label_attr' => ['class' => 'sr-only'],
             ])
             ->add('operator', 'choice', [
                 'expanded' => false,
@@ -55,16 +58,36 @@ class RateType extends AbstractType
                     'eq' => 'Equal',
                     'gt' => 'Greater than',
                 ],
-                'placeholder' => ''
+                'attr' => [
+                    'class' => "control-inline",
+                ],
+                'label_attr' => ['class' => 'sr-only'],
+                'placeholder' => '',
+                'required' => false,
+                'label' => 'is'
             ])
-            ->add('amount', 'number', [])
+            ->add('amount', 'number', [
+                'required' => false,
+                'label' => ' ',
+                'attr' => [
+                    'class' => "control-inline",
+                ],
+                'label_attr' => ['class' => 'sr-only'],
+            ])
             ->add('currency', 'entity', [
                 'class' => 'Fitch\TutorBundle\Entity\Currency',
                 'expanded' => false,
                 'multiple' => false,
                 'choices' => $this->currencyManager->buildChoices(),
                 'preferred_choices' => $this->currencyManager->buildPreferredChoices(),
-                'placeholder' => 'Convert Currency to...'
+                'placeholder' => 'in Currency...',
+                'required' => false,
+                'label' => 'in Currency',
+                'attr' => [
+                    'class' => "control-inline",
+                ],
+                'label_attr' => ['class' => 'sr-only'],
+
             ])
         ;
     }
