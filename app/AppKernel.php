@@ -21,14 +21,15 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Fitch\FrontEndBundle\FitchFrontEndBundle(),
-            new Fitch\CommonBundle\FitchCommonBundle(),
-            new Fitch\UserBundle\FitchUserBundle(),
-            new Fitch\TutorBundle\FitchTutorBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
+            new Fitch\FrontEndBundle\FitchFrontEndBundle(),
+            new Fitch\CommonBundle\FitchCommonBundle(),
+            new Fitch\UserBundle\FitchUserBundle(),
+            new Fitch\TutorBundle\FitchTutorBundle(),
+            new Fitch\EntityAttributeValueBundle\FitchEntityAttributeValueBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

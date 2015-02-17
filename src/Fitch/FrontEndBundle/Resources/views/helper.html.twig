@@ -1,0 +1,26 @@
+{% macro widget_header(title, icon, key, indicators) %}
+    <div class="widget-header">
+        {% set state = app.user.getAttributeNamed(key).getValue|default('open')  %}
+        <h3><i class="{{ icon }}"></i> {{ title|trans }}</h3>
+        <div class="btn-group widget-header-toolbar" data-key="{{ key }}">
+            <a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+            <a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-{% if state == "open" %}up{% else %}down{% endif %}"></i></a>
+            <a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+        </div>
+        {% if indicators|default(false) %}
+            <div class="btn-group widget-header-toolbar">
+                <div class="label label-success" style="display: none" id="global-success-indicator"><i class="fa fa-check-circle"></i> Saved</div>
+                <div class="label label-warning" style="display: none" id="global-failure-indicator"><i class="fa fa-exclamation-circle"></i> Error</div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="widget-content" {% if state == "closed" %}style="display:none"{% endif %}>
+{% endmacro %}
+
+{% macro widget_footer() %}
+    </div>
+{% endmacro %}
+
+{% macro button(href, class, icon, title) %}
+    <a class="{{ class }}" href="{{ href }}">{% if icon%}<i class="{{ icon }}"></i> {% endif %}{{ title|trans }}</a>
+{% endmacro %}

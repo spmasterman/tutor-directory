@@ -1,0 +1,4 @@
+EAVBundle_annotation:
+    resource: "@FitchEntityAttributeValueBundle/Controller"
+    prefix: /eav
+    type: annotation

@@ -5,12 +5,16 @@ namespace Fitch\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\EntityAttributeValueBundle\Annotation as EAV;
+use Fitch\EntityAttributeValueBundle\Entity\AttributedEntityInterface;
+use Fitch\EntityAttributeValueBundle\Entity\AttributedEntityTrait;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @EAV\Entity()
  * @ORM\Entity(repositoryClass="Fitch\UserBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="person")
  * @Gedmo\Loggable
@@ -18,9 +22,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields="email", message="Email is already in use")
  * @UniqueEntity(fields="username", message="Username is already in use")
  */
-class User extends BaseUser implements TimestampableTraitInterface
+class User extends BaseUser implements TimestampableTraitInterface, AttributedEntityInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, AttributedEntityTrait;
 
     /**
      * @ORM\Id

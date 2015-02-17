@@ -14,18 +14,30 @@ $(document).ready(function(){
     });
 
     // widget toggle expand
-    $('.widget .btn-toggle-expand').clickToggle(
-        function(e) {
-            e.preventDefault();
-            $(this).parents('.widget').find('.widget-content').slideUp(300);
-            $(this).find('i.fa-chevron-up').toggleClass('fa-chevron-down');
-        },
-        function(e) {
-            e.preventDefault();
-            $(this).parents('.widget').find('.widget-content').slideDown(300);
-            $(this).find('i.fa-chevron-up').toggleClass('fa-chevron-down');
+    $('.widget .btn-toggle-expand').on('click', {}, function(e) {
+        e.preventDefault();
+        var content = $(this).parents('.widget').find('.widget-content');
+        var key = $(this).parents('.widget-header-toolbar').data('key');
+        if (content.is(':visible')) {
+            content.slideUp(300);
+            $(this).find('i.fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            if (key) {
+                $.post(Routing.generate('widget_control'), {
+                    'key': key,
+                    'state': 'closed'
+                });
+            }
+        } else {
+            content.slideDown(300);
+            $(this).find('i.fa-chevron-down').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            if (key) {
+                $.post(Routing.generate('widget_control'), {
+                    'key': key,
+                    'state': 'open'
+                });
+            }
         }
-    );
+    });
 
     // widget focus
     $('.widget .btn-focus').clickToggle(

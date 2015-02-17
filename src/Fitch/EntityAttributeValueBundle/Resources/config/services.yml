@@ -1,0 +1,21 @@
+parameters:
+
+
+
+services:
+
+    attribute.schema_creator:
+        class: Fitch\EntityAttributeValueBundle\Listener\SchemaCreatorListener
+        tags:
+            - { name: doctrine.event_listener, event: loadClassMetadata}
+
+    attribute.attribute_creator:
+        class: Fitch\EntityAttributeValueBundle\Listener\AttributeCreatorListener
+        tags:
+            - { name: doctrine.event_listener, event: postLoad}
+
+    form.type.attributeCollection:
+        class: Fitch\EntityAttributeValueBundle\Form\Type\AttributeCollectionType
+        tags:
+            - { name: form.type, alias: attributeCollection}
+

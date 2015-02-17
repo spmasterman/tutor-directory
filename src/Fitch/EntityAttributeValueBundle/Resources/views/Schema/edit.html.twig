@@ -1,0 +1,34 @@
+{% extends 'FitchFrontEndBundle::dashboard.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}schema.edit.verb{% endtrans %}</h2>
+    <em>{% trans %}schema.edit.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+
+<form method="POST" action="{{ path('attribute_schema_edit', { id: schema.getId() }) }}" class="form-horizontal">
+
+    {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+
+    {{ form_rest(form) }}
+
+    <div class="form-actions">
+        <button class="btn btn-primary" role="submit">{% trans %}Save{% endtrans %}</button>
+        <a class="btn btn-success" href="#" onclick="Schema.addDefinition(); return false;">
+            {% trans %}Add new item{% endtrans %}
+        </a>
+    </div>
+
+    <script>
+        Schema = {
+            addDefinition: function() {
+                var prototype = $('#schema_definitions').data('prototype');
+                var newItem = prototype.replace(/_name/g, $('#schema_definitions').children().length);
+
+                $('#schema_definitions').append(newItem);
+            }
+        }
+    </script>
+</form>
+{% endblock %}

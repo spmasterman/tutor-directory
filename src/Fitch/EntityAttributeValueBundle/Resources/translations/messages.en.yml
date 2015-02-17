@@ -1,0 +1,7 @@
+
+# translations
+
+schema:
+    edit:
+        verb: Edit EAV Schema
+        tagline: edit a entity-attribute-value schema
