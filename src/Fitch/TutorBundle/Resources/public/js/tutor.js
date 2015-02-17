@@ -777,7 +777,14 @@ jQuery(document).ready(function() {
     }
 
     function reloadTutorLanguageRow(row, response) {
-
+        row.html(response.renderedTutorLanguageRow);
+        row.attr('data-tutor-language-pk', response.id);
+        row.find('.inline-tutor-language').each(function() {
+            $(this).editable(getTutorLanguageOptions($(this)));
+        });
+        row.find('.inline-tutor-language-note').each(function() {
+            $(this).editable(getTutorLanguageNoteOptions($(this)));
+        });
     }
 
     function getCompetencyLevelOptions(host) {
