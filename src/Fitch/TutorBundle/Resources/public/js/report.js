@@ -6,7 +6,7 @@ $(document).ready( function () {
     var table = tableContainer.DataTable({
         dom: 'T<"clear">lfrtip',
         tableTools: {
-            "sSwfPath": "bundles/fitchfrontend/swf/copy_csv_xls_pdf.swf",
+            "sSwfPath": "/bundles/fitchfrontend/swf/copy_csv_xls_pdf.swf",
             "aButtons": [
                 {
                     "sExtends": "copy",
