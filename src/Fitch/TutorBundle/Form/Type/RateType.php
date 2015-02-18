@@ -54,11 +54,11 @@ class RateType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'choices' => [
-                    'lt' => 'Less than',
-                    'lte' => 'Less than, or Equal',
+                    'lt' => 'Less',
+                    'lte' => 'Less/Equal',
                     'eq' => 'Equal',
-                    'gte' => 'Greater than, or Equal',
-                    'gt' => 'Greater than',
+                    'gte' => 'Greater/Equal',
+                    'gt' => 'Greater',
                 ],
                 'attr' => [
                     'class' => "control-inline",
@@ -73,6 +73,7 @@ class RateType extends AbstractType
                 'label' => ' ',
                 'attr' => [
                     'class' => "control-inline",
+                    'size' => 5
                 ],
                 'label_attr' => ['class' => 'sr-only'],
             ])

@@ -1,6 +1,12 @@
 {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
 <div class="widget widget-table">
     {{ helper.widget_header('Report Settings', 'fa fa-list-alt', 'widget-report_definition') }}
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4><i class="fa fa-info-circle"></i> Information</h4><p>{% trans %}report.header.intro{% endtrans %}</p>
+    </div>
+
     {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
     {% form_theme form.rate.rateType 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
     {% form_theme form.rate.operator 'FitchFrontEndBundle:Form:tablerow.html.twig' %}

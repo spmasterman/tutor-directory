@@ -2,6 +2,8 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Fitch\TutorBundle\Entity\CompetencyLevel;
+use Fitch\TutorBundle\Entity\CompetencyType;
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\OperatingRegion;
@@ -35,6 +37,12 @@ class ReportDefinition
     /** @var Currency */
     private $currency = null;
 
+    /** @var array */
+    private $competencyTypeIds = [];
+
+    /** @var array */
+    private $competencyLevelIds = [];
+
     /**
      * @param FormInterface $form
      */
@@ -64,10 +72,64 @@ class ReportDefinition
         $this->rateAmount = $form->getData()['rate']['amount'];
         $this->currency = $form->getData()['rate']['currency'];
 
+        if (array_key_exists('competencyType', $form->getData()['competency'])) {
+            foreach($form->getData()['competency']['competencyType'] as $competencyType) {
+                /** @var CompetencyType $competencyType */
+                $this->competencyTypeIds[] = $competencyType->getId();
+            }
+        }
 
-        // etc...
+        if (array_key_exists('competencyLevel', $form->getData()['competency'])) {
+            foreach($form->getData()['competency']['competencyLevel'] as $competencyLevel) {
+                /** @var CompetencyLevel $competencyLevel */
+                $this->competencyLevelIds[] = $competencyLevel->getId();
+            }
+        }
+    }
 
+    public function isFilteredByCompetency()
+    {
+        return $this->isFilteredByCompetencyLevel() || $this->isFilteredByCompetencyType();
+    }
 
+    public function isFilteredByCompetencyType()
+    {
+        return (bool)count($this->competencyTypeIds);
+    }
+
+    public function isFilteredByCompetencyLevel()
+    {
+        return (bool)count($this->competencyLevelIds);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompetencyTypeIdsAsSet()
+    {
+        return $this->getIDsAsSet($this->competencyTypeIds);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompetencyLevelIdsAsSet()
+    {
+        return $this->getIDsAsSet($this->competencyLevelIds);
+    }
+
+    public function getReportCurrencyToGBP() {
+        if ($this->currency) {
+            return  $this->currency->getToGBP();
+        }
+        return 1;
+    }
+
+    public function getReportCurrencyThreeLetterCode() {
+        if ($this->currency) {
+            return  $this->currency->getThreeDigitCode();
+        }
+        return 'GBP';
     }
 
     public function isFilteredByRateType()

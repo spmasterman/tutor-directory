@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Form\Type;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Symfony\Component\Form\AbstractType;
@@ -29,18 +30,23 @@ class ReportType extends AbstractType
     /** @var  CompetencyLevelManager */
     protected $competencyLevelManager;
 
+    /** @var  LanguageManager */
+    protected $languageManager;
+
     public function __construct(
         TranslatorInterface $translator,
         CurrencyManager $currencyManager,
         RateManager $rateManager,
         CompetencyTypeManager $competencyTypeManager,
-        CompetencyLevelManager $competencyLevelManager
+        CompetencyLevelManager $competencyLevelManager,
+        LanguageManager $languageManager
     ) {
         $this->translator = $translator;
         $this->rateManager = $rateManager;
         $this->currencyManager = $currencyManager;
         $this->competencyTypeManager = $competencyTypeManager;
         $this->competencyLevelManager = $competencyLevelManager;
+        $this->languageManager = $languageManager;
     }
 
     /**
@@ -87,6 +93,8 @@ class ReportType extends AbstractType
                 'class' => 'FitchTutorBundle:Language',
                 'property' => 'name',
                 'placeholder' => 'Filter by Language...',
+                'choices' => $this->languageManager->buildChoices(),
+                'preferred_choices' => $this->languageManager->buildPreferredChoices(),
                 'required' => false
             ])
             ->add(
@@ -100,8 +108,8 @@ class ReportType extends AbstractType
                 'competency',
                 new CompetencyType($this->translator, $this->competencyTypeManager, $this->competencyLevelManager),
                 [
-                    'attr' => ['class' => 'inline-subform'],
-                    'label' => 'Skill'
+                    'attr' => ['class' => 'inline-subform stacked-group'],
+                    'label' => 'Skill (CTRL selects multiple)'
                 ]
             )
             ->add('fields', 'choice', [

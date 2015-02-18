@@ -316,3 +316,5 @@ address:
 report:
     title: Trainer Report
     tagline: dynamic trainer reports
+    header:
+        intro: Filter the report using the form below. Leave any filter blank to have it be inactive (you do not need to select ALL the checkboxes ina group)

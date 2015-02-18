@@ -103,9 +103,23 @@ SQL;
             if ($definition->isFilteredByRateType()) {
                $qb->andWhere('LOWER(ra.name) IN ' . $definition->getRateTypesAsSet());
             }
-
         }
-$x = $qb->getQuery()->getSQL();
+
+        if ($definition->isFilteredByCompetency()) {
+            $qb
+                ->join('t.competencies', 'tc')
+                ->join('tc.competencyType', 'tct')
+                ->join('tc.competencyLevel', 'tcl')
+            ;
+
+            if ($definition->isFilteredByCompetencyType()) {
+                $qb->andWhere('tct.id IN ' . $definition->getCompetencyTypeIdsAsSet());
+            }
+
+            if ($definition->isFilteredByCompetencyLevel()) {
+                $qb->andWhere('tcl.id IN ' . $definition->getCompetencyLevelIdsAsSet());
+            }
+        }
 
         return $qb->getQuery()->getResult();
     }

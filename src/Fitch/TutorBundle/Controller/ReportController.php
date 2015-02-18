@@ -6,6 +6,7 @@ use Fitch\TutorBundle\Form\Type\ReportType;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Fitch\TutorBundle\Model\TutorManager;
@@ -80,7 +81,8 @@ class ReportController extends Controller
                 $this->getCurrencyManager(),
                 $this->getRateManager(),
                 $this->getCompetencyTypeManager(),
-                $this->getCompetencyLevelManager()
+                $this->getCompetencyLevelManager(),
+                $this->getLanguageManager()
             ),
             null,
             [
@@ -139,5 +141,13 @@ class ReportController extends Controller
     private function getTutorManager()
     {
         return $this->get('fitch.manager.tutor');
+    }
+
+    /**
+     * @return LanguageManager
+     */
+    private function getLanguageManager()
+    {
+        return $this->get('fitch.manager.language');
     }
 }

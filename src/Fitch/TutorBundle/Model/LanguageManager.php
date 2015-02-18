@@ -62,6 +62,22 @@ class LanguageManager extends BaseModelManager
     }
 
     /**
+     * @return Language[]
+     */
+    public function buildChoices()
+    {
+        return $this->getRepo()->findBy(['active' => true]);
+    }
+
+    /**
+     * @return Language[]
+     */
+    public function buildPreferredChoices()
+    {
+        return $this->getRepo()->findBy(['active' => true, 'preferred' => true]);
+    }
+
+    /**
      * @param Language $language
      * @param bool $withFlush
      */

@@ -38,7 +38,7 @@
                         {% if loop.first %}
                             <ul class="fa-ul">
                         {% endif %}
-                                <li><i class="fa-li fa fa-language"></i>{{ tutorLanguage.getLanguage }} {% if tutorLanguage.getNote %} - {{ tutorLanguage.getNote }}{% endif %}</li>
+                                <li><i class="fa-li fa fa-language"></i>{{ tutorLanguage.getLanguage }} {% if tutorLanguage.getNote %} - <em>{{ tutorLanguage.getNote }}</em>{% endif %}</li>
                         {% if loop.last %}
                             </ul>
                         {% endif %}
@@ -68,7 +68,7 @@
                         {% if loop.first %}
                             <ul class="fa-ul">
                         {% endif %}
-                                <li><i class="fa-li fa fa-phone"></i>{{ phoneNumber }} </li>
+                                <li><i class="fa-li fa fa-phone"></i>{% if phoneNumber.isPreferred %}<strong>{% endif %}{{ phoneNumber }}{% if phoneNumber.isPreferred %}</strong>{% endif %}</li>
                         {% if loop.last %}
                             </ul>
                         {% endif %}
@@ -78,7 +78,7 @@
                         {% if loop.first %}
                             <ul class="fa-ul">
                         {% endif %}
-                               <li><i class="fa-li fa fa-square"></i>{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}{% if competency.getCompetencyLevel %} ({{ competency.getCompetencyLevel.getName }}){% endif %}{% if competency.getNote %} - {{ competency.getNote }}{% endif %}</li>
+                               <li><i class="fa-li fa fa-square"></i>{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}{% if competency.getCompetencyLevel %} ({{ competency.getCompetencyLevel.getName }}){% endif %}{% if competency.getNote %} - <em>{{ competency.getNote }}</em>{% endif %}</li>
                         {% if loop.last %}
                             </ul>
                         {% endif %}
@@ -88,7 +88,7 @@
                         {% if loop.first %}
                             <ul class="fa-ul">
                         {% endif %}
-                                <li><i class="fa-li fa fa-money"></i>{{ rate.getName }} Rate: {{ rate.getAmount|number_format(2, '.', ',') }} {{ tutor.getCurrency.getThreeDigitCode }} ({{ (rate.getAmount * tutor.getCurrency.getToGBP)|number_format(2, '.', ',') }} GBP)</li>
+                                <li><i class="fa-li fa fa-money"></i>{{ rate.getName }} Rate: {{ rate.getAmount|number_format(2, '.', ',') }} {{ tutor.getCurrency.getThreeDigitCode }} ({{ (rate.getAmount * (tutor.getCurrency.getToGBP / definition.getReportCurrencyToGBP))|number_format(2, '.', ',') }} {{ definition.getReportCurrencyThreeLetterCode }})</li>
                         {% if loop.last %}
                             </ul>
                         {% endif %}

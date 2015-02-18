@@ -41,13 +41,14 @@ class CompetencyType extends AbstractType
             ->add('competencyType', 'entity', [
                 'class' => 'Fitch\TutorBundle\Entity\CompetencyType',
                 'expanded' => false,
-                'multiple' => false,
+                'multiple' => true,
                 'choices' => $this->competencyTypeManager->buildChoices(),
                 'placeholder' => 'Filter by Skill Type...',
                 'required' => false,
                 'label' => 'Skill Type',
                 'attr' => [
                     'class' => "control-inline",
+                    'size' => 8,
                 ],
                 'label_attr' => ['class' => 'sr-only'],
             ])

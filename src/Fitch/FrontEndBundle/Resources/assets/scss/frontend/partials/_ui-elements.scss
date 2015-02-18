@@ -726,6 +726,10 @@ fieldset {
   &.stacked-group {
 	min-height: 34px;
 	height: auto;
+	.control-inline {
+	  margin-bottom: 0;
+	  vertical-align: top;
+	}
 	ul {
 	  list-style: none;
 	  padding: 0;
