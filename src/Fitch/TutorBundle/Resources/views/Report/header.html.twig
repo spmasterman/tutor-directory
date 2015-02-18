@@ -8,6 +8,7 @@
     {% form_theme form.rate.currency 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
     {% form_theme form.competency.competencyType 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
     {% form_theme form.competency.competencyLevel 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+    {% form_theme form.fields 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
 
     {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
     {{ helper.widget_footer() }}

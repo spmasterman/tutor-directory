@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3e9d932b83fe4f604c7a96a558d32fd2",
+    "hash": "419637f7a896f4eb1b1170726a352a70",
     "packages": [
         {
             "name": "amazonwebservices/aws-sdk-for-php",
@@ -1168,47 +1168,6 @@
                 "orm"
             ],
             "time": "2014-12-16 13:45:01"
-        },
-        {
-            "name": "drmonty/datatables-tabletools",
-            "version": "v2.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/drmonty/datatables-tabletools.git",
-                "reference": "75d0cf86cc3157ed262da40068a9a50102e2224c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drmonty/datatables-tabletools/zipball/75d0cf86cc3157ed262da40068a9a50102e2224c",
-                "reference": "75d0cf86cc3157ed262da40068a9a50102e2224c",
-                "shasum": ""
-            },
-            "require": {
-                "components/jquery": ">=1.7"
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "js/dataTables.tableTools.js"
-                    ],
-                    "files": [
-                        "js/dataTables.tableTools.min.js",
-                        "css/dataTables.tableTools.min.css",
-                        "images/*.png",
-                        "swf/*.swf"
-                    ],
-                    "shim": {
-                        "deps": [
-                            "jquery"
-                        ]
-                    }
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "TableTools Plugin for DataTables",
-            "homepage": "http://www.datatables.net/",
-            "time": "2014-10-06 11:10:09"
         },
         {
             "name": "exercise/htmlpurifier-bundle",

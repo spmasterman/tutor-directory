@@ -299,7 +299,6 @@ profile:
         files_header: Files
         files_upload_header: File Upload
 
-
 address:
     type:
         placeholder: Type of Address (Home, Office, etc)
@@ -313,3 +312,7 @@ address:
         placeholder: County / State / Province
     zip:
         placeholder: Postal Code / ZIP Code
+
+report:
+    title: Trainer Report
+    tagline: dynamic trainer reports

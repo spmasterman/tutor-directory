@@ -722,6 +722,15 @@ fieldset {
 	background: none;
 	padding:0;
   }
+
+  &.stacked-group {
+	min-height: 34px;
+	height: auto;
+	ul {
+	  list-style: none;
+	  padding: 0;
+	}
+  }
 }
 
 .input-group-lg {

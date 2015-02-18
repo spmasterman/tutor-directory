@@ -36,6 +36,15 @@ class TutorManager extends BaseModelManager
     }
 
     /**
+     * @param ReportDefinition $definition
+     * @return Tutor[]
+     */
+    public function getReportData(ReportDefinition $definition)
+    {
+        return $this->getRepo()->getReportData($definition);
+    }
+
+    /**
      * @param Tutor $tutor
      * @param AddressManager $addressManager
      * @param CountryManager $countryManager

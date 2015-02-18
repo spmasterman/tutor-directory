@@ -3,6 +3,8 @@
 namespace Fitch\TutorBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Fitch\TutorBundle\Entity\Tutor;
+use Fitch\TutorBundle\Model\ReportDefinition;
 
 /**
  * TutorRepository
@@ -49,5 +51,41 @@ SQL;
         $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+
+    /**
+     * @param ReportDefinition $definition
+     * @return Tutor[]
+     */
+    public function getReportData(ReportDefinition $definition)
+    {
+        $qb = $this
+            ->createQueryBuilder('t')
+            ->where('1 = 1')
+        ;
+
+        if ($definition->isFilteredByRegion()) {
+            $qb
+                ->leftJoin('t.region', 'r')
+                ->andWhere('r.id IN ' . $definition->getRegionIDsAsSet())
+            ;
+        }
+
+        if ($definition->isFilteredByStatus()) {
+            $qb
+                ->leftJoin('t.status', 's')
+                ->andWhere('s.id IN ' . $definition->getStatusIDsAsSet())
+            ;
+        }
+
+        if ($definition->isFilteredByTutorType()) {
+            $qb
+                ->leftJoin('t.tutorType', 'tt')
+                ->andWhere('tt.id IN ' . $definition->getTutorTypeIDsAsSet())
+            ;
+        }
+
+        return $qb->getQuery()->getResult();
     }
 }

@@ -6,9 +6,9 @@ use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\RateManager;
+use Fitch\TutorBundle\Model\ReportDefinition;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -104,17 +104,20 @@ class ReportType extends AbstractType
                     'label' => 'Skill'
                 ]
             )
+            ->add('fields', 'choice', [
+                'expanded' => true,
+                'multiple' => true,
+                'choices' => ReportDefinition::getAvailableFields(),
+                'attr' => [
+                    'class' => "simple-checkbox",
+                ],
+                'label_attr' => ['class' => 'sr-only'],
+                'placeholder' => '',
+                'required' => false,
+                'label' => 'Show Columns',
+                'data' => ReportDefinition::getDefaultFields()
+            ])
         ;
-    }
-    
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-//        $resolver->setDefaults(array(
-//            'data_class' => 'Fitch\TutorBundle\Entity\Tutor'
-//        ));
     }
 
     /**

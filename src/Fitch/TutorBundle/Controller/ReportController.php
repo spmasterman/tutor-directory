@@ -7,6 +7,8 @@ use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\RateManager;
+use Fitch\TutorBundle\Model\ReportDefinition;
+use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -54,12 +56,14 @@ class ReportController extends Controller
         $form = $this->createReportForm();
         $form->handleRequest($request);
 
+        $reportDefinition = new ReportDefinition($form);
+
         return [
             'form' => $form->createView(),
-            'data' => []
+            'data' => $this->getTutorManager()->getReportData($reportDefinition),
+            'definition' => $reportDefinition
         ];
     }
-
 
     /**
      * Creates a form to handle the report
@@ -127,5 +131,13 @@ class ReportController extends Controller
     private function getCompetencyLevelManager()
     {
         return $this->get('fitch.manager.competency_level');
+    }
+
+    /**
+     * @return TutorManager
+     */
+    private function getTutorManager()
+    {
+        return $this->get('fitch.manager.tutor');
     }
 }
