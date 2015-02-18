@@ -100,7 +100,8 @@ class ReportController extends Controller
         return [
             'data' => $this->getTutorManager()->getReportData($reportDefinition),
             'definition' => $reportDefinition,
-            'unrestricted' => $this->isGranted('ROLE_ADMIN')
+            'unrestricted' => $this->isGranted('ROLE_ADMIN'),
+            'report' => $report
         ];
     }
 
