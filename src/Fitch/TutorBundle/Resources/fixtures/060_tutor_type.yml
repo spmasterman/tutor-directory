@@ -1,10 +1,10 @@
 Fitch\TutorBundle\Entity\TutorType:
-    tutor-type-unspecified:
+    tutor_type-unspecified:
         name: Unspecified
         default: true
-    tutor-type-associate:
+    tutor_type-associate:
         name: Associate
         default: false
-    tutor-type-staff:
+    tutor_type-staff:
         name: Staff
         default: false

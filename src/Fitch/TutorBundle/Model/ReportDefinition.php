@@ -9,44 +9,84 @@ use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 use Fitch\TutorBundle\Entity\Status;
 use Fitch\TutorBundle\Entity\TutorType;
+use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Form\FormInterface;
 
-class ReportDefinition 
+class ReportDefinition
 {
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $tutorTypeIds = [];
 
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $statusIds = [];
 
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $regionIds = [];
 
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $languageIds = [];
 
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<string>")
+     */
     private $rateTypes = [];
 
-    /** @var string */
+    /**
+     * @var string
+     * @Type("string")
+     */
     private $operator = '';
 
-    /** @var int */
+    /**
+     * @var int
+     * @Type("integer")
+     */
     private $rateAmount = 0;
 
-    /** @var Currency */
+    /**
+     * @var Currency
+     * @Type("Fitch\TutorBundle\Entity\Currency")
+     */
     private $currency = null;
 
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $competencyTypeIds = [];
 
-    /** @var array */
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $competencyLevelIds = [];
 
     /**
-     * @param FormInterface $form
+     * @var array
+     * @Type("array<string>")
      */
-    public function __construct(FormInterface $form)
+    private $fields = [];
+
+    /**
+     * Bit of a long constructor - its job is just to suck the relevant values out the form
+     *
+     * @param FormInterface $form
+     * @param bool $unrestricted
+     */
+    public function __construct(FormInterface $form, $unrestricted = false)
     {
         foreach($form->getData()['tutor_type'] as $tutorType) {
             /** @var TutorType $tutorType */
@@ -67,11 +107,15 @@ class ReportDefinition
             $this->languageIds[] = $language->getId();
         }
 
-        $this->rateTypes = $form->getData()['rate']['rateType'];
-        $this->operator = $form->getData()['rate']['operator'];
-        $this->rateAmount = $form->getData()['rate']['amount'];
-        $this->currency = $form->getData()['rate']['currency'];
+        // Setup the Rate filter - only if the user has the correct rights...
+        if ($unrestricted) {
+            $this->rateTypes = $form->getData()['rate']['rateType'];
+            $this->operator = $form->getData()['rate']['operator'];
+            $this->rateAmount = $form->getData()['rate']['amount'];
+            $this->currency = $form->getData()['rate']['currency'];
+        }
 
+        // Setup any selected Competency Filter
         if (array_key_exists('competencyType', $form->getData()['competency'])) {
             foreach($form->getData()['competency']['competencyType'] as $competencyType) {
                 /** @var CompetencyType $competencyType */
@@ -85,18 +129,38 @@ class ReportDefinition
                 $this->competencyLevelIds[] = $competencyLevel->getId();
             }
         }
+
+        // Grab the Fields out of the form...
+        $this->fields = $form->getData()['fields'];
     }
 
+    /**
+     * @param string $field
+     * @return bool
+     */
+    public function isFieldDisplayed($field) {
+        return in_array($field, $this->fields);
+    }
+
+    /**
+     * @return bool
+     */
     public function isFilteredByCompetency()
     {
         return $this->isFilteredByCompetencyLevel() || $this->isFilteredByCompetencyType();
     }
 
+    /**
+     * @return bool
+     */
     public function isFilteredByCompetencyType()
     {
         return (bool)count($this->competencyTypeIds);
     }
 
+    /**
+     * @return bool
+     */
     public function isFilteredByCompetencyLevel()
     {
         return (bool)count($this->competencyLevelIds);
@@ -118,6 +182,9 @@ class ReportDefinition
         return $this->getIDsAsSet($this->competencyLevelIds);
     }
 
+    /**
+     * @return float|int
+     */
     public function getReportCurrencyToGBP() {
         if ($this->currency) {
             return  $this->currency->getToGBP();
@@ -125,6 +192,9 @@ class ReportDefinition
         return 1;
     }
 
+    /**
+     * @return string
+     */
     public function getReportCurrencyThreeLetterCode() {
         if ($this->currency) {
             return  $this->currency->getThreeDigitCode();
@@ -132,11 +202,17 @@ class ReportDefinition
         return 'GBP';
     }
 
+    /**
+     * @return bool
+     */
     public function isFilteredByRateType()
     {
         return (bool)count($this->rateTypes);
     }
 
+    /**
+     * @return string
+     */
     public function getRateTypesAsSet()
     {
         array_walk($this->rateTypes, function (&$value) {
@@ -146,6 +222,10 @@ class ReportDefinition
         return '(\'' . implode('\',\'', $this->rateTypes) . '\')' ;
     }
 
+    /**
+     * @param $tutorCurrencyAlias
+     * @return string
+     */
     public function getRateLimitAsExpression($tutorCurrencyAlias) {
         switch ($this->operator) {
             case 'lt' : $op = ' < '; break;
@@ -249,6 +329,9 @@ class ReportDefinition
         return '(' . implode(',', $idArray) . ')' ;
     }
 
+    /**
+     * @return array
+     */
     public static function getAvailableFields()
     {
         return [
@@ -258,13 +341,20 @@ class ReportDefinition
             'region' => 'Region',
             'languages' => 'Languages',
             'skills' => 'Skills',
-            'rates' => 'Rates',
+            'rates' => 'Rates [Restricted]',
             'addresses' => 'Addresses',
             'emails' => 'Email Addresses',
             'phones' => 'Phone Numbers',
+            'bio' => 'Biography',
+            'linkedin' => 'LinkedIn Profile',
+            'notes' => 'Terms of Engagement Notes [Restricted]',
+            'created' => 'Created Date'
         ];
     }
 
+    /**
+     * @return array
+     */
     public static function getDefaultFields()
     {
         return [
@@ -275,5 +365,4 @@ class ReportDefinition
             'skills'
         ];
     }
-
-} 
+}

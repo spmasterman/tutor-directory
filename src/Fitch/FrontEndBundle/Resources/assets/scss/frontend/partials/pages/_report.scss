@@ -1,10 +1,39 @@
 
 #report-holder {
-  th, td {
-    white-space: nowrap;
+  &.nowrap {
+    th, td {
+      white-space: nowrap;
+    }
   }
+
+  th {
+    border-right: 1px dotted $table-border-color;
+  }
+
   div.dataTables_wrapper {
     width: 100%;
     margin: 0 auto;
   }
+}
+
+.divider{
+  color:#ccc;
+  width:70%;
+  margin:20px auto;
+  overflow:hidden;
+  text-align:center;
+  line-height:1.2em;
+}
+
+.divider:before, .divider:after{
+  content:"";
+  vertical-align:top;
+  display:inline-block;
+  width:50%;
+  height:0.65em;
+  border-bottom:1px solid #ccc;
+  margin:0 2% 0 -55%;
+}
+.divider:after{
+  margin:0 -55% 0 2%;
 }

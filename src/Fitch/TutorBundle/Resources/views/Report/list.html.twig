@@ -5,5 +5,33 @@
 {% endblock %}
 
 {% block main_content -%}
-    {% include 'FitchTutorBundle:Report:header.html.twig' %}
+    {% if reports|length > 0 %}
+        {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+        <div class="widget widget-table">
+        {{ helper.widget_header('Existing Reports', 'fa fa-list-alt', 'widget-report-existing') }}
+            <table class="records_list table table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th>{% trans %}report.column.name{% endtrans %}</th>
+                    <th>{% trans %}file_type.column.actions{% endtrans %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for report in reports %}
+                    <tr>
+                        <td><a href="{{ path('report_show', { 'id': report.id }) }}">{{ report.name }}</a></td>
+                        <td>
+                            <a href="{{ path('report_show', { 'id': report.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                            <a href="{{ path('report_edit', { 'id': report.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {{ helper.widget_footer()}}
+        </div>
+
+        <p class="divider">{% trans %}report.create.intro{% endtrans %}</p>
+    {% endif %}
+    {% include 'FitchTutorBundle:Report:definition.html.twig' %}
 {% endblock %}

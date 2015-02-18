@@ -217,7 +217,12 @@
 
 	&.widget-focus-enabled {
 		z-index: 999;
- 		position: relative;
+// 		position: relative;
+	  position: absolute;
+	  top: 5vh;
+	  left: 2vw;
+	  width: 96vw;
+	  min-height: 90vh;
 	}
 
 	.widget-header {

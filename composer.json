@@ -38,7 +38,8 @@
         "exercise/htmlpurifier-bundle": "~0.1",
         "datatables/datatables": "1.10.5",
         "hautelook/alice-bundle": "~0.2",
-        "smalot/pdfparser": "*"
+        "smalot/pdfparser": "*",
+        "jms/serializer-bundle": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

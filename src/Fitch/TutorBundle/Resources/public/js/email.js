@@ -40,7 +40,7 @@
                 return $el;
             };
 
-            fillItems(this.$select, [{value:'primary', text:'Primary'},{value:'other', text:'Other'}]);
+            fillItems(this.$select, [{value:'Primary', text:'Primary'},{value:'Other', text:'Other'}]);
         },
 
         /**

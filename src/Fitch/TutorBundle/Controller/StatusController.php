@@ -73,7 +73,7 @@ class StatusController extends Controller
         ];
     }
 
-    /**
+   /**
     * Creates a form to create a Status entity.
     *
     * @param Status $entity The entity

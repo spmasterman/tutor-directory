@@ -1,4 +1,4 @@
 Fitch\TutorBundle\Entity\Email:
     email-{1..100}:
-        type: <randomElement(['primary','other'])>
+        type: <randomElement(['Primary','Other'])>
         address: <safeEmail()>

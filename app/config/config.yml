@@ -56,6 +56,8 @@ assetic:
 #                - '%kernel.root_dir%/../components/moment/moment.js'
                 - '%kernel.root_dir%/../vendor/datatables/datatables/media/js/jquery.dataTables.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/dataTables.bootstrap.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/dataTables.colReorder.js'
+                - '@FitchFrontEndBundle/Resources/assets/js/dataTables.colResize.js'
                 - '@FitchFrontEndBundle/Resources/assets/js/jquery.highlight.js'
             filters: [?yui_js]
         jqueryui_js:

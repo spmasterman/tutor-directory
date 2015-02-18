@@ -42,21 +42,26 @@ $(document).ready(function(){
     // widget focus
     $('.widget .btn-focus').clickToggle(
         function(e) {
+            // zoom
             e.preventDefault();
+
             $(this).find('i.fa-eye').toggleClass('fa-eye-slash');
             $(this).parents('.widget').find('.btn-remove').addClass('link-disabled');
             $(this).parents('.widget').addClass('widget-focus-enabled');
+            $('div.content-wrapper').css('position','inherit');
             $('<div id="focus-overlay"></div>').hide().appendTo('body').fadeIn(300);
 
         },
         function(e) {
             e.preventDefault();
+            // revert
             $theWidget = $(this).parents('.widget');
 
             $(this).find('i.fa-eye').toggleClass('fa-eye-slash');
             $theWidget.find('.btn-remove').removeClass('link-disabled');
             $('body').find('#focus-overlay').fadeOut(function(){
                 $(this).remove();
+                $('div.content-wrapper').css('position','relative')
                 $theWidget.removeClass('widget-focus-enabled');
             });
         }

@@ -8,6 +8,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // Standard Edition
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -15,16 +16,21 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Oneup\UploaderBundle\OneupUploaderBundle(),
-            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+
+            // 3rd party additional
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            // Application
             new Fitch\FrontEndBundle\FitchFrontEndBundle(),
             new Fitch\CommonBundle\FitchCommonBundle(),
             new Fitch\UserBundle\FitchUserBundle(),

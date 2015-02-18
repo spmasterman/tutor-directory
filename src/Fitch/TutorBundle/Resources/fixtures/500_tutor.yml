@@ -1,7 +1,7 @@
 Fitch\TutorBundle\Entity\Tutor:
     tutor-{1..60}:
         name (unique): <name()>
-        tutorType: @tutor-type-*
+        tutorType: @tutor_type-*
         linkedInURL: 5%? http://uk.linkedin.com/pub/shaun-masterman/7/389/969/
         bio: <paragraph(3)>
         status: @status-*

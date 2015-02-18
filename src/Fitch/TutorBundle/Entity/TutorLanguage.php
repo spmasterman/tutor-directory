@@ -43,7 +43,7 @@ class TutorLanguage implements IdentityTraitInterface, TimestampableTraitInterfa
     protected $note;
 
     /**
-     * @return mixed
+     * @return Tutor
      */
     public function getTutor()
     {
@@ -51,7 +51,7 @@ class TutorLanguage implements IdentityTraitInterface, TimestampableTraitInterfa
     }
 
     /**
-     * @param mixed $tutor
+     * @param Tutor $tutor
      * @return $this
      */
     public function setTutor($tutor)

@@ -1,0 +1,5 @@
+Fitch\TutorBundle\Entity\TutorLanguage:
+    tutorlanguage-{1..200}:
+        tutor: @tutor-*
+        language: @language_active-*
+        note: 20%? <sentence()>

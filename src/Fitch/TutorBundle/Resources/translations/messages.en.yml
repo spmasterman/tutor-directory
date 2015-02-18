@@ -317,4 +317,14 @@ report:
     title: Trainer Report
     tagline: dynamic trainer reports
     header:
-        intro: Filter the report using the form below. Leave any filter blank to have it be inactive (you do not need to select ALL the checkboxes ina group)
+        intro: Leave any section blank to have it be inactive (you do not need to select ALL the checkboxes in a group). Items marked '[Restricted]' below will not display or come into effect for users that do not have appropriate rights
+    create:
+        intro: Or define a new report below (you will be able to save it later)
+    delete:
+        success: The report has been deleted
+    new:
+        success: The report has been saved
+    edit:
+        success: The report has been saved
+    column:
+        name: Report Name
