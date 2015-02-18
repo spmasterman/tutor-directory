@@ -317,7 +317,7 @@ report:
     title: Trainer Report
     tagline: dynamic trainer reports
     header:
-        intro: Leave any section blank to have it be inactive (you do not need to select ALL the checkboxes in a group). Items marked '[Restricted]' below will not display or come into effect for users that do not have appropriate rights
+        intro: Leave any section blank to have it be inactive (you do not need to select ALL the checkboxes in a group). Items marked '[Restricted]' below will not display or come into effect for users that do not have appropriate rights even if the report is saved.
     create:
         intro: Or define a new report below (you will be able to save it later)
     delete:

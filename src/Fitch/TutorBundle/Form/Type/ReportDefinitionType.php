@@ -101,7 +101,7 @@ class ReportDefinitionType extends AbstractType
                 'rate',
                 new RateType($this->translator, $this->currencyManager, $this->rateManager),
                 [
-                    'attr' => ['class' => 'inline-subform',],
+                    'attr' => ['class' => 'inline-subform stacked-group',],
                     'label' => 'Rate [Restricted]'
                 ]
             )

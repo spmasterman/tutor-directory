@@ -22,7 +22,9 @@ class MenuBuilder extends ContainerAware
             ->setChildrenAttribute('class', 'main-menu')
         ;
 
-        $this->addTutorTypes($menu)
+        $this
+            ->addReports($menu)
+            ->addTutorTypes($menu)
             ->addStatus($menu)
             ->addRegions($menu)
             ->addCountries($menu)
@@ -51,10 +53,12 @@ class MenuBuilder extends ContainerAware
 
         $homeNode = $menu
             ->addChild('menu.home', ['route' => 'home'])
-            ->setExtra('translation_domain', 'FitchFrontEndBundle')
+            ->setExtra('translation_domain', 'menu')
             ->setAttribute('icon', 'fa fa-home fa-fw');
 
-        $this->addTutorTypes($homeNode)
+        $this
+            ->addReports($homeNode)
+            ->addTutorTypes($homeNode)
             ->addStatus($homeNode)
             ->addRegions($homeNode)
             ->addCountries($homeNode)
@@ -83,11 +87,11 @@ class MenuBuilder extends ContainerAware
 
         $menu->addChild('menu.user.profile', ['route' => 'fos_user_profile_show'])
                 ->setAttribute('icon', 'fa fa-user fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->getParent()
              ->addChild('menu.user.logout', ['route' => 'fos_user_security_logout'])
                 ->setAttribute('icon', 'fa fa-power-off fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->getParent();
 
         $security = $this->container->get('security.context');
@@ -107,11 +111,32 @@ class MenuBuilder extends ContainerAware
                     ]
                 ])
                 ->setAttribute('icon', 'fa fa-eject fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->getParent();
         }
 
         return $menu;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return $this
+     */
+    private function addReports(ItemInterface $menu)
+    {
+        if (false !== $this->container->get('security.context')->isGranted('ROLE_USER')) {
+            $menu
+                ->addChild('menu.report', ['route' => 'report_header'])
+                ->setAttribute('icon', 'fa fa-list-alt fa-fw')
+                ->setExtra('translation_domain', 'menu')
+                ->setExtra('routes', [
+                    ['pattern' => '/report/']
+                ])
+            ;
+        }
+
+        return $this;
     }
 
     /**
@@ -125,7 +150,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.tutor_type', ['route' => 'tutor_type'])
                 ->setAttribute('icon', 'fa fa-child fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/tutor_type/']
                 ])
@@ -145,7 +170,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.tutor_status', ['route' => 'status'])
                 ->setAttribute('icon', 'fa fa-tag fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/status/']
                 ])
@@ -165,7 +190,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.regions', ['route' => 'region'])
                 ->setAttribute('icon', 'fa fa-globe fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/region/']
                 ])
@@ -185,7 +210,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.countries', ['route' => 'country'])
                 ->setAttribute('icon', 'fa fa-flag-o fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/country/']
                 ])
@@ -205,7 +230,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.currencies', ['route' => 'currency'])
                 ->setAttribute('icon', 'fa fa-money fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/currency/']
                 ])
@@ -225,7 +250,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.languages', ['route' => 'language'])
                 ->setAttribute('icon', 'fa fa-language fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/language/']
                 ])
@@ -245,7 +270,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.file_type', ['route' => 'file_type'])
                 ->setAttribute('icon', 'fa fa-files-o fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/file_type/']
                 ])
@@ -266,7 +291,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.competency_type', ['route' => 'competency_type'])
                 ->setAttribute('icon', 'fa fa-bullseye fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/competency_type/']
                 ])
@@ -286,7 +311,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.competency_level', ['route' => 'competency_level'])
                 ->setAttribute('icon', 'fa fa-signal fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/competency_level/']
                 ])
@@ -306,7 +331,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.user_management', ['route' => 'user'])
                 ->setAttribute('icon', 'fa fa-users fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/user/']
                 ])
@@ -326,7 +351,7 @@ class MenuBuilder extends ContainerAware
             $menu
                 ->addChild('menu.profile')
                 ->setAttribute('icon', 'fa fa-mortar-board fa-fw')
-                ->setExtra('translation_domain', 'FitchFrontEndBundle')
+                ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/profile/']
                 ])
