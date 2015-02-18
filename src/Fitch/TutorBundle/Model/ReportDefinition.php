@@ -7,9 +7,13 @@ use Fitch\TutorBundle\Entity\CompetencyType;
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\OperatingRegion;
+use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Status;
+use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorType;
+use Fitch\UserBundle\Entity\User;
 use JMS\Serializer\Annotation\Type;
+use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\Form\FormInterface;
 
 class ReportDefinition
@@ -364,5 +368,171 @@ class ReportDefinition
             'region',
             'skills'
         ];
+    }
+
+    /**
+     * @param Factory $excelFactory
+     * @param User $user
+     * @param Report $report
+     * @param Tutor[] $data
+     *
+     * @return \PHPExcel
+     * @throws \PHPExcel_Exception
+     */
+    public function createPHPExcelObject(Factory $excelFactory, User $user, Report $report, $data)
+    {
+        $phpExcel = $excelFactory->createPHPExcelObject();
+
+        $phpExcel->getProperties()->setCreator("Fitch Learning")
+            ->setLastModifiedBy($user->getFullName() . '(' . $user->getEmail() . ')')
+            ->setTitle($report->getName())
+            ->setSubject("Fitch Learning Trainer Report")
+            ->setDescription("Report created by the Fitch Trainer system")
+            ->setKeywords("office 2005 openxml php")
+            ->setCategory("Result file");
+
+        $this->populateSheet($phpExcel, 0, $data);
+
+        $phpExcel->getActiveSheet()->setTitle('ReportData');
+        // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+        $phpExcel->setActiveSheetIndex(0);
+        return $phpExcel;
+    }
+
+    private function populateSheet(\PHPExcel $phpExcel, $sheet, $data)
+    {
+        $phpExcel->setActiveSheetIndex($sheet)
+
+//        {% if definition.isFieldDisplayed('name') %}<th>Name</th>{% endif %}
+//            {% if definition.isFieldDisplayed('tutor_type') %}<th>Type</th>{% endif %}
+//            {% if definition.isFieldDisplayed('status') %}<th>Status</th>{% endif %}
+//            {% if definition.isFieldDisplayed('region') %}<th>Region</th>{% endif %}
+//            {% if definition.isFieldDisplayed('languages') %}<th>Language(s)</th>{% endif %}
+//            {% if definition.isFieldDisplayed('addresses') %}<th>Address(es)</th>{% endif %}
+//            {% if definition.isFieldDisplayed('emails') %}<th>Email(s)</th>{% endif %}
+//            {% if definition.isFieldDisplayed('phones') %}<th>Phone Number(s)</th>{% endif %}
+//            {% if definition.isFieldDisplayed('skills') %}<th>Skills</th>{% endif %}
+//            {% if unrestricted and definition.isFieldDisplayed('rates') %}<th>Rates</th>{% endif %}
+//            {% if definition.isFieldDisplayed('bio') %}<th>Biography</th>{% endif %}
+//            {% if definition.isFieldDisplayed('linkedin') %}<th>LinkedIn Profile</th>{% endif %}
+//            {% if unrestricted and definition.isFieldDisplayed('notes') %}<th>Terms of Engagement Notes</th>{% endif %}
+//            {% if definition.isFieldDisplayed('created') %}<th>Created</th>{% endif %}
+//        </tr>
+//        </thead>
+//        <tbody>
+//        {% for tutor in data %}
+//            <tr>
+//                {% if definition.isFieldDisplayed('name') %}<td>{{ tutor.getName }}</td>{% endif %}
+//                {% if definition.isFieldDisplayed('tutor_type') %}<td>{{ tutor.getTutorType }}</td>{% endif %}
+//                {% if definition.isFieldDisplayed('status') %}<td>{{ tutor.getStatus }}</td>{% endif %}
+//                {% if definition.isFieldDisplayed('region') %}<td>{{ tutor.getRegion }}</td>{% endif %}
+//                {% if definition.isFieldDisplayed('languages') %}
+//                    <td>
+//                        {% for tutorLanguage in tutor.getTutorLanguages %}
+//                            {% if loop.first %}
+//                                <ul class="fa-ul">
+//                            {% endif %}
+//                            <li><i class="fa-li fa fa-language"></i>{{ tutorLanguage.getLanguage }} {% if tutorLanguage.getNote %} - <em>{{ tutorLanguage.getNote }}</em>{% endif %}</li>
+//                            {% if loop.last %}
+//                                </ul>
+//                            {% endif %}
+//                        {% endfor %}
+//                    </td>
+//                {% endif %}
+//                {% if definition.isFieldDisplayed('addresses') %}
+//                    <td>
+//                        {% for address in tutor.getAddresses %}
+//                            {% if loop.first %}
+//                                <ul class="fa-ul">
+//                            {% endif %}
+//                            <li><i class="fa-li fa fa-envelope-o"></i>{{ address }} ({{ address.getType }})</li>
+//                            {% if loop.last %}
+//                                </ul>
+//                            {% endif %}
+//                        {% endfor %}
+//                    </td>
+//                {% endif %}
+//                {% if definition.isFieldDisplayed('emails') %}
+//                    <td>
+//                        {% for email in tutor.getEmailAddresses %}
+//                            {% if loop.first %}
+//                                <ul class="fa-ul">
+//                            {% endif %}
+//                            <li><i class="fa-li fa fa-at"></i>{{ email }} ({{ email.getType }})</li>
+//                            {% if loop.last %}
+//                                </ul>
+//                            {% endif %}
+//                        {% endfor %}
+//                    </td>
+//                {% endif %}
+//                {% if definition.isFieldDisplayed('phones') %}
+//                    <td>
+//                        {% for phoneNumber in tutor.getPhoneNumbers %}
+//                            {% if loop.first %}
+//                                <ul class="fa-ul">
+//                            {% endif %}
+//                            <li><i class="fa-li fa fa-phone"></i>{% if phoneNumber.isPreferred %}<strong>{% endif %}{{ phoneNumber }}{% if phoneNumber.isPreferred %}</strong>{% endif %}</li>
+//                            {% if loop.last %}
+//                                </ul>
+//                            {% endif %}
+//                        {% endfor %}
+//                    </td>
+//                {% endif %}
+//                {% if definition.isFieldDisplayed('skills') %}
+//                    <td>
+//                        {% for competency in tutor.getCompetencies %}
+//                            {% if loop.first %}
+//                                <ul class="fa-ul">
+//                            {% endif %}
+//                            <li><i class="fa-li fa fa-square"></i>{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}{% if competency.getCompetencyLevel %} ({{ competency.getCompetencyLevel.getName }}){% endif %}{% if competency.getNote %} - <em>{{ competency.getNote }}</em>{% endif %}</li>
+//                            {% if loop.last %}
+//                                </ul>
+//                            {% endif %}
+//                        {% endfor %}
+//                    </td>
+//                {% endif %}
+//                {% if unrestricted %}
+//                    {% if definition.isFieldDisplayed('rates') %}
+//                        <td>
+//                            {% for rate in tutor.getRates %}
+//                                {% if loop.first %}
+//                                    <ul class="fa-ul">
+//                                {% endif %}
+//                                <li><i class="fa-li fa fa-money"></i>{{ rate.getName }} Rate: {{ rate.getAmount|number_format(2, '.', ',') }} {{ tutor.getCurrency.getThreeDigitCode }} ({{ (rate.getAmount * (tutor.getCurrency.getToGBP / definition.getReportCurrencyToGBP))|number_format(2, '.', ',') }} {{ definition.getReportCurrencyThreeLetterCode }})</li>
+//                                {% if loop.last %}
+//                                    </ul>
+//                                {% endif %}
+//                            {% endfor %}
+//                        </td>
+//                    {% endif %}
+//                {% endif %}
+//                {% if definition.isFieldDisplayed('bio') %}<td>{{ tutor.getBio }}</td>{% endif %}
+//                {% if definition.isFieldDisplayed('linkedin') %}
+//                    <td>
+//                        {% if tutor.getLinkedInURL %}
+//                            <a href="{{ tutor.getLinkedInURL }}" target="_blank">{{ tutor.getLinkedInURL }}</a>
+//                        {% endif %}
+//                    </td>
+//                {% endif %}
+//                {% if unrestricted and definition.isFieldDisplayed('notes') %}
+//                    <td>
+//                        {% for note in tutor.getNotes %}
+//                            {% if loop.first %}
+//                                <ul class="fa-ul">
+//                            {% endif %}
+//                            <li><i class="fa-li fa fa-comment-o"></i>{{ note.getBody }} - <em>{{ note.getProvenance }}</em></li>
+//                            {% if loop.last %}
+//                                </ul>
+//                            {% endif %}
+//                        {% endfor %}
+//                    </td>
+//                {% endif %}
+//                {% if definition.isFieldDisplayed('created') %}<td>{{ tutor.getCreated|localizeddate('medium','none') }}</td>{% endif %}
+//            </tr>
+//        {% endfor %}
+//
+            ->setCellValue('A1', 'Hello')
+            ->setCellValue('B2', 'world!');
+
     }
 }

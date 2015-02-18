@@ -39,7 +39,8 @@
         "datatables/datatables": "1.10.5",
         "hautelook/alice-bundle": "~0.2",
         "smalot/pdfparser": "*",
-        "jms/serializer-bundle": "*"
+        "jms/serializer-bundle": "*",
+        "liuggio/excelbundle": "~2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

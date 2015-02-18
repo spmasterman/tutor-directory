@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Report controller - manages a filterable, savable report that is a little more dynamic than the searchable table
@@ -70,7 +71,7 @@ class ReportController extends Controller
         return [
             'form' => $form->createView(),
             'saveForm' => $this->createCreateForm($report)->createView(),
-            'data' => $this->getTutorManager()->getReportData($reportDefinition),
+            'data' => $this->getReportData($reportDefinition),
             'definition' => $reportDefinition,
             'unrestricted' => $this->isGranted('ROLE_ADMIN')
         ];
@@ -90,15 +91,9 @@ class ReportController extends Controller
      */
     public function showAction(Report $report)
     {
-        /** @var ReportDefinition $reportDefinition */
-        $reportDefinition = $this->getSerializer()->deserialize(
-            $report->getDefinition(),
-            'Fitch\TutorBundle\Model\ReportDefinition',
-            'json'
-        );
-
+        $reportDefinition = $this->getReportDefinition($report);
         return [
-            'data' => $this->getTutorManager()->getReportData($reportDefinition),
+            'data' => $this->getReportData($reportDefinition),
             'definition' => $reportDefinition,
             'unrestricted' => $this->isGranted('ROLE_ADMIN'),
             'report' => $report
@@ -343,6 +338,59 @@ class ReportController extends Controller
                     )])
             ->getForm()
             ;
+    }
+
+    /**
+     * @param Report $report
+     * @return ReportDefinition
+     */
+    private function getReportDefinition(Report $report)
+    {
+        return $this->getSerializer()->deserialize(
+            $report->getDefinition(),
+            'Fitch\TutorBundle\Model\ReportDefinition',
+            'json'
+        );
+    }
+
+    /**
+     * @param ReportDefinition $reportDefinition
+     * @return \Fitch\TutorBundle\Entity\Tutor[]
+     */
+    private function getReportData(ReportDefinition $reportDefinition)
+    {
+        return $this->getTutorManager()->getReportData($reportDefinition);
+    }
+
+    /**
+     * Produces a Downloadable Excel Report entity. Lordy!
+     *
+     * @Route("/excel/{id}", requirements={"id" = "\d+"}, name="report_excel")
+     * @Method("GET")
+     *
+     * @param Report $report
+     *
+     * @return StreamedResponse
+     */
+    public function downloadExcelAction(Report $report)
+    {
+        $reportDefinition = $this->getReportDefinition($report);
+        $data = $this->getReportData($reportDefinition);
+
+        // create the writer
+        $writer = $this->get('phpexcel')->createWriter(
+            $reportDefinition->createPHPExcelObject($this->get('phpexcel'), $this->getUser(), $report, $data),
+            'Excel5'
+        );
+        // create the response
+        $response = $this->get('phpexcel')->createStreamedResponse($writer);
+        // adding headers
+        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment;filename=stream-file.xls');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Cache-Control', 'maxage=1');
+
+        return $response;
     }
 
     /**
