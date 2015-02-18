@@ -483,6 +483,17 @@ There are 4 bundles :
 Menus, Header Bar etc.
 * "Tutor" contains the main entities, their CRUD controllers and the controller for the main Profile and the Lookup table
 * "User" contains all the user management stuff (and relies heavily on FOSUserBundle) 
-  
-  
+
+12) Exchange Rates
+==================
+
+The system handles multiple currencies. The current Exchange Rate between each currency and GBP is maintained via polling
+to the YahooAPI. A cron task controls this. The API will only be queried once per day per currency and it will only 
+update a single currency each time it is run. So this cron task should run quite frequently (every minute is fine)
+
+Add the following to your /etc/crontab
+
+    # TUTOR XRate UPDATES                                                                                                                                                                                                                                                          
+    */1 *   * * *   root    cd /home/smasterman/source/tutor-directory && php app/console fitch:exchange-rate:update                                                                                                                                                               
+     
 EOF

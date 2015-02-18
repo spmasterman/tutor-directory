@@ -94,6 +94,19 @@ SQL;
             ;
         }
 
+        if ($definition->isFilteredByRate()) {
+            $qb
+                ->join('t.rates', 'ra')
+                ->join('t.currency', 'c')
+                ->andWhere('ra.amount ' . $definition->getRateLimitAsExpression('c'))
+            ;
+            if ($definition->isFilteredByRateType()) {
+               $qb->andWhere('LOWER(ra.name) IN ' . $definition->getRateTypesAsSet());
+            }
+
+        }
+$x = $qb->getQuery()->getSQL();
+
         return $qb->getQuery()->getResult();
     }
 }

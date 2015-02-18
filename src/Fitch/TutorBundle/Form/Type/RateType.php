@@ -55,7 +55,9 @@ class RateType extends AbstractType
                 'multiple' => false,
                 'choices' => [
                     'lt' => 'Less than',
+                    'lte' => 'Less than, or Equal',
                     'eq' => 'Equal',
+                    'gte' => 'Greater than, or Equal',
                     'gt' => 'Greater than',
                 ],
                 'attr' => [

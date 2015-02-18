@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 use Fitch\TutorBundle\Entity\Status;
@@ -22,6 +23,17 @@ class ReportDefinition
     /** @var array */
     private $languageIds = [];
 
+    /** @var array */
+    private $rateTypes = [];
+
+    /** @var string */
+    private $operator = '';
+
+    /** @var int */
+    private $rateAmount = 0;
+
+    /** @var Currency */
+    private $currency = null;
 
     /**
      * @param FormInterface $form
@@ -47,12 +59,55 @@ class ReportDefinition
             $this->languageIds[] = $language->getId();
         }
 
-
+        $this->rateTypes = $form->getData()['rate']['rateType'];
+        $this->operator = $form->getData()['rate']['operator'];
+        $this->rateAmount = $form->getData()['rate']['amount'];
+        $this->currency = $form->getData()['rate']['currency'];
 
 
         // etc...
 
 
+    }
+
+    public function isFilteredByRateType()
+    {
+        return (bool)count($this->rateTypes);
+    }
+
+    public function getRateTypesAsSet()
+    {
+        array_walk($this->rateTypes, function (&$value) {
+            $value = preg_replace("/[^[:alnum:][:space:]]/ui", '', strtolower($value));
+        });
+
+        return '(\'' . implode('\',\'', $this->rateTypes) . '\')' ;
+    }
+
+    public function getRateLimitAsExpression($tutorCurrencyAlias) {
+        switch ($this->operator) {
+            case 'lt' : $op = ' < '; break;
+            case 'lte' : $op = ' <= '; break;
+            case 'eq' : $op = ' = '; break;
+            case 'gte' : $op = ' >= '; break;
+            case 'gt' : $op = ' > '; break;
+            default: throw new \InvalidArgumentException($this->operator . ' is not a valid operator');
+        }
+
+        return " * ({$tutorCurrencyAlias}.toGBP / {$this->currency->getToGBP()}){$op}{$this->rateAmount}";
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilteredByRate()
+    {
+        // there can be no rate types BUT there must be an amount, operator and Currency
+        return
+            (bool)$this->operator
+            && $this->rateAmount
+            && $this->currency
+        ;
     }
 
     /**
