@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 use Fitch\TutorBundle\Entity\Status;
 use Fitch\TutorBundle\Entity\TutorType;
@@ -17,6 +18,10 @@ class ReportDefinition
 
     /** @var array */
     private $regionIds = [];
+
+    /** @var array */
+    private $languageIds = [];
+
 
     /**
      * @param FormInterface $form
@@ -36,9 +41,34 @@ class ReportDefinition
             $this->regionIds[] = $region->getId();
         }
 
+        /** @var Language $language */
+        $language = $form->getData()['language'];
+        if ($language instanceof Language) {
+            $this->languageIds[] = $language->getId();
+        }
+
+
+
+
         // etc...
 
 
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilteredByLanguage()
+    {
+        return (bool)count($this->languageIds);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguageIDsAsSet()
+    {
+        return $this->getIDsAsSet($this->languageIds);
     }
 
     /**

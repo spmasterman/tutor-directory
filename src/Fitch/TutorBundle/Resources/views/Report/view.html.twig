@@ -11,16 +11,19 @@
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table" id="report-holder">
     {{ helper.widget_header('Report', 'fa fa-list-alt', 'widget-report_content') }}
-        <div class="btn-group" style="float:right; margin-bottom:5px;"><div class="sr-only" id="ttbuttons" ></div></div>
-        <table id="report"  class="table table-sorting table-striped table-hover datatable" cellpadding="0" cellspacing="0" width="100%">
+        <table id="report" class="table table-sorting table-striped table-hover table-scrolling datatable" cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Trainer Type</th>
+                <th>Type</th>
                 <th>Status</th>
                 <th>Region</th>
-                <th>...</th>
-                <th>...</th>
+                <th>Language(s)</th>
+                <th>Address(es)</th>
+                <th>Email(s)</th>
+                <th>Phone Number(s)</th>
+                <th>Skills</th>
+                <th>Rates</th>
             </tr>
             </thead>
 
@@ -31,8 +34,66 @@
                 <td>{{ tutor.getTutorType }}</td>
                 <td>{{ tutor.getStatus }}</td>
                 <td>{{ tutor.getRegion }}</td>
-                <td>...</td>
-                <td>...</td>
+                <td>{% for tutorLanguage in tutor.getTutorLanguages %}
+                        {% if loop.first %}
+                            <ul class="fa-ul">
+                        {% endif %}
+                                <li><i class="fa-li fa fa-language"></i>{{ tutorLanguage.getLanguage }} {% if tutorLanguage.getNote %} - {{ tutorLanguage.getNote }}{% endif %}</li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{% for address in tutor.getAddresses %}
+                        {% if loop.first %}
+                            <ul class="fa-ul">
+                        {% endif %}
+                            <li><i class="fa-li fa fa-envelope-o"></i>{{ address }} ({{ address.getType }})</li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{% for email in tutor.getEmailAddresses %}
+                        {% if loop.first %}
+                            <ul class="fa-ul">
+                        {% endif %}
+                                <li><i class="fa-li fa fa-at"></i>{{ email }} ({{ email.getType }})</li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{% for phoneNumber in tutor.getPhoneNumbers %}
+                        {% if loop.first %}
+                            <ul class="fa-ul">
+                        {% endif %}
+                                <li><i class="fa-li fa fa-phone"></i>{{ phoneNumber }} </li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{% for competency in tutor.getCompetencies %}
+                        {% if loop.first %}
+                            <ul class="fa-ul">
+                        {% endif %}
+                               <li><i class="fa-li fa fa-square"></i>{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}{% if competency.getCompetencyLevel %} ({{ competency.getCompetencyLevel.getName }}){% endif %}{% if competency.getNote %} - {{ competency.getNote }}{% endif %}</li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{% for rate in tutor.getRates %}
+                        {% if loop.first %}
+                            <ul class="fa-ul">
+                        {% endif %}
+                                <li><i class="fa-li fa fa-money"></i>{{ rate.getName }} Rate: {{ rate.getAmount|number_format(2, '.', ',') }} {{ tutor.getCurrency.getThreeDigitCode }} ({{ (rate.getAmount * tutor.getCurrency.getToGBP)|number_format(2, '.', ',') }} GBP)</li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
             </tr>
             {% endfor %}
             </tbody>

@@ -86,6 +86,14 @@ SQL;
             ;
         }
 
+        if ($definition->isFilteredByLanguage()) {
+            $qb
+                ->leftJoin('t.tutorLanguages', 'tl')
+                ->leftJoin('tl.language', 'l')
+                ->andWhere('l.id IN ' . $definition->getLanguageIDsAsSet())
+            ;
+        }
+
         return $qb->getQuery()->getResult();
     }
 }

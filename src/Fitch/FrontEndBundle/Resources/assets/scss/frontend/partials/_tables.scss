@@ -135,6 +135,13 @@ table.dataTable {
   float: right;
 }
 
+.table_scrolling {
+  th,
+  td {
+    white-space: nowrap;
+  }
+}
+
 .table-sorting {
 
 	.sorting_asc,
