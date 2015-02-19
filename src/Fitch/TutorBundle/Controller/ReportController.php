@@ -394,7 +394,7 @@ class ReportController extends Controller
         $response = $this->getExcelFactory()->createStreamedResponse($writer);
         // adding headers
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
-        $response->headers->set('Content-Disposition', 'attachment;filename=stream-file.xls');
+        $response->headers->set('Content-Disposition', "attachment;filename=TrainerReport-{$report->getName()}.xls");
         $response->headers->set('Pragma', 'public');
         $response->headers->set('Cache-Control', 'maxage=1');
 
