@@ -14,6 +14,7 @@ use Fitch\TutorBundle\Model\ReportDefinition;
 use Fitch\TutorBundle\Model\ReportManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use JMS\Serializer\SerializerInterface;
+use Liuggio\ExcelBundle\Factory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -377,13 +378,20 @@ class ReportController extends Controller
         $reportDefinition = $this->getReportDefinition($report);
         $data = $this->getReportData($reportDefinition);
 
+
         // create the writer
-        $writer = $this->get('phpexcel')->createWriter(
-            $reportDefinition->createPHPExcelObject($this->get('phpexcel'), $this->getUser(), $report, $data),
-            'Excel5'
+        $writer = $this->getExcelFactory()->createWriter(
+            $reportDefinition->createPHPExcelObject(
+                $this->getExcelFactory(),
+                $this->getUser(),
+                $report,
+                $data,
+                $this->isGranted('ROLE_ADMIN')
+            ),
+            'Excel2007'
         );
         // create the response
-        $response = $this->get('phpexcel')->createStreamedResponse($writer);
+        $response = $this->getExcelFactory()->createStreamedResponse($writer);
         // adding headers
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
         $response->headers->set('Content-Disposition', 'attachment;filename=stream-file.xls');
@@ -456,6 +464,14 @@ class ReportController extends Controller
     private function getSerializer()
     {
         return $this->get('jms_serializer');
+    }
+
+    /**
+     * @return Factory
+     */
+    private function getExcelFactory()
+    {
+        return $this->get('phpexcel');
     }
 
 }
