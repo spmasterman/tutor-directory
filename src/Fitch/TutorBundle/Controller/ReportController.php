@@ -378,6 +378,12 @@ class ReportController extends Controller
         $reportDefinition = $this->getReportDefinition($report);
         $data = $this->getReportData($reportDefinition);
 
+        // generate filename (remove bad filename characters from the reportName
+
+        $filename = preg_replace("([^\w\s\d\-_~,;:\[\]\(\).])", '', $report->getName());
+        // Remove any runs of periods
+        $filename = preg_replace("([\.]{2,})", '', $filename);
+        $filename = "TrainerReport-{$filename}.xls";
 
         // create the writer
         $writer = $this->getExcelFactory()->createWriter(
@@ -394,7 +400,7 @@ class ReportController extends Controller
         $response = $this->getExcelFactory()->createStreamedResponse($writer);
         // adding headers
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
-        $response->headers->set('Content-Disposition', "attachment;filename=TrainerReport-{$report->getName()}.xls");
+        $response->headers->set('Content-Disposition', "attachment;filename={$filename}");
         $response->headers->set('Pragma', 'public');
         $response->headers->set('Cache-Control', 'maxage=1');
 
