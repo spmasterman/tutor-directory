@@ -48,7 +48,7 @@ class AppFixtures extends DataFixtureLoader
         switch($environment) {
             case 'prod': return $productionFixtures;
             case 'test': return $testFixtures;
-            default : return $developmentFixtures;
+            default : return $developmentFixtures; // demo, dev etc
         }
     }
 
