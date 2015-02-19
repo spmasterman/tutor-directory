@@ -330,3 +330,5 @@ report:
         name: Report Name
     toolbutton:
         excel: Download Excel
+        csv: Download CSV
+        pdf: Download PDF

@@ -3,7 +3,9 @@
     {{ helper.widget_header('Report', 'fa fa-list-alt', 'widget-report_content') }}
     {% if report is defined %}
     <div class="report-tools">
-        <a href="{{ path('report_excel', {id : report.getId()}) }}" class="btn btn-xs btn-default"><i class="fa fa-file-excel-o"></i>{% trans %}report.toolbutton.excel{% endtrans %}</a>
+        <a href="{{ path('report_download', {id : report.getId(), format: 'excel'}) }}" class="btn btn-xs btn-default"><i class="fa fa-file-excel-o"></i>{% trans %}report.toolbutton.excel{% endtrans %}</a>
+        <a href="{{ path('report_download', {id : report.getId(), format: 'csv'}) }}" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i>{% trans %}report.toolbutton.csv{% endtrans %}</a>
+        <a href="{{ path('report_download', {id : report.getId(), format: 'pdf'}) }}" class="btn btn-xs btn-default"><i class="fa fa-file-pdf-o"></i>{% trans %}report.toolbutton.pdf{% endtrans %}</a>
     </div>
     {% endif %}
     <table id="report" class="table table-sorting table-striped table-hover table-scrolling datatable" cellpadding="0" cellspacing="0" width="100%">

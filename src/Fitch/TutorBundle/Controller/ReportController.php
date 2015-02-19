@@ -13,6 +13,7 @@ use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Fitch\TutorBundle\Model\ReportManager;
 use Fitch\TutorBundle\Model\TutorManager;
+use InvalidArgumentException;
 use JMS\Serializer\SerializerInterface;
 use Liuggio\ExcelBundle\Factory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -366,24 +367,52 @@ class ReportController extends Controller
     /**
      * Produces a Downloadable Excel Report entity. Lordy!
      *
-     * @Route("/excel/{id}", requirements={"id" = "\d+"}, name="report_excel")
+     * @Route("/download/{format}/{id}", requirements={"id" = "\d+"}, name="report_download")
      * @Method("GET")
      *
      * @param Report $report
      *
+     * @param $format
      * @return StreamedResponse
+     * @throws \Exception
      */
-    public function downloadExcelAction(Report $report)
+    public function downloadAction(Report $report, $format)
     {
         $reportDefinition = $this->getReportDefinition($report);
         $data = $this->getReportData($reportDefinition);
 
         // generate filename (remove bad filename characters from the reportName
-
         $filename = preg_replace("([^\w\s\d\-_~\[\]\(\).])", '', $report->getName());
         // Remove any runs of periods
         $filename = preg_replace("([\.]{2,})", '', $filename);
-        $filename = "TrainerReport-{$filename}.xls";
+
+        // Setup the bits that vary by {format}
+        switch ($format) {
+            case 'excel':
+                $fileFormat = 'Excel2007';
+                $filename = "TrainerReport-{$filename}.xls";
+                $contentType = "text/vnd.ms-excel; charset=utf-8";
+                break;
+            case 'csv':
+                $fileFormat = 'CSV';
+                $filename = "TrainerReport-{$filename}.csv";
+                $contentType = "text/csv";
+                break;
+            case 'pdf':
+                $fileFormat = 'PDF';
+                $filename = "TrainerReport-{$filename}.pdf";
+                $contentType = "application/pdf";
+
+                $rendererName = \PHPExcel_Settings::PDF_RENDERER_TCPDF;
+                $rendererLibraryPath = $this->get('kernel')->getRootDir() . '/../vendor/tecnick.com/tcpdf';
+
+                if (!\PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath )) {
+                    throw new \Exception('PDF Renderer is not properly installed');
+                }
+                break;
+            default:
+                throw new InvalidArgumentException($format . ' is not a valid download type.');
+        }
 
         // create the writer
         $writer = $this->getExcelFactory()->createWriter(
@@ -394,12 +423,17 @@ class ReportController extends Controller
                 $data,
                 $this->isGranted('ROLE_ADMIN')
             ),
-            'Excel2007'
+            $fileFormat
         );
-        // create the response
-        $response = $this->getExcelFactory()->createStreamedResponse($writer);
+
+        $response = new StreamedResponse(
+            function () use ($writer) {
+                $writer->save('php://output');
+            }
+        );
+
         // adding headers
-        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Content-Type', $contentType);
         $response->headers->set('Content-Disposition', "attachment;filename={$filename}");
         $response->headers->set('Pragma', 'public');
         $response->headers->set('Cache-Control', 'maxage=1');

@@ -442,6 +442,12 @@ class ReportDefinition
 
         $sheet = $phpExcel->setActiveSheetIndex($sheetNum);
         $sheet->getDefaultRowDimension()->setRowHeight(18);
+        $sheet->setShowGridlines(false);
+        $sheet->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+        $sheet->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+        $sheet->getPageSetup()->setFitToPage(true);
+        $sheet->getPageSetup()->setFitToWidth(1);
+        $sheet->getPageSetup()->setFitToHeight(0);
 
         // Set Reportr Title
         $sheet->setCellValue('A1', $report->getName());
