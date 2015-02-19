@@ -13,3 +13,14 @@ monolog:
             level: debug
         console:
             type:  console
+
+knp_gaufrette:
+    adapters:
+        tutor:
+            local:
+                directory: %kernel.root_dir%/../filestore/tutor
+                create: true
+    filesystems:
+        tutor:
+            adapter: tutor
+    stream_wrapper: ~
