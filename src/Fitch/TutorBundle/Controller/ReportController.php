@@ -380,7 +380,7 @@ class ReportController extends Controller
 
         // generate filename (remove bad filename characters from the reportName
 
-        $filename = preg_replace("([^\w\s\d\-_~,;:\[\]\(\).])", '', $report->getName());
+        $filename = preg_replace("([^\w\s\d\-_~\[\]\(\).])", '', $report->getName());
         // Remove any runs of periods
         $filename = preg_replace("([\.]{2,})", '', $filename);
         $filename = "TrainerReport-{$filename}.xls";
