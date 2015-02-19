@@ -34,7 +34,21 @@ class TutorController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        $features = [];
+
+        if ($this->isGranted('ROLE_EDITOR')) {
+            $features[] = 'add_tutor';
+        }
+
+        if($this->isGranted('ROLE_FULL_USER') || $this->isGranted('ROLE_EDITOR')) {
+            $features[] = 'advanced_report';
+        } else {
+            $features[] = 'list_of_reports';
+        }
+
+        return [
+            'features' => $features
+        ];
     }
 
     /**

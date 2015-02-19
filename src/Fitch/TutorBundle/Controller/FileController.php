@@ -89,16 +89,16 @@ class FileController extends Controller
                 'FitchTutorBundle:Profile:file_row_inner.html.twig',
                 [
                     'file' => $file,
-                    'editor' => (bool) $this->get('security.context')->isGranted('ROLE_EDITOR'),
-                    'admin' => (bool) $this->get('security.context')->isGranted('ROLE_ADMIN'),
+                    'editor' => $this->isGranted('ROLE_EDITOR'),
+                    'admin' => $this->isGranted('ROLE_ADMIN'),
                 ]
             ),
             'renderedAvatar' => $this->renderView(
                 'FitchTutorBundle:Profile:avatar.html.twig',
                 [
                     'tutor' => $file->getTutor(),
-                    'editor' => (bool) $this->get('security.context')->isGranted('ROLE_EDITOR'),
-                    'admin' => (bool) $this->get('security.context')->isGranted('ROLE_ADMIN'),
+                    'editor' => $this->isGranted('ROLE_EDITOR'),
+                    'admin' => $this->isGranted('ROLE_ADMIN'),
                 ]
             )
         ]);

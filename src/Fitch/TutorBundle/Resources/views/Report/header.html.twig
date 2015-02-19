@@ -1,0 +1,14 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}report.title{% endtrans %}</h2>
+    <em>{% trans %}report.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% include 'FitchTutorBundle:Report:list.html.twig' %}
+    {% if reports|length > 0 %}
+        <p class="divider">{% trans %}report.create.intro{% endtrans %}</p>
+    {% endif %}
+    {% include 'FitchTutorBundle:Report:definition.html.twig' %}
+{% endblock %}

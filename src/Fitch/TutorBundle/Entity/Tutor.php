@@ -21,9 +21,10 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
     use IdentityTrait, TimestampableTrait;
 
     // These constants are used to control access to individual tutors via the TutorVoter class.
-    const ACCESS_LEVEL_VIEW = 'view';
-    const ACCESS_LEVEL_LIMITED_EDIT = 'edit';
-    const ACCESS_LEVEL_FULL_EDIT = 'all';
+    const ACCESS_LEVEL_LIMITED_VIEW = 'Limited View';
+    const ACCESS_LEVEL_FULL_VIEW = 'Full View';
+    const ACCESS_LEVEL_LIMITED_EDIT = 'Limited Edit';
+    const ACCESS_LEVEL_FULL_EDIT = 'Full Edit';
 
     /**
      * @var string

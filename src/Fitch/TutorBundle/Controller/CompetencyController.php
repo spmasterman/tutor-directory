@@ -117,7 +117,7 @@ class CompetencyController extends Controller
                 [
                     'tutor' => $tutor,
                     'competency' => $competency,
-                    'editor' => (bool) $this->get('security.context')->isGranted('ROLE_EDITOR')
+                    'editor' => $this->isGranted('ROLE_EDITOR')
                 ]
             ),
         ]);

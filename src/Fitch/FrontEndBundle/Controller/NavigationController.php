@@ -14,7 +14,7 @@ class NavigationController extends Controller
     /**
      * @return array
      *
-     * @Route("/mainbar", name="dashboard_main_bar")
+     * @Route("/mainbar", name="dashboard_mainbar")
      * @Template
      * @Method("GET")
      */
@@ -26,13 +26,14 @@ class NavigationController extends Controller
     /**
      * @return array
      *
-     * @Route("/sidemenu", name="dashboard_side_menu")
+     * @Route("/sidebar", name="dashboard_sidebar")
      * @Template
      * @Method("GET")
      */
-    public function sidemenuAction()
+    public function sidebarAction()
     {
         return [
+            'sidebarVisible' => $this->isGranted('ROLE_FULL_EDITOR'),
             'open' => $this->getUser()->isSideBarOpen()
         ];
     }
@@ -40,7 +41,7 @@ class NavigationController extends Controller
     /**
      * @return array
      *
-     * @Route("/toggle/menu", name="toggle_side_menu", options={"expose"=true})
+     * @Route("/toggle/sidebar", name="toggle_sidebar", options={"expose"=true})
      * @Template
      * @Method("GET")
      */

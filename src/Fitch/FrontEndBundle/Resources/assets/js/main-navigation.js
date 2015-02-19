@@ -43,7 +43,7 @@ $(document).ready(function(){
 
             $('.sidebar-minified').find('i').removeClass('fa-angle-left').addClass('fa-angle-right');
         }
-        $.getJSON(Routing.generate('toggle_side_menu'), {}, function() {});
+        $.getJSON(Routing.generate('toggle_sidebar'), {}, function() {});
     });
 
     /**

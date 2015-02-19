@@ -35,11 +35,12 @@ class TutorVoter implements VoterInterface
 
     public function supportsAttribute($attribute)
     {
-        return in_array($attribute, array(
-            Tutor::ACCESS_LEVEL_VIEW,
+        return in_array($attribute, [
+            Tutor::ACCESS_LEVEL_LIMITED_VIEW,
+            Tutor::ACCESS_LEVEL_FULL_VIEW,
             Tutor::ACCESS_LEVEL_LIMITED_EDIT,
             Tutor::ACCESS_LEVEL_FULL_EDIT,
-        ));
+        ]);
     }
 
     public function supportsClass($class)
@@ -66,7 +67,7 @@ class TutorVoter implements VoterInterface
         // check if the voter is used correct, only allow one attribute
         if (1 !== count($attributes)) {
             throw new \InvalidArgumentException(
-                'Only one attribute is allowed for VIEW, LIMITED_EDIT or FULL_EDIT'
+                'Only one attribute is allowed for Limited View, Full View, Limited Edit or Full Edit'
             );
         }
 
@@ -87,16 +88,21 @@ class TutorVoter implements VoterInterface
         }
 
         switch($attribute) {
-            case Tutor::ACCESS_LEVEL_VIEW:
+            case Tutor::ACCESS_LEVEL_LIMITED_VIEW:
                 return VoterInterface::ACCESS_GRANTED;
                 break;
+            case Tutor::ACCESS_LEVEL_FULL_VIEW:
+                if ($this->userHasRole($user, 'ROLE_FULL_USER')) {
+                    return VoterInterface::ACCESS_GRANTED;
+                }
+                break;
             case Tutor::ACCESS_LEVEL_LIMITED_EDIT:
-                if ($this->userHasRole($user, 'ROLE_EDITOR')) {
+                if ($this->userHasRole($user, 'ROLE_LIMITED_EDITOR')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
                 break;
             case Tutor::ACCESS_LEVEL_FULL_EDIT:
-                if ($this->userHasRole($user, 'ROLE_ADMIN')) {
+                if ($this->userHasRole($user, 'ROLE_FULL_EDITOR')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
                 break;

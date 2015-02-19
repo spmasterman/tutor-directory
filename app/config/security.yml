@@ -3,10 +3,28 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_USER:        ~
-        ROLE_EDITOR:      ROLE_USER
-        ROLE_ADMIN:       ROLE_EDITOR
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+        CAN_ACCESS_SIDEBAR: ~
+
+        CAN_VIEW_TUTOR: ~
+        CAN_EDIT_TUTOR: CAN_VIEW_TUTOR
+        CAN_CREATE_TUTOR: CAN_EDIT_TUTOR
+        CAN_ACCESS_SENSITIVE_DATA: CAN_VIEW_TUTOR
+
+        CAN_EDIT_LOOKUP_VALUES: [CAN_ACCESS_SIDEBAR]
+        CAN_CREATE_LOOKUP_VALUES: ~
+
+        CAN_VIEW_SAVED_REPORTS: ~
+        CAN_CREATE_AD_HOC_REPORTS: [CAN_ACCESS_SIDEBAR]
+        CAN_CREATE_SAVED_REPORTS: [CAN_CREATE_AD_HOC_REPORTS, CAN_VIEW_SAVED_REPORTS]
+
+        CAN_MANAGE_USERS: [CAN_ACCESS_SIDEBAR]
+
+        ROLE_USER: [CAN_VIEW_TUTOR, CAN_VIEW_SAVED_REPORTS]
+        ROLE_SENSITIVE_DATA: [ROLE_USER, CAN_ACCESS_SENSITIVE_DATA]
+        ROLE_EDITOR: [CAN_CREATE_TUTOR]
+        ROLE_ADMIN: [ROLE_EDITOR, ROLE_SENSITIVE_DATA, CAN_EDIT_LOOKUP_VALUES, CAN_CREATE_LOOKUP_VALUES]
+        ROLE_SUPER_ADMIN: [ROLE_EDITOR, ROLE_SENSITIVE_DATA, CAN_MANAGE_USERS]
 
     providers:
         fos_userbundle:
@@ -43,4 +61,5 @@ security:
         - { path: ^/editor, role: ROLE_EDITOR }
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/user, role: ROLE_SUPER_ADMIN }
+        - { path: ^/report, role: ROLE_USER }
 

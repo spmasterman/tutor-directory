@@ -43,3 +43,4 @@ navigation:
     deactivate:
       one: Deactivate
       all: Deactivate All
+    reports: Advanced Reports...

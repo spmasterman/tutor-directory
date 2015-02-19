@@ -1,7 +1,8 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
 {% block main_header -%}
-    <h2>{% trans %}home.title{% endtrans %}</h2><em>{% trans %}home.tagline{% endtrans %}</em>
+    <h2>{% trans %}home.title{% endtrans %}</h2>
+    <em>{% trans %}home.tagline{% endtrans %}</em>
 {% endblock %}
 
 {% block main_content -%}
@@ -35,13 +36,23 @@
         {{ helper.widget_footer() }}
     </div>
 
-    {%  if (is_granted('ROLE_EDITOR')) %}
+    {% if 'add_tutor' in features or 'advanced_report' in features %}
         <div class="record_actions well">
+            {% if 'add_tutor' in features  %}
             <a href="{{ path('tutor_new') }}" class="btn btn-default btn-s">
                 <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
             </a>
+            {% endif %}
+            {% if 'advanced_report' in features %}
+                <a href="{{ path('report_header') }}" class="btn btn-default btn-s">
+                    <i class="fa fa-list-alt"></i> {% trans %}navigation.reports{% endtrans %}
+                </a>
+            {% endif %}
         </div>
+    {% elseif 'list_of_reports' in features %}
+        {{ render(controller('FitchTutorBundle:Report:list', {})) }}
     {% endif %}
+
 {% endblock %}
 
 {% block javascripts %}

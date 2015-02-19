@@ -1,13 +1,13 @@
-
-{% if is_granted('ROLE_ADMIN') %}
+{% if sidebarVisible %}
     <div class="col-md-2 left-sidebar{% if not open %} minified{% endif %}">
         <nav class="main-nav">
             {{ knp_menu_render('FitchFrontEndBundle:MenuBuilder:sidebarMenu', {
-            'currentClass' : 'active',
-            'ancestorClass': 'active open',
-            'template': 'FitchFrontEndBundle:Menu:sidemenu.html.twig',
-            'depth' : 2
-            }) }}
+                    'currentClass' : 'active',
+                    'ancestorClass': 'active open',
+                    'template': 'FitchFrontEndBundle:Menu:sidemenu.html.twig',
+                    'depth' : 2
+                })
+            }}
         </nav>
 
         <div class="sidebar-minified js-toggle-minified">
@@ -18,5 +18,4 @@
         {% endblock %}
     </div>
 {% endif %}
-    <div class="{% if is_granted('ROLE_ADMIN') %}col-md-10{% else %}col-md-12{% endif %} content-wrapper{% if not open %} expanded{% endif %}">
-
+    <div class="{% if sidebarVisible %}col-md-10{% else %}col-md-12{% endif %} content-wrapper{% if not open %} expanded{% endif %}">

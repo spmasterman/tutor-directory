@@ -25,7 +25,12 @@
                         <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.userName }}</a></td>
                         <td>{{ user.fullName }}</td>
                         <td>{{ user.getEmail }}</td>
-                        <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
+                        <td>
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-check-square"></i><em>{{ 'ROLE_USER'|humanise_role }}</em></li>
+                                {% for role in user.getRoles if role != 'ROLE_USER' %}<li><i class="fa-li fa fa-plus-square"></i>{{ role|humanise_role }}</li> {% endfor %}
+                            </ul>
+                        </td>
                         <td>
                             <a href="{{ path('user_show', { 'id': user.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

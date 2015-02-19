@@ -35,12 +35,27 @@ class ReportController extends Controller
     /**
      * Lists all Report entities.
      *
-     * @Route("", name="report_header")
+     * @Route("list", name="report_list")
      * @Method("GET")
      *
      * @Template()
      */
     public function listAction()
+    {
+        return [
+            'reports' => $this->getReportManager()->findAll()
+        ];
+    }
+
+    /**
+     * Lists all Report entities.
+     *
+     * @Route("", name="report_header")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function headerAction()
     {
         return [
             'reports' => $this->getReportManager()->findAll(),
