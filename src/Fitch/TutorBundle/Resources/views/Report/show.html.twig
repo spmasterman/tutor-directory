@@ -1,6 +1,5 @@
 {% extends 'FitchTutorBundle:Report:view.html.twig' %}
 
-
 {% block main_header -%}
     <h2>{{ report.getName }}</h2><em>Created by: {{ report.getCreator.getFullName|default('Anonymous') }}</em>
 {% endblock %}

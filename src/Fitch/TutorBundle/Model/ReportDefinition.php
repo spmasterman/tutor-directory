@@ -439,18 +439,17 @@ class ReportDefinition
      */
     private function populateSheet(\PHPExcel $phpExcel, $sheetNum, Report $report, $data, $unrestricted)
     {
-        $self = $this;
 
         $sheet = $phpExcel->setActiveSheetIndex($sheetNum);
-
         $sheet->getDefaultRowDimension()->setRowHeight(18);
 
+        // Set Reportr Title
         $sheet->setCellValue('A1', $report->getName());
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setUnderline(true);
 
+        // Set Report Headert Row
         $row = 3;
         $col = 0;
-
         foreach (self::getAvailableFields() as $key => $value) {
             if ($this->isFieldDisplayed($key)) {
                 $sheet->setCellValueByColumnAndRow($col++, $row, $value);
@@ -458,39 +457,62 @@ class ReportDefinition
         }
         $this->headerFormat($sheet, 'A' . $row . ':' . Cell::stringFromColumnIndex(--$col) . $row, 'cccccc');
 
-
+        // Set Report Data
         foreach ($data as $tutor) {
             $row++;
             $col = 0;
             $maxLines = 1;
 
-            $this->scalarCell($sheet, 'name', $col++, $row, $tutor->getName(), 30);
-            $this->scalarCell($sheet, 'tutor_type', $col++, $row, $tutor->getTutorType()->getName(), 20);
-            $this->scalarCell($sheet, 'status', $col++, $row, $tutor->getStatus()->getName(), 30);
-            $this->scalarCell($sheet, 'region', $col++, $row, $tutor->getRegion()->getName(), 20);
+            $this->scalarCell($sheet, 'name', $col, $row, $tutor->getName(), 30);
+            $this->scalarCell($sheet, 'tutor_type', $col, $row, $tutor->getTutorType()->getName(), 20);
+            $this->scalarCell($sheet, 'status', $col, $row, $tutor->getStatus()->getName(), 30);
+            $this->scalarCell($sheet, 'region', $col, $row, $tutor->getRegion()->getName(), 20);
+            $this->arrayCell($sheet, 'languages', $col, $row, $tutor->getTutorLanguages(), 80, $maxLines, $this->getLanguageCellFormatter());
+            $this->arrayCell($sheet, 'skills', $col, $row, $tutor->getCompetencies(), 40, $maxLines, $this->getCompetencyCellFormatter());
+            $this->arrayCell($sheet, 'rates', $col, $row, $tutor->getRates(), 40, $maxLines, $this->getRateCellFormatter($unrestricted, $tutor));
+            $this->arrayCell($sheet, 'addresses', $col, $row, $tutor->getAddresses(), 100, $maxLines, $this->getAddressCellFormatter());
+            $this->arrayCell($sheet, 'emails', $col, $row, $tutor->getEmailAddresses(), 40, $maxLines, $this->getEmailCellFormatter());
+            $this->arrayCell($sheet, 'phones', $col, $row, $tutor->getPhoneNumbers(), 40, $maxLines, $this->getPhoneCellFormatter());
+            $this->scalarCell($sheet, 'bio', $col, $row, $tutor->getBio(), 80);
+            $sheet->getStyleByColumnAndRow($col-1, $row)->getAlignment()->setWrapText(true);
+            $this->scalarCell($sheet, 'linkedin', $col, $row, $tutor->getLinkedInURL(), 50);
+            $sheet->getStyleByColumnAndRow($col, $row)->getAlignment()->setWrapText(true);
+            $this->arrayCell($sheet, 'notes', $col, $row, $tutor->getNotes(), 100, $maxLines, $this->getNoteCellFormatter($unrestricted));
+            $this->scalarCell($sheet, 'created', $col, $row, $tutor->getCreated()->format('Y-m-d'), 15);
 
-            $formatter = function (TutorLanguage $tutorLanguage) {
-                return
-                    $tutorLanguage->getLanguage()->getName() .
-                    ($tutorLanguage->getNote()
-                        ? ' - ' . $tutorLanguage->getNote()
-                        : '');
+            // Set the Row Height, based on maxLines (which is the number of lines of text in the most populated cell)
+            $sheet->getRowDimension($row)->setRowHeight(self::HEIGHT_PER_LINE * $maxLines);
+        }
+        // vertical align top the whole report
+        $sheet->getStyle('A1:' . Cell::stringFromColumnIndex($col) . $row)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+    }
+
+    /**
+     * @param $unrestricted
+     * @return callable
+     */
+    private function getNoteCellFormatter($unrestricted)
+    {
+        if ($unrestricted) {
+            return function (Note $note) {
+                return $note->getBody() . ' - ' . $note->getProvenance();
             };
+        }
+        return function () {
+            return "You do not have sufficient privileges.";
+        };
+    }
 
-            $this->arrayCell($sheet, 'languages', $col++, $row, $tutor->getTutorLanguages(), 80, $maxLines, $formatter);
-
-            $formatter = function (Competency $competency) {
-                return
-                    ($competency->getCompetencyType()
-                        ? $competency->getCompetencyType()->getName()
-                        : '') .
-                    ($competency->getCompetencyLevel()
-                        ? '(' . $competency->getCompetencyLevel()->getName() . ') '
-                        : '');
-            };
-            $this->arrayCell($sheet, 'skills', $col++, $row, $tutor->getCompetencies(), 40, $maxLines, $formatter);
-
-            $formatter = function (Rate $rate) use ($tutor, $self) {
+    /**
+     * @param $unrestricted
+     * @param Tutor $tutor
+     * @return callable
+     */
+    private function getRateCellFormatter($unrestricted, Tutor $tutor)
+    {
+        $self = $this;
+        if ($unrestricted) {
+            return  $formatter = function (Rate $rate) use ($tutor, $self) {
                 return $rate->getName()
                 . ' Rate:'
                 . number_format($rate->getAmount(), 2)
@@ -502,42 +524,69 @@ class ReportDefinition
                 . $self->getReportCurrencyThreeLetterCode()
                 . ')';
             };
-            $this->arrayCell($sheet, 'rates', $col++, $row, $tutor->getRates(), 40, $maxLines, $formatter);
-
-            $formatter = function (Address $address) {
-                return "{$address->__toString()} ({$address->getType()})";
-            };
-            $this->arrayCell($sheet, 'addresses', $col++, $row, $tutor->getAddresses(), 100, $maxLines, $formatter);
-
-            $formatter = function (Email $email) {
-                return "{$email->__toString()} ({$email->getType()})";
-            };
-            $this->arrayCell($sheet, 'emails', $col++, $row, $tutor->getEmailAddresses(), 40, $maxLines, $formatter);
-
-            $formatter = function (Phone $phone) {
-                return
-                    $phone->__toString() .
-                    ($phone->isPreferred()
-                        ? ' - Preferred'
-                        : '');
-            };
-            $this->arrayCell($sheet, 'phones', $col++, $row, $tutor->getPhoneNumbers(), 40, $maxLines, $formatter);
-
-            $this->scalarCell($sheet, 'bio', $col, $row, $tutor->getBio(), 80);
-            $sheet->getStyleByColumnAndRow($col++, $row)->getAlignment()->setWrapText(true);
-
-            $this->scalarCell($sheet, 'linkedin', $col++, $row, $tutor->getLinkedInURL(), 50);
-
-            $formatter = function (Note $note) {
-                return $note->getBody() . ' - ' . $note->getProvenance();
-            };
-            $this->arrayCell($sheet, 'notes', $col, $row, $tutor->getNotes(), 100, $maxLines, $formatter);
-            $sheet->getStyleByColumnAndRow($col++, $row)->getAlignment()->setWrapText(true);
-
-            $this->scalarCell($sheet, 'created', $col++, $row, $tutor->getCreated()->format('Y-m-d'), 15);
-            $sheet->getRowDimension($row)->setRowHeight(self::HEIGHT_PER_LINE * $maxLines);
         }
-        $sheet->getStyle('A1:' . Cell::stringFromColumnIndex($col) . $row)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+        return function () {
+            return "You do not have sufficient privileges.";
+        };
+    }
+
+    /**
+     * @return callable
+     */
+    private function getAddressCellFormatter() {
+        return  function (Address $address) {
+            return "{$address->__toString()} ({$address->getType()})";
+        };
+    }
+
+    /**
+     * @return callable
+     */
+    private function getEmailCellFormatter() {
+        return function (Email $email) {
+            return "{$email->__toString()} ({$email->getType()})";
+        };
+    }
+
+    /**
+     * @return callable
+     */
+    private function getPhoneCellFormatter() {
+        return function (Phone $phone) {
+            return
+                $phone->__toString() .
+                ($phone->isPreferred()
+                    ? ' - Preferred'
+                    : '');
+        };
+    }
+
+    /**
+     * @return callable
+     */
+    private function getCompetencyCellFormatter() {
+        return function (Competency $competency) {
+            return
+                ($competency->getCompetencyType()
+                    ? $competency->getCompetencyType()->getName()
+                    : '') .
+                ($competency->getCompetencyLevel()
+                    ? '(' . $competency->getCompetencyLevel()->getName() . ') '
+                    : '');
+        };
+    }
+
+    /**
+     * @return callable
+     */
+    private function getLanguageCellFormatter() {
+        return function (TutorLanguage $tutorLanguage) {
+            return
+                $tutorLanguage->getLanguage()->getName() .
+                ($tutorLanguage->getNote()
+                    ? ' - ' . $tutorLanguage->getNote()
+                    : '');
+        };
     }
 
     /**
@@ -548,11 +597,12 @@ class ReportDefinition
      * @param string $value
      * @param int $width
      */
-    private function scalarCell(Sheet $sheet, $fieldName, $col, $row, $value, $width)
+    private function scalarCell(Sheet $sheet, $fieldName, &$col, $row, $value, $width)
     {
         if ($this->isFieldDisplayed($fieldName)) {
             $sheet->setCellValueByColumnAndRow($col, $row, $value);
             $sheet->getColumnDimensionByColumn($col)->setWidth($width);
+            $col++;
         }
     }
 
@@ -564,9 +614,9 @@ class ReportDefinition
      * @param ArrayCollection $value
      * @param int $width
      * @param int $maxLines
-     * @param $fn
+     * @param callable $fn
      */
-    private function arrayCell(Sheet $sheet, $fieldName, $col, $row, $value, $width, &$maxLines, $fn)
+    private function arrayCell(Sheet $sheet, $fieldName, &$col, $row, $value, $width, &$maxLines, $fn)
     {
         if ($this->isFieldDisplayed($fieldName)) {
             $maxLines = max($maxLines, $value->count());
@@ -577,9 +627,16 @@ class ReportDefinition
                 )
             );
             $sheet->getColumnDimensionByColumn($col)->setWidth($width);
+            $col++;
         }
     }
 
+    /**
+     * @param Sheet $sheet
+     * @param $cells
+     * @param $color
+     * @throws \PHPExcel_Exception
+     */
     private function headerFormat(Sheet $sheet, $cells, $color){
         $style = $sheet->getStyle($cells);
         $style->getFill()->applyFromArray([

@@ -295,7 +295,7 @@ want to use a more recent version.)
 
 1. Update via composer (relax the version restriction in composer.json) This pulls the upstream copy into 
 vendors/fortawesome/font-awesome/. I'm going to call this (source). We copy a few files into (dest) which is 
-src/Fitch/DashboardBundle/Resources/
+src/Fitch/FrontEndBundle/Resources/
 
 2. Copy all the font files from (source)/fonts to (dest)/public/fonts
 

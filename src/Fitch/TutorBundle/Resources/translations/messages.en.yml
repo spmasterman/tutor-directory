@@ -328,3 +328,5 @@ report:
         success: The report has been saved
     column:
         name: Report Name
+    toolbutton:
+        excel: Download Excel
