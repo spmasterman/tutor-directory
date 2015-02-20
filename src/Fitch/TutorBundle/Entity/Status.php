@@ -3,6 +3,8 @@
 namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fitch\CommonBundle\Entity\DefaultTrait;
+use Fitch\CommonBundle\Entity\DefaultTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTrait;
@@ -17,9 +19,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="status")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\StatusRepository")
  */
-class Status implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class Status implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 
     /**
      * @var string
@@ -35,29 +37,4 @@ class Status implements IdentityTraitInterface, TimestampableTraitInterface, Nam
      * @var Tutor
      */
     protected $tutor;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_default", type="boolean")
-     */
-    protected $default;
-
-    /**
-     * @return boolean
-     */
-    public function isDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param boolean $default
-     * @return $this
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
-        return $this;
-    }
 }

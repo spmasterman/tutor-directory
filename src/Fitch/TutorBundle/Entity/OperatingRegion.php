@@ -3,6 +3,8 @@
 namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fitch\CommonBundle\Entity\DefaultTrait;
+use Fitch\CommonBundle\Entity\DefaultTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTrait;
@@ -16,9 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="region")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository")
  */
-class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 
     /**
      * @var string
@@ -26,13 +28,6 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
      * @ORM\Column(name="name", type="string", length=64)
      */
     protected $name;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_default", type="boolean")
-     */
-    protected $default;
 
     /**
      * @ORM\ManyToOne(
@@ -49,24 +44,6 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
      * @ORM\Column(name="code", type="string", length=5)
      */
     protected $code;
-
-    /**
-     * @return boolean
-     */
-    public function isDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param boolean $default
-     * @return $this
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
-        return $this;
-    }
 
     /**
      * @return Currency

@@ -3,6 +3,8 @@
 namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fitch\CommonBundle\Entity\DefaultTrait;
+use Fitch\CommonBundle\Entity\DefaultTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTrait;
@@ -17,9 +19,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="file_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\FileTypeRepository")
  */
-class FileType implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class FileType implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 
     /**
      * @var boolean
@@ -27,13 +29,6 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface, N
      * @ORM\Column(name="is_private", type="boolean")
      */
     protected $private;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_default", type="boolean")
-     */
-    protected $default;
 
     /**
      * @var boolean
@@ -62,24 +57,6 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface, N
     public function __toString()
     {
         return $this->getName() . ($this->isPrivate() ? ' (Private)' :'');
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param boolean $default
-     * @return $this
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
-        return $this;
     }
 
     /**
