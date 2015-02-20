@@ -24,32 +24,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CompetencyController extends Controller
 {
     /**
-     * Returns the countries as a JSON Array
-     *
-     * @Route("/lookups", name="competency_lookups", options={"expose"=true})
-     * @Method("GET")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-
-    public function lookupAction(){
-        $types = [];
-        foreach($this->getCompetencyTypeManager()->findAll() as $type) {
-            $types[] = $type->getName();
-        }
-
-        $levels = [];
-        foreach($this->getCompetencyLevelManager()->findAll() as $level) {
-            $levels[] = $level->getName();
-        }
-
-        return new JsonResponse([
-            'type' => $types,
-            'level' => $levels
-        ]);
-    }
-
-    /**
      * Updates a competency field on a tutor record
      *
      * @Route(

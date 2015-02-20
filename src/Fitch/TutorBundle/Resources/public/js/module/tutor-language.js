@@ -1,17 +1,19 @@
-jQuery(document).ready(function() {
+var Language = (function ($) {
     "use strict";
 
-    // Module wide variables
-    var languages = [],
-        prototypeRow,
-        languagesContainer = $('.languages-container'),
-        tutorId = languagesContainer.find('[data-id]').data('id')
+    var publicMembers = {
+            //public variables
+        },
+        // private variables
+        logToConsole = false,
+        languagePrototypeRow,
+        allLanguages,
+        languagesContainer = $('.languages-container')
     ;
 
-    // Build data for Language selects in custom type. Only initialise the x-editable elements which use the data,
-    // once the data has been retrieved
-    $.getJSON(Routing.generate('all_languages'), {}, function(data) {
-        languages = data.languages;
+    var constructor = function(languagePrototypeRowFromServer, allLanguagesFromServer) {
+        languagePrototypeRow = languagePrototypeRowFromServer;
+        allLanguages = allLanguagesFromServer;
 
         $('.inline-tutor-language').each(function() {
             $(this).editable(getTutorLanguageOptions($(this)));
@@ -19,14 +21,11 @@ jQuery(document).ready(function() {
         $('.inline-tutor-language-note').each(function() {
             $(this).editable(getTutorLanguageNoteOptions($(this)));
         });
-    });
 
-    $.getJSON(Routing.generate('prototype_language', { 'tutorId' : tutorId}), { }, function(data) {
-        prototypeRow = data.prototypeRow;
-    });
+        // Setup DOM event handlers
+        setupLanguages(languagesContainer);
+    };
 
-    // Setup DOM event handlers
-    setupLanguages(languagesContainer);
 
     /**
      * Handlers for Add/Remove language
@@ -36,7 +35,7 @@ jQuery(document).ready(function() {
     function setupLanguages(languageContainer) {
         $('.add-language').on('click', function(e) {
             e.preventDefault();
-            languageContainer.append(prototypeRow);
+            languageContainer.append(languagePrototypeRow);
             languageContainer.find('#tutor-language0').each(function() {
                 $(this).editable(getTutorLanguageOptions($(this)));
             });
@@ -84,7 +83,7 @@ jQuery(document).ready(function() {
             },
             typeahead: {
                 name: 'Language',
-                local: languages
+                local: allLanguages
             },
             validate: function (value) {
                 if ($.trim(value) == '') {
@@ -111,4 +110,34 @@ jQuery(document).ready(function() {
         }
     }
 
-});
+    /**
+     * Log to console (if we are logging to console)
+     * @param message
+     */
+    function log(message) {
+        if (logToConsole) {
+            console.log(message);
+        }
+    }
+
+    /**
+     * Expose log message as a public member
+     * @param message
+     */
+    publicMembers.log = function(message) {
+        log(message);
+    };
+
+    /**
+     * Should we Log To Console?
+     * @param log
+     */
+    publicMembers.setLogToConsole = function(log) {
+        logToConsole = log;
+    };
+
+    constructor.prototype = publicMembers;
+
+    // return the class
+    return constructor;
+}(jQuery));

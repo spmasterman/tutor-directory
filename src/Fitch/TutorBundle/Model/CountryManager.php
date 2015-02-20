@@ -44,6 +44,38 @@ class CountryManager extends BaseModelManager
     }
 
     /**
+     * Returns all active languages as a Array - suitable for use in "select"
+     * style lists, with a preferred section
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [
+            [
+                'text' => 'Preferred',
+                'children' => []
+            ],
+            [
+                'text' => 'Other',
+                'children' => []
+            ]
+        ];
+
+        foreach($this->findAllSorted() as $country) {
+            if ($country->isActive()) {
+                $key = $country->isPreferred() ? 0 : 1;
+                $choices[$key]['children'][] = [
+                    'value' => $country->getId(),
+                    'text' => $country->getName(),
+                    'dialingCode' => $country->getDialingCode()
+                ];
+            }
+        }
+        return $choices;
+    }
+
+    /**
      * @return Country[]
      */
     public function findAllSorted()

@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block main_content -%}
+    <div class="sr-only" id="tutorId" data-tutor-pk="{{ tutor.getId }}"></div>
     <ul class="nav nav-tabs">
         <li {% if tab == 'profile' %}class="active"{% endif %}><a href="#profile-tab" data-toggle="tab"><i class="fa fa-user"></i> {% trans %}profile.tab.profile{% endtrans %}</a></li>
         {% if isAdmin %}
@@ -37,13 +38,19 @@
     {% if is_granted('ROLE_CAN_EDIT_TUTOR') %}
         {% javascripts
             '@FitchTutorBundle/Resources/public/js/tutor.js'
-            '@FitchTutorBundle/Resources/public/js/tutor-language.js'
-            '@FitchTutorBundle/Resources/public/js/address.js'
-            '@FitchTutorBundle/Resources/public/js/email.js'
-            '@FitchTutorBundle/Resources/public/js/phone.js'
-            '@FitchTutorBundle/Resources/public/js/rate.js'
+            '@FitchTutorBundle/Resources/public/js/module/tutor-profile-coordinator.js'
+            '@FitchTutorBundle/Resources/public/js/module/tutor-language.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endif %}
+
+
+    {#'@FitchTutorBundle/Resources/public/js/address.js'#}
+    {#'@FitchTutorBundle/Resources/public/js/email.js'#}
+    {#'@FitchTutorBundle/Resources/public/js/phone.js'#}
+    {#'@FitchTutorBundle/Resources/public/js/rate.js'#}
+
 {% endblock %}
+
+

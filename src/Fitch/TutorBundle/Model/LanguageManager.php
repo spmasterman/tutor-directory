@@ -78,6 +78,37 @@ class LanguageManager extends BaseModelManager
     }
 
     /**
+     * Returns all active languages as a Array - suitable for use in "select"
+     * style lists, with a preferred section
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [
+            [
+                'text' => 'Preferred',
+                'children' => []
+            ],
+            [
+                'text' => 'Other',
+                'children' => []
+            ]
+        ];
+
+        foreach($this->findAllSorted() as $language) {
+            if ($language->isActive()) {
+                $key = $language->isPreferred() ? 0 : 1;
+                $choices[$key]['children'][] = [
+                    'value' => $language->getId(),
+                    'text' => $language->getName(),
+                ];
+            }
+        }
+        return $choices;
+    }
+
+    /**
      * @param Language $language
      * @param bool $withFlush
      */

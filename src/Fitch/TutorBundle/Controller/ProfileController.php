@@ -5,9 +5,15 @@ namespace Fitch\TutorBundle\Controller;
 use Exception;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
+use Fitch\TutorBundle\Entity\CompetencyLevel;
+use Fitch\TutorBundle\Entity\CompetencyType;
+use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
+use Fitch\TutorBundle\Model\CompetencyLevelManager;
+use Fitch\TutorBundle\Model\CompetencyManager;
+use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CountryManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\EmailManager;
@@ -209,67 +215,42 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Returns the countries as a JSON Array
-     *
-     * The reason that this controller is defined here, rather than in the CountryController file is because the
-     * CountryController file is in the /admin/ url space, and therefore routes defined in ares not available to
-     * editors etc.
-     *
-     * @Route("/country/active", name="active_countries", options={"expose"=true})
-     * @Method("GET")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function activeCountriesAction(){
-        $out = [
-            [
-                'text' => 'Preferred',
-                'children' => []
-            ],
-            [
-                'text' => 'Other',
-                'children' => []
-            ]
-        ];
-
-        foreach($this->getCountryManager()->findAllSorted() as $country) {
-            if ($country->isActive()) {
-                $key = $country->isPreferred() ? 0 : 1;
-                $out[$key]['children'][] = [
-                    'value' => $country->getId(),
-                    'text' => $country->getName(),
-                    'dialingCode' => $country->getDialingCode()
-                ];
-            }
-        }
-        return new JsonResponse($out);
-    }
-
-
-    /**
-     * Returns all languages as a JSON Array - suitable for use in typeahead.js style
-     * presentations, where all language NAMES must be present
-     *
-     * The reason that this controller is defined here, rather than in the LanguageController file is because the
-     * LanguageController file is in the /admin/ url space, and therefore routes defined in ares not available to
-     * editors etc.
-     *
-     * @Route("/all", name="all_languages", options={"expose"=true})
-     * @Method("GET")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function lookupAction(){
-        $languages = [];
-        foreach($this->getLanguageManager()->findAll() as $language) {
-            $languages[] = $language->getName();
-        }
-
-        return new JsonResponse([
-            'languages' => $languages
-        ]);
-    }
+//    /**
+//     * Returns the countries as a JSON Array
+//     *
+//     * The reason that this controller is defined here, rather than in the CountryController file is because the
+//     * CountryController file is in the /admin/ url space, and therefore routes defined in ares not available to
+//     * editors etc.
+//     *
+//     * @Route("/country/active", name="active_countries", options={"expose"=true})
+//     * @Method("GET")
+//     *
+//     * @return \Symfony\Component\HttpFoundation\JsonResponse
+//     */
+//    public function activeCountriesAction(){
+//        $out = [
+//            [
+//                'text' => 'Preferred',
+//                'children' => []
+//            ],
+//            [
+//                'text' => 'Other',
+//                'children' => []
+//            ]
+//        ];
+//
+//        foreach($this->getCountryManager()->findAllSorted() as $country) {
+//            if ($country->isActive()) {
+//                $key = $country->isPreferred() ? 0 : 1;
+//                $out[$key]['children'][] = [
+//                    'value' => $country->getId(),
+//                    'text' => $country->getName(),
+//                    'dialingCode' => $country->getDialingCode()
+//                ];
+//            }
+//        }
+//        return new JsonResponse($out);
+//    }
 
     /**
      * Returns all active languages as a JSON Array - suitable for use in "select"
@@ -284,29 +265,70 @@ class ProfileController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function allActiveAction()
+    public function activeLanguagesAction()
     {
-        $out = [
-            [
-                'text' => 'Preferred',
-                'children' => []
-            ],
-            [
-                'text' => 'Other',
-                'children' => []
-            ]
-        ];
+        return new JsonResponse($this->getLanguageManager()->buildGroupedChoices());
+    }
 
-        foreach($this->getLanguageManager()->findAllSorted() as $language) {
-            if ($language->isActive()) {
-                $key = $language->isPreferred() ? 0 : 1;
-                $out[$key]['children'][] = [
-                    'value' => $language->getId(),
-                    'text' => $language->getName(),
-                ];
-            }
-        }
-        return new JsonResponse($out);
+    /**
+     * Returns a JSON object that contains all the lookup values required to drive the Profile page
+     * this is thrown into one large-ish controller so that only a single request is made to the server
+     * (rather than each element being requested individually at page-load)
+     *
+     * Also returned are prototype "New Rows" suitable for inserting into the DOM
+     *
+     * @Route("/prototype/{tutorId}", name="profile_dynamic_data", options={"expose"=true})
+     * @Method("GET")
+     *
+     * @param $tutorId
+     * @return JsonResponse
+     */
+    public function prototypeAction($tutorId)
+    {
+        return new JsonResponse([
+            'competencyTypes' => array_map(
+                function(CompetencyType $competencyType) {
+                    return $competencyType->getName() ;
+                },
+                $this->getCompetencyTypeManager()->findAll()
+            ),
+            'competencyLevels'=> array_map(
+                function(CompetencyLevel $competencyLevel) {
+                    return $competencyLevel->getName() ;
+                },
+                $this->getCompetencyLevelManager()->findAll()
+            ),
+            'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),
+//            'groupedLanguages' => $this->getLanguageManager()->buildGroupedChoices(),
+            'allLanguages' => array_map(
+                function(Language $language) {
+                    return $language->getName() ;
+                },
+                $this->getLanguageManager()->findAll()
+            ),
+            'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
+                'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+            ])
+        ]);
+    }
+
+    /**
+     * @return CompetencyTypeManager
+     */
+    private function getCompetencyTypeManager()
+    {
+        return $this->get('fitch.manager.competency_type');
+    }
+
+    /**
+     * @return CompetencyLevelManager
+     */
+    private function getCompetencyLevelManager()
+    {
+        return $this->get('fitch.manager.competency_level');
     }
 
     /**

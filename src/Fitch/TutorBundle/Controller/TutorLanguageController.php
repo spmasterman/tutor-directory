@@ -28,26 +28,6 @@ class TutorLanguageController extends Controller
 {
 
     /**
-     * Returns a prototype "New Row" suitable for inserting into the DOM
-     *
-     * @Route("/prototype/{tutorId}", name="prototype_language", options={"expose"=true})
-     * @Method("GET")
-     *
-     * @return JsonResponse
-     */
-    public function prototypeAction($tutorId)
-    {
-        return new JsonResponse([
-            'prototypeRow' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
-                'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
-            ])
-        ]);
-    }
-
-    /**
      * Updates a TutorLanguage field on a tutor record
      *
      * @Route(
