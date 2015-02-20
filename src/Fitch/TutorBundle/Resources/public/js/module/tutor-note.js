@@ -58,7 +58,7 @@ var Note = (function ($) {
      * Get x-editable options for a given element, that is going to be made an x-editable Note (custom type)
      *
      * @param {jQuery} host
-     * @returns {{params: Function, success: Function, sourceCountry: Array}}
+     * @returns {{params: Function, success: Function}}
      */
     function getNoteOptions(host) {
         return {

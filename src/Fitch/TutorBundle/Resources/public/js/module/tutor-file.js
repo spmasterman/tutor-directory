@@ -1,21 +1,29 @@
-// Stop Dropzone doing its automatic thing
-Dropzone.autoDiscover = false;
-
-jQuery(document).ready(function() {
+var File = (function ($) {
     "use strict";
 
-    // Initialise the other x-editable elements
-    $('.inline').editable();
-    $('.inline-file-type').editable({
-        success: function (response) {
-            $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
-            $('#avatar-container').html(response.renderedAvatar);
-        }
-    });
+    var publicMembers = {
+            //public variables
+        },
+        // private variables
+        logToConsole = false,
+        filesContainer = $('#files-container'),
+        avatarContainer = $('#avatar-container')
+    ;
 
-    // Setup DOM event handlers
-    setupFiles($('#files-container'));
-    setupAvatar($('#avatar-container'));
+    /**
+     * constructor
+     */
+    var constructor = function() {
+        $('.inline-file-type').editable({
+            success: function (response) {
+                $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
+                $('#avatar-container').html(response.renderedAvatar);
+            }
+        });
+
+        setupFiles(filesContainer);
+        setupAvatar(avatarContainer);
+    };
 
     /**
      * Handler for interacting with Files, and dropzone initialisation
@@ -120,4 +128,35 @@ jQuery(document).ready(function() {
         }
     }
 
-});
+    /**
+     * Log to console (if we are logging to console)
+     * @param message
+     */
+    function log(message) {
+        if (logToConsole) {
+            console.log(message);
+        }
+    }
+
+    /**
+     * Expose log message as a public member
+     * @param message
+     */
+    publicMembers.log = function(message) {
+        log(message);
+    };
+
+    /**
+     * Should we Log To Console?
+     * @param log
+     */
+    publicMembers.setLogToConsole = function(log) {
+        logToConsole = log;
+    };
+
+    // Add the public members to the prototype
+    constructor.prototype = publicMembers;
+
+    // return the object
+    return constructor;
+}(jQuery));

@@ -43,6 +43,10 @@ var TutorProfileCoordinator = (function ($) {
         new Email(serverData.emailPrototype);
         new Note(serverData.notePrototype);
         new Rate(serverData.ratePrototype);
+        new File();
+
+        // Initialise the other x-editable elements
+        $('.inline').editable();
     };
 
     /**
