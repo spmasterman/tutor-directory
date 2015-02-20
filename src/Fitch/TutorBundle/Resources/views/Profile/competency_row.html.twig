@@ -1,4 +1,5 @@
-<div class="data-row" data-id="{{ tutor.getId }}" data-competency-pk="{{ competency.getId }}">
+{% if prototype is not defined %}{% set prototype=false %}{% endif %}
+<div class="data-row" data-id="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}" data-competency-pk="{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}">
     {% if isEditor %}
         {% include 'FitchTutorBundle:Profile:competency_row_inner.html.twig' %}
     {% else %}

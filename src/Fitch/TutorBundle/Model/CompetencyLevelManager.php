@@ -9,7 +9,7 @@ use Fitch\TutorBundle\Entity\CompetencyLevel;
 
 class CompetencyLevelManager extends BaseModelManager
 {
-   /**
+    /**
      * @param $id
      * @throws EntityNotFoundException
      * @return CompetencyLevel
@@ -33,6 +33,23 @@ class CompetencyLevelManager extends BaseModelManager
     public function buildChoices()
     {
         return $this->findAll();
+    }
+
+    /**
+     * Returns all active competencyLevels as a Array - suitable for use in "select"
+     * style lists, with a grouped sections
+     *
+     * (there's no obvious grouping, so its a flat list for CompetencyLevel)
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [];
+        foreach($this->findAll() as $competencyLevel) {
+            $choices[$competencyLevel->getId()] = $competencyLevel->getName();
+        }
+        return $choices;
     }
 
     /**

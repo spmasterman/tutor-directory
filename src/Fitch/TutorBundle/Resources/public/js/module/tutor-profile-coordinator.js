@@ -4,7 +4,10 @@ var TutorProfileCoordinator = (function ($) {
     var publicMembers = {
         //public variables
             languagePrototypeRow : {},
+            competencyPrototypeRow : {},
             allLanguages: {},
+            allCompetencyTypes: {},
+            allCompetencyLevels: {},
 //            groupedLanguages: {},
             groupedCountries: {}
         },
@@ -14,13 +17,22 @@ var TutorProfileCoordinator = (function ($) {
 
     var constructor = function(tutorId, serverData) {
         publicMembers.languagePrototypeRow = serverData.languagePrototype;
+        publicMembers.competencyPrototypeRow = serverData.competencyPrototype;
         publicMembers.allLanguages = serverData.allLanguages;
+        publicMembers.allCompetencyTypes = serverData.allCompetencyTypes;
+        publicMembers.allCompetencyLevels = serverData.allCompetencyLevels;
 //        publicMembers.groupedLanguages = serverData.groupedLanguages;
         publicMembers.groupedCountries = serverData.groupedCountries;
 
         new Language(
             publicMembers.languagePrototypeRow,
             publicMembers.allLanguages
+        );
+
+        new Competency(
+            publicMembers.competencyPrototypeRow,
+            publicMembers.allCompetencyTypes,
+            publicMembers.allCompetencyLevels
         );
     };
 

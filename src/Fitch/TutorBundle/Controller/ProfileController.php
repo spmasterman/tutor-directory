@@ -12,7 +12,6 @@ use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\CompetencyManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CountryManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
@@ -252,15 +251,21 @@ class ProfileController extends Controller
 //        return new JsonResponse($out);
 //    }
 
+    /*
+     * The reason that some of these controllers are defined here, rather than in the (say) the LanguageController file
+     * is because the LanguageController file is in the /admin/ url space, and therefore routes defined in ares not
+     * available to editors etc.
+     *
+     * These routes are only used by javascript UI elements on the profile page so - here works well enough from a
+     * security perspective...
+     */
+
+
     /**
      * Returns all active languages as a JSON Array - suitable for use in "select"
      * style lists, with a preferred section
      *
-     * The reason that this controller is defined here, rather than in the LanguageController file is because the
-     * LanguageController file is in the /admin/ url space, and therefore routes defined in ares not available to
-     * editors etc.
-     *
-     * @Route("/active", name="active_languages")
+     * @Route("/active/language", name="active_languages")
      * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -268,6 +273,32 @@ class ProfileController extends Controller
     public function activeLanguagesAction()
     {
         return new JsonResponse($this->getLanguageManager()->buildGroupedChoices());
+    }
+
+    /**
+     * Returns all active competencyTypes as a JSON Array
+     *
+     * @Route("/active/competency/type", name="active_competency_type")
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function activeCompetencyTypesAction()
+    {
+        return new JsonResponse($this->getCompetencyTypeManager()->buildGroupedChoices());
+    }
+
+    /**
+     * Returns all active competencyLevels as a JSON Array
+     *
+     * @Route("/active/competency/level", name="active_competency_level")
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function activeCompetencyLevelsAction()
+    {
+        return new JsonResponse($this->getCompetencyLevelManager()->buildGroupedChoices());
     }
 
     /**
@@ -286,13 +317,13 @@ class ProfileController extends Controller
     public function prototypeAction($tutorId)
     {
         return new JsonResponse([
-            'competencyTypes' => array_map(
+            'allCompetencyTypes' => array_map(
                 function(CompetencyType $competencyType) {
                     return $competencyType->getName() ;
                 },
                 $this->getCompetencyTypeManager()->findAll()
             ),
-            'competencyLevels'=> array_map(
+            'allCompetencyLevels'=> array_map(
                 function(CompetencyLevel $competencyLevel) {
                     return $competencyLevel->getName() ;
                 },
@@ -311,7 +342,13 @@ class ProfileController extends Controller
                 'tutorId' => $tutorId,
                 'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
                 'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
-            ])
+            ]),
+            'competencyPrototype' => $this->renderView("FitchTutorBundle:Profile:competency_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
+                'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+            ]),
         ]);
     }
 

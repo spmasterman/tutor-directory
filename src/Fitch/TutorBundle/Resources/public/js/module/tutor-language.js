@@ -6,13 +6,19 @@ var Language = (function ($) {
         },
         // private variables
         logToConsole = false,
-        languagePrototypeRow,
+        prototypeRow,
         allLanguages,
         languagesContainer = $('.languages-container')
     ;
 
-    var constructor = function(languagePrototypeRowFromServer, allLanguagesFromServer) {
-        languagePrototypeRow = languagePrototypeRowFromServer;
+    /**
+     * constructor
+     *
+     * @param prototypeRowFromServer
+     * @param allLanguagesFromServer
+     */
+    var constructor = function(prototypeRowFromServer, allLanguagesFromServer) {
+        prototypeRow = prototypeRowFromServer;
         allLanguages = allLanguagesFromServer;
 
         $('.inline-tutor-language').each(function() {
@@ -26,16 +32,15 @@ var Language = (function ($) {
         setupLanguages(languagesContainer);
     };
 
-
     /**
      * Handlers for Add/Remove language
      *
-     * @param languageContainer
+     * @param {jQuery} languageContainer
      */
     function setupLanguages(languageContainer) {
         $('.add-language').on('click', function(e) {
             e.preventDefault();
-            languageContainer.append(languagePrototypeRow);
+            languageContainer.append(prototypeRow);
             languageContainer.find('#tutor-language0').each(function() {
                 $(this).editable(getTutorLanguageOptions($(this)));
             });
@@ -64,6 +69,14 @@ var Language = (function ($) {
         });
     }
 
+    /**
+     * Reloads the Row in the DOM from the Response object
+     *
+     * @param {jQuery} row jQuery container element for new Row
+     * @param {object} response The response object from the AJAX call
+     * @param {int} response.id The ID of the object in the row
+     * @param {string} response.renderedTutorLanguageRow The newly rendered row
+     */
     function reloadTutorLanguageRow(row, response) {
         row.html(response.renderedTutorLanguageRow);
         row.attr('data-tutor-language-pk', response.id);
@@ -75,6 +88,12 @@ var Language = (function ($) {
         });
     }
 
+    /**
+     * Options for the x-editable Language
+     *
+     * @param {jQuery} host
+     * @returns {{params: Function, typeahead: {name: string, local: *}, validate: Function, success: Function}}
+     */
     function getTutorLanguageOptions(host) {
         return {
             params: function (params) {
@@ -96,6 +115,12 @@ var Language = (function ($) {
         }
     }
 
+    /**
+     * Options for the x-editable Note
+     *
+     * @param host
+     * @returns {{params: Function, emptytext: string, emptyclass: string, success: Function}}
+     */
     function getTutorLanguageNoteOptions(host) {
         return {
             params: function(params) {
@@ -136,8 +161,9 @@ var Language = (function ($) {
         logToConsole = log;
     };
 
+    // Add the public members to the prototype
     constructor.prototype = publicMembers;
 
-    // return the class
+    // return the object
     return constructor;
 }(jQuery));

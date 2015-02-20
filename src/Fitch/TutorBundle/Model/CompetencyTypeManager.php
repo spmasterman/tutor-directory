@@ -9,7 +9,7 @@ use Fitch\TutorBundle\Entity\CompetencyType;
 
 class CompetencyTypeManager extends BaseModelManager
 {
-   /**
+    /**
      * @param $id
      * @throws EntityNotFoundException
      * @return CompetencyType
@@ -34,6 +34,46 @@ class CompetencyTypeManager extends BaseModelManager
     {
         return $this->findAll();
     }
+
+    /**
+     * Returns all active competencyTypes as a Array - suitable for use in "select"
+     * style lists, with a grouped sections
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        // FOR NOW - THIS JUST RETURNS K=>V
+        // BUT WHEN THE SKILL CATEGORY COMES IN THIS WILL BE USED
+        $choices = [];
+        foreach($this->findAll() as $competencyType) {
+            $choices[$competencyType->getId()] = $competencyType->getName();
+        }
+
+// Something like this but not "preferred" - SkillCategory instead...
+//        $choices = [
+//            [
+//                'text' => 'Preferred',
+//                'children' => []
+//            ],
+//            [
+//                'text' => 'Other',
+//                'children' => []
+//            ]
+//        ];
+//
+//        foreach($this->findAllSorted() as $language) {
+//            if ($language->isActive()) {
+//                $key = $language->isPreferred() ? 0 : 1;
+//                $choices[$key]['children'][] = [
+//                    'value' => $language->getId(),
+//                    'text' => $language->getName(),
+//                ];
+//            }
+//        }
+        return $choices;
+    }
+
 
     /**
      * @param $typeName

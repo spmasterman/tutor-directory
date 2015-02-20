@@ -64,10 +64,20 @@ class CompetencyController extends Controller
 
             switch ($name) {
                 case 'competency-level':
-                    $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findOrCreate($value));
+                    if ((string)(int)$value == $value) {
+                        // if its an integer
+                        $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findById((int)$value));
+                    } else {
+                        $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findOrCreate($value));
+                    }
                     break;
                 case 'competency-type':
-                    $competency->setCompetencyType($this->getCompetencyTypeManager()->findOrCreate($value));
+                    if ((string)(int)$value == $value) {
+                        // if its an integer
+                        $competency->setCompetencyType($this->getCompetencyTypeManager()->findById((int)$value));
+                    } else {
+                        $competency->setCompetencyType($this->getCompetencyTypeManager()->findOrCreate($value));
+                    }
                     break;
                 case 'competency-note':
                     $competency->setNote($value);
@@ -91,7 +101,8 @@ class CompetencyController extends Controller
                 [
                     'tutor' => $tutor,
                     'competency' => $competency,
-                    'editor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR')
+                    'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
+                    'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
                 ]
             ),
         ]);

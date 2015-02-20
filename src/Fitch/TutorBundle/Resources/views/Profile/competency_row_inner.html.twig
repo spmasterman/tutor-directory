@@ -1,31 +1,43 @@
 <span class="data-name">
-    <span class="data-tag" {% if competency.getCompetencyLevel %}style="background-color: {{ competency.getCompetencyLevel.getColor }}"{% endif %}>&nbsp;</span>
-    <a href="#" id="competency-level{{ competency.getId }}" class="inline-competency-level"
-       data-type="typeaheadjs"
-       data-pk="{{ tutor.getId }}"
-       data-competency-pk="{{ competency.getId }}"
-       data-url="{{ path('competency_ajax_update')}}"
-       data-title="Level of Skill"
-            >{% if competency.getCompetencyLevel %}{{ competency.getCompetencyLevel.getName }}{% endif %}</a>
+    <span class="data-tag" {% if not prototype %}{% if competency.getCompetencyLevel %}style="background-color: {{ competency.getCompetencyLevel.getColor }}"{% endif %}{% endif %}>&nbsp;</span>
+    <a href="#" id="competency-level{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}" class="inline-competency-level"
+        {% if isAdmin %}
+            data-type="typeaheadjs"
+        {% else %}
+            data-source="{{ path('active_competency_level') }}"
+            data-type="select"
+            data-value="{% if prototype %}0{% else %}{% if competency.getCompetencyLevel %}{{ competency.getCompetencyLevel.getId }}{% endif %}{% endif %}"
+        {% endif %}
+        data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
+        data-competency-pk="{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}"
+        data-url="{{ path('competency_ajax_update')}}"
+        data-title="Level of Skill"
+            >{% if not prototype %}{% if competency.getCompetencyLevel %}{{ competency.getCompetencyLevel.getName }}{% endif %}{% endif %}</a>
 </span>
 <span class="data-value">
-    <a href="#" id="competency-type{{ competency.getId }}" class="inline-competency-type"
-       data-type="typeaheadjs"
-       data-pk="{{ tutor.getId }}"
-       data-competency-pk="{{ competency.getId }}"
+    <a href="#" id="competency-type{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}" class="inline-competency-type"
+        {% if isAdmin %}
+            data-type="typeaheadjs"
+        {% else %}
+            data-source="{{ path('active_competency_type') }}"
+            data-type="select"
+            data-value="{% if prototype %}0{% else %}{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getId }}{% endif %}{% endif %}"
+        {% endif %}
+       data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
+       data-competency-pk="{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}"
        data-url="{{ path('competency_ajax_update')}}"
        data-title="Skill"
-            >{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}</a>
+            >{% if not prototype %}{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}{% endif %}</a>
 </span>
 <span class="data-action">
-    <a href="#" data-pk="{{ competency.getId }}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
+    <a href="#" data-pk="{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}" class="btn btn-danger btn-xs remove-competency"><i class="fa fa-remove"></i></a>
 </span>
 <span class="data-note">
-    <a href="#" id="competency-note{{ competency.getId }}" class="inline-competency-note"
+    <a href="#" id="competency-note{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}" class="inline-competency-note"
        data-type="textarea"
-       data-pk="{{ tutor.getId }}"
-       data-competency-pk="{{ competency.getId }}"
+       data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
+       data-competency-pk="{% if prototype %}0{% else %}{{ competency.getId }}{% endif %}"
        data-url="{{ path('competency_ajax_update')}}"
        data-title="Note"
-            >{{ competency.getNote }}</a>
+            >{% if not prototype%}{{ competency.getNote }}{% endif %}</a>
 </span>
