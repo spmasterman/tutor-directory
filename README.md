@@ -47,13 +47,13 @@ Before you install, gather the following information - you will be asked to supp
 
 Database - You can put the DB anywhere. I've used it locally, but if necessary it could be on any server that can be 
 accessed from the host. You'll be asked for a database Driver, Host, Port, Name, User and Password. The system is only 
-tested with MySQL, locally, but there's no reason it shouldn't work with any DB that has a pdo_ driver. The only 
-explicit SQL statement at the time of writing lives in src/Fitch/TutorBundle/Entity/Repository/TutorRepository.php - 
-everything else is done through Doctrine.   
+tested with MySQL and SQLite, locally and Amazon RDS in the cloud, but there's no reason it shouldn't work with any DB 
+that has a pdo_ driver. The only explicit SQL statement at the time of writing lives in 
+src/Fitch/TutorBundle/Entity/Repository/TutorRepository.php - everything else is done through Doctrine.   
  
-SMTP - I know sending email from an AWS server is complicated. But that's all I know :) I use mailcatcher in development
-to test the process, but beyond that is more ops/admin than it makes sense for me to know. You will be asked for 
-mailer transport, host, port, user, password  
+SMTP - I know sending email from an AWS server is complicated for spam protection reasons. But that's all I know :) I use 
+mailcatcher in development to test the process, but beyond that is more ops/admin than it makes sense for me to know. 
+You will be asked for mailer transport, host, port, user, password  
  
 locale - use "en" as a locale. Its the only locale that translations are set up for. (If you want to use another language
 for the whole interface its all setup using symfony's translator service - all you need to do is supply translations for 
@@ -61,13 +61,13 @@ the files src/*Bundle/Resources/translations/* and supply a different locale. Im
 required)
 
 secret - throw some long complicated string in here. Its used in generating crsf tokens, and URL hashes so make sure 
-you change it to something that ISNT committed to the repository, else all the security is very compromised.     
+you change it to something that ISN'T committed to the repository, else all the security is very compromised.      
 
 compass_bin - This is the location of the binary for compass/scss compilation. If you dont know it yet, leave the default 
-value, then once you have set it up (section 4) edit the ap/config/paramaters.yml file and update the value.
+value, then once you have set it up (section 4) edit the app/config/paramaters.yml file and update the value.
 
-AWS details - Files are stored on an S3 bucket - you will need the following details: bucketName, key and secretKey to 
-access the bucket.
+AWS details - Uploaded Files get stored in an S3 bucket (on a Production machine) - you will need the following details: 
+bucketName, key and secretKey to access the bucket.
  
 Once you have these details: 
  
@@ -124,8 +124,9 @@ Set permissions:
         sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs filestore
         sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs filestore
 
-Note "filestore" - This is a local filesystem used by gaufrette, as a file upload location while developing. In production
-we use Amazon S3 - the details of which you should supply when initialising the system.  
+Note "filestore" - This is a local filesystem used by gaufrette as a file upload location while developing/testing/demo. 
+In production we use Amazon S3 - the details of which you should supply when initialising the system. So if your 
+producing a production machine, you can drop the 'filestore' from these last two statements.
 
 Look here for details [Symfony Docs](http://symfony.com/doc/current/book/installation.html)
 
@@ -137,7 +138,7 @@ Dump Assets in production (See installing SASS/Compass first)
 
     php app/console assetic:dump --no-debug
 
-OR link assets in development
+And link fixed assets 
 
     php app/console assets:install --symlink
 
@@ -253,7 +254,7 @@ the production assets - go ahead. I haven't for time constraint reasons.
     sudo gem install compass
 
 Dumping Assets through assetic may give you permission issues (its a bug in Compass support for assetic)
-If you get an unthemed page, find the sass-cache folder in /tmp/ and empty it. Seemed to fix the problem for me on my
+If you get an unthemed page, find the .sass-cache folder in /tmp/ and empty it. Seemed to fix the problem for me on my
 dev machines - it may have just been me sudoing the wrong part of the install however.
 
     php app/console assetic:dump --force
@@ -264,7 +265,7 @@ in app/config/parameters.yml
 5) Setup java
 -------------
 
-Assetic (more specifically some of the filters used by assetic) expects that java is available at /usr/bin/java this is
+Assetic (more specifically some of the filters used by Assetic) expects that java is available at /usr/bin/java this is
 the default location - To check...
 
     which java
@@ -333,7 +334,7 @@ sync then the files are effectively useless as you wont know who they are for et
 ### Register:
 
 The system has implemented a "register" feature, allowing people to register to use it. On request this has been 
-disabled and uses must be managed manually. 
+disabled and uses must be managed manually. Its just hidden though - it could be resurrected quite quickly.
 
 ### Adding Users through the interface:
 
@@ -352,12 +353,12 @@ If you need to update someones password, on their behalf, there is a way, but it
  
     Log in as a super-admin
     go to the User Management page
-    Switch to the user that you want to change. This should take you to the home page, as that user
+    Switch to the user (Red button) that you want to change. This should take you to the home page, as that user
     Choose "Profile" in the drop down User Menu (top right)
     Choose "Edit Password"
     Enter the new password, twice
     Hit back on the browser a few times till you get to the home page again (alternatively just get to the home page)
-    Choose the "Eject" option at the bottom of the user menu, which should set you back as the Super admin you started on
+    Choose the "Eject" option at the bottom of the user menu (Top right), which should set you back as the Super admin you started on
 
 To be honest if your doing this, then your not really doing things in the spirit of good security - so I don't feel too 
 bad about it being eight steps :)   
@@ -380,10 +381,10 @@ And then roles assigned:
     php app/console fos:user:promote <username> <role>
     
 where role is 
-    ROLE_USER for a read only user
-    ROLE_EDITOR for someone who can edit the Public tutor details
-    ROLE_ADMIN for someone who can edit the Private tutor details, and the lookup tables
-    ROLE_SUPER_ADMIN for someone who has no restrictions. 
+    ROLE_SENSITIVE_DATA = Access Private/Sensitive data
+    ROLE_EDITOR = Editor (Cannot add lookup values)
+    ROLE_ADMIN = Full Access
+    ROLE_SUPER_ADMIN = Full Access (inc. User Management)
     
 Don't give SUPER_ADMIN to anyone apart from people that know what they are doing, else you'll be restoring 
 from a backup quite frequently. I would make it a DevOps only set of privileges. But that means DevOps must take 
@@ -393,12 +394,11 @@ care of user administration too... up to you.
 
 Changing roles around is pretty simple - check the app/config/security.yml file you can see that a hierarchy of roles is 
 defined at the top, and the URLs that can be accessed down the bottom - so add new roles at your leisure. They don't 
-have to be hierarchical in nature. If you (for instance) want to create a role that allows access to the 'Operating 
-Regions' crud interface separately from everything else, - just add ROLE_REGION_MANAGER at the top, and set the 
-URL "/admin/region" to require that role down at the bottom of the security.yml file. Then add the role to the 
-src/Fitch/UserBundle/Form/Type/NewUserType.php and src/Fitch/UserBundle/Form/Type/EditUserType.php files so that they 
-appear as options in the User Management interface - and that's probably all that's needed. 
-  
+have to be hierarchical in nature. 
+
+I tend to create very granular 'task specific' role called 'ROLE_CAN_dosomething' - then assign that to the various 
+assignable ROLES (ROLE_ADMIN etc). In the code I check the task specific role isGranted()... 
+
 10) Translations
 ----------------
   
@@ -416,7 +416,7 @@ Translation files:
   * src/Fitch/UserBundle/Resources/translations/FOSUserBundle.en.yml - User Management templates (Login, Profile, Emails etc) 
   * src/Fitch/UserBundle/Resources/translations/messages.en.yml - User entity & User CRUD
   * src/Fitch/TutorBundle/Resources/translations/messages.en.yml - Other entities & their CRUD 
-  * src/Fitch/FrontEndBundle/Resources/translations/FitchFrontEndBundle.en.yml - Menu Names
+  * src/Fitch/FrontEndBundle/Resources/translations/menu.en.yml - Menu Names
   * src/Fitch/FrontEndBundle/Resources/translations/messages.en.yml - General Front End (Navigation, Errors etc)
   
 11) Source Code
@@ -445,8 +445,8 @@ more boilerplate code than you are used to (lots of empty repository classes, Ty
 class etc.)  
 
 ### Repository Classes 
-There are Repository classes for all entities, the only one that's used is Tutor, but its a pattern I follow even if 
-it results boilerplate code.
+There are Repository classes for all entities, only one or two are used (Tutor, Rate, Currency) but its a pattern I 
+follow even if it results boilerplate code.
  
 ### Type-hinting 
 I always type hint pulls from the DI container by creating a one line function that wraps the container->get()  
@@ -467,7 +467,7 @@ phpUnit is declared as a composer dependency - so if you want to run these tests
 
 ### Data Fixtures
 I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 
-the dependency order. Non production fixtures are 500, 490, 480 etc and should only load in the Dev environment. There
+the dependency order. Non production fixtures are 500, 490, 480 etc and should only load in the Dev or Demo environment. There
 is a separate folder for test fixtures - and the tests themselves are intimately tied to these fixtures. There may be 
 instances where the tests and the fixtures are tied too closely together and make for a brittle system i.e. if you 
 want to add things to the fixtures and a test starts to fail because its the number of records its expecting has grown.
