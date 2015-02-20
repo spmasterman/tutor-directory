@@ -5,6 +5,8 @@ namespace Fitch\TutorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTrait;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Fitch\UserBundle\Entity\User;
@@ -16,9 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="report")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\ReportRepository")
  */
-class Report implements IdentityTraitInterface, TimestampableTraitInterface
+class Report implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
 {
-    use IdentityTrait, TimestampableTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitch\UserBundle\Entity\User")
@@ -57,24 +59,6 @@ class Report implements IdentityTraitInterface, TimestampableTraitInterface
     public function setCreator($creator)
     {
         $this->creator = $creator;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
         return $this;
     }
 

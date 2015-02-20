@@ -5,6 +5,8 @@ namespace Fitch\TutorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTrait;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -16,9 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="rate")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\RateRepository")
  */
-class Rate implements IdentityTraitInterface, TimestampableTraitInterface
+class Rate implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
 {
-    use IdentityTrait, TimestampableTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="rates")
@@ -59,24 +61,6 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface
     public function setAmount($amount)
     {
         $this->amount = $amount;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
         return $this;
     }
 

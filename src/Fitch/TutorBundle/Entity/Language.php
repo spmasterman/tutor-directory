@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTrait;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -16,9 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\LanguageRepository")
  */
-class Language implements IdentityTraitInterface, TimestampableTraitInterface
+class Language implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
 {
-    use IdentityTrait, TimestampableTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait;
 
     /**
      * @var ArrayCollection
@@ -34,9 +36,9 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface
     protected $tutorLanguages;
 
     /**
-     * @ORM\Column(name="name", type="string", length=100)
+     * @var string
      *
-     * @var string;
+     * @ORM\Column(name="name", type="string", length=64)
      */
     protected $name;
 
@@ -67,31 +69,6 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface
     public function __construct()
     {
         $this->tutorLanguages = new ArrayCollection();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString() {
-        return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
     }
 
     /**

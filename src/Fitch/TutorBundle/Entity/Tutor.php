@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTrait;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -16,9 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="tutor")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorRepository")
  */
-class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
+class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
 {
-    use IdentityTrait, TimestampableTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait;
 
     // These constants are used to control access to individual tutors via the TutorVoter class.
     const ACCESS_LEVEL_LIMITED_VIEW = 'Limited View';
@@ -482,24 +484,6 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface
         return $this;
     }
     
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
     /**
      * @return OperatingRegion
      */

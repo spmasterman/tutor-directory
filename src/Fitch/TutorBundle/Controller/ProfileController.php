@@ -4,10 +4,8 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
-use Fitch\TutorBundle\Entity\CompetencyLevel;
-use Fitch\TutorBundle\Entity\CompetencyType;
-use Fitch\TutorBundle\Entity\Language;
 use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
@@ -214,52 +212,14 @@ class ProfileController extends Controller
         ]);
     }
 
-//    /**
-//     * Returns the countries as a JSON Array
-//     *
-//     * The reason that this controller is defined here, rather than in the CountryController file is because the
-//     * CountryController file is in the /admin/ url space, and therefore routes defined in ares not available to
-//     * editors etc.
-//     *
-//     * @Route("/country/active", name="active_countries", options={"expose"=true})
-//     * @Method("GET")
-//     *
-//     * @return \Symfony\Component\HttpFoundation\JsonResponse
-//     */
-//    public function activeCountriesAction(){
-//        $out = [
-//            [
-//                'text' => 'Preferred',
-//                'children' => []
-//            ],
-//            [
-//                'text' => 'Other',
-//                'children' => []
-//            ]
-//        ];
-//
-//        foreach($this->getCountryManager()->findAllSorted() as $country) {
-//            if ($country->isActive()) {
-//                $key = $country->isPreferred() ? 0 : 1;
-//                $out[$key]['children'][] = [
-//                    'value' => $country->getId(),
-//                    'text' => $country->getName(),
-//                    'dialingCode' => $country->getDialingCode()
-//                ];
-//            }
-//        }
-//        return new JsonResponse($out);
-//    }
-
     /*
      * The reason that some of these controllers are defined here, rather than in the (say) the LanguageController file
-     * is because the LanguageController file is in the /admin/ url space, and therefore routes defined in ares not
+     * is because the LanguageController file is in the /admin/ url space, and therefore routes defined in are not
      * available to editors etc.
      *
      * These routes are only used by javascript UI elements on the profile page so - here works well enough from a
      * security perspective...
      */
-
 
     /**
      * Returns all active languages as a JSON Array - suitable for use in "select"
@@ -326,11 +286,10 @@ class ProfileController extends Controller
             'isAdmin' => $isAdmin
         ];
 
-        $extractName = function($object) {return $object->getName();};
+        $extractName = function(NamedTraitInterface $object) {return $object->getName();};
 
         return new JsonResponse([
             'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),
-//            'groupedLanguages' => $this->getLanguageManager()->buildGroupedChoices(),
             'allCompetencyTypes' => array_map($extractName, $this->getCompetencyTypeManager()->findAll()),
             'allCompetencyLevels'=> array_map($extractName, $this->getCompetencyLevelManager()->findAll()),
             'allLanguages' => array_map($extractName, $this->getLanguageManager()->findAll()),

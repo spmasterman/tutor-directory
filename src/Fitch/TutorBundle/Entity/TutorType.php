@@ -5,6 +5,8 @@ namespace Fitch\TutorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTrait;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -15,16 +17,16 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="tutor_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorTypeRepository")
  */
-class TutorType implements IdentityTraitInterface, TimestampableTraitInterface
+class TutorType implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
 {
-    use IdentityTrait, TimestampableTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=64)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var boolean
@@ -32,37 +34,6 @@ class TutorType implements IdentityTraitInterface, TimestampableTraitInterface
      * @ORM\Column(name="is_default", type="boolean")
      */
     protected $default;
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * @return boolean
@@ -81,5 +52,4 @@ class TutorType implements IdentityTraitInterface, TimestampableTraitInterface
         $this->default = $default;
         return $this;
     }
-
 }
