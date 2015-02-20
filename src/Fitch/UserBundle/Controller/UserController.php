@@ -3,6 +3,7 @@
 namespace Fitch\UserBundle\Controller;
 
 use Fitch\UserBundle\Model\UserManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -16,6 +17,8 @@ use Fitch\UserBundle\Form\Type\EditUserType;
  * User controller.
  *
  * @Route("/user")
+ * @Security("has_role('ROLE_CAN_MANAGE_USERS')")
+ *     Already protected in security.yml - but adding check here too
  */
 class UserController extends Controller
 {

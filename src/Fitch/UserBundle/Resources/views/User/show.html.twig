@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                     <th class="col-xs-2">{% trans %}user.field.roles{% endtrans %}</th>
-                    <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul></td>
+                    <td><ul class="fa-ul">{% for role in user.getRoles %}<li><i class="fa-li fa fa-check-square"></i>{{ role|humanise_role }}</li> {% endfor %}</ul></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -55,7 +55,7 @@
                                     <td>{{ fitch.logdata(logEntry.data.fullName|default('')) }}</td>
                                     <td>{{ fitch.logdata(logEntry.data.email|default('')) }}</td>
                                     <td>{% if logEntry.data.roles is defined %}
-                                            <ul class="fa-ul">{% for role in logEntry.data.roles %}<li><i class="fa-li fa fa-check-square"></i>{{ role }}</li> {% endfor %}</ul>
+                                            <ul class="fa-ul">{% for role in logEntry.data.roles %}<li><i class="fa-li fa fa-check-square"></i>{{ role|humanise_role }}</li> {% endfor %}</ul>
                                         {% else %}
                                             {{ fitch.logdata('') }}
                                         {% endif %}
