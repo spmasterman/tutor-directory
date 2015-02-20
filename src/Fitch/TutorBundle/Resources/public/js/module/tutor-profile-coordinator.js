@@ -3,55 +3,49 @@ var TutorProfileCoordinator = (function ($) {
 
     var publicMembers = {
         //public variables
-            languagePrototypeRow : {},
-            competencyPrototypeRow : {},
-            addressPrototypeRow : {},
-            emailPrototypeRow : {},
-            phonePrototypeRow : {},
-            allLanguages: {},
-            allCompetencyTypes: {},
-            allCompetencyLevels: {},
-//            groupedLanguages: {},
-            groupedCountries: {}
         },
     // private variables
         logToConsole = false
     ;
 
+    /**
+     *
+     * @param {int} tutorId
+     * @param {Object} serverData
+     * @param {string} serverData.languagePrototype
+     * @param {string} serverData.competencyPrototype
+     * @param {string} serverData.addressPrototype
+     * @param {string} serverData.phonePrototype
+     * @param {string} serverData.emailPrototype
+     * @param {string} serverData.notePrototype
+     * @param {string[]} serverData.allLanguages
+     * @param {string[]} serverData.allCompetencyTypes
+     * @param {string[]} serverData.allCompetencyLevels
+     * @param {Array} serverData.groupedCountries
+     */
     var constructor = function(tutorId, serverData) {
-        publicMembers.languagePrototypeRow = serverData.languagePrototype;
-        publicMembers.competencyPrototypeRow = serverData.competencyPrototype;
-        publicMembers.addressPrototypeRow = serverData.addressPrototype;
-        publicMembers.emailPrototypeRow = serverData.emailPrototype;
-        publicMembers.phonePrototypeRow = serverData.phonePrototype;
-
-        publicMembers.allLanguages = serverData.allLanguages;
-        publicMembers.allCompetencyTypes = serverData.allCompetencyTypes;
-        publicMembers.allCompetencyLevels = serverData.allCompetencyLevels;
-//        publicMembers.groupedLanguages = serverData.groupedLanguages;
-        publicMembers.groupedCountries = serverData.groupedCountries;
-
         new Language(
-            publicMembers.languagePrototypeRow,
-            publicMembers.allLanguages
+            serverData.languagePrototype,
+            serverData.allLanguages
         );
 
         new Competency(
-            publicMembers.competencyPrototypeRow,
-            publicMembers.allCompetencyTypes,
-            publicMembers.allCompetencyLevels
+            serverData.competencyPrototype,
+            serverData.allCompetencyTypes,
+            serverData.allCompetencyLevels
         );
 
         new Biography();
 
-        new Address(publicMembers.addressPrototypeRow, publicMembers.groupedCountries);
-        new Phone(publicMembers.phonePrototypeRow, publicMembers.groupedCountries);
-        new Email(publicMembers.emailPrototypeRow);
+        new Address(serverData.addressPrototype, serverData.groupedCountries);
+        new Phone(serverData.phonePrototype, serverData.groupedCountries);
+        new Email(serverData.emailPrototype);
+        new Note(serverData.notePrototype);
     };
 
     /**
      * Log to console (if we are logging to console)
-     * @param message
+     * @param {string} message
      */
     function log(message) {
         if (logToConsole) {
@@ -61,7 +55,7 @@ var TutorProfileCoordinator = (function ($) {
 
     /**
      * Expose log message as a public member
-     * @param message
+     * @param {string} message
      */
     publicMembers.log = function(message) {
         log(message);
@@ -69,7 +63,7 @@ var TutorProfileCoordinator = (function ($) {
 
     /**
      * Should we Log To Console?
-     * @param log
+     * @param {boolean} log
      */
     publicMembers.setLogToConsole = function(log) {
         logToConsole = log;

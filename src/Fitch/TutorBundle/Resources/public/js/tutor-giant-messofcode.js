@@ -29,64 +29,18 @@ jQuery(document).ready(function() {
             $('#avatar-container').html(response.renderedAvatar);
         }
     });
-    $('.inline-note').each(function() {
-        $(this).editable(getNoteOptions($(this)));
-    });
+
 
 
     // Setup DOM event handlers
     setupRates($('.rates-container'));
-    setupNotes($('.notes-container'));
+
     setupFiles($('#files-container'));
     setupAvatar($('#avatar-container'));
 
 
 
 
-    /**
-     * Handlers for Edit/Save Notes
-     *
-     * @param notesContainer
-     */
-    function setupNotes(notesContainer) {
-        $('.add-note').on('click', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('[data-id]').data('id'),
-                newRow =
-                    '    <div class="data-row">                                                     '+
-                    '        <div class="note">                                                     '+
-                    '           <a href="#" id="note0" class="inline-note"                          '+
-                    '               data-inputclass="input-note"                                    '+
-                    '               data-type="textarea"                                            '+
-                    '               data-pk="' + tutorId + '"                                       '+
-                    '               data-url="' + Routing.generate('tutor_ajax_update')+'"          '+
-                    '               data-title="Enter Note"                                         '+
-                    '               data-note-pk="0"                                                '+
-                    '            ></a></div>                                                        '+
-                    '        <div class="note-provenance pull-right"></div>                         '+
-                    '    </div>                                                                     '
-                ;
-            notesContainer.prepend(newRow);
-
-            $('#note0').each(function(){
-                $(this).editable(getNoteOptions($(this)));
-            });
-        });
-
-        notesContainer.on('click', '.remove-note', function(e){
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                notePk = row.data('id')
-                ;
-            $.post(Routing.generate('note_ajax_remove'), {'pk' : notePk}, function(data) {
-                if (data.success) {
-                    row.remove();
-                } else {
-                    console.log(data);
-                }
-            }, "json");
-        });
-    }
 
     /**
      * Handlers for Edit/Save rates
@@ -253,29 +207,6 @@ jQuery(document).ready(function() {
 
 
 
-
-    /**
-     * Get x-editable options for a given element, that is going to be made an x-editable Note (custom type)
-     *
-     * @param host
-     * @returns {{params: Function, success: Function, sourceCountry: Array}}
-     */
-    function getNoteOptions(host) {
-        return {
-            params: function (params) {
-                params.notePk = host.attr('data-note-pk');
-                params.noteKey = host.closest('[data-note-key]').data('noteKey');
-                return params;
-            },
-            success: function (response) {
-                host.attr('data-phone-pk', response.id);
-                host.attr("id", "note" + response.id);
-                host.closest('.data-row').find('.note-provenance').text(response.detail);
-            },
-            sourceCountry: countryData,
-            emptytext : 'New Note...'
-        }
-    }
 
     /**
      * Get x-editable options for a given element, that is going to be made an x-editable Rate (custom type)

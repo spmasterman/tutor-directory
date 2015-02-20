@@ -320,6 +320,8 @@ class ProfileController extends Controller
         $isAdmin = $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES');
 
         return new JsonResponse([
+            'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),
+//            'groupedLanguages' => $this->getLanguageManager()->buildGroupedChoices(),
             'allCompetencyTypes' => array_map(
                 function(CompetencyType $competencyType) {
                     return $competencyType->getName() ;
@@ -332,14 +334,13 @@ class ProfileController extends Controller
                 },
                 $this->getCompetencyLevelManager()->findAll()
             ),
-            'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),
-//            'groupedLanguages' => $this->getLanguageManager()->buildGroupedChoices(),
             'allLanguages' => array_map(
                 function(Language $language) {
                     return $language->getName() ;
                 },
                 $this->getLanguageManager()->findAll()
             ),
+
             'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", [
                 'prototype' => true,
                 'tutorId' => $tutorId,
@@ -363,6 +364,11 @@ class ProfileController extends Controller
                 'isEditor' => $isEditor
             ]),
             'phonePrototype' => $this->renderView("FitchTutorBundle:Profile:phone_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $isEditor
+            ]),
+            'notePrototype' => $this->renderView("FitchTutorBundle:Profile:note_row.html.twig", [
                 'prototype' => true,
                 'tutorId' => $tutorId,
                 'isEditor' => $isEditor
