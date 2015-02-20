@@ -1,4 +1,4 @@
-{% if reports|length > 0 %}
+{% if reports|length > 0 and is_granted('ROLE_CAN_VIEW_SAVED_REPORTS') %}
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
         {{ helper.widget_header('Existing Reports', 'fa fa-list-alt', 'widget-report-existing') }}

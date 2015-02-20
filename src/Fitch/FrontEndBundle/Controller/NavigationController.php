@@ -33,7 +33,7 @@ class NavigationController extends Controller
     public function sidebarAction()
     {
         return [
-            'sidebarVisible' => $this->isGranted('ROLE_FULL_EDITOR'),
+            'sidebarVisible' => $this->isGranted('ROLE_CAN_ACCESS_SIDEBAR'),
             'open' => $this->getUser()->isSideBarOpen()
         ];
     }

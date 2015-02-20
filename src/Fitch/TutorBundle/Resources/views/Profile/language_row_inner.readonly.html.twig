@@ -1,7 +1,9 @@
-language
-{#<span class="data-name">#}
-    {#<span class="data-tag" {% if competency.getCompetencyLevel %}style="background-color: {{ competency.getCompetencyLevel.getColor }}"{% endif %}>&nbsp;</span>#}
-    {#{% if competency.getCompetencyLevel %}{{ competency.getCompetencyLevel.getName }}{% endif %}#}
-{#</span>#}
-{#<span class="data-value">{% if competency.getCompetencyType %}{{ competency.getCompetencyType.getName }}{% endif %}</span>#}
-{#<span class="data-note">{{ competency.getNote }}</span>#}
+<span class="data-name">
+    &nbsp;
+</span>
+<span class="data-value">
+{% if tutorLanguage.getLanguage %}{{ tutorLanguage.getLanguage.getName }}{% endif %}
+</span>
+<span class="data-note">
+    {{ tutorLanguage.getNote }}
+</span>

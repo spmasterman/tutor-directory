@@ -7,8 +7,10 @@
 
 {% block main_content -%}
     {% include 'FitchTutorBundle:Report:list.html.twig' %}
-    {% if reports|length > 0 %}
-        <p class="divider">{% trans %}report.create.intro{% endtrans %}</p>
+    {% if is_granted('ROLE_CAN_CREATE_AD_HOC_REPORTS') %}
+        {% if reports|length > 0 %}
+            <p class="divider">{% trans %}report.create.intro{% endtrans %}</p>
+        {% endif %}
+        {% include 'FitchTutorBundle:Report:definition.html.twig' %}
     {% endif %}
-    {% include 'FitchTutorBundle:Report:definition.html.twig' %}
 {% endblock %}

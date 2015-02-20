@@ -125,7 +125,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addReports(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_USER')) {
+        if ($this->isGranted('ROLE_CAN_CREATE_AD_HOC_REPORTS')) {
             $menu
                 ->addChild('menu.report', ['route' => 'report_header'])
                 ->setAttribute('icon', 'fa fa-list-alt fa-fw')
@@ -146,7 +146,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addTutorTypes(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.tutor_type', ['route' => 'tutor_type'])
                 ->setAttribute('icon', 'fa fa-child fa-fw')
@@ -166,7 +166,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addStatus(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.tutor_status', ['route' => 'status'])
                 ->setAttribute('icon', 'fa fa-tag fa-fw')
@@ -186,7 +186,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addRegions(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.regions', ['route' => 'region'])
                 ->setAttribute('icon', 'fa fa-globe fa-fw')
@@ -206,7 +206,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addCountries(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.countries', ['route' => 'country'])
                 ->setAttribute('icon', 'fa fa-flag-o fa-fw')
@@ -226,7 +226,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addCurrencies(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.currencies', ['route' => 'currency'])
                 ->setAttribute('icon', 'fa fa-money fa-fw')
@@ -246,7 +246,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addLanguages(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.languages', ['route' => 'language'])
                 ->setAttribute('icon', 'fa fa-language fa-fw')
@@ -266,7 +266,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addFileTypes(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.file_type', ['route' => 'file_type'])
                 ->setAttribute('icon', 'fa fa-files-o fa-fw')
@@ -287,7 +287,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addCompetencyTypes(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.competency_type', ['route' => 'competency_type'])
                 ->setAttribute('icon', 'fa fa-bullseye fa-fw')
@@ -307,7 +307,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addCompetencyLevels(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_FULL_EDITOR')) {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.competency_level', ['route' => 'competency_level'])
                 ->setAttribute('icon', 'fa fa-signal fa-fw')
@@ -327,7 +327,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addUsers(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->isGranted('ROLE_CAN_MANAGE_USERS')) {
             $menu
                 ->addChild('menu.user_management', ['route' => 'user'])
                 ->setAttribute('icon', 'fa fa-users fa-fw')
@@ -347,7 +347,7 @@ class MenuBuilder extends ContainerAware
      */
     private function addProfile(ItemInterface $menu)
     {
-        if (false !== $this->container->get('security.context')->isGranted('ROLE_USER')) {
+        if ($this->isGranted('ROLE_CAN_VIEW_TUTOR')) {
             $menu
                 ->addChild('menu.profile')
                 ->setAttribute('icon', 'fa fa-mortar-board fa-fw')
@@ -359,5 +359,14 @@ class MenuBuilder extends ContainerAware
         }
 
         return $this;
+    }
+
+    /**
+     * @param $role
+     * @return bool
+     */
+    public function isGranted($role)
+    {
+       return (bool)$this->container->get('security.context')->isGranted($role);
     }
 }

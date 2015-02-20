@@ -3,6 +3,7 @@
 namespace Fitch\UserBundle\Form\Type;
 
 use Fitch\FrontEndBundle\Form\Type\OnOffType;
+use Fitch\UserBundle\Model\Role;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -21,12 +22,7 @@ class NewUserType extends AbstractType
             ->add('email')
             ->add('plainPassword', 'password', [])
             ->add('roles', 'choice',[
-                'choices' => [
-                 //   'ROLE_USER' => 'Read Only user',
-                    'ROLE_EDITOR' => 'Edit PUBLIC tutor details',
-                    'ROLE_ADMIN' => 'Edit ALL tutor details',
-                    'ROLE_SUPER_ADMIN' => 'Full Access (Including User Management)',
-                ],
+                'choices' => Role::getAssignableRolesDictionary(),
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'Additional Roles',

@@ -34,3 +34,14 @@ assetic:
 
 swiftmailer:
     delivery_address: shaun@masterman.com
+
+knp_gaufrette:
+    adapters:
+        tutor:
+            local:
+                directory: %kernel.root_dir%/../filestore/tutor
+                create: true
+    filesystems:
+        tutor:
+            adapter: tutor
+    stream_wrapper: ~

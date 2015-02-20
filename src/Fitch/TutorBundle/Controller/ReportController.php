@@ -18,10 +18,12 @@ use JMS\Serializer\SerializerInterface;
 use Liuggio\ExcelBundle\Factory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Report controller - manages a filterable, savable report that is a little more dynamic than the searchable table
@@ -37,6 +39,7 @@ class ReportController extends Controller
      *
      * @Route("list", name="report_list")
      * @Method("GET")
+     * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
      * @Template()
      */
@@ -52,11 +55,16 @@ class ReportController extends Controller
      *
      * @Route("", name="report_header")
      * @Method("GET")
+     * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
      * @Template()
      */
     public function headerAction()
     {
+        if (!$this->isGranted('ROLE_CAN_VIEW_SAVED_REPORTS')) {
+            throw new AccessDeniedHttpException('Unauthorised access!');
+        }
+
         return [
             'reports' => $this->getReportManager()->findAll(),
             'form' => $this->createReportForm()->createView()
@@ -64,12 +72,13 @@ class ReportController extends Controller
     }
 
     /**
-     * View a report entities.
+     * View an ad hoc report.
      *
      * @Route("/view", name="report_view")
      * @Method("GET")
      *
      * @Template()
+     * @Security("has_role('ROLE_CAN_CREATE_AD_HOC_REPORTS')")
      *
      * @param Request $request
      *
@@ -80,7 +89,7 @@ class ReportController extends Controller
         $form = $this->createReportForm();
         $form->handleRequest($request);
 
-        $reportDefinition = new ReportDefinition($form, $this->isGranted('ROLE_ADMIN'));
+        $reportDefinition = new ReportDefinition($form, $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'));
 
         $report = $this->getReportManager()->createReport();
         $report->setDefinition($this->getSerializer()->serialize($reportDefinition, 'json'));
@@ -90,7 +99,7 @@ class ReportController extends Controller
             'saveForm' => $this->createCreateForm($report)->createView(),
             'data' => $this->getReportData($reportDefinition),
             'definition' => $reportDefinition,
-            'unrestricted' => $this->isGranted('ROLE_ADMIN')
+            'unrestricted' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA')
         ];
     }
 
@@ -101,6 +110,7 @@ class ReportController extends Controller
      * @Method("GET")
      *
      * @Template()
+     * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
      * @param Report $report
      *
@@ -112,7 +122,7 @@ class ReportController extends Controller
         return [
             'data' => $this->getReportData($reportDefinition),
             'definition' => $reportDefinition,
-            'unrestricted' => $this->isGranted('ROLE_ADMIN'),
+            'unrestricted' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
             'report' => $report
         ];
     }
@@ -206,11 +216,13 @@ class ReportController extends Controller
     }
 
     /**
-     * Creates a new Status entity.
+     * Creates a new report entity.
      *
      * @Route("/", name="report_create")
      * @Method("POST")
+     *
      * @Template("FitchTutorBundle:Status:new.html.twig")
+     * @Security("has_role('ROLE_CAN_CREATE_SAVED_REPORTS')")
      *
      * @param Request $request
      *
@@ -248,7 +260,9 @@ class ReportController extends Controller
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="report_edit")
      * @Method("GET")
+     *
      * @Template()
+     * @Security("has_role('ROLE_CAN_CREATE_SAVED_REPORTS')")
      *
      * @param Report $report
      *
@@ -271,7 +285,9 @@ class ReportController extends Controller
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="report_update")
      * @Method("PUT")
+     *
      * @Template("FitchTutorBundle:Report:edit.html.twig")
+     * @Security("has_role('ROLE_CAN_CREATE_SAVED_REPORTS')")
      *
      * @param Request $request
      * @param Report $report
@@ -280,10 +296,6 @@ class ReportController extends Controller
      */
     public function updateAction(Request $request, Report $report)
     {
-        if (!$report) {
-            throw $this->createNotFoundException('Unable to find Report entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($report->getId());
         $editForm = $this->createEditForm($report);
         $editForm->handleRequest($request);
@@ -311,6 +323,8 @@ class ReportController extends Controller
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="report_delete")
      * @Method("DELETE")
+     *
+     * @Security("has_role('ROLE_CAN_CREATE_SAVED_REPORTS')")
      *
      * @param Request $request
      * @param Report $report
@@ -385,9 +399,11 @@ class ReportController extends Controller
      * @Route("/download/{format}/{id}", requirements={"id" = "\d+"}, name="report_download")
      * @Method("GET")
      *
-     * @param Report $report
+     * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
+     * @param Report $report
      * @param $format
+     *
      * @return StreamedResponse
      * @throws \Exception
      */
@@ -436,7 +452,7 @@ class ReportController extends Controller
                 $this->getUser(),
                 $report,
                 $data,
-                $this->isGranted('ROLE_ADMIN')
+                $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA')
             ),
             $fileFormat
         );
@@ -528,5 +544,4 @@ class ReportController extends Controller
     {
         return $this->get('phpexcel');
     }
-
 }

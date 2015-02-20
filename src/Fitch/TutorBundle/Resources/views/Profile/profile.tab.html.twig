@@ -15,44 +15,44 @@
                     <p class="data-row">
                         <span class="data-name">{% trans %}profile.field.fullname{% endtrans %}</span>
                         <span class="data-value">
-                            {% if editor %}<a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Full Name">{% endif %}
+                            {% if isEditor %}<a href="#" id="name" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Full Name">{% endif %}
                                 {{ tutor.name }}
-                            {% if editor %}</a>{% endif %}
+                            {% if isEditor %}</a>{% endif %}
                         </span>
                     </p>
                     <p class="data-row">
                         <span class="data-name">{% trans %}profile.field.tutor_type{% endtrans %}</span>
                         <span class="data-value">
-                            {% if editor %}<a href="#" id="tutor_type" class="inline" data-source="{{ path('all_tutor_types') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getTutorType.getId }}" data-title="Select Tutor Type">{% endif %}
+                            {% if isEditor %}<a href="#" id="tutor_type" class="inline" data-source="{{ path('all_tutor_types') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getTutorType.getId }}" data-title="Select Tutor Type">{% endif %}
                                 {{ tutor.getTutorType.getName }}
-                            {% if editor %}</a>{% endif %}
+                            {% if isEditor %}</a>{% endif %}
                         </span>
                     </p>
                     <p class="data-row">
                         <span class="data-name">{% trans %}profile.field.status{% endtrans %}</span>
                         <span class="data-value">
-                            {% if editor %}<a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Status">{% endif %}
+                            {% if isEditor %}<a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Status">{% endif %}
                                 {{ tutor.getStatus.getName }}
-                            {% if editor %}</a>{% endif %}
+                            {% if isEditor %}</a>{% endif %}
                         </span>
                     </p>
                     <p class="data-row">
                         <span class="data-name">{% trans %}profile.field.region{% endtrans %}</span>
                         <span class="data-value">
-                            {% if editor %}<a href="#" id="region" class="inline" data-source="{{ path('all_regions') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Region">{% endif %}
+                            {% if isEditor %}<a href="#" id="region" class="inline" data-source="{{ path('all_regions') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Region">{% endif %}
                                 {{ tutor.getRegion.getName }}
-                            {% if editor %}</a>{% endif %}
+                            {% if isEditor %}</a>{% endif %}
                         </span>
                     </p>
 
-                    {% if editor or tutor.getLinkedInURL %}
+                    {% if isEditor or tutor.getLinkedInURL %}
                     <p class="data-row">
                         <span class="data-name"><i class="fa fa-linkedin-square"></i> {% trans %}profile.field.linked_in{% endtrans %}</span>
                         <span class="data-value">
                             {% if tutor.getLinkedInURL %}
                                 <a href="{{ tutor.getLinkedInURL }}" target="_blank">View Profile</a>
                             {% endif %}
-                            {% if editor %}
+                            {% if isEditor %}
                                 <a href="#" id="linkedInURL" class="inline" data-type="url" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getLinkedInURL }}" data-title="Enter URL of LinkedIn Profile">Edit</a>
                             {% endif %}
                         </span>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="contact-info">
                     <h3 class="data-row" data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.contact_info{% endtrans %}
-                        {% if editor %}
+                        {% if isEditor %}
                             <a href="#" class="btn btn-default btn-xs add-email"><i class="fa fa-at"></i> {% trans %}profile.button.new_email{% endtrans %}</a>
                             <a href="#" class="btn btn-default btn-xs add-phone"><i class="fa fa-phone"></i> {% trans %}profile.button.new_phone{% endtrans %}</a>
                             <a href="#" class="btn btn-default btn-xs add-address"><i class="fa fa-envelope-o"></i> {% trans %}profile.button.new_address{% endtrans %}</a>
@@ -78,7 +78,7 @@
                             <p class="data-row"  data-id="{{ tutor.getId }}">
                                 <span class="data-name">Email ({{ email.getType }})</span>
                                 <span class="data-value">
-                                    {% if editor %}
+                                    {% if isEditor %}
                                     <a href="#" id="email{{ email.getId }}" class="inline-email"
                                        data-type="emailContact"
                                        data-pk="{{ tutor.getId }}"
@@ -87,9 +87,9 @@
                                        data-title="Enter Email"
                                        data-value-type="{{ email.getType }}"
                                        data-value-address="{{ email.getAddress }}"
-                                    >{% endif %}{{ email }}{% if editor %}</a>{% endif %}
+                                    >{% endif %}{{ email }}{% if isEditor %}</a>{% endif %}
                                 </span>
-                                {% if editor %}
+                                {% if isEditor %}
                                 <span class="data-action">
                                     <a href="#" data-pk="{{ email.getId }}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i></a>
                                 </span>
@@ -103,7 +103,7 @@
                             <p class="data-row"  data-id="{{ tutor.getId }}">
                                 <span class="data-name">Phone ({{ phone.getType }})</span>
                                 <span class="data-value">
-                                    {% if editor %}
+                                    {% if isEditor %}
                                     <a href="#" id="phone{{ phone.getId }}" class="inline-phone"
                                        data-type="phone"
                                        data-pk="{{ tutor.getId }}"
@@ -114,9 +114,9 @@
                                        data-value-country="{{ phone.getCountry.getId }}"
                                        data-value-number="{{ phone.getNumber }}"
                                        data-value-is-preferred="{{ phone.isPreferred }}"
-                                    >{% endif %}{{ phone.getFullNumber }}{% if phone.isPreferred %} (preferred){% endif %}{% if editor %}</a>{% endif %}
+                                    >{% endif %}{{ phone.getFullNumber }}{% if phone.isPreferred %} (preferred){% endif %}{% if isEditor %}</a>{% endif %}
                                 </span>
-                                {% if editor %}
+                                {% if isEditor %}
                                 <span class="data-action">
                                     <a href="#" data-pk="{{ phone.getId }}" class="btn btn-danger btn-xs remove-phone"><i class="fa fa-remove"></i></a>
                                 </span>
@@ -130,7 +130,7 @@
                             <p class="data-row" data-id="{{ tutor.getId }}">
                                 <span class="data-name">Address ({{ address.getType }})</span>
                                 <span class="data-value">
-                                    {% if editor %}
+                                    {% if isEditor %}
                                     <a href="#" id="address{{ address.getId }}" class="inline-address"
                                        data-type="address"
                                        data-pk="{{ tutor.getId }}"
@@ -144,9 +144,9 @@
                                        data-value-state="{{ address.getState }}"
                                        data-value-zip="{{ address.getZip }}"
                                        data-value-country="{{ address.getCountry.getId }}"
-                                    >{% endif %}{{ address }}{% if editor %}</a>{% endif %}
+                                    >{% endif %}{{ address }}{% if isEditor %}</a>{% endif %}
                                 </span>
-                                {% if editor %}
+                                {% if isEditor %}
                                     <span class="data-action">
                                         <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i></a>
                                     </span>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
                 <div class="bio data-row" data-id="{{ tutor.getId }}">
-                    <h3><i class="fa fa-square"></i> {% trans %}profile.section.bio{% endtrans %} {% if editor %}<a href="#" class="btn btn-default btn-xs edit-bio"><i class="fa fa-pencil"></i> Edit</a>{% endif %}</h3>
+                    <h3><i class="fa fa-square"></i> {% trans %}profile.section.bio{% endtrans %} {% if isEditor %}<a href="#" class="btn btn-default btn-xs edit-bio"><i class="fa fa-pencil"></i> Edit</a>{% endif %}</h3>
                     <div id="bio">{{ tutor.getBio|purify }}</div>
                     <a href="#" class="btn btn-success btn-xs save-bio" style="display:none"><i class="fa fa-floppy-o"></i> Save</a>
 
@@ -164,7 +164,7 @@
                         <ul class="fa-ul">
                             {% for file in tutor.getFiles %}
                                 {% if file.getFileType.isDisplayWithBio %}
-                                    {% if admin or not file.getFileType.isPrivate %}
+                                    {% if isAdmin or not file.getFileType.isPrivate %}
                                         <li><i class="fa-li fa fa-file-o"></i><a href="{{ path('get_file_download', {'id':file.getId}) }}">{{ file.getName() }}</a><span class="data-file">{{ file.getProvenance }}</span></li>
                                     {% endif %}
                                 {% endif %}

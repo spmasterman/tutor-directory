@@ -21,10 +21,10 @@ class EditUserType extends AbstractType
             ->add('fullName')
             ->add('email', 'email')
             ->add('roles', 'choice',[
-                'choices' => Role::getRolesDictionary(),
+                'choices' => Role::getAssignableRolesDictionary(),
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Additional Roles',
+                'label' => 'Assignable Roles',
                 'attr' => [
                     'class' => "control-inline simple-checkbox",
                 ]

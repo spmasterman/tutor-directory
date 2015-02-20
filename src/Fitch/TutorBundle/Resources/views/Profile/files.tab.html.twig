@@ -1,5 +1,5 @@
 <div class="row">
-    {% if editor %}
+    {% if isEditor %}
         <div class="col-md-6 user-info-left">
             <div class="widget">
                 <div class="widget-header"><h3><i class="fa fa-cloud-upload"></i> {% trans %}profile.files.files_upload_header{% endtrans %}</h3>
@@ -34,7 +34,7 @@
             <div class="widget-content">
                 <div id="files-container">
                     {% for file in tutor.getFiles %}
-                        {% if editor %}
+                        {% if isEditor %}
                             {% include 'FitchTutorBundle:Profile:file_row.html.twig' %}
                         {% else %}
                             {% include 'FitchTutorBundle:Profile:file_row.readonly.html.twig' %}

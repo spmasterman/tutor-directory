@@ -1,5 +1,5 @@
 <div class="data-row" data-id="{{ tutor.getId }}" data-competency-pk="{{ competency.getId }}">
-    {% if editor %}
+    {% if isEditor %}
         {% include 'FitchTutorBundle:Profile:competency_row_inner.html.twig' %}
     {% else %}
         {% include 'FitchTutorBundle:Profile:competency_row_inner.readonly.html.twig' %}

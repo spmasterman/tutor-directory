@@ -110,7 +110,7 @@ class TutorLanguageController extends Controller
                 [
                     'tutor' => $tutor,
                     'tutorLanguage' => $tutorLanguage,
-                    'editor' => (bool) $this->get('security.context')->isGranted('ROLE_EDITOR')
+                    'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR')
                 ]
             ),
         ]);

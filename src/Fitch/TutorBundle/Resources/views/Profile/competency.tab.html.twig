@@ -3,7 +3,7 @@
         <div class="col-md-6 competency-left">
             <div class="competency-container">
                 <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.competencies{% endtrans %}
-                    {% if editor %}
+                    {% if isEditor %}
                     <a href="#" class="btn btn-default btn-xs add-competency"><i class="fa fa-puzzle-piece"></i> {% trans %}profile.button.new_competency{% endtrans %}</a>
                     {% endif %}
                 </h3>
@@ -15,7 +15,7 @@
         <div class="col-md-6 competency-right">
             <div class="languages-container">
                 <h3 data-id="{{ tutor.getId }}"><i class="fa fa-square"></i> {% trans %}profile.section.languages{% endtrans %}
-                    {% if editor %}
+                    {% if isEditor %}
                         <a href="#" class="btn btn-default btn-xs add-language"><i class="fa fa-language"></i> {% trans %}profile.button.new_language{% endtrans %}</a>
                     {% endif %}
                 </h3>

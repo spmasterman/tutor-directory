@@ -36,14 +36,23 @@ class TutorController extends Controller
     {
         $features = [];
 
-        if ($this->isGranted('ROLE_EDITOR')) {
+        // If you can add tutors, add n add tutor button
+        if ($this->isGranted('ROLE_CAN_CREATE_TUTOR')) {
             $features[] = 'add_tutor';
         }
 
-        if($this->isGranted('ROLE_FULL_USER') || $this->isGranted('ROLE_EDITOR')) {
-            $features[] = 'advanced_report';
-        } else {
-            $features[] = 'list_of_reports';
+        // If you cant see the sidebar (and therefore access the reports menu)
+        if (!$this->isGranted('ROLE_CAN_ACCESS_SIDEBAR')) {
+            //add a link to the reports page
+            if ($this->isGranted('ROLE_CAN_CREATE_AD_HOC_REPORTS')) {
+                $features[] = 'advanced_report';
+            }
+
+            // If you cant create reports, dont have the side menu, but still need to be able to view reports
+            // we best show a list...
+            if (count($features) == 0 && $this->isGranted('ROLE_CAN_VIEW_SAVED_REPORTS')) {
+                $features[] = 'list_of_reports';
+            }
         }
 
         return [
@@ -80,7 +89,7 @@ class TutorController extends Controller
      */
     public function createAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_EDITOR')) {
+        if (!$this->isGranted('ROLE_CAN_CREATE_TUTOR')) {
             throw new AccessDeniedHttpException('Unauthorised access!');
         }
 
@@ -148,7 +157,7 @@ class TutorController extends Controller
      */
     public function newAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_EDITOR')) {
+        if (!$this->isGranted('ROLE_CAN_CREATE_TUTOR')) {
             throw new AccessDeniedHttpException('Unauthorised access!');
         }
 

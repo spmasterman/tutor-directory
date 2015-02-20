@@ -8,13 +8,15 @@
     {% include 'FitchTutorBundle:Report:definition.html.twig' %}
     {% include 'FitchTutorBundle:Report:body.html.twig' %}
 
-    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
-    <div class="widget widget-table" id="report-holder">
-        {{ helper.widget_header('Save Report Definition', 'fa fa-save', 'widget-report_save') }}
-            {% form_theme saveForm 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
-            {{ form(saveForm, {'attr': {'class': 'form-horizontal'} }) }}
-        {{ helper.widget_footer() }}
-    </div>
+    {% if is_granted('ROLE_CAN_CREATE_SAVED_REPORTS') %}
+        {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+        <div class="widget widget-table" id="report-holder">
+            {{ helper.widget_header('Save Report Definition', 'fa fa-save', 'widget-report_save') }}
+                {% form_theme saveForm 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+                {{ form(saveForm, {'attr': {'class': 'form-horizontal'} }) }}
+            {{ helper.widget_footer() }}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}

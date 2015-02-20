@@ -52,7 +52,9 @@ class ProfileController extends Controller
             'tutor' => $tutor,
             'user' => $this->getUser(),
             'tab' => $tab,
-            'rateManager' => $this->getRateManager()
+            'rateManager' => $this->getRateManager(),
+            'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
+            'isAdmin' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA')
         ];
     }
 

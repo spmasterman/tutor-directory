@@ -11,7 +11,6 @@ use Oneup\UploaderBundle\Uploader\File\GaufretteFile;
 use Smalot\PdfParser\Parser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Security\Acl\Exception\Exception;
 use Symfony\Component\Templating\EngineInterface;
 
 class UploadListener
@@ -68,7 +67,7 @@ class UploadListener
             try {
                 $parser = new Parser();
                 $this->textContent = $parser->parseFile($uploadedFile->getRealPath())->getText();
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->textContent = $e->getMessage();
             }
         } else {
@@ -120,8 +119,8 @@ class UploadListener
                 'FitchTutorBundle:Profile:file_row.html.twig',
                 [
                     'file' => $file,
-                    'editor' => (bool) $security->isGranted('ROLE_EDITOR'),
-                    'admin' => (bool) $security->isGranted('ROLE_ADMIN'),
+                    'isEditor' => (bool) $security->isGranted('ROLE_CAN_EDIT_TUTOR'),
+                    'isAdmin' => (bool) $security->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
                 ]
             );
             $response['success'] = true;
