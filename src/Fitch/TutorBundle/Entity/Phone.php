@@ -40,21 +40,21 @@ class Phone implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @ORM\Column(name="number", type="string", length=32)
      */
-    private $number;
+    protected $number;
 
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=32)
      */
-    private $type;
+    protected $type;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="preferred", type="boolean")
      */
-    private $preferred;
+    protected $preferred;
 
     /**
      * @return string

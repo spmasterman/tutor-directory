@@ -60,14 +60,14 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
      *
      * @ORM\Column(name="fs_key", type="string", length=32)
      */
-    private $fileSystemKey;
+    protected $fileSystemKey;
 
     /**
      * @var string
      *
      * @ORM\Column(name="mime_type", type="string", length=32)
      */
-    private $mimeType;
+    protected $mimeType;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitch\UserBundle\Entity\User")
@@ -75,14 +75,14 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
      *
      * @var User
      */
-    private $uploader;
+    protected $uploader;
 
     /**
      * @var string
      *
      * @ORM\Column(name="text_content", type="text")
      */
-    private $textContent;
+    protected $textContent;
 
     /**
      * @return Tutor

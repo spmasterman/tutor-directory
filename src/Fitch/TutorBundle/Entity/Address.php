@@ -35,42 +35,42 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @ORM\Column(name="type", type="string", length=32)
      */
-    private $type = 'Office';
+    protected $type = 'Office';
 
     /**
      * @var string
      *
      * @ORM\Column(name="street_primary", type="string", length=255, nullable=true)
      */
-    private $streetPrimary;
+    protected $streetPrimary;
 
     /**
      * @var string
      *
      * @ORM\Column(name="street_secondary", type="string", length=255, nullable=true)
      */
-    private $streetSecondary;
+    protected $streetSecondary;
 
     /**
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255, nullable=true)
      */
-    private $state;
+    protected $state;
 
     /**
      * @var string
      *
      * @ORM\Column(name="zip", type="string", length=32, nullable=true)
      */
-    private $zip;
+    protected $zip;
 
     /**
      * @ORM\ManyToOne(targetEntity="Country")

@@ -28,7 +28,7 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface, Named
      *
      * @var Tutor
      */
-    private $tutor;
+    protected $tutor;
 
     /**
      * @Gedmo\Versioned
@@ -36,7 +36,7 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface, Named
      *
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @Gedmo\Versioned
@@ -44,7 +44,7 @@ class Rate implements IdentityTraitInterface, TimestampableTraitInterface, Named
      *
      * @var string
      */
-    private $amount = '0.00';
+    protected $amount = '0.00';
 
     /**
      * @return string

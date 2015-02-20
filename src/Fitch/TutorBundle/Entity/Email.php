@@ -32,14 +32,14 @@ class Email implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @ORM\Column(name="type", type="string", length=32)
      */
-    private $type;
+    protected $type;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
      */
-    private $address;
+    protected $address;
 
     /**
      * @return string

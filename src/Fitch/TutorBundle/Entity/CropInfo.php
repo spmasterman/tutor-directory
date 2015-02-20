@@ -24,28 +24,28 @@ class CropInfo implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @ORM\Column(name="origin_x", type="integer")
      */
-    private $originX;
+    protected $originX;
 
     /**
      * @var int
      *
      * @ORM\Column(name="origin_y", type="integer")
      */
-    private $originY;
+    protected $originY;
 
     /**
      * @var int
      *
      * @ORM\Column(name="height", type="integer")
      */
-    private $height;
+    protected $height;
 
     /**
      * @var int
      *
      * @ORM\Column(name="width", type="integer")
      */
-    private $width;
+    protected $width;
 
     /**
      * @return int

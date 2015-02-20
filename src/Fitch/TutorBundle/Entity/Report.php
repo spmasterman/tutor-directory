@@ -35,14 +35,14 @@ class Report implements IdentityTraitInterface, TimestampableTraitInterface, Nam
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="definition", type="text")
      */
-    private $definition;
+    protected $definition;
 
     /**
      * @return User

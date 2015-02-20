@@ -33,7 +33,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="TutorType")
@@ -48,14 +48,14 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
      *
      * @ORM\Column(name="linkedin_url", type="string", length=255, nullable=true)
      */
-    private $linkedInURL;
+    protected $linkedInURL;
 
     /**
      * @var string
      *
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
-    private $bio;
+    protected $bio;
 
     /**
      * @ORM\ManyToOne(targetEntity="Status", inversedBy="tutor")
@@ -63,7 +63,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
      *
      * @var Status
      */
-    private $status;
+    protected $status;
 
     /**
      * @var ArrayCollection
@@ -75,7 +75,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
      *      cascade={"persist", "remove"}
      * )
      */
-    private $addresses;
+    protected $addresses;
 
     /**
      * @var ArrayCollection

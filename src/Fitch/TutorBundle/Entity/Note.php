@@ -33,14 +33,14 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @var string
      */
-    private $key;
+    protected $key;
 
     /**
      * @ORM\Column(name="body", type="text")
      *
      * @var string
      */
-    private $body;
+    protected $body;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitch\UserBundle\Entity\User")
@@ -48,7 +48,7 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
      *
      * @var User
      */
-    private $author;
+    protected $author;
 
     /**
      * @return Tutor
