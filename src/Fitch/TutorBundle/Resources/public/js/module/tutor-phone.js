@@ -13,6 +13,9 @@ var Phone = (function ($) {
 
     /**
      * constructor
+     *
+     * @param {string} prototypeRowFromServer
+     * @param {Array} allCountriesFromServer
      */
     var constructor = function(prototypeRowFromServer, allCountriesFromServer) {
         prototypeRow = prototypeRowFromServer;

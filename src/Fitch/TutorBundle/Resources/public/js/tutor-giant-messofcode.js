@@ -4,23 +4,6 @@ Dropzone.autoDiscover = false;
 jQuery(document).ready(function() {
     "use strict";
 
-    // Module wide variables
-    var countryData = [],
-
-        ;
-
-    // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
-    // format. Only initialise the x-editable elements which use the data, once the data has been retrieved
-    $.getJSON(Routing.generate('active_countries'), {}, function(data) {
-        countryData = data;
-
-
-
-        $('.inline-rate').each(function() {
-            $(this).editable(getRateOptions($(this)));
-        });
-    });
-
     // Initialise the other x-editable elements
     $('.inline').editable();
     $('.inline-file-type').editable({
@@ -30,76 +13,9 @@ jQuery(document).ready(function() {
         }
     });
 
-
-
     // Setup DOM event handlers
-    setupRates($('.rates-container'));
-
     setupFiles($('#files-container'));
     setupAvatar($('#avatar-container'));
-
-
-
-
-
-    /**
-     * Handlers for Edit/Save rates
-     *
-     * @param ratesContainer
-     */
-    function setupRates(ratesContainer) {
-        $('.add-rate').on('click', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('[data-id]').data('id'),
-                newRow =
-                    '    <div class="data-row" data-id="0">                                         '+
-                    '        <span class="data-name">New Rate</span>                                '+
-                    '        <span class="data-value">                                              '+
-                    '           <a href="#" id="rate0" class="inline-rate"                          '+
-                    '           data-type="rate"                                                    '+
-                    '           data-pk="' + tutorId + '"                                           '+
-                    '           data-rate-pk="0"                                                    '+
-                    '           data-url="' + Routing.generate('tutor_ajax_update')+'"              '+
-                    '           data-title="Enter Rate"                                             '+
-                    '            ></a>                                                              '+
-                    '        </span>                                                                '+
-                    '        <span class="data-action">                                             '+
-                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-rate"> '+
-                    '               <i class="fa fa-remove"></i>                                    '+
-                    '            </a>                                                               '+
-                    '        </span>                                                                '+
-                    '    </div>                                                                     '
-            ;
-            ratesContainer.append(newRow);
-
-            $('#rate0').each(function(){
-                $(this).editable(getRateOptions($(this)));
-            });
-        });
-
-        ratesContainer.on('click', '.remove-rate', function(e){
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                ratePk = row.find('span.data-value a').attr('data-rate-pk')
-                ;
-
-            if (ratePk != '0') {
-                $.post(Routing.generate('rate_ajax_remove'), {'pk' : ratePk}, function(data) {
-                    if (data.success) {
-                        row.remove();
-                    } else {
-                        console.log(data);
-                    }
-                }, "json");
-            } else {
-                row.remove();
-            }
-        });
-
-        ratesContainer.on('click', 'span.data-history', function(){
-            $('.modal-body').html($(this).find('.data-history-content').html());
-        });
-    }
 
     /**
      * Handler for interacting with Files, and dropzone initialisation
@@ -204,39 +120,4 @@ jQuery(document).ready(function() {
         }
     }
 
-
-
-
-
-    /**
-     * Get x-editable options for a given element, that is going to be made an x-editable Rate (custom type)
-     *
-     * @param host
-     * @returns {{value: {name: *, amount: *}, params: Function, success: Function}}
-     */
-    function getRateOptions(host) {
-        return {
-            value: {
-                name: host.data('valueName'),
-                amount: host.data('valueAmount')
-            },
-            params: function(params) {
-                params.ratePk = host.attr('data-rate-pk');
-                return params;
-            },
-            validate: function(value) {
-                if (!$.isNumeric(value.amount)) {
-                    return {newValue: {name: value.name, amount: '0.00'}, msg: 'Non Numeric values entered'}
-                }
-                if (Math.round(100 * value.amount) != 100 * value.amount) {
-                    return {newValue: {name: value.name, amount: Math.round(100 * value.amount)/100}, msg: 'Rate will be rounded to two decimal places'}
-                }
-            },
-            success: function(response, newValue) {
-                host.closest('.data-row').find('.data-name').text(newValue.name + ' Rate');
-                host.attr('data-rate-pk', response.id);
-                host.attr( "id", "Rate" + response.id);
-            }
-        }
-    }
 });

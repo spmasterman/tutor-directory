@@ -18,6 +18,7 @@ var TutorProfileCoordinator = (function ($) {
      * @param {string} serverData.phonePrototype
      * @param {string} serverData.emailPrototype
      * @param {string} serverData.notePrototype
+     * @param {string} serverData.ratePrototype
      * @param {string[]} serverData.allLanguages
      * @param {string[]} serverData.allCompetencyTypes
      * @param {string[]} serverData.allCompetencyLevels
@@ -41,6 +42,7 @@ var TutorProfileCoordinator = (function ($) {
         new Phone(serverData.phonePrototype, serverData.groupedCountries);
         new Email(serverData.emailPrototype);
         new Note(serverData.notePrototype);
+        new Rate(serverData.ratePrototype);
     };
 
     /**

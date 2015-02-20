@@ -8,54 +8,14 @@
                     </h3>
                     <div class="data-row">
                         <span class="data-name">{% trans %}profile.field.currency{% endtrans %}</span>
+                        {% if isEditor %}
                         <span class="data-value"><a href="#" id="currency" class="inline" data-source="{{ path('all_currencies') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getCurrency.getId }}" data-title="Select Currency">{{ tutor.getCurrency }}</a></span>
+                        {% else %}
+                        <span class="data-value">{{ tutor.getCurrency }}</span>
+                        {% endif %}
                     </div>
                     {% for rate in tutor.getRates %}
-                        <div class="data-row" data-id="{{ tutor.getId }}">
-                            <span class="data-name">{{ rate.getName }} {% trans %}profile.field.rate_suffix{% endtrans %}</span>
-                            <span class="data-value">
-                                <a href="#" id="rate{{ rate.getId }}" class="inline-rate"
-                                   data-type="rate"
-                                   data-pk="{{ tutor.getId }}"
-                                   data-rate-pk="{{ rate.getId }}"
-                                   data-url="{{ path('tutor_ajax_update')}}"
-                                   data-title="Enter Rate"
-                                   data-value-name="{{ rate.getName }}"
-                                   data-value-amount="{{ rate.getAmount }}"
-                                        >{{ rate.getAmount }}</a>
-                            </span>
-                            <span class="data-action">
-                                <a href="#" data-pk="{{ rate.getId }}" class="btn btn-danger btn-xs remove-rate"><i class="fa fa-remove"></i></a>
-                            </span>
-                            <span class="data-history" data-toggle="modal" data-target="#modal-ratehistory">
-                                <span class="data-history-content hide">
-                                    <table class="records_list table table-condensed table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>{% trans %}profile.field.log.action{% endtrans %}</th>
-                                                <th>{% trans %}profile.field.log.rate{% endtrans %}</th>
-                                                <th>{% trans %}profile.field.log.qty{% endtrans %}</th>
-                                                <th>{% trans %}profile.field.log.date{% endtrans %}</th>
-                                                <th>{% trans %}profile.field.log.user{% endtrans %}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% import "FitchCommonBundle::macro.html.twig" as fitch %}
-                                        {% for logEntry in rateManager.getLogs(rate)|reverse %}
-                                            <tr>
-                                                <td>{{ logEntry.action }}</td>
-                                                <td>{{ fitch.logdata(logEntry.data.name|default('')) }}</td>
-                                                <td>{{ fitch.logdata(logEntry.data.amount|default('')) }}</td>
-                                                <td>{{ logEntry.loggedAt|date("F jS \\a\\t g:ia")  }}</td>
-                                                <td>{{ logEntry.username}}</td>
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </span>
-                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-history"></i> {% trans %}profile.button.history{% endtrans %}</a>
-                            </span>
-                        </div>
+                        {% include 'FitchTutorBundle:Profile:rate_row.html.twig' %}
                     {% endfor %}
                 </div>
             </div>
@@ -72,7 +32,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="col-md-6">

@@ -1,21 +1,8 @@
 {% if prototype is not defined %}{% set prototype=false %}{% endif %}
 <div data-id="{% if prototype %}0{% else %}{{ note.getId }}{% endif %}" class="data-row">
-    <div class="note">
-        <a href="#" id="note{% if prototype %}0{% else %}{{ note.getId }}{% endif %}" class="inline-note"
-            data-inputclass="input-note"
-            data-type="textarea"
-            data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
-            data-url="{{ path('tutor_ajax_update')}}"
-            data-title="Enter Note"
-            data-note-pk="{% if prototype %}0{% else %}{{ note.getId }}{% endif %}"
-                >{% if not prototype %}{{ note.getBody }}{% endif %}</a>
-    </div>
-    <div class="note-provenance pull-right">{% if not prototype %}{{ note.getProvenance }}{% endif %}
-        {% if isEditor %}
-            <span class="data-action">
-                <a href="#" data-pk="{% if prototype %}0{% else %}{{ note.getId }}{% endif %}" class="btn btn-danger btn-xs remove-note"><i class="fa fa-remove"></i></a>
-            </span>
-        {% endif %}
-    </div>
+    {% if isEditor %}
+        {% include 'FitchTutorBundle:Profile:note_row_inner.html.twig' %}
+    {% else %}
+        {% include 'FitchTutorBundle:Profile:note_row_inner.readonly.html.twig' %}
+    {% endif %}
 </div>
-

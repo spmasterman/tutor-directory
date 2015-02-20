@@ -1,0 +1,30 @@
+<span class="data-name">{% trans %}profile.field.rate_suffix{% endtrans %}</span>
+<span class="data-value">{{ rate.getAmount }}</a></span>
+<span class="data-history" data-toggle="modal" data-target="#modal-ratehistory">
+    <span class="data-history-content hide">
+        <table class="records_list table table-condensed table-striped">
+            <thead>
+            <tr>
+                <th>{% trans %}profile.field.log.action{% endtrans %}</th>
+                <th>{% trans %}profile.field.log.rate{% endtrans %}</th>
+                <th>{% trans %}profile.field.log.qty{% endtrans %}</th>
+                <th>{% trans %}profile.field.log.date{% endtrans %}</th>
+                <th>{% trans %}profile.field.log.user{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% import "FitchCommonBundle::macro.html.twig" as fitch %}
+            {% for logEntry in rateManager.getLogs(rate)|reverse %}
+                <tr>
+                    <td>{{ logEntry.action }}</td>
+                    <td>{{ fitch.logdata(logEntry.data.name|default('')) }}</td>
+                    <td>{{ fitch.logdata(logEntry.data.amount|default('')) }}</td>
+                    <td>{{ logEntry.loggedAt|date("F jS \\a\\t g:ia")  }}</td>
+                    <td>{{ logEntry.username}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </span>
+    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-history"></i> {% trans %}profile.button.history{% endtrans %}</a>
+</span>

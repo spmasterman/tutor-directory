@@ -319,60 +319,28 @@ class ProfileController extends Controller
         $isEditor = $this->isGranted('ROLE_CAN_EDIT_TUTOR');
         $isAdmin = $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES');
 
+        $options = [
+            'prototype' => true,
+            'tutorId' => $tutorId,
+            'isEditor' => $isEditor,
+            'isAdmin' => $isAdmin
+        ];
+
+        $extractName = function($object) {return $object->getName();};
+
         return new JsonResponse([
             'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),
 //            'groupedLanguages' => $this->getLanguageManager()->buildGroupedChoices(),
-            'allCompetencyTypes' => array_map(
-                function(CompetencyType $competencyType) {
-                    return $competencyType->getName() ;
-                },
-                $this->getCompetencyTypeManager()->findAll()
-            ),
-            'allCompetencyLevels'=> array_map(
-                function(CompetencyLevel $competencyLevel) {
-                    return $competencyLevel->getName() ;
-                },
-                $this->getCompetencyLevelManager()->findAll()
-            ),
-            'allLanguages' => array_map(
-                function(Language $language) {
-                    return $language->getName() ;
-                },
-                $this->getLanguageManager()->findAll()
-            ),
-
-            'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $isEditor,
-                'isAdmin' => $isAdmin
-            ]),
-            'competencyPrototype' => $this->renderView("FitchTutorBundle:Profile:competency_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $isEditor,
-                'isAdmin' => $isAdmin
-            ]),
-            'addressPrototype' => $this->renderView("FitchTutorBundle:Profile:address_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $isEditor
-            ]),
-            'emailPrototype' => $this->renderView("FitchTutorBundle:Profile:email_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $isEditor
-            ]),
-            'phonePrototype' => $this->renderView("FitchTutorBundle:Profile:phone_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $isEditor
-            ]),
-            'notePrototype' => $this->renderView("FitchTutorBundle:Profile:note_row.html.twig", [
-                'prototype' => true,
-                'tutorId' => $tutorId,
-                'isEditor' => $isEditor
-            ]),
+            'allCompetencyTypes' => array_map($extractName, $this->getCompetencyTypeManager()->findAll()),
+            'allCompetencyLevels'=> array_map($extractName, $this->getCompetencyLevelManager()->findAll()),
+            'allLanguages' => array_map($extractName, $this->getLanguageManager()->findAll()),
+            'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", $options),
+            'competencyPrototype' => $this->renderView("FitchTutorBundle:Profile:competency_row.html.twig", $options),
+            'addressPrototype' => $this->renderView("FitchTutorBundle:Profile:address_row.html.twig", $options),
+            'emailPrototype' => $this->renderView("FitchTutorBundle:Profile:email_row.html.twig", $options),
+            'phonePrototype' => $this->renderView("FitchTutorBundle:Profile:phone_row.html.twig", $options),
+            'notePrototype' => $this->renderView("FitchTutorBundle:Profile:note_row.html.twig", $options),
+            'ratePrototype' => $this->renderView("FitchTutorBundle:Profile:rate_row.html.twig", $options),
         ]);
     }
 

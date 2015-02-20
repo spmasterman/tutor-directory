@@ -55,9 +55,13 @@
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+    {% else %}
+        {% javascripts
+        '@FitchTutorBundle/Resources/public/js/profile.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endif %}
-
-
 {% endblock %}
 
 
