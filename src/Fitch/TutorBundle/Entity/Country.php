@@ -3,6 +3,8 @@
 namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredTrait;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTrait;
@@ -17,9 +19,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CountryRepository")
  */
-class Country implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class Country implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, ActiveAndPreferredTraitInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait, ActiveAndPreferredTrait;
 
     /**
      * @var string
@@ -57,20 +59,6 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
      * @var OperatingRegion
      */
     protected $defaultRegion;
-
-    /**
-     * @ORM\Column(name="preferred", type="boolean")
-     *
-     * @var boolean
-     */
-    protected $preferred = false;
-
-    /**
-     * @ORM\Column(name="active", type="boolean")
-     *
-     * @var boolean
-     */
-    protected $active = true;
 
     /**
      * @return string
@@ -117,24 +105,6 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
     }
 
     /**
-     * @return boolean
-     */
-    public function isPreferred()
-    {
-        return $this->preferred;
-    }
-
-    /**
-     * @param boolean $preferred
-     * @return $this
-     */
-    public function setPreferred($preferred)
-    {
-        $this->preferred = $preferred;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getThreeDigitCode()
@@ -167,24 +137,6 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
     public function setTwoDigitCode($twoDigitCode)
     {
         $this->twoDigitCode = $twoDigitCode;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param boolean $active
-     * @return $this
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
         return $this;
     }
 }

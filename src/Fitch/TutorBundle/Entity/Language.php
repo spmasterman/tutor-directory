@@ -4,6 +4,8 @@ namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredTrait;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTrait;
@@ -18,9 +20,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\LanguageRepository")
  */
-class Language implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class Language implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, ActiveAndPreferredTraitInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait;
+    use IdentityTrait, TimestampableTrait, NamedTrait, ActiveAndPreferredTrait;
 
     /**
      * @var ArrayCollection
@@ -48,20 +50,6 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface, N
      * @ORM\Column(name="three_letter_code", type="string", length=3)
      */
     protected $threeLetterCode;
-
-    /**
-     * @ORM\Column(name="preferred", type="boolean")
-     *
-     * @var boolean
-     */
-    protected $preferred = false;
-
-    /**
-     * @ORM\Column(name="active", type="boolean")
-     *
-     * @var boolean
-     */
-    protected $active = true;
 
     /**
      *
@@ -128,42 +116,6 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface, N
     public function setThreeLetterCode($threeLetterCode)
     {
         $this->threeLetterCode = $threeLetterCode;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isPreferred()
-    {
-        return $this->preferred;
-    }
-
-    /**
-     * @param boolean $preferred
-     * @return $this
-     */
-    public function setPreferred($preferred)
-    {
-        $this->preferred = $preferred;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param boolean $active
-     * @return $this
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
         return $this;
     }
 }
