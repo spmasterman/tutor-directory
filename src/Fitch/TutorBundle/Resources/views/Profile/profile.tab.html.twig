@@ -75,83 +75,19 @@
 
                     <div class="email-container">
                         {% for email in tutor.getEmailAddresses %}
-                            <p class="data-row"  data-id="{{ tutor.getId }}">
-                                <span class="data-name">Email ({{ email.getType }})</span>
-                                <span class="data-value">
-                                    {% if isEditor %}
-                                    <a href="#" id="email{{ email.getId }}" class="inline-email"
-                                       data-type="emailContact"
-                                       data-pk="{{ tutor.getId }}"
-                                       data-email-pk="{{ email.getId }}"
-                                       data-url="{{ path('tutor_ajax_update')}}"
-                                       data-title="Enter Email"
-                                       data-value-type="{{ email.getType }}"
-                                       data-value-address="{{ email.getAddress }}"
-                                    >{% endif %}{{ email }}{% if isEditor %}</a>{% endif %}
-                                </span>
-                                {% if isEditor %}
-                                <span class="data-action">
-                                    <a href="#" data-pk="{{ email.getId }}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i></a>
-                                </span>
-                                {% endif %}
-                            </p>
+                            {% include 'FitchTutorBundle:Profile:email_row.html.twig' %}
                         {% endfor %}
                     </div>
 
                     <div class="phone-container">
                         {% for phone in tutor.getPhoneNumbers %}
-                            <p class="data-row"  data-id="{{ tutor.getId }}">
-                                <span class="data-name">Phone ({{ phone.getType }})</span>
-                                <span class="data-value">
-                                    {% if isEditor %}
-                                    <a href="#" id="phone{{ phone.getId }}" class="inline-phone"
-                                       data-type="phone"
-                                       data-pk="{{ tutor.getId }}"
-                                       data-phone-pk="{{ phone.getId }}"
-                                       data-url="{{ path('tutor_ajax_update')}}"
-                                       data-title="Enter Phone"
-                                       data-value-type="{{ phone.getType }}"
-                                       data-value-country="{{ phone.getCountry.getId }}"
-                                       data-value-number="{{ phone.getNumber }}"
-                                       data-value-is-preferred="{{ phone.isPreferred }}"
-                                    >{% endif %}{{ phone.getFullNumber }}{% if phone.isPreferred %} (preferred){% endif %}{% if isEditor %}</a>{% endif %}
-                                </span>
-                                {% if isEditor %}
-                                <span class="data-action">
-                                    <a href="#" data-pk="{{ phone.getId }}" class="btn btn-danger btn-xs remove-phone"><i class="fa fa-remove"></i></a>
-                                </span>
-                                {% endif %}
-                            </p>
+                            {% include 'FitchTutorBundle:Profile:phone_row.html.twig' %}
                         {% endfor %}
                     </div>
 
                     <div class="address-container">
                         {% for address in tutor.getAddresses %}
-                            <p class="data-row" data-id="{{ tutor.getId }}">
-                                <span class="data-name">Address ({{ address.getType }})</span>
-                                <span class="data-value">
-                                    {% if isEditor %}
-                                    <a href="#" id="address{{ address.getId }}" class="inline-address"
-                                       data-type="address"
-                                       data-pk="{{ tutor.getId }}"
-                                       data-address-pk="{{ address.getId }}"
-                                       data-url="{{ path('tutor_ajax_update')}}"
-                                       data-title="Enter Address"
-                                       data-value-type="{{ address.getType }}"
-                                       data-value-street-primary="{{ address.getStreetPrimary }}"
-                                       data-value-street-secondary="{{ address.getStreetSecondary }}"
-                                       data-value-city="{{ address.getCity }}"
-                                       data-value-state="{{ address.getState }}"
-                                       data-value-zip="{{ address.getZip }}"
-                                       data-value-country="{{ address.getCountry.getId }}"
-                                    >{% endif %}{{ address }}{% if isEditor %}</a>{% endif %}
-                                </span>
-                                {% if isEditor %}
-                                    <span class="data-action">
-                                        <a href="#" data-pk="{{ address.getId }}" class="btn btn-danger btn-xs remove-address"><i class="fa fa-remove"></i></a>
-                                    </span>
-                                {% endif %}
-                            </p>
+                            {% include 'FitchTutorBundle:Profile:address_row.html.twig' %}
                         {% endfor %}
                     </div>
                 </div>

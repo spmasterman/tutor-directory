@@ -1,0 +1,23 @@
+{% if prototype is not defined %}{% set prototype=false %}{% endif %}
+<p class="data-row" data-id="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}">
+    <span class="data-name">{% if prototype %}New Email{% else %}Email ({{ email.getType }}){% endif %}</span>
+        <span class="data-value">
+            {% if isEditor %}
+            <a href="#" id="email{% if prototype %}0{% else %}{{ email.getId }}{% endif %}" class="inline-email"
+                data-type="emailContact"
+                data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
+                data-email-pk="{% if prototype %}0{% else %}{{ email.getId }}{% endif %}"
+                data-url="{{ path('tutor_ajax_update')}}"
+                data-title="Enter Email"
+                {% if not prototype %}
+                    data-value-type="{{ email.getType }}"
+                    data-value-address="{{ email.getAddress }}"
+                {% endif %}
+                    >{% endif %}{% if not prototype %}{{ email }}{% endif %}{% if isEditor %}</a>{% endif %}
+        </span>
+    {% if isEditor %}
+        <span class="data-action">
+            <a href="#" data-pk="{% if prototype %}0{% else %}{{ email.getId }}{% endif %}" class="btn btn-danger btn-xs remove-email"><i class="fa fa-remove"></i></a>
+        </span>
+    {% endif %}
+</p>

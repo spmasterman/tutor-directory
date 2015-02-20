@@ -1,0 +1,25 @@
+{% if prototype is not defined %}{% set prototype=false %}{% endif %}
+<p class="data-row" data-id="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}">
+    <span class="data-name">{% if prototype %}New Phone Number{% else %}Phone ({{ phone.getType }}){% endif %}</span>
+        <span class="data-value">
+            {% if isEditor %}
+            <a href="#" id="phone{% if prototype %}0{% else %}{{ phone.getId }}{% endif %}" class="inline-phone"
+                data-type="phone"
+                data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
+                data-phone-pk="{% if prototype %}0{% else %}{{ phone.getId }}{% endif %}"
+                data-url="{{ path('tutor_ajax_update')}}"
+                data-title="Enter Phone"
+                {% if not prototype %}
+                    data-value-type="{{ phone.getType }}"
+                    data-value-country="{{ phone.getCountry.getId }}"
+                    data-value-number="{{ phone.getNumber }}"
+                    data-value-is-preferred="{{ phone.isPreferred }}"
+                {% endif %}
+                    >{% endif %}{% if not prototype %}{{ phone.getFullNumber }}{% if phone.isPreferred %} (preferred){% endif %}{% endif %}{% if isEditor %}</a>{% endif %}
+        </span>
+    {% if isEditor %}
+        <span class="data-action">
+            <a href="#" data-pk="{% if prototype %}0{% else %}{{ phone.getId }}{% endif %}" class="btn btn-danger btn-xs remove-phone"><i class="fa fa-remove"></i></a>
+        </span>
+    {% endif %}
+</p>

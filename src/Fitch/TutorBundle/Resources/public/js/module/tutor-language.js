@@ -8,7 +8,7 @@ var Language = (function ($) {
         logToConsole = false,
         prototypeRow,
         allLanguages,
-        languagesContainer = $('.languages-container')
+        container = $('.languages-container')
     ;
 
     /**
@@ -29,7 +29,7 @@ var Language = (function ($) {
         });
 
         // Setup DOM event handlers
-        setupLanguages(languagesContainer);
+        setupLanguages(container);
     };
 
     /**

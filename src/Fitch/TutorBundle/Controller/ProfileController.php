@@ -316,6 +316,9 @@ class ProfileController extends Controller
      */
     public function prototypeAction($tutorId)
     {
+        $isEditor = $this->isGranted('ROLE_CAN_EDIT_TUTOR');
+        $isAdmin = $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES');
+
         return new JsonResponse([
             'allCompetencyTypes' => array_map(
                 function(CompetencyType $competencyType) {
@@ -340,14 +343,29 @@ class ProfileController extends Controller
             'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", [
                 'prototype' => true,
                 'tutorId' => $tutorId,
-                'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
-                'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+                'isEditor' => $isEditor,
+                'isAdmin' => $isAdmin
             ]),
             'competencyPrototype' => $this->renderView("FitchTutorBundle:Profile:competency_row.html.twig", [
                 'prototype' => true,
                 'tutorId' => $tutorId,
-                'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
-                'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+                'isEditor' => $isEditor,
+                'isAdmin' => $isAdmin
+            ]),
+            'addressPrototype' => $this->renderView("FitchTutorBundle:Profile:address_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $isEditor
+            ]),
+            'emailPrototype' => $this->renderView("FitchTutorBundle:Profile:email_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $isEditor
+            ]),
+            'phonePrototype' => $this->renderView("FitchTutorBundle:Profile:phone_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $isEditor
             ]),
         ]);
     }

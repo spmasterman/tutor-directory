@@ -6,15 +6,7 @@ jQuery(document).ready(function() {
 
     // Module wide variables
     var countryData = [],
-        // Default toolbar style for inline summer note editor
-        defaultToolbar = [
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']]
-        ]
+
         ;
 
     // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
@@ -22,12 +14,8 @@ jQuery(document).ready(function() {
     $.getJSON(Routing.generate('active_countries'), {}, function(data) {
         countryData = data;
 
-        $('.inline-address').each(function() {
-            $(this).editable(getAddressOptions($(this)));
-        });
-        $('.inline-phone').each(function() {
-            $(this).editable(getPhoneOptions($(this)));
-        });
+
+
         $('.inline-rate').each(function() {
             $(this).editable(getRateOptions($(this)));
         });
@@ -44,13 +32,9 @@ jQuery(document).ready(function() {
     $('.inline-note').each(function() {
         $(this).editable(getNoteOptions($(this)));
     });
-    $('.inline-email').each(function() {
-        $(this).editable(getEmailOptions($(this)));
-    });
+
 
     // Setup DOM event handlers
-    setupContactInfo($('.contact-info'));
-    setupBio($('.bio'));
     setupRates($('.rates-container'));
     setupNotes($('.notes-container'));
     setupFiles($('#files-container'));
@@ -58,180 +42,6 @@ jQuery(document).ready(function() {
 
 
 
-    /**
-     * Handlers for Add/Remove contact info
-     * @param contactInfo
-     */
-    function setupContactInfo(contactInfo) {
-        contactInfo.on('click', '.remove-address', function(e) {
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                addressPk = row.find('span.data-value a').attr('data-address-pk');
-
-            if (addressPk != '0') {
-                $.post(Routing.generate('address_ajax_remove'), {'pk' : addressPk }, function(data) {
-                    if (data.success) {
-                        row.remove();
-                    }
-                }, "json");
-            } else {
-                row.remove();
-            }
-        });
-
-        contactInfo.on('click', '.add-address', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('.data-row').data('id'),
-                newRow =
-                    ' <p class="data-row" data-id="' + tutorId + '">                                '+
-                    '     <span class="data-name">New Address</span>                                '+
-                    '     <span class="data-value">                                                 '+
-                    '         <a href="#"  id="address0" class="inline-address"                     '+
-                    '             data-type="address"                                               '+
-                    '             data-pk="' + tutorId + '"                                         '+
-                    '             data-address-pk="0"                                               '+
-                    '             data-url="' + Routing.generate('tutor_ajax_update') + '"          '+
-                    '             data-title="Enter Address"                                        '+
-                    '         ></a>                                                                 '+
-                    '     </span>                                                                   '+
-                    '     <span class="data-action">                                                '+
-                    '         <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-address"> '+
-                    '             <i class="fa fa-remove"></i>                                      '+
-                    '         </a>                                                                  '+
-                    '     </span>                                                                   '+
-                    ' </p>                                                                          '
-            ;
-            $('.address-container').append(newRow);
-
-            $('#address0').each(function(){
-                $(this).editable(getAddressOptions($(this)));
-            });
-        });
-
-        contactInfo.on('click', '.remove-email', function(e) {
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                emailPk = row.find('span.data-value a').attr('data-email-pk');
-
-            if (emailPk != '0') {
-                $.post(Routing.generate('email_ajax_remove'), {'pk' : emailPk }, function(data) {
-                    if (data.success) {
-                        row.remove();
-                    }
-                }, "json");
-            } else {
-                row.remove();
-            }
-        });
-
-        contactInfo.on('click', '.add-email', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('.data-row').data('id'),
-                newRow =
-                    '    <p class="data-row" data-id="' + tutorId + '">                                               '+
-                    '        <span class="data-name">New Email</span>                                                 '+
-                    '        <span class="data-value">                                                                '+
-                    '            <a href="#"  id="email0" class="inline-email"                                        '+
-                    '                data-type="emailContact"                                                         '+
-                    '                data-pk="' + tutorId + '"                                                        '+
-                    '                data-email-pk="0"                                                                '+
-                    '                data-url="' + Routing.generate('tutor_ajax_update') + '"                         '+
-                    '                data-title="Enter Email"                                                         '+
-                    '                data-value-type="' + ($('.inline-email').length > 0 ? 'other' : 'primary') + '"  '+
-                    '            ></a>                                                                                '+
-                    '        </span>                                                                                  '+
-                    '        <span class="data-action">                                                               '+
-                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-email">                  '+
-                    '                <i class="fa fa-remove"></i>                                                     '+
-                    '            </a>                                                                                 '+
-                    '        </span>                                                                                  '+
-                    '    </p>                                                                                         '
-                ;
-            $('.email-container').append(newRow);
-
-            $('#email0').each(function(){
-                $(this).editable(getEmailOptions($(this)));
-            });
-        });
-
-        contactInfo.on('click', '.remove-phone', function(e) {
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                phonePk = row.find('span.data-value a').attr('data-phone-pk');
-
-            if (phonePk != '0') {
-                $.post(Routing.generate('phone_ajax_remove'), {'pk' : phonePk }, function(data) {
-                    if (data.success) {
-                        row.remove();
-                    }
-                }, "json");
-            } else {
-                row.remove();
-            }
-        });
-
-        contactInfo.on('click', '.add-phone', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('.data-row').data('id'),
-                newRow =
-                    '    <p class="data-row" data-id="' + tutorId + '">                                        '+
-                    '        <span class="data-name">New Phone</span>                                          '+
-                    '        <span class="data-value">                                                         '+
-                    '            <a href="#"  id="phone0" class="inline-phone"                                 '+
-                    '                data-type="phone"                                                         '+
-                    '                data-pk="' + tutorId + '"                                                 '+
-                    '                data-phone-pk="0"                                                         '+
-                    '                data-url="' + Routing.generate('tutor_ajax_update') + '"                  '+
-                    '                data-title="Enter Phone"                                                  '+
-                    '            ></a>                                                                         '+
-                    '        </span>                                                                           '+
-                    '        <span class="data-action">                                                        '+
-                    '            <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-phone">           '+
-                    '                <i class="fa fa-remove"></i>                                              '+
-                    '            </a>                                                                          '+
-                    '        </span>                                                                           '+
-                    '    </p>                                                                                  '
-                ;
-            $('.phone-container').append(newRow);
-
-            $('#phone0').each(function(){
-                $(this).editable(getPhoneOptions($(this)));
-            });
-        });
-
-    }
-
-    /**
-     * Handlers for Edit/Save Bio
-     *
-     * @param bioContainer
-     */
-    function setupBio(bioContainer) {
-        bioContainer.on('click', '.edit-bio', function(e){
-            e.preventDefault();
-            $('#bio').summernote({
-                toolbar: defaultToolbar
-            });
-            $('.bio').find('.save-bio').show();
-            $(this).hide();
-        });
-
-        bioContainer.on('click', '.save-bio', function(e){
-            e.preventDefault();
-            var btn = $(this);
-            $.post(Routing.generate('tutor_ajax_update'), {
-                'pk' : $(this).closest('.data-row').data('id'),
-                'name' : 'bio',
-                'value' : $('#bio').code()
-            }, function(data) {
-                if (data.success) {
-                    $('#bio').destroy();
-                    $('.bio').find('.edit-bio').show();
-                    btn.hide();
-                }
-            }, "json");
-        });
-    }
 
     /**
      * Handlers for Edit/Save Notes
@@ -440,86 +250,9 @@ jQuery(document).ready(function() {
         }
     }
 
-    /**
-     * Get x-editable options for a given element, that is going to be made an x-editable Address (custom type)
-     *
-     * @param host
-     * @returns {{value: {type: *, streetPrimary: *, streetSecondary: *, city: *, state: *, zip: *, country: *}, params: Function, success: Function, sourceCountry: Array}}
-     */
-    function getAddressOptions(host) {
-        return {
-            value: {
-                type: host.data('valueType'),
-                streetPrimary: host.data('valueStreetPrimary'),
-                streetSecondary: host.data('valueStreetSecondary'),
-                city: host.data('valueCity'),
-                state: host.data('valueState'),
-                zip: host.data('valueZip'),
-                country: host.data('valueCountry')
-            },
-            params: function(params) {
-                params.addressPk = host.attr('data-address-pk');
-                return params;
-            },
-            success: function(response, newValue) {
-                host.closest('.data-row').find('.data-name').text('Address (' + newValue.type +')');
-                host.attr('data-address-pk', response.id);
-                host.attr( "id", "Address" + response.id);
-            },
-            sourceCountry: countryData
-        }
-    }
 
-    /**
-     * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
-     *
-     * @param host
-     * @returns {{value: {type: *, address: *}, params: Function, success: Function}}
-     */
-    function getEmailOptions(host) {
-        return {
-            value: {
-                type: host.data('valueType'),
-                address: host.data('valueAddress')
-            },
-            params: function(params) {
-                params.emailPk = host.attr('data-email-pk');
-                return params;
-            },
-            success: function(response, newValue) {
-                host.closest('.data-row').find('.data-name').text('Email (' + newValue.type +')');
-                host.attr('data-email-pk', response.id);
-                host.attr( "id", "Email" + response.id);
-            }
-        }
-    }
 
-    /**
-     * Get x-editable options for a given element, that is going to be made an x-editable Email (custom type)
-     *
-     * @param host
-     * @returns {{value: {type: *, number: *, country: *, isPreferred: *}, params: Function, success: Function, sourceCountry: Array}}
-     */
-    function getPhoneOptions(host) {
-        return {
-            value: {
-                type: host.data('valueType'),
-                number: host.data('valueNumber'),
-                country: host.data('valueCountry'),
-                isPreferred: host.data('valueIsPreferred')
-            },
-            params: function(params) {
-                params.phonePk = host.attr('data-phone-pk');
-                return params;
-            },
-            success: function(response, newValue) {
-                host.closest('.data-row').find('.data-name').text('Phone (' + newValue.type +')');
-                host.attr('data-phone-pk', response.id);
-                host.attr( "id", "Phone" + response.id);
-            },
-            sourceCountry: countryData
-        }
-    }
+
 
     /**
      * Get x-editable options for a given element, that is going to be made an x-editable Note (custom type)

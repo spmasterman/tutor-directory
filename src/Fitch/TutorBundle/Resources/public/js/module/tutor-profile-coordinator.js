@@ -5,6 +5,9 @@ var TutorProfileCoordinator = (function ($) {
         //public variables
             languagePrototypeRow : {},
             competencyPrototypeRow : {},
+            addressPrototypeRow : {},
+            emailPrototypeRow : {},
+            phonePrototypeRow : {},
             allLanguages: {},
             allCompetencyTypes: {},
             allCompetencyLevels: {},
@@ -18,6 +21,10 @@ var TutorProfileCoordinator = (function ($) {
     var constructor = function(tutorId, serverData) {
         publicMembers.languagePrototypeRow = serverData.languagePrototype;
         publicMembers.competencyPrototypeRow = serverData.competencyPrototype;
+        publicMembers.addressPrototypeRow = serverData.addressPrototype;
+        publicMembers.emailPrototypeRow = serverData.emailPrototype;
+        publicMembers.phonePrototypeRow = serverData.phonePrototype;
+
         publicMembers.allLanguages = serverData.allLanguages;
         publicMembers.allCompetencyTypes = serverData.allCompetencyTypes;
         publicMembers.allCompetencyLevels = serverData.allCompetencyLevels;
@@ -34,6 +41,12 @@ var TutorProfileCoordinator = (function ($) {
             publicMembers.allCompetencyTypes,
             publicMembers.allCompetencyLevels
         );
+
+        new Biography();
+
+        new Address(publicMembers.addressPrototypeRow, publicMembers.groupedCountries);
+        new Phone(publicMembers.phonePrototypeRow, publicMembers.groupedCountries);
+        new Email(publicMembers.emailPrototypeRow);
     };
 
     /**

@@ -9,7 +9,7 @@ var Competency = (function ($) {
         prototypeRow,
         competencyTypes,
         competencyLevels,
-        competencyContainer = $('.competency-container')
+        container = $('.competency-container')
         ;
 
     var constructor = function(prototypeRowFromServer, competencyTypesFromServer, competencyLevelsFromServer) {
@@ -27,7 +27,7 @@ var Competency = (function ($) {
             $(this).editable(getCompetencyNoteOptions($(this)));
         });
 
-        setupCompetency(competencyContainer);
+        setupCompetency(container);
     };
 
     /**
