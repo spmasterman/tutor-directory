@@ -8,7 +8,6 @@ jQuery(document).ready(function() {
     var countryData = [],
         competencyTypes = [],
         competencyLevels = [],
-        languages = [],
         // Default toolbar style for inline summer note editor
         defaultToolbar = [
             ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -20,10 +19,9 @@ jQuery(document).ready(function() {
         ]
         ;
 
-
     // Build data for County selects in custom types (Phone and Address) - same data but slightly different display
     // format. Only initialise the x-editable elements which use the data, once the data has been retrieved
-    $.getJSON(Routing.generate('all_countries'), {}, function(data) {
+    $.getJSON(Routing.generate('active_countries'), {}, function(data) {
         countryData = data;
 
         $('.inline-address').each(function() {
@@ -54,19 +52,6 @@ jQuery(document).ready(function() {
         });
     });
 
-    // Build data for Language selects in custom type. Only initialise the x-editable elements which use the data,
-    // once the data has been retrieved
-    $.getJSON(Routing.generate('language_lookups'), {}, function(data) {
-        languages = data.languages;
-
-        $('.inline-tutor-language').each(function() {
-            $(this).editable(getTutorLanguageOptions($(this)));
-        });
-        $('.inline-tutor-language-note').each(function() {
-            $(this).editable(getTutorLanguageNoteOptions($(this)));
-        });
-    });
-
     // Initialise the other x-editable elements
     $('.inline').editable();
     $('.inline-file-type').editable({
@@ -90,78 +75,6 @@ jQuery(document).ready(function() {
     setupFiles($('#files-container'));
     setupAvatar($('#avatar-container'));
     setupCompetency($('.competency-container'));
-    setupLanguages($('.languages-container'));
-
-    /**
-     * Handlers for Add/Remove language
-     *
-     * @param languageContainer
-     */
-    function setupLanguages(languageContainer) {
-        $('.add-language').on('click', function(e) {
-            e.preventDefault();
-            var tutorId = $(this).closest('[data-id]').data('id'),
-                newRow =
-                    ' <div class="data-row" data-id="' + tutorId + '" data-tutor-language-pk="0">         '+
-                    '    <span class="data-name">                                                         '+
-                    '       &nbsp;                                                                        '+
-                    '    </span>                                                                          '+
-                    '    <span class="data-value">                                                        '+
-                    '        <a href="#" id="tutor-language0" class="inline-tutor-language"               '+
-                    '           data-type="typeaheadjs"                                                   '+
-                    '           data-pk="' + tutorId + '"                                                 '+
-                    '           data-tutor-language-pk="0"                                                '+
-                    '           data-url="' + Routing.generate('tutor_language_ajax_update')+'"           '+
-                    '           data-title="Language"                                                     '+
-                    '          ></a>                                                                      '+
-                    '    </span>                                                                          '+
-                    '    <span class="data-action">                                                       '+
-                    '        <a href="#" data-pk="0" class="btn btn-danger btn-xs remove-tutor-language"> '+
-                    '           <i class="fa fa-remove"></i>                                              '+
-                    '       </a>                                                                          '+
-                    '    </span>                                                                          '+
-                    '    <span class="data-note">                                                         '+
-                    '        <a href="#" id="tutor-language-note0" class="inline-tutor-language-note"     '+
-                    '           data-type="textarea"                                                      '+
-                    '           data-pk="' + tutorId + '"                                                 '+
-                    '           data-tutor-language-pk="' + tutorId + '"                                  '+
-                    '           data-url="' + Routing.generate('tutor_language_ajax_update')+'"           '+
-                    '           data-title="Note"                                                         '+
-                    '          ></a>                                                                      '+
-                    '    </span>                                                                          '+
-                    ' </div>                                                                              '
-            ;
-
-            languageContainer.append(newRow);
-
-            languageContainer.find('#tutor-language0').each(function() {
-                $(this).editable(getTutorLanguageOptions($(this)));
-            });
-
-            languageContainer.find('#tutor-language-note0').each(function() {
-                $(this).editable(getTutorLanguageNoteOptions($(this)));
-            });
-        });
-
-        languageContainer.on('click', '.remove-tutor-language', function(e){
-            e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                tutorLanguagePk = row.find('span.data-value a').attr('data-tutor-language-pk')
-                ;
-
-            if (tutorLanguagePk != '0') {
-                $.post(Routing.generate('language_ajax_remove'), {'pk' : tutorLanguagePk}, function(data) {
-                    if (data.success) {
-                        row.remove();
-                    } else {
-                        console.log(data);
-                    }
-                }, "json");
-            } else {
-                row.remove();
-            }
-        });
-    }
 
     /**
      * Handlers for Add/Remove competency
@@ -242,7 +155,6 @@ jQuery(document).ready(function() {
             }
         });
     }
-
 
     /**
      * Handlers for Add/Remove contact info
@@ -776,17 +688,6 @@ jQuery(document).ready(function() {
         });
     }
 
-    function reloadTutorLanguageRow(row, response) {
-        row.html(response.renderedTutorLanguageRow);
-        row.attr('data-tutor-language-pk', response.id);
-        row.find('.inline-tutor-language').each(function() {
-            $(this).editable(getTutorLanguageOptions($(this)));
-        });
-        row.find('.inline-tutor-language-note').each(function() {
-            $(this).editable(getTutorLanguageNoteOptions($(this)));
-        });
-    }
-
     function getCompetencyLevelOptions(host) {
         return {
             params: function(params) {
@@ -843,40 +744,4 @@ jQuery(document).ready(function() {
             }
         }
     }
-
-    function getTutorLanguageOptions(host) {
-        return {
-            params: function (params) {
-                params.tutorLanguagePk = host.attr('data-tutor-language-pk');
-                return params;
-            },
-            typeahead: {
-                name: 'Language',
-                local: languages
-            },
-            validate: function (value) {
-                if ($.trim(value) == '') {
-                    return 'This field is required';
-                }
-            },
-            success: function (response) {
-                reloadTutorLanguageRow(host.closest('.data-row'), response)
-            }
-        }
-    }
-
-    function getTutorLanguageNoteOptions(host) {
-        return {
-            params: function(params) {
-                params.tutorLanguagePk = host.attr('data-tutor-language-pk');
-                return params;
-            },
-            emptytext : 'Add note...',
-            emptyclass : 'empty-note',
-            success: function(response) {
-                reloadTutorLanguageRow(host.closest('.data-row'), response)
-            }
-        }
-    }
-
 });

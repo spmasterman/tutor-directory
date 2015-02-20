@@ -11,6 +11,7 @@ use Fitch\TutorBundle\Model\AddressManager;
 use Fitch\TutorBundle\Model\CountryManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\NoteManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
@@ -211,7 +212,11 @@ class ProfileController extends Controller
     /**
      * Returns the countries as a JSON Array
      *
-     * @Route("/all/countries", name="all_countries", options={"expose"=true})
+     * The reason that this controller is defined here, rather than in the CountryController file is because the
+     * CountryController file is in the /admin/ url space, and therefore routes defined in ares not available to
+     * editors etc.
+     *
+     * @Route("/country/active", name="active_countries", options={"expose"=true})
      * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -239,6 +244,77 @@ class ProfileController extends Controller
             }
         }
         return new JsonResponse($out);
+    }
+
+
+    /**
+     * Returns all languages as a JSON Array - suitable for use in typeahead.js style
+     * presentations, where all language NAMES must be present
+     *
+     * The reason that this controller is defined here, rather than in the LanguageController file is because the
+     * LanguageController file is in the /admin/ url space, and therefore routes defined in ares not available to
+     * editors etc.
+     *
+     * @Route("/all", name="all_languages", options={"expose"=true})
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function lookupAction(){
+        $languages = [];
+        foreach($this->getLanguageManager()->findAll() as $language) {
+            $languages[] = $language->getName();
+        }
+
+        return new JsonResponse([
+            'languages' => $languages
+        ]);
+    }
+
+    /**
+     * Returns all active languages as a JSON Array - suitable for use in "select"
+     * style lists, with a preferred section
+     *
+     * The reason that this controller is defined here, rather than in the LanguageController file is because the
+     * LanguageController file is in the /admin/ url space, and therefore routes defined in ares not available to
+     * editors etc.
+     *
+     * @Route("/active", name="active_languages")
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function allActiveAction()
+    {
+        $out = [
+            [
+                'text' => 'Preferred',
+                'children' => []
+            ],
+            [
+                'text' => 'Other',
+                'children' => []
+            ]
+        ];
+
+        foreach($this->getLanguageManager()->findAllSorted() as $language) {
+            if ($language->isActive()) {
+                $key = $language->isPreferred() ? 0 : 1;
+                $out[$key]['children'][] = [
+                    'value' => $language->getId(),
+                    'text' => $language->getName(),
+                ];
+            }
+        }
+        return new JsonResponse($out);
+    }
+
+    /**
+     * @return LanguageManager
+     */
+    private function getLanguageManager()
+    {
+        return $this->get('fitch.manager.language');
     }
 
     /**

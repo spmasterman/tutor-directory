@@ -277,40 +277,6 @@ class LanguageController extends Controller
     }
 
     /**
-     * Returns the languages as a JSON Array
-     *
-     * @Route("/active", name="all_languages", options={"expose"=true})
-     * @Method("GET")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-
-    public function activeAction(){
-        $out = [
-            [
-                'text' => 'Preferred',
-                'children' => []
-            ],
-            [
-                'text' => 'Other',
-                'children' => []
-            ]
-        ];
-
-        foreach($this->getLanguageManager()->findAllSorted() as $language) {
-            if ($language->isActive()) {
-                $key = $language->isPreferred() ? 0 : 1;
-                $out[$key]['children'][] = [
-                    'value' => $language->getId(),
-                    'text' => (string)$language,
-                ];
-            }
-        }
-        return new JsonResponse($out);
-    }
-
-    /**
      * @return LanguageManager
      */
     private function getLanguageManager()

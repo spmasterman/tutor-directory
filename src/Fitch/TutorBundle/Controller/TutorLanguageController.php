@@ -12,6 +12,7 @@ use Fitch\TutorBundle\Model\TutorLanguageManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,23 +26,24 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class TutorLanguageController extends Controller
 {
+
     /**
-     * Returns the languages as a JSON Array
+     * Returns a prototype "New Row" suitable for inserting into the DOM
      *
-     * @Route("/lookups", name="language_lookups", options={"expose"=true})
+     * @Route("/prototype/{tutorId}", name="prototype_language", options={"expose"=true})
      * @Method("GET")
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
-
-    public function lookupAction(){
-        $languages = [];
-        foreach($this->getLanguageManager()->findAll() as $language) {
-            $languages[] = $language->getName();
-        }
-
+    public function prototypeAction($tutorId)
+    {
         return new JsonResponse([
-            'languages' => $languages
+            'prototypeRow' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", [
+                'prototype' => true,
+                'tutorId' => $tutorId,
+                'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
+                'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+            ])
         ]);
     }
 
@@ -86,7 +88,12 @@ class TutorLanguageController extends Controller
 
             switch ($name) {
                 case 'tutor-language':
-                    $tutorLanguage->setLanguage($this->getLanguageManager()->findOrCreate($value));
+                    if ((string)(int)$value == $value) {
+                        // if its an integer
+                        $tutorLanguage->setLanguage($this->getLanguageManager()->findById((int)$value));
+                    } else {
+                        $tutorLanguage->setLanguage($this->getLanguageManager()->findOrCreate($value));
+                    }
                     break;
                 case 'tutor-language-note':
                     $tutorLanguage->setNote($value);
@@ -110,7 +117,8 @@ class TutorLanguageController extends Controller
                 [
                     'tutor' => $tutor,
                     'tutorLanguage' => $tutorLanguage,
-                    'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR')
+                    'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
+                    'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
                 ]
             ),
         ]);
