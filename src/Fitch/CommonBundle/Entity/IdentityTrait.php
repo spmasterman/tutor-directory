@@ -14,7 +14,7 @@ trait IdentityTrait
     private $id;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */

@@ -1,4 +1,4 @@
-var Note = (function ($) {
+var TutorProfileNote = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -12,9 +12,10 @@ var Note = (function ($) {
 
     /**
      * constructor
-     * @param {jQuery} prototypeRowFromServer
+     *
+     * @param {string} prototypeRowFromServer
      */
-    var constructor = function(prototypeRowFromServer) {
+    var init = function(prototypeRowFromServer) {
         prototypeRow = prototypeRowFromServer;
 
         $('.inline-note').each(function() {
@@ -105,8 +106,8 @@ var Note = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

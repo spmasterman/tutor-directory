@@ -5,8 +5,7 @@ namespace Fitch\UserBundle\Entity\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * UserRepository
- *
+ * UserRepository.
  */
 class UserRepository extends EntityRepository
 {

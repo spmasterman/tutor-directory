@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class OperatingRegionControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
@@ -18,12 +17,11 @@ class OperatingRegionControllerTest extends WebTestCase
             'xdisabled' => 403,
             'xeditor' => 403,
             'xadmin' => 200,
-            'xsuper' => 200
+            'xsuper' => 200,
         ];
 
         $this->checkAccess('GET', '/admin/region/', $users);
     }
-
 
     public function testCompleteScenario()
     {
@@ -40,7 +38,7 @@ class OperatingRegionControllerTest extends WebTestCase
             'fitch_tutorbundle_operatingregion[name]'  => 'xtest',
             'fitch_tutorbundle_operatingregion[code]'  => 'xt',
             'fitch_tutorbundle_operatingregion[default]'  => false,
-            'fitch_tutorbundle_operatingregion[defaultCurrency]' => 1
+            'fitch_tutorbundle_operatingregion[defaultCurrency]' => 1,
         ));
 
         $client->submit($form);
@@ -56,7 +54,7 @@ class OperatingRegionControllerTest extends WebTestCase
             'fitch_tutorbundle_operatingregion[name]'  => 'xtest-edit',
             'fitch_tutorbundle_operatingregion[code]'  => 'xte',
             'fitch_tutorbundle_operatingregion[default]'  => true,
-            'fitch_tutorbundle_operatingregion[defaultCurrency]' => 2
+            'fitch_tutorbundle_operatingregion[defaultCurrency]' => 2,
         ));
 
         $client->submit($form);

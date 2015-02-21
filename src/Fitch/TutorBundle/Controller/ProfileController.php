@@ -31,23 +31,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Tutor Profile controller
+ * Tutor Profile controller.
  *
  * @Route("/profile")
  */
 class ProfileController extends Controller
 {
-
     /**
      * Finds and displays a Tutor entity.
      *
      * @Route("/{id}/{tab}", requirements={"id" = "\d+"}, name="tutor_profile", options={"expose"=true})
+     *
      * @Method("GET")
      * @Template()
      *
      * @param Tutor $tutor
-     *
      * @param $tab
+     *
      * @return array
      */
     public function showAction(Tutor $tutor, $tab = 'profile')
@@ -58,12 +58,12 @@ class ProfileController extends Controller
             'tab' => $tab,
             'rateManager' => $this->getRateManager(),
             'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
-            'isAdmin' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA')
+            'isAdmin' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
         ];
     }
 
     /**
-     * Updates a (simple) field on a tutor record
+     * Updates a (simple) field on a tutor record.
      *
      * @Route(
      *      "/update",
@@ -111,7 +111,7 @@ class ProfileController extends Controller
                         ->setCountry($this->getCountryManager()->findById($value['country']))
                     ;
                     $relatedEntity = $address;
-                    break ;
+                    break;
                 case 'email' :
                     $emailId = $request->request->get('emailPk');
                     if ($emailId) {
@@ -125,7 +125,7 @@ class ProfileController extends Controller
                         ->setAddress($value['address'])
                     ;
                     $relatedEntity = $email;
-                    break ;
+                    break;
                 case 'phone' :
                     $phoneId = $request->request->get('phonePk');
                     if ($phoneId) {
@@ -141,7 +141,7 @@ class ProfileController extends Controller
                         ->setPreferred($value['isPreferred'] == "true")
                     ;
                     $relatedEntity = $phone;
-                    break ;
+                    break;
                 case 'rate':
                     $rateId = $request->request->get('ratePk');
                     if ($rateId) {
@@ -155,23 +155,23 @@ class ProfileController extends Controller
                         ->setAmount($value['amount'])
                     ;
                     $relatedEntity = $rate;
-                    break ;
+                    break;
                 case 'tutor_type':
                     $tutorType = $this->getTutorTypeManager()->findById($value);
                     $tutor->setTutorType($tutorType);
-                    break ;
+                    break;
                 case 'status':
                     $status = $this->getStatusManager()->findById($value);
                     $tutor->setStatus($status);
-                    break ;
+                    break;
                 case 'region':
                     $region = $this->getOperatingRegionManager()->findById($value);
                     $tutor->setRegion($region);
-                    break ;
+                    break;
                 case 'currency':
                     $currency = $this->getCurrencyManager()->findById($value);
                     $tutor->setCurrency($currency);
-                    break ;
+                    break;
                 case 'note':
                     $noteId = $request->request->get('notePk');
                     if ($noteId) {
@@ -188,20 +188,19 @@ class ProfileController extends Controller
                     $relatedEntity = $note;
                     break;
                 default :
-                    $setter = 'set' . ucfirst($name);
+                    $setter = 'set'.ucfirst($name);
                     if (is_callable([$tutor, $setter])) {
                         $tutor->$setter($value);
                     } else {
-                        throw new UnknownMethodException($setter . ' is not a valid Tutor method');
+                        throw new UnknownMethodException($setter.' is not a valid Tutor method');
                     }
             }
 
             $this->getTutorManager()->saveTutor($tutor);
-
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -223,9 +222,10 @@ class ProfileController extends Controller
 
     /**
      * Returns all active languages as a JSON Array - suitable for use in "select"
-     * style lists, with a preferred section
+     * style lists, with a preferred section.
      *
      * @Route("/active/language", name="active_languages")
+     *
      * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -236,9 +236,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * Returns all active competencyTypes as a JSON Array
+     * Returns all active competencyTypes as a JSON Array.
      *
      * @Route("/active/competency/type", name="active_competency_type")
+     *
      * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -249,9 +250,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * Returns all active competencyLevels as a JSON Array
+     * Returns all active competencyLevels as a JSON Array.
      *
      * @Route("/active/competency/level", name="active_competency_level")
+     *
      * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -264,14 +266,16 @@ class ProfileController extends Controller
     /**
      * Returns a JSON object that contains all the lookup values required to drive the Profile page
      * this is thrown into one large-ish controller so that only a single request is made to the server
-     * (rather than each element being requested individually at page-load)
+     * (rather than each element being requested individually at page-load).
      *
      * Also returned are prototype "New Rows" suitable for inserting into the DOM
      *
      * @Route("/prototype/{tutorId}", name="profile_dynamic_data", options={"expose"=true})
+     *
      * @Method("GET")
      *
      * @param $tutorId
+     *
      * @return JsonResponse
      */
     public function prototypeAction($tutorId)
@@ -283,15 +287,15 @@ class ProfileController extends Controller
             'prototype' => true,
             'tutorId' => $tutorId,
             'isEditor' => $isEditor,
-            'isAdmin' => $isAdmin
+            'isAdmin' => $isAdmin,
         ];
 
-        $extractName = function(NamedTraitInterface $object) {return $object->getName();};
+        $extractName = function (NamedTraitInterface $object) {return $object->getName();};
 
         return new JsonResponse([
             'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),
             'allCompetencyTypes' => array_map($extractName, $this->getCompetencyTypeManager()->findAll()),
-            'allCompetencyLevels'=> array_map($extractName, $this->getCompetencyLevelManager()->findAll()),
+            'allCompetencyLevels' => array_map($extractName, $this->getCompetencyLevelManager()->findAll()),
             'allLanguages' => array_map($extractName, $this->getLanguageManager()->findAll()),
             'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", $options),
             'competencyPrototype' => $this->renderView("FitchTutorBundle:Profile:competency_row.html.twig", $options),

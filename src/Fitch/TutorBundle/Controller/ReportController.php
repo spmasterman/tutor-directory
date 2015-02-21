@@ -33,11 +33,11 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  */
 class ReportController extends Controller
 {
-
     /**
      * Lists all Report entities.
      *
      * @Route("list", name="report_list")
+     *
      * @Method("GET")
      * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
@@ -46,7 +46,7 @@ class ReportController extends Controller
     public function listAction()
     {
         return [
-            'reports' => $this->getReportManager()->findAll()
+            'reports' => $this->getReportManager()->findAll(),
         ];
     }
 
@@ -54,6 +54,7 @@ class ReportController extends Controller
      * Lists all Report entities.
      *
      * @Route("", name="report_header")
+     *
      * @Method("GET")
      * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
@@ -67,7 +68,7 @@ class ReportController extends Controller
 
         return [
             'reports' => $this->getReportManager()->findAll(),
-            'form' => $this->createReportForm()->createView()
+            'form' => $this->createReportForm()->createView(),
         ];
     }
 
@@ -75,6 +76,7 @@ class ReportController extends Controller
      * View an ad hoc report.
      *
      * @Route("/view", name="report_view")
+     *
      * @Method("GET")
      *
      * @Template()
@@ -99,14 +101,15 @@ class ReportController extends Controller
             'saveForm' => $this->createCreateForm($report)->createView(),
             'data' => $this->getReportData($reportDefinition),
             'definition' => $reportDefinition,
-            'unrestricted' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA')
+            'unrestricted' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
         ];
     }
 
     /**
-     * Show a pre saved report
+     * Show a pre saved report.
      *
      * @Route("/show/{id}", name="report_show")
+     *
      * @Method("GET")
      *
      * @Template()
@@ -119,16 +122,17 @@ class ReportController extends Controller
     public function showAction(Report $report)
     {
         $reportDefinition = $this->getReportDefinition($report);
+
         return [
             'data' => $this->getReportData($reportDefinition),
             'definition' => $reportDefinition,
             'unrestricted' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
-            'report' => $report
+            'report' => $report,
         ];
     }
 
     /**
-     * Creates a form to handle the report
+     * Creates a form to handle the report.
      *
      * @return \Symfony\Component\Form\Form The form
      */
@@ -150,7 +154,7 @@ class ReportController extends Controller
             [
                 'action' => $this->generateUrl('report_view'),
                 'method' => 'GET',
-                'csrf_protection' => false
+                'csrf_protection' => false,
             ]
         )->getForm();
 
@@ -159,8 +163,8 @@ class ReportController extends Controller
                 'label' => 'View Report',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-arrow-circle-right'
-                ]]);
+                    'submit_glyph' => 'fa-arrow-circle-right',
+                ], ]);
 
         return $form;
     }
@@ -184,8 +188,8 @@ class ReportController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-                ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+                ], ]);
 
         return $form;
     }
@@ -209,8 +213,8 @@ class ReportController extends Controller
                 'label' => 'Update',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-                ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+                ], ]);
 
         return $form;
     }
@@ -219,6 +223,7 @@ class ReportController extends Controller
      * Creates a new report entity.
      *
      * @Route("/", name="report_create")
+     *
      * @Method("POST")
      *
      * @Template("FitchTutorBundle:Status:new.html.twig")
@@ -259,6 +264,7 @@ class ReportController extends Controller
      * Displays a form to edit an existing Report entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="report_edit")
+     *
      * @Method("GET")
      *
      * @Template()
@@ -284,13 +290,14 @@ class ReportController extends Controller
      * Edits an existing Report entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="report_update")
+     *
      * @Method("PUT")
      *
      * @Template("FitchTutorBundle:Report:edit.html.twig")
      * @Security("has_role('ROLE_CAN_CREATE_SAVED_REPORTS')")
      *
      * @param Request $request
-     * @param Report $report
+     * @param Report  $report
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -322,12 +329,13 @@ class ReportController extends Controller
      * Deletes a Report entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="report_delete")
+     *
      * @Method("DELETE")
      *
      * @Security("has_role('ROLE_CAN_CREATE_SAVED_REPORTS')")
      *
      * @param Request $request
-     * @param Report $report
+     * @param Report  $report
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -365,14 +373,15 @@ class ReportController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                     'attr' => array(
                         'submit_class' => 'btn-danger',
-                        'submit_glyph' => 'fa-exclamation-circle'
-                    )])
+                        'submit_glyph' => 'fa-exclamation-circle',
+                    ), ])
             ->getForm()
             ;
     }
 
     /**
      * @param Report $report
+     *
      * @return ReportDefinition
      */
     private function getReportDefinition(Report $report)
@@ -386,6 +395,7 @@ class ReportController extends Controller
 
     /**
      * @param ReportDefinition $reportDefinition
+     *
      * @return \Fitch\TutorBundle\Entity\Tutor[]
      */
     private function getReportData(ReportDefinition $reportDefinition)
@@ -397,6 +407,7 @@ class ReportController extends Controller
      * Produces a Downloadable Excel Report entity. Lordy!
      *
      * @Route("/download/{format}/{id}", requirements={"id" = "\d+"}, name="report_download")
+     *
      * @Method("GET")
      *
      * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
@@ -405,6 +416,7 @@ class ReportController extends Controller
      * @param $format
      *
      * @return StreamedResponse
+     *
      * @throws \Exception
      */
     public function downloadAction(Report $report, $format)
@@ -435,14 +447,14 @@ class ReportController extends Controller
                 $contentType = "application/pdf";
 
                 $rendererName = \PHPExcel_Settings::PDF_RENDERER_TCPDF;
-                $rendererLibraryPath = $this->get('kernel')->getRootDir() . '/../vendor/tecnick.com/tcpdf';
+                $rendererLibraryPath = $this->get('kernel')->getRootDir().'/../vendor/tecnick.com/tcpdf';
 
-                if (!\PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath )) {
+                if (!\PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath)) {
                     throw new \Exception('PDF Renderer is not properly installed');
                 }
                 break;
             default:
-                throw new InvalidArgumentException($format . ' is not a valid download type.');
+                throw new InvalidArgumentException($format.' is not a valid download type.');
         }
 
         // create the writer
@@ -487,7 +499,6 @@ class ReportController extends Controller
     {
         return $this->get('fitch.manager.currency');
     }
-
 
     /**
      * @return CompetencyTypeManager

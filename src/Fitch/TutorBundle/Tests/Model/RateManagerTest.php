@@ -7,7 +7,6 @@ use Fitch\TutorBundle\Model\RateManager;
 
 class RateManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

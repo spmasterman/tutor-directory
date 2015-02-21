@@ -7,23 +7,22 @@ use Fitch\TutorBundle\Model\CountryManager;
 
 class CountryManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return three entities");
 
-        $this->assertEquals('Test Country One (ONE) +1', (string)$allEntities[0]);
-        $this->assertEquals('Test Country Two (TWO) +2', (string)$allEntities[1]);
-        $this->assertEquals('Test Country Three (THR) +3', (string)$allEntities[2]);
-        $this->assertEquals('Test Country Four (FOR) +4', (string)$allEntities[3]);
+        $this->assertEquals('Test Country One (ONE) +1', (string) $allEntities[0]);
+        $this->assertEquals('Test Country Two (TWO) +2', (string) $allEntities[1]);
+        $this->assertEquals('Test Country Three (THR) +3', (string) $allEntities[2]);
+        $this->assertEquals('Test Country Four (FOR) +4', (string) $allEntities[3]);
     }
 
     public function testFindById()
     {
         $entityOne = $this->getModelManager()->findById(1);
 
-        $this->assertEquals('Test Country One (ONE) +1', (string)$entityOne);
+        $this->assertEquals('Test Country One (ONE) +1', (string) $entityOne);
         $this->assertEquals('Test Region One', $entityOne->getDefaultRegion()->getName());
     }
 
@@ -46,7 +45,7 @@ class CountryManagerTest extends FixturesWebTestCase
         $preferredEntities = $this->getModelManager()->buildPreferredChoicesForAddress();
         $this->assertCount(2, $preferredEntities, "Should return two entities");
 
-        foreach($allEntities as $entity) {
+        foreach ($allEntities as $entity) {
             if (in_array($entity, $preferredEntities)) {
                 $this->assertTrue($entity->isPreferred());
             } else {
@@ -68,7 +67,7 @@ class CountryManagerTest extends FixturesWebTestCase
         $this->assertFalse($sorted[3]->isActive());
 
         $addressEntities = $this->getModelManager()->buildChoicesForAddress();
-        foreach($allEntities as $entity) {
+        foreach ($allEntities as $entity) {
             if (in_array($entity, $addressEntities)) {
                 $this->assertTrue($entity->isActive());
             } else {

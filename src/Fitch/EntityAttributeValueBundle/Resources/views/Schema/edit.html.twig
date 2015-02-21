@@ -23,10 +23,11 @@
     <script>
         Schema = {
             addDefinition: function() {
-                var prototype = $('#schema_definitions').data('prototype');
-                var newItem = prototype.replace(/_name/g, $('#schema_definitions').children().length);
+                var definitionID = $('#schema_definitions'),
+                    prototype = definitionID.data('prototype'),
+                    newItem = prototype.replace(/_name/g, definitionID.children().length);
 
-                $('#schema_definitions').append(newItem);
+                definitionID.append(newItem);
             }
         }
     </script>

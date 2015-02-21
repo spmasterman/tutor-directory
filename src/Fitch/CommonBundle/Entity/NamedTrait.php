@@ -8,9 +8,10 @@ trait NamedTrait
     // (the ORM declarations will be different)
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -21,7 +22,7 @@ trait NamedTrait
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */

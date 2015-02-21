@@ -1,4 +1,4 @@
-var Email = (function ($) {
+var TutorProfileEmail = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -12,8 +12,10 @@ var Email = (function ($) {
 
     /**
      * constructor
+     *
+     * @param {string} prototypeRowFromServer
      */
-    var constructor = function(prototypeRowFromServer) {
+    var init = function(prototypeRowFromServer) {
         prototypeRow = prototypeRowFromServer;
 
         $('.inline-email').each(function() {
@@ -110,8 +112,8 @@ var Email = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

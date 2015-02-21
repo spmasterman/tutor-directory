@@ -18,6 +18,7 @@ class Schema implements IdentityTraitInterface
 
     /**
      * @ORM\Column(name="class_name", type="string", length=255)
+     *
      * @var string
      */
     protected $className;
@@ -37,7 +38,7 @@ class Schema implements IdentityTraitInterface
     protected $definitions;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -50,9 +51,10 @@ class Schema implements IdentityTraitInterface
     }
 
     /**
-     * Add definition
+     * Add definition.
      *
      * @param Definition $definition
+     *
      * @return $this
      */
     public function addDefinition(Definition $definition)
@@ -64,7 +66,7 @@ class Schema implements IdentityTraitInterface
     }
 
     /**
-     * Remove definition
+     * Remove definition.
      *
      * @param Definition $definition
      */
@@ -74,7 +76,7 @@ class Schema implements IdentityTraitInterface
     }
 
     /**
-     * Get definitions
+     * Get definitions.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -84,9 +86,10 @@ class Schema implements IdentityTraitInterface
     }
 
     /**
-     * Set className
+     * Set className.
      *
      * @param string $className
+     *
      * @return $this
      */
     public function setClassName($className)
@@ -97,7 +100,7 @@ class Schema implements IdentityTraitInterface
     }
 
     /**
-     * Get className
+     * Get className.
      *
      * @return string
      */

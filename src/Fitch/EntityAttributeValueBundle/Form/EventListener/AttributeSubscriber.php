@@ -72,7 +72,7 @@ class AttributeSubscriber implements EventSubscriberInterface
         $params = array(
             'attr' => array(
 
-            )
+            ),
         );
 
         if ($type == 'textarea' && !$this->getOption('allow_expanded')) {
@@ -92,7 +92,7 @@ class AttributeSubscriber implements EventSubscriberInterface
                 } elseif ($type == 'checkbox') {
                     if (!is_array($value)) {
                         $value = array(
-                            $value => $value
+                            $value => $value,
                         );
                     }
 

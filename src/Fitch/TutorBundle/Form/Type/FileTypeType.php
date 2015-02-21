@@ -11,7 +11,7 @@ class FileTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,11 +19,11 @@ class FileTypeType extends AbstractType
             ->add('name')
             ->add('default', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
             ->add('private', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
             ->add('suitableForProfilePicture', new OnOffType(), [
                 'type' => 'yesno',
@@ -38,14 +38,14 @@ class FileTypeType extends AbstractType
 
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\FileType'
+            'data_class' => 'Fitch\TutorBundle\Entity\FileType',
         ));
     }
 

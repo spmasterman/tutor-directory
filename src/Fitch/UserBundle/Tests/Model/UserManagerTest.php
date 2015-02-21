@@ -7,7 +7,6 @@ use Fitch\UserBundle\Model\UserManager;
 
 class UserManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

@@ -4,4 +4,3 @@ Fitch\TutorBundle\Entity\Phone:
         number: <randomNumber(4)> <randomNumber(6)>
         country: @country-*
         preferred: false
-

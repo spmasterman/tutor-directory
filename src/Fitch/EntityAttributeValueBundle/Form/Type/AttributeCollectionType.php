@@ -6,7 +6,6 @@ use Fitch\EntityAttributeValueBundle\Form\DataTransformer\AttributesToGroupedAtt
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 
 class AttributeCollectionType extends CollectionType
 {
@@ -27,7 +26,7 @@ class AttributeCollectionType extends CollectionType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'group' => ''
+            'group' => '',
         ]);
         parent::setDefaultOptions($resolver);
     }

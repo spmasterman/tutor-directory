@@ -14,7 +14,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Country
+ * Country.
  *
  * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CountryRepository")
@@ -56,6 +56,7 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
      *      targetEntity="OperatingRegion"
      * )
      * @ORM\JoinColumn(name="default_region_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @var OperatingRegion
      */
     protected $defaultRegion;
@@ -78,11 +79,13 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
 
     /**
      * @param OperatingRegion $defaultRegion
+     *
      * @return $this
      */
     public function setDefaultRegion($defaultRegion)
     {
         $this->defaultRegion = $defaultRegion;
+
         return $this;
     }
 
@@ -96,11 +99,13 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
 
     /**
      * @param string $dialingCode
+     *
      * @return $this
      */
     public function setDialingCode($dialingCode)
     {
         $this->dialingCode = $dialingCode;
+
         return $this;
     }
 
@@ -114,11 +119,13 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
 
     /**
      * @param string $threeDigitCode
+     *
      * @return $this
      */
     public function setThreeDigitCode($threeDigitCode)
     {
         $this->threeDigitCode = $threeDigitCode;
+
         return $this;
     }
 
@@ -132,11 +139,13 @@ class Country implements IdentityTraitInterface, TimestampableTraitInterface, Na
 
     /**
      * @param string $twoDigitCode
+     *
      * @return $this
      */
     public function setTwoDigitCode($twoDigitCode)
     {
         $this->twoDigitCode = $twoDigitCode;
+
         return $this;
     }
 }

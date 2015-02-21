@@ -12,7 +12,7 @@ class EmailTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'test_email_1@example.com',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

@@ -1,4 +1,4 @@
-var Competency = (function ($) {
+var TutorProfileCompetency = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -12,7 +12,14 @@ var Competency = (function ($) {
         container = $('.competency-container')
         ;
 
-    var constructor = function(prototypeRowFromServer, competencyTypesFromServer, competencyLevelsFromServer) {
+    /**
+     * constructor
+     *
+     * @param {string} prototypeRowFromServer
+     * @param {Array} competencyTypesFromServer
+     * @param {Array} competencyLevelsFromServer
+     */
+    var init = function(prototypeRowFromServer, competencyTypesFromServer, competencyLevelsFromServer) {
         prototypeRow = prototypeRowFromServer;
         competencyTypes = competencyTypesFromServer;
         competencyLevels = competencyLevelsFromServer;
@@ -194,8 +201,8 @@ var Competency = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the class
-    return constructor;
+    return init;
 }(jQuery));

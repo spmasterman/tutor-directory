@@ -13,7 +13,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Tutor
+ * Tutor.
  *
  * @ORM\Table(name="tutor")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorRepository")
@@ -149,7 +149,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
      * )
      */
     protected $notes;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="OperatingRegion")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
@@ -177,7 +177,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
      * )
      */
     protected $rates;
-    
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
@@ -200,6 +200,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $addresses
+     *
      * @return $this
      */
     public function setAddresses($addresses)
@@ -207,24 +208,28 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         foreach ($addresses as $address) {
             $this->addAddress($address);
         }
+
         return $this;
     }
 
     /**
      * @param Address $address
+     *
      * @return $this
      */
-    public function addAddress (Address $address)
+    public function addAddress(Address $address)
     {
         if (!$this->addresses->contains($address)) {
             $this->addresses->add($address);
         }
         $address->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param Address $address
+     *
      * @return $this
      */
     public function removeAddress(Address $address)
@@ -232,6 +237,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->addresses->contains($address)) {
             $this->addresses->removeElement($address);
         }
+
         return $this;
     }
 
@@ -253,18 +259,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $phoneNumbers
+     *
      * @return $this
      */
     public function setPhoneNumbers($phoneNumbers)
     {
-        foreach($phoneNumbers as $phoneNumber) {
+        foreach ($phoneNumbers as $phoneNumber) {
             $this->addPhoneNumber($phoneNumber);
         }
+
         return $this;
     }
 
     /**
      * @param Phone $phoneNumber
+     *
      * @return $this
      */
     public function addPhoneNumber(Phone $phoneNumber)
@@ -273,11 +282,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
             $this->phoneNumbers->add($phoneNumber);
         }
         $phoneNumber->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param Phone $phoneNumber
+     *
      * @return $this
      */
     public function removePhoneNumber(Phone $phoneNumber)
@@ -285,6 +296,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->phoneNumbers->contains($phoneNumber)) {
             $this->phoneNumbers->removeElement($phoneNumber);
         }
+
         return $this;
     }
 
@@ -306,6 +318,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $notes
+     *
      * @return $this
      */
     public function setNotes($notes)
@@ -313,24 +326,28 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         foreach ($notes as $note) {
             $this->addNote($note);
         }
+
         return $this;
     }
 
     /**
      * @param Note $note
+     *
      * @return $this
      */
-    public function addNote (Note $note)
+    public function addNote(Note $note)
     {
         if (!$this->notes->contains($note)) {
             $this->notes->add($note);
         }
         $note->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param Note $note
+     *
      * @return $this
      */
     public function removeNote(Note $note)
@@ -338,6 +355,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->notes->contains($note)) {
             $this->notes->removeElement($note);
         }
+
         return $this;
     }
 
@@ -359,6 +377,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $emailAddresses
+     *
      * @return $this
      */
     public function setEmailAddresses($emailAddresses)
@@ -366,11 +385,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         foreach ($emailAddresses as $emailAddress) {
             $this->addEmailAddress($emailAddress);
         }
+
         return $this;
     }
 
     /**
      * @param Email $emailAddress
+     *
      * @return $this
      */
     public function addEmailAddress(Email $emailAddress)
@@ -379,11 +400,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
             $this->emailAddresses->add($emailAddress);
         }
         $emailAddress->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param Email $emailAddress
+     *
      * @return $this
      */
     public function removeEmailAddress(Email $emailAddress)
@@ -391,6 +414,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->emailAddresses->contains($emailAddress)) {
             $this->emailAddresses->removeElement($emailAddress);
         }
+
         return $this;
     }
 
@@ -404,31 +428,36 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $files
+     *
      * @return $this
      */
     public function setFiles($files)
     {
-        foreach($files as $file) {
+        foreach ($files as $file) {
             $this->addFile($file);
         }
+
         return $this;
     }
 
     /**
      * @param File $file
+     *
      * @return $this
      */
-    public function addFile (File $file)
+    public function addFile(File $file)
     {
         if (!$this->files->contains($file)) {
             $this->files->add($file);
         }
         $file->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param File $file
+     *
      * @return $this
      */
     public function removeFile(File $file)
@@ -436,6 +465,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->files->contains($file)) {
             $this->files->removeElement($file);
         }
+
         return $this;
     }
 
@@ -449,18 +479,21 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $competencies
+     *
      * @return $this
      */
     public function setCompetencies($competencies)
     {
-        foreach($competencies as $competency) {
+        foreach ($competencies as $competency) {
             $this->addCompetency($competency);
         }
+
         return $this;
     }
 
     /**
      * @param Competency $competency
+     *
      * @return $this
      */
     public function addCompetency(Competency $competency)
@@ -469,11 +502,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
             $this->competencies->add($competency);
         }
         $competency->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param Competency $competency
+     *
      * @return $this
      */
     public function removeCompetency(Competency $competency)
@@ -481,9 +516,10 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->competencies->contains($competency)) {
             $this->competencies->removeElement($competency);
         }
+
         return $this;
     }
-    
+
     /**
      * @return OperatingRegion
      */
@@ -494,11 +530,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param OperatingRegion $region
+     *
      * @return $this
      */
     public function setRegion($region)
     {
         $this->region = $region;
+
         return $this;
     }
 
@@ -512,11 +550,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param Status $status
+     *
      * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -530,11 +570,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param string $bio
+     *
      * @return $this
      */
     public function setBio($bio)
     {
         $this->bio = $bio;
+
         return $this;
     }
 
@@ -548,11 +590,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param string $linkedInURL
+     *
      * @return $this
      */
     public function setLinkedInURL($linkedInURL)
     {
         $this->linkedInURL = $linkedInURL;
+
         return $this;
     }
 
@@ -566,11 +610,13 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param TutorType $tutorType
+     *
      * @return $this
      */
     public function setTutorType($tutorType)
     {
         $this->tutorType = $tutorType;
+
         return $this;
     }
 
@@ -584,14 +630,15 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param Currency $currency
+     *
      * @return $this
      */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+
         return $this;
     }
-
 
     /**
      * @return ArrayCollection
@@ -603,31 +650,36 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $rates
+     *
      * @return $this
      */
     public function setRates($rates)
     {
-        foreach($rates as $rate) {
+        foreach ($rates as $rate) {
             $this->addRate($rate);
         }
+
         return $this;
     }
 
     /**
      * @param Rate $rate
+     *
      * @return $this
      */
-    public function addRate (Rate $rate)
+    public function addRate(Rate $rate)
     {
         if (!$this->rates->contains($rate)) {
             $this->rates->add($rate);
         }
         $rate->setTutor($this);
+
         return $this;
     }
 
     /**
      * @param Rate $rate
+     *
      * @return $this
      */
     public function removeRate(Rate $rate)
@@ -635,15 +687,16 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->rates->contains($rate)) {
             $this->rates->removeElement($rate);
         }
+
         return $this;
     }
-    
+
     /**
      * @return File|null
      */
     public function getProfilePicture()
     {
-        foreach($this->getFiles() as $file) {
+        foreach ($this->getFiles() as $file) {
             if ($file->isImage()) {
                 $fileType = $file->getFileType();
                 if ($fileType->isSuitableForProfilePicture() && ! $fileType->isPrivate()) {
@@ -651,7 +704,8 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
                 }
             }
         }
-        return null;
+
+        return;
     }
 
     /**
@@ -664,29 +718,34 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
 
     /**
      * @param ArrayCollection $languages
+     *
      * @return $this
      */
     public function setTutorLanguages($languages)
     {
         $this->tutorLanguages = $languages;
+
         return $this;
     }
 
     /**
      * @param TutorLanguage $tutorLanguage
+     *
      * @return $this
      */
-    public function addTutorLanguage (TutorLanguage $tutorLanguage)
+    public function addTutorLanguage(TutorLanguage $tutorLanguage)
     {
         $tutorLanguage->setTutor($this);
         if (!$this->tutorLanguages->contains($tutorLanguage)) {
             $this->tutorLanguages->add($tutorLanguage);
         }
+
         return $this;
     }
 
     /**
      * @param TutorLanguage $tutorLanguage
+     *
      * @return $this
      */
     public function removeTutorLanguage(TutorLanguage $tutorLanguage)
@@ -694,6 +753,7 @@ class Tutor implements IdentityTraitInterface, TimestampableTraitInterface, Name
         if ($this->tutorLanguages->contains($tutorLanguage)) {
             $this->tutorLanguages->removeElement($tutorLanguage);
         }
+
         return $this;
     }
 }

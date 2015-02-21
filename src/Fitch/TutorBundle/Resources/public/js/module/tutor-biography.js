@@ -1,4 +1,4 @@
-var Biography = (function ($) {
+var TutorProfileBiography = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -20,7 +20,7 @@ var Biography = (function ($) {
     /**
      * constructor
      */
-    var constructor = function() {
+    var init = function() {
         // Setup DOM event handlers
         setupBio(container);
     };
@@ -84,8 +84,8 @@ var Biography = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

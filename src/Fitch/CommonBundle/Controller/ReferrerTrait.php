@@ -2,10 +2,10 @@
 
 namespace Fitch\CommonBundle\Controller;
 
-trait ReferrerTrait {
-
+trait ReferrerTrait
+{
     /**
-     * Apologies, referer is the term from the HTTP standard, but referrer is speeelled rite :)
+     * Apologies, referer is the term from the HTTP standard, but referrer is speeelled rite :).
      *
      * @return mixed
      */

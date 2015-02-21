@@ -10,7 +10,7 @@ class PhoneTest extends FixturesWebTestCase
     public function testToString()
     {
         $entityOne = $this->getModelManager()->findById(1);
-        $this->assertEquals('+1 123 1111111 (Home)', (string)$entityOne);
+        $this->assertEquals('+1 123 1111111 (Home)', (string) $entityOne);
         $this->assertEquals('ONE', $entityOne->getCountry()->getThreeDigitCode());
         $this->assertTrue($entityOne->isPreferred());
     }

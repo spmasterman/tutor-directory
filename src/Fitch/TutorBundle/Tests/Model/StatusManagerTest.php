@@ -7,7 +7,6 @@ use Fitch\TutorBundle\Model\StatusManager;
 
 class StatusManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

@@ -12,7 +12,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * CompetencyLevel
+ * CompetencyLevel.
  *
  * @ORM\Table(name="competency_level")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyLevelRepository")
@@ -45,11 +45,13 @@ class CompetencyLevel implements IdentityTraitInterface, TimestampableTraitInter
 
     /**
      * @param string $color
+     *
      * @return $this
      */
     public function setColor($color)
     {
         $this->color = $color;
+
         return $this;
     }
 }

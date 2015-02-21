@@ -13,7 +13,8 @@ class UserTest extends FixturesWebTestCase
         $this->assertEquals('xuser', $entityOne->getUsername());
     }
 
-    public function testSideBarOpen(){
+    public function testSideBarOpen()
+    {
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertTrue($entityOne->isSideBarOpen());
         $entityOne->toggleSidebar();

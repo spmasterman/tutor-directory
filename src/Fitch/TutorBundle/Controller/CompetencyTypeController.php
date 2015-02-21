@@ -18,11 +18,11 @@ use Fitch\TutorBundle\Form\Type\CompetencyTypeType;
  */
 class CompetencyTypeController extends Controller
 {
-
     /**
      * Lists all CompetencyType entities.
      *
      * @Route("/", name="competency_type")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -39,6 +39,7 @@ class CompetencyTypeController extends Controller
      * Creates a new CompetencyType entity.
      *
      * @Route("/", name="competency_type_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:CompetencyType:new.html.twig")
      *
@@ -72,12 +73,12 @@ class CompetencyTypeController extends Controller
     }
 
     /**
-    * Creates a form to create a CompetencyType entity.
-    *
-    * @param CompetencyType $competencyType The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a CompetencyType entity.
+     *
+     * @param CompetencyType $competencyType The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(CompetencyType $competencyType)
     {
         $form = $this->createForm(new CompetencyTypeType(), $competencyType, [
@@ -90,8 +91,8 @@ class CompetencyTypeController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -100,6 +101,7 @@ class CompetencyTypeController extends Controller
      * Displays a form to create a new CompetencyType entity.
      *
      * @Route("/new", name="competency_type_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -118,6 +120,7 @@ class CompetencyTypeController extends Controller
      * Finds and displays a CompetencyType entity.
      *
      * @Route("/{id}", name="competency_type_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -139,6 +142,7 @@ class CompetencyTypeController extends Controller
      * Displays a form to edit an existing CompetencyType entity.
      *
      * @Route("/{id}/edit", name="competency_type_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -159,12 +163,12 @@ class CompetencyTypeController extends Controller
     }
 
     /**
-    * Creates a form to edit a CompetencyType entity.
-    *
-    * @param CompetencyType $competencyType The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a CompetencyType entity.
+     *
+     * @param CompetencyType $competencyType The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(CompetencyType $competencyType)
     {
         $form = $this->createForm(new CompetencyTypeType(), $competencyType, [
@@ -177,8 +181,8 @@ class CompetencyTypeController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -187,10 +191,11 @@ class CompetencyTypeController extends Controller
      * Edits an existing CompetencyType entity.
      *
      * @Route("/{id}", name="competency_type_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:CompetencyType:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request        $request
      * @param CompetencyType $competencyType
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -223,9 +228,10 @@ class CompetencyTypeController extends Controller
      * Deletes a CompetencyType entity.
      *
      * @Route("/{id}", name="competency_type_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request        $request
      * @param CompetencyType $competencyType
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -236,7 +242,6 @@ class CompetencyTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_type.delete.success')
@@ -265,8 +270,8 @@ class CompetencyTypeController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                ]])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ], ])
             ->getForm()
         ;
     }

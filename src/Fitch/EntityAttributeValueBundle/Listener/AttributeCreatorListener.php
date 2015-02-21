@@ -14,9 +14,8 @@ use ReflectionClass;
 
 class AttributeCreatorListener
 {
-
     /**
-     * postLoad
+     * postLoad.
      *
      * Creates Attributes matching the appropriate Schema for any AttributedEntityInterface entities. If a schema
      * doesn't exist, we do nothing, this allows an empty schema to be created
@@ -36,11 +35,11 @@ class AttributeCreatorListener
         if ($reader->getClassAnnotation(
             $reflectionClass,
             'Fitch\EntityAttributeValueBundle\Annotation\Entity'
-        ) != null ) {
-            /** @var AttributedEntityInterface $entity */
+        ) != null) {
+            /* @var AttributedEntityInterface $entity */
             try {
                 $schema = $em->getRepository('FitchEntityAttributeValueBundle:Schema')->findOneBy([
-                    'className' => $reflectionClass->getName()
+                    'className' => $reflectionClass->getName(),
                 ]);
 
                 if ($schema !== null) {
@@ -55,11 +54,11 @@ class AttributeCreatorListener
     }
 
     /**
-     * @param EntityManager $em
-     * @param ReflectionClass $reflectionClass
-     * @param Definition $definition
+     * @param EntityManager             $em
+     * @param ReflectionClass           $reflectionClass
+     * @param Definition                $definition
      * @param AttributedEntityInterface $entity
-     * @param UnitOfWork $uow
+     * @param UnitOfWork                $uow
      */
     private function createAttributeForDefinition($em, $reflectionClass, $definition, $entity, $uow)
     {

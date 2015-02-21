@@ -10,7 +10,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Address
+ * Address.
  *
  * Going with US naming conventions, because that's what people are used to dealing with on websites.
  * Feel free to get All-Anglican on this code if you feel strongly enough.
@@ -86,20 +86,22 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     public function __toString()
     {
         $string =
-            ($this->getStreetPrimary() ? $this->getStreetPrimary() . ', ' : '') .
-            ($this->getStreetSecondary() ? $this->getStreetSecondary() . ', ' : '') .
-            ($this->getCity() ? $this->getCity() . ', ' : '') .
-            ($this->getState() ? $this->getState() . ' ' : '') .
-            ($this->getZip() ? $this->getZip() . ' ' : '') .
+            ($this->getStreetPrimary() ? $this->getStreetPrimary().', ' : '').
+            ($this->getStreetSecondary() ? $this->getStreetSecondary().', ' : '').
+            ($this->getCity() ? $this->getCity().', ' : '').
+            ($this->getState() ? $this->getState().' ' : '').
+            ($this->getZip() ? $this->getZip().' ' : '').
             $this->getCountry()->getName()
         ;
+
         return str_replace(', ,', ',', $string);
     }
 
     /**
-     * Set #streetPrimary
+     * Set #streetPrimary.
      *
      * @param string $streetPrimary
+     *
      * @return $this
      */
     public function setStreetPrimary($streetPrimary)
@@ -110,9 +112,9 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Get streetPrimary
+     * Get streetPrimary.
      *
-     * @return string 
+     * @return string
      */
     public function getStreetPrimary()
     {
@@ -120,9 +122,10 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Set streetSecondary
+     * Set streetSecondary.
      *
      * @param string $streetSecondary
+     *
      * @return $this
      */
     public function setStreetSecondary($streetSecondary)
@@ -133,9 +136,9 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Get streetSecondary
+     * Get streetSecondary.
      *
-     * @return string 
+     * @return string
      */
     public function getStreetSecondary()
     {
@@ -143,9 +146,10 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
+     *
      * @return $this
      */
     public function setCity($city)
@@ -156,9 +160,9 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Get city
+     * Get city.
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -166,9 +170,10 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Set state
+     * Set state.
      *
      * @param string $state
+     *
      * @return $this
      */
     public function setState($state)
@@ -179,9 +184,9 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return string 
+     * @return string
      */
     public function getState()
     {
@@ -189,9 +194,10 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Set zip
+     * Set zip.
      *
      * @param string $zip
+     *
      * @return $this
      */
     public function setZip($zip)
@@ -202,9 +208,9 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
     }
 
     /**
-     * Get zip
+     * Get zip.
      *
-     * @return string 
+     * @return string
      */
     public function getZip()
     {
@@ -221,11 +227,13 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $type
+     *
      * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -239,11 +247,13 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param Tutor $tutor
+     *
      * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+
         return $this;
     }
 
@@ -257,11 +267,13 @@ class Address implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param Country $country
+     *
      * @return $this
      */
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
 }

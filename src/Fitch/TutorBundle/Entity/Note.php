@@ -11,7 +11,7 @@ use Fitch\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Phone
+ * Phone.
  *
  * @ORM\Table(name="note")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\NoteRepository")
@@ -60,11 +60,13 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param Tutor $tutor
+     *
      * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+
         return $this;
     }
 
@@ -78,11 +80,13 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $body
+     *
      * @return $this
      */
     public function setBody($body)
     {
         $this->body = $body;
+
         return $this;
     }
 
@@ -96,11 +100,13 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param User $author
+     *
      * @return $this
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+
         return $this;
     }
 
@@ -114,11 +120,13 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $key
+     *
      * @return $this
      */
     public function setKey($key)
     {
         $this->key = $key;
+
         return $this;
     }
 
@@ -132,11 +140,12 @@ class Note implements IdentityTraitInterface, TimestampableTraitInterface
             $string = 'Anonymous';
         }
 
-        $string .= ' on ' . $this->getCreated()->format('M d, Y');
+        $string .= ' on '.$this->getCreated()->format('M d, Y');
 
         if ($this->getUpdated() != $this->getCreated()) {
-            $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
+            $string = '(Edited '.$this->getUpdated()->format('M d, Y').') '.$string;
         }
+
         return $string;
     }
 }

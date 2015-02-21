@@ -12,9 +12,8 @@ class AddressTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             '1 Main Street, Test Address One, Test City One, Test State One 11111 Test Country One',
-            (string)$entityOne
+            (string) $entityOne
         );
-
     }
 
     public function testType()

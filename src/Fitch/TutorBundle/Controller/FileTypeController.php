@@ -21,18 +21,18 @@ use Fitch\TutorBundle\Form\Type\FileTypeType;
  */
 class FileTypeController extends Controller
 {
-
     /**
      * Lists all FileType entities.
      *
      * @Route("/", name="file_type")
+     *
      * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [
-            'file_types' => $this->getFileTypeManager()->findAll()
+            'file_types' => $this->getFileTypeManager()->findAll(),
         ];
     }
 
@@ -40,6 +40,7 @@ class FileTypeController extends Controller
      * Creates a new FileType entity.
      *
      * @Route("/", name="file_type_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:FileType:new.html.twig")
      *
@@ -63,7 +64,6 @@ class FileTypeController extends Controller
                 $this->get('translator')->trans('file_type.new.success')
             );
 
-
             return $this->redirectToRoute('file_type_show', ['id' => $fileType->getId()]);
         }
 
@@ -74,12 +74,12 @@ class FileTypeController extends Controller
     }
 
     /**
-    * Creates a form to create a FileType entity.
-    *
-    * @param FileType $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a FileType entity.
+     *
+     * @param FileType $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(FileType $entity)
     {
         $form = $this->createForm(new FileTypeType(), $entity, [
@@ -92,8 +92,8 @@ class FileTypeController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -102,6 +102,7 @@ class FileTypeController extends Controller
      * Displays a form to create a new FileType entity.
      *
      * @Route("/new", name="file_type_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -120,6 +121,7 @@ class FileTypeController extends Controller
      * Finds and displays a FileType entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="file_type_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -141,6 +143,7 @@ class FileTypeController extends Controller
      * Displays a form to edit an existing FileType entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="file_type_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -161,12 +164,12 @@ class FileTypeController extends Controller
     }
 
     /**
-    * Creates a form to edit a FileType entity.
-    *
-    * @param FileType $fileType The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a FileType entity.
+     *
+     * @param FileType $fileType The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(FileType $fileType)
     {
         $form = $this->createForm(new FileTypeType(), $fileType, [
@@ -179,8 +182,8 @@ class FileTypeController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -189,10 +192,11 @@ class FileTypeController extends Controller
      * Edits an existing FileType entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="file_type_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:FileType:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request  $request
      * @param FileType $fileType
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -229,9 +233,10 @@ class FileTypeController extends Controller
      * Deletes a FileType entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="file_type_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request  $request
      * @param FileType $fileType
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -270,30 +275,32 @@ class FileTypeController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => array(
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                )])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ), ])
             ->getForm()
         ;
     }
 
     /**
-     * Returns the countries as a JSON Array
+     * Returns the countries as a JSON Array.
      *
      * @Route("/all", name="all_file_types", options={"expose"=true})
+     *
      * @Method("GET")
      * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-
-    public function allAction(){
+    public function allAction()
+    {
         $out = [];
-        foreach($this->getFileTypeManager()->findAll() as $fileType) {
+        foreach ($this->getFileTypeManager()->findAll() as $fileType) {
             $out[] = [
                 'value' => $fileType->getId(),
-                'text' => (string)$fileType,
+                'text' => (string) $fileType,
             ];
         }
+
         return new JsonResponse($out);
     }
 

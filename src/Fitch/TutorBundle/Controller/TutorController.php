@@ -20,15 +20,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tutor controller - most tutor interaction is expected to be via specific tailored pages - handled by the
- * ProfileController
+ * ProfileController.
  */
 class TutorController extends Controller
 {
-
     /**
      * Lists all Tutor entities.
      *
      * @Route("", name="home")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -56,7 +56,7 @@ class TutorController extends Controller
         }
 
         return [
-            'features' => $features
+            'features' => $features,
         ];
     }
 
@@ -64,15 +64,17 @@ class TutorController extends Controller
      * Get all Tutor entities.
      *
      * @Route("/results", name="all_tutors", options={"expose"=true})
+     *
      * @Method("GET")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function allAction()
     {
-
         $tableData = $this->getTutorManager()->populateTable();
+
         return new JsonResponse([
-            'data' => $tableData
+            'data' => $tableData,
         ]);
     }
 
@@ -80,6 +82,7 @@ class TutorController extends Controller
      * Creates a new Tutor entity.
      *
      * @Route("/", name="tutor_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:Tutor:new.html.twig")
      *
@@ -142,8 +145,8 @@ class TutorController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-                ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+                ], ]);
 
         return $form;
     }
@@ -152,6 +155,7 @@ class TutorController extends Controller
      * Displays a form to create a new Tutor entity.
      *
      * @Route("/new", name="tutor_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -169,6 +173,7 @@ class TutorController extends Controller
             $this->getTutorTypeManager()
         );
         $form   = $this->createCreateForm($tutor);
+
         return [
             'tutor' => $tutor ,
             'form'   => $form->createView(),

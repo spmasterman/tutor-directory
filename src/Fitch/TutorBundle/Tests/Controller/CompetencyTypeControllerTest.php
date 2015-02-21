@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class CompetencyTypeControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
@@ -18,12 +17,11 @@ class CompetencyTypeControllerTest extends WebTestCase
             'xdisabled' => 403,
             'xeditor' => 403,
             'xadmin' => 200,
-            'xsuper' => 200
+            'xsuper' => 200,
         ];
 
         $this->checkAccess('GET', '/admin/type/competency/', $users);
     }
-
 
     public function testCompleteScenario()
     {

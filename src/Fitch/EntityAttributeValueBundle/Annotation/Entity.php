@@ -3,8 +3,8 @@
 namespace Fitch\EntityAttributeValueBundle\Annotation;
 
 /**
-* @Annotation
-*/
+ * @Annotation
+ */
 class Entity
 {
 }

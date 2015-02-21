@@ -14,7 +14,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * FileType
+ * FileType.
  *
  * @ORM\Table(name="file_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\FileTypeRepository")
@@ -56,7 +56,7 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface, N
      */
     public function __toString()
     {
-        return $this->getName() . ($this->isPrivate() ? ' (Private)' :'');
+        return $this->getName().($this->isPrivate() ? ' (Private)' : '');
     }
 
     /**
@@ -69,11 +69,13 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param boolean $private
+     *
      * @return $this
      */
     public function setPrivate($private)
     {
         $this->private = $private;
+
         return $this;
     }
 
@@ -87,11 +89,13 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param boolean $isProfilePicture
+     *
      * @return $this
      */
     public function setSuitableForProfilePicture($isProfilePicture)
     {
         $this->suitableForProfilePicture = $isProfilePicture;
+
         return $this;
     }
 
@@ -105,11 +109,13 @@ class FileType implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param boolean $displayWithBio
+     *
      * @return $this
      */
     public function setDisplayWithBio($displayWithBio)
     {
         $this->displayWithBio = $displayWithBio;
+
         return $this;
     }
 }

@@ -14,7 +14,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Currency
+ * Currency.
  *
  * @ORM\Table(name="currency")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CurrencyRepository")
@@ -29,7 +29,7 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface, N
      * @ORM\Column(name="name", type="string", length=64)
      */
     protected $name;
-    
+
     /**
      * @var string
      *
@@ -56,7 +56,7 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface, N
      */
     public function __toString()
     {
-        return $this->getThreeDigitCode() . ' - ' . $this->getName();
+        return $this->getThreeDigitCode().' - '.$this->getName();
     }
 
     /**
@@ -69,11 +69,13 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param string $threeDigitCode
+     *
      * @return $this
      */
     public function setThreeDigitCode($threeDigitCode)
     {
         $this->threeDigitCode = $threeDigitCode;
+
         return $this;
     }
 
@@ -87,11 +89,13 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param float $toGBP
+     *
      * @return $this
      */
     public function setToGBP($toGBP)
     {
         $this->toGBP = $toGBP;
+
         return $this;
     }
 
@@ -105,11 +109,13 @@ class Currency implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param \DateTime $rateUpdated
+     *
      * @return $this
      */
     public function setRateUpdated($rateUpdated)
     {
         $this->rateUpdated = $rateUpdated;
+
         return $this;
     }
 }

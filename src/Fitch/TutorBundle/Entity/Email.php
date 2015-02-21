@@ -10,7 +10,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Email
+ * Email.
  *
  * @ORM\Table(name="email")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\EmailRepository")
@@ -59,11 +59,13 @@ class Email implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $address
+     *
      * @return $this
      */
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -77,11 +79,13 @@ class Email implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param Tutor $tutor
+     *
      * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+
         return $this;
     }
 
@@ -95,11 +99,13 @@ class Email implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $type
+     *
      * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 }

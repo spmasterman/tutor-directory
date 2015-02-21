@@ -12,7 +12,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * CompetencyType
+ * CompetencyType.
  *
  * @ORM\Table(name="competency_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository")

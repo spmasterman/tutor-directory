@@ -13,7 +13,7 @@ class CompetencyTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Competency Type One (Test Level One)',
-            (string)$entityOne
+            (string) $entityOne
         );
 
         $entityOne
@@ -22,8 +22,8 @@ class CompetencyTest extends FixturesWebTestCase
         ;
 
         $this->assertEquals(
-            Competency::NOT_YET_SPECIFIED . ' (' . Competency::NOT_YET_SPECIFIED .')',
-            (string)$entityOne
+            Competency::NOT_YET_SPECIFIED.' ('.Competency::NOT_YET_SPECIFIED.')',
+            (string) $entityOne
         );
     }
 

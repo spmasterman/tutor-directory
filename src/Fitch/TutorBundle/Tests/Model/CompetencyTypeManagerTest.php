@@ -7,7 +7,6 @@ use Fitch\TutorBundle\Model\CompetencyTypeManager;
 
 class CompetencyTypeManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

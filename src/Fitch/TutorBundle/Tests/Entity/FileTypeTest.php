@@ -10,7 +10,7 @@ class FileTypeTest extends FixturesWebTestCase
     public function testToString()
     {
         $entityOne = $this->getModelManager()->findById(1);
-        $this->assertEquals('Test File Type One (Private)', (string)$entityOne);
+        $this->assertEquals('Test File Type One (Private)', (string) $entityOne);
     }
 
     public function testSuitableForProfilePicture()

@@ -14,11 +14,11 @@ class OnOffType extends AbstractType
     }
 
     /**
-     * Pass the inner_class option to the view
+     * Pass the inner_class option to the view.
      *
-     * @param FormView $view
+     * @param FormView      $view
      * @param FormInterface $form
-     * @param array $options
+     * @param array         $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {

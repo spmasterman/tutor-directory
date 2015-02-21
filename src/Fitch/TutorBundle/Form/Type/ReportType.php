@@ -2,7 +2,6 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\FrontEndBundle\Form\Type\OnOffType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -11,7 +10,7 @@ class ReportType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,14 +19,14 @@ class ReportType extends AbstractType
             ->add('definition', 'hidden')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Report'
+            'data_class' => 'Fitch\TutorBundle\Entity\Report',
         ));
     }
 

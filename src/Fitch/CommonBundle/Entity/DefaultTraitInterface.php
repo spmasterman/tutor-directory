@@ -11,6 +11,7 @@ interface DefaultTraitInterface
 
     /**
      * @param boolean $default
+     *
      * @return $this
      */
     public function setDefault($default);

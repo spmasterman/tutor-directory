@@ -15,7 +15,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 
 /**
- * File
+ * File.
  *
  * @ORM\Table(name="file")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\FileRepository")
@@ -94,11 +94,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param Tutor $tutor
+     *
      * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+
         return $this;
     }
 
@@ -112,11 +114,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param string $fileSystemKey
+     *
      * @return $this
      */
     public function setFileSystemKey($fileSystemKey)
     {
         $this->fileSystemKey = $fileSystemKey;
+
         return $this;
     }
 
@@ -130,11 +134,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param FileType $fileType
+     *
      * @return $this
      */
     public function setFileType($fileType)
     {
         $this->fileType = $fileType;
+
         return $this;
     }
 
@@ -148,11 +154,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param mixed $mimeType
+     *
      * @return $this
      */
     public function setMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
+
         return $this;
     }
 
@@ -166,11 +174,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param CropInfo $cropInfo
+     *
      * @return $this
      */
     public function setCropInfo($cropInfo)
     {
         $this->cropInfo = $cropInfo;
+
         return $this;
     }
 
@@ -200,7 +210,7 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
      */
     public function hasCropInfo()
     {
-        return (bool)$this->getCropInfo();
+        return (bool) $this->getCropInfo();
     }
 
     /**
@@ -261,11 +271,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param User $uploader
+     *
      * @return $this
      */
     public function setUploader($uploader)
     {
         $this->uploader = $uploader;
+
         return $this;
     }
 
@@ -279,7 +291,7 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
             $string = 'Anonymous';
         }
 
-        $string .= ' on ' . $this->getCreated()->format('M d, Y');
+        $string .= ' on '.$this->getCreated()->format('M d, Y');
 
         // give an hours grace before we mark something as edited
         $timestampTransformer = new DateTimeToTimestampTransformer();
@@ -287,8 +299,9 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
             - $timestampTransformer->transform($this->getCreated());
 
         if ($editedTime > 3600) {
-            $string = '(Edited ' . $this->getUpdated()->format('M d, Y') . ') '. $string;
+            $string = '(Edited '.$this->getUpdated()->format('M d, Y').') '.$string;
         }
+
         return $string;
     }
 
@@ -302,11 +315,13 @@ class File implements IdentityTraitInterface, TimestampableTraitInterface, Named
 
     /**
      * @param string $textContent
+     *
      * @return $this
      */
     public function setTextContent($textContent)
     {
         $this->textContent = $textContent;
+
         return $this;
     }
 }

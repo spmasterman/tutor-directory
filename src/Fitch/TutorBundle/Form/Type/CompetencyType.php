@@ -33,7 +33,7 @@ class CompetencyType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -67,13 +67,13 @@ class CompetencyType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-//        $resolver->setDefaults(array(
+        //        $resolver->setDefaults(array(
 //            'data_class' => 'Fitch\TutorBundle\Entity\Tutor'
 //        ));
     }

@@ -8,4 +8,3 @@ Fitch\TutorBundle\Entity\Rate:
     rate-3:
         name: Test Rate Three
         amount: 400.00
-

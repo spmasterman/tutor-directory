@@ -7,7 +7,6 @@ use Fitch\TutorBundle\Model\FileTypeManager;
 
 class FileTypeManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

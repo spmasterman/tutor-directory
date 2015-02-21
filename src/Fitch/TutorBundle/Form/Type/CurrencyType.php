@@ -11,36 +11,36 @@ class CurrencyType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
             ->add('threeDigitCode', null, [
-                'label' => '3 Digit Code (ISO 4217)'
+                'label' => '3 Digit Code (ISO 4217)',
             ])
             ->add('toGBP', null, [
-                'label' => 'Exchange Rate (to GBP)'
+                'label' => 'Exchange Rate (to GBP)',
             ])
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
             ->add('preferred', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Currency'
+            'data_class' => 'Fitch\TutorBundle\Entity\Currency',
         ));
     }
 

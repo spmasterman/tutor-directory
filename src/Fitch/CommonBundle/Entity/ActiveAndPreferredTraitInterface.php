@@ -11,6 +11,7 @@ interface ActiveAndPreferredTraitInterface
 
     /**
      * @param boolean $preferred
+     *
      * @return $this
      */
     public function setPreferred($preferred);
@@ -22,6 +23,7 @@ interface ActiveAndPreferredTraitInterface
 
     /**
      * @param boolean $active
+     *
      * @return $this
      */
     public function setActive($active);

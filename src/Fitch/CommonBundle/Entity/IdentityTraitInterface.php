@@ -5,7 +5,7 @@ namespace Fitch\CommonBundle\Entity;
 interface IdentityTraitInterface
 {
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */

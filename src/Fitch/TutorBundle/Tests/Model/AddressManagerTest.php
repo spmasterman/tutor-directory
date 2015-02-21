@@ -7,7 +7,6 @@ use Fitch\TutorBundle\Model\AddressManager;
 
 class AddressManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

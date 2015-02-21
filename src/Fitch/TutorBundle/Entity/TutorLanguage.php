@@ -10,7 +10,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * TutorLanguage
+ * TutorLanguage.
  *
  * @ORM\Table(name="tutor_language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorLanguageRepository")
@@ -52,11 +52,13 @@ class TutorLanguage implements IdentityTraitInterface, TimestampableTraitInterfa
 
     /**
      * @param Tutor $tutor
+     *
      * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+
         return $this;
     }
 
@@ -70,11 +72,13 @@ class TutorLanguage implements IdentityTraitInterface, TimestampableTraitInterfa
 
     /**
      * @param Language $language
+     *
      * @return $this
      */
     public function setLanguage($language)
     {
         $this->language = $language;
+
         return $this;
     }
 
@@ -88,11 +92,13 @@ class TutorLanguage implements IdentityTraitInterface, TimestampableTraitInterfa
 
     /**
      * @param string $note
+     *
      * @return $this
      */
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 }

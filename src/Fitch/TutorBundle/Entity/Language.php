@@ -15,7 +15,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Language
+ * Language.
  *
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\LanguageRepository")
@@ -69,28 +69,33 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param ArrayCollection $languages
+     *
      * @return $this
      */
     public function setTutorLanguages($languages)
     {
         $this->tutorLanguages = $languages;
+
         return $this;
     }
 
     /**
      * @param TutorLanguage $tutorLanguage
+     *
      * @return $this
      */
-    public function addTutorLanguage (TutorLanguage $tutorLanguage)
+    public function addTutorLanguage(TutorLanguage $tutorLanguage)
     {
         if (!$this->tutorLanguages->contains($tutorLanguage)) {
             $this->tutorLanguages->add($tutorLanguage);
         }
+
         return $this;
     }
 
     /**
      * @param TutorLanguage $tutorLanguage
+     *
      * @return $this
      */
     public function removeTutorLanguage(TutorLanguage $tutorLanguage)
@@ -98,6 +103,7 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface, N
         if ($this->tutorLanguages->contains($tutorLanguage)) {
             $this->tutorLanguages->removeElement($tutorLanguage);
         }
+
         return $this;
     }
 
@@ -111,11 +117,13 @@ class Language implements IdentityTraitInterface, TimestampableTraitInterface, N
 
     /**
      * @param string $threeLetterCode
+     *
      * @return $this
      */
     public function setThreeLetterCode($threeLetterCode)
     {
         $this->threeLetterCode = $threeLetterCode;
+
         return $this;
     }
 }

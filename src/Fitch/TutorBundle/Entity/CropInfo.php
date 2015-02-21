@@ -10,7 +10,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * File
+ * File.
  *
  * @ORM\Table(name="crop")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CropInfoRepository")
@@ -57,11 +57,13 @@ class CropInfo implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param int $originX
+     *
      * @return $this
      */
     public function setOriginX($originX)
     {
         $this->originX = $originX;
+
         return $this;
     }
 
@@ -75,11 +77,13 @@ class CropInfo implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param int $originY
+     *
      * @return $this
      */
     public function setOriginY($originY)
     {
         $this->originY = $originY;
+
         return $this;
     }
 
@@ -93,11 +97,13 @@ class CropInfo implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param int $width
+     *
      * @return $this
      */
     public function setWidth($width)
     {
         $this->width = $width;
+
         return $this;
     }
 
@@ -111,11 +117,13 @@ class CropInfo implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param int $height
+     *
      * @return $this
      */
     public function setHeight($height)
     {
         $this->height = $height;
+
         return $this;
     }
 }

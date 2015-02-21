@@ -15,6 +15,7 @@ class Option implements IdentityTraitInterface
     use IdentityTrait;
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     protected $name;
@@ -24,14 +25,16 @@ class Option implements IdentityTraitInterface
      *      inversedBy="options"
      * )
      * @ORM\JoinColumn(name="definition_id", referencedColumnName="id")
+     *
      * @var Definition
      */
     protected $definition;
 
     /**
-     * Set name
+     * Set name.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return Option
      */
     public function setName($name)
@@ -42,7 +45,7 @@ class Option implements IdentityTraitInterface
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -52,9 +55,10 @@ class Option implements IdentityTraitInterface
     }
 
     /**
-     * Set definition
+     * Set definition.
      *
      * @param Definition $definition
+     *
      * @return $this
      */
     public function setDefinition(Definition $definition = null)
@@ -65,7 +69,7 @@ class Option implements IdentityTraitInterface
     }
 
     /**
-     * Get definition
+     * Get definition.
      *
      * @return Definition
      */

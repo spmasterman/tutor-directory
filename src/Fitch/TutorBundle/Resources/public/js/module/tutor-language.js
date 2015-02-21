@@ -1,4 +1,4 @@
-var Language = (function ($) {
+var TutorProfileLanguage = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -14,10 +14,10 @@ var Language = (function ($) {
     /**
      * constructor
      *
-     * @param prototypeRowFromServer
-     * @param allLanguagesFromServer
+     * @param {string} prototypeRowFromServer
+     * @param {Array} allLanguagesFromServer
      */
-    var constructor = function(prototypeRowFromServer, allLanguagesFromServer) {
+    var init = function(prototypeRowFromServer, allLanguagesFromServer) {
         prototypeRow = prototypeRowFromServer;
         allLanguages = allLanguagesFromServer;
 
@@ -162,8 +162,8 @@ var Language = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\LanguageManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -21,18 +20,18 @@ use Fitch\TutorBundle\Form\Type\LanguageType;
  */
 class LanguageController extends Controller
 {
-
     /**
      * Lists all Language entities.
      *
      * @Route("/", name="language")
+     *
      * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [
-            'languages' => $this->getLanguageManager()->findAllSorted()
+            'languages' => $this->getLanguageManager()->findAllSorted(),
         ];
     }
 
@@ -40,6 +39,7 @@ class LanguageController extends Controller
      * Creates a new Language entity.
      *
      * @Route("/", name="language_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:Language:new.html.twig")
      *
@@ -63,7 +63,6 @@ class LanguageController extends Controller
                 $this->get('translator')->trans('language.new.success')
             );
 
-
             return $this->redirectToRoute('language_show', ['id' => $language->getId()]);
         }
 
@@ -74,12 +73,12 @@ class LanguageController extends Controller
     }
 
     /**
-    * Creates a form to create a Language entity.
-    *
-    * @param Language $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Language entity.
+     *
+     * @param Language $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Language $entity)
     {
         $form = $this->createForm(new LanguageType(), $entity, [
@@ -92,8 +91,8 @@ class LanguageController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -102,6 +101,7 @@ class LanguageController extends Controller
      * Displays a form to create a new Language entity.
      *
      * @Route("/new", name="language_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -120,6 +120,7 @@ class LanguageController extends Controller
      * Finds and displays a Language entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="language_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -141,6 +142,7 @@ class LanguageController extends Controller
      * Displays a form to edit an existing Language entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="language_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -161,12 +163,12 @@ class LanguageController extends Controller
     }
 
     /**
-    * Creates a form to edit a Language entity.
-    *
-    * @param Language $language The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Language entity.
+     *
+     * @param Language $language The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Language $language)
     {
         $form = $this->createForm(new LanguageType(), $language, [
@@ -179,8 +181,8 @@ class LanguageController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -189,10 +191,11 @@ class LanguageController extends Controller
      * Edits an existing Language entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="language_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:Language:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Language $language
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -229,9 +232,10 @@ class LanguageController extends Controller
      * Deletes a Language entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="language_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Language $language
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -270,8 +274,8 @@ class LanguageController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => array(
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                )])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ), ])
             ->getForm()
         ;
     }

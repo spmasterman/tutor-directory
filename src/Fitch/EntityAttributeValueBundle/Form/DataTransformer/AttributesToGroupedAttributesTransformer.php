@@ -23,9 +23,10 @@ class AttributesToGroupedAttributesTransformer implements DataTransformerInterfa
     }
 
     /**
-     * Transforms Attributes to a subset
+     * Transforms Attributes to a subset.
      *
-     * @param  Attribute[] $attributes
+     * @param Attribute[] $attributes
+     *
      * @return Attribute[]
      */
     public function transform($attributes)
@@ -50,7 +51,7 @@ class AttributesToGroupedAttributesTransformer implements DataTransformerInterfa
     /**
      * Transforms a subset of Attributes into the full thing.
      *
-     * @param  Attribute[] $subset
+     * @param Attribute[] $subset
      *
      * @return Attribute[]
      *
@@ -70,6 +71,7 @@ class AttributesToGroupedAttributesTransformer implements DataTransformerInterfa
                 }
             }
         }
+
         return $this->originalAttributes;
     }
 }

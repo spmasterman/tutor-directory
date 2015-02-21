@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AjaxAuthenticationListener
 {
-
     /**
      * We're listening for kernel exceptions, and checking if the request was an Ajax request, and the exception
      * is Authentication or AccessDenied - if it is, then we create a new response, and send it in place of the

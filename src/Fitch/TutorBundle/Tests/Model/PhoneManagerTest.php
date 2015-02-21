@@ -7,25 +7,24 @@ use Fitch\TutorBundle\Model\PhoneManager;
 
 class PhoneManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
 
-        $this->assertEquals('+1 123 1111111 (Home)', (string)$allEntities[0]);
-        $this->assertEquals('+1 123 222-222 (Office)', (string)$allEntities[1]);
-        $this->assertEquals('+2 123 3 (Home)', (string)$allEntities[2]);
-        $this->assertEquals('+2 123 444-4444 (Office)', (string)$allEntities[3]);
-        $this->assertEquals('+3 123 555555 (Home)', (string)$allEntities[4]);
-        $this->assertEquals('+3 123 666666 (Office)', (string)$allEntities[5]);
+        $this->assertEquals('+1 123 1111111 (Home)', (string) $allEntities[0]);
+        $this->assertEquals('+1 123 222-222 (Office)', (string) $allEntities[1]);
+        $this->assertEquals('+2 123 3 (Home)', (string) $allEntities[2]);
+        $this->assertEquals('+2 123 444-4444 (Office)', (string) $allEntities[3]);
+        $this->assertEquals('+3 123 555555 (Home)', (string) $allEntities[4]);
+        $this->assertEquals('+3 123 666666 (Office)', (string) $allEntities[5]);
     }
 
     public function testFindById()
     {
         $entityOne = $this->getModelManager()->findById(1);
 
-        $this->assertEquals('+1 123 1111111 (Home)', (string)$entityOne);
+        $this->assertEquals('+1 123 1111111 (Home)', (string) $entityOne);
     }
 
     public function testLifeCycle()
@@ -69,7 +68,6 @@ class PhoneManagerTest extends FixturesWebTestCase
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
     }
-
 
     /**
      * @return PhoneManager

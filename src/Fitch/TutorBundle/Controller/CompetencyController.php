@@ -17,14 +17,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Competency controller
+ * Competency controller.
  *
  * @Route("/editor/competency")
  */
 class CompetencyController extends Controller
 {
     /**
-     * Updates a competency field on a tutor record
+     * Updates a competency field on a tutor record.
      *
      * @Route(
      *      "/update",
@@ -42,6 +42,7 @@ class CompetencyController extends Controller
      * @param Request $request
      *
      * @throws UnknownMethodException
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function updateAction(Request $request)
@@ -64,17 +65,17 @@ class CompetencyController extends Controller
 
             switch ($name) {
                 case 'competency-level':
-                    if ((string)(int)$value == $value) {
+                    if ((string) (int) $value == $value) {
                         // if its an integer
-                        $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findById((int)$value));
+                        $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findById((int) $value));
                     } else {
                         $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findOrCreate($value));
                     }
                     break;
                 case 'competency-type':
-                    if ((string)(int)$value == $value) {
+                    if ((string) (int) $value == $value) {
                         // if its an integer
-                        $competency->setCompetencyType($this->getCompetencyTypeManager()->findById((int)$value));
+                        $competency->setCompetencyType($this->getCompetencyTypeManager()->findById((int) $value));
                     } else {
                         $competency->setCompetencyType($this->getCompetencyTypeManager()->findOrCreate($value));
                     }
@@ -83,13 +84,13 @@ class CompetencyController extends Controller
                     $competency->setNote($value);
                     break;
                 default :
-                    throw new UnknownMethodException($name . ' is not a valid Competency member');
+                    throw new UnknownMethodException($name.' is not a valid Competency member');
             }
             $this->getTutorManager()->saveTutor($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -102,7 +103,7 @@ class CompetencyController extends Controller
                     'tutor' => $tutor,
                     'competency' => $competency,
                     'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
-                    'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+                    'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES'),
                 ]
             ),
         ]);
@@ -127,7 +128,7 @@ class CompetencyController extends Controller
     {
         try {
             $competency = $this->getCompetencyManager()->findById($request->request->get('pk'));
-            if(!$competency) {
+            if (!$competency) {
                 throw new NotFoundHttpException('Competency does not exist!');
             }
 
@@ -135,7 +136,7 @@ class CompetencyController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 

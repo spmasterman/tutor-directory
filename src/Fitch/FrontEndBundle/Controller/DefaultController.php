@@ -14,9 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-
     /**
-     * Persist the state of an open/close element,
+     * Persist the state of an open/close element,.
      *
      * Stores this as a EAV value on user, creates the definition if necessary
      *
@@ -57,9 +56,10 @@ class DefaultController extends Controller
         } catch (\Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
         }
+
         return new JsonResponse([
             'success' => true,
         ]);

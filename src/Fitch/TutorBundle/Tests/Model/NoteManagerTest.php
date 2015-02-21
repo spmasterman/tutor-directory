@@ -7,15 +7,14 @@ use Fitch\TutorBundle\Model\NoteManager;
 
 class NoteManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
 
         $this->assertEquals('Test Note One', $allEntities[0]->getBody());
-        $this->assertEquals('Test Note Two', (string)$allEntities[1]->getBody());
-        $this->assertEquals('Test Note Three', (string)$allEntities[2]->getBody());
+        $this->assertEquals('Test Note Two', (string) $allEntities[1]->getBody());
+        $this->assertEquals('Test Note Three', (string) $allEntities[2]->getBody());
     }
 
     public function testFindById()
@@ -67,7 +66,6 @@ class NoteManagerTest extends FixturesWebTestCase
 
     /**
      * @return NoteManager
-     *
      */
     public function getModelManager()
     {

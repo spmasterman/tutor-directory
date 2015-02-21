@@ -10,7 +10,7 @@ class RoleExtension extends \Twig_Extension
     protected $translator;
 
     /**
-     * Constructor method
+     * Constructor method.
      *
      * @param IdentityTranslator $translator
      */

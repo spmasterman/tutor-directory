@@ -11,12 +11,12 @@ class MenuBuilder extends ContainerAware
 {
     /**
      * @param FactoryInterface $factory
-     * @param array $options
+     * @param array            $options
+     *
      * @return ItemInterface
      */
     public function sidebarMenu(FactoryInterface $factory, array $options)
     {
-
         $menu = $factory
             ->createItem('root', ['route' => 'home'])
             ->setChildrenAttribute('class', 'main-menu')
@@ -41,7 +41,8 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param FactoryInterface $factory
-     * @param array $options
+     * @param array            $options
+     *
      * @return ItemInterface
      */
     public function breadcrumbMenu(FactoryInterface $factory, array $options)
@@ -76,7 +77,8 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param FactoryInterface $factory
-     * @param array $options
+     * @param array            $options
+     *
      * @return ItemInterface
      */
     public function userMenu(FactoryInterface $factory, array $options)
@@ -107,8 +109,8 @@ class MenuBuilder extends ContainerAware
             $menu->addChild($originalUser->getUsername(), [
                     'route' => 'home',
                     'routeParameters' => [
-                        '_impersonate' => '_exit'
-                    ]
+                        '_impersonate' => '_exit',
+                    ],
                 ])
                 ->setAttribute('icon', 'fa fa-eject fa-fw')
                 ->setExtra('translation_domain', 'menu')
@@ -131,7 +133,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-list-alt fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/report/']
+                    ['pattern' => '/report/'],
                 ])
             ;
         }
@@ -152,7 +154,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-child fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/tutor_type/']
+                    ['pattern' => '/tutor_type/'],
                 ])
             ;
         }
@@ -162,6 +164,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addStatus(ItemInterface $menu)
@@ -172,7 +175,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-tag fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/status/']
+                    ['pattern' => '/status/'],
                 ])
             ;
         }
@@ -182,6 +185,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addRegions(ItemInterface $menu)
@@ -192,7 +196,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-globe fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/region/']
+                    ['pattern' => '/region/'],
                 ])
             ;
         }
@@ -202,6 +206,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addCountries(ItemInterface $menu)
@@ -212,7 +217,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-flag-o fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/country/']
+                    ['pattern' => '/country/'],
                 ])
             ;
         }
@@ -222,6 +227,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addCurrencies(ItemInterface $menu)
@@ -232,7 +238,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-money fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/currency/']
+                    ['pattern' => '/currency/'],
                 ])
             ;
         }
@@ -242,6 +248,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addLanguages(ItemInterface $menu)
@@ -252,7 +259,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-language fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/language/']
+                    ['pattern' => '/language/'],
                 ])
             ;
         }
@@ -262,6 +269,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addFileTypes(ItemInterface $menu)
@@ -272,7 +280,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-files-o fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/file_type/']
+                    ['pattern' => '/file_type/'],
                 ])
 
             ;
@@ -283,6 +291,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addCompetencyTypes(ItemInterface $menu)
@@ -293,7 +302,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-bullseye fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/competency_type/']
+                    ['pattern' => '/competency_type/'],
                 ])
             ;
         }
@@ -303,6 +312,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addCompetencyLevels(ItemInterface $menu)
@@ -313,7 +323,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-signal fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/competency_level/']
+                    ['pattern' => '/competency_level/'],
                 ])
             ;
         }
@@ -323,6 +333,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addUsers(ItemInterface $menu)
@@ -333,7 +344,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-users fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/user/']
+                    ['pattern' => '/user/'],
                 ])
             ;
         }
@@ -343,6 +354,7 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param ItemInterface $menu
+     *
      * @return $this
      */
     private function addProfile(ItemInterface $menu)
@@ -353,7 +365,7 @@ class MenuBuilder extends ContainerAware
                 ->setAttribute('icon', 'fa fa-mortar-board fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
-                    ['pattern' => '/profile/']
+                    ['pattern' => '/profile/'],
                 ])
             ;
         }
@@ -363,10 +375,11 @@ class MenuBuilder extends ContainerAware
 
     /**
      * @param $role
+     *
      * @return bool
      */
     public function isGranted($role)
     {
-       return (bool)$this->container->get('security.context')->isGranted($role);
+        return (bool) $this->container->get('security.context')->isGranted($role);
     }
 }

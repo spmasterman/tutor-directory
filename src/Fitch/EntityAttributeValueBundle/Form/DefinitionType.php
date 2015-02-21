@@ -13,10 +13,10 @@ class DefinitionType extends AbstractType
         $builder->add('name', 'text', array(
         ));
         $builder->add('description', 'textarea', array(
-            'required' => false
+            'required' => false,
         ));
         $builder->add('group', 'text', array(
-            'required' => false
+            'required' => false,
         ));
         $builder->add('type', 'choice', array(
             'choices' => array(
@@ -25,14 +25,14 @@ class DefinitionType extends AbstractType
                 'textarea'  => 'Textarea',
                 'choice'    => 'Select',
                 'checkbox'  => 'Checkbox',
-                'radio'     => 'Radio'
-            )
+                'radio'     => 'Radio',
+            ),
         ));
         $builder->add('unit', 'text', array(
-            'required' => false
+            'required' => false,
         ));
         $builder->add('required', 'checkbox', array(
-            'required' => false
+            'required' => false,
         ));
     }
 

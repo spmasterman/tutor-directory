@@ -10,7 +10,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Competency
+ * Competency.
  *
  * @ORM\Table(name="competency")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyRepository")
@@ -52,8 +52,8 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
      */
     protected $note;
 
-
-    public function __toString() {
+    public function __toString()
+    {
         $type = $this->getCompetencyType() ? $this->getCompetencyType()->getName() : self::NOT_YET_SPECIFIED;
         $level = $this->getCompetencyLevel() ? $this->getCompetencyLevel()->getName() : self::NOT_YET_SPECIFIED;
 
@@ -70,11 +70,13 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param CompetencyLevel $competencyLevel
+     *
      * @return $this
      */
     public function setCompetencyLevel($competencyLevel)
     {
         $this->competencyLevel = $competencyLevel;
+
         return $this;
     }
 
@@ -88,11 +90,13 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param CompetencyType $competencyType
+     *
      * @return $this
      */
     public function setCompetencyType($competencyType)
     {
         $this->competencyType = $competencyType;
+
         return $this;
     }
 
@@ -106,11 +110,13 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param Tutor $tutor
+     *
      * @return $this
      */
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+
         return $this;
     }
 
@@ -124,11 +130,13 @@ class Competency implements IdentityTraitInterface, TimestampableTraitInterface
 
     /**
      * @param string $note
+     *
      * @return $this
      */
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 }

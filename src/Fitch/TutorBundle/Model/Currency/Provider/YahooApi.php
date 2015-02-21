@@ -5,7 +5,7 @@ namespace Fitch\TutorBundle\Model\Currency\Provider;
 class YahooApi implements ProviderInterface
 {
     /**
-     * Url for Curl request
+     * Url for Curl request.
      *
      * @var string
      */

@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Role\RoleHierarchy;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class TutorVoter
+ * Class TutorVoter.
  *
  * Uses the ROLE_HIERARCHY (currently!) to decide on access to tutor object. We could just use f.ex.
  * isGranted('ROLE_ADMIN', $tutor) rather than isGranted(TutorVoter::FULL_EDIT, $tutor) and not
@@ -21,15 +21,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * will eventually be able to edit some of their own details (i.e. rates but not notes), and that
  * departmental managers will be able to edit/access their direct reports etc. The logic is expected
  * to get complex, and this will facilitate it.
- *
- * @package Fitch\TutorBundle\Security\Authorization\Voter
  */
 class TutorVoter implements VoterInterface
 {
     /** @var  RoleHierarchy */
     private $rh;
 
-    public function __construct($roles) {
+    public function __construct($roles)
+    {
         $this->rh = new RoleHierarchy($roles);
     }
 
@@ -52,8 +51,8 @@ class TutorVoter implements VoterInterface
 
     /**
      * @param TokenInterface $token
-     * @param Tutor $tutor
-     * @param array $attributes
+     * @param Tutor          $tutor
+     * @param array          $attributes
      *
      * @return int
      */
@@ -87,7 +86,7 @@ class TutorVoter implements VoterInterface
             return VoterInterface::ACCESS_DENIED;
         }
 
-        switch($attribute) {
+        switch ($attribute) {
             case Tutor::ACCESS_LEVEL_LIMITED_VIEW:
                 return VoterInterface::ACCESS_GRANTED;
                 break;
@@ -111,14 +110,16 @@ class TutorVoter implements VoterInterface
         return VoterInterface::ACCESS_DENIED;
     }
 
-    private function userHasRole(UserInterface $user, $role) {
-        foreach($user->getRoles() as $heldRole) {
+    private function userHasRole(UserInterface $user, $role)
+    {
+        foreach ($user->getRoles() as $heldRole) {
             foreach ($this->rh->getReachableRoles([new Role($heldRole)]) as $reachableRole) {
                 if ($role === $reachableRole->getRole()) {
                     return true;
                 }
             }
         }
+
         return false;
     }
 }

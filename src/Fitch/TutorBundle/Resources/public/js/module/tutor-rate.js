@@ -1,4 +1,4 @@
-var Rate = (function ($) {
+var TutorProfileRate = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -15,7 +15,7 @@ var Rate = (function ($) {
      *
      * @param {string} prototypeRowFromServer
      */
-    var constructor = function(prototypeRowFromServer) {
+    var init = function(prototypeRowFromServer) {
         prototypeRow = prototypeRowFromServer;
 
         $('.inline-rate').each(function() {
@@ -119,8 +119,8 @@ var Rate = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

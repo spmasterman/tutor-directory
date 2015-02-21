@@ -28,11 +28,13 @@ trait ActiveAndPreferredTrait
 
     /**
      * @param boolean $preferred
+     *
      * @return $this
      */
     public function setPreferred($preferred)
     {
         $this->preferred = $preferred;
+
         return $this;
     }
 
@@ -46,11 +48,13 @@ trait ActiveAndPreferredTrait
 
     /**
      * @param boolean $active
+     *
      * @return $this
      */
     public function setActive($active)
     {
         $this->active = $active;
+
         return $this;
     }
 }

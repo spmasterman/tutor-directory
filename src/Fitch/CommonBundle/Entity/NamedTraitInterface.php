@@ -5,15 +5,16 @@ namespace Fitch\CommonBundle\Entity;
 interface NamedTraitInterface
 {
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name);
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */

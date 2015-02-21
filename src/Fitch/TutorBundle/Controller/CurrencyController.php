@@ -22,18 +22,18 @@ use Fitch\TutorBundle\Form\Type\CurrencyType;
  */
 class CurrencyController extends Controller
 {
-
     /**
      * Lists all Currency entities.
      *
      * @Route("/", name="currency")
+     *
      * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [
-            'currencies' => $this->getCurrencyManager()->findAllSorted()
+            'currencies' => $this->getCurrencyManager()->findAllSorted(),
         ];
     }
 
@@ -41,6 +41,7 @@ class CurrencyController extends Controller
      * Creates a new Currency entity.
      *
      * @Route("/", name="currency_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:Currency:new.html.twig")
      *
@@ -64,7 +65,6 @@ class CurrencyController extends Controller
                 $this->get('translator')->trans('currency.new.success')
             );
 
-
             return $this->redirectToRoute('currency_show', ['id' => $currency->getId()]);
         }
 
@@ -75,12 +75,12 @@ class CurrencyController extends Controller
     }
 
     /**
-    * Creates a form to create a Currency entity.
-    *
-    * @param Currency $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Currency entity.
+     *
+     * @param Currency $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Currency $entity)
     {
         $form = $this->createForm(new CurrencyType(), $entity, [
@@ -93,8 +93,8 @@ class CurrencyController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -103,6 +103,7 @@ class CurrencyController extends Controller
      * Displays a form to create a new Currency entity.
      *
      * @Route("/new", name="currency_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -121,6 +122,7 @@ class CurrencyController extends Controller
      * Finds and displays a Currency entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="currency_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -142,6 +144,7 @@ class CurrencyController extends Controller
      * Displays a form to edit an existing Currency entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="currency_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -162,12 +165,12 @@ class CurrencyController extends Controller
     }
 
     /**
-    * Creates a form to edit a Currency entity.
-    *
-    * @param Currency $currency The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Currency entity.
+     *
+     * @param Currency $currency The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Currency $currency)
     {
         $form = $this->createForm(new CurrencyType(), $currency, [
@@ -180,8 +183,8 @@ class CurrencyController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -190,10 +193,11 @@ class CurrencyController extends Controller
      * Edits an existing Currency entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="currency_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:Currency:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Currency $currency
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -230,9 +234,10 @@ class CurrencyController extends Controller
      * Deletes a Currency entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="currency_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Currency $currency
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -271,51 +276,53 @@ class CurrencyController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => array(
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                )])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ), ])
             ->getForm()
         ;
     }
 
     /**
-     * Returns the currencies as a JSON Array
+     * Returns the currencies as a JSON Array.
      *
      * @Route("/active", name="all_currencies", options={"expose"=true})
+     *
      * @Method("GET")
      * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-
-    public function activeAction(){
+    public function activeAction()
+    {
         $out = [
             [
                 'text' => 'Preferred',
-                'children' => []
+                'children' => [],
             ],
             [
                 'text' => 'Other',
-                'children' => []
-            ]
+                'children' => [],
+            ],
         ];
 
-        foreach($this->getCurrencyManager()->findAllSorted() as $currency) {
+        foreach ($this->getCurrencyManager()->findAllSorted() as $currency) {
             if ($currency->isActive()) {
                 $key = $currency->isPreferred() ? 0 : 1;
                 $out[$key]['children'][] = [
                     'value' => $currency->getId(),
-                    'text' => (string)$currency,
+                    'text' => (string) $currency,
                 ];
             }
         }
+
         return new JsonResponse($out);
     }
 
-
     /**
-     * Updates the Exchange Rate for a Currency
+     * Updates the Exchange Rate for a Currency.
      *
      * @Route("/xr/{id}", requirements={"id" = "\d+"}, name="currency_xr_update")
+     *
      * @Method("GET")
      *
      * @param Currency $currency
@@ -329,6 +336,7 @@ class CurrencyController extends Controller
         } else {
             $this->addFlash('warning', $this->get('translator')->trans('currency.update.xr-failure'));
         }
+
         return $this->redirectToRoute('currency');
     }
 

@@ -5,22 +5,23 @@ namespace Fitch\EntityAttributeValueBundle\Entity;
 interface AttributedEntityInterface
 {
     /**
-     * Add attributes
+     * Add attributes.
      *
      * @param \Fitch\EntityAttributeValueBundle\Entity\Attribute $attribute
+     *
      * @return $this
      */
     public function addAttribute(Attribute $attribute);
 
     /**
-     * Remove attributes
+     * Remove attributes.
      *
      * @param \Fitch\EntityAttributeValueBundle\Entity\Attribute $attribute
      */
     public function removeAttribute(Attribute $attribute);
 
     /**
-     * Get attributes
+     * Get attributes.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

@@ -4,15 +4,11 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\CompetencyManager;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\TutorLanguageManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,15 +16,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * TutorLanguage controller
+ * TutorLanguage controller.
  *
  * @Route("/editor/tutor/language")
  */
 class TutorLanguageController extends Controller
 {
-
     /**
-     * Updates a TutorLanguage field on a tutor record
+     * Updates a TutorLanguage field on a tutor record.
      *
      * @Route(
      *      "/update",
@@ -46,6 +41,7 @@ class TutorLanguageController extends Controller
      * @param Request $request
      *
      * @throws UnknownMethodException
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function updateAction(Request $request)
@@ -68,9 +64,9 @@ class TutorLanguageController extends Controller
 
             switch ($name) {
                 case 'tutor-language':
-                    if ((string)(int)$value == $value) {
+                    if ((string) (int) $value == $value) {
                         // if its an integer
-                        $tutorLanguage->setLanguage($this->getLanguageManager()->findById((int)$value));
+                        $tutorLanguage->setLanguage($this->getLanguageManager()->findById((int) $value));
                     } else {
                         $tutorLanguage->setLanguage($this->getLanguageManager()->findOrCreate($value));
                     }
@@ -79,13 +75,13 @@ class TutorLanguageController extends Controller
                     $tutorLanguage->setNote($value);
                     break;
                 default :
-                    throw new UnknownMethodException($name . ' is not a valid Tutor Language member');
+                    throw new UnknownMethodException($name.' is not a valid Tutor Language member');
             }
             $this->getTutorManager()->saveTutor($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -98,7 +94,7 @@ class TutorLanguageController extends Controller
                     'tutor' => $tutor,
                     'tutorLanguage' => $tutorLanguage,
                     'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
-                    'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES')
+                    'isAdmin' => $this->isGranted('ROLE_CAN_CREATE_LOOKUP_VALUES'),
                 ]
             ),
         ]);
@@ -123,7 +119,7 @@ class TutorLanguageController extends Controller
     {
         try {
             $tutorLanguage = $this->getTutorLanguageManager()->findById($request->request->get('pk'));
-            if(!$tutorLanguage) {
+            if (!$tutorLanguage) {
                 throw new NotFoundHttpException('Tutor Language does not exist!');
             }
 
@@ -131,7 +127,7 @@ class TutorLanguageController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 

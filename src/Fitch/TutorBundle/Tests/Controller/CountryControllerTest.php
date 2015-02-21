@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class CountryControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
@@ -18,12 +17,11 @@ class CountryControllerTest extends WebTestCase
             'xdisabled' => 403,
             'xeditor' => 403,
             'xadmin' => 200,
-            'xsuper' => 200
+            'xsuper' => 200,
         ];
 
         $this->checkAccess('GET', '/admin/country/', $users);
     }
-
 
     public function testCompleteScenario()
     {
@@ -42,7 +40,7 @@ class CountryControllerTest extends WebTestCase
             'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
             'fitch_tutorbundle_country[dialingCode]'  => '+1',
             'fitch_tutorbundle_country[preferred]'  => false,
-            'fitch_tutorbundle_country[defaultRegion]' => 1
+            'fitch_tutorbundle_country[defaultRegion]' => 1,
         ));
 
         $client->submit($form);
@@ -60,7 +58,7 @@ class CountryControllerTest extends WebTestCase
             'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
             'fitch_tutorbundle_country[dialingCode]'  => '+2',
             'fitch_tutorbundle_country[preferred]'  => true,
-            'fitch_tutorbundle_country[defaultRegion]' => 2
+            'fitch_tutorbundle_country[defaultRegion]' => 2,
         ));
 
         $client->submit($form);

@@ -11,7 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UpdateExchangeRateCommand extends ContainerAwareCommand
 {
-
     /** @var  ContainerInterface */
     protected $container;
 
@@ -35,6 +34,7 @@ class UpdateExchangeRateCommand extends ContainerAwareCommand
         } else {
             $output->writeln('<error>Errors were detected updating the exchange rates.</error>');
         }
+
         return 0;
     }
 

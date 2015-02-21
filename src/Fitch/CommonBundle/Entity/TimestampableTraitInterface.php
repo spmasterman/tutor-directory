@@ -17,17 +17,19 @@ interface TimestampableTraitInterface
     public function getUpdated();
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
+     *
      * @return mixed
      */
     public function setCreated($created);
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
+     *
      * @return mixed
      */
     public function setUpdated($updated);

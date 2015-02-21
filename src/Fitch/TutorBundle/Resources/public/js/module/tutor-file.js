@@ -1,4 +1,4 @@
-var File = (function ($) {
+var TutorProfileFile = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -13,7 +13,7 @@ var File = (function ($) {
     /**
      * constructor
      */
-    var constructor = function() {
+    var init = function() {
         $('.inline-file-type').editable({
             success: function (response) {
                 $(this).closest('.data-row').find('.details-holder').html(response.renderedFileRow);
@@ -155,8 +155,8 @@ var File = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

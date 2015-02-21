@@ -24,7 +24,7 @@ class FixturesWebTestCase extends WebTestCase
     protected $container;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string|null $name     Test name
      * @param array       $data     Test data
@@ -37,7 +37,7 @@ class FixturesWebTestCase extends WebTestCase
         if (!static::$kernel) {
             static::$kernel = self::createKernel([
                 'environment' => $this->environment,
-                'debug'       => $this->debug
+                'debug'       => $this->debug,
             ]);
             static::$kernel->boot();
         }

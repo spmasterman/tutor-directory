@@ -7,23 +7,22 @@ use Fitch\TutorBundle\Model\CurrencyManager;
 
 class CurrencyManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return three entities");
 
-        $this->assertEquals('ONE - Test Currency One', (string)$allEntities[0]);
-        $this->assertEquals('TWO - Test Currency Two', (string)$allEntities[1]);
-        $this->assertEquals('THR - Test Currency Three', (string)$allEntities[2]);
-        $this->assertEquals('FOR - Test Currency Four', (string)$allEntities[3]);
+        $this->assertEquals('ONE - Test Currency One', (string) $allEntities[0]);
+        $this->assertEquals('TWO - Test Currency Two', (string) $allEntities[1]);
+        $this->assertEquals('THR - Test Currency Three', (string) $allEntities[2]);
+        $this->assertEquals('FOR - Test Currency Four', (string) $allEntities[3]);
     }
 
     public function testFindById()
     {
         $entityOne = $this->getModelManager()->findById(1);
 
-        $this->assertEquals('ONE - Test Currency One', (string)$entityOne);
+        $this->assertEquals('ONE - Test Currency One', (string) $entityOne);
     }
 
     public function testFindDefaultCountry()
@@ -45,11 +44,11 @@ class CurrencyManagerTest extends FixturesWebTestCase
         $preferredEntities = $this->getModelManager()->buildPreferredChoices();
         $this->assertCount(1, $preferredEntities, "Should return one entity");
 
-        foreach($allEntities as $entity) {
+        foreach ($allEntities as $entity) {
             if (in_array($entity, $preferredEntities)) {
                 $this->assertTrue($entity->isPreferred());
             } else {
-                $this->assertFalse($entity->isPreferred() && $entity->isActive())  ;
+                $this->assertFalse($entity->isPreferred() && $entity->isActive());
             }
         }
 
@@ -67,7 +66,7 @@ class CurrencyManagerTest extends FixturesWebTestCase
         $this->assertFalse($sorted[3]->isActive());
 
         $addressEntities = $this->getModelManager()->buildChoices();
-        foreach($allEntities as $entity) {
+        foreach ($allEntities as $entity) {
             if (in_array($entity, $addressEntities)) {
                 $this->assertTrue($entity->isActive());
             } else {

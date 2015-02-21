@@ -21,11 +21,13 @@ trait DefaultTrait
 
     /**
      * @param boolean $default
+     *
      * @return $this
      */
     public function setDefault($default)
     {
         $this->default = $default;
+
         return $this;
     }
 }

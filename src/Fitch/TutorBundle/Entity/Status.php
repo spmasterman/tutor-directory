@@ -14,7 +14,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Email
+ * Email.
  *
  * @ORM\Table(name="status")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\StatusRepository")

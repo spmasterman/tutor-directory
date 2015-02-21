@@ -12,7 +12,7 @@ class CountryTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Country One (ONE) +1',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

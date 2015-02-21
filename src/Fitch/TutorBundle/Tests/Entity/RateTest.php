@@ -11,7 +11,7 @@ class RateTest extends FixturesWebTestCase
     {
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals('Test Rate One', $entityOne->getName());
-        $this->assertEquals(1000 , $entityOne->getAmount());
+        $this->assertEquals(1000, $entityOne->getAmount());
     }
 
     /**

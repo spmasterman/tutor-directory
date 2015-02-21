@@ -12,7 +12,7 @@ class CurrencyTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'ONE - Test Currency One',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

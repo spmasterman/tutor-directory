@@ -5,7 +5,6 @@ namespace Fitch\UserBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class UserControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
@@ -18,12 +17,11 @@ class UserControllerTest extends WebTestCase
             'xdisabled' => 403,
             'xeditor' => 403,
             'xadmin' => 403,
-            'xsuper' => 200
+            'xsuper' => 200,
         ];
 
         $this->checkAccess('GET', '/user/', $users);
     }
-
 
     public function testCompleteScenario()
     {
@@ -74,5 +72,4 @@ class UserControllerTest extends WebTestCase
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());
     }
-
 }

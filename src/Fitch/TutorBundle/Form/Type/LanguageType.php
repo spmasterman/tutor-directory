@@ -11,7 +11,7 @@ class LanguageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,22 +20,22 @@ class LanguageType extends AbstractType
             ->add('threeLetterCode')
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
             ->add('preferred', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Language'
+            'data_class' => 'Fitch\TutorBundle\Entity\Language',
         ));
     }
 

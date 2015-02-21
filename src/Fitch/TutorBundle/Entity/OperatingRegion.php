@@ -13,7 +13,7 @@ use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 /**
- * OperatingRegion
+ * OperatingRegion.
  *
  * @ORM\Table(name="region")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository")
@@ -34,6 +34,7 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
      *      targetEntity="Currency"
      * )
      * @ORM\JoinColumn(name="default_currency_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @var Currency
      */
     protected $defaultCurrency;
@@ -55,11 +56,13 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
 
     /**
      * @param Currency $defaultCurrency
+     *
      * @return $this
      */
     public function setDefaultCurrency($defaultCurrency)
     {
         $this->defaultCurrency = $defaultCurrency;
+
         return $this;
     }
 
@@ -73,11 +76,13 @@ class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInter
 
     /**
      * @param string $code
+     *
      * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+
         return $this;
     }
 }

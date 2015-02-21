@@ -13,7 +13,7 @@ use Fitch\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Report
+ * Report.
  *
  * @ORM\Table(name="report")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\ReportRepository")
@@ -54,11 +54,13 @@ class Report implements IdentityTraitInterface, TimestampableTraitInterface, Nam
 
     /**
      * @param User $creator
+     *
      * @return $this
      */
     public function setCreator($creator)
     {
         $this->creator = $creator;
+
         return $this;
     }
 
@@ -72,11 +74,13 @@ class Report implements IdentityTraitInterface, TimestampableTraitInterface, Nam
 
     /**
      * @param string $definition
+     *
      * @return $this
      */
     public function setDefinition($definition)
     {
         $this->definition = $definition;
+
         return $this;
     }
 }

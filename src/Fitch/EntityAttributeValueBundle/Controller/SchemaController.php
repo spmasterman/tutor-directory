@@ -7,13 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
-* @Route("/attribute/schema")
-*/
+ * @Route("/attribute/schema")
+ */
 class SchemaController extends Controller
 {
-
     /**
      * @param $id
+     *
      * @return array
      */
     public function editAction($id)
@@ -34,14 +34,16 @@ class SchemaController extends Controller
                 $em->persist($schema);
                 $em->flush();
                 $this->addFlash('success', $this->get('translator')->trans('Save successful!'));
+
                 return $this->redirectToRoute('attribute_schema_edit', ['id' => $id]);
             } else {
                 $this->addFlash('error', $this->get('translator')->trans('Save unsuccessful!'));
             }
         }
+
         return [
             'form' => $form->createView(),
-            'schema' => $schema
+            'schema' => $schema,
         ];
     }
 }

@@ -20,11 +20,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class OperatingRegionController extends Controller
 {
-
     /**
      * Lists all OperatingRegion entities.
      *
      * @Route("/", name="region")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -33,7 +33,7 @@ class OperatingRegionController extends Controller
     public function indexAction()
     {
         return [
-            'regions' => $this->getOperatingRegionManager()->findAll()
+            'regions' => $this->getOperatingRegionManager()->findAll(),
         ];
     }
 
@@ -41,6 +41,7 @@ class OperatingRegionController extends Controller
      * Creates a new OperatingRegion entity.
      *
      * @Route("/", name="region_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:OperatingRegion:new.html.twig")
      *
@@ -74,18 +75,18 @@ class OperatingRegionController extends Controller
     }
 
     /**
-    * Creates a form to create a OperatingRegion entity.
-    *
-    * @param OperatingRegion $region The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a OperatingRegion entity.
+     *
+     * @param OperatingRegion $region The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(OperatingRegion $region)
     {
         $form = $this->createForm(new OperatingRegionType(), $region, [
             'action' => $this->generateUrl('region_create'),
             'method' => 'POST',
-            'currencyManager' => $this->getCurrencyManager()
+            'currencyManager' => $this->getCurrencyManager(),
         ]);
 
         $form->add('submit', 'submit',
@@ -93,8 +94,8 @@ class OperatingRegionController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -103,6 +104,7 @@ class OperatingRegionController extends Controller
      * Displays a form to create a new OperatingRegion entity.
      *
      * @Route("/new", name="region_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -121,6 +123,7 @@ class OperatingRegionController extends Controller
      * Finds and displays a OperatingRegion entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="region_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -142,6 +145,7 @@ class OperatingRegionController extends Controller
      * Displays a form to edit an existing OperatingRegion entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="region_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -162,18 +166,18 @@ class OperatingRegionController extends Controller
     }
 
     /**
-    * Creates a form to edit a OperatingRegion entity.
-    *
-    * @param OperatingRegion $region The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a OperatingRegion entity.
+     *
+     * @param OperatingRegion $region The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(OperatingRegion $region)
     {
         $form = $this->createForm(new OperatingRegionType(), $region, [
             'action' => $this->generateUrl('region_update', ['id' => $region->getId()]),
             'method' => 'PUT',
-            'currencyManager' => $this->getCurrencyManager()
+            'currencyManager' => $this->getCurrencyManager(),
         ]);
 
         $form->add('submit', 'submit',
@@ -181,8 +185,8 @@ class OperatingRegionController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -191,10 +195,11 @@ class OperatingRegionController extends Controller
      * Edits an existing OperatingRegion entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="region_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:OperatingRegion:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request         $request
      * @param OperatingRegion $region
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -231,9 +236,10 @@ class OperatingRegionController extends Controller
      * Deletes a OperatingRegion entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="region_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request         $request
      * @param OperatingRegion $region
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -272,30 +278,32 @@ class OperatingRegionController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                ]])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ], ])
             ->getForm()
         ;
     }
 
     /**
-     * Returns the regions as a JSON Array
+     * Returns the regions as a JSON Array.
      *
      * @Route("/all", name="all_regions")
+     *
      * @Method("GET")
      * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-
-    public function allAction(){
+    public function allAction()
+    {
         $out = [];
-        foreach($this->getOperatingRegionManager()->findAll() as $region) {
+        foreach ($this->getOperatingRegionManager()->findAll() as $region) {
             $out[] = [
                 'value' => $region->getId(),
-                'text' => $region->getName()
+                'text' => $region->getName(),
             ];
         }
+
         return new JsonResponse($out);
     }
 

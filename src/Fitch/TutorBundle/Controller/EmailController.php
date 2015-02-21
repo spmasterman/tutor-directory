@@ -12,14 +12,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Email controller
+ * Email controller.
  *
  * @Route("/editor/email")
  */
 class EmailController extends Controller
 {
     /**
-     * Removes an Email
+     * Removes an Email.
      *
      * @Route(
      *      "/remove",
@@ -43,9 +43,10 @@ class EmailController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
         }
+
         return new JsonResponse([
             'success' => true,
         ]);

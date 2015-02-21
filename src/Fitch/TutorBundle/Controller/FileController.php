@@ -22,9 +22,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * File controller
- *
-
+ * File controller.
  */
 class FileController extends Controller
 {
@@ -33,7 +31,7 @@ class FileController extends Controller
     const AVATAR_QUALITY = 90;
 
     /**
-     * Updates a (simple) field on a file record
+     * Updates a (simple) field on a file record.
      *
      * @Route(
      *      "/editor/file/update",
@@ -68,18 +66,18 @@ class FileController extends Controller
                     $file->setFileType($fileType);
                     break;
                 default :
-                    $setter = 'set' . ucfirst($name);
+                    $setter = 'set'.ucfirst($name);
                     if (is_callable([$file, $setter])) {
                         $file->$setter($value);
                     } else {
-                        throw new UnknownMethodException($setter . ' is not a valid File method');
+                        throw new UnknownMethodException($setter.' is not a valid File method');
                     }
             }
             $this->getFileManager()->saveFile($file);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -99,12 +97,13 @@ class FileController extends Controller
                     'tutor' => $file->getTutor(),
                     'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
                 ]
-            )
+            ),
         ]);
     }
 
     /**
      * @Route("/stream/{id}", name="get_file_stream", options={"expose"=true})
+     *
      * @Method("GET")
      * @Template()
      *
@@ -116,17 +115,20 @@ class FileController extends Controller
     {
         $filePath = 'gaufrette://tutor/'.$file->getFileSystemKey();
         $response = new BinaryFileResponse($filePath);
+
         return $response;
     }
 
     /**
      * @Route("/avatar/{id}", name="get_file_as_avatar", options={"expose"=true})
+     *
      * @Method("GET")
      * @Template()
      *
      * @param File $file
      *
      * @throws UnhandledMimeTypeException
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function avatarAction(File $file)
@@ -137,7 +139,7 @@ class FileController extends Controller
 
         $src = 'gaufrette://tutor/'.$file->getFileSystemKey();
 
-        switch($file->getMimeType()) {
+        switch ($file->getMimeType()) {
             case 'image/jpeg':
             case 'image/pjpeg':
             case 'image/jpg':
@@ -151,7 +153,7 @@ class FileController extends Controller
                 break;
             default:
                 throw new UnhandledMimeTypeException(
-                    $file->getMimeType() . ' is not a suitable image type for an avatar'
+                    $file->getMimeType().' is not a suitable image type for an avatar'
                 );
         }
 
@@ -184,11 +186,12 @@ class FileController extends Controller
         $response = new Response();
         $response->headers->set('Content-Type', 'image/jpeg');
         $response->setContent($image);
+
         return $response;
     }
 
     /**
-     * Updates the CropInfo for a file record
+     * Updates the CropInfo for a file record.
      *
      * @Route(
      *      "/editor/file/crop",
@@ -228,7 +231,7 @@ class FileController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -239,6 +242,7 @@ class FileController extends Controller
 
     /**
      * @Route("/download/{id}", name="get_file_download")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -251,7 +255,7 @@ class FileController extends Controller
         $fileSystem = $this->getFileSystemMapService()->get('tutor');
         $file = $fileSystem->read($fileEntity->getFileSystemKey());
 
-        if(!$file) {
+        if (!$file) {
             throw new NotFoundHttpException('File does not exist!');
         }
 
@@ -297,7 +301,7 @@ class FileController extends Controller
             $fileSystem = $this->getFileSystemMapService()->get('tutor');
             $file = $fileSystem->get($fileEntity->getFileSystemKey());
 
-            if(!$file) {
+            if (!$file) {
                 throw new NotFoundHttpException('File does not exist!');
             }
 
@@ -306,7 +310,7 @@ class FileController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -330,7 +334,6 @@ class FileController extends Controller
     {
         return $this->get('fitch.manager.crop_info');
     }
-
 
     /**
      * @return FileTypeManager

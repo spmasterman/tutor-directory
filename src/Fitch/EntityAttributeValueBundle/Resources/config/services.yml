@@ -18,4 +18,3 @@ services:
         class: Fitch\EntityAttributeValueBundle\Form\Type\AttributeCollectionType
         tags:
             - { name: form.type, alias: attributeCollection}
-

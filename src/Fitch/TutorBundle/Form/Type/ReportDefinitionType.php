@@ -51,7 +51,7 @@ class ReportDefinitionType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -65,7 +65,7 @@ class ReportDefinitionType extends AbstractType
                     'class' => "control-inline simple-checkbox",
                 ],
                 'placeholder' => 'Filter by Tutor Type...',
-                'required' => false
+                'required' => false,
             ])
             ->add('status', 'entity', [
                 'class' => 'FitchTutorBundle:Status',
@@ -76,7 +76,7 @@ class ReportDefinitionType extends AbstractType
                     'class' => "control-inline simple-checkbox",
                 ],
                 'placeholder' => 'Filter by Status...',
-                'required' => false
+                'required' => false,
             ])
             ->add('operating_region', 'entity', [
                 'class' => 'FitchTutorBundle:OperatingRegion',
@@ -87,7 +87,7 @@ class ReportDefinitionType extends AbstractType
                     'class' => "control-inline simple-checkbox",
                 ],
                 'placeholder' => 'Filter by Region...',
-                'required' => false
+                'required' => false,
             ])
             ->add('language', 'entity', [
                 'class' => 'FitchTutorBundle:Language',
@@ -95,14 +95,14 @@ class ReportDefinitionType extends AbstractType
                 'placeholder' => 'Filter by Language...',
                 'choices' => $this->languageManager->buildChoices(),
                 'preferred_choices' => $this->languageManager->buildPreferredChoices(),
-                'required' => false
+                'required' => false,
             ])
             ->add(
                 'rate',
                 new RateType($this->translator, $this->currencyManager, $this->rateManager),
                 [
-                    'attr' => ['class' => 'inline-subform stacked-group',],
-                    'label' => 'Rate [Restricted]'
+                    'attr' => ['class' => 'inline-subform stacked-group'],
+                    'label' => 'Rate [Restricted]',
                 ]
             )
             ->add(
@@ -110,7 +110,7 @@ class ReportDefinitionType extends AbstractType
                 new CompetencyType($this->translator, $this->competencyTypeManager, $this->competencyLevelManager),
                 [
                     'attr' => ['class' => 'inline-subform stacked-group'],
-                    'label' => 'Skill (CTRL selects multiple)'
+                    'label' => 'Skill (CTRL selects multiple)',
                 ]
             )
             ->add('fields', 'choice', [
@@ -124,7 +124,7 @@ class ReportDefinitionType extends AbstractType
                 'placeholder' => '',
                 'required' => false,
                 'label' => 'Show Columns',
-                'data' => ReportDefinition::getDefaultFields()
+                'data' => ReportDefinition::getDefaultFields(),
             ])
         ;
     }

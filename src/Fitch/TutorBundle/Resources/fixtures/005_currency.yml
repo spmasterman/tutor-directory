@@ -1,871 +1,871 @@
-Fitch\TutorBundle\Entity\Currency:    
-    currency-AUD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: AUD 
-        name: Australian Dollar 				
-    currency-ALL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ALL 
-        name: Albanian Lek 					
-    currency-DZD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: DZD 
-        name: Algerian Dinar 					
-    currency-ARS: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ARS 
-        name: Argentine Peso 					
-    currency-AWG: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: AWG 
-        name: Aruba Florin 					
-    currency-GBP: 
-        preferred: true 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: GBP 
-        name: British Pound 					
-    currency-BSD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BSD 
-        name: Bahamian Dollar 				
-    currency-BHD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BHD 
-        name: Bahraini Dinar 					
-    currency-BDT: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BDT 
-        name: Bangladesh Taka 				
-    currency-BBD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BBD 
-        name: Barbados Dollar 				
-    currency-BYR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BYR 
-        name: Belarus Ruble 					
-    currency-BZD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BZD 
-        name: Belize Dollar 					
-    currency-BMD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BMD 
-        name: Bermuda Dollar 					
-    currency-BTN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BTN 
-        name: Bhutan Ngultrum 				
-    currency-BOB: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BOB 
-        name: Bolivian Boliviano 				
-    currency-BWP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BWP 
-        name: Botswana Pula 					
-    currency-BRL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BRL 
-        name: Brazilian Real 					
-    currency-BND: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BND 
-        name: Brunei Dollar 					
-    currency-BGN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BGN 
-        name: Bulgarian Lev 					
-    currency-BIF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: BIF 
-        name: Burundi Franc 					
-    currency-CAD: 
-        preferred: false 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: CAD 
-        name: Canadian Dollar 				
-    currency-CNY: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CNY 
-        name: Chinese Yuan 					
-    currency-KHR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KHR 
-        name: Cambodia Riel 					
-    currency-CVE: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CVE 
-        name: Cape Verde Escudo 				
-    currency-KYD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KYD 
-        name: Cayman Islands Dollar 			
-    currency-CLP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CLP 
-        name: Chilean Peso 					
-    currency-COP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: COP 
-        name: Colombian Peso 					
-    currency-KMF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KMF 
-        name: Comoros Franc 					
-    currency-CRC: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CRC 
-        name: Costa Rica Colon 				
-    currency-HRK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: HRK 
-        name: Croatian Kuna 					
-    currency-CUP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CUP 
-        name: Cuban Peso 					    
-    currency-CZK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CZK 
-        name: Czech Koruna 					
-    currency-EUR: 
-        preferred: false 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: EUR 
-        name: Euro 					        
-    currency-DKK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: DKK 
-        name: Danish Krone 					
-    currency-DJF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: DJF 
-        name: Dijibouti Franc 				
-    currency-DOP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: DOP 
-        name: Dominican Peso 					
-    currency-XCD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: XCD 
-        name: East Caribbean Dollar 			
-    currency-ECS: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ECS 
-        name: Ecuador Sucre 					
-    currency-EGP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: EGP 
-        name: Egyptian Pound 					
-    currency-SVC: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SVC 
-        name: El Salvador Colon 				
-    currency-ERN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ERN 
-        name: Eritrea Nakfa 					
-    currency-EEK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: EEK 
-        name: Estonian Kroon 					
-    currency-ETB: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ETB 
-        name: Ethiopian Birr 					
-    currency-FKP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: FKP 
-        name: Falkland Islands Pound 			
-    currency-FJD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: FJD 
-        name: Fiji Dollar 					
-    currency-HKD: 
-        preferred: false 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: HKD 
-        name: Hong Kong Dollar 				
-    currency-IDR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: IDR 
-        name: Indonesian Rupiah 				
-    currency-INR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: INR 
-        name: Indian Rupee 					
-    currency-GMD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: GMD 
-        name: Gambian Dalasi 					
-    currency-GHC: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: GHC 
-        name: Ghanian Cedi 					
-    currency-GIP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: GIP 
-        name: Gibraltar Pound 				
-    currency-GTQ: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: GTQ 
-        name: Guatemala Quetzal 				
-    currency-GNF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: GNF 
-        name: Guinea Franc 					
-    currency-GYD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: GYD 
-        name: Guyana Dollar 					
-    currency-HTG: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: HTG 
-        name: Haiti Gourde 					
-    currency-HNL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: HNL 
-        name: Honduras Lempira 				
-    currency-HUF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: HUF 
-        name: Hungarian Forint 				
-    currency-ISK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ISK 
-        name: Iceland Krona 					
-    currency-IRR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: IRR 
-        name: Iran Rial 					    
-    currency-IQD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: IQD 
-        name: Iraqi Dinar 					
-    currency-ILS: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ILS 
-        name: Israeli Shekel 					
-    currency-JPY: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: JPY 
-        name: Japanese Yen 					
-    currency-JMD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: JMD 
-        name: Jamaican Dollar 				
-    currency-JOD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: JOD 
-        name: Jordanian Dinar 				
-    currency-KZT: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KZT 
-        name: Kazakhstan Tenge 				
-    currency-KES: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KES 
-        name: Kenyan Shilling 				
-    currency-KWD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KWD 
-        name: Kuwaiti Dinar 					
-    currency-LAK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LAK 
-        name: Lao Kip 					    
-    currency-LVL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LVL 
-        name: Latvian Lat 					
-    currency-LBP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LBP 
-        name: Lebanese Pound 					
-    currency-LSL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LSL 
-        name: Lesotho Loti 					
-    currency-LRD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LRD 
-        name: Liberian Dollar 				
-    currency-LYD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LYD 
-        name: Libyan Dinar 					
-    currency-LTL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LTL 
-        name: Lithuanian Lita 				
-    currency-MOP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MOP 
-        name: Macau Pataca 					
-    currency-MKD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MKD 
-        name: Macedonian Denar 				
-    currency-MWK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MWK 
-        name: Malawi Kwacha 					
-    currency-MYR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MYR 
-        name: Malaysian Ringgit 				
-    currency-MVR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MVR 
-        name: Maldives Rufiyaa 				
-    currency-MTL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MTL 
-        name: Maltese Lira 					
-    currency-MRO: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MRO 
-        name: Mauritania Ougulya 				
-    currency-MUR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MUR 
-        name: Mauritius Rupee 				
-    currency-MXN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MXN 
-        name: Mexican Peso 					
-    currency-MDL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MDL 
-        name: Moldovan Leu 					
-    currency-MNT: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MNT 
-        name: Mongolian Tugrik 				
-    currency-MAD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MAD 
-        name: Moroccan Dirham 				
-    currency-MMK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: MMK 
-        name: Myanmar Kyat 					
-    currency-NAD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: NAD 
-        name: Namibian Dollar 				
-    currency-NPR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: NPR 
-        name: Nepalese Rupee 					
-    currency-ANG: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ANG 
-        name: Neth Antilles Guilder 			
-    currency-NZD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: NZD 
-        name: New Zealand Dollar 				
-    currency-NIO: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: NIO 
-        name: Nicaragua Cordoba 				
-    currency-NGN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: NGN 
-        name: Nigerian Naira 					
-    currency-KPW: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KPW 
-        name: North Korean Won 				
-    currency-NOK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: NOK 
-        name: Norwegian Krone 				
-    currency-OMR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: OMR 
-        name: Omani Rial 					    
-    currency-XPF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: XPF 
-        name: Pacific Franc 					
-    currency-PKR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PKR 
-        name: Pakistani Rupee 				
-    currency-PAB: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PAB 
-        name: Panama Balboa 					
-    currency-PGK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PGK 
-        name: Papua New Guinea Kina 			
-    currency-PYG: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PYG 
-        name: Paraguayan Guarani 				
-    currency-PEN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PEN 
-        name: Peruvian Nuevo Sol 				
-    currency-PHP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PHP 
-        name: Philippine Peso 				
-    currency-PLN: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: PLN 
-        name: Polish Zloty 					
-    currency-QAR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: QAR 
-        name: Qatar Rial 					    
-    currency-RON: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: RON 
-        name: Romanian New Leu 				
-    currency-RUB: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: RUB 
-        name: Russian Rouble 					
-    currency-RWF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: RWF 
-        name: Rwanda Franc 					
-    currency-CHF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: CHF 
-        name: Swiss Franc 					
-    currency-KRW: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: KRW 
-        name: South Korean Won 				
-    currency-WST: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: WST 
-        name: Samoa Tala 					    
-    currency-STD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: STD 
-        name: Sao Tome Dobra 					
-    currency-SAR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SAR 
-        name: Saudi Arabian Riyal 			
-    currency-SCR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SCR 
-        name: Seychelles Rupee 				
-    currency-SLL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SLL 
-        name: Sierra Leone Leone 				
-    currency-SGD: 
-        preferred: true 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: SGD 
-        name: Singapore Dollar 				
-    currency-SKK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SKK 
-        name: Slovak Koruna 					
-    currency-SIT: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SIT 
-        name: Slovenian Tolar 				
-    currency-SBD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SBD 
-        name: Solomon Islands Dollar 			
-    currency-SOS: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SOS 
-        name: Somali Shilling 				
-    currency-ZAR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ZAR 
-        name: South African Rand 				
-    currency-LKR: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: LKR 
-        name: Sri Lanka Rupee 				
-    currency-SHP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SHP 
-        name: St Helena Pound 				
-    currency-SDG: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SDG 
-        name: Sudanese Pound 					
-    currency-SZL: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SZL 
-        name: Swaziland Lilageni 				
-    currency-SEK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SEK 
-        name: Swedish Krona 					
-    currency-SYP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: SYP 
-        name: Syrian Pound 					
-    currency-USD: 
-        preferred: true 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: USD 
-        name: United States Dollar 			
-    currency-THB: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: THB 
-        name: Thai Baht 					    
-    currency-TRY: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: TRY 
-        name: Turkish Lira 					
-    currency-TWD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: TWD 
-        name: Taiwan Dollar 					
-    currency-TZS: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: TZS 
-        name: Tanzanian Shilling 				
-    currency-TOP: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: TOP 
-        name: Tonga Pa'ang 					
-    currency-TTD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: TTD 
-        name: Trinidad and Tobago Dollar 		
-    currency-TND: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: TND 
-        name: Tunisian Dinar 					
-    currency-AED: 
-        preferred: true 
-        active: true 
-        toGBP: 1.00 
-        threeDigitCode: AED 
-        name: UAE Dirham 					    
-    currency-UGX: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: UGX 
-        name: Ugandan Shilling 				
-    currency-UAH: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: UAH 
-        name: Ukraine Hryvnia 				
-    currency-UYU: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: UYU 
-        name: Uruguayan New Peso 				
-    currency-VUV: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: VUV 
-        name: Vanuatu Vatu 					
-    currency-VEF: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: VEF 
-        name: Venezuelan Bolivar Fuerte 		
-    currency-VND: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: VND 
-        name: Vietnam Dong 					
-    currency-YER: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: YER 
-        name: Yemen Riyal 					
-    currency-ZMK: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ZMK 
-        name: Zambian Kwacha 					
-    currency-ZWD: 
-        preferred: false 
-        active: false 
-        toGBP: 1.00 
-        threeDigitCode: ZWD 
-        name: Zimbabwe dollar 				
+Fitch\TutorBundle\Entity\Currency:
+    currency-AUD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: AUD
+        name: Australian Dollar
+    currency-ALL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ALL
+        name: Albanian Lek
+    currency-DZD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: DZD
+        name: Algerian Dinar
+    currency-ARS:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ARS
+        name: Argentine Peso
+    currency-AWG:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: AWG
+        name: Aruba Florin
+    currency-GBP:
+        preferred: true
+        active: true
+        toGBP: 1.00
+        threeDigitCode: GBP
+        name: British Pound
+    currency-BSD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BSD
+        name: Bahamian Dollar
+    currency-BHD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BHD
+        name: Bahraini Dinar
+    currency-BDT:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BDT
+        name: Bangladesh Taka
+    currency-BBD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BBD
+        name: Barbados Dollar
+    currency-BYR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BYR
+        name: Belarus Ruble
+    currency-BZD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BZD
+        name: Belize Dollar
+    currency-BMD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BMD
+        name: Bermuda Dollar
+    currency-BTN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BTN
+        name: Bhutan Ngultrum
+    currency-BOB:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BOB
+        name: Bolivian Boliviano
+    currency-BWP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BWP
+        name: Botswana Pula
+    currency-BRL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BRL
+        name: Brazilian Real
+    currency-BND:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BND
+        name: Brunei Dollar
+    currency-BGN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BGN
+        name: Bulgarian Lev
+    currency-BIF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: BIF
+        name: Burundi Franc
+    currency-CAD:
+        preferred: false
+        active: true
+        toGBP: 1.00
+        threeDigitCode: CAD
+        name: Canadian Dollar
+    currency-CNY:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CNY
+        name: Chinese Yuan
+    currency-KHR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KHR
+        name: Cambodia Riel
+    currency-CVE:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CVE
+        name: Cape Verde Escudo
+    currency-KYD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KYD
+        name: Cayman Islands Dollar
+    currency-CLP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CLP
+        name: Chilean Peso
+    currency-COP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: COP
+        name: Colombian Peso
+    currency-KMF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KMF
+        name: Comoros Franc
+    currency-CRC:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CRC
+        name: Costa Rica Colon
+    currency-HRK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: HRK
+        name: Croatian Kuna
+    currency-CUP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CUP
+        name: Cuban Peso
+    currency-CZK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CZK
+        name: Czech Koruna
+    currency-EUR:
+        preferred: false
+        active: true
+        toGBP: 1.00
+        threeDigitCode: EUR
+        name: Euro
+    currency-DKK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: DKK
+        name: Danish Krone
+    currency-DJF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: DJF
+        name: Dijibouti Franc
+    currency-DOP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: DOP
+        name: Dominican Peso
+    currency-XCD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: XCD
+        name: East Caribbean Dollar
+    currency-ECS:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ECS
+        name: Ecuador Sucre
+    currency-EGP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: EGP
+        name: Egyptian Pound
+    currency-SVC:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SVC
+        name: El Salvador Colon
+    currency-ERN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ERN
+        name: Eritrea Nakfa
+    currency-EEK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: EEK
+        name: Estonian Kroon
+    currency-ETB:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ETB
+        name: Ethiopian Birr
+    currency-FKP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: FKP
+        name: Falkland Islands Pound
+    currency-FJD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: FJD
+        name: Fiji Dollar
+    currency-HKD:
+        preferred: false
+        active: true
+        toGBP: 1.00
+        threeDigitCode: HKD
+        name: Hong Kong Dollar
+    currency-IDR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: IDR
+        name: Indonesian Rupiah
+    currency-INR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: INR
+        name: Indian Rupee
+    currency-GMD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: GMD
+        name: Gambian Dalasi
+    currency-GHC:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: GHC
+        name: Ghanian Cedi
+    currency-GIP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: GIP
+        name: Gibraltar Pound
+    currency-GTQ:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: GTQ
+        name: Guatemala Quetzal
+    currency-GNF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: GNF
+        name: Guinea Franc
+    currency-GYD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: GYD
+        name: Guyana Dollar
+    currency-HTG:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: HTG
+        name: Haiti Gourde
+    currency-HNL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: HNL
+        name: Honduras Lempira
+    currency-HUF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: HUF
+        name: Hungarian Forint
+    currency-ISK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ISK
+        name: Iceland Krona
+    currency-IRR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: IRR
+        name: Iran Rial
+    currency-IQD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: IQD
+        name: Iraqi Dinar
+    currency-ILS:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ILS
+        name: Israeli Shekel
+    currency-JPY:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: JPY
+        name: Japanese Yen
+    currency-JMD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: JMD
+        name: Jamaican Dollar
+    currency-JOD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: JOD
+        name: Jordanian Dinar
+    currency-KZT:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KZT
+        name: Kazakhstan Tenge
+    currency-KES:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KES
+        name: Kenyan Shilling
+    currency-KWD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KWD
+        name: Kuwaiti Dinar
+    currency-LAK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LAK
+        name: Lao Kip
+    currency-LVL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LVL
+        name: Latvian Lat
+    currency-LBP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LBP
+        name: Lebanese Pound
+    currency-LSL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LSL
+        name: Lesotho Loti
+    currency-LRD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LRD
+        name: Liberian Dollar
+    currency-LYD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LYD
+        name: Libyan Dinar
+    currency-LTL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LTL
+        name: Lithuanian Lita
+    currency-MOP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MOP
+        name: Macau Pataca
+    currency-MKD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MKD
+        name: Macedonian Denar
+    currency-MWK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MWK
+        name: Malawi Kwacha
+    currency-MYR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MYR
+        name: Malaysian Ringgit
+    currency-MVR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MVR
+        name: Maldives Rufiyaa
+    currency-MTL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MTL
+        name: Maltese Lira
+    currency-MRO:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MRO
+        name: Mauritania Ougulya
+    currency-MUR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MUR
+        name: Mauritius Rupee
+    currency-MXN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MXN
+        name: Mexican Peso
+    currency-MDL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MDL
+        name: Moldovan Leu
+    currency-MNT:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MNT
+        name: Mongolian Tugrik
+    currency-MAD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MAD
+        name: Moroccan Dirham
+    currency-MMK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: MMK
+        name: Myanmar Kyat
+    currency-NAD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: NAD
+        name: Namibian Dollar
+    currency-NPR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: NPR
+        name: Nepalese Rupee
+    currency-ANG:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ANG
+        name: Neth Antilles Guilder
+    currency-NZD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: NZD
+        name: New Zealand Dollar
+    currency-NIO:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: NIO
+        name: Nicaragua Cordoba
+    currency-NGN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: NGN
+        name: Nigerian Naira
+    currency-KPW:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KPW
+        name: North Korean Won
+    currency-NOK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: NOK
+        name: Norwegian Krone
+    currency-OMR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: OMR
+        name: Omani Rial
+    currency-XPF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: XPF
+        name: Pacific Franc
+    currency-PKR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PKR
+        name: Pakistani Rupee
+    currency-PAB:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PAB
+        name: Panama Balboa
+    currency-PGK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PGK
+        name: Papua New Guinea Kina
+    currency-PYG:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PYG
+        name: Paraguayan Guarani
+    currency-PEN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PEN
+        name: Peruvian Nuevo Sol
+    currency-PHP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PHP
+        name: Philippine Peso
+    currency-PLN:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: PLN
+        name: Polish Zloty
+    currency-QAR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: QAR
+        name: Qatar Rial
+    currency-RON:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: RON
+        name: Romanian New Leu
+    currency-RUB:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: RUB
+        name: Russian Rouble
+    currency-RWF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: RWF
+        name: Rwanda Franc
+    currency-CHF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: CHF
+        name: Swiss Franc
+    currency-KRW:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: KRW
+        name: South Korean Won
+    currency-WST:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: WST
+        name: Samoa Tala
+    currency-STD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: STD
+        name: Sao Tome Dobra
+    currency-SAR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SAR
+        name: Saudi Arabian Riyal
+    currency-SCR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SCR
+        name: Seychelles Rupee
+    currency-SLL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SLL
+        name: Sierra Leone Leone
+    currency-SGD:
+        preferred: true
+        active: true
+        toGBP: 1.00
+        threeDigitCode: SGD
+        name: Singapore Dollar
+    currency-SKK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SKK
+        name: Slovak Koruna
+    currency-SIT:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SIT
+        name: Slovenian Tolar
+    currency-SBD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SBD
+        name: Solomon Islands Dollar
+    currency-SOS:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SOS
+        name: Somali Shilling
+    currency-ZAR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ZAR
+        name: South African Rand
+    currency-LKR:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: LKR
+        name: Sri Lanka Rupee
+    currency-SHP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SHP
+        name: St Helena Pound
+    currency-SDG:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SDG
+        name: Sudanese Pound
+    currency-SZL:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SZL
+        name: Swaziland Lilageni
+    currency-SEK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SEK
+        name: Swedish Krona
+    currency-SYP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: SYP
+        name: Syrian Pound
+    currency-USD:
+        preferred: true
+        active: true
+        toGBP: 1.00
+        threeDigitCode: USD
+        name: United States Dollar
+    currency-THB:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: THB
+        name: Thai Baht
+    currency-TRY:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: TRY
+        name: Turkish Lira
+    currency-TWD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: TWD
+        name: Taiwan Dollar
+    currency-TZS:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: TZS
+        name: Tanzanian Shilling
+    currency-TOP:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: TOP
+        name: Tonga Pa'ang
+    currency-TTD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: TTD
+        name: Trinidad and Tobago Dollar
+    currency-TND:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: TND
+        name: Tunisian Dinar
+    currency-AED:
+        preferred: true
+        active: true
+        toGBP: 1.00
+        threeDigitCode: AED
+        name: UAE Dirham
+    currency-UGX:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: UGX
+        name: Ugandan Shilling
+    currency-UAH:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: UAH
+        name: Ukraine Hryvnia
+    currency-UYU:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: UYU
+        name: Uruguayan New Peso
+    currency-VUV:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: VUV
+        name: Vanuatu Vatu
+    currency-VEF:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: VEF
+        name: Venezuelan Bolivar Fuerte
+    currency-VND:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: VND
+        name: Vietnam Dong
+    currency-YER:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: YER
+        name: Yemen Riyal
+    currency-ZMK:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ZMK
+        name: Zambian Kwacha
+    currency-ZWD:
+        preferred: false
+        active: false
+        toGBP: 1.00
+        threeDigitCode: ZWD
+        name: Zimbabwe dollar

@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Tests\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorTypeManager;
 
 class TutorTypeTest extends FixturesWebTestCase
@@ -13,7 +12,7 @@ class TutorTypeTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Tutor Type One',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

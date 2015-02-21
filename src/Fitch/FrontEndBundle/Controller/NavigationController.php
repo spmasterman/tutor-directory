@@ -16,6 +16,7 @@ class NavigationController extends Controller
      *
      * @Route("/mainbar", name="dashboard_mainbar")
      * @Template
+     *
      * @Method("GET")
      */
     public function mainbarAction()
@@ -28,13 +29,14 @@ class NavigationController extends Controller
      *
      * @Route("/sidebar", name="dashboard_sidebar")
      * @Template
+     *
      * @Method("GET")
      */
     public function sidebarAction()
     {
         return [
             'sidebarVisible' => $this->isGranted('ROLE_CAN_ACCESS_SIDEBAR'),
-            'open' => $this->getUser()->isSideBarOpen()
+            'open' => $this->getUser()->isSideBarOpen(),
         ];
     }
 
@@ -43,6 +45,7 @@ class NavigationController extends Controller
      *
      * @Route("/toggle/sidebar", name="toggle_sidebar", options={"expose"=true})
      * @Template
+     *
      * @Method("GET")
      */
     public function toggleSidebarAction()
@@ -50,6 +53,7 @@ class NavigationController extends Controller
         $user = $this->getUser();
         $user->toggleSidebar();
         $this->getUserManager()->saveUser($user);
+
         return new JsonResponse([]);
     }
 

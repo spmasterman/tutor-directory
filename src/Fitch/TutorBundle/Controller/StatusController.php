@@ -21,18 +21,18 @@ use Fitch\TutorBundle\Form\Type\StatusType;
  */
 class StatusController extends Controller
 {
-
     /**
      * Lists all Status entities.
      *
      * @Route("/", name="status")
+     *
      * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [
-            'statuses' => $this->getStatusManager()->findAll()
+            'statuses' => $this->getStatusManager()->findAll(),
         ];
     }
 
@@ -40,6 +40,7 @@ class StatusController extends Controller
      * Creates a new Status entity.
      *
      * @Route("/", name="status_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:Status:new.html.twig")
      *
@@ -63,7 +64,6 @@ class StatusController extends Controller
                 $this->get('translator')->trans('status.new.success')
             );
 
-
             return $this->redirectToRoute('status_show', ['id' => $status->getId()]);
         }
 
@@ -73,13 +73,13 @@ class StatusController extends Controller
         ];
     }
 
-   /**
-    * Creates a form to create a Status entity.
-    *
-    * @param Status $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+    /**
+     * Creates a form to create a Status entity.
+     *
+     * @param Status $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Status $entity)
     {
         $form = $this->createForm(new StatusType(), $entity, [
@@ -92,8 +92,8 @@ class StatusController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -102,6 +102,7 @@ class StatusController extends Controller
      * Displays a form to create a new Status entity.
      *
      * @Route("/new", name="status_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -120,6 +121,7 @@ class StatusController extends Controller
      * Finds and displays a Status entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="status_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -141,6 +143,7 @@ class StatusController extends Controller
      * Displays a form to edit an existing Status entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="status_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -161,12 +164,12 @@ class StatusController extends Controller
     }
 
     /**
-    * Creates a form to edit a Status entity.
-    *
-    * @param Status $status The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Status entity.
+     *
+     * @param Status $status The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Status $status)
     {
         $form = $this->createForm(new StatusType(), $status, [
@@ -179,8 +182,8 @@ class StatusController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -189,11 +192,12 @@ class StatusController extends Controller
      * Edits an existing Status entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="status_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:Status:edit.html.twig")
      *
      * @param Request $request
-     * @param Status $status
+     * @param Status  $status
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -229,10 +233,11 @@ class StatusController extends Controller
      * Deletes a Status entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="status_delete")
+     *
      * @Method("DELETE")
      *
      * @param Request $request
-     * @param Status $status
+     * @param Status  $status
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -270,30 +275,32 @@ class StatusController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => array(
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                )])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ), ])
             ->getForm()
         ;
     }
 
     /**
-     * Returns the statuses as a JSON Array
+     * Returns the statuses as a JSON Array.
      *
      * @Route("/all", name="all_status")
+     *
      * @Method("GET")
      * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-
-    public function allAction(){
+    public function allAction()
+    {
         $out = [];
-        foreach($this->getStatusManager()->findAll() as $status) {
+        foreach ($this->getStatusManager()->findAll() as $status) {
             $out[] = [
                 'value' => $status->getId(),
-                'text' => $status->getName()
+                'text' => $status->getName(),
             ];
         }
+
         return new JsonResponse($out);
     }
 

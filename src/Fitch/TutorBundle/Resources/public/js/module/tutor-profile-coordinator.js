@@ -9,6 +9,7 @@ var TutorProfileCoordinator = (function ($) {
     ;
 
     /**
+     * constructor
      *
      * @param {int} tutorId
      * @param {Object} serverData
@@ -24,26 +25,26 @@ var TutorProfileCoordinator = (function ($) {
      * @param {string[]} serverData.allCompetencyLevels
      * @param {Array} serverData.groupedCountries
      */
-    var constructor = function(tutorId, serverData) {
-        new Language(
+    var init = function(tutorId, serverData) {
+        new TutorProfileLanguage(
             serverData.languagePrototype,
             serverData.allLanguages
         );
 
-        new Competency(
+        new TutorProfileCompetency(
             serverData.competencyPrototype,
             serverData.allCompetencyTypes,
             serverData.allCompetencyLevels
         );
 
-        new Biography();
+        new TutorProfileBiography();
 
-        new Address(serverData.addressPrototype, serverData.groupedCountries);
-        new Phone(serverData.phonePrototype, serverData.groupedCountries);
-        new Email(serverData.emailPrototype);
-        new Note(serverData.notePrototype);
-        new Rate(serverData.ratePrototype);
-        new File();
+        new TutorProfileAddress(serverData.addressPrototype, serverData.groupedCountries);
+        new TutorProfilePhone(serverData.phonePrototype, serverData.groupedCountries);
+        new TutorProfileEmail(serverData.emailPrototype);
+        new TutorProfileNote(serverData.notePrototype);
+        new TutorProfileRate(serverData.ratePrototype);
+        new TutorProfileFile();
 
         // Initialise the other x-editable elements
         $('.inline').editable();
@@ -75,8 +76,8 @@ var TutorProfileCoordinator = (function ($) {
         logToConsole = log;
     };
 
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the class
-    return constructor;
+    return init;
 }(jQuery));

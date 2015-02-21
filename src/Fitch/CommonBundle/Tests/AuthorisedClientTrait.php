@@ -5,10 +5,11 @@ namespace Fitch\CommonBundle\Tests;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\BrowserKit\Cookie;
 
-trait AuthorisedClientTrait {
-
+trait AuthorisedClientTrait
+{
     /**
      * @param $userName
+     *
      * @return Client
      */
     protected function createAuthorizedClient($userName)
@@ -27,7 +28,7 @@ trait AuthorisedClientTrait {
         $loginManager->loginUser($firewallName, $user);
 
         // save the login token into the session and put it in a cookie
-        $container->get('session')->set('_security_' . $firewallName,
+        $container->get('session')->set('_security_'.$firewallName,
             serialize($container->get('security.context')->getToken()));
         $container->get('session')->save();
         $client->getCookieJar()->set(new Cookie($session->getName(), $session->getId()));
@@ -37,7 +38,7 @@ trait AuthorisedClientTrait {
 
     protected function checkAccess($method, $path, $users)
     {
-        foreach ($users as $userName=>$expectedHTTPResponseCode) {
+        foreach ($users as $userName => $expectedHTTPResponseCode) {
             if ($userName) {
                 $client = $this->createAuthorizedClient($userName);
             } else {

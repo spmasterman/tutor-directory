@@ -9,9 +9,8 @@ use Doctrine\DBAL\DBALException;
 
 class SchemaCreatorListener
 {
-
     /**
-     * Creates a schema if one doesnt exist
+     * Creates a schema if one doesnt exist.
      *
      * @param LoadClassMetadataEventArgs $eventArgs
      */
@@ -36,7 +35,7 @@ class SchemaCreatorListener
             // create a schema is one doesnt yet exist
             try {
                 $schema = $em->getRepository('FitchEntityAttributeValueBundle:Schema')->findOneBy([
-                    'className' => $metadata->getName()
+                    'className' => $metadata->getName(),
                 ]);
 
                 if ($schema === null) {

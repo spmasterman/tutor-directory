@@ -7,7 +7,6 @@ use Fitch\TutorBundle\Model\TutorTypeManager;
 
 class TutorTypeManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();

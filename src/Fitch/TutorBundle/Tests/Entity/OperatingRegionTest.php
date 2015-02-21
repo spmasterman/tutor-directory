@@ -12,7 +12,7 @@ class OperatingRegionTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Region One',
-            (string)$entityOne
+            (string) $entityOne
         );
         $this->assertEquals('ONE', $entityOne->getDefaultCurrency()->getThreeDigitCode());
         $this->assertEquals('ONE', $entityOne->getCode());

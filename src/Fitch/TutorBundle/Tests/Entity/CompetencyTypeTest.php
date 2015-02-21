@@ -12,7 +12,7 @@ class CompetencyTypeTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Competency Type One',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

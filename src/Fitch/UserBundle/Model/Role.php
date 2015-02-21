@@ -3,11 +3,9 @@
 namespace Fitch\UserBundle\Model;
 
 /**
- * Class Role
+ * Class Role.
  *
  * Constants for Role Names and descriptions
- *
- * @package Fitch\UserBundle
  */
 final class Role
 {
@@ -35,7 +33,7 @@ final class Role
             'ROLE_SENSITIVE_DATA' => self::ROLE_SENSITIVE_DATA,
             'ROLE_EDITOR' => self::ROLE_EDITOR,
             'ROLE_ADMIN' => self::ROLE_ADMIN,
-            'ROLE_SUPER_ADMIN' => self::ROLE_SUPER_ADMIN
+            'ROLE_SUPER_ADMIN' => self::ROLE_SUPER_ADMIN,
         ];
     }
 
@@ -57,7 +55,8 @@ final class Role
         ];
     }
 
-    public static function toHuman($r) {
+    public static function toHuman($r)
+    {
         return self::getRolesDictionary()[$r];
     }
 }

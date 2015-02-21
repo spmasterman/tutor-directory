@@ -12,7 +12,7 @@ class CompetencyLevelTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Level One',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

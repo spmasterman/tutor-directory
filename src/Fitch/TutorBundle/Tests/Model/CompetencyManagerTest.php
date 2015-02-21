@@ -7,22 +7,21 @@ use Fitch\TutorBundle\Model\CompetencyManager;
 
 class CompetencyManagerTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
 
-        $this->assertEquals('Test Competency Type One (Test Level One)', (string)$allEntities[0]);
-        $this->assertEquals('Test Competency Type Two (Test Level Two)', (string)$allEntities[1]);
-        $this->assertEquals('Test Competency Type Three (Test Level Three)', (string)$allEntities[2]);
+        $this->assertEquals('Test Competency Type One (Test Level One)', (string) $allEntities[0]);
+        $this->assertEquals('Test Competency Type Two (Test Level Two)', (string) $allEntities[1]);
+        $this->assertEquals('Test Competency Type Three (Test Level Three)', (string) $allEntities[2]);
     }
 
     public function testFindById()
     {
         $entityOne = $this->getModelManager()->findById(1);
 
-        $this->assertEquals('Test Competency Type One (Test Level One)', (string)$entityOne);
+        $this->assertEquals('Test Competency Type One (Test Level One)', (string) $entityOne);
     }
 
     public function testLifeCycle()

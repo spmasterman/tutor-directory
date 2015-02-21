@@ -19,11 +19,11 @@ use Fitch\TutorBundle\Form\Type\TutorTypeType;
  */
 class TutorTypeController extends Controller
 {
-
     /**
      * Lists all TutorType entities.
      *
      * @Route("/", name="tutor_type")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -32,7 +32,7 @@ class TutorTypeController extends Controller
     public function indexAction()
     {
         return [
-            'tutor_types' => $this->getTutorTypeManager()->findAll()
+            'tutor_types' => $this->getTutorTypeManager()->findAll(),
         ];
     }
 
@@ -40,6 +40,7 @@ class TutorTypeController extends Controller
      * Creates a new TutorType entity.
      *
      * @Route("/", name="tutor_type_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:TutorType:new.html.twig")
      *
@@ -73,12 +74,12 @@ class TutorTypeController extends Controller
     }
 
     /**
-    * Creates a form to create a TutorType entity.
-    *
-    * @param TutorType $tutorType The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a TutorType entity.
+     *
+     * @param TutorType $tutorType The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(TutorType $tutorType)
     {
         $form = $this->createForm(new TutorTypeType(), $tutorType, [
@@ -91,8 +92,8 @@ class TutorTypeController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -101,6 +102,7 @@ class TutorTypeController extends Controller
      * Displays a form to create a new TutorType entity.
      *
      * @Route("/new", name="tutor_type_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -119,6 +121,7 @@ class TutorTypeController extends Controller
      * Finds and displays a TutorType entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="tutor_type_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -140,6 +143,7 @@ class TutorTypeController extends Controller
      * Displays a form to edit an existing TutorType entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="tutor_type_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -160,12 +164,12 @@ class TutorTypeController extends Controller
     }
 
     /**
-    * Creates a form to edit a TutorType entity.
-    *
-    * @param TutorType $tutorType The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TutorType entity.
+     *
+     * @param TutorType $tutorType The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TutorType $tutorType)
     {
         $form = $this->createForm(new TutorTypeType(), $tutorType, [
@@ -178,8 +182,8 @@ class TutorTypeController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -188,10 +192,11 @@ class TutorTypeController extends Controller
      * Edits an existing TutorType entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="tutor_type_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:TutorType:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request   $request
      * @param TutorType $tutorType
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -228,9 +233,10 @@ class TutorTypeController extends Controller
      * Deletes a TutorType entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="tutor_type_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request   $request
      * @param TutorType $tutorType
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -269,30 +275,32 @@ class TutorTypeController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                ]])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ], ])
             ->getForm()
         ;
     }
 
     /**
-     * Returns the tutor_types as a JSON Array
+     * Returns the tutor_types as a JSON Array.
      *
      * @Route("/all", name="all_tutor_types")
+     *
      * @Method("GET")
      * @Template()
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-
-    public function allAction(){
+    public function allAction()
+    {
         $out = [];
-        foreach($this->getTutorTypeManager()->findAll() as $tutorType) {
+        foreach ($this->getTutorTypeManager()->findAll() as $tutorType) {
             $out[] = [
                 'value' => $tutorType->getId(),
-                'text' => $tutorType->getName()
+                'text' => $tutorType->getName(),
             ];
         }
+
         return new JsonResponse($out);
     }
 

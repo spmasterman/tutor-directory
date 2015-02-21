@@ -18,11 +18,11 @@ use Fitch\TutorBundle\Form\Type\CompetencyLevelType;
  */
 class CompetencyLevelController extends Controller
 {
-
     /**
      * Lists all CompetencyLevel entities.
      *
      * @Route("/", name="competency_level")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -39,6 +39,7 @@ class CompetencyLevelController extends Controller
      * Creates a new CompetencyLevel entity.
      *
      * @Route("/", name="competency_level_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:CompetencyLevel:new.html.twig")
      *
@@ -72,12 +73,12 @@ class CompetencyLevelController extends Controller
     }
 
     /**
-    * Creates a form to create a CompetencyLevel entity.
-    *
-    * @param CompetencyLevel $competencyLevel The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a CompetencyLevel entity.
+     *
+     * @param CompetencyLevel $competencyLevel The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(CompetencyLevel $competencyLevel)
     {
         $form = $this->createForm(new CompetencyLevelType(), $competencyLevel, [
@@ -90,8 +91,8 @@ class CompetencyLevelController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -100,6 +101,7 @@ class CompetencyLevelController extends Controller
      * Displays a form to create a new CompetencyLevel entity.
      *
      * @Route("/new", name="competency_level_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -118,6 +120,7 @@ class CompetencyLevelController extends Controller
      * Finds and displays a CompetencyLevel entity.
      *
      * @Route("/{id}", name="competency_level_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -139,6 +142,7 @@ class CompetencyLevelController extends Controller
      * Displays a form to edit an existing CompetencyLevel entity.
      *
      * @Route("/{id}/edit", name="competency_level_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -159,12 +163,12 @@ class CompetencyLevelController extends Controller
     }
 
     /**
-    * Creates a form to edit a CompetencyLevel entity.
-    *
-    * @param CompetencyLevel $competencyLevel The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a CompetencyLevel entity.
+     *
+     * @param CompetencyLevel $competencyLevel The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(CompetencyLevel $competencyLevel)
     {
         $form = $this->createForm(new CompetencyLevelType(), $competencyLevel, [
@@ -177,8 +181,8 @@ class CompetencyLevelController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -187,10 +191,11 @@ class CompetencyLevelController extends Controller
      * Edits an existing CompetencyLevel entity.
      *
      * @Route("/{id}", name="competency_level_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:CompetencyLevel:edit.html.twig")
      *
-     * @param Request $request
+     * @param Request         $request
      * @param CompetencyLevel $competencyLevel
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -223,9 +228,10 @@ class CompetencyLevelController extends Controller
      * Deletes a CompetencyLevel entity.
      *
      * @Route("/{id}", name="competency_level_delete")
+     *
      * @Method("DELETE")
      *
-     * @param Request $request
+     * @param Request         $request
      * @param CompetencyLevel $competencyLevel
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -236,7 +242,6 @@ class CompetencyLevelController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             $this->addFlash(
                 'success',
                 $this->get('translator')->trans('competency_level.delete.success')
@@ -265,8 +270,8 @@ class CompetencyLevelController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                ]])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ], ])
             ->getForm()
         ;
     }

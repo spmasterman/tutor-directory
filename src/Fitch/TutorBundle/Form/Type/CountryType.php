@@ -11,38 +11,38 @@ class CountryType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
             ->add('twoDigitCode', null, [
-                'label' => '2 Digit Code (ISO 3661-1)'
+                'label' => '2 Digit Code (ISO 3661-1)',
             ])
             ->add('threeDigitCode', null, [
-                'label' => '3 Digit Code (ISO 3661-1)'
+                'label' => '3 Digit Code (ISO 3661-1)',
             ])
             ->add('dialingCode')
             ->add('preferred', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',
-                'required' => false
+                'required' => false,
             ])
             ->add('defaultRegion')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Country'
+            'data_class' => 'Fitch\TutorBundle\Entity\Country',
         ));
     }
 

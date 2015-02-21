@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -21,18 +20,18 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CountryController extends Controller
 {
-
     /**
      * Lists all Country entities.
      *
      * @Route("/", name="country")
+     *
      * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [
-            'countries' => $this->getCountryManager()->findAllSorted()
+            'countries' => $this->getCountryManager()->findAllSorted(),
         ];
     }
 
@@ -40,6 +39,7 @@ class CountryController extends Controller
      * Creates a new Country entity.
      *
      * @Route("/", name="country_create")
+     *
      * @Method("POST")
      * @Template("FitchTutorBundle:Country:new.html.twig")
      *
@@ -63,7 +63,6 @@ class CountryController extends Controller
                 $this->get('translator')->trans('country.new.success')
             );
 
-
             return $this->redirectToRoute('country_show', ['id' => $country->getId()]);
         }
 
@@ -74,12 +73,12 @@ class CountryController extends Controller
     }
 
     /**
-    * Creates a form to create a Country entity.
-    *
-    * @param Country $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Country entity.
+     *
+     * @param Country $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Country $entity)
     {
         $form = $this->createForm(new CountryType(), $entity, [
@@ -92,8 +91,8 @@ class CountryController extends Controller
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        ]]);
+                    'submit_glyph' => 'fa-plus-circle',
+        ], ]);
 
         return $form;
     }
@@ -102,6 +101,7 @@ class CountryController extends Controller
      * Displays a form to create a new Country entity.
      *
      * @Route("/new", name="country_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -120,6 +120,7 @@ class CountryController extends Controller
      * Finds and displays a Country entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="country_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -141,6 +142,7 @@ class CountryController extends Controller
      * Displays a form to edit an existing Country entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="country_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -161,12 +163,12 @@ class CountryController extends Controller
     }
 
     /**
-    * Creates a form to edit a Country entity.
-    *
-    * @param Country $country The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Country entity.
+     *
+     * @param Country $country The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Country $country)
     {
         $form = $this->createForm(new CountryType(), $country, [
@@ -179,8 +181,8 @@ class CountryController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -189,6 +191,7 @@ class CountryController extends Controller
      * Edits an existing Country entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="country_update")
+     *
      * @Method("PUT")
      * @Template("FitchTutorBundle:Country:edit.html.twig")
      *
@@ -229,6 +232,7 @@ class CountryController extends Controller
      * Deletes a Country entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="country_delete")
+     *
      * @Method("DELETE")
      *
      * @param Request $request
@@ -270,8 +274,8 @@ class CountryController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => array(
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                )])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ), ])
             ->getForm()
         ;
     }

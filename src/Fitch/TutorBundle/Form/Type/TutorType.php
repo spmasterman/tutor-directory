@@ -24,7 +24,7 @@ class TutorType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -33,18 +33,18 @@ class TutorType extends AbstractType
             ->add('region')
             ->add('status')
             ->add('tutorType', null, [
-                'label' => 'Trainer Type'
+                'label' => 'Trainer Type',
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Tutor'
+            'data_class' => 'Fitch\TutorBundle\Entity\Tutor',
         ));
     }
 

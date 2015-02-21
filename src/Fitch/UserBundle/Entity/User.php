@@ -65,6 +65,7 @@ class User extends BaseUser implements TimestampableTraitInterface, AttributedEn
 
     /**
      * @ORM\Column(name="is_sidebar_open", type="boolean")
+     *
      * @var bool
      */
     protected $sideBarOpen = true;
@@ -80,7 +81,7 @@ class User extends BaseUser implements TimestampableTraitInterface, AttributedEn
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -99,11 +100,13 @@ class User extends BaseUser implements TimestampableTraitInterface, AttributedEn
 
     /**
      * @param mixed $fullName
+     *
      * @return $this
      */
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
+
         return $this;
     }
 
@@ -117,22 +120,25 @@ class User extends BaseUser implements TimestampableTraitInterface, AttributedEn
 
     /**
      * @param boolean $sideBarOpen
+     *
      * @return $this
      */
     public function setSideBarOpen($sideBarOpen)
     {
         $this->sideBarOpen = $sideBarOpen;
+
         return $this;
     }
 
     /**
-     * Toggles the sidebar
+     * Toggles the sidebar.
      *
      * @return $this
      */
     public function toggleSidebar()
     {
         $this->setSideBarOpen(! $this->isSideBarOpen());
+
         return $this;
     }
 }

@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class CompetencyLevelControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
@@ -18,12 +17,11 @@ class CompetencyLevelControllerTest extends WebTestCase
             'xdisabled' => 403,
             'xeditor' => 403,
             'xadmin' => 200,
-            'xsuper' => 200
+            'xsuper' => 200,
         ];
 
         $this->checkAccess('GET', '/admin/level/competency/', $users);
     }
-
 
     public function testCompleteScenario()
     {
@@ -38,7 +36,7 @@ class CompetencyLevelControllerTest extends WebTestCase
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
             'fitch_tutorbundle_competencylevel[name]'  => 'xtest',
-            'fitch_tutorbundle_competencylevel[color]' => '#daac8a'
+            'fitch_tutorbundle_competencylevel[color]' => '#daac8a',
         ));
 
         $client->submit($form);
@@ -52,7 +50,7 @@ class CompetencyLevelControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Update')->form(array(
             'fitch_tutorbundle_competencylevel[name]'  => 'xtest-edit',
-            'fitch_tutorbundle_competencylevel[color]' => '#db8c8b'
+            'fitch_tutorbundle_competencylevel[color]' => '#db8c8b',
         ));
 
         $client->submit($form);

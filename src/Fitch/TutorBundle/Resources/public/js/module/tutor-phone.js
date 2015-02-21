@@ -1,4 +1,4 @@
-var Phone = (function ($) {
+var TutorProfilePhone = (function ($) {
     "use strict";
 
     var publicMembers = {
@@ -17,7 +17,7 @@ var Phone = (function ($) {
      * @param {string} prototypeRowFromServer
      * @param {Array} allCountriesFromServer
      */
-    var constructor = function(prototypeRowFromServer, allCountriesFromServer) {
+    var init = function(prototypeRowFromServer, allCountriesFromServer) {
         prototypeRow = prototypeRowFromServer;
         allCountries = allCountriesFromServer;
 
@@ -116,8 +116,8 @@ var Phone = (function ($) {
     };
 
     // Add the public members to the prototype
-    constructor.prototype = publicMembers;
+    init.prototype = publicMembers;
 
     // return the object
-    return constructor;
+    return init;
 }(jQuery));

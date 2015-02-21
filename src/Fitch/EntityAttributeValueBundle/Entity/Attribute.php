@@ -16,6 +16,7 @@ class Attribute implements IdentityTraitInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     protected $value;
@@ -31,7 +32,6 @@ class Attribute implements IdentityTraitInterface
      */
     protected $definition;
 
-
     /**
      * @return string
      */
@@ -41,9 +41,10 @@ class Attribute implements IdentityTraitInterface
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
+     *
      * @return Attribute
      */
     public function setValue($value)
@@ -54,7 +55,7 @@ class Attribute implements IdentityTraitInterface
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * @return string
      */
@@ -64,9 +65,10 @@ class Attribute implements IdentityTraitInterface
     }
 
     /**
-     * Set definition
+     * Set definition.
      *
      * @param Definition $definition
+     *
      * @return Attribute
      */
     public function setDefinition(Definition $definition = null)
@@ -77,7 +79,7 @@ class Attribute implements IdentityTraitInterface
     }
 
     /**
-     * Get definition
+     * Get definition.
      *
      * @return Definition
      */

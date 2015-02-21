@@ -12,14 +12,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Rate controller
+ * Rate controller.
  *
  * @Route("/admin/rate")
  */
 class RateController extends Controller
 {
     /**
-     * Removes a Rate
+     * Removes a Rate.
      *
      * @Route(
      *      "/remove",
@@ -43,9 +43,10 @@ class RateController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
         }
+
         return new JsonResponse([
             'success' => true,
         ]);

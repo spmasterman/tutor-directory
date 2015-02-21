@@ -12,14 +12,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Phone controller
+ * Phone controller.
  *
  * @Route("/editor/phone")
  */
 class PhoneController extends Controller
 {
     /**
-     * Removes a Phone Number
+     * Removes a Phone Number.
      *
      * @Route(
      *      "/remove",
@@ -43,9 +43,10 @@ class PhoneController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
         }
+
         return new JsonResponse([
             'success' => true,
         ]);

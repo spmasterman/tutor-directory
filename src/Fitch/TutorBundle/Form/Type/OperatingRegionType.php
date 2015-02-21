@@ -12,7 +12,7 @@ class OperatingRegionType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,7 +24,7 @@ class OperatingRegionType extends AbstractType
             ->add('code')
             ->add('default', new OnOffType(), [
                 'required' => false,
-                'type' => 'yesno'
+                'type' => 'yesno',
             ]);
 
         if ($currencyManager) {
@@ -33,11 +33,11 @@ class OperatingRegionType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'choices' => $currencyManager->buildChoices(),
-                'preferred_choices' => $currencyManager->buildPreferredChoices()
+                'preferred_choices' => $currencyManager->buildPreferredChoices(),
             ]);
         }
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -45,7 +45,7 @@ class OperatingRegionType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Fitch\TutorBundle\Entity\OperatingRegion',
-            'currencyManager' => null
+            'currencyManager' => null,
         ));
     }
 

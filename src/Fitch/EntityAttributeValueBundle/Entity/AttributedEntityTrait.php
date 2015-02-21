@@ -18,9 +18,10 @@ trait AttributedEntityTrait
     protected $attributes;
 
     /**
-     * Add attributes
+     * Add attributes.
      *
      * @param \Fitch\EntityAttributeValueBundle\Entity\Attribute $attribute
+     *
      * @return $this
      */
     public function addAttribute(Attribute $attribute)
@@ -31,7 +32,7 @@ trait AttributedEntityTrait
     }
 
     /**
-     * Remove attributes
+     * Remove attributes.
      *
      * @param \Fitch\EntityAttributeValueBundle\Entity\Attribute $attribute
      */
@@ -41,7 +42,7 @@ trait AttributedEntityTrait
     }
 
     /**
-     * Get attributes
+     * Get attributes.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -52,6 +53,7 @@ trait AttributedEntityTrait
 
     /**
      * @param $name
+     *
      * @return Attribute|null
      */
     public function getAttributeNamed($name)
@@ -61,6 +63,7 @@ trait AttributedEntityTrait
                 return $attribute;
             }
         }
-        return null;
+
+        return;
     }
 }

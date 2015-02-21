@@ -33,7 +33,7 @@ class RateType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -66,14 +66,14 @@ class RateType extends AbstractType
                 'label_attr' => ['class' => 'sr-only'],
                 'placeholder' => '',
                 'required' => false,
-                'label' => 'is'
+                'label' => 'is',
             ])
             ->add('amount', 'number', [
                 'required' => false,
                 'label' => ' ',
                 'attr' => [
                     'class' => "control-inline",
-                    'size' => 5
+                    'size' => 5,
                 ],
                 'label_attr' => ['class' => 'sr-only'],
             ])
@@ -94,13 +94,13 @@ class RateType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-//        $resolver->setDefaults(array(
+        //        $resolver->setDefaults(array(
 //            'data_class' => 'Fitch\TutorBundle\Entity\Tutor'
 //        ));
     }

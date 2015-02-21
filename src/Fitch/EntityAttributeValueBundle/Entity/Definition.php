@@ -49,36 +49,42 @@ class Definition implements IdentityTraitInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     protected $name;
 
     /**
      * @ORM\Column(name="default_value", type="string", length=255, nullable=true)
+     *
      * @var string
      */
     protected $default;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     protected $label;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
      * @var string
      */
     protected $description;
 
     /**
      * @ORM\Column(type="string", length=100)
+     *
      * @var string
      */
     protected $type;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     protected $unit;
@@ -87,24 +93,27 @@ class Definition implements IdentityTraitInterface
      * Allow definitions to be arbitrarily grouped.
      *
      * @ORM\Column(name="subset", type="string", length=255, nullable=true)
+     *
      * @var string
      */
     protected $group;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      * @var boolean
      */
     protected $required = false;
 
     /**
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
+     *
      * @var string
      */
     protected $sortOrder;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -121,7 +130,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -131,9 +140,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Definition
      */
     public function setName($name)
@@ -144,7 +154,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -154,9 +164,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Definition
      */
     public function setDescription($description)
@@ -167,7 +178,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -177,9 +188,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
+     *
      * @return Definition
      */
     public function setType($type)
@@ -190,7 +202,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */
@@ -200,9 +212,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Set unit
+     * Set unit.
      *
      * @param string $unit
+     *
      * @return Definition
      */
     public function setUnit($unit)
@@ -213,7 +226,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get unit
+     * Get unit.
      *
      * @return string
      */
@@ -223,9 +236,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Set required
+     * Set required.
      *
      * @param boolean $required
+     *
      * @return Definition
      */
     public function setRequired($required)
@@ -236,7 +250,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get required
+     * Get required.
      *
      * @return boolean
      */
@@ -255,6 +269,7 @@ class Definition implements IdentityTraitInterface
 
     /**
      * @param string $sortOrder
+     *
      * @return $this
      */
     public function setSortOrder($sortOrder)
@@ -265,9 +280,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Set schema
+     * Set schema.
      *
      * @param Schema $schema
+     *
      * @return $this
      */
     public function setSchema(Schema $schema = null)
@@ -278,7 +294,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get schema
+     * Get schema.
      *
      * @return Schema
      */
@@ -288,7 +304,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Add option
+     * Add option.
      *
      * @param Option $option
      *
@@ -303,7 +319,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Remove option
+     * Remove option.
      *
      * @param Option $option
      */
@@ -313,7 +329,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get options
+     * Get options.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -323,9 +339,10 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Add attributes
+     * Add attributes.
      *
      * @param Attribute $attribute
+     *
      * @return $this
      */
     public function addAttribute(Attribute $attribute)
@@ -336,7 +353,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Remove attribute
+     * Remove attribute.
      *
      * @param Attribute $attribute
      */
@@ -346,7 +363,7 @@ class Definition implements IdentityTraitInterface
     }
 
     /**
-     * Get attributes
+     * Get attributes.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -365,11 +382,13 @@ class Definition implements IdentityTraitInterface
 
     /**
      * @param string $group
+     *
      * @return $this
      */
     public function setGroup($group)
     {
         $this->group = $group;
+
         return $this;
     }
 
@@ -383,6 +402,7 @@ class Definition implements IdentityTraitInterface
 
     /**
      * @param string $label
+     *
      * @return $this
      */
     public function setLabel($label)
@@ -402,11 +422,13 @@ class Definition implements IdentityTraitInterface
 
     /**
      * @param string $default
+     *
      * @return $this
      */
     public function setDefault($default)
     {
         $this->default = $default;
+
         return $this;
     }
 }

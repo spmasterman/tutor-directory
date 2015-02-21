@@ -2,12 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-
 trait TimestampableTrait
 {
-
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -15,7 +13,7 @@ trait TimestampableTrait
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -39,9 +37,10 @@ trait TimestampableTrait
     }
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
+     *
      * @return mixed
      */
     public function setCreated($created)
@@ -52,9 +51,10 @@ trait TimestampableTrait
     }
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
+     *
      * @return mixed
      */
     public function setUpdated($updated)

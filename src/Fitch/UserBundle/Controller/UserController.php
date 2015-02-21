@@ -22,11 +22,11 @@ use Fitch\UserBundle\Form\Type\EditUserType;
  */
 class UserController extends Controller
 {
-
     /**
      * Lists all User entities.
      *
      * @Route("/", name="user")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -43,7 +43,7 @@ class UserController extends Controller
         return [
             'users' => $this->getUserManager()->findAll(),
             'allowedToSwitch' => $allowedToSwitch,
-            'originalUser' => $originalUser
+            'originalUser' => $originalUser,
         ];
     }
 
@@ -51,6 +51,7 @@ class UserController extends Controller
      * Creates a new User entity.
      *
      * @Route("/", name="user_create")
+     *
      * @Method("POST")
      * @Template("FitchUserBundle:User:new.html.twig")
      *
@@ -66,6 +67,7 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $this->getUserManager()->saveUser($user);
+
             return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
 
@@ -94,8 +96,8 @@ class UserController extends Controller
                 'label' => 'Create',
                 'attr' => array(
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-plus-circle'
-        )));
+                    'submit_glyph' => 'fa-plus-circle',
+        ), ));
 
         return $form;
     }
@@ -104,6 +106,7 @@ class UserController extends Controller
      * Displays a form to create a new User entity.
      *
      * @Route("/new", name="user_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -122,6 +125,7 @@ class UserController extends Controller
      * Finds and displays a User entity.
      *
      * @Route("/{id}", name="user_show")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -136,7 +140,7 @@ class UserController extends Controller
         return [
             'user'      => $user,
             'delete_form' => $deleteForm->createView(),
-            'logs' => $this->getUserManager()->getLogs($user)
+            'logs' => $this->getUserManager()->getLogs($user),
         ];
     }
 
@@ -144,6 +148,7 @@ class UserController extends Controller
      * Displays a form to edit an existing User entity.
      *
      * @Route("/{id}/edit", name="user_edit")
+     *
      * @Method("GET")
      * @Template()
      *
@@ -182,8 +187,8 @@ class UserController extends Controller
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
-                    'submit_glyph' => 'fa-check-circle'
-            ]]);
+                    'submit_glyph' => 'fa-check-circle',
+            ], ]);
 
         return $form;
     }
@@ -192,11 +197,12 @@ class UserController extends Controller
      * Edits an existing User entity.
      *
      * @Route("/{id}", name="user_update")
+     *
      * @Method("PUT")
      * @Template("FitchUserBundle:User:edit.html.twig")
      *
      * @param Request $request
-     * @param User $user
+     * @param User    $user
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -223,10 +229,11 @@ class UserController extends Controller
      * Deletes a User entity.
      *
      * @Route("/{id}", name="user_delete")
+     *
      * @Method("DELETE")
      *
      * @param Request $request
-     * @param User $user
+     * @param User    $user
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -259,8 +266,8 @@ class UserController extends Controller
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
-                            'submit_glyph' => 'fa-exclamation-circle'
-                ]])
+                            'submit_glyph' => 'fa-exclamation-circle',
+                ], ])
             ->getForm()
         ;
     }

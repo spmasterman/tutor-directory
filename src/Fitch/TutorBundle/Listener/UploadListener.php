@@ -34,7 +34,7 @@ class UploadListener
     protected $textContent;
 
     /** @var  ContainerInterface */
-    protected  $container;
+    protected $container;
 
     public function __construct(
         TutorManager $tutorManager,
@@ -52,7 +52,7 @@ class UploadListener
 
     /**
      * Happens once the file os on the server, but before its been put into its final storage. Use this to
-     * grab info about the file etc - reading it back from storage could be a slow operation (i.e. FTP)
+     * grab info about the file etc - reading it back from storage could be a slow operation (i.e. FTP).
      *
      * @param PreUploadEvent $event
      */

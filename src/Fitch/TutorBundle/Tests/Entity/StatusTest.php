@@ -12,7 +12,7 @@ class StatusTest extends FixturesWebTestCase
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
             'Test Status One',
-            (string)$entityOne
+            (string) $entityOne
         );
     }
 

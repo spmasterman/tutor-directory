@@ -21,7 +21,6 @@ use Fitch\TutorBundle\Entity\TutorLanguage;
 use Fitch\TutorBundle\Entity\TutorType;
 use Fitch\UserBundle\Entity\User;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Handler\ArrayCollectionHandler;
 use Liuggio\ExcelBundle\Factory;
 use PHPExcel_Cell as Cell;
 use PHPExcel_Worksheet as Sheet;
@@ -99,23 +98,23 @@ class ReportDefinition
     private $fields = [];
 
     /**
-     * Bit of a long constructor - its job is just to suck the relevant values out the form
+     * Bit of a long constructor - its job is just to suck the relevant values out the form.
      *
      * @param FormInterface $form
-     * @param bool $unrestricted
+     * @param bool          $unrestricted
      */
     public function __construct(FormInterface $form, $unrestricted = false)
     {
         foreach ($form->getData()['tutor_type'] as $tutorType) {
-            /** @var TutorType $tutorType */
+            /* @var TutorType $tutorType */
             $this->tutorTypeIds[] = $tutorType->getId();
         }
         foreach ($form->getData()['status'] as $status) {
-            /** @var Status $status */
+            /* @var Status $status */
             $this->statusIds[] = $status->getId();
         }
         foreach ($form->getData()['operating_region'] as $region) {
-            /** @var OperatingRegion $region */
+            /* @var OperatingRegion $region */
             $this->regionIds[] = $region->getId();
         }
 
@@ -136,14 +135,14 @@ class ReportDefinition
         // Setup any selected Competency Filter
         if (array_key_exists('competencyType', $form->getData()['competency'])) {
             foreach ($form->getData()['competency']['competencyType'] as $competencyType) {
-                /** @var CompetencyType $competencyType */
+                /* @var CompetencyType $competencyType */
                 $this->competencyTypeIds[] = $competencyType->getId();
             }
         }
 
         if (array_key_exists('competencyLevel', $form->getData()['competency'])) {
             foreach ($form->getData()['competency']['competencyLevel'] as $competencyLevel) {
-                /** @var CompetencyLevel $competencyLevel */
+                /* @var CompetencyLevel $competencyLevel */
                 $this->competencyLevelIds[] = $competencyLevel->getId();
             }
         }
@@ -154,6 +153,7 @@ class ReportDefinition
 
     /**
      * @param string $field
+     *
      * @return bool
      */
     public function isFieldDisplayed($field)
@@ -174,7 +174,7 @@ class ReportDefinition
      */
     public function isFilteredByCompetencyType()
     {
-        return (bool)count($this->competencyTypeIds);
+        return (bool) count($this->competencyTypeIds);
     }
 
     /**
@@ -182,7 +182,7 @@ class ReportDefinition
      */
     public function isFilteredByCompetencyLevel()
     {
-        return (bool)count($this->competencyLevelIds);
+        return (bool) count($this->competencyLevelIds);
     }
 
     /**
@@ -209,6 +209,7 @@ class ReportDefinition
         if ($this->currency) {
             return $this->currency->getToGBP();
         }
+
         return 1;
     }
 
@@ -220,6 +221,7 @@ class ReportDefinition
         if ($this->currency) {
             return $this->currency->getThreeDigitCode();
         }
+
         return 'GBP';
     }
 
@@ -228,7 +230,7 @@ class ReportDefinition
      */
     public function isFilteredByRateType()
     {
-        return (bool)count($this->rateTypes);
+        return (bool) count($this->rateTypes);
     }
 
     /**
@@ -240,11 +242,12 @@ class ReportDefinition
             $value = preg_replace("/[^[:alnum:][:space:]]/ui", '', strtolower($value));
         });
 
-        return '(\'' . implode('\',\'', $this->rateTypes) . '\')';
+        return '(\''.implode('\',\'', $this->rateTypes).'\')';
     }
 
     /**
      * @param $tutorCurrencyAlias
+     *
      * @return string
      */
     public function getRateLimitAsExpression($tutorCurrencyAlias)
@@ -266,7 +269,7 @@ class ReportDefinition
                 $op = ' > ';
                 break;
             default:
-                throw new \InvalidArgumentException($this->operator . ' is not a valid operator');
+                throw new \InvalidArgumentException($this->operator.' is not a valid operator');
         }
 
         return " * ({$tutorCurrencyAlias}.toGBP / {$this->currency->getToGBP()}){$op}{$this->rateAmount}";
@@ -279,7 +282,7 @@ class ReportDefinition
     {
         // there can be no rate types BUT there must be an amount, operator and Currency
         return
-            (bool)$this->operator
+            (bool) $this->operator
             && $this->rateAmount
             && $this->currency;
     }
@@ -289,7 +292,7 @@ class ReportDefinition
      */
     public function isFilteredByLanguage()
     {
-        return (bool)count($this->languageIds);
+        return (bool) count($this->languageIds);
     }
 
     /**
@@ -305,7 +308,7 @@ class ReportDefinition
      */
     public function isFilteredByTutorType()
     {
-        return (bool)count($this->tutorTypeIds);
+        return (bool) count($this->tutorTypeIds);
     }
 
     /**
@@ -321,7 +324,7 @@ class ReportDefinition
      */
     public function isFilteredByStatus()
     {
-        return (bool)count($this->statusIds);
+        return (bool) count($this->statusIds);
     }
 
     /**
@@ -337,7 +340,7 @@ class ReportDefinition
      */
     public function isFilteredByRegion()
     {
-        return (bool)count($this->regionIds);
+        return (bool) count($this->regionIds);
     }
 
     /**
@@ -350,15 +353,16 @@ class ReportDefinition
 
     /**
      * @param array $idArray
+     *
      * @return string
      */
     private function getIDsAsSet($idArray)
     {
         array_walk($idArray, function (&$value) {
-            $value = (int)trim($value);
+            $value = (int) trim($value);
         });
 
-        return '(' . implode(',', $idArray) . ')';
+        return '('.implode(',', $idArray).')';
     }
 
     /**
@@ -380,7 +384,7 @@ class ReportDefinition
             'bio' => 'Biography',
             'linkedin' => 'LinkedIn Profile',
             'notes' => 'Terms of Engagement Notes [Restricted]',
-            'created' => 'Created Date'
+            'created' => 'Created Date',
         ];
     }
 
@@ -394,18 +398,19 @@ class ReportDefinition
             'tutor_type',
             'status',
             'region',
-            'skills'
+            'skills',
         ];
     }
 
     /**
      * @param Factory $excelFactory
-     * @param User $user
-     * @param Report $report
+     * @param User    $user
+     * @param Report  $report
      * @param Tutor[] $data
-     * @param bool $unrestricted
+     * @param bool    $unrestricted
      *
      * @return \PHPExcel
+     *
      * @throws \PHPExcel_Exception
      */
     public function createPHPExcelObject(Factory $excelFactory, User $user, Report $report, $data, $unrestricted)
@@ -413,7 +418,7 @@ class ReportDefinition
         $phpExcel = $excelFactory->createPHPExcelObject();
 
         $phpExcel->getProperties()->setCreator("Fitch Learning")
-            ->setLastModifiedBy($user->getFullName() . '(' . $user->getEmail() . ')')
+            ->setLastModifiedBy($user->getFullName().'('.$user->getEmail().')')
             ->setTitle($report->getName())
             ->setSubject("Fitch Learning Trainer Report")
             ->setDescription("Report created by the Fitch Trainer system")
@@ -425,21 +430,21 @@ class ReportDefinition
         $phpExcel->getActiveSheet()->setTitle('ReportData');
         // Set active sheet index to the first sheet, so Excel opens this as the first sheet
         $phpExcel->setActiveSheetIndex(0);
+
         return $phpExcel;
     }
 
     /**
      * @param \PHPExcel $phpExcel
-     * @param int $sheetNum
-     * @param Report $report
-     * @param Tutor[] $data
-     * @param bool $unrestricted
+     * @param int       $sheetNum
+     * @param Report    $report
+     * @param Tutor[]   $data
+     * @param bool      $unrestricted
      *
      * @throws \PHPExcel_Exception
      */
     private function populateSheet(\PHPExcel $phpExcel, $sheetNum, Report $report, $data, $unrestricted)
     {
-
         $sheet = $phpExcel->setActiveSheetIndex($sheetNum);
         $sheet->getDefaultRowDimension()->setRowHeight(18);
         $sheet->setShowGridlines(false);
@@ -461,7 +466,7 @@ class ReportDefinition
                 $sheet->setCellValueByColumnAndRow($col++, $row, $value);
             }
         }
-        $this->headerFormat($sheet, 'A' . $row . ':' . Cell::stringFromColumnIndex(--$col) . $row, 'cccccc');
+        $this->headerFormat($sheet, 'A'.$row.':'.Cell::stringFromColumnIndex(--$col).$row, 'cccccc');
 
         // Set Report Data
         foreach ($data as $tutor) {
@@ -490,20 +495,22 @@ class ReportDefinition
             $sheet->getRowDimension($row)->setRowHeight(self::HEIGHT_PER_LINE * $maxLines);
         }
         // vertical align top the whole report
-        $sheet->getStyle('A1:' . Cell::stringFromColumnIndex($col) . $row)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+        $sheet->getStyle('A1:'.Cell::stringFromColumnIndex($col).$row)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
     }
 
     /**
      * @param $unrestricted
+     *
      * @return callable
      */
     private function getNoteCellFormatter($unrestricted)
     {
         if ($unrestricted) {
             return function (Note $note) {
-                return $note->getBody() . ' - ' . $note->getProvenance();
+                return $note->getBody().' - '.$note->getProvenance();
             };
         }
+
         return function () {
             return "You do not have sufficient privileges.";
         };
@@ -512,6 +519,7 @@ class ReportDefinition
     /**
      * @param $unrestricted
      * @param Tutor $tutor
+     *
      * @return callable
      */
     private function getRateCellFormatter($unrestricted, Tutor $tutor)
@@ -520,17 +528,18 @@ class ReportDefinition
         if ($unrestricted) {
             return  $formatter = function (Rate $rate) use ($tutor, $self) {
                 return $rate->getName()
-                . ' Rate:'
-                . number_format($rate->getAmount(), 2)
-                . ' '
-                . $tutor->getCurrency()->getThreeDigitCode()
-                . ' ('
-                . number_format($rate->getAmount() * $tutor->getCurrency()->getToGBP() / $self->getReportCurrencyToGBP(), 2)
-                . ' '
-                . $self->getReportCurrencyThreeLetterCode()
-                . ')';
+                .' Rate:'
+                .number_format($rate->getAmount(), 2)
+                .' '
+                .$tutor->getCurrency()->getThreeDigitCode()
+                .' ('
+                .number_format($rate->getAmount() * $tutor->getCurrency()->getToGBP() / $self->getReportCurrencyToGBP(), 2)
+                .' '
+                .$self->getReportCurrencyThreeLetterCode()
+                .')';
             };
         }
+
         return function () {
             return "You do not have sufficient privileges.";
         };
@@ -539,7 +548,8 @@ class ReportDefinition
     /**
      * @return callable
      */
-    private function getAddressCellFormatter() {
+    private function getAddressCellFormatter()
+    {
         return  function (Address $address) {
             return "{$address->__toString()} ({$address->getType()})";
         };
@@ -548,7 +558,8 @@ class ReportDefinition
     /**
      * @return callable
      */
-    private function getEmailCellFormatter() {
+    private function getEmailCellFormatter()
+    {
         return function (Email $email) {
             return "{$email->__toString()} ({$email->getType()})";
         };
@@ -557,10 +568,11 @@ class ReportDefinition
     /**
      * @return callable
      */
-    private function getPhoneCellFormatter() {
+    private function getPhoneCellFormatter()
+    {
         return function (Phone $phone) {
             return
-                $phone->__toString() .
+                $phone->__toString().
                 ($phone->isPreferred()
                     ? ' - Preferred'
                     : '');
@@ -570,14 +582,15 @@ class ReportDefinition
     /**
      * @return callable
      */
-    private function getCompetencyCellFormatter() {
+    private function getCompetencyCellFormatter()
+    {
         return function (Competency $competency) {
             return
                 ($competency->getCompetencyType()
                     ? $competency->getCompetencyType()->getName()
-                    : '') .
+                    : '').
                 ($competency->getCompetencyLevel()
-                    ? '(' . $competency->getCompetencyLevel()->getName() . ') '
+                    ? '('.$competency->getCompetencyLevel()->getName().') '
                     : '');
         };
     }
@@ -585,23 +598,24 @@ class ReportDefinition
     /**
      * @return callable
      */
-    private function getLanguageCellFormatter() {
+    private function getLanguageCellFormatter()
+    {
         return function (TutorLanguage $tutorLanguage) {
             return
-                $tutorLanguage->getLanguage()->getName() .
+                $tutorLanguage->getLanguage()->getName().
                 ($tutorLanguage->getNote()
-                    ? ' - ' . $tutorLanguage->getNote()
+                    ? ' - '.$tutorLanguage->getNote()
                     : '');
         };
     }
 
     /**
-     * @param Sheet $sheet
+     * @param Sheet  $sheet
      * @param string $fieldName
-     * @param int $col
-     * @param int $row
+     * @param int    $col
+     * @param int    $row
      * @param string $value
-     * @param int $width
+     * @param int    $width
      */
     private function scalarCell(Sheet $sheet, $fieldName, &$col, $row, $value, $width)
     {
@@ -613,14 +627,14 @@ class ReportDefinition
     }
 
     /**
-     * @param Sheet $sheet
-     * @param string $fieldName
-     * @param int $col
-     * @param int $row
+     * @param Sheet           $sheet
+     * @param string          $fieldName
+     * @param int             $col
+     * @param int             $row
      * @param ArrayCollection $value
-     * @param int $width
-     * @param int $maxLines
-     * @param callable $fn
+     * @param int             $width
+     * @param int             $maxLines
+     * @param callable        $fn
      */
     private function arrayCell(Sheet $sheet, $fieldName, &$col, $row, $value, $width, &$maxLines, $fn)
     {
@@ -641,20 +655,18 @@ class ReportDefinition
      * @param Sheet $sheet
      * @param $cells
      * @param $color
+     *
      * @throws \PHPExcel_Exception
      */
-    private function headerFormat(Sheet $sheet, $cells, $color){
+    private function headerFormat(Sheet $sheet, $cells, $color)
+    {
         $style = $sheet->getStyle($cells);
         $style->getFill()->applyFromArray([
             'type' => \PHPExcel_Style_Fill::FILL_SOLID,
             'startcolor' => [
-                'rgb' => $color
-            ]
+                'rgb' => $color,
+            ],
         ]);
         $style->getFont()->setBold(true);
     }
 }
-
-
-
-

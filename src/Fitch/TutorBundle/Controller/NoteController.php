@@ -13,13 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Note controller
+ * Note controller.
  *
  * @Route("/editor/note")
  */
 class NoteController extends Controller
 {
-
     /**
      * @Route(
      *      "/remove",
@@ -40,7 +39,7 @@ class NoteController extends Controller
         try {
             $note = $this->getNoteManager()->findById($request->request->get('pk'));
 
-            if(!$note) {
+            if (!$note) {
                 throw new NotFoundHttpException('Note does not exist!');
             }
 
@@ -48,7 +47,7 @@ class NoteController extends Controller
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }
 

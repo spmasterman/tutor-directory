@@ -7,22 +7,21 @@ use Fitch\TutorBundle\Model\OperatingRegionManager;
 
 class OperatingRegionTest extends FixturesWebTestCase
 {
-
     public function testFindAll()
     {
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
 
-        $this->assertEquals('Test Region One', (string)$allEntities[0]);
-        $this->assertEquals('Test Region Two', (string)$allEntities[1]);
-        $this->assertEquals('Test Region Three', (string)$allEntities[2]);
+        $this->assertEquals('Test Region One', (string) $allEntities[0]);
+        $this->assertEquals('Test Region Two', (string) $allEntities[1]);
+        $this->assertEquals('Test Region Three', (string) $allEntities[2]);
     }
 
     public function testFindById()
     {
         $entityOne = $this->getModelManager()->findById(1);
 
-        $this->assertEquals('Test Region One', (string)$entityOne);
+        $this->assertEquals('Test Region One', (string) $entityOne);
     }
 
     public function testFindDefaultOperatingRegion()

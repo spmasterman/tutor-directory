@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class TutorControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
@@ -18,7 +17,7 @@ class TutorControllerTest extends WebTestCase
             'xdisabled' => 200, // you can switch to a disabled account, even if you cant log in as one
             'xeditor' => 200,
             'xadmin' => 200,
-            'xsuper' => 200
+            'xsuper' => 200,
         ];
 
         $this->checkAccess('GET', '/', $users);
@@ -36,7 +35,6 @@ class TutorControllerTest extends WebTestCase
         // Check that the url is blocked
         $this->checkAccess('GET', '/new', ['xuser' => 403]);
     }
-
 
     public function testCreateNewTutor()
     {

@@ -15,7 +15,6 @@ class TutorTest extends FixturesWebTestCase
     /** @var  Tutor */
     protected $entityThree;
 
-
     public function setUp()
     {
         parent::setUp();
@@ -83,18 +82,18 @@ class TutorTest extends FixturesWebTestCase
         $this->assertCount(0, $this->entityTwo->getAddresses());
 
         // add the addresses from #1 to #2
-        foreach($this->entityOne->getAddresses() as $address) {
+        foreach ($this->entityOne->getAddresses() as $address) {
             $this->entityTwo->addAddress($address);
         }
 
         // check that they are the same
         $this->assertEquals($this->entityOne->getAddresses()->count(), $this->entityTwo->getAddresses()->count());
-        foreach($this->entityTwo->getAddresses() as $address) {
+        foreach ($this->entityTwo->getAddresses() as $address) {
             $this->assertContains($address, $this->entityOne->getAddresses());
         }
 
         // Add them a second time - they shouldn't get duplicated
-        foreach($this->entityOne->getAddresses() as $address) {
+        foreach ($this->entityOne->getAddresses() as $address) {
             $this->entityTwo->addAddress($address);
         }
         $this->assertEquals($this->entityOne->getAddresses()->count(), $this->entityTwo->getAddresses()->count());
@@ -106,7 +105,7 @@ class TutorTest extends FixturesWebTestCase
         // now set them in bulk
         $this->entityTwo->setAddresses($this->entityOne->getAddresses());
         $this->assertEquals($this->entityOne->getAddresses()->count(), $this->entityTwo->getAddresses()->count());
-        foreach($this->entityTwo->getAddresses() as $address) {
+        foreach ($this->entityTwo->getAddresses() as $address) {
             $this->assertContains($address, $this->entityOne->getAddresses());
         }
     }
@@ -125,18 +124,18 @@ class TutorTest extends FixturesWebTestCase
         $this->assertFalse($this->entityTwo->hasPhoneNumber());
 
         // add the phone numbers from #1 to #2
-        foreach($this->entityOne->getPhoneNumbers() as $phoneNumber) {
+        foreach ($this->entityOne->getPhoneNumbers() as $phoneNumber) {
             $this->entityTwo->addPhoneNumber($phoneNumber);
         }
 
         // check that they are the same
         $this->assertEquals($this->entityOne->getPhoneNumbers()->count(), $this->entityTwo->getPhoneNumbers()->count());
-        foreach($this->entityTwo->getPhoneNumbers() as $phoneNumber) {
+        foreach ($this->entityTwo->getPhoneNumbers() as $phoneNumber) {
             $this->assertContains($phoneNumber, $this->entityOne->getPhoneNumbers());
         }
 
         // Add them a second time - they shouldn't get duplicated
-        foreach($this->entityOne->getPhoneNumbers() as $phoneNumber) {
+        foreach ($this->entityOne->getPhoneNumbers() as $phoneNumber) {
             $this->entityTwo->addPhoneNumber($phoneNumber);
         }
         $this->assertEquals($this->entityOne->getPhoneNumbers()->count(), $this->entityTwo->getPhoneNumbers()->count());
@@ -148,7 +147,7 @@ class TutorTest extends FixturesWebTestCase
         // now set them in bulk
         $this->entityTwo->setPhonenumbers($this->entityOne->getPhoneNumbers());
         $this->assertEquals($this->entityOne->getPhoneNumbers()->count(), $this->entityTwo->getPhoneNumbers()->count());
-        foreach($this->entityTwo->getPhoneNumbers() as $phoneNumber) {
+        foreach ($this->entityTwo->getPhoneNumbers() as $phoneNumber) {
             $this->assertContains($phoneNumber, $this->entityOne->getPhoneNumbers());
         }
     }
@@ -165,18 +164,18 @@ class TutorTest extends FixturesWebTestCase
         $this->assertCount(0, $this->entityTwo->getRates());
 
         // add the rates from #1 to #2
-        foreach($this->entityOne->getRates() as $rate) {
+        foreach ($this->entityOne->getRates() as $rate) {
             $this->entityTwo->addRate($rate);
         }
 
         // check that they are the same
         $this->assertEquals($this->entityOne->getRates()->count(), $this->entityTwo->getRates()->count());
-        foreach($this->entityTwo->getRates() as $rate) {
+        foreach ($this->entityTwo->getRates() as $rate) {
             $this->assertContains($rate, $this->entityOne->getRates());
         }
 
         // Add them a second time - they shouldn't get duplicated
-        foreach($this->entityOne->getRates() as $rate) {
+        foreach ($this->entityOne->getRates() as $rate) {
             $this->entityTwo->addRate($rate);
         }
         $this->assertEquals($this->entityOne->getRates()->count(), $this->entityTwo->getRates()->count());
@@ -188,7 +187,7 @@ class TutorTest extends FixturesWebTestCase
         // now set them in bulk
         $this->entityTwo->setRates($this->entityOne->getRates());
         $this->assertEquals($this->entityOne->getRates()->count(), $this->entityTwo->getRates()->count());
-        foreach($this->entityTwo->getRates() as $rate) {
+        foreach ($this->entityTwo->getRates() as $rate) {
             $this->assertContains($rate, $this->entityOne->getRates());
         }
     }
@@ -205,18 +204,18 @@ class TutorTest extends FixturesWebTestCase
         $this->assertCount(0, $this->entityTwo->getEmailAddresses());
 
         // add the email addresses numbers from #1 to #2
-        foreach($this->entityOne->getEmailAddresses() as $EmailAddress) {
+        foreach ($this->entityOne->getEmailAddresses() as $EmailAddress) {
             $this->entityTwo->addEmailAddress($EmailAddress);
         }
 
         // check that they are the same
         $this->assertEquals($this->entityOne->getEmailAddresses()->count(), $this->entityTwo->getEmailAddresses()->count());
-        foreach($this->entityTwo->getEmailAddresses() as $EmailAddress) {
+        foreach ($this->entityTwo->getEmailAddresses() as $EmailAddress) {
             $this->assertContains($EmailAddress, $this->entityOne->getEmailAddresses());
         }
 
         // Add them a second time - they shouldn't get duplicated
-        foreach($this->entityOne->getEmailAddresses() as $EmailAddress) {
+        foreach ($this->entityOne->getEmailAddresses() as $EmailAddress) {
             $this->entityTwo->addEmailAddress($EmailAddress);
         }
         $this->assertEquals($this->entityOne->getEmailAddresses()->count(), $this->entityTwo->getEmailAddresses()->count());
@@ -228,11 +227,11 @@ class TutorTest extends FixturesWebTestCase
         // now set them in bulk
         $this->entityTwo->setEmailAddresses($this->entityOne->getEmailAddresses());
         $this->assertEquals($this->entityOne->getEmailAddresses()->count(), $this->entityTwo->getEmailAddresses()->count());
-        foreach($this->entityTwo->getEmailAddresses() as $EmailAddress) {
+        foreach ($this->entityTwo->getEmailAddresses() as $EmailAddress) {
             $this->assertContains($EmailAddress, $this->entityOne->getEmailAddresses());
         }
     }
-    
+
     public function testCompetencies()
     {
         $this->assertCount(2, $this->entityOne->getCompetencies());
@@ -245,18 +244,18 @@ class TutorTest extends FixturesWebTestCase
         $this->assertCount(0, $this->entityTwo->getCompetencies());
 
         // add the competency numbers from #1 to #2
-        foreach($this->entityOne->getCompetencies() as $Competency) {
+        foreach ($this->entityOne->getCompetencies() as $Competency) {
             $this->entityTwo->addCompetency($Competency);
         }
 
         // check that they are the same
         $this->assertEquals($this->entityOne->getCompetencies()->count(), $this->entityTwo->getCompetencies()->count());
-        foreach($this->entityTwo->getCompetencies() as $Competency) {
+        foreach ($this->entityTwo->getCompetencies() as $Competency) {
             $this->assertContains($Competency, $this->entityOne->getCompetencies());
         }
 
         // Add them a second time - they shouldn't get duplicated
-        foreach($this->entityOne->getCompetencies() as $Competency) {
+        foreach ($this->entityOne->getCompetencies() as $Competency) {
             $this->entityTwo->addCompetency($Competency);
         }
         $this->assertEquals($this->entityOne->getCompetencies()->count(), $this->entityTwo->getCompetencies()->count());
@@ -268,7 +267,7 @@ class TutorTest extends FixturesWebTestCase
         // now set them in bulk
         $this->entityTwo->setCompetencies($this->entityOne->getCompetencies());
         $this->assertEquals($this->entityOne->getCompetencies()->count(), $this->entityTwo->getCompetencies()->count());
-        foreach($this->entityTwo->getCompetencies() as $Competency) {
+        foreach ($this->entityTwo->getCompetencies() as $Competency) {
             $this->assertContains($Competency, $this->entityOne->getCompetencies());
         }
     }
@@ -287,18 +286,18 @@ class TutorTest extends FixturesWebTestCase
         $this->assertFalse($this->entityTwo->hasNote());
 
         // add the Notes from #1 to #2
-        foreach($this->entityOne->getNotes() as $Note) {
+        foreach ($this->entityOne->getNotes() as $Note) {
             $this->entityTwo->addNote($Note);
         }
 
         // check that they are the same
         $this->assertEquals($this->entityOne->getNotes()->count(), $this->entityTwo->getNotes()->count());
-        foreach($this->entityTwo->getNotes() as $Note) {
+        foreach ($this->entityTwo->getNotes() as $Note) {
             $this->assertContains($Note, $this->entityOne->getNotes());
         }
 
         // Add them a second time - they shouldn't get duplicated
-        foreach($this->entityOne->getNotes() as $Note) {
+        foreach ($this->entityOne->getNotes() as $Note) {
             $this->entityTwo->addNote($Note);
         }
         $this->assertEquals($this->entityOne->getNotes()->count(), $this->entityTwo->getNotes()->count());
@@ -310,11 +309,11 @@ class TutorTest extends FixturesWebTestCase
         // now set them in bulk
         $this->entityTwo->setNotes($this->entityOne->getNotes());
         $this->assertEquals($this->entityOne->getNotes()->count(), $this->entityTwo->getNotes()->count());
-        foreach($this->entityTwo->getNotes() as $Note) {
+        foreach ($this->entityTwo->getNotes() as $Note) {
             $this->assertContains($Note, $this->entityOne->getNotes());
         }
     }
-    
+
     /**
      * @return TutorManager
      */

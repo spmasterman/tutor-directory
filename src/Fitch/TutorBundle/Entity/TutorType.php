@@ -14,7 +14,7 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * TutorType
+ * TutorType.
  *
  * @ORM\Table(name="tutor_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorTypeRepository")
