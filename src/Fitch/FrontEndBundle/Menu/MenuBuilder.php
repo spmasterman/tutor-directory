@@ -23,7 +23,6 @@ class MenuBuilder extends ContainerAware
         ;
 
         $this
-            ->addReports($menu)
             ->addTutorTypes($menu)
             ->addStatus($menu)
             ->addRegions($menu)
@@ -34,6 +33,7 @@ class MenuBuilder extends ContainerAware
             ->addCategory($menu)
             ->addCompetencyTypes($menu)
             ->addCompetencyLevels($menu)
+            ->addReports($menu)
             ->addUsers($menu)
         ;
 
@@ -59,7 +59,6 @@ class MenuBuilder extends ContainerAware
             ->setAttribute('icon', 'fa fa-home fa-fw');
 
         $this
-            ->addReports($homeNode)
             ->addTutorTypes($homeNode)
             ->addStatus($homeNode)
             ->addRegions($homeNode)
@@ -71,6 +70,7 @@ class MenuBuilder extends ContainerAware
             ->addCompetencyTypes($homeNode)
             ->addCompetencyLevels($homeNode)
             ->addUsers($homeNode)
+            ->addReports($homeNode)
             ->addProfile($homeNode)
         ;
 
