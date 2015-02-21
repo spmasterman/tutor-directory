@@ -72,6 +72,29 @@ tutor_type:
         actions: Actions
     default_message:  = Default trainer type assigned to new trainers
 
+category:
+    edit:
+        verb: Edit Skill Category
+        tagline: edit the details of category record
+        success: The category has been successfully updated.
+    list:
+        verb: Skill Categories
+        tagline: categories available for use in the Trainer Directory
+    new:
+        verb: New Skill Category
+        tagline: define a new category
+        success: The category has been successfully created.
+    show:
+        verb: Category
+        tagline: view the details of a category record
+    delete:
+        success: The category has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        actions: Actions
+    default_message:  = Default Category assigned to new Skills
+
 status:
     edit:
         verb: Edit Trainer Status
@@ -142,6 +165,7 @@ competency_type:
     column:
         id: ID
         name: Name
+        category: Category
         actions: Actions
 
 competency_level:

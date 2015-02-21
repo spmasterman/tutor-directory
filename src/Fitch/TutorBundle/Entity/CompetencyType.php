@@ -22,9 +22,35 @@ class CompetencyType implements IdentityTraitInterface, TimestampableTraitInterf
     use IdentityTrait, TimestampableTrait, NamedTrait;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="competencyTypes")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *
+     * @var Category
+     */
+    protected $category;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=128)
      */
     protected $name = '...';
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     * @return $this
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        return $this;
+    }
 }

@@ -31,6 +31,7 @@ class MenuBuilder extends ContainerAware
             ->addCurrencies($menu)
             ->addLanguages($menu)
             ->addFileTypes($menu)
+            ->addCategory($menu)
             ->addCompetencyTypes($menu)
             ->addCompetencyLevels($menu)
             ->addUsers($menu)
@@ -66,6 +67,7 @@ class MenuBuilder extends ContainerAware
             ->addCurrencies($homeNode)
             ->addLanguages($homeNode)
             ->addFileTypes($homeNode)
+            ->addCategory($homeNode)
             ->addCompetencyTypes($homeNode)
             ->addCompetencyLevels($homeNode)
             ->addUsers($homeNode)
@@ -155,6 +157,27 @@ class MenuBuilder extends ContainerAware
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/tutor_type/'],
+                ])
+            ;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return $this
+     */
+    private function addCategory(ItemInterface $menu)
+    {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
+            $menu
+                ->addChild('menu.category', ['route' => 'category'])
+                ->setAttribute('icon', 'fa fa-th-large fa-fw')
+                ->setExtra('translation_domain', 'menu')
+                ->setExtra('routes', [
+                    ['pattern' => '/category/'],
                 ])
             ;
         }
@@ -299,7 +322,7 @@ class MenuBuilder extends ContainerAware
         if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
             $menu
                 ->addChild('menu.competency_type', ['route' => 'competency_type'])
-                ->setAttribute('icon', 'fa fa-bullseye fa-fw')
+                ->setAttribute('icon', 'fa fa-th fa-fw')
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/competency_type/'],

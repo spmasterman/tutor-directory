@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
+use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
@@ -77,7 +78,9 @@ class CompetencyController extends Controller
                         // if its an integer
                         $competency->setCompetencyType($this->getCompetencyTypeManager()->findById((int) $value));
                     } else {
-                        $competency->setCompetencyType($this->getCompetencyTypeManager()->findOrCreate($value));
+                        $competency->setCompetencyType(
+                            $this->getCompetencyTypeManager()->findOrCreate($value, $this->getCategoryManager())
+                        );
                     }
                     break;
                 case 'competency-note':
@@ -175,5 +178,13 @@ class CompetencyController extends Controller
     private function getTutorManager()
     {
         return $this->get('fitch.manager.tutor');
+    }
+
+    /**
+     * @return CategoryManager
+     */
+    private function getCategoryManager()
+    {
+        return $this->get('fitch.manager.category');
     }
 }

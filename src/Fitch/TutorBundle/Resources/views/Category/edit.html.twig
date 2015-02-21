@@ -1,0 +1,24 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}category.edit.verb{% endtrans %}</h2>
+    <em>{% trans %}category.edit.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+    <div class="widget widget-table">
+        {{ helper.widget_header(category, 'fa fa-th-large', 'widget-category-edit') }}
+            {% form_theme edit_form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+            {{ form(edit_form, {'attr': {'class': 'form-horizontal'} }) }}
+        {{ helper.widget_footer() }}
+    </div>
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('category') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
+
+        {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
+        {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
+    </div>
+{% endblock %}

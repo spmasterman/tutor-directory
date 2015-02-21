@@ -1,0 +1,10 @@
+Fitch\TutorBundle\Entity\Category:
+    category-unspecified:
+        name: Unspecified
+        default: true
+    category-fixed:
+        name: Fixed Income
+        default: false
+    category-accounts:
+        name: Accouncy
+        default: false

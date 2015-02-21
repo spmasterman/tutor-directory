@@ -19,6 +19,7 @@ parameters:
   fitch.manager.language.class: Fitch\TutorBundle\Model\LanguageManager
   fitch.manager.tutor_language.class: Fitch\TutorBundle\Model\TutorLanguageManager
   fitch.manager.report.class: Fitch\TutorBundle\Model\ReportManager
+  fitch.manager.category.class: Fitch\TutorBundle\Model\CategoryManager
 
   fitch.entity.tutor.class: Fitch\TutorBundle\Entity\Tutor
   fitch.entity.phone.class: Fitch\TutorBundle\Entity\Phone
@@ -40,6 +41,7 @@ parameters:
   fitch.entity.language.class: Fitch\TutorBundle\Entity\Language
   fitch.entity.tutor_language.class: Fitch\TutorBundle\Entity\TutorLanguage
   fitch.entity.report.class: Fitch\TutorBundle\Entity\Report
+  fitch.entity.category.class: Fitch\TutorBundle\Entity\Category
 
 services:
     #
@@ -205,6 +207,14 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.report.class%
+    fitch.manager.category:
+        class: %fitch.manager.category.class%
+        calls:
+            - [setLogger, ["@logger"]]
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: %fitch.entity.category.class%
 
 #
 # Event Listener

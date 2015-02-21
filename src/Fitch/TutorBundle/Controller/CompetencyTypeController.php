@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,7 +51,7 @@ class CompetencyTypeController extends Controller
     public function createAction(Request $request)
     {
         $competencyTypeManager = $this->getCompetencyTypeManager();
-        $competencyType = $competencyTypeManager->createCompetencyType();
+        $competencyType = $competencyTypeManager->createCompetencyType($this->getCategoryManager());
 
         $form = $this->createCreateForm($competencyType);
         $form->handleRequest($request);
@@ -107,7 +108,7 @@ class CompetencyTypeController extends Controller
      */
     public function newAction()
     {
-        $competencyType = $this->getCompetencyTypeManager()->createCompetencyType();
+        $competencyType = $this->getCompetencyTypeManager()->createCompetencyType($this->getCategoryManager());
         $form   = $this->createCreateForm($competencyType);
 
         return [
@@ -282,5 +283,13 @@ class CompetencyTypeController extends Controller
     private function getCompetencyTypeManager()
     {
         return $this->get('fitch.manager.competency_type');
+    }
+
+    /**
+     * @return CategoryManager
+     */
+    private function getCategoryManager()
+    {
+        return $this->get('fitch.manager.category');
     }
 }

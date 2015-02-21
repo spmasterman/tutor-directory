@@ -1,21 +1,21 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
 {% block main_header -%}
-    <h2>{% trans %}competency_type.new.verb{% endtrans %}</h2>
-    <em>{% trans %}competency_type.new.tagline{% endtrans %}</em>
+    <h2>{% trans %}category.new.verb{% endtrans %}</h2>
+    <em>{% trans %}category.new.tagline{% endtrans %}</em>
 {% endblock %}
 
 {% block main_content -%}
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        {{ helper.widget_header('competency_type.new.verb', 'fa fa-th', 'widget-competency-type-new') }}
+        {{ helper.widget_header('category.new.verb', 'fa fa-th-large', 'widget-category-new') }}
             {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
             {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
         {{ helper.widget_footer() }}
     </div>
 
     <div class="record_actions well">
-        <a class="btn btn-default btn-s" href="{{ path('competency_type') }}">
+        <a class="btn btn-default btn-s" href="{{ path('category') }}">
             <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
         </a>
     </div>

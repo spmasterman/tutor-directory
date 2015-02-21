@@ -1,0 +1,41 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}category.list.verb{% endtrans %}</h2>
+    <em>{% trans %}category.list.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+    <div class="widget widget-table">
+        {{ helper.widget_header('category.list.verb', 'fa fa-th-large', 'widget-category-index') }}
+            <table class="records_list table table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th>{% trans %}category.column.id{% endtrans %}</th>
+                    <th>{% trans %}category.column.name{% endtrans %}</th>
+                    <th>{% trans %}category.column.actions{% endtrans %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}{% if category.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
+                        <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.name }}</a></td>
+                        <td>
+                            <a href="{{ path('category_show', { 'id': category.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                            <a href="{{ path('category_edit', { 'id': category.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <small><i class="fa fa-asterisk yellow-font"></i>{% trans %}category.default_message{% endtrans %}</small>
+        {{ helper.widget_footer() }}
+    </div>
+    <div class="record_actions well">
+        <a href="{{ path('category_new') }}" class="btn btn-default btn-s">
+            <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+        </a>
+    </div>
+{% endblock %}

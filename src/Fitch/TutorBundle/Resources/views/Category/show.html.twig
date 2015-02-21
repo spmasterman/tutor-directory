@@ -1,27 +1,23 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
 {% block main_header -%}
-    <h2>{% trans %}competency_type.show.verb{% endtrans %}</h2>
-    <em>{% trans %}competency_type.show.tagline{% endtrans %}</em>
+    <h2>{% trans %}category.show.verb{% endtrans %}</h2>
+    <em>{% trans %}category.show.tagline{% endtrans %}</em>
 {% endblock %}
 
 {% block main_content -%}
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        {{ helper.widget_header(competencyType, 'fa fa-th', 'widget-competency-type-show') }}
+        {{ helper.widget_header(category, 'fa fa-th-large', 'widget-category-show') }}
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                 <tr>
-                    <th class="col-xs-2">{% trans %}competency_type.column.id{% endtrans %}</th>
-                    <td>{{ competencyType.id }}</td>
+                    <th class="col-xs-2">{% trans %}category.column.id{% endtrans %}</th>
+                    <td>{{ category.id }}</td>
                 </tr>
                 <tr>
-                    <th class="col-xs-2">{% trans %}competency_type.column.name{% endtrans %}</th>
-                    <td>{{ competencyType.name }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-2">{% trans %}competency_type.column.category{% endtrans %}</th>
-                    <td>{{ competencyType.category }}</td>
+                    <th class="col-xs-2">{% trans %}category.column.name{% endtrans %}</th>
+                    <td>{{ category.name }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -29,12 +25,14 @@
     </div>
 
     <div class="record_actions well">
-        <a class="btn btn-default btn-s" href="{{ path('competency_type') }}">
+        <a class="btn btn-default btn-s" href="{{ path('category') }}">
             <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
         </a>
-        <a class="btn btn-default btn-s" href="{{ path('competency_type_edit', { 'id': competencyType.id }) }}">
+
+        <a class="btn btn-default btn-s" href="{{ path('category_edit', { 'id': category.id }) }}">
             <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
         </a>
+
         {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
         {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
     </div>

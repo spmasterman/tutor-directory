@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Tests\FixturesWebTestCase;
+use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 
 class CompetencyTypeManagerTest extends FixturesWebTestCase
@@ -29,10 +30,10 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
 
-        $existingEntity = $this->getModelManager()->findOrCreate($allEntities[0]->getName());
+        $existingEntity = $this->getModelManager()->findOrCreate($allEntities[0]->getName(), $this->container->get('fitch.manager.category'));
         $this->assertEquals($existingEntity, $allEntities[0]);
 
-        $newEntity = $this->getModelManager()->findOrCreate('c-new');
+        $newEntity = $this->getModelManager()->findOrCreate('c-new', $this->container->get('fitch.manager.category'));
         $allEntities = $this->getModelManager()->findAll();
         $this->assertContains($newEntity, $allEntities);
         $this->assertCount(4, $allEntities, "Should return three entities");
@@ -45,7 +46,9 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return 3 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createCompetencyType();
+        $newEntity = $this->getModelManager()->createCompetencyType(
+            $this->container->get('fitch.manager.category')
+        );
         $newEntity
             ->setName('n')
         ;
@@ -82,13 +85,19 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
      */
     public function testFindOrCreate()
     {
-        $entity = $this->getModelManager()->findOrCreate('Test Competency Type One');
+        $entity = $this->getModelManager()->findOrCreate(
+            'Test Competency Type One',
+            $this->container->get('fitch.manager.category')
+        );
         $this->assertEquals(1, $entity->getId());
 
         $shouldBeNull = $this->getModelManager()->findById(4);
         $this->assertNull($shouldBeNull);
 
-        $entity = $this->getModelManager()->findOrCreate('Test New');
+        $entity = $this->getModelManager()->findOrCreate(
+            'Test New',
+            $this->container->get('fitch.manager.category')
+        );
         $this->assertEquals(4, $entity->getId());
     }
 
@@ -99,4 +108,5 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
     {
         return $this->container->get('fitch.manager.competency_type');
     }
+
 }

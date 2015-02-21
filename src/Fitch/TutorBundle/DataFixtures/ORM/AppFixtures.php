@@ -23,6 +23,7 @@ class AppFixtures extends DataFixtureLoader
 //            __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
             __DIR__.'/../../Resources/fixtures/090_filetypes.yml',
             __DIR__.'/../../Resources/fixtures/100_languages.yml',
+            __DIR__.'/../../Resources/fixtures/110_category.yml',
         ];
 
         // This is test data (generated via Faker etc)

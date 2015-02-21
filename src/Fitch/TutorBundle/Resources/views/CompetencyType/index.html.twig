@@ -8,12 +8,13 @@
 {% block main_content -%}
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        {{ helper.widget_header('competency_type.list.verb', 'fa fa-bullseye', 'widget-competency-type-index') }}
+        {{ helper.widget_header('competency_type.list.verb', 'fa fa-th', 'widget-competency-type-index') }}
             <table class="records_list table table-condensed table-striped">
                 <thead>
                 <tr>
                     <th>{% trans %}competency_type.column.id{% endtrans %}</th>
                     <th>{% trans %}competency_type.column.name{% endtrans %}</th>
+                    <th>{% trans %}competency_type.column.category{% endtrans %}</th>
                     <th>{% trans %}competency_type.column.actions{% endtrans %}</th>
                 </tr>
                 </thead>
@@ -22,6 +23,7 @@
                     <tr>
                         <td>{{ competencyType.id }}</td>
                         <td><a href="{{ path('competency_type_show', { 'id': competencyType.id }) }}">{{ competencyType.name }}</a></td>
+                        <td>{{ competencyType.getCategory }}</td>
                         <td>
                             <a href="{{ path('competency_type_show', { 'id': competencyType.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('competency_type_edit', { 'id': competencyType.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

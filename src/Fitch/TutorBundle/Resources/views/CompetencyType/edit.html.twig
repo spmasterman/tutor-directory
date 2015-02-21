@@ -9,7 +9,7 @@
 {% block main_content -%}
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        {{ helper.widget_header(competencyType, 'fa fa-bullseye', 'widget-competency-type-edit') }}
+        {{ helper.widget_header(competencyType, 'fa fa-th', 'widget-competency-type-edit') }}
         {% form_theme edit_form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
         {{ form(edit_form, {'attr': {'class': 'form-horizontal'} }) }}
         {{ helper.widget_footer() }}

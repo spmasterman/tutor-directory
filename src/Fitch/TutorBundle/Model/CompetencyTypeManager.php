@@ -77,17 +77,18 @@ class CompetencyTypeManager extends BaseModelManager
     }
 
     /**
-     * @param $typeName
+     * @param string $competencyTypeName
+     * @param CategoryManager $categoryManager
      *
      * @return CompetencyType
      */
-    public function findOrCreate($typeName)
+    public function findOrCreate($competencyTypeName, CategoryManager $categoryManager)
     {
-        $competencyType = $this->getRepo()->findOneBy(['name' => $typeName]);
+        $competencyType = $this->getRepo()->findOneBy(['name' => $competencyTypeName]);
 
         if (!$competencyType) {
-            $competencyType = $this->createCompetencyType();
-            $competencyType->setName($typeName);
+            $competencyType = $this->createCompetencyType($categoryManager);
+            $competencyType->setName($competencyTypeName);
             $this->saveCompetencyType($competencyType);
         }
 
@@ -108,11 +109,30 @@ class CompetencyTypeManager extends BaseModelManager
      *
      * Set its default values
      *
+     * @param CategoryManager $categoryManager
+     *
      * @return CompetencyType
      */
-    public function createCompetencyType()
+    public function createCompetencyType(
+        CategoryManager $categoryManager
+    ) {
+        /** @var CompetencyType $competencyType */
+        $competencyType = parent::createEntity();
+        $this->setDefaultCategory($competencyType, $categoryManager);
+
+        return $competencyType;
+    }
+
+    /**
+     * @param CompetencyType  $competencyType
+     * @param CategoryManager $categoryManager
+     */
+    public function setDefaultCategory(CompetencyType $competencyType, CategoryManager $categoryManager)
     {
-        return parent::createEntity();
+        $category = $categoryManager->findDefaultCategory();
+        if ($category) {
+            $competencyType->setCategory($category);
+        }
     }
 
     /**
