@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="Symfony2">
+    <description>Coding standard based on Symfony - enable/disable individual rules here.</description>
+
+    <!-- Include the whole Symfony2 standard -->
+    <rule ref="Symfony2"/>
+</ruleset>
