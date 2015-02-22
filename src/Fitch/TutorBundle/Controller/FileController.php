@@ -199,7 +199,7 @@ class FileController extends Controller
      *      condition="request.request.has('pk') and request.request.get('pk') > 0",
      *      condition="request.request.has('originX')",
      *      condition="request.request.has('originY')",
-     *      condition="request.request.has('width') and request.request.get('width') > 0"
+     *      condition="request.request.has('width') and request.request.get('width') > 0",
      *      condition="request.request.has('height') and request.request.get('height') > 0"
      * )
      *
