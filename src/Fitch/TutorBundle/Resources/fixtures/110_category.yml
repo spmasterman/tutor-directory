@@ -1,6 +1,6 @@
 Fitch\TutorBundle\Entity\Category:
   category-unspecified:
-    name: Unspecified
+    name: <unspecified>
     businessArea: @area-unspecified
     default: true
   category-aim :

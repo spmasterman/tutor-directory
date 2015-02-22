@@ -1,6 +1,6 @@
 Fitch\TutorBundle\Entity\FileType:
     filetype-unknown:
-        name: Unspecified
+        name: <unspecified>
         default: true
         suitableForProfilePicture: false
         private: true

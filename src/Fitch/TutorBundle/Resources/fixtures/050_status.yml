@@ -1,6 +1,6 @@
 Fitch\TutorBundle\Entity\Status:
     status-unknown:
-        name: Unspecified
+        name: <unspecified>
         default: true
     status-active:
         name: Active

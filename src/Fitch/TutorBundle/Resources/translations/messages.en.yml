@@ -117,6 +117,7 @@ business_area:
         id: ID
         name: Name
         code: Code
+        prepend_to_category_name: Prepend this onto all Categories it contains
         actions: Actions
     default_message:  = Default Business Area assigned to new Categories
 

@@ -54,6 +54,14 @@ class Category implements
      */
     protected $name;
 
+    public function __toString()
+    {
+        return ($this->businessArea->isPrependToCategoryName()
+                    ? $this->businessArea->__toString().' - '
+                    : '')
+        .$this->getName();
+    }
+
     public function __construct()
     {
         $this->competencyTypes = new ArrayCollection();

@@ -20,6 +20,10 @@
                     <td>{{ businessArea.code }}</td>
                 </tr>
                 <tr>
+                    <th class="col-xs-2">{% trans %}business_area.column.prepend_to_category_name{% endtrans %}</th>
+                    <td>{% if businessArea.isPrependToCategoryName %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                </tr>
+                <tr>
                     <th class="col-xs-2">{% trans %}business_area.column.name{% endtrans %}</th>
                     <td>{{ businessArea.name }}</td>
                 </tr>

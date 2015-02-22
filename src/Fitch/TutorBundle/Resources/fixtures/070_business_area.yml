@@ -1,41 +1,51 @@
 Fitch\TutorBundle\Entity\BusinessArea:
     area-unspecified:
-        name: Unspecified
+        name: <unspecified>
         code:
+        prependToCategoryName: false
         default: true
     area-pq:
         name: Professional Qualifications
         code: PQ
+        prependToCategoryName: true
         default: false
     area-markets:
         name: Markets
         code:
+        prependToCategoryName: true
         default: false
     area-crcf:
         name: Corporate Risk and Corporate Finance
         code: CRCF
+        prependToCategoryName: true
         default: false
     area-ibd:
         name: Investment Business Development
         code: IBD
+        prependToCategoryName: true
         default: false
     area-mpd:
         name: Management and Personal Development
         code: MPD
+        prependToCategoryName: true
         default: false
     area-pw:
         name: Private Wealth Management
         code: PW
+        prependToCategoryName: true
         default: false
     area-tech:
         name: Technology & Operations
         code:
+        prependToCategoryName: true
         default: false
     area-ib:
         name: Investment Banking
         code:
+        prependToCategoryName: true
         default: false
     area-grad:
         name: Graduate Programme
         code:
+        prependToCategoryName: true
         default: false

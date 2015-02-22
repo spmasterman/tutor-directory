@@ -18,6 +18,11 @@ class BusinessAreaType extends AbstractType
         $builder
             ->add('name')
             ->add('code')
+            ->add('prependToCategoryName', new OnOffType(), [
+                'label' => 'Prepend this onto all Categories it contains',
+                'required' => false,
+                'type' => 'yesno',
+            ])
             ->add('default', new OnOffType(), [
                 'required' => false,
                 'type' => 'yesno',

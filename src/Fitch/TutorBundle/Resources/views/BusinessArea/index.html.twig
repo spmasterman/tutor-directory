@@ -15,6 +15,7 @@
                     <th>{% trans %}business_area.column.id{% endtrans %}</th>
                     <th>{% trans %}business_area.column.code{% endtrans %}</th>
                     <th>{% trans %}business_area.column.name{% endtrans %}</th>
+                    <th>{% trans %}business_area.column.prepend_to_category_name{% endtrans %}</th>
                     <th>{% trans %}business_area.column.actions{% endtrans %}</th>
                 </tr>
                 </thead>
@@ -24,6 +25,7 @@
                         <td>{{ businessArea.id }}{% if businessArea.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
                         <td>{{ businessArea.code }}</td>
                         <td><a href="{{ path('business_area_show', { 'id': businessArea.id }) }}">{{ businessArea.name }}</a></td>
+                        <td>{% if businessArea.isPrependToCategoryName %}<span class="badge badge-success">Yes</span>{% endif %}</td>
                         <td>
                             <a href="{{ path('business_area_show', { 'id': businessArea.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('business_area_edit', { 'id': businessArea.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

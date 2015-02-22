@@ -47,6 +47,13 @@ class BusinessArea implements
     protected $code;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="prepend", type="boolean")
+     */
+    protected $prependToCategoryName;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=128)
@@ -56,6 +63,11 @@ class BusinessArea implements
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return ($this->code ? "({$this->code}) " : '') . $this->getName();
     }
 
     /**
@@ -95,6 +107,24 @@ class BusinessArea implements
     {
         $this->code = $code;
 
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPrependToCategoryName()
+    {
+        return $this->prependToCategoryName;
+    }
+
+    /**
+     * @param boolean $prependToCategoryName
+     * @return $this
+     */
+    public function setPrependToCategoryName($prependToCategoryName)
+    {
+        $this->prependToCategoryName = $prependToCategoryName;
         return $this;
     }
 }

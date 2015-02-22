@@ -1,6 +1,6 @@
 Fitch\TutorBundle\Entity\TutorType:
     tutor_type-unspecified:
-        name: Unspecified
+        name: <unspecified>
         default: true
     tutor_type-associate:
         name: Associate
