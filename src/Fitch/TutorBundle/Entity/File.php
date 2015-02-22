@@ -11,7 +11,6 @@ use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Fitch\TutorBundle\Controller\FileController;
 use Fitch\UserBundle\Entity\User;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 
 /**

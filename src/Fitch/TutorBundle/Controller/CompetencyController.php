@@ -36,6 +36,7 @@ class CompetencyController extends Controller
      *      condition="request.request.has('name') and request.request.get('name') > ''",
      *      condition="request.request.has('value')"
      * )
+     *
      * @Method("POST")
      *
      * @param Request $request
@@ -117,6 +118,7 @@ class CompetencyController extends Controller
      *      options={"expose"=true},
      *      condition="request.request.has('pk') and request.request.get('pk') > 0"
      * )
+     *
      * @Method("POST")
      *
      * @param Request $request

@@ -27,6 +27,7 @@ class PhoneController extends Controller
      *      options={"expose"=true},
      *      condition="request.request.has('pk') and request.request.get('pk') != '0'"
      * )
+     *
      * @Method("POST")
      * @Template()
      *

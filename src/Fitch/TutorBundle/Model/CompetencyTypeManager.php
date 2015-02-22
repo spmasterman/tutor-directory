@@ -77,7 +77,7 @@ class CompetencyTypeManager extends BaseModelManager
     }
 
     /**
-     * @param string $competencyTypeName
+     * @param string          $competencyTypeName
      * @param CategoryManager $categoryManager
      *
      * @return CompetencyType

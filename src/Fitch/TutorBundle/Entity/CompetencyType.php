@@ -9,7 +9,6 @@ use Fitch\CommonBundle\Entity\NamedTrait;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CompetencyType.
@@ -49,11 +48,13 @@ class CompetencyType implements
 
     /**
      * @param Category $category
+     *
      * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+
         return $this;
     }
 }

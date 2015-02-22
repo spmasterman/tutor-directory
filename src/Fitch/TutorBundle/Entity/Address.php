@@ -7,7 +7,6 @@ use Fitch\CommonBundle\Entity\IdentityTrait;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Address.

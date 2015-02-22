@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Tests\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 
 class CompetencyTypeManagerTest extends FixturesWebTestCase
@@ -108,5 +107,4 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
     {
         return $this->container->get('fitch.manager.competency_type');
     }
-
 }

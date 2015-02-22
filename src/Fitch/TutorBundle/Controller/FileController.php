@@ -41,6 +41,7 @@ class FileController extends Controller
      *      condition="request.request.has('name') and request.request.get('name') > ''",
      *      condition="request.request.has('value')"
      * )
+     *
      * @Method("POST")
      * @Template()
      *
@@ -201,6 +202,7 @@ class FileController extends Controller
      *      condition="request.request.has('width') and request.request.get('width') > 0"
      *      condition="request.request.has('height') and request.request.get('height') > 0"
      * )
+     *
      * @Method("POST")
      * @Template()
      *
@@ -280,6 +282,7 @@ class FileController extends Controller
      *      options={"expose"=true},
      *      condition="request.request.has('pk') and request.request.get('pk') > 0"
      * )
+     *
      * @Method("POST")
      * @Template()
      *

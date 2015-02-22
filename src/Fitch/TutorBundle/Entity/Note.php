@@ -8,7 +8,6 @@ use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 use Fitch\UserBundle\Entity\User;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Phone.

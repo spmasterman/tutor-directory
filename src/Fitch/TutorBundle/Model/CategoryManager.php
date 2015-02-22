@@ -86,7 +86,7 @@ class CategoryManager extends BaseModelManager
 
     /**
      * @param Category $category
-     * @param bool $withFlush
+     * @param bool     $withFlush
      */
     public function saveCategory($category, $withFlush = true)
     {

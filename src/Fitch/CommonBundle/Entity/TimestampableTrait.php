@@ -2,6 +2,8 @@
 
 namespace Fitch\CommonBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 trait TimestampableTrait
 {
     /**

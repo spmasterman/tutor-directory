@@ -195,7 +195,7 @@ class CategoryController extends Controller
      * @Method("PUT")
      * @Template("FitchTutorBundle:Category:edit.html.twig")
      *
-     * @param Request   $request
+     * @param Request  $request
      * @param Category $category
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -235,7 +235,7 @@ class CategoryController extends Controller
      *
      * @Method("DELETE")
      *
-     * @param Request   $request
+     * @param Request  $request
      * @param Category $category
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

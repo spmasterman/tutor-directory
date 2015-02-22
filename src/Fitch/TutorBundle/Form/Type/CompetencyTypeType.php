@@ -17,7 +17,7 @@ class CompetencyTypeType extends AbstractType
         $builder
             ->add('name')
             ->add('category', null, [
-                'placeholder' => 'Please select a Category'
+                'placeholder' => 'Please select a Category',
             ])
         ;
     }
