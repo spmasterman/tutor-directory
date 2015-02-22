@@ -1,4 +1,0 @@
-Fitch\TutorBundle\Entity\CompetencyType:
-  type-{1..60}:
-    name (unique): <competencyName()>
-    category: @category-*

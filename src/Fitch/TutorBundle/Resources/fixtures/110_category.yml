@@ -1,13 +1,89 @@
 Fitch\TutorBundle\Entity\Category:
-    category-unspecified:
-        name: Unspecified
-        businessArea: @area-*
-        default: true
-    category-fixed:
-        name: Fixed Income
-        businessArea: @area-*
-        default: false
-    category-accounts:
-        name: Accouncy
-        businessArea: @area-*
-        default: false
+  category-unspecified:
+    name: Unspecified
+    businessArea: @area-unspecified
+    default: true
+  category-aim :
+    name: Asset – Investment Management
+    businessArea: @area-unspecified
+    default: false
+  category-em :
+    name: Economics and Markets
+    businessArea: @area-unspecified
+    default: false
+  category-fmt :
+    name: Financial Markets & Trading
+    businessArea: @area-unspecified
+    default: false
+  category-dp :
+    name: Derivatives - Products
+    businessArea: @area-unspecified
+    default: false
+  category-dra :
+    name: Derivatives – Risk Analysis
+    businessArea: @area-unspecified
+    default: false
+  category-es :
+    name: Excel Skills
+    businessArea: @area-unspecified
+    default: false
+  category-fr :
+    name: Financial Reporting
+    businessArea: @area-unspecified
+    default: false
+  category-gb :
+    name: General Banking
+    businessArea: @area-unspecified
+    default: false
+  category-ibms :
+    name: Investment Banking Markets and Skills
+    businessArea: @area-unspecified
+    default: false
+  category-os :
+    name: Operational Skills
+    businessArea: @area-unspecified
+    default: false
+  category-pwsp :
+    name: Private Wealth – Skills and Products
+    businessArea: @area-unspecified
+    default: false
+  category-sp :
+    name: Securitization - Products
+    businessArea: @area-unspecified
+    default: false
+  category-cf :
+    name: Corporate Finance
+    businessArea: @area-unspecified
+    default: false
+  category-ccra :
+    name: Corporate Credit - Risk Analysis
+    businessArea: @area-unspecified
+    default: false
+  category-fira :
+    name: Financial Institutions – Risk Analysis
+    businessArea: @area-unspecified
+    default: false
+  category-nbfi :
+    name: Non-Bank Financial Institutions – Risk Analysis
+    businessArea: @area-unspecified
+    default: false
+  category-fra :
+    name: Financial Risk Management
+    businessArea: @area-unspecified
+    default: false
+  category-ml :
+    name: Management and Leadership
+    businessArea: @area-mpd
+    default: false
+  category-cs :
+    name: Communication Skills
+    businessArea: @area-mpd
+    default: false
+  category-rms :
+    name: Relationship Management Skills
+    businessArea: @area-mpd
+    default: false
+  category-pe :
+    name: Personal Effectiveness
+    businessArea: @area-mpd
+    default: false

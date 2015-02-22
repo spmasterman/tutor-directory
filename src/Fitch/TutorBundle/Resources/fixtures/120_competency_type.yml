@@ -1,0 +1,529 @@
+Fitch\TutorBundle\Entity\CompetencyType:
+  type-1 :
+    name: Principles of Portfolio Management
+    category: @category-aim
+  type-2 :
+    name: Introduction to Private Equity
+    category: @category-aim
+  type-3 :
+    name: Introduction to Hedge Funds
+    category: @category-aim
+  type-4 :
+    name: Performance Management & Attribution
+    category: @category-aim
+  type-5 :
+    name: Derivatives in Asset Management
+    category: @category-aim
+  type-6 :
+    name: Options Trading Strategies
+    category: @category-aim
+  type-7 :
+    name: Cash Securities
+    category: @category-aim
+  type-8 :
+    name: Understanding Equities
+    category: @category-aim
+  type-9 :
+    name: Understanding Fixed Income
+    category: @category-aim
+  type-10 :
+    name: Further Fixed Income
+    category: @category-aim
+  type-11 :
+    name: Fixed Income Trading Strategies
+    category: @category-aim
+  type-12 :
+    name: Convertible Bonds
+    category: @category-aim
+  type-13 :
+    name: Building a Term Structure/Yield Curve
+    category: @category-aim
+  type-14 :
+    name: "Corporate bonds: credit drivers of relative value"
+    category: @category-aim
+  type-15 :
+    name: Distressed Debt Valuation
+    category: @category-aim
+  type-16 :
+    name: Economics and the Financial Markets
+    category: @category-em
+  type-17 :
+    name: Introduction to the Global Financial Markets
+    category: @category-em
+  type-18 :
+    name: Emerging Market Economies
+    category: @category-em
+  type-19 :
+    name: Equity Market Overview – Primary and Secondary Market
+    category: @category-em
+  type-20 :
+    name: Introduction to Islamic Finance
+    category: @category-em
+  type-21 :
+    name: Introduction to Islamic Banking
+    category: @category-em
+  type-22 :
+    name: Introduction to Technical Analysis
+    category: @category-em
+  type-23 :
+    name: Behavioral Finance
+    category: @category-em
+  type-24 :
+    name: Credit in the Post-Sovereign Crisis Environment
+    category: @category-em
+  type-25 :
+    name: Systemic risk and the banking system
+    category: @category-em
+  type-26 :
+    name: Sovereign & Country Risk
+    category: @category-em
+  type-27 :
+    name: Short term markets
+    category: @category-fmt
+  type-28 :
+    name: Trade the Yield curve
+    category: @category-fmt
+  type-29 :
+    name: Online Portfolio Management
+    category: @category-fmt
+  type-30 :
+    name: FX Currency Trader
+    category: @category-fmt
+  type-31 :
+    name: "Advanced Trading Platform (Shares, Options, FX, Fixed Income, Money Markets)"
+    category: @category-fmt
+  type-32 :
+    name: Lifecycle of a Product
+    category: @category-fmt
+  type-33 :
+    name: Lifecycle of a Trade
+    category: @category-fmt
+  type-34 :
+    name: Lifecycle of an Investment Banking Client
+    category: @category-fmt
+  type-35 :
+    name: Understanding Derivatives
+    category: @category-dp
+  type-36 :
+    name: Interest Rate Derivatives
+    category: @category-dp
+  type-37 :
+    name: Credit Derivatives
+    category: @category-dp
+  type-38 :
+    name: Equity Derivatives
+    category: @category-dp
+  type-39 :
+    name: Trading, Hedging and Pricing Options
+    category: @category-dp
+  type-40 :
+    name: Introduction to Swaps
+    category: @category-dp
+  type-41 :
+    name: Volatility Modeling and Extracting Value
+    category: @category-dp
+  type-42 :
+    name: Fundamentals of Derivative Risk
+    category: @category-dra
+  type-43 :
+    name: Counterparty Credit Risk in Derivatives
+    category: @category-dra
+  type-44 :
+    name: Complex Derivative Transactions
+    category: @category-dra
+  type-45 :
+    name: Central Counterparties, Clearing Houses & Exchanges
+    category: @category-dra
+  type-46 :
+    name: Derivatives for Corporate Clients
+    category: @category-dra
+  type-47 :
+    name: Mastering Excel
+    category: @category-es
+  type-48 :
+    name: Advanced Excel
+    category: @category-es
+  type-49 :
+    name: VBA (Intro and Intermediate)
+    category: @category-es
+  type-50 :
+    name: Financial Modeling Skills
+    category: @category-es
+  type-51 :
+    name: Financial Modeling (Intro and Intermediate)
+    category: @category-es
+  type-52 :
+    name: Valuation Modeling
+    category: @category-es
+  type-53 :
+    name: LBO and Credit Modelling
+    category: @category-es
+  type-54 :
+    name: Modelling Financial Covenants
+    category: @category-es
+  type-55 :
+    name: M & A Modeling
+    category: @category-es
+  type-56 :
+    name: Analysis of Bank Financial Statements
+    category: @category-fr
+  type-57 :
+    name: Analysis of Insurance Financial Statements
+    category: @category-fr
+  type-58 :
+    name: Analysis of Corporate Financial Statements
+    category: @category-fr
+  type-59 :
+    name: Accounting for Mergers & Acquisitions
+    category: @category-fr
+  type-60 :
+    name: Accounting for Remuneration
+    category: @category-fr
+  type-61 :
+    name: Completion Accounts
+    category: @category-fr
+  type-62 :
+    name: Comparing UK, IFRS and US GAAP
+    category: @category-fr
+  type-63 :
+    name: Creative Accounting
+    category: @category-fr
+  type-64 :
+    name: IFRS Key Point Update
+    category: @category-fr
+  type-65 :
+    name: Business of banking
+    category: @category-gb
+  type-66 :
+    name: Key Financial Drivers of success in Banks
+    category: @category-gb
+  type-67 :
+    name: Key Financial Drivers of success in Insurance
+    category: @category-gb
+  type-68 :
+    name: "Analytic approach to business development: Credit awareness for non-credit specialists"
+    category: @category-gb
+  type-69 :
+    name: Accounting Skills for Analysts
+    category: @category-ibms
+  type-70 :
+    name: Corporate Valuation
+    category: @category-ibms
+  type-71 :
+    name: Debt Capital Markets
+    category: @category-ibms
+  type-72 :
+    name: Equity Capital Markets
+    category: @category-ibms
+  type-73 :
+    name: Comparable Valuation
+    category: @category-ibms
+  type-74 :
+    name: DCF Valuation
+    category: @category-ibms
+  type-75 :
+    name: Corporate Actions
+    category: @category-os
+  type-76 :
+    name: Lifecycle of a Trade
+    category: @category-os
+  type-77 :
+    name: Fund Administration
+    category: @category-os
+  type-78 :
+    name: Hedge Fund Administration
+    category: @category-os
+  type-79 :
+    name: Clearing and Settlement of OTC Derivatives
+    category: @category-os
+  type-80 :
+    name: Ethics & Regulations
+    category: @category-pwsp
+  type-81 :
+    name: Structured Products
+    category: @category-pwsp
+  type-82 :
+    name: Alternative Investments
+    category: @category-pwsp
+  type-83 :
+    name: Tax & Trusts
+    category: @category-pwsp
+  type-84 :
+    name: Behavioral Finance
+    category: @category-pwsp
+  type-85 :
+    name: Pensions and Retirement Planning
+    category: @category-pwsp
+  type-86 :
+    name: Understanding Securitization & Asset Backed Securities
+    category: @category-sp
+  type-87 :
+    name: RMBS
+    category: @category-sp
+  type-88 :
+    name: CMBS
+    category: @category-sp
+  type-89 :
+    name: Consumer ABS
+    category: @category-sp
+  type-90 :
+    name: CLO
+    category: @category-sp
+  type-91 :
+    name: Covered Bonds
+    category: @category-sp
+  type-92 :
+    name: Corporate Finance & Funding Strategies
+    category: @category-cf
+  type-93 :
+    name: Contemporary Equity Analysis
+    category: @category-cf
+  type-94 :
+    name: Equity Valuation
+    category: @category-cf
+  type-95 :
+    name: Funding Instruments
+    category: @category-cf
+  type-96 :
+    name: Debt Capital Market products for Mid-Caps
+    category: @category-cf
+  type-97 :
+    name: High yield credit analysis
+    category: @category-cf
+  type-98 :
+    name: Buying and Selling Companies
+    category: @category-cf
+  type-99 :
+    name: Sponsored and Leveraged Finance
+    category: @category-cf
+  type-100 :
+    name: Acquisition Finance
+    category: @category-cf
+  type-101 :
+    name: Forecasting and structuring debt products
+    category: @category-cf
+  type-102 :
+    name: Corporate Finance Restructuring
+    category: @category-cf
+  type-103 :
+    name: Restructuring Problem Credits
+    category: @category-cf
+  type-104 :
+    name: Distressed Valuation
+    category: @category-cf
+  type-105 :
+    name: Loan Documentation
+    category: @category-cf
+  type-106 :
+    name: Trade Finance Solutions
+    category: @category-cf
+  type-107 :
+    name: Fundamentals of Project Finance
+    category: @category-cf
+  type-108 :
+    name: (Advanced) Corporate Credit Analysis
+    category: @category-ccra
+  type-109 :
+    name: Emerging Market Corporate Credit
+    category: @category-ccra
+  type-110 :
+    name: Risk Analysis for Fixed Income Investors
+    category: @category-ccra
+  type-111 :
+    name: Credit Risk of Commodity Companies
+    category: @category-ccra
+  type-112 :
+    name: SME Corporate Credit Analysis
+    category: @category-ccra
+  type-113 :
+    name: Warning Signals & Lessons Learned in Corporate Credit
+    category: @category-ccra
+  type-114 :
+    name: Deteriorating Credits
+    category: @category-ccra
+  type-115 :
+    name: Derivatives & Corporate Credit
+    category: @category-ccra
+  type-116 :
+    name: Intensive Bank Analysis
+    category: @category-fira
+  type-117 :
+    name: Emerging Bank Analysis
+    category: @category-fira
+  type-118 :
+    name: Early Warning signals in Banks
+    category: @category-fira
+  type-119 :
+    name: Analysis of Complex Banks (advanced Bank Analysis)
+    category: @category-fira
+  type-120 :
+    name: Bank Valuation
+    category: @category-fira
+  type-121 :
+    name: Liquidity Risk Management in Banks
+    category: @category-fira
+  type-122 :
+    name: Risk Management in Banks & Capital Implication
+    category: @category-fira
+  type-123 :
+    name: Insurance Company Analysis
+    category: @category-nbfi
+  type-124 :
+    name: Early warning Signals in Insurance companies
+    category: @category-nbfi
+  type-125 :
+    name: Non-Bank Financial Institutions
+    category: @category-nbfi
+  type-126 :
+    name: Finance & Leasing Companies
+    category: @category-nbfi
+  type-127 :
+    name: Securities Companies
+    category: @category-nbfi
+  type-128 :
+    name: Central Counterparties, Clearing Houses & Exchanges
+    category: @category-nbfi
+  type-129 :
+    name: Funds & Hedge Funds
+    category: @category-nbfi
+  type-130 :
+    name: Regulated Funds & Funds managers
+    category: @category-nbfi
+  type-131 :
+    name: Hedge Funds
+    category: @category-nbfi
+  type-132 :
+    name: Introduction to Key Concepts of Credit Risk
+    category: @category-fra
+  type-133 :
+    name: Risk Management in Banks & Capital Implications
+    category: @category-fra
+  type-134 :
+    name: Basel II & II; Bank Capital Adequacy
+    category: @category-fra
+  type-135 :
+    name: Solvency II (Insurance Industry)
+    category: @category-fra
+  type-136 :
+    name: Credit Portfolio Management
+    category: @category-fra
+  type-137 :
+    name: Liquidity Risk Management in Banks
+    category: @category-fra
+  type-138 :
+    name: Risk Management
+    category: @category-fra
+  type-139 :
+    name: Market Risk
+    category: @category-fra
+  type-140 :
+    name: Operational Risk
+    category: @category-fra
+  type-141 :
+    name: Leadership and Management skills for Financial
+    category: @category-ml
+  type-142 :
+    name: Institutions
+    category: @category-ml
+  type-143 :
+    name: Building High Performance Teams
+    category: @category-ml
+  type-144 :
+    name: Coaching Skills
+    category: @category-ml
+  type-145 :
+    name: Conducting Effective Appraisals
+    category: @category-ml
+  type-146 :
+    name: Effective Delegation
+    category: @category-ml
+  type-147 :
+    name: Inspiring Leadership
+    category: @category-ml
+  type-148 :
+    name: Leading Your Team through Change
+    category: @category-ml
+  type-149 :
+    name: Managing Virtual Teams
+    category: @category-ml
+  type-150 :
+    name: Motivating Your Team
+    category: @category-ml
+  type-151 :
+    name: Recruiting and Selecting Top Talent
+    category: @category-ml
+  type-152 :
+    name: The Role of the Manager
+    category: @category-ml
+  type-153 :
+    name: Presentation Skills
+    category: @category-cs
+  type-154 :
+    name: Business Writing Skills
+    category: @category-cs
+  type-155 :
+    name: Creating the Impact You Want
+    category: @category-cs
+  type-156 :
+    name: Cultural Awareness
+    category: @category-cs
+  type-157 :
+    name: Developing Assertiveness Skills
+    category: @category-cs
+  type-158 :
+    name: Effective Communication
+    category: @category-cs
+  type-159 :
+    name: Handling Difficult Situations and Conflict
+    category: @category-cs
+  type-160 :
+    name: Influencing Skills
+    category: @category-cs
+  type-161 :
+    name: Interviewing Skills
+    category: @category-cs
+  type-162 :
+    name: Negotiation Skills
+    category: @category-cs
+  type-163 :
+    name: Powerful Proposals
+    category: @category-cs
+  type-164 :
+    name: Report Writing Skills
+    category: @category-cs
+  type-165 :
+    name: Train the Trainer
+    category: @category-cs
+  type-166 :
+    name: Building Client Relationships
+    category: @category-rms
+  type-167 :
+    name: Global Client Service
+    category: @category-rms
+  type-168 :
+    name: Managing Client Expectations
+    category: @category-rms
+  type-169 :
+    name: Conducting Effective Meetings
+    category: @category-pe
+  type-170 :
+    name: Managing Change
+    category: @category-pe
+  type-171 :
+    name: Performing Under Pressure
+    category: @category-pe
+  type-172 :
+    name: Pitching Skills
+    category: @category-pe
+  type-173 :
+    name: Strategic Thinking
+    category: @category-pe
+  type-174 :
+    name: Creative Thinking
+    category: @category-pe
+  type-175 :
+    name: Prioritization and Time Management
+    category: @category-pe
+  type-176 :
+    name: Successful Networking
+    category: @category-pe
