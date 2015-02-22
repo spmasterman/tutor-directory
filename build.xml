@@ -7,7 +7,7 @@
     <!-- <property name="toolsdir" value="${basedir}/vendor/bin/"/> -->
 
     <target name="build"
-            depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
+            depends="prepare,vendors,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
             description=""/>
 
     <target name="build-parallel"
@@ -166,5 +166,12 @@
             depends="phploc-ci,phpcs-ci,phpmd-ci"
             description="Generate project documentation using phpDox">
         <exec executable="${toolsdir}phpdox" dir="${basedir}/build"/>
+    </target>
+
+    <target name="vendors" description="Update vendors">
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar" />
+            <arg value="install" />
+        </exec>
     </target>
 </project>
