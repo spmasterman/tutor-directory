@@ -24,9 +24,7 @@ class NoteController extends Controller
      *      "/remove",
      *      name="note_ajax_remove",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0"
      * )
      * @Method("POST")
      *

@@ -25,9 +25,7 @@ class RateController extends Controller
      *      "/remove",
      *      name="rate_ajax_remove",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') != '0'
-        "
+     *      condition="request.request.has('pk') and request.request.get('pk') != '0'"
      * )
      * @Method("POST")
      * @Template()

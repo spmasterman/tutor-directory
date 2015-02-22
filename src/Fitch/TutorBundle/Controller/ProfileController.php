@@ -69,12 +69,11 @@ class ProfileController extends Controller
      *      "/update",
      *      name="tutor_ajax_update",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            and request.request.has('name') and request.request.get('name') > ''
-            and request.request.has('value')
-        "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0",
+     *      condition="request.request.has('name') and request.request.get('name') > '' ",
+     *      condition="request.request.has('value')"
      * )
+     *
      * @Method("POST")
      *
      * @param Request $request

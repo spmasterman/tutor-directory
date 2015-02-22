@@ -37,11 +37,9 @@ class FileController extends Controller
      *      "/editor/file/update",
      *      name="file_ajax_update",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            and request.request.has('name') and request.request.get('name') > ''
-            and request.request.has('value')
-            "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0",
+     *      condition="request.request.has('name') and request.request.get('name') > ''",
+     *      condition="request.request.has('value')"
      * )
      * @Method("POST")
      * @Template()
@@ -197,13 +195,11 @@ class FileController extends Controller
      *      "/editor/file/crop",
      *      name="file_ajax_crop",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            and request.request.has('originX')
-            and request.request.has('originY')
-            and request.request.has('width') and request.request.get('width') > 0
-            and request.request.has('height') and request.request.get('height') > 0
-       "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0",
+     *      condition="request.request.has('originX')",
+     *      condition="request.request.has('originY')",
+     *      condition="request.request.has('width') and request.request.get('width') > 0"
+     *      condition="request.request.has('height') and request.request.get('height') > 0"
      * )
      * @Method("POST")
      * @Template()
@@ -282,9 +278,7 @@ class FileController extends Controller
      *      "/editor/file/remove",
      *      name="file_ajax_remove",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0"
      * )
      * @Method("POST")
      * @Template()

@@ -25,9 +25,7 @@ class PhoneController extends Controller
      *      "/remove",
      *      name="phone_ajax_remove",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') != '0'
-        "
+     *      condition="request.request.has('pk') and request.request.get('pk') != '0'"
      * )
      * @Method("POST")
      * @Template()

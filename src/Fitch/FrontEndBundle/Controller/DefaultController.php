@@ -22,10 +22,8 @@ class DefaultController extends Controller
      * @Route("/widget/control",
      *      name="widget_control",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('key') and request.request.get('key') > ''
-            and request.request.has('state') and request.request.get('state') matches '/open|closed/i'
-        "
+     *      condition="request.request.has('key') and request.request.get('key') > ''",
+     *      condition="request.request.has('state') and request.request.get('state') matches '/open|closed/i'"
      * )
      * @Method("POST")
      * @Template()

@@ -29,12 +29,10 @@ class TutorLanguageController extends Controller
      *      "/update",
      *      name="tutor_language_ajax_update",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            and request.request.has('tutorLanguagePk')
-            and request.request.has('name') and request.request.get('name') > ''
-            and request.request.has('value')
-        "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0",
+     *      condition="request.request.has('tutorLanguagePk')",
+     *      condition="request.request.has('name') and request.request.get('name') > ''",
+     *      condition="request.request.has('value')"
      * )
      * @Method("POST")
      *
@@ -105,9 +103,7 @@ class TutorLanguageController extends Controller
      *      "/remove",
      *      name="tutor_language_ajax_remove",
      *      options={"expose"=true},
-     *      condition="
-                request.request.has('pk') and request.request.get('pk') > 0
-            "
+     *      condition="request.request.has('pk') and request.request.get('pk') > 0"
      * )
      * @Method("POST")
      *
