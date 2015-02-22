@@ -1,0 +1,43 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}business_area.list.verb{% endtrans %}</h2>
+    <em>{% trans %}business_area.list.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+    <div class="widget widget-table">
+        {{ helper.widget_header('business_area.list.verb', 'fa fa-square', 'widget-business_area-index') }}
+            <table class="records_list table table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th>{% trans %}business_area.column.id{% endtrans %}</th>
+                    <th>{% trans %}business_area.column.code{% endtrans %}</th>
+                    <th>{% trans %}business_area.column.name{% endtrans %}</th>
+                    <th>{% trans %}business_area.column.actions{% endtrans %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for businessArea in businessAreas %}
+                    <tr>
+                        <td>{{ businessArea.id }}{% if businessArea.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
+                        <td>{{ businessArea.code }}</td>
+                        <td><a href="{{ path('business_area_show', { 'id': businessArea.id }) }}">{{ businessArea.name }}</a></td>
+                        <td>
+                            <a href="{{ path('business_area_show', { 'id': businessArea.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
+                            <a href="{{ path('business_area_edit', { 'id': businessArea.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <small><i class="fa fa-asterisk yellow-font"></i>{% trans %}business_area.default_message{% endtrans %}</small>
+        {{ helper.widget_footer() }}
+    </div>
+    <div class="record_actions well">
+        <a href="{{ path('business_area_new') }}" class="btn btn-default btn-s">
+            <i class="fa fa-plus-circle"></i> {% trans %}navigation.new{% endtrans %}
+        </a>
+    </div>
+{% endblock %}

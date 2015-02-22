@@ -1,10 +1,13 @@
 Fitch\TutorBundle\Entity\Category:
     category-unspecified:
         name: Unspecified
+        businessArea: @area-*
         default: true
     category-fixed:
         name: Fixed Income
+        businessArea: @area-*
         default: false
     category-accounts:
         name: Accouncy
+        businessArea: @area-*
         default: false

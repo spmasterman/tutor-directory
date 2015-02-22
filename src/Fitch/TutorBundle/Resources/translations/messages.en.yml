@@ -92,8 +92,33 @@ category:
     column:
         id: ID
         name: Name
+        business_area: Business Area
         actions: Actions
     default_message:  = Default Category assigned to new Skills
+
+business_area:
+    edit:
+        verb: Edit Business Area
+        tagline: edit the details of business area record
+        success: The Business Area has been successfully updated.
+    list:
+        verb: Business Areas
+        tagline: business areas available for use in the Trainer Directory
+    new:
+        verb: New Business Area
+        tagline: define a new business area
+        success: The Business Area has been successfully created.
+    show:
+        verb: Business Area
+        tagline: view the details of a business area record
+    delete:
+        success: The Business Area has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        code: Code
+        actions: Actions
+    default_message:  = Default Business Area assigned to new Categories
 
 status:
     edit:

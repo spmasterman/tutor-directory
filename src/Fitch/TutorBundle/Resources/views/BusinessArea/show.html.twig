@@ -1,27 +1,27 @@
 {% extends 'FitchFrontEndBundle::frontend.html.twig' %}
 
 {% block main_header -%}
-    <h2>{% trans %}category.show.verb{% endtrans %}</h2>
-    <em>{% trans %}category.show.tagline{% endtrans %}</em>
+    <h2>{% trans %}business_area.show.verb{% endtrans %}</h2>
+    <em>{% trans %}business_area.show.tagline{% endtrans %}</em>
 {% endblock %}
 
 {% block main_content -%}
     {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
     <div class="widget widget-table">
-        {{ helper.widget_header(category, 'fa fa-th-large', 'widget-category-show') }}
+        {{ helper.widget_header(businessArea, 'fa fa-square', 'widget-business_area-show') }}
             <table class="record_properties table table-condensed table-striped">
                 <tbody>
                 <tr>
-                    <th class="col-xs-2">{% trans %}category.column.id{% endtrans %}</th>
-                    <td>{{ category.id }}</td>
+                    <th class="col-xs-2">{% trans %}business_area.column.id{% endtrans %}</th>
+                    <td>{{ businessArea.id }}</td>
                 </tr>
                 <tr>
-                    <th class="col-xs-2">{% trans %}category.column.name{% endtrans %}</th>
-                    <td>{{ category.name }}</td>
+                    <th class="col-xs-2">{% trans %}business_area.column.code{% endtrans %}</th>
+                    <td>{{ businessArea.code }}</td>
                 </tr>
                 <tr>
-                    <th class="col-xs-2">{% trans %}category.column.business_area{% endtrans %}</th>
-                    <td>{{ category.businessArea }}</td>
+                    <th class="col-xs-2">{% trans %}business_area.column.name{% endtrans %}</th>
+                    <td>{{ businessArea.name }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -29,11 +29,11 @@
     </div>
 
     <div class="record_actions well">
-        <a class="btn btn-default btn-s" href="{{ path('category') }}">
+        <a class="btn btn-default btn-s" href="{{ path('business_area') }}">
             <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
         </a>
 
-        <a class="btn btn-default btn-s" href="{{ path('category_edit', { 'id': category.id }) }}">
+        <a class="btn btn-default btn-s" href="{{ path('business_area_edit', { 'id': businessArea.id }) }}">
             <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
         </a>
 

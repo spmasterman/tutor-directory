@@ -1,0 +1,41 @@
+Fitch\TutorBundle\Entity\BusinessArea:
+    area-unspecified:
+        name: Unspecified
+        code:
+        default: true
+    area-pq:
+        name: Professional Qualifications
+        code: PQ
+        default: false
+    area-markets:
+        name: Markets
+        code:
+        default: false
+    area-crcf:
+        name: Corporate Risk and Corporate Finance
+        code: CRCF
+        default: false
+    area-ibd:
+        name: Investment Business Development
+        code: IBD
+        default: false
+    area-mpd:
+        name: Management and Personal Development
+        code: MPD
+        default: false
+    area-pw:
+        name: Private Wealth Management
+        code: PW
+        default: false
+    area-tech:
+        name: Technology & Operations
+        code:
+        default: false
+    area-ib:
+        name: Investment Banking
+        code:
+        default: false
+    area-grad:
+        name: Graduate Programme
+        code:
+        default: false

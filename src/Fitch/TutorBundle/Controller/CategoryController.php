@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Category controller.
  *
- * @Route("/admin/type/tutor")
+ * @Route("/admin/category")
  */
 class CategoryController extends Controller
 {

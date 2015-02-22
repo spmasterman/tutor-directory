@@ -1,0 +1,22 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}business_area.new.verb{% endtrans %}</h2>
+    <em>{% trans %}business_area.new.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+    <div class="widget widget-table">
+        {{ helper.widget_header('business_area.new.verb', 'fa fa-square', 'widget-business_area-new') }}
+            {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+            {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
+        {{ helper.widget_footer() }}
+    </div>
+
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('business_area') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
+    </div>
+{% endblock %}

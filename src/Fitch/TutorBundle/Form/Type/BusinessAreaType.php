@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryType extends AbstractType
+class BusinessAreaType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,7 +17,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('businessArea')
+            ->add('code')
             ->add('default', new OnOffType(), [
                 'required' => false,
                 'type' => 'yesno',
@@ -31,7 +31,7 @@ class CategoryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitch\TutorBundle\Entity\Category',
+            'data_class' => 'Fitch\TutorBundle\Entity\BusinessArea',
         ));
     }
 
@@ -40,6 +40,6 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_category';
+        return 'fitch_tutorbundle_business_area';
     }
 }

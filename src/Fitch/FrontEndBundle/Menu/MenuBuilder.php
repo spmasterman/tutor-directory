@@ -30,6 +30,7 @@ class MenuBuilder extends ContainerAware
             ->addCurrencies($menu)
             ->addLanguages($menu)
             ->addFileTypes($menu)
+            ->addBusinessArea($menu)
             ->addCategory($menu)
             ->addCompetencyTypes($menu)
             ->addCompetencyLevels($menu)
@@ -66,6 +67,7 @@ class MenuBuilder extends ContainerAware
             ->addCurrencies($homeNode)
             ->addLanguages($homeNode)
             ->addFileTypes($homeNode)
+            ->addBusinessArea($homeNode)
             ->addCategory($homeNode)
             ->addCompetencyTypes($homeNode)
             ->addCompetencyLevels($homeNode)
@@ -157,6 +159,27 @@ class MenuBuilder extends ContainerAware
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/tutor_type/'],
+                ])
+            ;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return $this
+     */
+    private function addBusinessArea(ItemInterface $menu)
+    {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
+            $menu
+                ->addChild('menu.business_area', ['route' => 'business_area'])
+                ->setAttribute('icon', 'fa fa-square fa-fw')
+                ->setExtra('translation_domain', 'menu')
+                ->setExtra('routes', [
+                    ['pattern' => '/business_area/'],
                 ])
             ;
         }

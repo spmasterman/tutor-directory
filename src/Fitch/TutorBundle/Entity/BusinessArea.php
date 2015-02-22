@@ -14,12 +14,12 @@ use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
 
 /**
- * Category.
+ * BusinessArea.
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CategoryRepository")
+ * @ORM\Table(name="business_area")
+ * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\BusinessAreaRepository")
  */
-class Category implements
+class BusinessArea implements
     IdentityTraitInterface,
     TimestampableTraitInterface,
     NamedTraitInterface,
@@ -31,21 +31,20 @@ class Category implements
      * @var ArrayCollection
      *
      * INVERSE SIDE
-     * @ORM\OneToMany(targetEntity="CompetencyType",
-     *      mappedBy="category",
+     * @ORM\OneToMany(targetEntity="Category",
+     *      mappedBy="businessArea",
      *      indexBy="id",
      *      cascade={"persist", "remove"}
      * )
      */
-    protected $competencyTypes;
+    protected $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BusinessArea", inversedBy="categories")
-     * @ORM\JoinColumn(name="business_area_id", referencedColumnName="id")
+     * @var string
      *
-     * @var BusinessArea
+     * @ORM\Column(name="code", type="string", length=4, nullable=true)
      */
-    protected $businessArea;
+    protected $code;
 
     /**
      * @var string
@@ -56,45 +55,45 @@ class Category implements
 
     public function __construct()
     {
-        $this->competencyTypes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     /**
      * @return mixed
      */
-    public function getCompetencyTypes()
+    public function getCategories()
     {
-        return $this->competencyTypes;
+        return $this->categories;
     }
 
     /**
-     * @param mixed $competencyTypes
+     * @param mixed $categories
      *
      * @return $this
      */
-    public function setCompetencyTypes($competencyTypes)
+    public function setCategories($categories)
     {
-        $this->competencyTypes = $competencyTypes;
+        $this->categories = $categories;
 
         return $this;
     }
 
     /**
-     * @return BusinessArea
+     * @return string
      */
-    public function getBusinessArea()
+    public function getCode()
     {
-        return $this->businessArea;
+        return $this->code;
     }
 
     /**
-     * @param BusinessArea $businessArea
+     * @param string $code
      *
      * @return $this
      */
-    public function setBusinessArea($businessArea)
+    public function setCode($code)
     {
-        $this->businessArea = $businessArea;
+        $this->code = $code;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class AppFixtures extends DataFixtureLoader
             __DIR__.'/../../Resources/fixtures/030_competency_level.yml',
             __DIR__.'/../../Resources/fixtures/050_status.yml',
             __DIR__.'/../../Resources/fixtures/060_tutor_type.yml',
-//            __DIR__ . '/../../Resources/fixtures/070_note_visibility.yml',
+            __DIR__.'/../../Resources/fixtures/070_business_area.yml',
             __DIR__.'/../../Resources/fixtures/090_filetypes.yml',
             __DIR__.'/../../Resources/fixtures/100_languages.yml',
             __DIR__.'/../../Resources/fixtures/110_category.yml',
