@@ -19,7 +19,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="currency")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CurrencyRepository")
  */
-class Currency implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, ActiveAndPreferredTraitInterface
+class Currency implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    ActiveAndPreferredTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, ActiveAndPreferredTrait;
 

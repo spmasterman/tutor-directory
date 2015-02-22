@@ -19,7 +19,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="tutor_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorTypeRepository")
  */
-class TutorType implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
+class TutorType implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    DefaultTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 

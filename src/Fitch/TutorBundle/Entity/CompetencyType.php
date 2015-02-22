@@ -17,7 +17,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="competency_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository")
  */
-class CompetencyType implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class CompetencyType implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait;
 

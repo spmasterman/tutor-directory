@@ -20,7 +20,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CategoryRepository")
  */
-class Category implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
+class Category implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    DefaultTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 

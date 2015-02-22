@@ -20,7 +20,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\LanguageRepository")
  */
-class Language implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, ActiveAndPreferredTraitInterface
+class Language implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    ActiveAndPreferredTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, ActiveAndPreferredTrait;
 

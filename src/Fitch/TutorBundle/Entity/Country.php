@@ -19,7 +19,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CountryRepository")
  */
-class Country implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, ActiveAndPreferredTraitInterface
+class Country implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    ActiveAndPreferredTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, ActiveAndPreferredTrait;
 

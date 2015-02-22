@@ -19,7 +19,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="file_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\FileTypeRepository")
  */
-class FileType implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
+class FileType implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    DefaultTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 

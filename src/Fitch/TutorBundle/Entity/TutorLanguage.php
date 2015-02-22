@@ -15,7 +15,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="tutor_language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorLanguageRepository")
  */
-class TutorLanguage implements IdentityTraitInterface, TimestampableTraitInterface
+class TutorLanguage implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 

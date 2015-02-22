@@ -20,7 +20,10 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTra
  * @ORM\Table(name="file")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\FileRepository")
  */
-class File implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class File implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait;
 

@@ -15,7 +15,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="phone")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\PhoneRepository")
  */
-class Phone implements IdentityTraitInterface, TimestampableTraitInterface
+class Phone implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 

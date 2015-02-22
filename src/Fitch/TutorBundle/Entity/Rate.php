@@ -18,7 +18,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="rate")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\RateRepository")
  */
-class Rate implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface
+class Rate implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait;
 

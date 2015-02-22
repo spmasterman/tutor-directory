@@ -15,7 +15,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="crop")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CropInfoRepository")
  */
-class CropInfo implements IdentityTraitInterface, TimestampableTraitInterface
+class CropInfo implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 

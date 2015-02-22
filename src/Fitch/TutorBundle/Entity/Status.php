@@ -19,7 +19,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="status")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\StatusRepository")
  */
-class Status implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
+class Status implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    DefaultTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 

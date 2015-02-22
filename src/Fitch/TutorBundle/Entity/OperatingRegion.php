@@ -18,7 +18,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="region")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository")
  */
-class OperatingRegion implements IdentityTraitInterface, TimestampableTraitInterface, NamedTraitInterface, DefaultTraitInterface
+class OperatingRegion implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface,
+    NamedTraitInterface,
+    DefaultTraitInterface
 {
     use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
 

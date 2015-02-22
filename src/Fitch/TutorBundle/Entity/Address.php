@@ -18,7 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="address")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\AddressRepository")
  */
-class Address implements IdentityTraitInterface, TimestampableTraitInterface
+class Address implements
+    IdentityTraitInterface,
+    TimestampableTraitInterface
 {
     use IdentityTrait, TimestampableTrait;
 
