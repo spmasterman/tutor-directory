@@ -96,6 +96,13 @@ SQL;
                 ->leftJoin('tl.language', 'l')
                 ->andWhere('l.id IN '.$definition->getLanguageIDsAsSet())
             ;
+
+            if ($definition->getLanguageOperator() == 'and') {
+                $qb
+                    ->groupBy('t.id')
+                    ->having('COUNT(DISTINCT l.id) = ' . count($definition->getLanguageIDs()))
+                ;
+            }
         }
 
         if ($definition->isFilteredByRate()) {

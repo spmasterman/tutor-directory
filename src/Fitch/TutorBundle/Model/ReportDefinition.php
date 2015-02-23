@@ -56,6 +56,12 @@ class ReportDefinition
     private $languageIds = [];
 
     /**
+     * @var string
+     * @Type("string")
+     */
+    private $languageOperator = 'and';
+
+    /**
      * @var array
      * @Type("array<string>")
      */
@@ -118,10 +124,17 @@ class ReportDefinition
             $this->regionIds[] = $region->getId();
         }
 
-        /** @var Language $language */
-        $language = $form->getData()['language'];
-        if ($language instanceof Language) {
-            $this->languageIds[] = $language->getId();
+        // Language (multiple selection)
+        if (array_key_exists('language', $form->getData()['language'])) {
+            foreach ($form->getData()['language']['language'] as $language) {
+                /* @var Language $language */
+                $this->languageIds[] = $language->getId();
+            }
+        }
+
+        // Language (how to combine multiple selections)
+        if (array_key_exists('combine', $form->getData()['language'])) {
+            $this->languageOperator = $form->getData()['language']['combine'];
         }
 
         // Setup the Rate filter - only if the user has the correct rights...
@@ -254,25 +267,25 @@ class ReportDefinition
     {
         switch ($this->operator) {
             case 'lt' :
-                $op = ' < ';
+                $operator = ' < ';
                 break;
             case 'lte' :
-                $op = ' <= ';
+                $operator = ' <= ';
                 break;
             case 'eq' :
-                $op = ' = ';
+                $operator = ' = ';
                 break;
             case 'gte' :
-                $op = ' >= ';
+                $operator = ' >= ';
                 break;
             case 'gt' :
-                $op = ' > ';
+                $operator = ' > ';
                 break;
             default:
                 throw new \InvalidArgumentException($this->operator.' is not a valid operator');
         }
 
-        return " * ({$tutorCurrencyAlias}.toGBP / {$this->currency->getToGBP()}){$op}{$this->rateAmount}";
+        return " * ({$tutorCurrencyAlias}.toGBP / {$this->currency->getToGBP()}){$operator}{$this->rateAmount}";
     }
 
     /**
@@ -292,7 +305,38 @@ class ReportDefinition
      */
     public function isFilteredByLanguage()
     {
-        return (bool) count($this->languageIds);
+        $languageCount = count($this->languageIds);
+
+        if ($languageCount < 1) {
+            return false;
+        }
+
+        if ($languageCount == 1) {
+            return true;
+        }
+
+        return (bool) $this->languageOperator;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguageOperator()
+    {
+        return $this->languageOperator;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguageIDs()
+    {
+        // Sanitize the IDs before we pass them out
+        array_walk($this->languageIds, function (&$value) {
+            $value = (int) trim($value);
+        });
+
+        return $this->languageIds;
     }
 
     /**

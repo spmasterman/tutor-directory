@@ -89,14 +89,13 @@ class ReportDefinitionType extends AbstractType
                 'placeholder' => 'Filter by Region...',
                 'required' => false,
             ])
-            ->add('language', 'entity', [
-                'class' => 'FitchTutorBundle:Language',
-                'property' => 'name',
-                'placeholder' => 'Filter by Language...',
-                'choices' => $this->languageManager->buildChoices(),
-                'preferred_choices' => $this->languageManager->buildPreferredChoices(),
-                'required' => false,
-            ])
+            ->add('language',
+                new LanguageFilterType($this->translator, $this->languageManager),
+                [
+                    'attr' => ['class' => 'inline-subform stacked-group'],
+                    'label' => 'Language (CTRL selects multiple)',
+                ]
+            )
             ->add(
                 'rate',
                 new RateType($this->translator, $this->currencyManager, $this->rateManager),

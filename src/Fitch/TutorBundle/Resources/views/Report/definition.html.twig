@@ -9,6 +9,8 @@
         </div>
 
         {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
+        {% form_theme form.language.language 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+        {% form_theme form.language.combine 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.rate.rateType 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.rate.operator 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.rate.amount 'FitchFrontEndBundle:Form:tablerow.html.twig' %}

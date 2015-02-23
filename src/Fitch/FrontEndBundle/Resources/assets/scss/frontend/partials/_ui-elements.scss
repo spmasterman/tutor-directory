@@ -302,10 +302,10 @@ fieldset[disabled] .btn-default.active {
 		&:checked + label:before {
 			content: '\2022';
 			color: #99a1a7;
-			font-size: 19px;
+			font-size: 25px;
 			text-align: center;
-			line-height: 15px;
-		} 
+			line-height: 17px;
+		}
 	}
 
 	&.simple-radio-inline {
