@@ -1,5 +1,18 @@
 <span class="data-name">
-    &nbsp;
+    <span class="data-tag" {% if not prototype %}{% if tutorLanguage.getProficiency %}style="background-color: {{ tutorLanguage.getProficiency.getColor }}"{% endif %}{% endif %}>&nbsp;</span>
+    <a href="#" id="tutor-language-proficiency{% if prototype %}0{% else %}{{ tutorLanguage.getId }}{% endif %}" class="inline-tutor-language-proficiency"
+            {% if isAdmin %}
+                data-type="typeaheadjs"
+            {% else %}
+                data-source="{{ path('active_proficiencies') }}"
+                data-type="select"
+                data-value="{% if prototype %}0{% else %}{% if tutorLanguage.getProficiency %}{{ tutorLanguage.getProficiency.getId }}{% endif %}{% endif %}"
+            {% endif %}
+       data-pk="{% if prototype %}{{ tutorId }}{% else %}{{ tutor.getId }}{% endif %}"
+       data-tutor-language-pk="{% if prototype %}0{% else %}{{ tutorLanguage.getId }}{% endif %}"
+       data-url="{{ path('tutor_language_ajax_update')}}"
+       data-title="Proficiency of Language"
+            >{% if not prototype %}{% if tutorLanguage.getProficiency %}{{ tutorLanguage.getProficiency.getName }}{% endif %}{% endif %}</a>
 </span>
 <span class="data-value">
     <a href="#" id="tutor-language{% if prototype %}0{% else %}{{ tutorLanguage.getId }}{% endif %}" class="inline-tutor-language"

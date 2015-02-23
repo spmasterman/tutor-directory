@@ -2,12 +2,16 @@ Fitch\TutorBundle\Entity\Proficiency:
     proficiency-unspecified:
         name: <unspecified>
         default: true
+        color: '#cccccc'
     proficiency-native:
         name: Native
         default: false
+        color: '#c6da88'
     proficiency-fluent:
         name: Fluent
         default: false
+        color: '#a5da88'
     proficiency-spoken:
         name: Spoken Only
         default: false
+        color: '#89da90'

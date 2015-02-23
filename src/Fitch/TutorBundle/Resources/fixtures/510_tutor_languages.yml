@@ -3,3 +3,4 @@ Fitch\TutorBundle\Entity\TutorLanguage:
         tutor: @tutor-*
         language: @language_active-*
         note: 20%? <sentence()>
+        proficiency: @proficiency-*

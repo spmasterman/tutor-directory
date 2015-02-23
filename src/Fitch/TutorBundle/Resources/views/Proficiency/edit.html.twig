@@ -22,3 +22,12 @@
         {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@FitchTutorBundle/Resources/public/js/proficiency.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

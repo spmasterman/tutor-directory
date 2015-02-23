@@ -32,4 +32,31 @@ class Proficiency implements
      * @ORM\Column(name="name", type="string", length=64)
      */
     protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=16)
+     */
+    protected $color = '#cccccc';
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     *
+     * @return $this
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
 }

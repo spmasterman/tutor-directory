@@ -43,11 +43,29 @@ class TutorLanguageManager extends BaseModelManager
      *
      * Set its default values
      *
+     * @param ProficiencyManager $proficiencyManager
+     *
      * @return TutorLanguage
      */
-    public function createTutorLanguage()
+    public function createTutorLanguage(ProficiencyManager $proficiencyManager)
     {
-        return parent::createEntity();
+        /** @var TutorLanguage $tutorLanguage */
+        $tutorLanguage = parent::createEntity();
+        $this->setDefaultProficiency($tutorLanguage, $proficiencyManager);
+
+        return $tutorLanguage;
+    }
+
+    /**
+     * @param TutorLanguage      $tutorLanguage
+     * @param ProficiencyManager $proficiencyManager
+     */
+    public function setDefaultProficiency(TutorLanguage $tutorLanguage, ProficiencyManager $proficiencyManager)
+    {
+        $proficiency = $proficiencyManager->findDefaultProficiency();
+        if ($proficiency) {
+            $tutorLanguage->setProficiency($proficiency);
+        }
     }
 
     /**

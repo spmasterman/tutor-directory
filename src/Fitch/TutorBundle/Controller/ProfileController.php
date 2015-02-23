@@ -18,6 +18,7 @@ use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\NoteManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
+use Fitch\TutorBundle\Model\ProficiencyManager;
 use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
@@ -235,6 +236,21 @@ class ProfileController extends Controller
     }
 
     /**
+     * Returns all active languages as a JSON Array - suitable for use in "select"
+     * style lists, with a preferred section.
+     *
+     * @Route("/active/proficiency", name="active_proficiencies")
+     *
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function activeProficienciesAction()
+    {
+        return new JsonResponse($this->getProficiencyManager()->buildGroupedChoices());
+    }
+
+    /**
      * Returns all active competencyTypes as a JSON Array.
      *
      * @Route("/active/competency/type", name="active_competency_type")
@@ -296,6 +312,7 @@ class ProfileController extends Controller
             'allCompetencyTypes' => array_map($extractName, $this->getCompetencyTypeManager()->findAll()),
             'allCompetencyLevels' => array_map($extractName, $this->getCompetencyLevelManager()->findAll()),
             'allLanguages' => array_map($extractName, $this->getLanguageManager()->findAll()),
+            'allProficiencies' => array_map($extractName, $this->getProficiencyManager()->findAll()),
             'languagePrototype' => $this->renderView("FitchTutorBundle:Profile:language_row.html.twig", $options),
             'competencyPrototype' => $this->renderView("FitchTutorBundle:Profile:competency_row.html.twig", $options),
             'addressPrototype' => $this->renderView("FitchTutorBundle:Profile:address_row.html.twig", $options),
@@ -416,5 +433,13 @@ class ProfileController extends Controller
     private function getTutorTypeManager()
     {
         return $this->get('fitch.manager.tutor_type');
+    }
+
+    /**
+     * @return ProficiencyManager
+     */
+    private function getProficiencyManager()
+    {
+        return $this->get('fitch.manager.proficiency');
     }
 }

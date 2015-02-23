@@ -14,6 +14,7 @@
                 <tr>
                     <th>{% trans %}proficiency.column.id{% endtrans %}</th>
                     <th>{% trans %}proficiency.column.name{% endtrans %}</th>
+                    <th>{% trans %}proficiency.column.color{% endtrans %}</th>
                     <th>{% trans %}proficiency.column.actions{% endtrans %}</th>
                 </tr>
                 </thead>
@@ -22,6 +23,7 @@
                     <tr>
                         <td>{{ proficiency.id }}{% if proficiency.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
                         <td><a href="{{ path('proficiency_show', { 'id': proficiency.id }) }}">{{ proficiency.name }}</a></td>
+                        <td><span style="background-color: {{ proficiency.getColor }}; padding:3px;">{{ proficiency.getColor }}</span></td>
                         <td>
                             <a href="{{ path('proficiency_show', { 'id': proficiency.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('proficiency_edit', { 'id': proficiency.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

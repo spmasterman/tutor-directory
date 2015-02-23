@@ -8,6 +8,7 @@ var TutorProfileLanguage = (function ($) {
         logToConsole = false,
         prototypeRow,
         allLanguages,
+        allProficiencies,
         container = $('.languages-container')
     ;
 
@@ -16,14 +17,21 @@ var TutorProfileLanguage = (function ($) {
      *
      * @param {string} prototypeRowFromServer
      * @param {Array} allLanguagesFromServer
+     * @param {Array} allProficienciesFromServer
      */
-    var init = function(prototypeRowFromServer, allLanguagesFromServer) {
+    var init = function(prototypeRowFromServer, allLanguagesFromServer, allProficienciesFromServer) {
         prototypeRow = prototypeRowFromServer;
         allLanguages = allLanguagesFromServer;
+        allProficiencies = allProficienciesFromServer;
 
         $('.inline-tutor-language').each(function() {
             $(this).editable(getTutorLanguageOptions($(this)));
         });
+
+        $('.inline-tutor-language-proficiency').each(function() {
+            $(this).editable(getTutorLanguageProficiencyOptions($(this)));
+        });
+
         $('.inline-tutor-language-note').each(function() {
             $(this).editable(getTutorLanguageNoteOptions($(this)));
         });
@@ -43,6 +51,9 @@ var TutorProfileLanguage = (function ($) {
             languageContainer.append(prototypeRow);
             languageContainer.find('#tutor-language0').each(function() {
                 $(this).editable(getTutorLanguageOptions($(this)));
+            });
+            languageContainer.find('#tutor-language-proficiency0').each(function() {
+                $(this).editable(getTutorLanguageProficiencyOptions($(this)));
             });
             languageContainer.find('#tutor-language-note0').each(function() {
                 $(this).editable(getTutorLanguageNoteOptions($(this)));
@@ -80,9 +91,15 @@ var TutorProfileLanguage = (function ($) {
     function reloadTutorLanguageRow(row, response) {
         row.html(response.renderedTutorLanguageRow);
         row.attr('data-tutor-language-pk', response.id);
+
         row.find('.inline-tutor-language').each(function() {
             $(this).editable(getTutorLanguageOptions($(this)));
         });
+
+        row.find('.inline-tutor-language-proficiency').each(function() {
+            $(this).editable(getTutorLanguageProficiencyOptions($(this)));
+        });
+
         row.find('.inline-tutor-language-note').each(function() {
             $(this).editable(getTutorLanguageNoteOptions($(this)));
         });
@@ -103,6 +120,33 @@ var TutorProfileLanguage = (function ($) {
             typeahead: {
                 name: 'Language',
                 local: allLanguages
+            },
+            validate: function (value) {
+                if ($.trim(value) == '') {
+                    return 'This field is required';
+                }
+            },
+            success: function (response) {
+                reloadTutorLanguageRow(host.closest('.data-row'), response)
+            }
+        }
+    }
+
+    /**
+     * Options for the x-editable Language
+     *
+     * @param {jQuery} host
+     * @returns {{params: Function, typeahead: {name: string, local: *}, validate: Function, success: Function}}
+     */
+    function getTutorLanguageProficiencyOptions(host) {
+        return {
+            params: function (params) {
+                params.tutorLanguagePk = host.attr('data-tutor-language-pk');
+                return params;
+            },
+            typeahead: {
+                name: 'Proficiency',
+                local: allProficiencies
             },
             validate: function (value) {
                 if ($.trim(value) == '') {

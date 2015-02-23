@@ -37,6 +37,14 @@ class TutorLanguage implements
     protected $language;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Proficiency", inversedBy="tutorLanguages")
+     * @ORM\JoinColumn(name="proficiency_id", referencedColumnName="id")
+     *
+     * @var Proficiency
+     */
+    protected $proficiency;
+
+    /**
      * @ORM\Column(name="note", type="text", nullable=true)
      *
      * @var string;
@@ -80,6 +88,24 @@ class TutorLanguage implements
     {
         $this->language = $language;
 
+        return $this;
+    }
+
+    /**
+     * @return Proficiency
+     */
+    public function getProficiency()
+    {
+        return $this->proficiency;
+    }
+
+    /**
+     * @param Proficiency $proficiency
+     * @return $this
+     */
+    public function setProficiency($proficiency)
+    {
+        $this->proficiency = $proficiency;
         return $this;
     }
 

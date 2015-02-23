@@ -38,6 +38,42 @@ class ProficiencyManager extends BaseModelManager
     }
 
     /**
+     * @param $proficiencyName
+     *
+     * @return Proficiency
+     */
+    public function findOrCreate($proficiencyName)
+    {
+        $proficiency = $this->getRepo()->findOneBy(['name' => $proficiencyName]);
+
+        if (!$proficiency) {
+            $proficiency = $this->createProficiency();
+            $proficiency->setName($proficiencyName);
+            $this->saveProficiency($proficiency);
+        }
+
+        return $proficiency;
+    }
+
+    /**
+     * Returns all active competencyLevels as a Array - suitable for use in "select"
+     * style lists, with a grouped sections.
+     *
+     * (there's no obvious grouping, so its a flat list for Proficiency)
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [];
+        foreach ($this->findAll() as $proficiency) {
+            $choices[$proficiency->getId()] = $proficiency->getName();
+        }
+
+        return $choices;
+    }
+
+    /**
      * @param Proficiency $proficiency
      * @param bool        $withFlush
      */

@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Controller;
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Model\LanguageManager;
+use Fitch\TutorBundle\Model\ProficiencyManager;
 use Fitch\TutorBundle\Model\TutorLanguageManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -57,11 +58,19 @@ class TutorLanguageController extends Controller
             if ($tutorLanguageId) {
                 $tutorLanguage = $this->getTutorLanguageManager()->findById($tutorLanguageId);
             } else {
-                $tutorLanguage = $this->getTutorLanguageManager()->createTutorLanguage();
+                $tutorLanguage = $this->getTutorLanguageManager()->createTutorLanguage($this->getProficiencyManager());
                 $tutor->addTutorLanguage($tutorLanguage);
             }
 
             switch ($name) {
+                case 'tutor-language-proficiency':
+                    if ((string) (int) $value == $value) {
+                        // if its an integer
+                        $tutorLanguage->setProficiency($this->getProficiencyManager()->findById((int) $value));
+                    } else {
+                        $tutorLanguage->setProficiency($this->getProficiencyManager()->findOrCreate($value));
+                    }
+                    break;
                 case 'tutor-language':
                     if ((string) (int) $value == $value) {
                         // if its an integer
@@ -156,5 +165,13 @@ class TutorLanguageController extends Controller
     private function getTutorManager()
     {
         return $this->get('fitch.manager.tutor');
+    }
+
+    /**
+     * @return ProficiencyManager
+     */
+    private function getProficiencyManager()
+    {
+        return $this->get('fitch.manager.proficiency');
     }
 }

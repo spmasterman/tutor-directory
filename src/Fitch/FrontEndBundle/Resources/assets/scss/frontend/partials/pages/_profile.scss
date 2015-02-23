@@ -150,32 +150,12 @@
 
 /** Competencies Tab */
 .competency {
-  .competency-info {
-    padding: 10px 0;
+  .competency-container {
+    padding: 10px 30px ;
   }
 
-  .competency-right {
-    border-left: 1px solid $line-color;
-    padding-left: 30px;
-
-    @include max-screen($break-medium) {
-      border-left: none;
-      padding-left: 0;
-    }
-
-    .data-name {
-      width: 10px;
-    }
-
-    .data-value {
-      width: 250px;
-    }
-  }
-
-  .competency-left {
-    .data-value {
-      width: 300px;
-    }
+  .languages-container {
+    padding: 10px 30px;
   }
 
   .data-tag {
@@ -183,7 +163,11 @@
   }
 
   .data-name {
-    color:#555555;
+
+  }
+
+  .data-value {
+    width: 400px;
   }
 
   .data-action {
@@ -197,7 +181,10 @@
     }
 
     .empty-note {
-      color: #999999;
+      color: #cccccc;
+      &:hover {
+        color: #999999;
+      }
       font-style: italic;
     }
   }

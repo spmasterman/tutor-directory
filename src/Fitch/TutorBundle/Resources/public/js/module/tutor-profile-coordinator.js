@@ -21,6 +21,7 @@ var TutorProfileCoordinator = (function ($) {
      * @param {string} serverData.notePrototype
      * @param {string} serverData.ratePrototype
      * @param {string[]} serverData.allLanguages
+     * @param {string[]} serverData.allProficiencies
      * @param {string[]} serverData.allCompetencyTypes
      * @param {string[]} serverData.allCompetencyLevels
      * @param {Array} serverData.groupedCountries
@@ -28,7 +29,8 @@ var TutorProfileCoordinator = (function ($) {
     var init = function(tutorId, serverData) {
         new TutorProfileLanguage(
             serverData.languagePrototype,
-            serverData.allLanguages
+            serverData.allLanguages,
+            serverData.allProficiencies
         );
 
         new TutorProfileCompetency(

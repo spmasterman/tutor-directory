@@ -192,6 +192,7 @@ proficiency:
         id: ID
         name: Name
         default: Default
+        color: Color
         actions: Actions
     default_message:  = Default language proficiency assigned to new Tutor Languages
 

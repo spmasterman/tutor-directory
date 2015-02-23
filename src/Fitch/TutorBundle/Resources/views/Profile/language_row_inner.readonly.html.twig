@@ -1,5 +1,6 @@
 <span class="data-name">
-    &nbsp;
+    <span class="data-tag" {% if tutorLanguage.getProficiency %}style="background-color: {{ tutorLanguage.getProficiency.getColor }}"{% endif %}>&nbsp;</span>
+    {% if tutorLanguage.getProficiency %}{{ tutorLanguage.getProficiency.getName }}{% endif %}
 </span>
 <span class="data-value">
 {% if tutorLanguage.getLanguage %}{{ tutorLanguage.getLanguage.getName }}{% endif %}
