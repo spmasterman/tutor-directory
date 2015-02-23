@@ -9,6 +9,7 @@ use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\AddressManager;
+use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CountryManager;
@@ -232,6 +233,8 @@ class ProfileController extends Controller
      */
     public function activeLanguagesAction()
     {
+        $x = new JsonResponse($this->getLanguageManager()->buildGroupedChoices());
+
         return new JsonResponse($this->getLanguageManager()->buildGroupedChoices());
     }
 
@@ -261,7 +264,9 @@ class ProfileController extends Controller
      */
     public function activeCompetencyTypesAction()
     {
-        return new JsonResponse($this->getCompetencyTypeManager()->buildGroupedChoices());
+        $x = new JsonResponse($this->getCompetencyTypeManager()->buildGroupedChoices($this->getCategoryManager()));
+
+        return new JsonResponse($this->getCompetencyTypeManager()->buildGroupedChoices($this->getCategoryManager()));
     }
 
     /**
@@ -442,4 +447,13 @@ class ProfileController extends Controller
     {
         return $this->get('fitch.manager.proficiency');
     }
+
+    /**
+     * @return CategoryManager
+     */
+    private function getCategoryManager()
+    {
+        return $this->get('fitch.manager.category');
+    }
+
 }

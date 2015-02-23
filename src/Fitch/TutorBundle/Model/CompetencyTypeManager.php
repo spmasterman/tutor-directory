@@ -30,6 +30,17 @@ class CompetencyTypeManager extends BaseModelManager
     }
 
     /**
+     * @return CompetencyType[]
+     */
+    public function findAllSorted()
+    {
+        return $this->getRepo()->findBy([],  [
+            'category' => 'ASC',
+            'name' => 'ASC',
+        ]);
+    }
+
+    /**
      * @return array
      */
     public function buildChoices()
@@ -41,39 +52,34 @@ class CompetencyTypeManager extends BaseModelManager
      * Returns all active competencyTypes as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
      *
+     * @param CategoryManager $categoryManager
+     *
      * @return array
      */
-    public function buildGroupedChoices()
+    public function buildGroupedChoices(CategoryManager $categoryManager)
     {
-        // FOR NOW - THIS JUST RETURNS K=>V
-        // BUT WHEN THE SKILL CATEGORY COMES IN THIS WILL BE USED
         $choices = [];
-        foreach ($this->findAll() as $competencyType) {
-            $choices[$competencyType->getId()] = $competencyType->getName();
+        foreach ($categoryManager->findAll() as $category) {
+            $choices[$category->getId()] = ['text' => $category->__toString(), 'children' => []];
         }
 
-// Something like this but not "preferred" - SkillCategory instead...
-//        $choices = [
-//            [
-//                'text' => 'Preferred',
-//                'children' => []
-//            ],
-//            [
-//                'text' => 'Other',
-//                'children' => []
-//            ]
-//        ];
-//
-//        foreach($this->findAllSorted() as $language) {
-//            if ($language->isActive()) {
-//                $key = $language->isPreferred() ? 0 : 1;
-//                $choices[$key]['children'][] = [
-//                    'value' => $language->getId(),
-//                    'text' => $language->getName(),
-//                ];
-//            }
-//        }
-        return $choices;
+        foreach ($this->findAllSorted() as $competencyType) {
+            $key = $competencyType->getCategory()->getId();
+            $choices[$key]['children'][] = [
+                'value' => $competencyType->getId(),
+                'text' => $competencyType->getName(),
+            ];
+        }
+
+        // remove any empty categories
+        foreach ($choices as $key => $choice) {
+            if (count($choice['children']) == 0) {
+                unset($choices[$key]);
+            }
+        }
+
+        // don't return the k=>v array, it doesnt encode to JSON in the same way - we just want the values
+        return array_values($choices);
     }
 
     /**
