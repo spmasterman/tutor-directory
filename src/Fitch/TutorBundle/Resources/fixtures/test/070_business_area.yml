@@ -1,0 +1,6 @@
+Fitch\TutorBundle\Entity\BusinessArea:
+    area-1:
+        name: Test Business Area 1
+        code: ABC
+        prependToCategoryName: false
+        default: true

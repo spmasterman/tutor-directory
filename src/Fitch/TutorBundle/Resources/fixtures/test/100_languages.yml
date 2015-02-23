@@ -1,0 +1,16 @@
+Fitch\TutorBundle\Entity\Language:
+    language-1:
+        name: Test Language One
+        threeLetterCode: ONE
+        preferred: true
+        active: true
+    language-2:
+        name: Test Language Two
+        threeLetterCode: TWO
+        preferred: true
+        active: true
+    language-3:
+        name: Test Language Three
+        threeLetterCode: THR
+        preferred: true
+        active: true

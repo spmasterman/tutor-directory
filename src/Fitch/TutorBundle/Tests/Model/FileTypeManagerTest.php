@@ -37,6 +37,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
             ->setPrivate(false)
             ->setSuitableForProfilePicture(false)
             ->setDefault(false)
+            ->setDisplayWithBio(false)
         ;
         $this->getModelManager()->saveFileType($newEntity);
 

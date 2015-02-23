@@ -8,7 +8,7 @@
          bootstrap="../app/bootstrap.test.php"
 >
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Tutor Bundle Test Suite">
             <directory>../src/*/*Bundle/Tests</directory>
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
         </testsuite>

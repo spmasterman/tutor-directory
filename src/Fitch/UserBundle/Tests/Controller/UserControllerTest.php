@@ -39,7 +39,7 @@ class UserControllerTest extends WebTestCase
             'fitch_userbundle_user_new[fullName]'  => 'Test User Created',
             'fitch_userbundle_user_new[email]'  => 'test@example.com',
             'fitch_userbundle_user_new[plainPassword]'  => 'test',
-            'fitch_userbundle_user_new[roles]'  => ['ROLE_EDITOR'],
+            'fitch_userbundle_user_new[roles]'  => ['ROLE_SENSITIVE_DATA'],
             'fitch_userbundle_user_new[enabled]'  => true,
         ));
 

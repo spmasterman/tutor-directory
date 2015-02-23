@@ -1,0 +1,5 @@
+Fitch\TutorBundle\Entity\Category:
+  category-1:
+    name: Test Category One
+    businessArea: @area-1
+    default: true

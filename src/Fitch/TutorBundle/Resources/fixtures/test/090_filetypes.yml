@@ -4,13 +4,16 @@ Fitch\TutorBundle\Entity\FileType:
         default: true
         suitableForProfilePicture: false
         private: true
+        displayWithBio: false
     filetype-2:
         name: Test File Type Two
         default: false
         suitableForProfilePicture: true
         private: false
+        displayWithBio: false
     filetype-3:
         name: Test File Type Three
         default: false
         suitableForProfilePicture: false
         private: true
+        displayWithBio: false

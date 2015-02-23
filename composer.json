@@ -44,8 +44,7 @@
         "tecnick.com/tcpdf": "dev-master"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3",
-        "phpunit/phpunit": "4.3.*"
+        "sensio/generator-bundle": "~2.3"
     },
     "scripts": {
         "post-root-package-install": [

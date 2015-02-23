@@ -4,18 +4,22 @@ Fitch\TutorBundle\Entity\Currency:
     preferred: true
     name: Test Currency One
     active: true
+    toGBP: 1.00
   currency-2:
     threeDigitCode: TWO
     preferred: false
     name: Test Currency Two
     active: true
+    toGBP: 1.00
   currency-3:
     threeDigitCode: THR
     preferred: false
     name: Test Currency Three
     active: false
+    toGBP: 1.00
   currency-4:
     threeDigitCode: FOR
     preferred: true
     name: Test Currency Four
     active: false
+    toGBP: 1.00
