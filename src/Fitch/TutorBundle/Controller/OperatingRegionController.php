@@ -285,29 +285,6 @@ class OperatingRegionController extends Controller
     }
 
     /**
-     * Returns the regions as a JSON Array.
-     *
-     * @Route("/all", name="all_regions")
-     *
-     * @Method("GET")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function allAction()
-    {
-        $out = [];
-        foreach ($this->getOperatingRegionManager()->findAll() as $region) {
-            $out[] = [
-                'value' => $region->getId(),
-                'text' => $region->getName(),
-            ];
-        }
-
-        return new JsonResponse($out);
-    }
-
-    /**
      * @return OperatingRegionManager
      */
     private function getOperatingRegionManager()

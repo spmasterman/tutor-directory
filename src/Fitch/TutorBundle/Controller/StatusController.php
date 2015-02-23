@@ -282,29 +282,6 @@ class StatusController extends Controller
     }
 
     /**
-     * Returns the statuses as a JSON Array.
-     *
-     * @Route("/all", name="all_status")
-     *
-     * @Method("GET")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function allAction()
-    {
-        $out = [];
-        foreach ($this->getStatusManager()->findAll() as $status) {
-            $out[] = [
-                'value' => $status->getId(),
-                'text' => $status->getName(),
-            ];
-        }
-
-        return new JsonResponse($out);
-    }
-
-    /**
      * @return StatusManager
      */
     private function getStatusManager()

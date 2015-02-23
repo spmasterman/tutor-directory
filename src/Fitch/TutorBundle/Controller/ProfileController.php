@@ -233,8 +233,6 @@ class ProfileController extends Controller
      */
     public function activeLanguagesAction()
     {
-        $x = new JsonResponse($this->getLanguageManager()->buildGroupedChoices());
-
         return new JsonResponse($this->getLanguageManager()->buildGroupedChoices());
     }
 
@@ -264,8 +262,6 @@ class ProfileController extends Controller
      */
     public function activeCompetencyTypesAction()
     {
-        $x = new JsonResponse($this->getCompetencyTypeManager()->buildGroupedChoices($this->getCategoryManager()));
-
         return new JsonResponse($this->getCompetencyTypeManager()->buildGroupedChoices($this->getCategoryManager()));
     }
 
@@ -281,6 +277,51 @@ class ProfileController extends Controller
     public function activeCompetencyLevelsAction()
     {
         return new JsonResponse($this->getCompetencyLevelManager()->buildGroupedChoices());
+    }
+
+
+    /**
+     * Returns the regions as a JSON Array.
+     *
+     * @Route("/active/region", name="all_regions")
+     *
+     * @Method("GET")
+     * @Template()
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function activeOperatingRegionAction()
+    {
+        return new JsonResponse($this->getOperatingRegionManager()->buildGroupedChoices());
+    }
+
+
+    /**
+     * Returns the tutor_types as a JSON Array.
+     *
+     * @Route("/active/tutor_type", name="all_tutor_types")
+     *
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function activeTutorTypeAction()
+    {
+        return new JsonResponse($this->getTutorTypeManager()->buildGroupedChoices());
+    }
+
+    /**
+     * Returns the statuses as a JSON Array.
+     *
+     * @Route("/active/status", name="all_status")
+     *
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function allAction()
+    {
+        return new JsonResponse($this->getStatusManager()->buildGroupedChoices());
     }
 
     /**

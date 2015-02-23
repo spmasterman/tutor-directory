@@ -30,6 +30,24 @@ class StatusManager extends BaseModelManager
     }
 
     /**
+     * Returns all active competencyLevels as a Array - suitable for use in "select"
+     * style lists, with a grouped sections.
+     *
+     * (there's no obvious grouping, so its a flat list for Status)
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [];
+        foreach ($this->findAll() as $status) {
+            $choices[$status->getId()] = $status->getName();
+        }
+
+        return $choices;
+    }
+
+    /**
      * @return null|Status
      */
     public function findDefaultStatus()

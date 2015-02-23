@@ -38,6 +38,24 @@ class TutorTypeManager extends BaseModelManager
     }
 
     /**
+     * Returns all active tutorTypes as a Array - suitable for use in "select"
+     * style lists, with a grouped sections.
+     *
+     * (there's no obvious grouping, so its a flat list for TutorType)
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [];
+        foreach ($this->findAll() as $tutorType) {
+            $choices[$tutorType->getId()] = $tutorType->getName();
+        }
+
+        return $choices;
+    }
+
+    /**
      * @param TutorType $tutortype
      * @param bool      $withFlush
      */

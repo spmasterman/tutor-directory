@@ -30,6 +30,24 @@ class OperatingRegionManager extends BaseModelManager
     }
 
     /**
+     * Returns all active competencyLevels as a Array - suitable for use in "select"
+     * style lists, with a grouped sections.
+     *
+     * (there's no obvious grouping, so its a flat list for OperatingRegion)
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        $choices = [];
+        foreach ($this->findAll() as $region) {
+            $choices[$region->getId()] = $region->getName();
+        }
+
+        return $choices;
+    }
+
+    /**
      * @return null|OperatingRegion
      */
     public function findDefaultOperatingRegion()

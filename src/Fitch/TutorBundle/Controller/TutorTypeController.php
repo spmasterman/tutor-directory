@@ -282,29 +282,6 @@ class TutorTypeController extends Controller
     }
 
     /**
-     * Returns the tutor_types as a JSON Array.
-     *
-     * @Route("/all", name="all_tutor_types")
-     *
-     * @Method("GET")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function allAction()
-    {
-        $out = [];
-        foreach ($this->getTutorTypeManager()->findAll() as $tutorType) {
-            $out[] = [
-                'value' => $tutorType->getId(),
-                'text' => $tutorType->getName(),
-            ];
-        }
-
-        return new JsonResponse($out);
-    }
-
-    /**
      * @return TutorTypeManager
      */
     private function getTutorTypeManager()
