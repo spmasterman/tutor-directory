@@ -53,29 +53,13 @@ class CountryManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [
-            [
-                'text' => 'Preferred',
-                'children' => [],
-            ],
-            [
-                'text' => 'Other',
-                'children' => [],
-            ],
-        ];
-
-        foreach ($this->findAllSorted() as $country) {
-            if ($country->isActive()) {
-                $key = $country->isPreferred() ? 0 : 1;
-                $choices[$key]['children'][] = [
-                    'value' => $country->getId(),
-                    'text' => $country->getName(),
-                    'dialingCode' => $country->getDialingCode(),
-                ];
-            }
-        }
-
-        return $choices;
+        return parent::buildActiveAndPreferredChoices(function (Country $country) {
+            return [
+                'value' => $country->getId(),
+                'text' => $country->getName(),
+                'dialingCode' => $country->getDialingCode(),
+            ];
+        });
     }
 
     /**

@@ -4,6 +4,8 @@ namespace Fitch\CommonBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredTrait;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
@@ -86,17 +88,58 @@ class BaseModelManager
     }
 
     /**
+     * @return array
+     */
+    public function findAllSorted()
+    {
+        return $this->findAll();
+    }
+
+    /**
      * Returns all items as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
      *
+     * @param callable $transformFunction
      * @return array
      */
-    protected function buildFlatChoices()
+    protected function buildFlatChoices($transformFunction)
     {
         $choices = [];
         foreach ($this->findAll() as $entity) {
-            if ($entity instanceof IdentityTraitInterface && $entity instanceof NamedTraitInterface) {
-                $choices[$entity->getId()] = $entity->getName();
+            if ($entity instanceof IdentityTraitInterface) {
+                $choices[$entity->getId()] = $transformFunction($entity);
+            }
+        }
+
+        return $choices;
+    }
+
+    /**
+     * Returns all active entities as a Array - suitable for use in "select"
+     * style lists, with a preferred section.
+     *
+     * @param callable $transformFunction
+     * @return array
+     */
+    protected function buildActiveAndPreferredChoices($transformFunction)
+    {
+        $choices = [
+            [
+                'text' => 'Preferred',
+                'children' => [],
+            ],
+            [
+                'text' => 'Other',
+                'children' => [],
+            ],
+        ];
+
+        foreach ($this->findAllSorted() as $entity) {
+            if ($entity instanceof ActiveAndPreferredTraitInterface) {
+                if ($entity->isActive()) {
+                    $key = $entity->isPreferred() ? 0 : 1;
+                    $choices[$key]['children'][] = $transformFunction($entity);
+                }
             }
         }
 

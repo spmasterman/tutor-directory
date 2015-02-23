@@ -15,6 +15,7 @@ use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CountryManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\FileTypeManager;
 use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\NoteManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
@@ -319,10 +320,26 @@ class ProfileController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function allAction()
+    public function activeStatusAction()
     {
         return new JsonResponse($this->getStatusManager()->buildGroupedChoices());
     }
+
+
+    /**
+     * Returns the countries as a JSON Array.
+     *
+     * @Route("/active/file_type", name="all_file_types", options={"expose"=true})
+     *
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function activeFileTypeAction()
+    {
+        return new JsonResponse($this->getFileTypeManager()->buildGroupedChoices());
+    }
+
 
     /**
      * Returns a JSON object that contains all the lookup values required to drive the Profile page
@@ -497,4 +514,11 @@ class ProfileController extends Controller
         return $this->get('fitch.manager.category');
     }
 
+    /**
+     * @return FileTypeManager
+     */
+    private function getFileTypeManager()
+    {
+        return $this->get('fitch.manager.file_type');
+    }
 }

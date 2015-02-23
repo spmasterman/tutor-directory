@@ -87,28 +87,12 @@ class LanguageManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [
-            [
-                'text' => 'Preferred',
-                'children' => [],
-            ],
-            [
-                'text' => 'Other',
-                'children' => [],
-            ],
-        ];
-
-        foreach ($this->findAllSorted() as $language) {
-            if ($language->isActive()) {
-                $key = $language->isPreferred() ? 0 : 1;
-                $choices[$key]['children'][] = [
-                    'value' => $language->getId(),
-                    'text' => $language->getName(),
-                ];
-            }
-        }
-
-        return $choices;
+        return parent::buildActiveAndPreferredChoices(function (Language $language) {
+            return [
+                'value' => $language->getId(),
+                'text' => $language->getName(),
+            ];
+        });
     }
 
     /**

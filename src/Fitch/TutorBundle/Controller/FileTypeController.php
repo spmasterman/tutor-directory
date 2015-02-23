@@ -282,29 +282,6 @@ class FileTypeController extends Controller
     }
 
     /**
-     * Returns the countries as a JSON Array.
-     *
-     * @Route("/all", name="all_file_types", options={"expose"=true})
-     *
-     * @Method("GET")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function allAction()
-    {
-        $out = [];
-        foreach ($this->getFileTypeManager()->findAll() as $fileType) {
-            $out[] = [
-                'value' => $fileType->getId(),
-                'text' => (string) $fileType,
-            ];
-        }
-
-        return new JsonResponse($out);
-    }
-
-    /**
      * @return FileTypeManager
      */
     private function getFileTypeManager()

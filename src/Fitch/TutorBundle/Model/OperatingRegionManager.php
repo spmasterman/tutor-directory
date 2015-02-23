@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository;
@@ -39,7 +40,9 @@ class OperatingRegionManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        return parent::buildFlatChoices();
+        return parent::buildFlatChoices(function(NamedTraitInterface $entity) {
+            return $entity->getName();
+        });
     }
 
     /**
