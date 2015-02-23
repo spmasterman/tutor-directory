@@ -45,4 +45,8 @@
 filestore/*
 
 app/sqlite.db.cache
-app/phpunit.xml
+build/api
+build/coverage
+build/logs
+build/pdepend
+build/phpdox

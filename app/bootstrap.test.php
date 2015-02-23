@@ -7,21 +7,22 @@ require_once __DIR__ . '/AppKernel.php';
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 
+
 $kernel = new AppKernel('test', true); // create a "test" kernel
 $kernel->boot();
+
 
 $application = new Application($kernel);
 $application->setAutoExit(false);
 
 deleteDatabase();
 executeCommand($application, "doctrine:schema:create");
-executeCommand($application, "doctrine:fixtures:load");
-
+executeCommand($application, "doctrine:fixtures:load", ["--append" => true]);
 backupDatabase();
 
 function executeCommand($application, $command, Array $options = array()) {
     $options["--env"] = "test";
-    $options["--quiet"] = true;
+    $options["--quiet"] = false;
     $options = array_merge($options, array('command' => $command));
 
     $application->run(new ArrayInput($options));
