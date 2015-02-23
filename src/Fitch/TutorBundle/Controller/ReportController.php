@@ -5,6 +5,8 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Form\Type\ReportDefinitionType;
 use Fitch\TutorBundle\Form\Type\ReportType;
+use Fitch\TutorBundle\Model\BusinessAreaManager;
+use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
@@ -146,6 +148,8 @@ class ReportController extends Controller
                 $this->get('translator'),
                 $this->getCurrencyManager(),
                 $this->getRateManager(),
+                $this->getCategoryManager(),
+                $this->getBusinessAreaManager(),
                 $this->getCompetencyTypeManager(),
                 $this->getCompetencyLevelManager(),
                 $this->getLanguageManager()
@@ -530,6 +534,22 @@ class ReportController extends Controller
     private function getLanguageManager()
     {
         return $this->get('fitch.manager.language');
+    }
+
+    /**
+     * @return CategoryManager
+     */
+    private function getCategoryManager()
+    {
+        return $this->get('fitch.manager.category');
+    }
+
+    /**
+     * @return BusinessAreaManager
+     */
+    private function getBusinessAreaManager()
+    {
+        return $this->get('fitch.manager.business_area');
     }
 
     /**

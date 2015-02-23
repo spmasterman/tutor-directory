@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class RateType extends AbstractType
+class RateFilterType extends AbstractType
 {
     /** @var  Translator */
     protected $translator;
@@ -96,20 +96,10 @@ class RateType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        //        $resolver->setDefaults(array(
-//            'data_class' => 'Fitch\TutorBundle\Entity\Tutor'
-//        ));
-    }
-
-    /**
      * @return string
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_rate';
+        return 'fitch_tutorbundle_rate_filter';
     }
 }

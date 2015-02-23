@@ -54,6 +54,13 @@ class BusinessArea implements
     protected $prependToCategoryName;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_as_code", type="boolean")
+     */
+    protected $displayAsCode;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=128)
@@ -67,7 +74,11 @@ class BusinessArea implements
 
     public function __toString()
     {
-        return ($this->code ? "({$this->code}) " : '') . $this->getName();
+        if ($this->isDisplayAsCode()) {
+            return $this->getCode() ? $this->getCode() : $this->getName();
+        } else {
+            return ($this->getCode() ? "({$this->getCode()}) " : '') . $this->getName();
+        }
     }
 
     /**
@@ -125,6 +136,24 @@ class BusinessArea implements
     public function setPrependToCategoryName($prependToCategoryName)
     {
         $this->prependToCategoryName = $prependToCategoryName;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDisplayAsCode()
+    {
+        return $this->displayAsCode;
+    }
+
+    /**
+     * @param boolean $displayAsCode
+     * @return $this
+     */
+    public function setDisplayAsCode($displayAsCode)
+    {
+        $this->displayAsCode = $displayAsCode;
         return $this;
     }
 }

@@ -3,4 +3,5 @@ Fitch\TutorBundle\Entity\BusinessArea:
         name: Test Business Area 1
         code: ABC
         prependToCategoryName: false
+        displayAsCode: false
         default: true

@@ -2,6 +2,8 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
+use Fitch\TutorBundle\Model\BusinessAreaManager;
+use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
@@ -24,6 +26,12 @@ class ReportDefinitionType extends AbstractType
     /** @var  RateManager  */
     protected $rateManager;
 
+    /** @var  BusinessAreaManager */
+    protected $businessAreaManager;
+
+    /** @var  CategoryManager */
+    protected $categoryManager;
+
     /** @var  CompetencyTypeManager */
     protected $competencyTypeManager;
 
@@ -37,6 +45,8 @@ class ReportDefinitionType extends AbstractType
         TranslatorInterface $translator,
         CurrencyManager $currencyManager,
         RateManager $rateManager,
+        CategoryManager $categoryManager,
+        BusinessAreaManager $businessAreaManager,
         CompetencyTypeManager $competencyTypeManager,
         CompetencyLevelManager $competencyLevelManager,
         LanguageManager $languageManager
@@ -44,6 +54,8 @@ class ReportDefinitionType extends AbstractType
         $this->translator = $translator;
         $this->rateManager = $rateManager;
         $this->currencyManager = $currencyManager;
+        $this->businessAreaManager = $businessAreaManager;
+        $this->categoryManager = $categoryManager;
         $this->competencyTypeManager = $competencyTypeManager;
         $this->competencyLevelManager = $competencyLevelManager;
         $this->languageManager = $languageManager;
@@ -98,20 +110,49 @@ class ReportDefinitionType extends AbstractType
             )
             ->add(
                 'rate',
-                new RateType($this->translator, $this->currencyManager, $this->rateManager),
+                new RateFilterType($this->translator, $this->currencyManager, $this->rateManager),
                 [
                     'attr' => ['class' => 'inline-subform stacked-group'],
                     'label' => 'Rate [Restricted]',
                 ]
             )
+//            ->add(
+//                'business_area',
+//                new BusinessAreaFilterType($this->translator, $this->businessAreaManager),
+//                [
+//                    'attr' => ['class' => 'inline-subform stacked-group'],
+//                    'label' => 'Business Area (CTRL selects multiple)',
+//                ]
+//            )
+            ->add(
+                'category',
+                new CategoryFilterType($this->translator, $this->categoryManager),
+                [
+                    'attr' => ['class' => 'inline-subform stacked-group'],
+                    'label' => 'Skill Category (CTRL selects multiple)',
+                ]
+            )
             ->add(
                 'competency',
-                new CompetencyType($this->translator, $this->competencyTypeManager, $this->competencyLevelManager),
+                new CompetencyFilterType($this->translator, $this->competencyTypeManager),
                 [
                     'attr' => ['class' => 'inline-subform stacked-group'],
                     'label' => 'Skill (CTRL selects multiple)',
                 ]
             )
+            ->add('competencyLevel', 'entity', [
+                'class' => 'Fitch\TutorBundle\Entity\CompetencyLevel',
+                'multiple' => true,
+                'expanded' => true,
+                'attr' => [
+                    'class' => "control-inline simple-checkbox",
+                ],
+                'choices' => $this->competencyLevelManager->buildChoices(),
+                'placeholder' => 'Filter by Skill Level...',
+                'required' => false,
+                'label' => 'Skill Level',
+                'label_attr' => ['class' => 'sr-only'],
+            ])
             ->add('fields', 'choice', [
                 'expanded' => true,
                 'multiple' => true,

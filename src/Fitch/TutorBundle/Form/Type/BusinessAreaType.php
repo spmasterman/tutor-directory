@@ -23,6 +23,11 @@ class BusinessAreaType extends AbstractType
                 'required' => false,
                 'type' => 'yesno',
             ])
+            ->add('displayAsCode', new OnOffType(), [
+                'label' => 'Display as an abbreviation (Code)',
+                'required' => false,
+                'type' => 'yesno',
+            ])
             ->add('default', new OnOffType(), [
                 'required' => false,
                 'type' => 'yesno',

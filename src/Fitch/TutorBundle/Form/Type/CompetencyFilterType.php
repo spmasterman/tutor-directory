@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class CompetencyType extends AbstractType
+class CompetencyFilterType extends AbstractType
 {
     /** @var  Translator */
     protected $translator;
@@ -18,17 +18,12 @@ class CompetencyType extends AbstractType
     /** @var  CompetencyTypeManager */
     protected $competencyTypeManager;
 
-    /** @var  CompetencyLevelManager */
-    protected $competencyLevelManager;
-
     public function __construct(
         TranslatorInterface $translator,
-        CompetencyTypeManager $competencyTypeManager,
-        CompetencyLevelManager $competencyLevelManager
+        CompetencyTypeManager $competencyTypeManager
     ) {
         $this->translator = $translator;
         $this->competencyTypeManager = $competencyTypeManager;
-        $this->competencyLevelManager = $competencyLevelManager;
     }
 
     /**
@@ -52,30 +47,22 @@ class CompetencyType extends AbstractType
                 ],
                 'label_attr' => ['class' => 'sr-only'],
             ])
-            ->add('competencyLevel', 'entity', [
-                'class' => 'Fitch\TutorBundle\Entity\CompetencyLevel',
-                'multiple' => true,
+            ->add('combine', 'choice', [
+                'placeholder' => false,
                 'expanded' => true,
-                'attr' => [
-                    'class' => "control-inline simple-checkbox",
+                'multiple' => false,
+                'choices' => [
+                    'and' => 'All selected Competency Types',
+                    'or' => 'Any selected Competency Types'
                 ],
-                'choices' => $this->competencyLevelManager->buildChoices(),
-                'placeholder' => 'Filter by Skill Level...',
                 'required' => false,
-                'label' => 'Skill Level',
+                'attr' => [
+                    'class' => "control-inline simple-radio radio-green stacked-group",
+                    'size' => 8,
+                ],
                 'label_attr' => ['class' => 'sr-only'],
             ])
         ;
-    }
-
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        //        $resolver->setDefaults(array(
-//            'data_class' => 'Fitch\TutorBundle\Entity\Tutor'
-//        ));
     }
 
     /**
@@ -83,6 +70,6 @@ class CompetencyType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_competency';
+        return 'fitch_tutorbundle_competency_filter';
     }
 }

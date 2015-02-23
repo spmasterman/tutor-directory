@@ -57,7 +57,7 @@ class Category implements
     public function __toString()
     {
         return ($this->businessArea->isPrependToCategoryName()
-                    ? $this->businessArea->__toString().' - '
+                    ? $this->businessArea->__toString().': '
                     : '')
         .$this->getName();
     }

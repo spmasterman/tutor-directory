@@ -5,71 +5,71 @@ Fitch\TutorBundle\Entity\Category:
     default: true
   category-aim :
     name: Asset – Investment Management
-    businessArea: @area-unspecified
+    businessArea: @area-markets
     default: false
   category-em :
     name: Economics and Markets
-    businessArea: @area-unspecified
+    businessArea: @area-markets
     default: false
   category-fmt :
     name: Financial Markets & Trading
-    businessArea: @area-unspecified
+    businessArea: @area-markets
     default: false
   category-dp :
     name: Derivatives - Products
-    businessArea: @area-unspecified
+    businessArea: @area-markets
     default: false
   category-dra :
     name: Derivatives – Risk Analysis
-    businessArea: @area-unspecified
+    businessArea: @area-markets
     default: false
   category-es :
     name: Excel Skills
-    businessArea: @area-unspecified
+    businessArea: @area-tech
     default: false
   category-fr :
     name: Financial Reporting
-    businessArea: @area-unspecified
+    businessArea: @area-ibd
     default: false
   category-gb :
     name: General Banking
-    businessArea: @area-unspecified
+    businessArea: @area-ibd
     default: false
   category-ibms :
     name: Investment Banking Markets and Skills
-    businessArea: @area-unspecified
+    businessArea: @area-ib
     default: false
   category-os :
     name: Operational Skills
-    businessArea: @area-unspecified
+    businessArea: @area-grad
     default: false
   category-pwsp :
     name: Private Wealth – Skills and Products
-    businessArea: @area-unspecified
+    businessArea: @area-pw
     default: false
   category-sp :
     name: Securitization - Products
-    businessArea: @area-unspecified
+    businessArea: @area-markets
     default: false
   category-cf :
     name: Corporate Finance
-    businessArea: @area-unspecified
+    businessArea: @area-crcf
     default: false
   category-ccra :
     name: Corporate Credit - Risk Analysis
-    businessArea: @area-unspecified
+    businessArea: @area-crcf
     default: false
   category-fira :
     name: Financial Institutions – Risk Analysis
-    businessArea: @area-unspecified
+    businessArea: @area-crcf
     default: false
   category-nbfi :
     name: Non-Bank Financial Institutions – Risk Analysis
-    businessArea: @area-unspecified
+    businessArea: @area-crcf
     default: false
   category-fra :
     name: Financial Risk Management
-    businessArea: @area-unspecified
+    businessArea: @area-crcf
     default: false
   category-ml :
     name: Management and Leadership

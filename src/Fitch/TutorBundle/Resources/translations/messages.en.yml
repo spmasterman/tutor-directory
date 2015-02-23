@@ -118,6 +118,7 @@ business_area:
         name: Name
         code: Code
         prepend_to_category_name: Prepend this onto all Categories it contains
+        display_as_code: Display as an abbreviation (Code)
         actions: Actions
     default_message:  = Default Business Area assigned to new Categories
 

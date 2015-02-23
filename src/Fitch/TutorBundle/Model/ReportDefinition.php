@@ -89,6 +89,18 @@ class ReportDefinition
      * @var array
      * @Type("array<integer>")
      */
+    private $businessAreaIds = [];
+
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
+    private $categoryIds = [];
+
+    /**
+     * @var array
+     * @Type("array<integer>")
+     */
     private $competencyTypeIds = [];
 
     /**
@@ -156,7 +168,7 @@ class ReportDefinition
         if (array_key_exists('competencyLevel', $form->getData()['competency'])) {
             foreach ($form->getData()['competency']['competencyLevel'] as $competencyLevel) {
                 /* @var CompetencyLevel $competencyLevel */
-                $this->competencyLevelIds[] = $competencyLevel->getId();
+                $this->competencyLevelIdsByCompetencyType[] = $competencyLevel->getId();
             }
         }
 
@@ -195,7 +207,7 @@ class ReportDefinition
      */
     public function isFilteredByCompetencyLevel()
     {
-        return (bool) count($this->competencyLevelIds);
+        return (bool) count($this->competencyLevelIdsByCompetencyType);
     }
 
     /**

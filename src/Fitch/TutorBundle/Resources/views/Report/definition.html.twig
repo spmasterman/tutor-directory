@@ -15,8 +15,12 @@
         {% form_theme form.rate.operator 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.rate.amount 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.rate.currency 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+        {#{% form_theme form.business_area.business_area 'FitchFrontEndBundle:Form:tablerow.html.twig' %}#}
+        {#{% form_theme form.business_area.combine 'FitchFrontEndBundle:Form:tablerow.html.twig' %}#}
+        {% form_theme form.category.category 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+        {% form_theme form.category.combine 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.competency.competencyType 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
-        {% form_theme form.competency.competencyLevel 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
+        {% form_theme form.competency.combine 'FitchFrontEndBundle:Form:tablerow.html.twig' %}
         {% form_theme form.fields 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
 
         {{ form(form, {'attr': {'class': 'form-horizontal'} }) }}
