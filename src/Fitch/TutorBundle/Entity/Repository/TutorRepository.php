@@ -29,7 +29,7 @@ class TutorRepository extends EntityRepository
               CONCAT(
                 IFNULL(tutor.bio,''),
                 IFNULL(GROUP_CONCAT(DISTINCT note.body),''),
-                IFNULL(GROUP_CONCAT(DISTINCT file.text_content), '')
+                IFNULL(GROUP_CONCAT(DISTINCT filecontent.text_content), '')
               ) AS search_dump,
               tutor.id AS id
             FROM tutor
@@ -40,9 +40,13 @@ class TutorRepository extends EntityRepository
             LEFT JOIN competency_level ON competency_level.id = competency.competency_level_id
             LEFT JOIN competency_type ON competency_type.id = competency.competency_type_id
             LEFT JOIN note ON note.tutor_id = tutor.id
-            LEFT JOIN file ON file.tutor_id = tutor.id
-            LEFT JOIN file_type on file_type.id = file.file_type_id
-            WHERE file_type.is_bio OR file_type.id IS NULL
+            LEFT JOIN (
+                 SELECT
+                    tutor_id,
+                    GROUP_CONCAT(DISTINCT file.text_content) AS text_content
+                 FROM file
+                 JOIN file_type ON file_type.id = file.file_type_id AND file_type.is_bio
+            ) AS filecontent ON filecontent.tutor_id = tutor.id
             GROUP BY tutor.id
 SQL;
 
