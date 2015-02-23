@@ -11,7 +11,6 @@ use Symfony\Component\Console\Input\ArrayInput;
 $kernel = new AppKernel('test', true); // create a "test" kernel
 $kernel->boot();
 
-
 $application = new Application($kernel);
 $application->setAutoExit(false);
 
