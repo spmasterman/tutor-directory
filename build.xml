@@ -163,16 +163,21 @@
     </target>
 
     <!--<target name="phpdox"-->
-            <!--depends="phploc-ci,phpcs-ci,phpmd-ci"-->
+
             <!--description="Generate project documentation using phpDox">-->
         <!--<exec executable="${toolsdir}phpdox" dir="${basedir}/build"/>-->
     <!--</target>-->
 
     <!-- build.xml - phpdox section -->
-    <target name="phpdox" description="Generate API documentation using phpDox">
+    <target name="phpdox"
+            description="Generate API documentation using phpDox"
+            depends="phploc-ci,phpcs-ci,phpmd-ci">
         <exec executable="phpdox">
-            <!-- Specify the path to phpdox.xml -->
-            <arg value="--file=${basedir}/build/phpdox.xml" />
+            <arg value="--file"/>
+            <arg path="${basedir}/build/phpdox.xml" />
+
+            <arg value="--dir"/>
+            <arg path="${basedir}/build" />
         </exec>
     </target>
 
