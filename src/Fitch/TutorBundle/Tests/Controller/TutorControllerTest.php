@@ -58,7 +58,7 @@ class TutorControllerTest extends WebTestCase
         $client->submit($form);
         $crawler = $client->followRedirect();
 
-        echo $crawler->html();
+        //echo $crawler->html();
         $this->assertGreaterThan(0, $crawler->filter('h2:contains("xtest")')->count(), 'Missing element h2:contains("xtest")');
     }
 }
