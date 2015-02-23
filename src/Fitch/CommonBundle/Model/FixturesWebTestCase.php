@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\CommonBundle\Tests;
+namespace Fitch\CommonBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -58,5 +58,10 @@ class FixturesWebTestCase extends WebTestCase
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
         $em->clear();
+    }
+
+    public function testThatTestHarnessIsWorking()
+    {
+        $this->assertTrue(true);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
-use Fitch\CommonBundle\Tests\FixturesWebTestCase;
+use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\RateManager;
 
 class RateManagerTest extends FixturesWebTestCase

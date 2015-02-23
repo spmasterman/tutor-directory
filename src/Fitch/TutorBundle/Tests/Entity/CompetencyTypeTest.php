@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Tests\Entity;
 
-use Fitch\CommonBundle\Tests\FixturesWebTestCase;
+use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
 
 class CompetencyTypeTest extends FixturesWebTestCase

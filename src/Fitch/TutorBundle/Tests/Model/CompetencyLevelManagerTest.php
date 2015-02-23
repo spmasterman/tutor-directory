@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Doctrine\ORM\EntityNotFoundException;
-use Fitch\CommonBundle\Tests\FixturesWebTestCase;
+use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 
 class CompetencyLevelManagerTest extends FixturesWebTestCase

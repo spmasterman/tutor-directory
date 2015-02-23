@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\SimpleTest;
 
-use Fitch\CommonBundle\Tests\FixturesWebTestCase;
+use Fitch\CommonBundle\Model\FixturesWebTestCase;
 
 class FixtureTest extends FixturesWebTestCase
 {
