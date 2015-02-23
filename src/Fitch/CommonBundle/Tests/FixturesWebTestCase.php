@@ -35,13 +35,16 @@ class FixturesWebTestCase extends WebTestCase
         parent::__construct($name, $data, $dataName);
 
         if (!static::$kernel) {
-            static::$kernel = self::createKernel([
-                'environment' => $this->environment,
-                'debug'       => $this->debug,
-            ]);
+            try {
+                static::$kernel = self::createKernel([
+                    'environment' => $this->environment,
+                    'debug'       => $this->debug,
+                ]);
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
             static::$kernel->boot();
         }
-
         $this->container = static::$kernel->getContainer();
     }
 

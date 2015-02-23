@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Tests;
+namespace Fitch\TutorBundle\SimpleTest;
 
 use Fitch\CommonBundle\Tests\FixturesWebTestCase;
 

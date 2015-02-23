@@ -9,17 +9,16 @@
 >
     <testsuites>
         <testsuite name="Tutor Bundle Test Suite">
+            <directory>../tests</directory>
+            <directory>../src/Fitch/TutorBundle/SimpleTest</directory>
             <directory>../src/*/*Bundle/Tests</directory>
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
-            <directory>../tests</directory>
         </testsuite>
     </testsuites>
 
-    <!--
     <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
+        <server name="KERNEL_DIR" value="../app" />
     </php>
-    -->
 
     <filter>
         <whitelist>
