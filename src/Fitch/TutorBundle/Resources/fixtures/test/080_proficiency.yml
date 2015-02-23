@@ -1,0 +1,10 @@
+Fitch\TutorBundle\Entity\Proficiency:
+    proficiency-one:
+        name: Test Proficiency One
+        default: true
+    proficiency-two:
+        name: Test Proficiency Two
+        default: false
+    proficiency-three:
+        name: Test Proficiency Three
+        default: false

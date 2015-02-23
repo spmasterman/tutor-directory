@@ -171,6 +171,30 @@ file_type:
         actions: Actions
     default_message:  = Default file type assigned to new files
 
+proficiency:
+    edit:
+        verb: Edit Language Proficiency
+        tagline: edit the details of language proficiency record
+        success: The Language Proficiency has been successfully updated.
+    list:
+        verb: Language Proficiencies
+        tagline: language proficiency available for use in the Trainer Directory
+    new:
+        verb: New Language Proficiency
+        tagline: define a new language proficiency
+        success: The Language Proficiency has been successfully created.
+    show:
+        verb: Language Proficiency
+        tagline: view the details of a language proficiency record
+    delete:
+        success: The language proficiency has been successfully removed.
+    column:
+        id: ID
+        name: Name
+        default: Default
+        actions: Actions
+    default_message:  = Default language proficiency assigned to new Tutor Languages
+
 competency_type:
     edit:
         verb: Edit Skill Type

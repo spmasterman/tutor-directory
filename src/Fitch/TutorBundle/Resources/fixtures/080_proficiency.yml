@@ -1,0 +1,13 @@
+Fitch\TutorBundle\Entity\Proficiency:
+    proficiency-unspecified:
+        name: <unspecified>
+        default: true
+    proficiency-native:
+        name: Native
+        default: false
+    proficiency-fluent:
+        name: Fluent
+        default: false
+    proficiency-spoken:
+        name: Spoken Only
+        default: false

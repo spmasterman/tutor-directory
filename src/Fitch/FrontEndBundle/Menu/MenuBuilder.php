@@ -29,6 +29,7 @@ class MenuBuilder extends ContainerAware
             ->addCountries($menu)
             ->addCurrencies($menu)
             ->addLanguages($menu)
+            ->addLanguageProficiencies($menu)
             ->addFileTypes($menu)
             ->addBusinessArea($menu)
             ->addCategory($menu)
@@ -66,6 +67,7 @@ class MenuBuilder extends ContainerAware
             ->addCountries($homeNode)
             ->addCurrencies($homeNode)
             ->addLanguages($homeNode)
+            ->addLanguageProficiencies($homeNode)
             ->addFileTypes($homeNode)
             ->addBusinessArea($homeNode)
             ->addCategory($homeNode)
@@ -306,6 +308,27 @@ class MenuBuilder extends ContainerAware
                 ->setExtra('translation_domain', 'menu')
                 ->setExtra('routes', [
                     ['pattern' => '/language/'],
+                ])
+            ;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return $this
+     */
+    private function addLanguageProficiencies(ItemInterface $menu)
+    {
+        if ($this->isGranted('ROLE_CAN_EDIT_LOOKUP_VALUES')) {
+            $menu
+                ->addChild('menu.proficiencies', ['route' => 'proficiency'])
+                ->setAttribute('icon', 'fa fa-star fa-fw')
+                ->setExtra('translation_domain', 'menu')
+                ->setExtra('routes', [
+                    ['pattern' => '/proficiency/'],
                 ])
             ;
         }

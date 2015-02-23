@@ -1,0 +1,43 @@
+{% extends 'FitchFrontEndBundle::frontend.html.twig' %}
+
+{% block main_header -%}
+    <h2>{% trans %}proficiency.show.verb{% endtrans %}</h2>
+    <em>{% trans %}proficiency.show.tagline{% endtrans %}</em>
+{% endblock %}
+
+{% block main_content -%}
+    {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
+    <div class="widget widget-table">
+        {{ helper.widget_header(proficiency, 'fa fa-star', 'widget-filetype-show') }}
+            <table class="record_properties table table-condensed table-striped">
+                <tbody>
+                <tr>
+                    <th class="col-xs-2">{% trans %}proficiency.column.id{% endtrans %}</th>
+                    <td>{{ proficiency.id }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}proficiency.column.name{% endtrans %}</th>
+                    <td>{{ proficiency.name }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2">{% trans %}proficiency.column.default{% endtrans %}</th>
+                    <td>{% if proficiency.isDefault %}<span class="badge badge-success">Yes</span>{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+        {{ helper.widget_footer() }}
+    </div>
+
+    <div class="record_actions well">
+        <a class="btn btn-default btn-s" href="{{ path('proficiency') }}">
+            <i class="fa fa-arrow-circle-left"></i> {% trans %}navigation.list{% endtrans %}
+        </a>
+
+        <a class="btn btn-default btn-s" href="{{ path('proficiency_edit', { 'id': proficiency.id }) }}">
+            <i class="fa fa-pencil"></i> {% trans %}navigation.edit{% endtrans %}
+        </a>
+
+        {% form_theme delete_form 'FitchFrontEndBundle:Form:inline.html.twig' %}
+        {{ form(delete_form, {'attr': {'class': 'form-inline'} }) }}
+    </div>
+{% endblock %}
