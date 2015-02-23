@@ -39,12 +39,7 @@ class OperatingRegionManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [];
-        foreach ($this->findAll() as $region) {
-            $choices[$region->getId()] = $region->getName();
-        }
-
-        return $choices;
+        return parent::buildFlatChoices();
     }
 
     /**

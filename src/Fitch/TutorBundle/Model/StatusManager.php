@@ -39,12 +39,7 @@ class StatusManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [];
-        foreach ($this->findAll() as $status) {
-            $choices[$status->getId()] = $status->getName();
-        }
-
-        return $choices;
+        return parent::buildFlatChoices();
     }
 
     /**

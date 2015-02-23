@@ -4,6 +4,8 @@ namespace Fitch\CommonBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatcherInterface;
@@ -81,6 +83,24 @@ class BaseModelManager
         $entities = $this->repo->findAll();
 
         return $entities;
+    }
+
+    /**
+     * Returns all items as a Array - suitable for use in "select"
+     * style lists, with a grouped sections.
+     *
+     * @return array
+     */
+    protected function buildFlatChoices()
+    {
+        $choices = [];
+        foreach ($this->findAll() as $entity) {
+            if ($entity instanceof IdentityTraitInterface && $entity instanceof NamedTraitInterface) {
+                $choices[$entity->getId()] = $entity->getName();
+            }
+        }
+
+        return $choices;
     }
 
     protected function createNotFoundException($message = 'Entity Not Found')

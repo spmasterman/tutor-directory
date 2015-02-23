@@ -47,12 +47,7 @@ class CompetencyLevelManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [];
-        foreach ($this->findAll() as $competencyLevel) {
-            $choices[$competencyLevel->getId()] = $competencyLevel->getName();
-        }
-
-        return $choices;
+        return parent::buildFlatChoices();
     }
 
     /**

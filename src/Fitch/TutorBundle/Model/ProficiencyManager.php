@@ -65,12 +65,7 @@ class ProficiencyManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [];
-        foreach ($this->findAll() as $proficiency) {
-            $choices[$proficiency->getId()] = $proficiency->getName();
-        }
-
-        return $choices;
+        return parent::buildFlatChoices();
     }
 
     /**

@@ -47,21 +47,16 @@ class TutorTypeManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        $choices = [];
-        foreach ($this->findAll() as $tutorType) {
-            $choices[$tutorType->getId()] = $tutorType->getName();
-        }
-
-        return $choices;
+        return parent::buildFlatChoices();
     }
 
     /**
-     * @param TutorType $tutortype
+     * @param TutorType $tutorType
      * @param bool      $withFlush
      */
-    public function saveTutorType($tutortype, $withFlush = true)
+    public function saveTutorType($tutorType, $withFlush = true)
     {
-        parent::saveEntity($tutortype, $withFlush);
+        parent::saveEntity($tutorType, $withFlush);
     }
 
     /**
@@ -81,16 +76,16 @@ class TutorTypeManager extends BaseModelManager
      */
     public function removeTutorType($id)
     {
-        $tutortype = $this->findById($id);
-        parent::removeEntity($tutortype);
+        $tutorType = $this->findById($id);
+        parent::removeEntity($tutorType);
     }
 
     /**
-     * @param TutorType $tutortype
+     * @param TutorType $tutorType
      */
-    public function refreshTutorType(TutorType $tutortype)
+    public function refreshTutorType(TutorType $tutorType)
     {
-        parent::reloadEntity($tutortype);
+        parent::reloadEntity($tutorType);
     }
 
     /**
@@ -108,6 +103,6 @@ class TutorTypeManager extends BaseModelManager
      */
     protected function getDebugKey()
     {
-        return 'fitch.manager.tutortype';
+        return 'fitch.manager.tutor_type';
     }
 }
