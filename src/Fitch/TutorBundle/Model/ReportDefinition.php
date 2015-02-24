@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\TutorBundle\Entity\Address;
 use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
@@ -89,19 +90,25 @@ class ReportDefinition
      * @var array
      * @Type("array<integer>")
      */
-    private $businessAreaIds = [];
+    private $categoryIds = [];
 
     /**
-     * @var array
-     * @Type("array<integer>")
+     * @var string
+     * @Type("string")
      */
-    private $categoryIds = [];
+    private $categoryOperator = 'and';
 
     /**
      * @var array
      * @Type("array<integer>")
      */
     private $competencyTypeIds = [];
+
+    /**
+     * @var string
+     * @Type("string")
+     */
+    private $competencyTypeOperator = 'and';
 
     /**
      * @var array
@@ -123,57 +130,70 @@ class ReportDefinition
      */
     public function __construct(FormInterface $form, $unrestricted = false)
     {
-        foreach ($form->getData()['tutor_type'] as $tutorType) {
-            /* @var TutorType $tutorType */
-            $this->tutorTypeIds[] = $tutorType->getId();
-        }
-        foreach ($form->getData()['status'] as $status) {
-            /* @var Status $status */
-            $this->statusIds[] = $status->getId();
-        }
-        foreach ($form->getData()['operating_region'] as $region) {
-            /* @var OperatingRegion $region */
-            $this->regionIds[] = $region->getId();
-        }
-
-        // Language (multiple selection)
-        if (array_key_exists('language', $form->getData()['language'])) {
-            foreach ($form->getData()['language']['language'] as $language) {
-                /* @var Language $language */
-                $this->languageIds[] = $language->getId();
-            }
-        }
-
-        // Language (how to combine multiple selections)
-        if (array_key_exists('combine', $form->getData()['language'])) {
-            $this->languageOperator = $form->getData()['language']['combine'];
-        }
+        $this->extractIds($form, 'tutor_type', $this->tutorTypeIds);
+        $this->extractIds($form, 'status', $this->statusIds);
+        $this->extractIds($form, 'operating_region', $this->regionIds);
+        $this->extractNestedIds($form, 'language', 'language', $this->languageIds);
+        $this->extractNested($form, 'language', 'combine', $this->languageOperator);
 
         // Setup the Rate filter - only if the user has the correct rights...
         if ($unrestricted) {
-            $this->rateTypes = $form->getData()['rate']['rateType'];
-            $this->operator = $form->getData()['rate']['operator'];
-            $this->rateAmount = $form->getData()['rate']['amount'];
-            $this->currency = $form->getData()['rate']['currency'];
+            $this->extractNested($form, 'rate', 'rateType', $this->rateTypes);
+            $this->extractNested($form, 'rate', 'operator', $this->operator);
+            $this->extractNested($form, 'rate', 'amount', $this->rateAmount);
+            $this->extractNested($form, 'rate', 'currency', $this->currency);
         }
 
-        // Setup any selected Competency Filter
-        if (array_key_exists('competencyType', $form->getData()['competency'])) {
-            foreach ($form->getData()['competency']['competencyType'] as $competencyType) {
-                /* @var CompetencyType $competencyType */
-                $this->competencyTypeIds[] = $competencyType->getId();
-            }
-        }
-
-        if (array_key_exists('competencyLevel', $form->getData()['competency'])) {
-            foreach ($form->getData()['competency']['competencyLevel'] as $competencyLevel) {
-                /* @var CompetencyLevel $competencyLevel */
-                $this->competencyLevelIdsByCompetencyType[] = $competencyLevel->getId();
-            }
-        }
+        $this->extractNestedIds($form, 'category', 'category', $this->categoryIds);
+        $this->extractNested($form, 'category', 'combine', $this->categoryOperator);
+        $this->extractNestedIds($form, 'competency', 'competencyType', $this->competencyTypeIds);
+        $this->extractNested($form, 'competency', 'combine', $this->competencyTypeOperator);
+        $this->extractIds($form, 'competencyLevel', $this->competencyLevelIds);
 
         // Grab the Fields out of the form...
         $this->fields = $form->getData()['fields'];
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param $key
+     * @param $target
+     */
+    private function extractIds(FormInterface $form, $key, &$target)
+    {
+        foreach ($form->getData()[$key] as $entity) {
+            /* @var IdentityTraitInterface $entity */
+            $target[] = $entity->getId();
+        }
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param string $key
+     * @param string $keyInner
+     * @param array $target
+     */
+    private function extractNestedIds(FormInterface $form, $key, $keyInner, &$target)
+    {
+        if (array_key_exists($keyInner, $form->getData()[$key])) {
+            foreach ($form->getData()[$key][$keyInner] as $entity) {
+                /* @var IdentityTraitInterface $entity */
+                $target[] = $entity->getId();
+            }
+        }
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param string $key
+     * @param string $keyInner
+     * @param $target
+     */
+    private function extractNested(FormInterface $form, $key, $keyInner, &$target)
+    {
+        if (array_key_exists($keyInner, $form->getData()[$key])) {
+            $target = $form->getData()[$key][$keyInner];
+        }
     }
 
     /**
@@ -207,7 +227,7 @@ class ReportDefinition
      */
     public function isFilteredByCompetencyLevel()
     {
-        return (bool) count($this->competencyLevelIdsByCompetencyType);
+        return (bool) count($this->competencyLevelIds);
     }
 
     /**
@@ -216,6 +236,22 @@ class ReportDefinition
     public function getCompetencyTypeIdsAsSet()
     {
         return $this->getIDsAsSet($this->competencyTypeIds);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompetencyTypeIds()
+    {
+        return $this->competencyTypeIds;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompetencyTypeOperator()
+    {
+        return $this->competencyTypeOperator;
     }
 
     /**
@@ -344,10 +380,7 @@ class ReportDefinition
     public function getLanguageIDs()
     {
         // Sanitize the IDs before we pass them out
-        array_walk($this->languageIds, function (&$value) {
-            $value = (int) trim($value);
-        });
-
+        $this->sanitizeIdArray($this->languageIds);
         return $this->languageIds;
     }
 
@@ -414,11 +447,17 @@ class ReportDefinition
      */
     private function getIDsAsSet($idArray)
     {
-        array_walk($idArray, function (&$value) {
+        $this->sanitizeIdArray($idArray);
+        return '('.implode(',', $idArray).')';
+    }
+
+    /**
+     * @param $in
+     */
+    private function sanitizeIdArray($in) {
+        array_walk($in, function (&$value) {
             $value = (int) trim($value);
         });
-
-        return '('.implode(',', $idArray).')';
     }
 
     /**

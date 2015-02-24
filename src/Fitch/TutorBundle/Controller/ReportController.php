@@ -149,7 +149,6 @@ class ReportController extends Controller
                 $this->getCurrencyManager(),
                 $this->getRateManager(),
                 $this->getCategoryManager(),
-                $this->getBusinessAreaManager(),
                 $this->getCompetencyTypeManager(),
                 $this->getCompetencyLevelManager(),
                 $this->getLanguageManager()
@@ -542,14 +541,6 @@ class ReportController extends Controller
     private function getCategoryManager()
     {
         return $this->get('fitch.manager.category');
-    }
-
-    /**
-     * @return BusinessAreaManager
-     */
-    private function getBusinessAreaManager()
-    {
-        return $this->get('fitch.manager.business_area');
     }
 
     /**

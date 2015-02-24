@@ -119,16 +119,26 @@ SQL;
         if ($definition->isFilteredByCompetency()) {
             $qb
                 ->join('t.competencies', 'tc')
-                ->join('tc.competencyType', 'tct')
-                ->join('tc.competencyLevel', 'tcl')
             ;
 
             if ($definition->isFilteredByCompetencyType()) {
-                $qb->andWhere('tct.id IN '.$definition->getCompetencyTypeIdsAsSet());
+                $qb
+                    ->join('tc.competencyType', 'tct')
+                    ->andWhere('tct.id IN '.$definition->getCompetencyTypeIdsAsSet())
+                ;
+                if ($definition->getCompetencyTypeOperator() == 'and') {
+                    $qb
+                        ->groupBy('t.id')
+                        ->having('COUNT(DISTINCT tct.id) = ' . count($definition->getCompetencyTypeIds()))
+                    ;
+                }
             }
 
             if ($definition->isFilteredByCompetencyLevel()) {
-                $qb->andWhere('tcl.id IN '.$definition->getCompetencyLevelIdsAsSet());
+                $qb
+                    ->join('tc.competencyLevel', 'tcl')
+                    ->andWhere('tcl.id IN '.$definition->getCompetencyLevelIdsAsSet())
+                ;
             }
         }
 
