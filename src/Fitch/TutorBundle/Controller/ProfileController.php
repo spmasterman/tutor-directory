@@ -189,7 +189,7 @@ class ProfileController extends Controller
                     $note->setBody($value);
                     $relatedEntity = $note;
                     break;
-                default :
+                default:
                     $setter = 'set'.ucfirst($name);
                     if (is_callable([$tutor, $setter])) {
                         $tutor->$setter($value);
@@ -368,7 +368,9 @@ class ProfileController extends Controller
             'isAdmin' => $isAdmin,
         ];
 
-        $extractName = function (NamedTraitInterface $object) {return $object->getName();};
+        $extractName = function (NamedTraitInterface $object) {
+            return $object->getName();
+        };
 
         return new JsonResponse([
             'groupedCountries' => $this->getCountryManager()->buildGroupedChoices(),

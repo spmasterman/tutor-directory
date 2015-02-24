@@ -36,9 +36,12 @@ abstract class AbstractReportDefinition implements ReportDefinitionInterface
      */
     protected function extractIds(FormInterface $form, $key, &$target)
     {
-        foreach ($form->getData()[$key] as $entity) {
-            /* @var IdentityTraitInterface $entity */
-            $target[] = $entity->getId();
+        $data = $form->getData();
+        if (array_key_exists($key, $data)) {
+            foreach ($data[$key] as $entity) {
+                /* @var IdentityTraitInterface $entity */
+                $target[] = $entity->getId();
+            }
         }
     }
 
@@ -50,10 +53,13 @@ abstract class AbstractReportDefinition implements ReportDefinitionInterface
      */
     protected function extractNestedIds(FormInterface $form, $key, $keyInner, &$target)
     {
-        if (array_key_exists($keyInner, $form->getData()[$key])) {
-            foreach ($form->getData()[$key][$keyInner] as $entity) {
-                /* @var IdentityTraitInterface $entity */
-                $target[] = $entity->getId();
+        $data = $form->getData();
+        if (array_key_exists($key, $data)) {
+            if (array_key_exists($keyInner, $data[$key])) {
+                foreach ($data[$key][$keyInner] as $entity) {
+                    /* @var IdentityTraitInterface $entity */
+                    $target[] = $entity->getId();
+                }
             }
         }
     }
@@ -66,8 +72,11 @@ abstract class AbstractReportDefinition implements ReportDefinitionInterface
      */
     protected function extractNested(FormInterface $form, $key, $keyInner, &$target)
     {
-        if (array_key_exists($keyInner, $form->getData()[$key])) {
-            $target = $form->getData()[$key][$keyInner];
+        $data = $form->getData();
+        if (array_key_exists($key, $data)) {
+            if (array_key_exists($keyInner, $data[$key])) {
+                $target = $data[$key][$keyInner];
+            }
         }
     }
 

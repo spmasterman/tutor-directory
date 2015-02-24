@@ -212,7 +212,9 @@ class ReportDefinition extends AbstractReportDefinition
     {
         switch ($name) {
             case 'Competency':
-                return (bool) (count($this->competencyLevelIds) || count($this->competencyTypeIds) || count($this->categoryIds));
+                return (bool) (count($this->competencyLevelIds)
+                    || count($this->competencyTypeIds)
+                    || count($this->categoryIds));
             case 'Category':
                 return (bool) count($this->categoryIds);
             case 'CompetencyType':
@@ -231,7 +233,6 @@ class ReportDefinition extends AbstractReportDefinition
                 if ($languageCount == 1) {
                     return true;
                 }
-
                 return (bool) $this->languageOperator;
             case 'TutorType':
                 return (bool) count($this->tutorTypeIds);

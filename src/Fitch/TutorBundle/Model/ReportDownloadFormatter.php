@@ -304,8 +304,7 @@ class ReportDownloadFormatter
             $this->currentSheet->setCellValueByColumnAndRow(
                 $this->workingColumn,
                 $this->workingRow,
-                implode("\n", $value->map($formatterFunction)->toArray()
-                )
+                implode("\n", $value->map($formatterFunction)->toArray())
             );
             $this->currentSheet->getColumnDimensionByColumn($this->workingColumn)->setWidth($width);
             $this->workingColumn++;
