@@ -3,9 +3,15 @@ Tutor Directory Project
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/69812bee-6fc9-4434-bbc0-b94a7b8531db/mini.png)](https://insight.sensiolabs.com/projects/69812bee-6fc9-4434-bbc0-b94a7b8531db)
 
-This project was developed from the Spec below. I originally copy-pasted some bundles from the Twitter project - these 
-probably don't need to have a common ancestor as these projects are unrelated and code sharing between them serves 
-little purpose.  
+This project was developed from the Spec below. I originally copy-pasted some unfinished bundles from another project - these 
+didn't need to have a common ancestor as the projects are unrelated and code sharing between them serves little purpose. However
+in the general pursuit of lower complexity and coupling, the EAV bundle almost certainly should be pulled out into a separate independent 
+library, as should CommonBundle.
+  
+FrontEnd bundle could be split into generic (most of it) and specific (the assets etc) and the generic bit moved to its own independent 
+bundle. 
+
+I'll probably refactor these when I next work on the project and have a bit of distance...
 
 0) Spec
 -------
@@ -436,13 +442,21 @@ themes can be destroyed
  
 Jetbrains PHPStorm displays "green" on all files. 
  
+PHPMD, CRAP and CodeSniffer are all a bit chatty, Ive been working on beating the error count down - but at some point
+the code just needs to be deployed...
+ 
 ### Model Classes
 I have as a conscious decision moved ALL entityManager stuff out of the controllers, preferring a "Model" class that 
-handles the interaction with the persistence layer. This is a fairly typical thing to do if you are creating bundles for
-external consumption (so that the end user can decide if they want to use ODM or ORM etc). It makes for very simple 
-controllers in general so I do it even though the chances of these bundles being reused is close to zero. It might mean 
-more boilerplate code than you are used to (lots of empty repository classes, Type-hinted re-declarations of a BaseModel 
-class etc.)  
+handles the interaction with the persistence layer. (Ta fairly typical thing to do if you are creating bundles for
+external consumption - so that the end user can decide if they want to use ODM or ORM etc). It makes for very simple 
+controllers in general but it might mean more boilerplate code than you are used to (lots of empty repository classes, 
+Type-hinted re-declarations of a BaseModel class etc.) 
+  
+Some classes seem to gather dependencies on LOADS of entities. So there's a stack of private function getXXXManager() 
+definitions at the bottom. I probably should create an ModelManagerFactory that will spit these typehinted classes out. Not 
+entirely sure how to go about it. Seems like I'd just be producing a sub-DI container, that was type hinted and 
+statically defined. Which seems a little pointless. Perhaps I could grab the class from the service definition somehow? 
+Would love to see how this is handled in the wider Symfony world. Another refactor for another day perhaps...     
 
 ### Repository Classes 
 There are Repository classes for all entities, only one or two are used (Tutor, Rate, Currency) but its a pattern I 
@@ -483,6 +497,10 @@ There are 4 bundles :
 Menus, Header Bar etc.
 * "Tutor" contains the main entities, their CRUD controllers and the controller for the main Profile and the Lookup table
 * "User" contains all the user management stuff (and relies heavily on FOSUserBundle) 
+
+### Jenkins
+The project is setup with an ant buildfile in the root. Hooking this into the standard Jenkins PHP Template works (although the 
+generating code coverage takes 20minutes - so not really good for CI without further modification)
 
 12) Exchange Rates
 ==================
