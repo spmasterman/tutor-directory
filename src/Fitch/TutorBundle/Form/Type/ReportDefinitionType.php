@@ -26,9 +26,6 @@ class ReportDefinitionType extends AbstractType
     /** @var  RateManager  */
     protected $rateManager;
 
-    /** @var  BusinessAreaManager */
-    protected $businessAreaManager;
-
     /** @var  CategoryManager */
     protected $categoryManager;
 
@@ -46,7 +43,6 @@ class ReportDefinitionType extends AbstractType
         CurrencyManager $currencyManager,
         RateManager $rateManager,
         CategoryManager $categoryManager,
-        BusinessAreaManager $businessAreaManager,
         CompetencyTypeManager $competencyTypeManager,
         CompetencyLevelManager $competencyLevelManager,
         LanguageManager $languageManager
@@ -54,7 +50,6 @@ class ReportDefinitionType extends AbstractType
         $this->translator = $translator;
         $this->rateManager = $rateManager;
         $this->currencyManager = $currencyManager;
-        $this->businessAreaManager = $businessAreaManager;
         $this->categoryManager = $categoryManager;
         $this->competencyTypeManager = $competencyTypeManager;
         $this->competencyLevelManager = $competencyLevelManager;
@@ -116,14 +111,6 @@ class ReportDefinitionType extends AbstractType
                     'label' => 'Rate [Restricted]',
                 ]
             )
-//            ->add(
-//                'business_area',
-//                new BusinessAreaFilterType($this->translator, $this->businessAreaManager),
-//                [
-//                    'attr' => ['class' => 'inline-subform stacked-group'],
-//                    'label' => 'Business Area (CTRL selects multiple)',
-//                ]
-//            )
             ->add(
                 'category',
                 new CategoryFilterType($this->translator, $this->categoryManager),
