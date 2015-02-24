@@ -134,7 +134,7 @@ class FileController extends Controller
     {
         $targetWidth = self::AVATAR_WIDTH;
         $targetHeight = self::AVATAR_HEIGHT;
-        $jpeg_quality = self::AVATAR_QUALITY;
+        $jpegQuality = self::AVATAR_QUALITY;
 
         $src = 'gaufrette://tutor/'.$file->getFileSystemKey();
 
@@ -177,7 +177,7 @@ class FileController extends Controller
 
         // Use Output buffering to catch the result of the GD call (imagejpeg)
         ob_start();
-        imagejpeg($destinationImage, null, $jpeg_quality);
+        imagejpeg($destinationImage, null, $jpegQuality);
         $image = ob_get_contents();
         ob_end_clean();
 
