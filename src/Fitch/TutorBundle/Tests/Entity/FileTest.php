@@ -10,7 +10,8 @@ class FileTest extends FixturesWebTestCase
     // Not sure how to test file uploading...
     // Mock the listener possibly?
     // then do a functional test of the controller
-    // like here http://stackoverflow.com/questions/12623797/phpunit-test-always-succeeds-both-with-this-once-and-this-never
+    // like here
+    // http://stackoverflow.com/questions/12623797/phpunit-test-always-succeeds-both-with-this-once-and-this-never
 
     public function testNothing()
     {

@@ -22,11 +22,23 @@ class ReportDownloadFormatter
 {
     const HEIGHT_PER_LINE = 14;
 
-    /** @var  ReportDefinition */
+    /** @var ReportDefinition */
     private $definition;
 
-    /** @var  \PHPExcel */
+    /** @var \PHPExcel */
     private $phpExcel;
+
+    /** @var Sheet */
+    private $currentSheet;
+
+    /** @var int */
+    private $workingRow;
+
+    /** @var int */
+    private $workingColumn;
+
+    /** @var int */
+    private $workingMaxLines;
 
     /**
      * @param ReportDefinitionInterface $definition
@@ -83,57 +95,75 @@ class ReportDownloadFormatter
      */
     private function populateSheet($sheetNum, Report $report, $data, $unrestricted)
     {
-        $sheet = $this->phpExcel->setActiveSheetIndex($sheetNum);
-        $sheet->getDefaultRowDimension()->setRowHeight(18);
-        $sheet->setShowGridlines(false);
-        $sheet->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-        $sheet->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
-        $sheet->getPageSetup()->setFitToPage(true);
-        $sheet->getPageSetup()->setFitToWidth(1);
-        $sheet->getPageSetup()->setFitToHeight(0);
+        $this->currentSheet = $this->phpExcel->setActiveSheetIndex($sheetNum);
+        $this->currentSheet->getDefaultRowDimension()->setRowHeight(18);
+        $this->currentSheet->setShowGridlines(false);
+        $this->currentSheet->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+        $this->currentSheet->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+        $this->currentSheet->getPageSetup()->setFitToPage(true);
+        $this->currentSheet->getPageSetup()->setFitToWidth(1);
+        $this->currentSheet->getPageSetup()->setFitToHeight(0);
 
         // Set Report Title
-        $sheet->setCellValue('A1', $report->getName());
-        $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setUnderline(true);
+        $this->currentSheet->setCellValue('A1', $report->getName());
+        $this->currentSheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setUnderline(true);
 
         // Set Report Header Row
-        $row = 3;
+        $this->workingRow = 3;
         $col = 0;
         foreach (ReportDefinition::getAvailableFields() as $key => $value) {
             if ($this->definition->isFieldDisplayed($key)) {
-                $sheet->setCellValueByColumnAndRow($col++, $row, $value);
+                $this->currentSheet->setCellValueByColumnAndRow($col++, $this->workingRow, $value);
             }
         }
-        $this->headerFormat($sheet, 'A'.$row.':'.Cell::stringFromColumnIndex(--$col).$row, 'cccccc');
+        $this->headerFormat(
+            'A'.$this->workingRow.':'.Cell::stringFromColumnIndex(--$this->workingColumn).$this->workingRow,
+            'cccccc'
+        );
 
         // Set Report Data
         foreach ($data as $tutor) {
-            $row++;
-            $col = 0;
-            $maxLines = 1;
+            $this->workingRow++;
+            $this->workingColumn = 0;
+            $this->workingMaxLines = 1;
 
-            $this->scalarCell($sheet, 'name', $col, $row, $tutor->getName(), 30);
-            $this->scalarCell($sheet, 'tutor_type', $col, $row, $tutor->getTutorType()->getName(), 20);
-            $this->scalarCell($sheet, 'status', $col, $row, $tutor->getStatus()->getName(), 30);
-            $this->scalarCell($sheet, 'region', $col, $row, $tutor->getRegion()->getName(), 20);
-            $this->arrayCell($sheet, 'languages', $col, $row, $tutor->getTutorLanguages(), 80, $maxLines, $this->getLanguageCellFormatter());
-            $this->arrayCell($sheet, 'skills', $col, $row, $tutor->getCompetencies(), 40, $maxLines, $this->getCompetencyCellFormatter());
-            $this->arrayCell($sheet, 'rates', $col, $row, $tutor->getRates(), 40, $maxLines, $this->getRateCellFormatter($unrestricted, $tutor));
-            $this->arrayCell($sheet, 'addresses', $col, $row, $tutor->getAddresses(), 100, $maxLines, $this->getAddressCellFormatter());
-            $this->arrayCell($sheet, 'emails', $col, $row, $tutor->getEmailAddresses(), 40, $maxLines, $this->getEmailCellFormatter());
-            $this->arrayCell($sheet, 'phones', $col, $row, $tutor->getPhoneNumbers(), 40, $maxLines, $this->getPhoneCellFormatter());
-            $this->scalarCell($sheet, 'bio', $col, $row, $tutor->getBio(), 80);
-            $sheet->getStyleByColumnAndRow($col-1, $row)->getAlignment()->setWrapText(true);
-            $this->scalarCell($sheet, 'linkedin', $col, $row, $tutor->getLinkedInURL(), 50);
-            $sheet->getStyleByColumnAndRow($col, $row)->getAlignment()->setWrapText(true);
-            $this->arrayCell($sheet, 'notes', $col, $row, $tutor->getNotes(), 100, $maxLines, $this->getNoteCellFormatter($unrestricted));
-            $this->scalarCell($sheet, 'created', $col, $row, $tutor->getCreated()->format('Y-m-d'), 15);
+            $this->scalarCell('name', $tutor->getName(), 30);
+            $this->scalarCell('tutor_type', $tutor->getTutorType()->getName(), 20);
+            $this->scalarCell('status', $tutor->getStatus()->getName(), 30);
+            $this->scalarCell('region', $tutor->getRegion()->getName(), 20);
+            $this->arrayCell('languages', $tutor->getTutorLanguages(), 80, $this->getLanguageCellFormatter());
+            $this->arrayCell('skills', $tutor->getCompetencies(), 40, $this->getCompetencyCellFormatter());
+            $this->arrayCell('rates', $tutor->getRates(), 40, $this->getRateCellFormatter($unrestricted, $tutor));
+            $this->arrayCell('addresses', $tutor->getAddresses(), 100, $this->getAddressCellFormatter());
+            $this->arrayCell('emails', $tutor->getEmailAddresses(), 40, $this->getEmailCellFormatter());
+            $this->arrayCell('phones', $tutor->getPhoneNumbers(), 40, $this->getPhoneCellFormatter());
+            $this->scalarCell('bio', $tutor->getBio(), 80);
+            $this->currentSheet
+                ->getStyleByColumnAndRow($this->workingColumn-1, $this->workingColumn)
+                ->getAlignment()
+                ->setWrapText(true)
+            ;
+            $this->scalarCell('linkedin', $tutor->getLinkedInURL(), 50);
+            $this->currentSheet
+                ->getStyleByColumnAndRow($this->workingColumn, $this->workingColumn)
+                ->getAlignment()
+                ->setWrapText(true)
+            ;
+            $this->arrayCell('notes', $tutor->getNotes(), 100, $this->getNoteCellFormatter($unrestricted));
+            $this->scalarCell('created', $tutor->getCreated()->format('Y-m-d'), 15);
 
             // Set the Row Height, based on maxLines (which is the number of lines of text in the most populated cell)
-            $sheet->getRowDimension($row)->setRowHeight(self::HEIGHT_PER_LINE * $maxLines);
+            $this->currentSheet
+                ->getRowDimension($this->workingRow)
+                ->setRowHeight(self::HEIGHT_PER_LINE * $this->workingMaxLines)
+            ;
         }
         // vertical align top the whole report
-        $sheet->getStyle('A1:'.Cell::stringFromColumnIndex($col).$row)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+        $this->currentSheet
+            ->getStyle('A1:'.Cell::stringFromColumnIndex($this->workingColumn).$this->workingRow)
+            ->getAlignment()
+            ->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP)
+        ;
     }
 
     /**
@@ -248,57 +278,49 @@ class ReportDownloadFormatter
     }
 
     /**
-     * @param Sheet  $sheet
      * @param string $fieldName
-     * @param int    $col
-     * @param int    $row
      * @param string $value
      * @param int    $width
      */
-    private function scalarCell(Sheet $sheet, $fieldName, &$col, $row, $value, $width)
+    private function scalarCell($fieldName, $value, $width)
     {
         if ($this->definition->isFieldDisplayed($fieldName)) {
-            $sheet->setCellValueByColumnAndRow($col, $row, $value);
-            $sheet->getColumnDimensionByColumn($col)->setWidth($width);
-            $col++;
+            $this->currentSheet->setCellValueByColumnAndRow($this->workingColumn, $this->workingRow, $value);
+            $this->currentSheet->getColumnDimensionByColumn($this->workingColumn)->setWidth($width);
+            $this->workingColumn++;
         }
     }
 
     /**
-     * @param Sheet           $sheet
      * @param string          $fieldName
-     * @param int             $col
-     * @param int             $row
      * @param ArrayCollection $value
      * @param int             $width
-     * @param int             $maxLines
      * @param callable        $formatterFunction
      */
-    private function arrayCell(Sheet $sheet, $fieldName, &$col, $row, $value, $width, &$maxLines, $formatterFunction)
+    private function arrayCell($fieldName, $value, $width, $formatterFunction)
     {
         if ($this->definition->isFieldDisplayed($fieldName)) {
-            $maxLines = max($maxLines, $value->count());
-            $sheet->setCellValueByColumnAndRow(
-                $col,
-                $row,
+            $this->workingMaxLines = max($this->workingMaxLines, $value->count());
+            $this->currentSheet->setCellValueByColumnAndRow(
+                $this->workingColumn,
+                $this->workingRow,
                 implode("\n", $value->map($formatterFunction)->toArray()
                 )
             );
-            $sheet->getColumnDimensionByColumn($col)->setWidth($width);
-            $col++;
+            $this->currentSheet->getColumnDimensionByColumn($this->workingColumn)->setWidth($width);
+            $this->workingColumn++;
         }
     }
 
     /**
-     * @param Sheet $sheet
      * @param $cells
      * @param $color
      *
      * @throws \PHPExcel_Exception
      */
-    private function headerFormat(Sheet $sheet, $cells, $color)
+    private function headerFormat($cells, $color)
     {
-        $style = $sheet->getStyle($cells);
+        $style = $this->currentSheet->getStyle($cells);
         $style->getFill()->applyFromArray([
             'type' => \PHPExcel_Style_Fill::FILL_SOLID,
             'startcolor' => [

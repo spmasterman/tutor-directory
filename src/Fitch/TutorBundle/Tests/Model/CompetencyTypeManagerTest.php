@@ -29,7 +29,10 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
 
-        $existingEntity = $this->getModelManager()->findOrCreate($allEntities[0]->getName(), $this->container->get('fitch.manager.category'));
+        $existingEntity = $this->getModelManager()->findOrCreate(
+            $allEntities[0]->getName(),
+            $this->container->get('fitch.manager.category')
+        );
         $this->assertEquals($existingEntity, $allEntities[0]);
 
         $newEntity = $this->getModelManager()->findOrCreate('c-new', $this->container->get('fitch.manager.category'));

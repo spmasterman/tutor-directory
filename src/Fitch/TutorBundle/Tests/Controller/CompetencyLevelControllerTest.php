@@ -43,7 +43,11 @@ class CompetencyLevelControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check data in the show view
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("xtest")')->count(), 'Missing element td:contains("Test")');
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('td:contains("xtest")')->count(),
+            'Missing element td:contains("Test")'
+        );
 
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
@@ -56,11 +60,15 @@ class CompetencyLevelControllerTest extends WebTestCase
         $client->submit($form);
         $crawler = $client->followRedirect();
 
-        $this->assertGreaterThan(0, $crawler->filter('[value="xtest-edit"]')->count(), 'Missing element [value="xtest-edit"]');
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('[value="xtest-edit"]')->count(),
+            'Missing element [value="xtest-edit"]'
+        );
 
         // Delete the entity
         $client->submit($crawler->selectButton('Delete')->form());
-        $crawler = $client->followRedirect();
+        $client->followRedirect();
 
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());

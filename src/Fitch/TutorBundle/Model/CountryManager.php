@@ -67,10 +67,13 @@ class CountryManager extends BaseModelManager
      */
     public function findAllSorted()
     {
-        return $this->getRepo()->findBy([],  [
-            'preferred' => 'DESC',
-            'active' => 'DESC',
-            'name' => 'ASC', ]
+        return $this->getRepo()->findBy(
+            [],
+            [
+                'preferred' => 'DESC',
+                'active' => 'DESC',
+                'name' => 'ASC',
+            ]
         );
     }
 

@@ -40,7 +40,7 @@ class StatusManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        return parent::buildFlatChoices(function(NamedTraitInterface $entity) {
+        return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
     }

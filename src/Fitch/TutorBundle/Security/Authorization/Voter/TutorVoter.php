@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -25,11 +26,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class TutorVoter implements VoterInterface
 {
     /** @var  RoleHierarchy */
-    private $rh;
+    private $roleHierarchy;
 
     public function __construct($roles)
     {
-        $this->rh = new RoleHierarchy($roles);
+        $this->roleHierarchy = new RoleHierarchy($roles);
     }
 
     public function supportsAttribute($attribute)
@@ -86,6 +87,31 @@ class TutorVoter implements VoterInterface
             return VoterInterface::ACCESS_DENIED;
         }
 
+        return $this->voteOnAttribute($attribute, $user);
+    }
+
+    private function userHasRole(UserInterface $user, $role)
+    {
+        foreach ($user->getRoles() as $heldRole) {
+            foreach ($this->roleHierarchy->getReachableRoles([new Role($heldRole)]) as $reachableRole) {
+                /* @var RoleInterface $reachableRole */
+                if ($role === $reachableRole->getRole()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $attribute
+     * @param $user
+     *
+     * @return int
+     */
+    private function voteOnAttribute($attribute, $user)
+    {
         switch ($attribute) {
             case Tutor::ACCESS_LEVEL_LIMITED_VIEW:
                 return VoterInterface::ACCESS_GRANTED;
@@ -108,18 +134,5 @@ class TutorVoter implements VoterInterface
         }
 
         return VoterInterface::ACCESS_DENIED;
-    }
-
-    private function userHasRole(UserInterface $user, $role)
-    {
-        foreach ($user->getRoles() as $heldRole) {
-            foreach ($this->rh->getReachableRoles([new Role($heldRole)]) as $reachableRole) {
-                if ($role === $reachableRole->getRole()) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 }

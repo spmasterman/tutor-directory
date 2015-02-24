@@ -64,7 +64,7 @@ class FileController extends Controller
                     $fileType = $this->getFileTypeManager()->findById($value);
                     $file->setFileType($fileType);
                     break;
-                default :
+                default:
                     $setter = 'set'.ucfirst($name);
                     if (is_callable([$file, $setter])) {
                         $file->$setter($value);
@@ -163,15 +163,27 @@ class FileController extends Controller
             imagecopyresampled(
                 $destinationImage,
                 $sourceImage,
-                0, 0, $cropInfo->getOriginX(), $cropInfo->getOriginY(),
-                $targetWidth, $targetHeight, $cropInfo->getWidth(), $cropInfo->getHeight()
+                0,
+                0,
+                $cropInfo->getOriginX(),
+                $cropInfo->getOriginY(),
+                $targetWidth,
+                $targetHeight,
+                $cropInfo->getWidth(),
+                $cropInfo->getHeight()
             );
         } else {
             imagecopyresampled(
                 $destinationImage,
                 $sourceImage,
-                0, 0, 0, 0,
-                $targetWidth, $targetHeight, $targetWidth, $targetHeight
+                0,
+                0,
+                0,
+                0,
+                $targetWidth,
+                $targetHeight,
+                $targetWidth,
+                $targetHeight
             );
         }
 

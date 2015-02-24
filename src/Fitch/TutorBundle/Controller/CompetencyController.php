@@ -85,7 +85,7 @@ class CompetencyController extends Controller
                 case 'competency-note':
                     $competency->setNote($value);
                     break;
-                default :
+                default:
                     throw new UnknownMethodException($name.' is not a valid Competency member');
             }
             $this->getTutorManager()->saveTutor($tutor);

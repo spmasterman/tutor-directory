@@ -46,7 +46,7 @@ class BusinessAreaManager extends BaseModelManager
      */
     public function buildGroupedChoices()
     {
-        parent::buildFlatChoices(function(NamedTraitInterface $entity) {
+        parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
     }
@@ -61,7 +61,7 @@ class BusinessAreaManager extends BaseModelManager
 
     /**
      * @param BusinessArea $businessArea
-     * @param bool     $withFlush
+     * @param bool         $withFlush
      */
     public function saveBusinessArea($businessArea, $withFlush = true)
     {

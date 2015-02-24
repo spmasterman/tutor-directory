@@ -43,7 +43,11 @@ class StatusControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check data in the show view
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("xtest")')->count(), 'Missing element td:contains("Test")');
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('td:contains("xtest")')->count(),
+            'Missing element td:contains("Test")'
+        );
 
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
@@ -56,7 +60,11 @@ class StatusControllerTest extends WebTestCase
         $client->submit($form);
         $crawler = $client->followRedirect();
 
-        $this->assertGreaterThan(0, $crawler->filter('[value="xtest-edit"]')->count(), 'Missing element [value="xtest-edit"]');
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('[value="xtest-edit"]')->count(),
+            'Missing element [value="xtest-edit"]'
+        );
 
         // Delete the entity
         $client->submit($crawler->selectButton('Delete')->form());

@@ -17,6 +17,8 @@ class MenuBuilder extends ContainerAware
      */
     public function sidebarMenu(FactoryInterface $factory, array $options)
     {
+        $options = null;
+
         $menu = $factory
             ->createItem('root', ['route' => 'home'])
             ->setChildrenAttribute('class', 'main-menu')
@@ -50,6 +52,8 @@ class MenuBuilder extends ContainerAware
      */
     public function breadcrumbMenu(FactoryInterface $factory, array $options)
     {
+        $options = null;
+
         $menu = $factory
             ->createItem('root', ['route' => 'home'])
             ->setAttribute('class', 'breadcrumb')
@@ -89,6 +93,8 @@ class MenuBuilder extends ContainerAware
      */
     public function userMenu(FactoryInterface $factory, array $options)
     {
+        $options= null;
+
         $menu = $factory->createItem('root')
                         ->setChildrenAttribute('class', 'dropdown-menu')
                         ->setChildrenAttribute('role', 'menu');

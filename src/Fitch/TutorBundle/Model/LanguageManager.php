@@ -56,7 +56,7 @@ class LanguageManager extends BaseModelManager
      */
     public function findAllSorted()
     {
-        return $this->getRepo()->findBy([],  [
+        return $this->getRepo()->findBy([], [
             'preferred' => 'DESC',
             'active' => 'DESC',
             'name' => 'ASC',

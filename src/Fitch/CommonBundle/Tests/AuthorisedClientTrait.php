@@ -28,8 +28,10 @@ trait AuthorisedClientTrait
         $loginManager->loginUser($firewallName, $user);
 
         // save the login token into the session and put it in a cookie
-        $container->get('session')->set('_security_'.$firewallName,
-            serialize($container->get('security.context')->getToken()));
+        $container->get('session')->set(
+            '_security_'.$firewallName,
+            serialize($container->get('security.context')->getToken())
+        );
         $container->get('session')->save();
         $client->getCookieJar()->set(new Cookie($session->getName(), $session->getId()));
 
@@ -44,8 +46,12 @@ trait AuthorisedClientTrait
             } else {
                 $client = static::createClient();
             }
-            $crawler = $client->request($method, $path);
-            $this->assertEquals($expectedHTTPResponseCode, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for $method $path");
+            $client->request($method, $path);
+            $this->assertEquals(
+                $expectedHTTPResponseCode,
+                $client->getResponse()->getStatusCode(),
+                "Unexpected HTTP status code for $method $path"
+            );
         }
     }
 }

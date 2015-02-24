@@ -61,6 +61,8 @@ class ReportDefinitionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
+
         $builder
             ->add('tutor_type', 'entity', [
                 'class' => 'FitchTutorBundle:TutorType',
@@ -95,7 +97,8 @@ class ReportDefinitionType extends AbstractType
                 'placeholder' => 'Filter by Region...',
                 'required' => false,
             ])
-            ->add('language',
+            ->add(
+                'language',
                 new LanguageFilterType($this->translator, $this->languageManager),
                 [
                     'attr' => ['class' => 'inline-subform stacked-group'],

@@ -34,7 +34,7 @@ class CompetencyTypeManager extends BaseModelManager
      */
     public function findAllSorted()
     {
-        return $this->getRepo()->findBy([],  [
+        return $this->getRepo()->findBy([], [
             'category' => 'ASC',
             'name' => 'ASC',
         ]);

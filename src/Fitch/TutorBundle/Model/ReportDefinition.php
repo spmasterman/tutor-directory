@@ -211,19 +211,19 @@ class ReportDefinition extends AbstractReportDefinition
     public function isFilteredBy($name)
     {
         switch ($name) {
-            case 'Competency' :
+            case 'Competency':
                 return (bool) (count($this->competencyLevelIds) || count($this->competencyTypeIds) || count($this->categoryIds));
-            case 'Category' :
+            case 'Category':
                 return (bool) count($this->categoryIds);
             case 'CompetencyType':
                 return (bool) count($this->competencyTypeIds);
-            case 'CompetencyLevel' :
+            case 'CompetencyLevel':
                 return (bool) count($this->competencyLevelIds);
-            case 'RateType' :
+            case 'RateType':
                 return (bool) count($this->rateTypes);
-            case 'Rate' :
+            case 'Rate':
                 return (bool) ($this->operator && $this->rateAmount && $this->currency);
-            case 'Language' :
+            case 'Language':
                 $languageCount = count($this->languageIds);
                 if ($languageCount < 1) {
                     return false;
@@ -233,11 +233,11 @@ class ReportDefinition extends AbstractReportDefinition
                 }
 
                 return (bool) $this->languageOperator;
-            case 'TutorType' :
+            case 'TutorType':
                 return (bool) count($this->tutorTypeIds);
-            case 'Status' :
+            case 'Status':
                 return (bool) count($this->statusIds);
-            case 'Region' :
+            case 'Region':
                 return (bool) count($this->regionIds);
             default:
                 return false;
@@ -288,19 +288,19 @@ class ReportDefinition extends AbstractReportDefinition
     public function getRateLimitAsExpression($tutorCurrencyAlias)
     {
         switch ($this->operator) {
-            case 'lt' :
+            case 'lt':
                 $operator = ' < ';
                 break;
-            case 'lte' :
+            case 'lte':
                 $operator = ' <= ';
                 break;
-            case 'eq' :
+            case 'eq':
                 $operator = ' = ';
                 break;
-            case 'gte' :
+            case 'gte':
                 $operator = ' >= ';
                 break;
-            case 'gt' :
+            case 'gt':
                 $operator = ' > ';
                 break;
             default:

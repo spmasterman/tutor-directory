@@ -82,7 +82,7 @@ class TutorLanguageController extends Controller
                 case 'tutor-language-note':
                     $tutorLanguage->setNote($value);
                     break;
-                default :
+                default:
                     throw new UnknownMethodException($name.' is not a valid Tutor Language member');
             }
             $this->getTutorManager()->saveTutor($tutor);
