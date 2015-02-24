@@ -5,7 +5,9 @@
 
         <div class="alert alert-info alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4><i class="fa fa-info-circle"></i> Information</h4><p>{% trans %}report.header.intro{% endtrans %}</p>
+            <h4><i class="fa fa-info-circle"></i> Information</h4>
+            <p>{% trans %}report.header.intro{% endtrans %}</p>
+            <p>{% trans %}report.header.note{% endtrans %}</p>
         </div>
 
         {% form_theme form 'FitchFrontEndBundle:Form:horizontal.html.twig' %}

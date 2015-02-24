@@ -179,15 +179,13 @@ SQL;
                 $queryBuilder
                     ->andWhere('cat.id IN '.$this->getIdsAsSet($definition->getCategoryIds()))
                 ;
-                if ($definition->getCompetencyTypeOperator() == 'and') {
+                if ($definition->getCategoryOperator() == 'and') {
                     $queryBuilder
                         ->groupBy('t.id')
                         ->having('COUNT(DISTINCT cat.id) = '.count($definition->getCategoryIds()))
                     ;
                 }
-            }
-
-            if ($definition->isFilteredBy('CompetencyType')) {
+            } elseif ($definition->isFilteredBy('CompetencyType')) {
                 $queryBuilder
                     ->andWhere('tct.id IN '.$this->getIdsAsSet($definition->getCompetencyTypeIds()))
                 ;

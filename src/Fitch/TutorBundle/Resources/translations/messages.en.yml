@@ -393,7 +393,8 @@ report:
     title: Trainer Report
     tagline: dynamic trainer reports
     header:
-        intro: Leave any section blank to have it be inactive (you do not need to select ALL the checkboxes in a group). Items marked '[Restricted]' below will not display or come into effect for users that do not have appropriate rights even if the report is saved.
+         intro: Leave any section blank to have it be inactive (you do not need to select ALL the checkboxes in a group). Items marked '[Restricted]' below will not display or come into effect for users that do not have appropriate rights even if the report is saved.
+         note: Please note: If you Filter by both Skill Category AND Skill, then only the Skill Category will be considered.
     create:
         intro: Or define a new report below (you will be able to save it later)
     delete:
