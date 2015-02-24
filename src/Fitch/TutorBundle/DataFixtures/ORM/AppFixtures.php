@@ -41,16 +41,19 @@ class AppFixtures extends DataFixtureLoader
             __DIR__.'/../../Resources/fixtures/510_tutor_languages.yml',
         ]);
 
-        $testFixtures = array_map(function ($v) {
-            return str_replace('/fixtures/', '/fixtures/test/', $v);
+        $testFixtures = array_map(function ($fileName) {
+            return str_replace('/fixtures/', '/fixtures/test/', $fileName);
         }, $developmentFixtures);
 
         $environment = $this->container->get('kernel')->getEnvironment();
 
         switch ($environment) {
-            case 'prod': return $productionFixtures;
-            case 'test': return $testFixtures;
-            default : return $developmentFixtures; // demo, dev etc
+            case 'prod':
+                return $productionFixtures;
+            case 'test':
+                return $testFixtures;
+            default:
+                return $developmentFixtures; // demo, dev etc
         }
     }
 

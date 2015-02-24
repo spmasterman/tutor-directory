@@ -114,7 +114,7 @@ class ProfileController extends Controller
                     ;
                     $relatedEntity = $address;
                     break;
-                case 'email' :
+                case 'email':
                     $emailId = $request->request->get('emailPk');
                     if ($emailId) {
                         $email = $this->getEmailManager()->findById($emailId);
@@ -128,7 +128,7 @@ class ProfileController extends Controller
                     ;
                     $relatedEntity = $email;
                     break;
-                case 'phone' :
+                case 'phone':
                     $phoneId = $request->request->get('phonePk');
                     if ($phoneId) {
                         $phone = $this->getPhoneManager()->findById($phoneId);

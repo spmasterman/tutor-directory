@@ -37,7 +37,10 @@ class TutorTest extends FixturesWebTestCase
 
     public function testTutorType()
     {
-        $this->assertNotEquals($this->entityOne->getTutorType()->getName(), $this->entityTwo->getTutorType()->getName());
+        $this->assertNotEquals(
+            $this->entityOne->getTutorType()->getName(),
+            $this->entityTwo->getTutorType()->getName()
+        );
         $this->entityTwo->setTutorType($this->entityOne->getTutorType());
         $this->assertEquals($this->entityOne->getTutorType()->getName(), $this->entityTwo->getTutorType()->getName());
     }
@@ -209,7 +212,10 @@ class TutorTest extends FixturesWebTestCase
         }
 
         // check that they are the same
-        $this->assertEquals($this->entityOne->getEmailAddresses()->count(), $this->entityTwo->getEmailAddresses()->count());
+        $this->assertEquals(
+            $this->entityOne->getEmailAddresses()->count(),
+            $this->entityTwo->getEmailAddresses()->count()
+        );
         foreach ($this->entityTwo->getEmailAddresses() as $emailAddress) {
             $this->assertContains($emailAddress, $this->entityOne->getEmailAddresses());
         }
@@ -218,7 +224,10 @@ class TutorTest extends FixturesWebTestCase
         foreach ($this->entityOne->getEmailAddresses() as $emailAddress) {
             $this->entityTwo->addEmailAddress($emailAddress);
         }
-        $this->assertEquals($this->entityOne->getEmailAddresses()->count(), $this->entityTwo->getEmailAddresses()->count());
+        $this->assertEquals(
+            $this->entityOne->getEmailAddresses()->count(),
+            $this->entityTwo->getEmailAddresses()->count()
+        );
 
         // Remove one of them
         $this->entityTwo->removeEmailAddress($this->entityTwo->getEmailAddresses()->first());
@@ -226,7 +235,10 @@ class TutorTest extends FixturesWebTestCase
 
         // now set them in bulk
         $this->entityTwo->setEmailAddresses($this->entityOne->getEmailAddresses());
-        $this->assertEquals($this->entityOne->getEmailAddresses()->count(), $this->entityTwo->getEmailAddresses()->count());
+        $this->assertEquals(
+            $this->entityOne->getEmailAddresses()->count(),
+            $this->entityTwo->getEmailAddresses()->count()
+        );
         foreach ($this->entityTwo->getEmailAddresses() as $emailAddress) {
             $this->assertContains($emailAddress, $this->entityOne->getEmailAddresses());
         }

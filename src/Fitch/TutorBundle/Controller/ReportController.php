@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Form\Type\ReportDefinitionType;
 use Fitch\TutorBundle\Form\Type\ReportType;
-use Fitch\TutorBundle\Model\BusinessAreaManager;
 use Fitch\TutorBundle\Model\CategoryManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
@@ -23,9 +22,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Report controller - manages a filterable, savable report that is a little more dynamic than the searchable table
@@ -140,12 +141,14 @@ class ReportController extends Controller
      */
     private function createReportForm()
     {
+        /** @var TranslatorInterface $translator */
+        $translator = $this->get('translator');
 
         //$form = $this->createForm(
         $form =  $this->get('form.factory')->createNamedBuilder(
             'ftbr',
             new ReportDefinitionType(
-                $this->get('translator'),
+                $translator,
                 $this->getCurrencyManager(),
                 $this->getRateManager(),
                 $this->getCategoryManager(),
@@ -161,13 +164,18 @@ class ReportController extends Controller
             ]
         )->getForm();
 
-        $form->add('submit', 'submit',
+        /** @var $form FormInterface */
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => 'View Report',
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-arrow-circle-right',
-                ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -186,13 +194,17 @@ class ReportController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle',
-                ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
