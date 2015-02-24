@@ -140,13 +140,17 @@ class TutorController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle',
-                ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }

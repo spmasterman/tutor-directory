@@ -86,13 +86,17 @@ class BusinessAreaController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle',
-        ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -176,13 +180,17 @@ class BusinessAreaController extends Controller
             'method' => 'PUT',
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle',
-            ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -269,39 +277,20 @@ class BusinessAreaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('business_area_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit',
+            ->add(
+                'submit',
+                'submit',
                 [
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle',
-                ], ])
+                        ],
+                ]
+            )
             ->getForm()
         ;
     }
-
-//    /**
-//     * Returns the categories as a JSON Array.
-//     *
-//     * @Route("/all", name="all_categories")
-//     *
-//     * @Method("GET")
-//     * @Template()
-//     *
-//     * @return \Symfony\Component\HttpFoundation\JsonResponse
-//     */
-//    public function allAction()
-//    {
-//        $out = [];
-//        foreach ($this->getBusinessAreaManager()->findAll() as $businessArea) {
-//            $out[] = [
-//                'value' => $businessArea->getId(),
-//                'text' => $businessArea->getName(),
-//            ];
-//        }
-//
-//        return new JsonResponse($out);
-//    }
 
     /**
      * @return BusinessAreaManager

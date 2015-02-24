@@ -89,13 +89,17 @@ class OperatingRegionController extends Controller
             'currencyManager' => $this->getCurrencyManager(),
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle',
-        ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -180,13 +184,17 @@ class OperatingRegionController extends Controller
             'currencyManager' => $this->getCurrencyManager(),
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle',
-            ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -273,13 +281,17 @@ class OperatingRegionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('region_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit',
+            ->add(
+                'submit',
+                'submit',
                 [
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle',
-                ], ])
+                        ],
+                ]
+            )
             ->getForm()
         ;
     }

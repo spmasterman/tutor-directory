@@ -86,13 +86,17 @@ class CompetencyLevelController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => 'Create',
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-plus-circle',
-        ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -176,13 +180,17 @@ class CompetencyLevelController extends Controller
             'method' => 'PUT',
         ]);
 
-        $form->add('submit', 'submit',
+        $form->add(
+            'submit',
+            'submit',
             [
                 'label' => $this->get('translator')->trans('navigation.update'),
                 'attr' => [
                     'submit_class' => 'btn-success',
                     'submit_glyph' => 'fa-check-circle',
-            ], ]);
+                ],
+            ]
+        );
 
         return $form;
     }
@@ -265,13 +273,17 @@ class CompetencyLevelController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('competency_level_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit',
+            ->add(
+                'submit',
+                'submit',
                 [
                     'label' => $this->get('translator')->trans('navigation.delete'),
                         'attr' => [
                             'submit_class' => 'btn-danger',
                             'submit_glyph' => 'fa-exclamation-circle',
-                ], ])
+                        ],
+                ]
+            )
             ->getForm()
         ;
     }
