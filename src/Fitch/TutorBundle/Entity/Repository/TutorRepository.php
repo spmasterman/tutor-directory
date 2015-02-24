@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\ReportDefinition;
 
@@ -69,79 +70,163 @@ SQL;
             ->where('1 = 1')
         ;
 
-        if ($definition->isFilteredByRegion()) {
-            $qb
+        $this->handleRegionFilter($definition, $qb);
+        $this->handleStatusFilter($definition, $qb);
+        $this->handleTutorTypeFilter($definition, $qb);
+        $this->handleLanguageFilter($definition, $qb);
+        $this->handleRateFilter($definition, $qb);
+        $this->handleCompetencyFilter($definition, $qb);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder     $queryBuilder
+     */
+    private function handleRegionFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        if ($definition->isFilteredBy('Region')) {
+            $queryBuilder
                 ->leftJoin('t.region', 'r')
-                ->andWhere('r.id IN '.$definition->getRegionIDsAsSet())
+                ->andWhere('r.id IN '.$this->getIdsAsSet($definition->getRegionIds()))
             ;
         }
+    }
 
-        if ($definition->isFilteredByStatus()) {
-            $qb
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder     $queryBuilder
+     */
+    private function handleStatusFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        if ($definition->isFilteredBy('Status')) {
+            $queryBuilder
                 ->leftJoin('t.status', 's')
-                ->andWhere('s.id IN '.$definition->getStatusIDsAsSet())
+                ->andWhere('s.id IN '.$this->getIdsAsSet($definition->getStatusIds()))
             ;
         }
+    }
 
-        if ($definition->isFilteredByTutorType()) {
-            $qb
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder     $queryBuilder
+     */
+    private function handleTutorTypeFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        if ($definition->isFilteredBy('TutorType')) {
+            $queryBuilder
                 ->leftJoin('t.tutorType', 'tt')
-                ->andWhere('tt.id IN '.$definition->getTutorTypeIDsAsSet())
+                ->andWhere('tt.id IN '.$this->getIdsAsSet($definition->getTutorTypeIds()))
             ;
         }
+    }
 
-        if ($definition->isFilteredByLanguage()) {
-            $qb
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder     $queryBuilder
+     */
+    private function handleLanguageFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        if ($definition->isFilteredBy('Language')) {
+            $queryBuilder
                 ->leftJoin('t.tutorLanguages', 'tl')
                 ->leftJoin('tl.language', 'l')
-                ->andWhere('l.id IN '.$definition->getLanguageIDsAsSet())
+                ->andWhere('l.id IN '.$this->getIdsAsSet($definition->getLanguageIds()))
             ;
 
             if ($definition->getLanguageOperator() == 'and') {
-                $qb
+                $queryBuilder
                     ->groupBy('t.id')
-                    ->having('COUNT(DISTINCT l.id) = ' . count($definition->getLanguageIDs()))
+                    ->having('COUNT(DISTINCT l.id) = '.count($definition->getLanguageIds()))
                 ;
             }
         }
+    }
 
-        if ($definition->isFilteredByRate()) {
-            $qb
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder     $queryBuilder
+     */
+    private function handleRateFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        if ($definition->isFilteredBy('Rate')) {
+            $queryBuilder
                 ->join('t.rates', 'ra')
                 ->join('t.currency', 'c')
                 ->andWhere('ra.amount '.$definition->getRateLimitAsExpression('c'))
             ;
-            if ($definition->isFilteredByRateType()) {
-                $qb->andWhere('LOWER(ra.name) IN '.$definition->getRateTypesAsSet());
+            if ($definition->isFilteredBy('RateType')) {
+                $queryBuilder->andWhere('LOWER(ra.name) IN '.$definition->getRateTypesAsSet());
             }
         }
+    }
 
-        if ($definition->isFilteredByCompetency()) {
-            $qb
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder     $queryBuilder
+     */
+    private function handleCompetencyFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        if ($definition->isFilteredBy('Competency')) {
+            $queryBuilder
                 ->join('t.competencies', 'tc')
+                ->join('tc.competencyType', 'tct')
+                ->join('tct.category', 'cat')
             ;
 
-            if ($definition->isFilteredByCompetencyType()) {
-                $qb
-                    ->join('tc.competencyType', 'tct')
-                    ->andWhere('tct.id IN '.$definition->getCompetencyTypeIdsAsSet())
+            if ($definition->isFilteredBy('Category')) {
+                $queryBuilder
+                    ->andWhere('cat.id IN '.$this->getIdsAsSet($definition->getCategoryIds()))
                 ;
                 if ($definition->getCompetencyTypeOperator() == 'and') {
-                    $qb
+                    $queryBuilder
                         ->groupBy('t.id')
-                        ->having('COUNT(DISTINCT tct.id) = ' . count($definition->getCompetencyTypeIds()))
+                        ->having('COUNT(DISTINCT cat.id) = '.count($definition->getCategoryIds()))
                     ;
                 }
             }
 
-            if ($definition->isFilteredByCompetencyLevel()) {
-                $qb
+            if ($definition->isFilteredBy('CompetencyType')) {
+                $queryBuilder
+                    ->andWhere('tct.id IN '.$this->getIdsAsSet($definition->getCompetencyTypeIds()))
+                ;
+                if ($definition->getCompetencyTypeOperator() == 'and') {
+                    $queryBuilder
+                        ->groupBy('t.id')
+                        ->having('COUNT(DISTINCT tct.id) = '.count($definition->getCompetencyTypeIds()))
+                    ;
+                }
+            }
+
+            if ($definition->isFilteredBy('CompetencyLevel')) {
+                $queryBuilder
                     ->join('tc.competencyLevel', 'tcl')
-                    ->andWhere('tcl.id IN '.$definition->getCompetencyLevelIdsAsSet())
+                    ->andWhere('tcl.id IN '.$this->getIdsAsSet($definition->getCompetencyLevelIds()))
                 ;
             }
         }
+    }
 
-        return $qb->getQuery()->getResult();
+    /**
+     * @param array $idArray
+     *
+     * @return string
+     */
+    private function getIdsAsSet($idArray)
+    {
+        $this->sanitizeIdArray($idArray);
+
+        return '('.implode(',', $idArray).')';
+    }
+
+    /**
+     * @param $arrayIn
+     */
+    private function sanitizeIdArray($arrayIn)
+    {
+        array_walk($arrayIn, function (&$value) {
+            $value = (int) trim($value);
+        });
     }
 }
