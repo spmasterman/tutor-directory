@@ -4,12 +4,8 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Form\Type\TutorType;
-use Fitch\TutorBundle\Model\AddressManagerInterface;
 use Fitch\TutorBundle\Model\CountryManagerInterface;
-use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
-use Fitch\TutorBundle\Model\StatusManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
-use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -98,13 +94,7 @@ class TutorController extends Controller
 
         $tutorManager = $this->getTutorManager();
 
-        $tutor = $tutorManager->createTutor(
-            $this->getAddressManager(),
-            $this->getCountryManager(),
-            $this->getStatusManager(),
-            $this->getOperatingRegionManager(),
-            $this->getTutorTypeManager()
-        );
+        $tutor = $tutorManager->createTutor();
 
         $form = $this->createCreateForm($tutor);
         $form->handleRequest($request);
@@ -169,13 +159,7 @@ class TutorController extends Controller
             throw new AccessDeniedHttpException('Unauthorised access!');
         }
 
-        $tutor = $this->getTutorManager()->createTutor(
-            $this->getAddressManager(),
-            $this->getCountryManager(),
-            $this->getStatusManager(),
-            $this->getOperatingRegionManager(),
-            $this->getTutorTypeManager()
-        );
+        $tutor = $this->getTutorManager()->createTutor();
         $form   = $this->createCreateForm($tutor);
 
         return [
@@ -193,42 +177,10 @@ class TutorController extends Controller
     }
 
     /**
-     * @return AddressManagerInterface
-     */
-    private function getAddressManager()
-    {
-        return $this->get('fitch.manager.address');
-    }
-
-    /**
      * @return CountryManagerInterface
      */
     private function getCountryManager()
     {
         return $this->get('fitch.manager.country');
-    }
-
-    /**
-     * @return StatusManagerInterface
-     */
-    private function getStatusManager()
-    {
-        return $this->get('fitch.manager.status');
-    }
-
-    /**
-     * @return OperatingRegionManagerInterface
-     */
-    private function getOperatingRegionManager()
-    {
-        return $this->get('fitch.manager.operating_region');
-    }
-
-    /**
-     * @return TutorTypeManagerInterface
-     */
-    private function getTutorTypeManager()
-    {
-        return $this->get('fitch.manager.tutor_type');
     }
 }

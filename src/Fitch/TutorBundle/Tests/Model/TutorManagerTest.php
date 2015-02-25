@@ -31,13 +31,7 @@ class TutorManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return three entities");
 
         // Create new one - these services probably should all be stubbed/mocked to test this in isolation ??
-        $newEntity = $this->getModelManager()->createTutor(
-            $this->container->get('fitch.manager.address'),
-            $this->container->get('fitch.manager.country'),
-            $this->container->get('fitch.manager.status'),
-            $this->container->get('fitch.manager.operating_region'),
-            $this->container->get('fitch.manager.tutor_type')
-        );
+        $newEntity = $this->getModelManager()->createTutor();
 
         $newEntity
             ->setName('t')

@@ -44,21 +44,9 @@ interface TutorManagerInterface
      *
      * Set its default values
      *
-     * @param AddressManagerInterface         $addressManager
-     * @param CountryManagerInterface         $countryManager
-     * @param StatusManagerInterface          $statusManager
-     * @param OperatingRegionManagerInterface $operatingRegionManager
-     * @param TutorTypeManagerInterface       $tutorTypeManager
-     *
      * @return Tutor
      */
-    public function createTutor(
-        AddressManagerInterface $addressManager,
-        CountryManagerInterface $countryManager,
-        StatusManagerInterface $statusManager,
-        OperatingRegionManagerInterface $operatingRegionManager,
-        TutorTypeManagerInterface $tutorTypeManager
-    );
+    public function createTutor();
 
     /**
      * @param int $id

@@ -59,6 +59,11 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.tutor.class%
+            addressManager: "@fitch.manager.address"
+            countryManager: "@fitch.manager.country"
+            statusManager: "@fitch.manager.status"
+            operatingRegionManager: "@fitch.manager.operating_region"
+            tutorTypeManager: "@fitch.manager.tutor_type"
     fitch.manager.phone:
         class: %fitch.manager.phone.class%
         calls:

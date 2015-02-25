@@ -10,7 +10,6 @@
     <testsuites>
         <testsuite name="Tutor Bundle Test Suite">
             <directory>../tests</directory>
-            <directory>../src/Fitch/TutorBundle/SimpleTest</directory>
             <directory>../src/*/*Bundle/Tests</directory>
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
             <exclude>../src/Fitch/CommonBundle/Tests/FixturesWebTestCase.php</exclude>

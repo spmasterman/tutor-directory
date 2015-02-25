@@ -2,13 +2,49 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Doctrine\ORM\EntityManager;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorRepository;
 use Fitch\TutorBundle\Entity\Tutor;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TutorManager extends BaseModelManager implements TutorManagerInterface
 {
+    /** @var AddressManagerInterface $addressManager  */
+    private $addressManager;
+
+    /** @var CountryManagerInterface $countryManager  */
+    private $countryManager;
+
+    /** @var StatusManagerInterface $statusManager  */
+    private $statusManager;
+
+    /** @var OperatingRegionManagerInterface $operatingRegionManager  */
+    private $operatingRegionManager;
+
+    /** @var TutorTypeManagerInterface $tutorTypeManager  */
+    private $tutorTypeManager;
+
+    public function __construct(
+        EventDispatcherInterface $dispatcher,
+        EntityManager $em,
+        $class,
+        AddressManagerInterface $addressManager,
+        CountryManagerInterface $countryManager,
+        StatusManagerInterface $statusManager,
+        OperatingRegionManagerInterface $operatingRegionManager,
+        TutorTypeManagerInterface $tutorTypeManager
+    ) {
+        parent::__construct($dispatcher, $em, $class);
+
+        $this->addressManager = $addressManager;
+        $this->countryManager = $countryManager;
+        $this->statusManager = $statusManager;
+        $this->operatingRegionManager = $operatingRegionManager;
+        $this->tutorTypeManager = $tutorTypeManager;
+    }
+
     /**
      * @param $id
      *
@@ -49,17 +85,12 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
 
     /**
      * @param Tutor                   $tutor
-     * @param AddressManagerInterface $addressManager
-     * @param CountryManagerInterface $countryManager
      */
-    private function createDefaultAddressIfRequired(
-        Tutor $tutor,
-        AddressManagerInterface $addressManager,
-        CountryManagerInterface $countryManager
-    ) {
+    private function createDefaultAddressIfRequired(Tutor $tutor)
+    {
         if (!$tutor->hasAddress()) {
-            $address = $addressManager->createAddress();
-            $address->setCountry($countryManager->getDefaultCountry());
+            $address = $this->addressManager->createAddress();
+            $address->setCountry($this->countryManager->getDefaultCountry());
             $tutor->addAddress($address);
         }
     }
@@ -78,38 +109,26 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
      *
      * Set its default values
      *
-     * @param AddressManagerInterface         $addressManager
-     * @param CountryManagerInterface         $countryManager
-     * @param StatusManagerInterface          $statusManager
-     * @param OperatingRegionManagerInterface $operatingRegionManager
-     * @param TutorTypeManagerInterface       $tutorTypeManager
-     *
      * @return Tutor
      */
-    public function createTutor(
-        AddressManagerInterface $addressManager,
-        CountryManagerInterface $countryManager,
-        StatusManagerInterface $statusManager,
-        OperatingRegionManagerInterface $operatingRegionManager,
-        TutorTypeManagerInterface $tutorTypeManager
-    ) {
+    public function createTutor()
+    {
         /** @var Tutor $tutor */
         $tutor = parent::createEntity();
-        $this->createDefaultAddressIfRequired($tutor, $addressManager, $countryManager);
-        $this->setDefaultRegion($tutor, $operatingRegionManager);
-        $this->setDefaultStatus($tutor, $statusManager);
-        $this->setDefaultTutorType($tutor, $tutorTypeManager);
+        $this->createDefaultAddressIfRequired($tutor);
+        $this->setDefaultRegion($tutor);
+        $this->setDefaultStatus($tutor);
+        $this->setDefaultTutorType($tutor);
 
         return $tutor;
     }
 
     /**
      * @param Tutor                           $tutor
-     * @param OperatingRegionManagerInterface $operatingRegionManager
      */
-    private function setDefaultRegion(Tutor $tutor, OperatingRegionManagerInterface $operatingRegionManager)
+    private function setDefaultRegion(Tutor $tutor)
     {
-        $region = $operatingRegionManager->findDefaultOperatingRegion();
+        $region = $this->operatingRegionManager->findDefaultOperatingRegion();
         if ($region) {
             $tutor->setRegion($region);
             $tutor->setCurrency($region->getDefaultCurrency());
@@ -118,20 +137,18 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
 
     /**
      * @param Tutor                  $tutor
-     * @param StatusManagerInterface $statusManager
      */
-    private function setDefaultStatus(Tutor $tutor, StatusManagerInterface $statusManager)
+    private function setDefaultStatus(Tutor $tutor)
     {
-        $tutor->setStatus($statusManager->findDefaultStatus());
+        $tutor->setStatus($this->statusManager->findDefaultStatus());
     }
 
     /**
      * @param Tutor                     $tutor
-     * @param TutorTypeManagerInterface $tutorTypeManager
      */
-    private function setDefaultTutorType(Tutor $tutor, TutorTypeManagerInterface $tutorTypeManager)
+    private function setDefaultTutorType(Tutor $tutor)
     {
-        $tutor->setTutorType($tutorTypeManager->findDefaultTutorType());
+        $tutor->setTutorType($this->tutorTypeManager->findDefaultTutorType());
     }
 
     /**
