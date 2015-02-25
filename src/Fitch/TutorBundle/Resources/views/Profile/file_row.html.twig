@@ -2,16 +2,21 @@
 <p class="data-row" data-id="{{ file.getId }}">
     <span class="data-name">{{ file.getName }}</span>
     <span class="data-value">
-        <a href="#"
-           id="fileType{{ file.getId }}"
-           class="inline-file-type"
-           data-source="{{ path('all_file_types') }}"
-           data-type="select"
-           data-pk="{{ file.getId }}"
-           data-url="{{ path('file_ajax_update')}}"
-           data-value="{{ file.getFileType.getId }}"
-           data-title="Select File Type">{{ file.getFileType }}</a>
+        {% if (not file.getFileType.isPrivate) or isAdmin or (file.getUploader() == app.security.getToken().getUser())-%}
+            <a href="#"
+               id="fileType{{ file.getId }}"
+               class="inline-file-type"
+               data-source="{{ path('all_file_types') }}"
+               data-type="select"
+               data-pk="{{ file.getId }}"
+               data-url="{{ path('file_ajax_update')}}"
+               data-value="{{ file.getFileType.getId }}"
+               data-title="Select File Type">{{ file.getFileType }}</a>
+        {%-else-%}
+            {{ file.getFileType }}
+        {%-endif %}
     </span>
+
     <span class="details-holder">
         {% include 'FitchTutorBundle:Profile:file_row_inner.html.twig' %}
     </span>

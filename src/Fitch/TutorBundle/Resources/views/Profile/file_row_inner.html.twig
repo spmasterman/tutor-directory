@@ -1,13 +1,14 @@
+{%  set accessContent = (not file.getFileType.isPrivate) or isAdmin or (file.getUploader() == app.security.getToken().getUser()) %}
 <span class="data-action">
     {% if isEditor %}
     <a href="#" data-pk="{{ file.getId }}" class="btn btn-danger btn-xs remove-file"><i class="fa fa-remove"></i></a>
     {% endif %}
 </span>
 <span class="data-link">
-    {% if (not file.getFileType.isPrivate) or isAdmin %}
+    {% if accessContent  %}
         <a href="{{ path('get_file_download', {id: file.getId}) }}" class="btn btn-default btn-xs"><i class="fa fa-cloud-download"></i> {% trans %}profile.button.download{% endtrans %}</a>
     {% endif %}
-    {% if ((not file.getFileType.isPrivate) or isAdmin) and file.isImage %}
+    {% if accessContent and file.isImage %}
     <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-compose{{ file.getId }}"><i class="fa fa-eye"></i> {% trans %}profile.button.preview{% endtrans %}</button>
         {% include 'FitchTutorBundle:Profile:preview.html.twig' %}
     {% endif %}

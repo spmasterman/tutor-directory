@@ -208,13 +208,15 @@
 
     .data-uploader {
       padding-right:25px;
-      height:40px;
+      height:16px;
       width:100%;
       text-align: right;
       display: block;
       font-style: italic;
       color: $text-muted;
       font-size: smaller;
+      border-bottom: 1px dotted #e5e5e5;
+      margin-bottom: 16px
     }
 
     .data-action,
