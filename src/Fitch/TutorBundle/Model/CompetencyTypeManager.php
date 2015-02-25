@@ -52,11 +52,11 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
      * Returns all active competencyTypes as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
      *
-     * @param CategoryManager $categoryManager
+     * @param CategoryManagerInterface $categoryManager
      *
      * @return array
      */
-    public function buildGroupedChoices(CategoryManager $categoryManager)
+    public function buildGroupedChoices(CategoryManagerInterface $categoryManager)
     {
         $choices = [];
         foreach ($categoryManager->findAll() as $category) {
@@ -84,11 +84,11 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
 
     /**
      * @param string          $competencyTypeName
-     * @param CategoryManager $categoryManager
+     * @param CategoryManagerInterface $categoryManager
      *
      * @return CompetencyType
      */
-    public function findOrCreate($competencyTypeName, CategoryManager $categoryManager)
+    public function findOrCreate($competencyTypeName, CategoryManagerInterface $categoryManager)
     {
         $competencyType = $this->getRepo()->findOneBy(['name' => $competencyTypeName]);
 
@@ -115,12 +115,12 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
      *
      * Set its default values
      *
-     * @param CategoryManager $categoryManager
+     * @param CategoryManagerInterface $categoryManager
      *
      * @return CompetencyType
      */
     public function createCompetencyType(
-        CategoryManager $categoryManager
+        CategoryManagerInterface $categoryManager
     ) {
         /** @var CompetencyType $competencyType */
         $competencyType = parent::createEntity();
@@ -131,9 +131,9 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
 
     /**
      * @param CompetencyType  $competencyType
-     * @param CategoryManager $categoryManager
+     * @param CategoryManagerInterface $categoryManager
      */
-    public function setDefaultCategory(CompetencyType $competencyType, CategoryManager $categoryManager)
+    public function setDefaultCategory(CompetencyType $competencyType, CategoryManagerInterface $categoryManager)
     {
         $category = $categoryManager->findDefaultCategory();
         if ($category) {
