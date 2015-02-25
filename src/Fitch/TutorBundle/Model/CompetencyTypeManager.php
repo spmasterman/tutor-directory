@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository;
 use Fitch\TutorBundle\Entity\CompetencyType;
 
-class CompetencyTypeManager extends BaseModelManager
+class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeManagerInterface
 {
     /**
      * @param $id

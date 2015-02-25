@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\FileTypeRepository;
 use Fitch\TutorBundle\Entity\FileType;
 
-class FileTypeManager extends BaseModelManager
+class FileTypeManager extends BaseModelManager implements FileTypeManagerInterface
 {
     /**
      * @param $id

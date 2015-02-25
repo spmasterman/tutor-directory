@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CategoryRepository;
 use Fitch\TutorBundle\Entity\Category;
 
-class CategoryManager extends BaseModelManager
+class CategoryManager extends BaseModelManager implements CategoryManagerInterface
 {
     /**
      * @param $id

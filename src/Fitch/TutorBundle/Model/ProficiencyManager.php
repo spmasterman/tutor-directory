@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\ProficiencyRepository;
 use Fitch\TutorBundle\Entity\Proficiency;
 
-class ProficiencyManager extends BaseModelManager
+class ProficiencyManager extends BaseModelManager implements ProficiencyManagerInterface
 {
     /**
      * @param $id

@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorRepository;
 use Fitch\TutorBundle\Entity\Tutor;
 
-class TutorManager extends BaseModelManager
+class TutorManager extends BaseModelManager implements TutorManagerInterface
 {
     /**
      * @param $id

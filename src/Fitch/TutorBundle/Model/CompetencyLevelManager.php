@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyLevelRepository;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
 
-class CompetencyLevelManager extends BaseModelManager
+class CompetencyLevelManager extends BaseModelManager implements CompetencyLevelManagerInterface
 {
     /**
      * @param $id
