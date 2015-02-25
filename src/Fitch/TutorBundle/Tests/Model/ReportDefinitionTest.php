@@ -4,7 +4,7 @@ namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\TutorBundle\Model\ReportDefinition;
 
-class RateDefinitionTest extends \PHPUnit_Framework_TestCase
+class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 {
     public function testSimpleFilters()
     {
@@ -22,42 +22,43 @@ class RateDefinitionTest extends \PHPUnit_Framework_TestCase
             $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
             $form->expects($this->any())->method('getData')->willReturn([
                 $formField => [$identityEntity],
-                'fields' => [$formField]
+                'fields' => [$formField],
             ]);
 
             $reportDefinition = new ReportDefinition($form, false);
             $this->assertTrue($reportDefinition->isFilteredBy($filterKey));
             $this->assertFalse($reportDefinition->isFilteredBy('SOMETHING FALSE'));
-            foreach($filters as $otherFilterKey) {
+            foreach ($filters as $otherFilterKey) {
                 if ($otherFilterKey != $filterKey) {
                     $this->assertFalse($reportDefinition->isFilteredBy($otherFilterKey));
                 }
             }
         }
-   }
+    }
 
-   public function testNestedFilters() {
-       $filters = [
-           'Language' => ['language','language'],
-           'Category' => ['category','category'],
-           'CompetencyType' => ['competency', 'competencyType'],
-       ];
+    public function testNestedFilters()
+    {
+        $filters = [
+            'Language' => ['language','language'],
+            'Category' => ['category','category'],
+            'CompetencyType' => ['competency', 'competencyType'],
+        ];
 
-       foreach ($filters as $filterKey => $innerOuter) {
-           $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-           $identityEntity->expects($this->once())->method('getId')->willReturn(1);
+        foreach ($filters as $filterKey => $innerOuter) {
+            $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
+            $identityEntity->expects($this->once())->method('getId')->willReturn(1);
 
-           $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-           $form->expects($this->any())->method('getData')->willReturn([
-               $innerOuter[0] => [$innerOuter[1] => [$identityEntity]],
-               'fields' => [$innerOuter[0]]
-           ]);
+            $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
+            $form->expects($this->any())->method('getData')->willReturn([
+                $innerOuter[0] => [$innerOuter[1] => [$identityEntity]],
+                'fields' => [$innerOuter[0]],
+            ]);
 
-           $reportDefinition = new ReportDefinition($form, false);
-           $this->assertTrue($reportDefinition->isFilteredBy($filterKey));
-           $this->assertFalse($reportDefinition->isFilteredBy('SOMETHING FALSE'));
-       }
-   }
+            $reportDefinition = new ReportDefinition($form, false);
+            $this->assertTrue($reportDefinition->isFilteredBy($filterKey));
+            $this->assertFalse($reportDefinition->isFilteredBy('SOMETHING FALSE'));
+        }
+    }
 
     public function testLanguageDefaultOperatorFilter()
     {
@@ -70,12 +71,11 @@ class RateDefinitionTest extends \PHPUnit_Framework_TestCase
         $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
         $form->expects($this->any())->method('getData')->willReturn([
             'language' => ['language' => [$identityEntityOne, $identityEntityTwo]],
-            'fields' => ['language']
+            'fields' => ['language'],
         ]);
 
         $reportDefinition = new ReportDefinition($form, false);
         // relying on language operator default)
         $this->assertTrue($reportDefinition->isFilteredBy('Language'));
-   }
-
+    }
 }
