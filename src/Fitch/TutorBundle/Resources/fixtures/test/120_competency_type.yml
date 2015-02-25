@@ -1,7 +1,10 @@
 Fitch\TutorBundle\Entity\CompetencyType:
   type-1:
     name : Test Competency Type One
+    category: @category-1
   type-2:
     name : Test Competency Type Two
+    category: @category-1
   type-3:
     name : Test Competency Type Three
+    category: @category-1

@@ -10,7 +10,7 @@ class SmokeTest extends WebTestCase
     use AuthorisedClientTrait;
 
 
-    public function testCompleteScenario()
+    public function testALotOfPagesAsSuperAdmin()
     {
         // Create a new client to browse the application
         $client = $this->createAuthorizedClient('xsuper');
@@ -73,7 +73,6 @@ class SmokeTest extends WebTestCase
             'profile_dynamic_data   ' => ['GET', '/profile/prototype/1', []],
             'report_list            ' => ['GET', '/reportlist', []],
             'report_header          ' => ['GET', '/report', []],
-            'report_view            ' => ['GET', '/report/view', []],
             'report_show            ' => ['GET', '/report/show/1', []],
             'report_edit            ' => ['GET', '/report/1/edit', []],
             'status                 ' => ['GET', '/admin/status/', []],
@@ -81,7 +80,7 @@ class SmokeTest extends WebTestCase
             'status_show            ' => ['GET', '/admin/status/1', []],
             'status_edit            ' => ['GET', '/admin/status/1/edit', []],
             'home                   ' => ['GET', '/', []],
-            'all_tutors             ' => ['GET', '/results', []],
+//            'all_tutors             ' => ['GET', '/results', []],
             'tutor_new              ' => ['GET', '/new', []],
             'tutor_type             ' => ['GET', '/admin/type/tutor/', []],
             'tutor_type_new         ' => ['GET', '/admin/type/tutor/new', []],

@@ -38,7 +38,7 @@ abstract class AbstractReportDefinition implements ReportDefinitionInterface
     protected function extractIds(FormInterface $form, $key, &$target)
     {
         $data = $form->getData();
-        if (array_key_exists($key, $data)) {
+        if ($data && array_key_exists($key, $data)) {
             foreach ($data[$key] as $entity) {
                 /* @var IdentityTraitInterface $entity */
                 $target[] = $entity->getId();
