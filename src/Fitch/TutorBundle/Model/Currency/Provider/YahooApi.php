@@ -25,15 +25,15 @@ class YahooApi implements ProviderInterface
             static::API_URL
         );
 
-        $ch = curl_init();
+        $curlHandle = curl_init();
         $timeout = 0;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)');
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $rawdata = curl_exec($ch);
-        curl_close($ch);
+        curl_setopt($curlHandle, CURLOPT_URL, $url);
+        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curlHandle, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)');
+        curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $rawData = curl_exec($curlHandle);
+        curl_close($curlHandle);
 
-        return explode(',', $rawdata)[1];
+        return explode(',', $rawData)[1];
     }
 }

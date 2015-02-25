@@ -6,6 +6,7 @@ use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\Interfaces\OperatingRegionManagerInterface;
 use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
 use Fitch\TutorBundle\Model\Interfaces\TutorTypeManagerInterface;
+use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdateRegion implements ProfileUpdateInterface

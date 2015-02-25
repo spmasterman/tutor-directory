@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Model\Profile;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
 use Fitch\TutorBundle\Model\Interfaces\TutorTypeManagerInterface;
+use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdateTutorType implements ProfileUpdateInterface

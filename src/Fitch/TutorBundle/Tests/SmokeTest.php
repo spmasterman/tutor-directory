@@ -80,7 +80,7 @@ class SmokeTest extends WebTestCase
             'status_show            ' => ['GET', '/admin/status/1', []],
             'status_edit            ' => ['GET', '/admin/status/1/edit', []],
             'home                   ' => ['GET', '/', []],
-//            'all_tutors             ' => ['GET', '/results', []],
+//            'all_tutors             ' => ['GET', '/search', []],
             'tutor_new              ' => ['GET', '/new', []],
             'tutor_type             ' => ['GET', '/admin/type/tutor/', []],
             'tutor_type_new         ' => ['GET', '/admin/type/tutor/new', []],

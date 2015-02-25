@@ -77,12 +77,21 @@ var TutorProfileRate = (function ($) {
                 return params;
             },
             validate: function(value) {
+                if (!value.name) {
+                    return {newValue: {name: 'Day', amount: value.amount}, msg: 'Name\\Type set to \'Day\''}
+                    console.log('CAUGHT');
+                    xxx
+                }
                 if (!$.isNumeric(value.amount)) {
                     return {newValue: {name: value.name, amount: '0.00'}, msg: 'Non Numeric values entered'}
+                }
+                if (value.amount < 0 ) {
+                    return {newValue: {name: value.name, amount: 0.00}, msg: 'Rate Minimum is 0.00'}
                 }
                 if (Math.round(100 * value.amount) != 100 * value.amount) {
                     return {newValue: {name: value.name, amount: Math.round(100 * value.amount)/100}, msg: 'Rate will be rounded to two decimal places'}
                 }
+
             },
             success: function(response, newValue) {
                 host.closest('.data-row').find('.data-name').text(newValue.name + ' Rate');

@@ -9,7 +9,7 @@ trait DefaultTrait
      *
      * @ORM\Column(name="is_default", type="boolean")
      */
-    protected $default;
+    protected $default = false;
 
     /**
      * @return boolean

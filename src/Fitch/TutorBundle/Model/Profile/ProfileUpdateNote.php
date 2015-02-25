@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\NoteManagerInterface;
+use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdateNote implements ProfileUpdateInterface
