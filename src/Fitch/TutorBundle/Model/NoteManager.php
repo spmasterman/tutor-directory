@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\NoteRepository;
 use Fitch\TutorBundle\Entity\Note;
 
-class NoteManager extends BaseModelManager
+class NoteManager extends BaseModelManager implements NoteManagerInterface
 {
     /**
      * @param $id

@@ -9,7 +9,7 @@ use Fitch\TutorBundle\Entity\Repository\CurrencyRepository;
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface;
 
-class CurrencyManager extends BaseModelManager
+class CurrencyManager extends BaseModelManager implements CurrencyManagerInterface
 {
     /**
      * @param $id

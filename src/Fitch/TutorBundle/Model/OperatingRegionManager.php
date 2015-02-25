@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 
-class OperatingRegionManager extends BaseModelManager
+class OperatingRegionManager extends BaseModelManager implements OperatingRegionManagerInterface
 {
     /**
      * @param $id
@@ -20,6 +20,7 @@ class OperatingRegionManager extends BaseModelManager
     public function findById($id)
     {
         return parent::findById($id);
+
     }
 
     /**

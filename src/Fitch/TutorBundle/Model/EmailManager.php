@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\EmailRepository;
 use Fitch\TutorBundle\Entity\Email;
 
-class EmailManager extends BaseModelManager
+class EmailManager extends BaseModelManager implements EmailManagerInterface
 {
     /**
      * @param $id

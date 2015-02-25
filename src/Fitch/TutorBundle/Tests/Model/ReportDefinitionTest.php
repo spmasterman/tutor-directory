@@ -3,9 +3,8 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\TutorBundle\Model\ReportDefinition;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
-class RateDefinitionTest extends TestCase
+class RateDefinitionTest extends \PHPUnit_Framework_TestCase
 {
     public function testSimpleFilters()
     {

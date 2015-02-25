@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CountryRepository;
 use Fitch\TutorBundle\Entity\Country;
 
-class CountryManager extends BaseModelManager
+class CountryManager extends BaseModelManager implements CountryManagerInterface
 {
     /**
      * @param $id

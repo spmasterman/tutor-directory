@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\StatusRepository;
 use Fitch\TutorBundle\Entity\Status;
 
-class StatusManager extends BaseModelManager
+class StatusManager extends BaseModelManager implements StatusManagerInterface
 {
     /**
      * @param $id

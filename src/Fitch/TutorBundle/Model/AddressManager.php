@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\AddressRepository;
 use Fitch\TutorBundle\Entity\Address;
 
-class AddressManager extends BaseModelManager
+class AddressManager extends BaseModelManager implements AddressManagerInterface
 {
     /**
      * @param $id

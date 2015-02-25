@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Controller;
 use Exception;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
+use Fitch\CommonBundle\Exception\ClassNotFoundException;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
@@ -21,6 +22,7 @@ use Fitch\TutorBundle\Model\NoteManager;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\PhoneManager;
 use Fitch\TutorBundle\Model\ProficiencyManager;
+use Fitch\TutorBundle\Model\Profile\ProfileUpdateFactory;
 use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\StatusManager;
 use Fitch\TutorBundle\Model\TutorManager;
@@ -92,110 +94,19 @@ class ProfileController extends Controller
             $name = preg_replace('/\d/', '', $name); // collections are numbered address1, address2 etc
 
             $value = $request->request->get('value');
-            $relatedEntity = null;
 
-            switch ($name) {
-                case 'address':
-                    $addressId = $request->request->get('addressPk');
-                    if ($addressId) {
-                        $address = $this->getAddressManager()->findById($addressId);
-                    } else {
-                        $address = $this->getAddressManager()->createAddress();
-                        $tutor->addAddress($address);
-                    }
-                    $address
-                        ->setType($value['type'])
-                        ->setStreetPrimary($value['streetPrimary'])
-                        ->setStreetSecondary($value['streetSecondary'])
-                        ->setCity($value['city'])
-                        ->setState($value['state'])
-                        ->setZip($value['zip'])
-                        ->setCountry($this->getCountryManager()->findById($value['country']))
-                    ;
-                    $relatedEntity = $address;
-                    break;
-                case 'email':
-                    $emailId = $request->request->get('emailPk');
-                    if ($emailId) {
-                        $email = $this->getEmailManager()->findById($emailId);
-                    } else {
-                        $email = $this->getEmailManager()->createEmail();
-                        $tutor->addEmailAddress($email);
-                    }
-                    $email
-                        ->setType($value['type'])
-                        ->setAddress($value['address'])
-                    ;
-                    $relatedEntity = $email;
-                    break;
-                case 'phone':
-                    $phoneId = $request->request->get('phonePk');
-                    if ($phoneId) {
-                        $phone = $this->getPhoneManager()->findById($phoneId);
-                    } else {
-                        $phone = $this->getPhoneManager()->createPhone();
-                        $tutor->addPhoneNumber($phone);
-                    }
-                    $phone
-                        ->setType($value['type'])
-                        ->setNumber($value['number'])
-                        ->setCountry($this->getCountryManager()->findById($value['country']))
-                        ->setPreferred($value['isPreferred'] == "true")
-                    ;
-                    $relatedEntity = $phone;
-                    break;
-                case 'rate':
-                    $rateId = $request->request->get('ratePk');
-                    if ($rateId) {
-                        $rate = $this->getRateManager()->findById($rateId);
-                    } else {
-                        $rate = $this->getRateManager()->createRate();
-                        $tutor->addRate($rate);
-                    }
-                    $rate
-                        ->setName($value['name'])
-                        ->setAmount($value['amount'])
-                    ;
-                    $relatedEntity = $rate;
-                    break;
-                case 'tutor_type':
-                    $tutorType = $this->getTutorTypeManager()->findById($value);
-                    $tutor->setTutorType($tutorType);
-                    break;
-                case 'status':
-                    $status = $this->getStatusManager()->findById($value);
-                    $tutor->setStatus($status);
-                    break;
-                case 'region':
-                    $region = $this->getOperatingRegionManager()->findById($value);
-                    $tutor->setRegion($region);
-                    break;
-                case 'currency':
-                    $currency = $this->getCurrencyManager()->findById($value);
-                    $tutor->setCurrency($currency);
-                    break;
-                case 'note':
-                    $noteId = $request->request->get('notePk');
-                    if ($noteId) {
-                        $note = $this->getNoteManager()->findById($noteId);
-                    } else {
-                        $note = $this->getNoteManager()->createNote();
-                        $note
-                            ->setAuthor($this->getUser())
-                            ->setKey($request->request->get('noteKey'))
-                        ;
-                        $tutor->addNote($note);
-                    }
-                    $note->setBody($value);
-                    $relatedEntity = $note;
-                    break;
-                default:
-                    $setter = 'set'.ucfirst($name);
-                    if (is_callable([$tutor, $setter])) {
-                        $tutor->$setter($value);
-                    } else {
-                        throw new UnknownMethodException($setter.' is not a valid Tutor method');
-                    }
+            try {
+                $profileUpdateHandler = ProfileUpdateFactory::getUpdater($name, $this->container);
+                $relatedEntity = $profileUpdateHandler->update($request, $tutor, $value);
+            } catch (ClassNotFoundException $e) {
+                // try a simple field...
+                $setter = 'set'.ucfirst($name);
+                if (is_callable([$tutor, $setter])) {
+                    $tutor->$setter($value);
+                } else {
+                    throw new UnknownMethodException($setter.' is not a valid Tutor method');
+                }
+                $relatedEntity = null;
             }
 
             $this->getTutorManager()->saveTutor($tutor);
