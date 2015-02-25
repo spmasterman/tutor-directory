@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository;
 use Fitch\TutorBundle\Entity\OperatingRegion;
-use Fitch\TutorBundle\Model\Interfaces\OperatingRegionManagerInterface;
+use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
 
 class OperatingRegionManager extends BaseModelManager implements OperatingRegionManagerInterface
 {

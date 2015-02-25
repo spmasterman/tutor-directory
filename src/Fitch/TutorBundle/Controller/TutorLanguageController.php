@@ -4,8 +4,8 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
-use Fitch\TutorBundle\Model\Interfaces\TutorLanguageManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
+use Fitch\TutorBundle\Model\TutorLanguageManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Fitch\TutorBundle\Model\TutorLanguage\TutorLanguageUpdateFactory;
 use Fitch\TutorBundle\Model\TutorLanguageManager;
 use Fitch\TutorBundle\Model\TutorManager;
@@ -122,7 +122,7 @@ class TutorLanguageController extends Controller
     }
 
     /**
-     * @return TutorLanguageManagerInterface
+     * @return \Fitch\TutorBundle\Model\TutorLanguageManagerInterface
      */
     private function getTutorLanguageManager()
     {
@@ -130,7 +130,7 @@ class TutorLanguageController extends Controller
     }
 
     /**
-     * @return TutorManagerInterface
+     * @return \Fitch\TutorBundle\Model\TutorManagerInterface
      */
     private function getTutorManager()
     {

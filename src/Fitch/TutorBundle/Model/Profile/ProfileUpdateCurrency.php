@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\Interfaces\CurrencyManagerInterface;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 

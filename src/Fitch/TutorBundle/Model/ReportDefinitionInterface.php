@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Model\Interfaces;
+namespace Fitch\TutorBundle\Model;
 
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Tutor;

@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyRepository;
 use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyManagerInterface;
 
 class CompetencyManager extends BaseModelManager implements CompetencyManagerInterface
 {

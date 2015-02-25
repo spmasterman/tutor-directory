@@ -9,8 +9,8 @@ use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\Profile\ProfileUpdateFactory;
-use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
+use Fitch\TutorBundle\Model\RateManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -117,7 +117,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @return RateManagerInterface
+     * @return \Fitch\TutorBundle\Model\RateManagerInterface
      */
     private function getRateManager()
     {

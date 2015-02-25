@@ -3,8 +3,8 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\Interfaces\AddressManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\CountryManagerInterface;
+use Fitch\TutorBundle\Model\AddressManagerInterface;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -38,7 +38,7 @@ class ProfileUpdateAddress implements ProfileUpdateInterface
     }
 
     /**
-     * @return CountryManagerInterface
+     * @return \Fitch\TutorBundle\Model\CountryManagerInterface
      */
     private function getCountryManager()
     {

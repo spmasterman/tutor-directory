@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Model\Interfaces;
+namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Competency;

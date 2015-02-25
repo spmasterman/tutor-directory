@@ -6,7 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\NoteRepository;
 use Fitch\TutorBundle\Entity\Note;
-use Fitch\TutorBundle\Model\Interfaces\NoteManagerInterface;
+use Fitch\TutorBundle\Model\NoteManagerInterface;
 
 class NoteManager extends BaseModelManager implements NoteManagerInterface
 {
