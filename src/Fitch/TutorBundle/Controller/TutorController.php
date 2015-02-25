@@ -4,19 +4,19 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Form\Type\TutorType;
-use Fitch\TutorBundle\Model\AddressManager;
-use Fitch\TutorBundle\Model\CountryManager;
-use Fitch\TutorBundle\Model\OperatingRegionManager;
-use Fitch\TutorBundle\Model\StatusManager;
-use Fitch\TutorBundle\Model\TutorManager;
-use Fitch\TutorBundle\Model\TutorTypeManager;
+use Fitch\TutorBundle\Model\AddressManagerInterface;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
+use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
+use Fitch\TutorBundle\Model\StatusManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
+use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Tutor controller - most tutor interaction is expected to be via specific tailored pages - handled by the
@@ -185,7 +185,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return TutorManager
+     * @return TutorManagerInterface
      */
     private function getTutorManager()
     {
@@ -193,7 +193,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return AddressManager
+     * @return AddressManagerInterface
      */
     private function getAddressManager()
     {
@@ -201,7 +201,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return CountryManager
+     * @return CountryManagerInterface
      */
     private function getCountryManager()
     {
@@ -209,7 +209,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return StatusManager
+     * @return StatusManagerInterface
      */
     private function getStatusManager()
     {
@@ -217,7 +217,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return OperatingRegionManager
+     * @return OperatingRegionManagerInterface
      */
     private function getOperatingRegionManager()
     {
@@ -225,7 +225,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return TutorTypeManager
+     * @return TutorTypeManagerInterface
      */
     private function getTutorTypeManager()
     {

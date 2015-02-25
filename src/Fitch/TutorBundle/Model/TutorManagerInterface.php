@@ -35,14 +35,7 @@ interface TutorManagerInterface
 
     /**
      * @param Tutor $tutor
-     * @param AddressManager $addressManager
-     * @param CountryManager $countryManager
-     */
-    public function createDefaultAddressIfRequired(Tutor $tutor, AddressManager $addressManager, CountryManager $countryManager);
-
-    /**
-     * @param Tutor $tutor
-     * @param bool $withFlush
+     * @param bool  $withFlush
      */
     public function saveTutor($tutor, $withFlush = true);
 
@@ -51,33 +44,21 @@ interface TutorManagerInterface
      *
      * Set its default values
      *
-     * @param AddressManager $addressManager
-     * @param CountryManager $countryManager
-     * @param StatusManager $statusManager
-     * @param OperatingRegionManager $operatingRegionManager
-     * @param TutorTypeManager $tutorTypeManager
+     * @param AddressManagerInterface         $addressManager
+     * @param CountryManagerInterface         $countryManager
+     * @param StatusManagerInterface          $statusManager
+     * @param OperatingRegionManagerInterface $operatingRegionManager
+     * @param TutorTypeManagerInterface       $tutorTypeManager
      *
      * @return Tutor
      */
-    public function createTutor(AddressManager $addressManager, CountryManager $countryManager, StatusManager $statusManager, OperatingRegionManager $operatingRegionManager, TutorTypeManager $tutorTypeManager);
-
-    /**
-     * @param Tutor $tutor
-     * @param OperatingRegionManager $operatingRegionManager
-     */
-    public function setDefaultRegion(Tutor $tutor, OperatingRegionManager $operatingRegionManager);
-
-    /**
-     * @param Tutor $tutor
-     * @param StatusManager $statusManager
-     */
-    public function setDefaultStatus(Tutor $tutor, StatusManager $statusManager);
-
-    /**
-     * @param Tutor $tutor
-     * @param TutorTypeManager $tutorTypeManager
-     */
-    public function setDefaultTutorType(Tutor $tutor, TutorTypeManager $tutorTypeManager);
+    public function createTutor(
+        AddressManagerInterface $addressManager,
+        CountryManagerInterface $countryManager,
+        StatusManagerInterface $statusManager,
+        OperatingRegionManagerInterface $operatingRegionManager,
+        TutorTypeManagerInterface $tutorTypeManager
+    );
 
     /**
      * @param int $id

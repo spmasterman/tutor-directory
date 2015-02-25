@@ -48,14 +48,14 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor          $tutor
-     * @param AddressManager $addressManager
-     * @param CountryManager $countryManager
+     * @param Tutor                   $tutor
+     * @param AddressManagerInterface $addressManager
+     * @param CountryManagerInterface $countryManager
      */
-    public function createDefaultAddressIfRequired(
+    private function createDefaultAddressIfRequired(
         Tutor $tutor,
-        AddressManager $addressManager,
-        CountryManager $countryManager
+        AddressManagerInterface $addressManager,
+        CountryManagerInterface $countryManager
     ) {
         if (!$tutor->hasAddress()) {
             $address = $addressManager->createAddress();
@@ -78,20 +78,20 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
      *
      * Set its default values
      *
-     * @param AddressManager         $addressManager
-     * @param CountryManager         $countryManager
-     * @param StatusManager          $statusManager
-     * @param OperatingRegionManager $operatingRegionManager
-     * @param TutorTypeManager       $tutorTypeManager
+     * @param AddressManagerInterface         $addressManager
+     * @param CountryManagerInterface         $countryManager
+     * @param StatusManagerInterface          $statusManager
+     * @param OperatingRegionManagerInterface $operatingRegionManager
+     * @param TutorTypeManagerInterface       $tutorTypeManager
      *
      * @return Tutor
      */
     public function createTutor(
-        AddressManager $addressManager,
-        CountryManager $countryManager,
-        StatusManager $statusManager,
-        OperatingRegionManager $operatingRegionManager,
-        TutorTypeManager $tutorTypeManager
+        AddressManagerInterface $addressManager,
+        CountryManagerInterface $countryManager,
+        StatusManagerInterface $statusManager,
+        OperatingRegionManagerInterface $operatingRegionManager,
+        TutorTypeManagerInterface $tutorTypeManager
     ) {
         /** @var Tutor $tutor */
         $tutor = parent::createEntity();
@@ -104,10 +104,10 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor                  $tutor
-     * @param OperatingRegionManager $operatingRegionManager
+     * @param Tutor                           $tutor
+     * @param OperatingRegionManagerInterface $operatingRegionManager
      */
-    public function setDefaultRegion(Tutor $tutor, OperatingRegionManager $operatingRegionManager)
+    private function setDefaultRegion(Tutor $tutor, OperatingRegionManagerInterface $operatingRegionManager)
     {
         $region = $operatingRegionManager->findDefaultOperatingRegion();
         if ($region) {
@@ -117,19 +117,19 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor         $tutor
-     * @param StatusManager $statusManager
+     * @param Tutor                  $tutor
+     * @param StatusManagerInterface $statusManager
      */
-    public function setDefaultStatus(Tutor $tutor, StatusManager $statusManager)
+    private function setDefaultStatus(Tutor $tutor, StatusManagerInterface $statusManager)
     {
         $tutor->setStatus($statusManager->findDefaultStatus());
     }
 
     /**
-     * @param Tutor            $tutor
-     * @param TutorTypeManager $tutorTypeManager
+     * @param Tutor                     $tutor
+     * @param TutorTypeManagerInterface $tutorTypeManager
      */
-    public function setDefaultTutorType(Tutor $tutor, TutorTypeManager $tutorTypeManager)
+    private function setDefaultTutorType(Tutor $tutor, TutorTypeManagerInterface $tutorTypeManager)
     {
         $tutor->setTutorType($tutorTypeManager->findDefaultTutorType());
     }
