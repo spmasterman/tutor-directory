@@ -28,17 +28,20 @@ class ProfileUpdateFactory
     }
 
     /**
-     * Translates a string with underscores into camel case (e.g. first_name -> firstName)
+     * Translates a string with underscores into camel case (e.g. first_name -> firstName).
      *
      * @param $str
      * @param bool $capitaliseFirstChar
+     *
      * @return mixed
      */
-    private static function toCamelCase($str, $capitaliseFirstChar = false) {
-        if($capitaliseFirstChar) {
+    private static function toCamelCase($str, $capitaliseFirstChar = false)
+    {
+        if ($capitaliseFirstChar) {
             $str[0] = strtoupper($str[0]);
         }
         $func = create_function('$c', 'return strtoupper($c[1]);');
+
         return preg_replace_callback('/_([a-z])/', $func, $str);
     }
 }

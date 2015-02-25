@@ -38,7 +38,7 @@ interface OperatingRegionManagerInterface
 
     /**
      * @param OperatingRegion $operatingRegion
-     * @param bool $withFlush
+     * @param bool            $withFlush
      */
     public function saveOperatingRegion($operatingRegion, $withFlush = true);
 

@@ -201,7 +201,10 @@ class ReportDownloadFormatter
                 .' '
                 .$tutor->getCurrency()->getThreeDigitCode()
                 .' ('
-                .number_format($rate->getAmount() * $tutor->getCurrency()->getToGBP() / $definition->getReportCurrencyToGBP(), 2)
+                .number_format(
+                    $rate->getAmount() * $tutor->getCurrency()->getToGBP() / $definition->getReportCurrencyToGBP(),
+                    2
+                )
                 .' '
                 .$definition->getReportCurrencyThreeLetterCode()
                 .')';
