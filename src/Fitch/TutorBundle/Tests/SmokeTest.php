@@ -96,7 +96,7 @@ class SmokeTest extends WebTestCase
             $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
             $this->assertEquals(200,
                 $client->getResponse()->getStatusCode(),
-                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}, {$routeBits[2]}"
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
             );
         }
     }

@@ -79,8 +79,6 @@ var TutorProfileRate = (function ($) {
             validate: function(value) {
                 if (!value.name) {
                     return {newValue: {name: 'Day', amount: value.amount}, msg: 'Name\\Type set to \'Day\''}
-                    console.log('CAUGHT');
-                    xxx
                 }
                 if (!$.isNumeric(value.amount)) {
                     return {newValue: {name: value.name, amount: '0.00'}, msg: 'Non Numeric values entered'}
