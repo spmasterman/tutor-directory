@@ -6,6 +6,7 @@ use Exception;
 use Fitch\CommonBundle\Exception\UnhandledMimeTypeException;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\File;
+use Fitch\TutorBundle\Model\Avatar;
 use Fitch\TutorBundle\Model\CropInfoManager;
 use Fitch\TutorBundle\Model\FileManager;
 use Fitch\TutorBundle\Model\FileTypeManager;
@@ -26,10 +27,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class FileController extends Controller
 {
-    const AVATAR_WIDTH = 150;
-    const AVATAR_HEIGHT = 150;
-    const AVATAR_QUALITY = 90;
-
     /**
      * Updates a (simple) field on a file record.
      *
@@ -132,9 +129,9 @@ class FileController extends Controller
      */
     public function avatarAction(File $file)
     {
-        $targetWidth = self::AVATAR_WIDTH;
-        $targetHeight = self::AVATAR_HEIGHT;
-        $jpegQuality = self::AVATAR_QUALITY;
+        $targetWidth = Avatar::AVATAR_WIDTH;
+        $targetHeight = Avatar::AVATAR_HEIGHT;
+        $jpegQuality = Avatar::AVATAR_QUALITY;
 
         $src = 'gaufrette://tutor/'.$file->getFileSystemKey();
 

@@ -9,7 +9,7 @@ use Fitch\CommonBundle\Entity\NamedTrait;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-use Fitch\TutorBundle\Controller\FileController;
+use Fitch\TutorBundle\Model\Avatar;
 use Fitch\UserBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 
@@ -247,7 +247,7 @@ class File implements
         if ($this->hasCropInfo()) {
             return $this->getCropInfo()->getWidth();
         } else {
-            return FileController::AVATAR_WIDTH;
+            return Avatar::AVATAR_WIDTH;
         }
     }
 
@@ -259,7 +259,7 @@ class File implements
         if ($this->hasCropInfo()) {
             return $this->getCropInfo()->getHeight();
         } else {
-            return FileController::AVATAR_HEIGHT;
+            return Avatar::AVATAR_HEIGHT;
         }
     }
 
