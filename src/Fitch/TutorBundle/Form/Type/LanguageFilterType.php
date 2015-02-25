@@ -2,12 +2,9 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
-use Fitch\TutorBundle\Model\LanguageManager;
+use Fitch\TutorBundle\Model\LanguageManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -16,12 +13,12 @@ class LanguageFilterType extends AbstractType
     /** @var  Translator */
     protected $translator;
 
-    /** @var  LanguageManager */
+    /** @var  LanguageManagerInterface */
     protected $languageManager;
 
     public function __construct(
         TranslatorInterface $translator,
-        LanguageManager $languageManager
+        LanguageManagerInterface $languageManager
     ) {
         $this->translator = $translator;
         $this->languageManager = $languageManager;

@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fitch_eav');
+        $treeBuilder->root('fitch_eav');
 
         return $treeBuilder;
     }

@@ -2,49 +2,48 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CategoryManager;
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
-use Fitch\TutorBundle\Model\CurrencyManager;
-use Fitch\TutorBundle\Model\LanguageManager;
-use Fitch\TutorBundle\Model\RateManager;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
+use Fitch\TutorBundle\Model\LanguageManagerInterface;
+use Fitch\TutorBundle\Model\RateManagerInterface;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class ReportDefinitionType extends AbstractType
 {
-    /** @var  Translator */
+    /** @var  TranslatorInterface */
     protected $translator;
 
-    /** @var  CurrencyManager  */
+    /** @var  CurrencyManagerInterface */
     protected $currencyManager;
 
-    /** @var  RateManager  */
+    /** @var  RateManagerInterface */
     protected $rateManager;
 
-    /** @var  CategoryManager */
+    /** @var  CategoryManagerInterface */
     protected $categoryManager;
 
-    /** @var  CompetencyTypeManager */
+    /** @var  CompetencyTypeManagerInterface */
     protected $competencyTypeManager;
 
-    /** @var  CompetencyLevelManager */
+    /** @var  CompetencyLevelManagerInterface */
     protected $competencyLevelManager;
 
-    /** @var  LanguageManager */
+    /** @var  LanguageManagerInterface */
     protected $languageManager;
 
     public function __construct(
         TranslatorInterface $translator,
-        CurrencyManager $currencyManager,
-        RateManager $rateManager,
-        CategoryManager $categoryManager,
-        CompetencyTypeManager $competencyTypeManager,
-        CompetencyLevelManager $competencyLevelManager,
-        LanguageManager $languageManager
+        CurrencyManagerInterface $currencyManager,
+        RateManagerInterface $rateManager,
+        CategoryManagerInterface $categoryManager,
+        CompetencyTypeManagerInterface $competencyTypeManager,
+        CompetencyLevelManagerInterface $competencyLevelManager,
+        LanguageManagerInterface $languageManager
     ) {
         $this->translator = $translator;
         $this->rateManager = $rateManager;

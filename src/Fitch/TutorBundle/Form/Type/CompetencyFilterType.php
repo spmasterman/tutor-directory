@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -15,12 +16,12 @@ class CompetencyFilterType extends AbstractType
     /** @var  Translator */
     protected $translator;
 
-    /** @var  CompetencyTypeManager */
+    /** @var  CompetencyTypeManagerInterface */
     protected $competencyTypeManager;
 
     public function __construct(
         TranslatorInterface $translator,
-        CompetencyTypeManager $competencyTypeManager
+        CompetencyTypeManagerInterface $competencyTypeManager
     ) {
         $this->translator = $translator;
         $this->competencyTypeManager = $competencyTypeManager;

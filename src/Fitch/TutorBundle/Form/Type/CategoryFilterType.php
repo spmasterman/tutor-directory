@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CategoryManager;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;
@@ -13,12 +13,12 @@ class CategoryFilterType extends AbstractType
     /** @var  Translator */
     protected $translator;
 
-    /** @var  CategoryManager */
+    /** @var  CategoryManagerInterface */
     protected $categoryManager;
 
     public function __construct(
         TranslatorInterface $translator,
-        CategoryManager  $categoryManager
+        CategoryManagerInterface  $categoryManager
     ) {
         $this->translator = $translator;
         $this->categoryManager = $categoryManager;
