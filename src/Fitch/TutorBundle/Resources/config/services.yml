@@ -208,6 +208,7 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.tutor_language.class%
+            proficiencyManager: "@fitch.manager.proficiency"
     fitch.manager.report:
         class: %fitch.manager.report.class%
         calls:

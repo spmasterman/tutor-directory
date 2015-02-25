@@ -4,8 +4,9 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
-use Fitch\TutorBundle\Model\LanguageManager;
-use Fitch\TutorBundle\Model\ProficiencyManager;
+use Fitch\TutorBundle\Model\Interfaces\TutorLanguageManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
+use Fitch\TutorBundle\Model\TutorLanguage\TutorLanguageUpdateFactory;
 use Fitch\TutorBundle\Model\TutorLanguageManager;
 use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -47,44 +48,21 @@ class TutorLanguageController extends Controller
     public function updateAction(Request $request)
     {
         try {
+            // Grab what we need from the Request
             $tutor = $this->getTutorManager()->findById($request->request->get('pk'));
-
             $name = $request->request->get('name');
             $name = preg_replace('/\d/', '', $name); // collections are numbered address1, address2 etc
-
             $value = $request->request->get('value');
 
-            $tutorLanguageId = $request->request->get('tutorLanguagePk');
-            if ($tutorLanguageId) {
-                $tutorLanguage = $this->getTutorLanguageManager()->findById($tutorLanguageId);
-            } else {
-                $tutorLanguage = $this->getTutorLanguageManager()->createTutorLanguage($this->getProficiencyManager());
-                $tutor->addTutorLanguage($tutorLanguage);
-            }
+            // Pass it off to some UpdateHelper
+            $tutorLanguage = $this->getTutorLanguageManager()->findOrCreateTutorLanguage(
+                $request->request->get('tutorLanguagePk'),
+                $tutor
+            );
+            $tutorLanguageUpdateHandler = TutorLanguageUpdateFactory::getUpdater($name, $this->container);
+            $tutorLanguageUpdateHandler->update($tutorLanguage, $value);
 
-            switch ($name) {
-                case 'tutor-language-proficiency':
-                    if ((string) (int) $value == $value) {
-                        // if its an integer
-                        $tutorLanguage->setProficiency($this->getProficiencyManager()->findById((int) $value));
-                    } else {
-                        $tutorLanguage->setProficiency($this->getProficiencyManager()->findOrCreate($value));
-                    }
-                    break;
-                case 'tutor-language':
-                    if ((string) (int) $value == $value) {
-                        // if its an integer
-                        $tutorLanguage->setLanguage($this->getLanguageManager()->findById((int) $value));
-                    } else {
-                        $tutorLanguage->setLanguage($this->getLanguageManager()->findOrCreate($value));
-                    }
-                    break;
-                case 'tutor-language-note':
-                    $tutorLanguage->setNote($value);
-                    break;
-                default:
-                    throw new UnknownMethodException($name.' is not a valid Tutor Language member');
-            }
+            // Save the entity
             $this->getTutorManager()->saveTutor($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
@@ -144,7 +122,7 @@ class TutorLanguageController extends Controller
     }
 
     /**
-     * @return TutorLanguageManager
+     * @return TutorLanguageManagerInterface
      */
     private function getTutorLanguageManager()
     {
@@ -152,26 +130,10 @@ class TutorLanguageController extends Controller
     }
 
     /**
-     * @return LanguageManager
-     */
-    private function getLanguageManager()
-    {
-        return $this->get('fitch.manager.language');
-    }
-
-    /**
-     * @return TutorManager
+     * @return TutorManagerInterface
      */
     private function getTutorManager()
     {
         return $this->get('fitch.manager.tutor');
-    }
-
-    /**
-     * @return ProficiencyManager
-     */
-    private function getProficiencyManager()
-    {
-        return $this->get('fitch.manager.proficiency');
     }
 }

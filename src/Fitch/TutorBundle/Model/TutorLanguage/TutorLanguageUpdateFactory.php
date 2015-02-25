@@ -1,34 +1,35 @@
 <?php
 
-namespace Fitch\TutorBundle\Model\Competency;
+namespace Fitch\TutorBundle\Model\TutorLanguage;
 
 use Fitch\CommonBundle\Exception\ClassNotFoundException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class CompetencyUpdateFactory
+class TutorLanguageUpdateFactory
 {
     /**
      * @param $key
      * @param ContainerInterface $container
      *
-     * @return CompetencyUpdateInterface
+     * @return TutorLanguageUpdateInterface
      *
      * @throws ClassNotFoundException
      */
     public static function getUpdater($key, ContainerInterface $container)
     {
-        $className =  'Fitch\TutorBundle\Model\Competency\CompetencyUpdate'.self::toClassNameSuffix($key);
+        $className =  'Fitch\TutorBundle\Model\TutorLanguage\TutorLanguageUpdate'.self::toClassNameSuffix($key);
 
         if (!class_exists($className)) {
             throw new ClassNotFoundException($className.' not found.');
         }
-        $competencyUpdateInterface = new $className($container);
+        $tutorLanguageUpdateInterface = new $className($container);
 
-        return $competencyUpdateInterface;
+        return $tutorLanguageUpdateInterface;
     }
 
     /**
-     * Translates a string prefixed with competency-something to Something.
+     * Translates a string prefixed with tutor-language-something to Something,
+     * or tutor-language to Language
      *
      * @param $str
      *
@@ -36,12 +37,14 @@ class CompetencyUpdateFactory
      */
     private static function toClassNameSuffix($str)
     {
-        $prefix = 'competency-';
+        if ($str == 'tutor-language') {
+            return 'Language';
+        }
 
+        $prefix = 'tutor-language-';
         if (substr($str, 0, strlen($prefix)) == $prefix) {
             $str = substr($str, strlen($prefix));
         }
-
         return ucfirst($str);
     }
 }

@@ -2,13 +2,31 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Doctrine\ORM\EntityManager;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorLanguageRepository;
+use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorLanguage;
+use Fitch\TutorBundle\Model\Interfaces\TutorLanguageManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class TutorLanguageManager extends BaseModelManager
+class TutorLanguageManager extends BaseModelManager implements TutorLanguageManagerInterface
 {
+    /** @var ProficiencyManager $proficiencyManager  */
+    private $proficiencyManager;
+
+    public function __construct(
+        EventDispatcherInterface $dispatcher,
+        EntityManager $em,
+        $class,
+        ProficiencyManager $proficiencyManager
+    ) {
+        parent::__construct($dispatcher, $em, $class);
+
+        $this->proficiencyManager = $proficiencyManager;
+    }
+
     /**
      * @param $id
      *
@@ -43,26 +61,23 @@ class TutorLanguageManager extends BaseModelManager
      *
      * Set its default values
      *
-     * @param ProficiencyManager $proficiencyManager
-     *
      * @return TutorLanguage
      */
-    public function createTutorLanguage(ProficiencyManager $proficiencyManager)
+    public function createTutorLanguage()
     {
         /** @var TutorLanguage $tutorLanguage */
         $tutorLanguage = parent::createEntity();
-        $this->setDefaultProficiency($tutorLanguage, $proficiencyManager);
+        $this->setDefaultProficiency($tutorLanguage);
 
         return $tutorLanguage;
     }
 
     /**
      * @param TutorLanguage      $tutorLanguage
-     * @param ProficiencyManager $proficiencyManager
      */
-    public function setDefaultProficiency(TutorLanguage $tutorLanguage, ProficiencyManager $proficiencyManager)
+    public function setDefaultProficiency(TutorLanguage $tutorLanguage)
     {
-        $proficiency = $proficiencyManager->findDefaultProficiency();
+        $proficiency = $this->proficiencyManager->findDefaultProficiency();
         if ($proficiency) {
             $tutorLanguage->setProficiency($proficiency);
         }
@@ -83,6 +98,23 @@ class TutorLanguageManager extends BaseModelManager
     public function refreshTutorLanguage(TutorLanguage $tutorLanguage)
     {
         parent::reloadEntity($tutorLanguage);
+    }
+
+
+    /**
+     * @param $id
+     * @param Tutor $tutor
+     * @return TutorLanguage
+     */
+    public function findOrCreateTutorLanguage($id, Tutor $tutor)
+    {
+        if ($id) {
+            $tutorLanguage = $this->findById($id);
+        } else {
+            $tutorLanguage = $this->createTutorLanguage();
+            $tutor->addTutorLanguage($tutorLanguage);
+        }
+        return $tutorLanguage;
     }
 
     /**

@@ -3,15 +3,9 @@
 namespace Fitch\TutorBundle\Model\Competency;
 
 use Fitch\TutorBundle\Entity\Competency;
-use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyManagerInterface;
 use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\EmailManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
-use Symfony\Component\HttpFoundation\Request;
 
 class CompetencyUpdateType implements CompetencyUpdateInterface
 {
