@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Model\Interfaces;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Competency;
+use Fitch\TutorBundle\Entity\Tutor;
 
 interface CompetencyManagerInterface
 {
@@ -20,6 +21,13 @@ interface CompetencyManagerInterface
      * @return Competency[]
      */
     public function findAll();
+
+    /**
+     * @param $id
+     * @param Tutor $tutor
+     * @return Competency
+     */
+    public function findOrCreateCompetency($id, Tutor $tutor);
 
     /**
      * @param Competency $competency

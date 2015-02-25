@@ -4,15 +4,8 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
-use Fitch\TutorBundle\Model\CategoryManager;
-use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyManager;
+use Fitch\TutorBundle\Model\Competency\CompetencyUpdateFactory;
 use Fitch\TutorBundle\Model\Interfaces\CompetencyManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
-use Fitch\TutorBundle\Model\TutorManager;
 use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -53,46 +46,21 @@ class CompetencyController extends Controller
     public function updateAction(Request $request)
     {
         try {
+            // Grab what we need from the Request
             $tutor = $this->getTutorManager()->findById($request->request->get('pk'));
-
             $name = $request->request->get('name');
             $name = preg_replace('/\d/', '', $name); // collections are numbered address1, address2 etc
-
             $value = $request->request->get('value');
 
-            $competencyId = $request->request->get('competencyPk');
-            if ($competencyId) {
-                $competency = $this->getCompetencyManager()->findById($competencyId);
-            } else {
-                $competency = $this->getCompetencyManager()->createCompetency();
-                $tutor->addCompetency($competency);
-            }
+            // Pass it off to some UpdateHelper
+            $competency = $this->getCompetencyManager()->findOrCreateCompetency(
+                $request->request->get('competencyPk'),
+                $tutor
+            );
+            $competencyUpdateHandler = CompetencyUpdateFactory::getUpdater($name, $this->container);
+            $competencyUpdateHandler->update($competency, $value);
 
-            switch ($name) {
-                case 'competency-level':
-                    if ((string) (int) $value == $value) {
-                        // if its an integer
-                        $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findById((int) $value));
-                    } else {
-                        $competency->setCompetencyLevel($this->getCompetencyLevelManager()->findOrCreate($value));
-                    }
-                    break;
-                case 'competency-type':
-                    if ((string) (int) $value == $value) {
-                        // if its an integer
-                        $competency->setCompetencyType($this->getCompetencyTypeManager()->findById((int) $value));
-                    } else {
-                        $competency->setCompetencyType(
-                            $this->getCompetencyTypeManager()->findOrCreate($value, $this->getCategoryManager())
-                        );
-                    }
-                    break;
-                case 'competency-note':
-                    $competency->setNote($value);
-                    break;
-                default:
-                    throw new UnknownMethodException($name.' is not a valid Competency member');
-            }
+            // Save the entity
             $this->getTutorManager()->saveTutor($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
@@ -152,14 +120,6 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return CompetencyTypeManagerInterface
-     */
-    private function getCompetencyTypeManager()
-    {
-        return $this->get('fitch.manager.competency_type');
-    }
-
-    /**
      * @return CompetencyManagerInterface
      */
     private function getCompetencyManager()
@@ -168,26 +128,10 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return CompetencyLevelManagerInterface
-     */
-    private function getCompetencyLevelManager()
-    {
-        return $this->get('fitch.manager.competency_level');
-    }
-
-    /**
      * @return TutorManagerInterface
      */
     private function getTutorManager()
     {
         return $this->get('fitch.manager.tutor');
-    }
-
-    /**
-     * @return CategoryManagerInterface
-     */
-    private function getCategoryManager()
-    {
-        return $this->get('fitch.manager.category');
     }
 }

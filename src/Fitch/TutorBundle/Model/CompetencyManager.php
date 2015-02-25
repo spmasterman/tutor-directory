@@ -6,6 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyRepository;
 use Fitch\TutorBundle\Entity\Competency;
+use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\Interfaces\CompetencyManagerInterface;
 
 class CompetencyManager extends BaseModelManager implements CompetencyManagerInterface
@@ -28,6 +29,23 @@ class CompetencyManager extends BaseModelManager implements CompetencyManagerInt
     public function findAll()
     {
         return parent::findAll();
+    }
+
+    /**
+     * @inherit
+     * @param $id
+     * @param Tutor $tutor
+     * @return Competency
+     */
+    public function findOrCreateCompetency($id, Tutor $tutor)
+    {
+        if ($id) {
+            $competency = $this->findById($id);
+        } else {
+            $competency = $this->createCompetency();
+            $tutor->addCompetency($competency);
+        }
+        return $competency;
     }
 
     /**
