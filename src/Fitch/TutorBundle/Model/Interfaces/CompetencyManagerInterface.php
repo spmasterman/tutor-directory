@@ -25,13 +25,14 @@ interface CompetencyManagerInterface
     /**
      * @param $id
      * @param Tutor $tutor
+     *
      * @return Competency
      */
     public function findOrCreateCompetency($id, Tutor $tutor);
 
     /**
      * @param Competency $competency
-     * @param bool $withFlush
+     * @param bool       $withFlush
      */
     public function saveCompetency($competency, $withFlush = true);
 

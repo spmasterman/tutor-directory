@@ -31,7 +31,6 @@ class SchemaCreatorListener
             $reflectionClass,
             'Fitch\EntityAttributeValueBundle\Annotation\Entity'
         ) != null) {
-
             // create a schema is one doesnt yet exist
             try {
                 $schema = $em->getRepository('FitchEntityAttributeValueBundle:Schema')->findOneBy([
