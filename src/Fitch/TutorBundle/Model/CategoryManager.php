@@ -6,6 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CategoryRepository;
 use Fitch\TutorBundle\Entity\Category;
+use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
 
 class CategoryManager extends BaseModelManager implements CategoryManagerInterface
 {
@@ -45,34 +46,11 @@ class CategoryManager extends BaseModelManager implements CategoryManagerInterfa
      */
     public function buildGroupedChoices()
     {
-        // FOR NOW - THIS JUST RETURNS K=>V
-        // BUT WHEN THE SKILL CATEGORY COMES IN THIS WILL BE USED
+
         $choices = [];
         foreach ($this->findAll() as $category) {
             $choices[$category->getId()] = $category->getName();
         }
-
-// Something like this but not "preferred" - SkillCategory instead...
-//        $choices = [
-//            [
-//                'text' => 'Preferred',
-//                'children' => []
-//            ],
-//            [
-//                'text' => 'Other',
-//                'children' => []
-//            ]
-//        ];
-//
-//        foreach($this->findAllSorted() as $language) {
-//            if ($language->isActive()) {
-//                $key = $language->isPreferred() ? 0 : 1;
-//                $choices[$key]['children'][] = [
-//                    'value' => $language->getId(),
-//                    'text' => $language->getName(),
-//                ];
-//            }
-//        }
         return $choices;
     }
 

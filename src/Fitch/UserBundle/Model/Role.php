@@ -55,8 +55,8 @@ final class Role
         ];
     }
 
-    public static function toHuman($r)
+    public static function toHuman($role)
     {
-        return self::getRolesDictionary()[$r];
+        return self::getRolesDictionary()[$role];
     }
 }

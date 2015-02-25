@@ -3,9 +3,9 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
-use Fitch\TutorBundle\Model\RateManagerInterface;
-use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\OperatingRegionManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\TutorTypeManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdateRegion implements ProfileUpdateInterface

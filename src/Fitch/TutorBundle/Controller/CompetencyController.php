@@ -5,10 +5,15 @@ namespace Fitch\TutorBundle\Controller;
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Model\CategoryManager;
+use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
 use Fitch\TutorBundle\Model\CompetencyManager;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyManagerInterface;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
 use Fitch\TutorBundle\Model\TutorManager;
+use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -147,7 +152,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return CompetencyTypeManager
+     * @return CompetencyTypeManagerInterface
      */
     private function getCompetencyTypeManager()
     {
@@ -155,7 +160,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return CompetencyManager
+     * @return CompetencyManagerInterface
      */
     private function getCompetencyManager()
     {
@@ -163,7 +168,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return CompetencyLevelManager
+     * @return CompetencyLevelManagerInterface
      */
     private function getCompetencyLevelManager()
     {
@@ -171,7 +176,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return TutorManager
+     * @return TutorManagerInterface
      */
     private function getTutorManager()
     {
@@ -179,7 +184,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * @return CategoryManager
+     * @return CategoryManagerInterface
      */
     private function getCategoryManager()
     {

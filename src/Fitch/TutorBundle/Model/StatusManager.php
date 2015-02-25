@@ -7,6 +7,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\StatusRepository;
 use Fitch\TutorBundle\Entity\Status;
+use Fitch\TutorBundle\Model\Interfaces\StatusManagerInterface;
 
 class StatusManager extends BaseModelManager implements StatusManagerInterface
 {

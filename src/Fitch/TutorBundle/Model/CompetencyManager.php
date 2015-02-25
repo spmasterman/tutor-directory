@@ -6,8 +6,9 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyRepository;
 use Fitch\TutorBundle\Entity\Competency;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyManagerInterface;
 
-class CompetencyManager extends BaseModelManager
+class CompetencyManager extends BaseModelManager implements CompetencyManagerInterface
 {
     /**
      * @param $id

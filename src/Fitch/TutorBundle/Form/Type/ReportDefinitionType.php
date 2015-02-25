@@ -2,12 +2,12 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
-use Fitch\TutorBundle\Model\CurrencyManagerInterface;
-use Fitch\TutorBundle\Model\LanguageManagerInterface;
-use Fitch\TutorBundle\Model\RateManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CurrencyManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\LanguageManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

@@ -3,8 +3,8 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\CountryManagerInterface;
-use Fitch\TutorBundle\Model\PhoneManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CountryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\PhoneManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdatePhone implements ProfileUpdateInterface

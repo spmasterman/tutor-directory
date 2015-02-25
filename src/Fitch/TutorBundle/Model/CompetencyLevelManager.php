@@ -7,6 +7,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyLevelRepository;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
 
 class CompetencyLevelManager extends BaseModelManager implements CompetencyLevelManagerInterface
 {

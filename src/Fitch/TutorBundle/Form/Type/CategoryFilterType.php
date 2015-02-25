@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;

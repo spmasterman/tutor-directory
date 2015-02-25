@@ -11,7 +11,7 @@ use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\RateManager;
-use Fitch\TutorBundle\Model\RateManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Fitch\TutorBundle\Model\ReportManager;
 use Fitch\TutorBundle\Model\TutorManager;

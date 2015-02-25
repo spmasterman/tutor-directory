@@ -3,16 +3,16 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\TutorBundle\Model\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
-use Fitch\TutorBundle\Model\CountryManagerInterface;
-use Fitch\TutorBundle\Model\FileTypeManagerInterface;
-use Fitch\TutorBundle\Model\LanguageManagerInterface;
-use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
-use Fitch\TutorBundle\Model\ProficiencyManagerInterface;
-use Fitch\TutorBundle\Model\StatusManagerInterface;
-use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CountryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\FileTypeManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\LanguageManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\OperatingRegionManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\ProficiencyManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\StatusManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\TutorTypeManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

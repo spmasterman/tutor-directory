@@ -6,6 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\LanguageRepository;
 use Fitch\TutorBundle\Entity\Language;
+use Fitch\TutorBundle\Model\Interfaces\LanguageManagerInterface;
 
 class LanguageManager extends BaseModelManager implements LanguageManagerInterface
 {

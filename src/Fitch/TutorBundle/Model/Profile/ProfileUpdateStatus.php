@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\StatusManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\StatusManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdateStatus implements ProfileUpdateInterface

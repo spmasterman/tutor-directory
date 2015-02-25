@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\EmailManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\EmailManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileUpdateEmail implements ProfileUpdateInterface

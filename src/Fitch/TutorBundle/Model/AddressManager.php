@@ -6,6 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\AddressRepository;
 use Fitch\TutorBundle\Entity\Address;
+use Fitch\TutorBundle\Model\Interfaces\AddressManagerInterface;
 
 class AddressManager extends BaseModelManager implements AddressManagerInterface
 {

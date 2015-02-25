@@ -176,25 +176,9 @@ SQL;
             ;
 
             if ($definition->isFilteredBy('Category')) {
-                $queryBuilder
-                    ->andWhere('cat.id IN '.$this->getIdsAsSet($definition->getCategoryIds()))
-                ;
-                if ($definition->getCategoryOperator() == 'and') {
-                    $queryBuilder
-                        ->groupBy('t.id')
-                        ->having('COUNT(DISTINCT cat.id) = '.count($definition->getCategoryIds()))
-                    ;
-                }
+                $this->handleCategoryFilter($definition, $queryBuilder);
             } elseif ($definition->isFilteredBy('CompetencyType')) {
-                $queryBuilder
-                    ->andWhere('tct.id IN '.$this->getIdsAsSet($definition->getCompetencyTypeIds()))
-                ;
-                if ($definition->getCompetencyTypeOperator() == 'and') {
-                    $queryBuilder
-                        ->groupBy('t.id')
-                        ->having('COUNT(DISTINCT tct.id) = '.count($definition->getCompetencyTypeIds()))
-                    ;
-                }
+                $this->handleCompetencyTypeFilter($definition, $queryBuilder);
             }
 
             if ($definition->isFilteredBy('CompetencyLevel')) {
@@ -226,5 +210,35 @@ SQL;
         array_walk($arrayIn, function (&$value) {
             $value = (int) trim($value);
         });
+    }
+
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder $queryBuilder
+     */
+    private function handleCategoryFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        $queryBuilder
+            ->andWhere('cat.id IN ' . $this->getIdsAsSet($definition->getCategoryIds()));
+        if ($definition->getCategoryOperator() == 'and') {
+            $queryBuilder
+                ->groupBy('t.id')
+                ->having('COUNT(DISTINCT cat.id) = ' . count($definition->getCategoryIds()));
+        }
+    }
+
+    /**
+     * @param ReportDefinition $definition
+     * @param QueryBuilder $queryBuilder
+     */
+    private function handleCompetencyTypeFilter(ReportDefinition $definition, QueryBuilder $queryBuilder)
+    {
+        $queryBuilder
+            ->andWhere('tct.id IN ' . $this->getIdsAsSet($definition->getCompetencyTypeIds()));
+        if ($definition->getCompetencyTypeOperator() == 'and') {
+            $queryBuilder
+                ->groupBy('t.id')
+                ->having('COUNT(DISTINCT tct.id) = ' . count($definition->getCompetencyTypeIds()));
+        }
     }
 }

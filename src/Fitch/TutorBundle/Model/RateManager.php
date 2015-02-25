@@ -6,6 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\RateRepository;
 use Fitch\TutorBundle\Entity\Rate;
+use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
 
 class RateManager extends BaseModelManager implements RateManagerInterface
 {

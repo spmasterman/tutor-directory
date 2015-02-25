@@ -6,6 +6,8 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository;
 use Fitch\TutorBundle\Entity\CompetencyType;
+use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
 
 class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeManagerInterface
 {

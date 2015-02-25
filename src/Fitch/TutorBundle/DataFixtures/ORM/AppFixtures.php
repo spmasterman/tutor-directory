@@ -16,6 +16,7 @@ class AppFixtures extends DataFixtureLoader
         $productionFixtures = [
             __DIR__.'/../../Resources/fixtures/005_currency.yml',
             __DIR__.'/../../Resources/fixtures/010_region.yml',
+            __DIR__.'/../../Resources/fixtures/015_user.yml',
             __DIR__.'/../../Resources/fixtures/020_country.yml',
             __DIR__.'/../../Resources/fixtures/030_competency_level.yml',
             __DIR__.'/../../Resources/fixtures/050_status.yml',
@@ -26,11 +27,11 @@ class AppFixtures extends DataFixtureLoader
             __DIR__.'/../../Resources/fixtures/100_languages.yml',
             __DIR__.'/../../Resources/fixtures/110_category.yml',
             __DIR__.'/../../Resources/fixtures/120_competency_type.yml',
+            __DIR__.'/../../Resources/fixtures/130_reports.yml',
         ];
 
         // This is test data (generated via Faker etc)
         $developmentFixtures = array_merge($productionFixtures, [
-            __DIR__.'/../../Resources/fixtures/430_user.yml',
             __DIR__.'/../../Resources/fixtures/450_competency.yml',
             __DIR__.'/../../Resources/fixtures/460_rate.yml',
             __DIR__.'/../../Resources/fixtures/470_email.yml',

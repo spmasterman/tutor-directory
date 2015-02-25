@@ -1,0 +1,4 @@
+Fitch\TutorBundle\Entity\Report:
+  creator: user-1
+  name: Test
+  definition: {}

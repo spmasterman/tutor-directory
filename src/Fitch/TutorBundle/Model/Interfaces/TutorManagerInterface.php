@@ -1,9 +1,10 @@
 <?php
 
-namespace Fitch\TutorBundle\Model;
+namespace Fitch\TutorBundle\Model\Interfaces;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Tutor;
+use Fitch\TutorBundle\Model\ReportDefinition;
 
 interface TutorManagerInterface
 {

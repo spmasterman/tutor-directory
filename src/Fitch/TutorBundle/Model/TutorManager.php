@@ -7,6 +7,12 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorRepository;
 use Fitch\TutorBundle\Entity\Tutor;
+use Fitch\TutorBundle\Model\Interfaces\AddressManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\CountryManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\OperatingRegionManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\StatusManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
+use Fitch\TutorBundle\Model\Interfaces\TutorTypeManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TutorManager extends BaseModelManager implements TutorManagerInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Model;
+namespace Fitch\TutorBundle\Model\Interfaces;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Proficiency;

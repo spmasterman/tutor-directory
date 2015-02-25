@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Model\Profile;
+namespace Fitch\TutorBundle\Model\Traits;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

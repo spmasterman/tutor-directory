@@ -7,6 +7,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorTypeRepository;
 use Fitch\TutorBundle\Entity\TutorType;
+use Fitch\TutorBundle\Model\Interfaces\TutorTypeManagerInterface;
 
 class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInterface
 {
