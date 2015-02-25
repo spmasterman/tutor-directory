@@ -7,7 +7,7 @@
     <!-- <property name="toolsdir" value="${basedir}/vendor/bin/"/> -->
 
     <target name="build"
-            depends="prepare,vendors,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
+            depends="prepare,vendors,smoketest,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
             description=""/>
 
     <target name="build-parallel"
@@ -156,8 +156,18 @@
         </exec>
     </target>
 
-    <target name="phpunit"
+    <target name="smoketest"
             depends="prepare"
+            description="Run smoke tests with PHPUnit">
+        <exec executable="${toolsdir}phpunit" failonerror="true">
+            <arg value="--configuration"/>
+            <arg path="${basedir}/build/phpunit-smoketest.xml"/>
+            <arg value="--verbose"/>
+        </exec>
+    </target>
+
+    <target name="phpunit"
+            depends="smoketest"
             description="Run unit tests with PHPUnit">
         <exec executable="${toolsdir}phpunit" failonerror="true">
             <arg value="--configuration"/>
