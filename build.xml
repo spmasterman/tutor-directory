@@ -127,6 +127,7 @@
         </exec>
     </target>
 
+    <!-- Don't really care about DRY in tests - in fact less shared test code the better -->
     <target name="phpcs-ci"
             depends="prepare"
             description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
@@ -143,6 +144,11 @@
     <target name="phpcpd"
             description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcpd">
+            <arg value="--min-lines=4" />
+            <arg value="--min-tokens=40" />
+            <arg value="--exclude=Fitch/TutorBundle/Tests" />
+            <arg value="--exclude=Fitch/CommonBundle/Tests" />
+            <arg value="--exclude=Fitch/EntityAttributeValueBundle/Tests" />
             <arg path="${basedir}/src" />
         </exec>
     </target>
@@ -155,6 +161,9 @@
             <arg path="${basedir}/build/logs/pmd-cpd.xml" />
             <arg value="--min-lines=4" />
             <arg value="--min-tokens=40" />
+            <arg value="--exclude=Fitch/TutorBundle/Tests" />
+            <arg value="--exclude=Fitch/CommonBundle/Tests" />
+            <arg value="--exclude=Fitch/EntityAttributeValueBundle/Tests" />
             <arg path="${basedir}/src" />
         </exec>
     </target>
