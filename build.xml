@@ -122,6 +122,7 @@
             depends="prepare"
             description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment.">
         <exec executable="${toolsdir}pdepend">
+            <arg value="--configuration=${basedir}/build/pdepend.xml" />
             <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
             <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
             <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
@@ -232,7 +233,7 @@
         </exec>
     </target>
 
-    <target name="composer" description="Installing composer dependencies">
+    <target name="vendors" description="Installing composer dependencies">
         <exec executable="composer" failonerror="true">
             <arg value="install" />
             <arg value="--dev" />
