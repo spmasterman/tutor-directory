@@ -22,7 +22,8 @@ class CompetencyControllerTest extends FixturesWebTestCase
      *
      * This should throw an Authentication type error - that's OK its because its trying to render some
      * template that has content that is dependant on the current user. We don't care about this bit - were
-     * trying to test the body of the controller
+     * trying to test the body of the controller. We could (possibly) mock out the security system, but there's
+     * no value doing that.
      */
     private function performMockedUpdate(Tutor $tutor, Competency $competency, $name) {
         // Create a response payload that should change the Note
