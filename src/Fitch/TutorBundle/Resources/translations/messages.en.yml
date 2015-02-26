@@ -18,6 +18,7 @@ tutor:
         success: The trainer has been successfully removed.
     column:
         name: Trainer Name
+        company: Company
         type: Type
         region: Region
         status: Status
@@ -365,6 +366,7 @@ profile:
             user: By
         rate_suffix: Rate
         fullname: Full Name
+        company: Company
         tutor_type: Trainer Type
         status: Status
         region: Region

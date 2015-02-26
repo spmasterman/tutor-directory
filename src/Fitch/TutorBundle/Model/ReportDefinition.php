@@ -305,6 +305,7 @@ class ReportDefinition extends AbstractReportDefinition
     {
         return [
             'name' => 'Full Name',
+            'company' => 'Company',
             'tutor_type' => 'Trainer Type',
             'status' => 'Status',
             'region' => 'Region',

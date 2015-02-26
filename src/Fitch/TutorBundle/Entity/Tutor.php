@@ -38,6 +38,13 @@ class Tutor implements
     protected $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="company", type="string", length=255, nullable=true)
+     */
+    protected $company = '';
+
+    /**
      * @ORM\ManyToOne(targetEntity="TutorType")
      * @ORM\JoinColumn(name="tutor_type_id", referencedColumnName="id")
      *
@@ -756,6 +763,24 @@ class Tutor implements
             $this->tutorLanguages->removeElement($tutorLanguage);
         }
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string $company
+     * @return $this
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
         return $this;
     }
 }

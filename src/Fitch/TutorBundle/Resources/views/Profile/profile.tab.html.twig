@@ -21,6 +21,14 @@
                         </span>
                     </p>
                     <p class="data-row">
+                        <span class="data-name">{% trans %}profile.field.company{% endtrans %}</span>
+                        <span class="data-value">
+                            {% if isEditor %}<a href="#" id="company" class="inline" data-type="text" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-title="Enter Company Name">{% endif %}
+                                {{ tutor.company}}
+                                {% if isEditor %}</a>{% endif %}
+                        </span>
+                    </p>
+                    <p class="data-row">
                         <span class="data-name">{% trans %}profile.field.tutor_type{% endtrans %}</span>
                         <span class="data-value">
                             {% if isEditor %}<a href="#" id="tutor_type" class="inline" data-source="{{ path('all_tutor_types') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getTutorType.getId }}" data-title="Select Tutor Type">{% endif %}

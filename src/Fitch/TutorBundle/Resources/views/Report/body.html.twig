@@ -12,6 +12,7 @@
         <thead>
         <tr>
             {% if definition.isFieldDisplayed('name') %}<th>Name</th>{% endif %}
+            {% if definition.isFieldDisplayed('company') %}<th>Company</th>{% endif %}
             {% if definition.isFieldDisplayed('tutor_type') %}<th>Type</th>{% endif %}
             {% if definition.isFieldDisplayed('status') %}<th>Status</th>{% endif %}
             {% if definition.isFieldDisplayed('region') %}<th>Region</th>{% endif %}
@@ -31,6 +32,7 @@
         {% for tutor in data %}
             <tr>
                 {% if definition.isFieldDisplayed('name') %}<td>{{ tutor.getName }}</td>{% endif %}
+                {% if definition.isFieldDisplayed('company') %}<td>{{ tutor.getCompany }}</td>{% endif %}
                 {% if definition.isFieldDisplayed('tutor_type') %}<td>{{ tutor.getTutorType }}</td>{% endif %}
                 {% if definition.isFieldDisplayed('status') %}<td>{{ tutor.getStatus }}</td>{% endif %}
                 {% if definition.isFieldDisplayed('region') %}<td>{{ tutor.getRegion }}</td>{% endif %}
