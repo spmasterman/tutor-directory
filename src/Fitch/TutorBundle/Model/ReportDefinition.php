@@ -210,39 +210,26 @@ class ReportDefinition extends AbstractReportDefinition
      */
     public function isFilteredBy($name)
     {
-        switch ($name) {
-            case 'Competency':
-                return (bool) (count($this->competencyLevelIds)
-                    || count($this->competencyTypeIds)
-                    || count($this->categoryIds));
-            case 'Category':
-                return (bool) count($this->categoryIds);
-            case 'CompetencyType':
-                return (bool) count($this->competencyTypeIds);
-            case 'CompetencyLevel':
-                return (bool) count($this->competencyLevelIds);
-            case 'RateType':
-                return (bool) count($this->rateTypes);
-            case 'Rate':
-                return (bool) ($this->operator && $this->rateAmount && $this->currency);
-            case 'Language':
-                $languageCount = count($this->languageIds);
-                if ($languageCount < 1) {
-                    return false;
-                }
-                if ($languageCount == 1) {
-                    return true;
-                }
-                return (bool) $this->languageOperator;
-            case 'TutorType':
-                return (bool) count($this->tutorTypeIds);
-            case 'Status':
-                return (bool) count($this->statusIds);
-            case 'Region':
-                return (bool) count($this->regionIds);
-            default:
-                return false;
+        $isFilterSummary = [
+            'Competency' => !empty($this->competencyLevelIds)
+                || !empty($this->competencyTypeIds)
+                || !empty($this->categoryIds),
+            'Category' => !empty($this->categoryIds),
+            'CompetencyType' => !empty($this->competencyTypeIds),
+            'CompetencyLevel' => !empty($this->competencyLevelIds),
+            'RateType' => !empty($this->rateTypes),
+            'Rate' => ($this->operator && $this->rateAmount && $this->currency),
+            'Language' => !empty($this->languageIds),
+            'TutorType' => !empty($this->tutorTypeIds),
+            'Status' => !empty($this->statusIds),
+            'Region' => !empty($this->regionIds),
+        ];
+
+        if (array_key_exists($name, $isFilterSummary)) {
+            return $isFilterSummary[$name];
         }
+
+        return false;
     }
 
     /**
