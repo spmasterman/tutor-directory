@@ -236,7 +236,6 @@
     <target name="vendors" description="Installing composer dependencies">
         <exec executable="composer.phar" failonerror="true">
             <arg value="install" />
-            <arg value="--dev" />
             <arg value="--prefer-dist" />
             <arg value="--no-progress" />
 
