@@ -6,7 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CategoryRepository;
 use Fitch\TutorBundle\Entity\Category;
-use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
 
 class CategoryManager extends BaseModelManager implements CategoryManagerInterface
 {

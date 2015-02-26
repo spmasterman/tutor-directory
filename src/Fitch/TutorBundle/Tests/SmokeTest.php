@@ -9,7 +9,6 @@ class SmokeTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
-
     public function testALotOfPagesAsSuperAdmin()
     {
         // Create a new client to browse the application
@@ -94,7 +93,8 @@ class SmokeTest extends WebTestCase
 
         foreach ($routes as $name => $routeBits) {
             $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
-            $this->assertEquals(200,
+            $this->assertEquals(
+                200,
                 $client->getResponse()->getStatusCode(),
                 "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
             );

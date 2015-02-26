@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Model\TutorLanguage;
 
 use Fitch\TutorBundle\Entity\TutorLanguage;
-use Fitch\TutorBundle\Model\Interfaces\LanguageManagerInterface;
+use Fitch\TutorBundle\Model\LanguageManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 
 class TutorLanguageUpdateLanguage implements TutorLanguageUpdateInterface

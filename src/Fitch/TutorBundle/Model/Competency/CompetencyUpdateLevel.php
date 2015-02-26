@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Model\Competency;
 
 use Fitch\TutorBundle\Entity\Competency;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyLevelManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 
 class CompetencyUpdateLevel implements CompetencyUpdateInterface
@@ -24,7 +24,7 @@ class CompetencyUpdateLevel implements CompetencyUpdateInterface
     }
 
     /**
-     * @return CompetencyLevelManagerInterface
+     * @return \Fitch\TutorBundle\Model\CompetencyLevelManagerInterface
      */
     private function getCompetencyLevelManager()
     {

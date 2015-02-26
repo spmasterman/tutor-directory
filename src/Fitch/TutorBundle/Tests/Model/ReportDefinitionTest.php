@@ -6,10 +6,9 @@ use Fitch\TutorBundle\Model\ReportDefinition;
 
 /**
  * Test the creation of ReportDefinition objects. None of this tests the SQL that gets generated FROM the definition,
- * just that the definition is well formed when it gets sent to the Entity Manager / Repository
+ * just that the definition is well formed when it gets sent to the Entity Manager / Repository.
  *
  * Class ReportDefinitionTest
- * @package Fitch\TutorBundle\Tests\Model
  */
 class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 {
@@ -112,7 +111,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $form->expects($this->any())->method('getData')->willReturn([
             'language' => [
                 'language' => [$identityEntityOne, $identityEntityTwo],
-                'combine' => 'or'
+                'combine' => 'or',
             ],
             'fields' => ['language'],
         ]);
@@ -137,7 +136,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $form->expects($this->any())->method('getData')->willReturn([
             'category' => [
                 'category' => [$identityEntityOne, $identityEntityTwo],
-                'combine' => 'or'
+                'combine' => 'or',
             ],
             'fields' => ['category'],
         ]);
@@ -162,7 +161,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
                 'rateType' => ['one', 'two'],
                 'operator' => 'gt',
                 'amount' => '1',
-                'currency' => $currencyEntity
+                'currency' => $currencyEntity,
             ],
             'fields' => ['name', 'rate'],
         ]);
@@ -180,16 +179,16 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($reportDefinition->isFilteredBy('SOMETHING-ELSE'));
 
         // Check that the currency info gets pulled out
-        $this->assertEquals(1.1,  $reportDefinition->getReportCurrencyToGBP());
-        $this->assertEquals('123',  $reportDefinition->getReportCurrencyThreeLetterCode());
+        $this->assertEquals(1.1, $reportDefinition->getReportCurrencyToGBP());
+        $this->assertEquals('123', $reportDefinition->getReportCurrencyThreeLetterCode());
 
         // Check that the currency stuff gets translated to a valid SQL fragment
-        $this->assertEquals(' * (X.toGBP / 1.1) > 1',  $reportDefinition->getRateLimitAsExpression('X'));
+        $this->assertEquals(' * (X.toGBP / 1.1) > 1', $reportDefinition->getRateLimitAsExpression('X'));
 
         // check rate types get translated properly
         $this->assertContains($reportDefinition->getRateTypesAsSet(), [
             '(\'two\',\'one\')',
-            '(\'one\',\'two\')'
+            '(\'one\',\'two\')',
         ]);
     }
 
@@ -214,7 +213,6 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $reportDefinition->getReportCurrencyToGBP());
     }
 
-
     public function testMissingAmountInRate()
     {
         $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
@@ -222,8 +220,8 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
             'rate' => [
                 'operator' => 'gt',
                 //'amount' => '1',
-                'currency' => $this->getMockBuilder('Fitch\TutorBundle\Entity\Currency')->getMock()
-        ],
+                'currency' => $this->getMockBuilder('Fitch\TutorBundle\Entity\Currency')->getMock(),
+            ],
             'fields' => ['name', 'rate'],
         ]);
 
@@ -239,7 +237,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
             'rate' => [
                 //'operator' => 'gt',
                 'amount' => '1',
-                'currency' => $this->getMockBuilder('Fitch\TutorBundle\Entity\Currency')->getMock()
+                'currency' => $this->getMockBuilder('Fitch\TutorBundle\Entity\Currency')->getMock(),
             ],
             'fields' => ['name', 'rate'],
         ]);
@@ -261,11 +259,11 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $form->expects($this->any())->method('getData')->willReturn([
             'category' => [
                 'category' => [$identityEntityOne, $identityEntityTwo],
-                'combine' => 'or'
+                'combine' => 'or',
             ],
             'language' => [
                 'language' => [$identityEntityOne, $identityEntityTwo],
-                'combine' => 'or'
+                'combine' => 'or',
             ],
             'tutor_type' => [$identityEntityOne, $identityEntityTwo],
             'status' => [$identityEntityOne, $identityEntityTwo],
@@ -273,7 +271,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
             'competencyLevel' => [$identityEntityOne, $identityEntityTwo],
             'competency' => [
                 'competencyType' => [$identityEntityOne, $identityEntityTwo],
-                'combine' => 'or'
+                'combine' => 'or',
             ],
             'fields' => ['category'],
         ]);
@@ -289,22 +287,21 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
         // Each of these should be the same array, containing only the ids 1 and 2
         $returnedIds = [
-            'categoryIds'=>$reportDefinition->getCategoryIds(),
-            'languageIds'=>$reportDefinition->getLanguageIds(),
-            'statusIds'=>$reportDefinition->getStatusIds(),
-            'competencyLevelIds'=>$reportDefinition->getCompetencyLevelIds(),
-            'competencyTypeIds'=>$reportDefinition->getCompetencyTypeIds(),
-            'regionIds'=>$reportDefinition->getRegionIds(),
-            'tutorTypeIds'=>$reportDefinition->getTutorTypeIds()
+            'categoryIds' => $reportDefinition->getCategoryIds(),
+            'languageIds' => $reportDefinition->getLanguageIds(),
+            'statusIds' => $reportDefinition->getStatusIds(),
+            'competencyLevelIds' => $reportDefinition->getCompetencyLevelIds(),
+            'competencyTypeIds' => $reportDefinition->getCompetencyTypeIds(),
+            'regionIds' => $reportDefinition->getRegionIds(),
+            'tutorTypeIds' => $reportDefinition->getTutorTypeIds(),
         ];
 
         // ...but they might come back in any order
-        foreach($returnedIds as $setName =>$ids) {
+        foreach ($returnedIds as $setName => $ids) {
             $this->assertContains(1, $ids, "{$setName} Doesn't contain expected values");
             $this->assertContains(2, $ids, "{$setName} Doesn't contain expected values");
             $this->assertCount(2, $ids, "{$setName} Doesn't contain expected values");
         }
-
     }
 
     public function testJustCompetencyTypeIds()
@@ -319,7 +316,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $form->expects($this->any())->method('getData')->willReturn([
             'competency' => [
                 'competencyType' => [$identityEntityOne, $identityEntityTwo],
-                'combine' => 'or'
+                'combine' => 'or',
             ],
             'fields' => ['category'],
         ]);
@@ -349,12 +346,12 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         $availableFields = ReportDefinition::getAvailableFields();
         $defaultFields = ReportDefinition::getDefaultFields();
 
-        foreach($availableFields as $k=>$v) {
+        foreach ($availableFields as $k => $v) {
             $this->assertInternalType('string', $k);
             $this->assertInternalType('string', $v);
         }
 
-        foreach($defaultFields as $f) {
+        foreach ($defaultFields as $f) {
             $this->assertContains($f, array_keys($availableFields));
         }
     }

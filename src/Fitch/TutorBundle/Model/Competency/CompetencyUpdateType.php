@@ -3,8 +3,8 @@
 namespace Fitch\TutorBundle\Model\Competency;
 
 use Fitch\TutorBundle\Entity\Competency;
-use Fitch\TutorBundle\Model\Interfaces\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\CompetencyTypeManagerInterface;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 
 class CompetencyUpdateType implements CompetencyUpdateInterface
@@ -27,7 +27,7 @@ class CompetencyUpdateType implements CompetencyUpdateInterface
     }
 
     /**
-     * @return CompetencyTypeManagerInterface
+     * @return \Fitch\TutorBundle\Model\CompetencyTypeManagerInterface
      */
     private function getCompetencyTypeManager()
     {
@@ -35,7 +35,7 @@ class CompetencyUpdateType implements CompetencyUpdateInterface
     }
 
     /**
-     * @return CategoryManagerInterface
+     * @return \Fitch\TutorBundle\Model\CategoryManagerInterface
      */
     private function getCategoryManager()
     {

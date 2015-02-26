@@ -9,7 +9,6 @@ use Fitch\CommonBundle\Entity\NamedTrait;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-use Fitch\TutorBundle\Model\Avatar;
 use Fitch\UserBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 

@@ -6,7 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\PhoneRepository;
 use Fitch\TutorBundle\Entity\Phone;
-use Fitch\TutorBundle\Model\Interfaces\PhoneManagerInterface;
+use Fitch\TutorBundle\Model\PhoneManagerInterface;
 
 class PhoneManager extends BaseModelManager implements PhoneManagerInterface
 {

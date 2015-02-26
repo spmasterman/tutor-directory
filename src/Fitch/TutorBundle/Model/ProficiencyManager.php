@@ -7,7 +7,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\ProficiencyRepository;
 use Fitch\TutorBundle\Entity\Proficiency;
-use Fitch\TutorBundle\Model\Interfaces\ProficiencyManagerInterface;
+use Fitch\TutorBundle\Model\ProficiencyManagerInterface;
 
 class ProficiencyManager extends BaseModelManager implements ProficiencyManagerInterface
 {

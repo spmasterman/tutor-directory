@@ -3,9 +3,9 @@
 namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\TutorBundle\Model\CurrencyManager;
-use Fitch\TutorBundle\Model\Interfaces\CurrencyManagerInterface;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Fitch\TutorBundle\Model\RateManager;
-use Fitch\TutorBundle\Model\Interfaces\RateManagerInterface;
+use Fitch\TutorBundle\Model\RateManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -17,7 +17,7 @@ class RateFilterType extends AbstractType
     /** @var  Translator */
     protected $translator;
 
-    /** @var  CurrencyManagerInterface */
+    /** @var  \Fitch\TutorBundle\Model\CurrencyManagerInterface */
     protected $currencyManager;
 
     /** @var  RateManagerInterface */

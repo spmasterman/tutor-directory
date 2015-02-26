@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CurrencyRepository;
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface;
-use Fitch\TutorBundle\Model\Interfaces\CurrencyManagerInterface;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 
 class CurrencyManager extends BaseModelManager implements CurrencyManagerInterface
 {

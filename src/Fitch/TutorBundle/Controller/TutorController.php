@@ -4,8 +4,8 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Form\Type\TutorType;
-use Fitch\TutorBundle\Model\Interfaces\CountryManagerInterface;
-use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -169,7 +169,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return TutorManagerInterface
+     * @return \Fitch\TutorBundle\Model\TutorManagerInterface
      */
     private function getTutorManager()
     {
@@ -177,7 +177,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return CountryManagerInterface
+     * @return \Fitch\TutorBundle\Model\CountryManagerInterface
      */
     private function getCountryManager()
     {

@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorLanguageRepository;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorLanguage;
-use Fitch\TutorBundle\Model\Interfaces\TutorLanguageManagerInterface;
+use Fitch\TutorBundle\Model\TutorLanguageManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TutorLanguageManager extends BaseModelManager implements TutorLanguageManagerInterface

@@ -6,7 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\FileTypeRepository;
 use Fitch\TutorBundle\Entity\FileType;
-use Fitch\TutorBundle\Model\Interfaces\FileTypeManagerInterface;
+use Fitch\TutorBundle\Model\FileTypeManagerInterface;
 
 class FileTypeManager extends BaseModelManager implements FileTypeManagerInterface
 {

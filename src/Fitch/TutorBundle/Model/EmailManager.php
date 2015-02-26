@@ -6,7 +6,7 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\EmailRepository;
 use Fitch\TutorBundle\Entity\Email;
-use Fitch\TutorBundle\Model\Interfaces\EmailManagerInterface;
+use Fitch\TutorBundle\Model\EmailManagerInterface;
 
 class EmailManager extends BaseModelManager implements EmailManagerInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Model\Interfaces;
+namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Tutor;
@@ -24,7 +24,7 @@ interface TutorLanguageManagerInterface
 
     /**
      * @param TutorLanguage $tutorLanguage
-     * @param bool $withFlush
+     * @param bool          $withFlush
      */
     public function saveTutorLanguage($tutorLanguage, $withFlush = true);
 
@@ -55,6 +55,7 @@ interface TutorLanguageManagerInterface
     /**
      * @param $id
      * @param Tutor $tutor
+     *
      * @return TutorLanguage
      */
     public function findOrCreateTutorLanguage($id, Tutor $tutor);
