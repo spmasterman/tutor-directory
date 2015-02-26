@@ -21,6 +21,139 @@ class TutorReportQueryBuilder extends QueryBuilder
         ;
     }
 
+    // NPath 328
+    public function test($someVariableName, $someOtherVariableName, $third)
+    {
+        switch ($someVariableName) {
+            case 1:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 2:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return 'a';
+                }
+                break;
+            case 3:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 4:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 5:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 6:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 7:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 8:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 9:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 10:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 11:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 12:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 13:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 14:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 15:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 16:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                } else {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 17:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+            case 18:
+                if ($someOtherVariableName) {
+                    return $third ? 'a' : 'b';
+                }
+                break;
+        }
+
+        if ($third > $someOtherVariableName) {
+            return '1';
+        }
+
+        return '2';
+    }
+
     public function applyDefinition(ReportDefinition $definition)
     {
         $this->definition = $definition;
@@ -124,22 +257,22 @@ class TutorReportQueryBuilder extends QueryBuilder
     private function handleCategoryFilter()
     {
         $this
-            ->andWhere('cat.id IN ' . $this->getIdsAsSet($this->definition->getCategoryIds()));
+            ->andWhere('cat.id IN '.$this->getIdsAsSet($this->definition->getCategoryIds()));
         if ($this->definition->getCategoryOperator() == 'and') {
             $this
                 ->groupBy('t.id')
-                ->having('COUNT(DISTINCT cat.id) = ' . count($this->definition->getCategoryIds()));
+                ->having('COUNT(DISTINCT cat.id) = '.count($this->definition->getCategoryIds()));
         }
     }
 
     private function handleCompetencyTypeFilter()
     {
         $this
-            ->andWhere('tct.id IN ' . $this->getIdsAsSet($this->definition->getCompetencyTypeIds()));
+            ->andWhere('tct.id IN '.$this->getIdsAsSet($this->definition->getCompetencyTypeIds()));
         if ($this->definition->getCompetencyTypeOperator() == 'and') {
             $this
                 ->groupBy('t.id')
-                ->having('COUNT(DISTINCT tct.id) = ' . count($this->definition->getCompetencyTypeIds()));
+                ->having('COUNT(DISTINCT tct.id) = '.count($this->definition->getCompetencyTypeIds()));
         }
     }
 

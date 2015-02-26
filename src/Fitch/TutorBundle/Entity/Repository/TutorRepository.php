@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\ReportDefinition;
 

@@ -19,7 +19,10 @@
 
     <rule ref="rulesets/naming.xml" >
         <exclude name="LongVariable"/>
+        <!-- exclude the shortvariables rule here so we can define it separately
+        with exceptions used frequently in Symfony -->
         <exclude name="ShortVariable"/>
+
     </rule>
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
