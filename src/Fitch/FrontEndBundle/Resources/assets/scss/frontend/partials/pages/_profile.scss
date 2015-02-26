@@ -167,7 +167,12 @@
   }
 
   .data-value {
-    width: 400px;
+    width: 300px;
+
+    .tt-query,
+    .tt-hint {
+      width: 400px;
+    }
   }
 
   .data-action {
