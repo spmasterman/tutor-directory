@@ -3,8 +3,10 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
+        # UI Visibility Roles
         ROLE_CAN_ACCESS_SIDEBAR: ~
 
+        # Task based roles
         ROLE_CAN_VIEW_TUTOR: ~
         ROLE_CAN_EDIT_TUTOR: ROLE_CAN_VIEW_TUTOR
         ROLE_CAN_CREATE_TUTOR: ROLE_CAN_EDIT_TUTOR
@@ -19,6 +21,7 @@ security:
 
         ROLE_CAN_MANAGE_USERS: [ROLE_CAN_ACCESS_SIDEBAR]
 
+        ## User Assigned roles
         ROLE_USER: [ROLE_CAN_VIEW_TUTOR, ROLE_CAN_VIEW_SAVED_REPORTS]
         ROLE_SENSITIVE_DATA: [ROLE_USER, ROLE_CAN_ACCESS_SENSITIVE_DATA]
         ROLE_EDITOR: [ROLE_CAN_CREATE_TUTOR, ROLE_CAN_CREATE_SAVED_REPORTS]
