@@ -7,7 +7,7 @@
     <!-- <property name="toolsdir" value="${basedir}/vendor/bin/"/> -->
 
     <target name="build"
-            depends="prepare,vendors,smoketest,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpdox"
+            depends="prepare,vendors,smoketest,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
             description=""/>
 
     <target name="build-parallel"
@@ -50,16 +50,50 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="lint" description="Perform syntax check of sourcecode files">
-        <apply executable="php" failonerror="true">
-            <arg value="-l" />
+    <!--<target name="lint" description="Perform syntax check of sourcecode files">-->
+        <!--<apply executable="php" failonerror="true">-->
+            <!--<arg value="-l" />-->
 
-            <fileset dir="${basedir}/src">
-                <include name="**/*.php" />
-                <modified />
+            <!--<fileset dir="${basedir}/src">-->
+                <!--<include name="**/*.php" />-->
+                <!--<modified />-->
+            <!--</fileset>-->
+        <!--</apply>-->
+    <!--</target>-->
+
+    <target name="checkModified" description="Check for modified php files">
+        <echo message="Searching for newly modified files" />
+        <path id="editedfiles">
+            <fileset dir="${basedir}/src/">
+                <modified>
+                    <param name="cache.cachefile"
+                           value="${basedir}/build/cache.properties"/>
+                </modified>  <!-- Search only for modified files -->
+                <include name="**/*.php" /> <!-- Search only for files with .php extension -->
+                <exclude name="**/vendor/**" /> <!-- Exclude vendor directory -->
             </fileset>
-        </apply>
+        </path>
+
+        <pathconvert pathsep="${line.separator}" property="files.modified" refid="editedfiles" />
+
+        <condition property="modifiedFiles">
+            <not>
+                <equals arg1="${files.modified}" arg2="" />
+            </not>
+        </condition>
     </target>
+
+
+    <!-- The Php Lint target -->
+    <!-- Will only execute if and only if there is some modified files -->
+    <target name="lint" depends="checkModified" description="Perform syntax check of sourcecode files" if="modifiedFiles">
+        <echo message="Linting php files" />
+        <exec executable="bash" failonerror="true">
+            <arg value="-c" />
+            <arg value="echo '${files.modified}' | xargs -n 1 -P 4 php -l" />
+        </exec>
+    </target>
+
 
     <target name="phploc"
             description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">

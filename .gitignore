@@ -50,3 +50,4 @@ build/coverage
 build/logs
 build/pdepend
 build/phpdox
+build/cache.properties
