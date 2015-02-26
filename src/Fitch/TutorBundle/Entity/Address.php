@@ -86,16 +86,22 @@ class Address implements
      */
     public function __toString()
     {
-        $string =
-            ($this->getStreetPrimary() ? $this->getStreetPrimary().', ' : '').
-            ($this->getStreetSecondary() ? $this->getStreetSecondary().', ' : '').
-            ($this->getCity() ? $this->getCity().', ' : '').
-            ($this->getState() ? $this->getState().' ' : '').
-            ($this->getZip() ? $this->getZip().' ' : '').
+        $bits = [
+            $this->getStreetPrimary().', ',
+            $this->getStreetSecondary().', ',
+            $this->getCity().', ',
+            $this->getState().' ',
+            $this->getZip().' ',
             $this->getCountry()->getName()
-        ;
+        ];
 
-        return str_replace(', ,', ',', $string);
+        $outputString = '';
+        foreach($bits as $bit) {
+            if (strlen($bit) > 1) {
+                $outputString .= $bit;
+            }
+        }
+        return $outputString;
     }
 
     /**
