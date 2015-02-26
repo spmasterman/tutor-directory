@@ -69,7 +69,7 @@ class ReportDefinitionType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => [
-                    'class' => "control-inline simple-checkbox",
+                    'class' => "control-inline simple-checkbox stacked-group",
                 ],
                 'placeholder' => 'Filter by Tutor Type...',
                 'required' => false,
@@ -80,7 +80,7 @@ class ReportDefinitionType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => [
-                    'class' => "control-inline simple-checkbox",
+                    'class' => "control-inline simple-checkbox stacked-group",
                 ],
                 'placeholder' => 'Filter by Status...',
                 'required' => false,
@@ -91,7 +91,7 @@ class ReportDefinitionType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => [
-                    'class' => "control-inline simple-checkbox",
+                    'class' => "control-inline simple-checkbox stacked-group",
                 ],
                 'placeholder' => 'Filter by Region...',
                 'required' => false,
