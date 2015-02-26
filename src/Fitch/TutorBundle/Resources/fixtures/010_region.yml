@@ -29,3 +29,8 @@ Fitch\TutorBundle\Entity\OperatingRegion:
         default: false
         code: EU
         defaultCurrency: @currency-EUR
+    region-hk:
+        name: Hong King
+        default: false
+        code: HK
+        defaultCurrency: @currency-HKD

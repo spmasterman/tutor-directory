@@ -2,8 +2,11 @@ Fitch\TutorBundle\Entity\Status:
     status-unknown:
         name: <unspecified>
         default: true
-    status-active:
-        name: Active
+    status-acnr:
+        name: All clients - Non-restrictive
+        default: false
+    status-acr:
+        name: All clients - Restrictive
         default: false
     status-prospective:
         name: Prospective
@@ -11,8 +14,8 @@ Fitch\TutorBundle\Entity\Status:
     status-unavailable:
         name: Temporarily Unavailable
         default: false
-    status-inactive:
-        name: Inactive
+    status-competitor:
+        name: Competitor - Do Not Use
         default: false
     status-terminated:
         name: Terminated - Do Not Use
