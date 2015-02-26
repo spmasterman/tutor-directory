@@ -4,6 +4,9 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
          backupGlobals="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
          colors="true"
          bootstrap="../app/bootstrap.test.php"
 >
@@ -30,6 +33,14 @@
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>
             </exclude>
         </whitelist>
+        <blacklist>
+            <directory>cache</directory>
+            <directory>data</directory>
+            <directory>log</directory>
+            <directory>lib/vendor</directory>
+            <directory>plugins</directory>
+            <directory>web</directory>
+        </blacklist>
     </filter>
 
     <logging>
