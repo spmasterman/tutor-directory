@@ -29,6 +29,7 @@
     <target name="clean"
             unless="clean.done"
             description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/build"/>
         <delete dir="${basedir}/build/api"/>
         <delete dir="${basedir}/build/coverage"/>
         <delete dir="${basedir}/build/logs"/>
