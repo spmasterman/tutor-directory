@@ -5,7 +5,7 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Controller\CompetencyController;
 use Fitch\TutorBundle\Entity\Competency;
-use Fitch\TutorBundle\Model\Interfaces\TutorManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
