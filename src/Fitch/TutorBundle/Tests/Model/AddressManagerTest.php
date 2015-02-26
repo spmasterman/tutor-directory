@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\AddressManager;
+use Fitch\TutorBundle\Model\Interfaces\AddressManagerInterface;
 
 class AddressManagerTest extends FixturesWebTestCase
 {
@@ -71,7 +72,7 @@ class AddressManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * @return AddressManager
+     * @return AddressManagerInterface
      */
     public function getModelManager()
     {
