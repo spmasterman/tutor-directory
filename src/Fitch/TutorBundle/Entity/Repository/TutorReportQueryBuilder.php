@@ -21,12 +21,6 @@ class TutorReportQueryBuilder extends QueryBuilder
         ;
     }
 
-    // NPath 328
-    public function test($someVariableName, $someOtherVariableName, $third)
-    {
-        return $someVariableName+$someOtherVariableName+$third;
-    }
-
     public function applyDefinition(ReportDefinition $definition)
     {
         $this->definition = $definition;

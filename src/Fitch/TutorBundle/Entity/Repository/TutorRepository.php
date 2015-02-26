@@ -64,12 +64,12 @@ SQL;
      */
     public function getReportData(ReportDefinition $definition)
     {
-//        $qb = new TutorReportQueryBuilder(
-//            $this->getEntityManager(),
-//            $this->getEntityName(),
-//            't'
-//        );
-//
-//        return $qb->applyDefinition($definition)->getQuery()->getResult();
+        $qb = new TutorReportQueryBuilder(
+            $this->getEntityManager(),
+            $this->getEntityName(),
+            't'
+        );
+
+        return $qb->applyDefinition($definition)->getQuery()->getResult();
     }
 }
