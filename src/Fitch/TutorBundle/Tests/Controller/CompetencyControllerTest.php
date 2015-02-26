@@ -16,22 +16,23 @@ class CompetencyControllerTest extends FixturesWebTestCase
     const END = 'END';
 
     /**
-     * @param Tutor $tutor
+     * @param Tutor      $tutor
      * @param Competency $competency
-     * @param string $name
+     * @param string     $name
      *
      * This should throw an Authentication type error - that's OK its because its trying to render some
      * template that has content that is dependant on the current user. We don't care about this bit - were
      * trying to test the body of the controller. We could (possibly) mock out the security system, but there's
      * no value doing that.
      */
-    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name) {
+    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name)
+    {
         // Create a response payload that should change the Note
         $requestBag = new ParameterBag([
             'pk' => $tutor->getId(),
             'competencyPk' => $competency->getId(),
             'name' => $name,
-            'value' => self::END
+            'value' => self::END,
         ]);
 
         // Set that up in a Stub/mock Request
@@ -45,12 +46,12 @@ class CompetencyControllerTest extends FixturesWebTestCase
         try {
             $controller->updateAction($request);
         } catch (AuthenticationCredentialsNotFoundException $e) {
-
+            // Do nothing
         }
     }
 
     /**
-     * Test editing a Note via a (mock)request object being passed to update controller method
+     * Test editing a Note via a (mock)request object being passed to update controller method.
      */
     public function testUpdatingNote()
     {
@@ -75,7 +76,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
     }
 
     /**
-     * Test Setting a New CompetencyType via a (mock)request object being passed to update controller method
+     * Test Setting a New CompetencyType via a (mock)request object being passed to update controller method.
      */
     public function testUpdatingType()
     {
@@ -100,7 +101,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
     }
 
     /**
-     * Test Setting a New CompetencyLevel via a (mock)request object being passed to update controller method
+     * Test Setting a New CompetencyLevel via a (mock)request object being passed to update controller method.
      */
     public function testUpdatingLevel()
     {
