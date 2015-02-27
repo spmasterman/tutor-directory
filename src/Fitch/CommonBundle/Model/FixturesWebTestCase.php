@@ -5,6 +5,7 @@ namespace Fitch\CommonBundle\Model;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Validator\Validator;
 
 class FixturesWebTestCase extends WebTestCase
 {

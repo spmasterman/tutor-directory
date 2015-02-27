@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Entity;
 
+use Doctrine\Common\Util\Inflector;
 use Doctrine\ORM\Mapping as ORM;
 use Fitch\CommonBundle\Entity\ActiveAndPreferredTrait;
 use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
@@ -86,6 +87,22 @@ class Country implements
     public function __toString()
     {
         return sprintf('%s (%s) %s', $this->getName(), $this->getThreeDigitCode(), $this->getDialingCode());
+    }
+
+    /**
+     * Loads up an object from a named array, via its setters
+     *
+     * @param array $data
+     */
+    public function fromArray(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set' . Inflector::classify($key);
+
+            if (method_exists($this, $method)) {
+                call_user_func(array($this, $method), $value);
+            }
+        }
     }
 
     /**

@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Field\ChoiceFormField;
 
 class CountryControllerTest extends WebTestCase
 {
