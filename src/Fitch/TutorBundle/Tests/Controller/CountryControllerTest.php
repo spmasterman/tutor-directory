@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Field\ChoiceFormField;
 
 class CountryControllerTest extends WebTestCase
 {
@@ -38,15 +39,33 @@ class CountryControllerTest extends WebTestCase
 
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
-        // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
+        $formValues = $crawler->selectButton('Create')->form()->getValues();
+
+        $formDataToSubmit = [
             'fitch_tutorbundle_country[name]'  => 'xtest',
             'fitch_tutorbundle_country[twoDigitCode]'  => 'xt',
             'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
             'fitch_tutorbundle_country[dialingCode]'  => '+1',
-            'fitch_tutorbundle_country[preferred]'  => false,
             'fitch_tutorbundle_country[defaultRegion]' => 1,
-        ));
+        ];
+
+        $formCheckBoxes = [
+            'fitch_tutorbundle_country[preferred]'  => true,
+            'fitch_tutorbundle_country[active]'  => true,
+        ];
+
+        // Form wont have any elements for checkboxes that aren't ticked (by default) so we cant check for them...
+        foreach (array_keys($formDataToSubmit) as $key) {
+            $this->assertArrayHasKey($key, $formValues, $key.' not in ['.implode(', ', array_keys($formValues)));
+        }
+
+        // Fill in the form and submit it
+        $form = $crawler->selectButton('Create')->form($formDataToSubmit);
+
+        // ...and manually tick() the check boxes
+        foreach (array_keys($formCheckBoxes) as $key) {
+            $form[$key]->tick();
+        }
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -65,10 +84,14 @@ class CountryControllerTest extends WebTestCase
             'fitch_tutorbundle_country[name]'  => 'xtest-edit',
             'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
             'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
-            'fitch_tutorbundle_country[dialingCode]'  => '+2',
-            'fitch_tutorbundle_country[preferred]'  => true,
+            'fitch_tutorbundle_country[dialingCode]'  => '+44',
             'fitch_tutorbundle_country[defaultRegion]' => 2,
         ));
+
+        // ...and manually tick() the check boxes
+        foreach (array_keys($formCheckBoxes) as $key) {
+            $form[$key]->untick();
+        }
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -81,7 +104,7 @@ class CountryControllerTest extends WebTestCase
 
         // Delete the entity
         $client->submit($crawler->selectButton('Delete')->form());
-        $crawler = $client->followRedirect();
+        $client->followRedirect();
 
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());

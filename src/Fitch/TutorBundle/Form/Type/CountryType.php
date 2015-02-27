@@ -23,12 +23,17 @@ class CountryType extends AbstractType
             ->add('threeDigitCode', null, [
                 'label' => '3 Digit Code (ISO 3661-1)',
             ])
-            ->add('dialingCode')
-            ->add('preferred', new OnOffType(), [
+            ->add('dialingCode', null, [
+                'attr' => [
+                    'title' => "Please enter a valid international dialing code (i.e. +44 for the UK, +1 for the US)",
+                    'placeholder' => 'A valid international dialing code (i.e. +44 for the UK, +1 for the US)'
+                ]
+            ])
+            ->add('active', new OnOffType(), [
                 'type' => 'yesno',
                 'required' => false,
             ])
-            ->add('active', new OnOffType(), [
+            ->add('preferred', new OnOffType(), [
                 'type' => 'yesno',
                 'required' => false,
             ])
