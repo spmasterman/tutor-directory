@@ -12,6 +12,9 @@ use Fitch\EntityAttributeValueBundle\Entity\AttributedEntityInterface;
 use Fitch\EntityAttributeValueBundle\Entity\Definition;
 use ReflectionClass;
 
+/**
+ * Class AttributeCreatorListener.
+ */
 class AttributeCreatorListener
 {
     /**

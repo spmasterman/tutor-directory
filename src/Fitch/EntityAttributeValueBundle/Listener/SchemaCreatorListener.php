@@ -7,10 +7,13 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Fitch\EntityAttributeValueBundle\Entity\Schema;
 use Doctrine\DBAL\DBALException;
 
+/**
+ * Class SchemaCreatorListener.
+ */
 class SchemaCreatorListener
 {
     /**
-     * Creates a schema if one doesnt exist.
+     * Creates a schema if one doesn't exist.
      *
      * @param LoadClassMetadataEventArgs $eventArgs
      */

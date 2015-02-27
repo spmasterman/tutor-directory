@@ -7,6 +7,9 @@ use Fitch\EntityAttributeValueBundle\Entity\Attribute;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+/**
+ * Class AttributesToGroupedAttributesTransformer.
+ */
 class AttributesToGroupedAttributesTransformer implements DataTransformerInterface
 {
     /** @var string */

@@ -9,23 +9,41 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
+/**
+ * Class AttributeSubscriber.
+ */
 class AttributeSubscriber implements EventSubscriberInterface
 {
+    /** @var FormFactoryInterface */
     private $factory;
+
+    /** @var array */
     private $options;
 
-    private $defaultOptions = array(
+    /** @var array */
+    private $defaultOptions = [
         'allow_expanded' => true,
         'allow_textarea' => true,
         'all_multiple' => false,
-    );
+    ];
 
+    /**
+     * @param FormFactoryInterface $factory
+     * @param array                $options
+     */
     public function __construct(FormFactoryInterface $factory, $options = array())
     {
         $this->factory = $factory;
         $this->options = $options;
     }
 
+    /**
+     * Returns an option or the default
+     *
+     * @param string $name
+     *
+     * @return mixed
+     */
     public function getOption($name)
     {
         if (!isset($this->options[$name])) {
@@ -37,6 +55,9 @@ class AttributeSubscriber implements EventSubscriberInterface
         return $value;
     }
 
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         // Tells the dispatcher that we want to listen on the form.pre_set_data
@@ -44,6 +65,9 @@ class AttributeSubscriber implements EventSubscriberInterface
         return array(FormEvents::PRE_SET_DATA => 'preSetData');
     }
 
+    /**
+     * @param FormEvent $event
+     */
     public function preSetData(FormEvent $event)
     {
         $data = $event->getData();
@@ -56,18 +80,22 @@ class AttributeSubscriber implements EventSubscriberInterface
         $this->createValueField($data, $form);
     }
 
+    /**
+     * @param Attribute     $attribute
+     * @param FormInterface $form
+     * @param string        $fieldName
+     */
     public function createValueField(Attribute $attribute, FormInterface $form, $fieldName = 'value')
     {
         $definition = $attribute->getDefinition();
+        $this->options = $definition->getOptions()->toArray();
 
-        list($type, $params, $value) = $this->dealWithTypes(
+        list($type, $params, $value) = $this->getNamedParameters(
             $definition->getType(),
-            ['attr' => []],
-            $attribute->getValue(),
-            $definition->getOptions()->toArray()
+            $attribute->getValue()
         );
 
-        $params['required'] = (bool)$definition->isRequired();
+        $params['required'] = (bool) $definition->isRequired();
         $params['label'] = $definition->getLabel() ? $definition->getLabel() : $definition->getName();
 
         if ($definition->getUnit() != "") {
@@ -85,19 +113,19 @@ class AttributeSubscriber implements EventSubscriberInterface
 
     /**
      * @param $type
-     * @param $params
      * @param $value
-     * @param $options
+     *
      * @return array
      */
-    private function dealWithTypes($type, $params, $value, $options)
+    private function getNamedParameters($type, $value)
     {
+        $params = ['attr' => []];
         if ($type == 'textarea' && !$this->getOption('allow_expanded')) {
             $type = 'text';
         }
 
         if ($type == 'choice' || $type == 'checkbox' || $type == 'radio') {
-            return $this->dealWithChoice($type, $params, $value, $options);
+            return $this->dealWithChoice($type, $params, $value);
         }
 
         return array($type, $params, is_array($value) ? null : $value);
@@ -107,10 +135,10 @@ class AttributeSubscriber implements EventSubscriberInterface
      * @param $type
      * @param $params
      * @param $value
-     * @param $options
+     *
      * @return array
      */
-    private function dealWithChoice($type, $params, $value, $options)
+    private function dealWithChoice($type, $params, $value)
     {
         if (($type == 'checkbox' || $type == 'radio') && $this->getOption('allow_expanded')) {
             $params['expanded'] = true;
@@ -132,12 +160,13 @@ class AttributeSubscriber implements EventSubscriberInterface
         }
 
         $params['choices'] = array();
-        foreach ($options as $option) {
-            /** @var Option $option */
+        foreach ($this->options as $option) {
+            /* @var Option $option */
             $params['choices'][$option->getName()] = $option->getName();
         }
 
         $type = 'choice';
+
         return array($type, $params, $value);
     }
 }

@@ -6,43 +6,58 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class DefinitionType.
+ */
 class DefinitionType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
-        ));
-        $builder->add('description', 'textarea', array(
+        $options = null;
+
+        $builder->add('name', 'text', [
+        ]);
+        $builder->add('description', 'textarea', [
             'required' => false,
-        ));
-        $builder->add('group', 'text', array(
+        ]);
+        $builder->add('group', 'text', [
             'required' => false,
-        ));
-        $builder->add('type', 'choice', array(
-            'choices' => array(
+        ]);
+        $builder->add('type', 'choice', [
+            'choices' => [
                 'integer'   => 'Integer',
                 'text'      => 'Text',
                 'textarea'  => 'Textarea',
                 'choice'    => 'Select',
                 'checkbox'  => 'Checkbox',
                 'radio'     => 'Radio',
-            ),
-        ));
-        $builder->add('unit', 'text', array(
+            ],
+        ]);
+        $builder->add('unit', 'text', [
             'required' => false,
-        ));
-        $builder->add('required', 'checkbox', array(
+        ]);
+        $builder->add('required', 'checkbox', [
             'required' => false,
-        ));
+        ]);
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Fitch\EntityAttributeValueBundle\Entity\Definition',
-        ));
+        ]);
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'definition';

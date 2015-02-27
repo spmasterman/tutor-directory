@@ -4,6 +4,9 @@ namespace Fitch\EntityAttributeValueBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class AttributedEntityTrait.
+ */
 trait AttributedEntityTrait
 {
     /**
@@ -52,18 +55,20 @@ trait AttributedEntityTrait
     }
 
     /**
-     * @param $name
+     * @param string $name
      *
      * @return Attribute|null
      */
     public function getAttributeNamed($name)
     {
+        $foundAttribute = null;
         foreach ($this->getAttributes() as $attribute) {
             if ($attribute->getDefinition() == $name) {
-                return $attribute;
+                $foundAttribute = $attribute;
+                break;
             }
         }
 
-        return;
+        return $foundAttribute;
     }
 }
