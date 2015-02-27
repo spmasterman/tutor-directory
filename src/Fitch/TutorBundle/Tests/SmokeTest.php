@@ -5,10 +5,19 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class SmokeTest.
+ *
+ * Is the server on fire? Contains tests that can be run immediately post deployment that will fail
+ * if things didnt go so well. These arent intended to produce coverage
+ */
 class SmokeTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
+    /**
+     * All the routes from router:debug, acting on entity 1
+     */
     public function testALotOfPagesAsSuperAdmin()
     {
         // Create a new client to browse the application

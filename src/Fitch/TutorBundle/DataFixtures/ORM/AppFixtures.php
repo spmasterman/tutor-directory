@@ -5,6 +5,9 @@ namespace Fitch\TutorBundle\DataFixtures\ORM;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 use Nelmio\Alice\Fixtures;
 
+/**
+ * Class AppFixtures.
+ */
 class AppFixtures extends DataFixtureLoader
 {
     /**
@@ -56,49 +59,5 @@ class AppFixtures extends DataFixtureLoader
             default:
                 return $developmentFixtures; // demo, dev etc
         }
-    }
-
-    /**
-     * Generate a plausible sounding competency type - used in development fixtures.
-     *
-     * @return string
-     */
-    public function competencyName()
-    {
-        $firstWords = [
-            'Financial',
-            'CFA',
-            'Asset',
-            'Forex',
-            'Lifecycle',
-            'Equity',
-            'Equity & Option',
-            'Derivative',
-            'Fixed Income',
-            'European',
-            'Accounting',
-            'Back Office',
-            'Mission Critical',
-            'Business',
-            'Banking',
-            'Front Desk',
-        ];
-
-        $secondWords = [
-            'Trade',
-            'Statement Preparation',
-            'Statement Analysis',
-            'Analysis',
-            'Trading',
-            'Management',
-            'Reporting',
-            'Human Resources',
-            'Ethics',
-            'Auditing',
-            'Compliance',
-            'Assessment',
-        ];
-
-        return $firstWords[array_rand($firstWords)].' '.$secondWords[array_rand($secondWords)];
     }
 }

@@ -9,19 +9,30 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Class UpdateExchangeRateCommand.
+ */
 class UpdateExchangeRateCommand extends ContainerAwareCommand
 {
     /** @var  ContainerInterface */
     protected $container;
 
+    /**
+     *
+     */
     protected function configure()
     {
         $this
             ->setName('fitch:exchange-rate:update')
-            ->setDescription('Update the oldest out-of-date exchange rate')
-            ;
+            ->setDescription('Update the oldest out-of-date exchange rate');
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->container = $this->getContainer();
