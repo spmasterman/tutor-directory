@@ -210,10 +210,6 @@ class CountryController extends Controller
      */
     public function updateAction(Request $request, Country $country)
     {
-        if (!$country) {
-            throw $this->createNotFoundException('Unable to find Country entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($country->getId());
         $editForm = $this->createEditForm($country);
         $editForm->handleRequest($request);

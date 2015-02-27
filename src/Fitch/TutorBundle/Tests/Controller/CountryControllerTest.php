@@ -32,6 +32,7 @@ class CountryControllerTest extends WebTestCase
         /*
          * Test "Get List"
          */
+
         $crawler = $client->request('GET', '/admin/country/');
         $this->assertEquals(
             200,
@@ -42,6 +43,7 @@ class CountryControllerTest extends WebTestCase
         /*
          * Test Create New
          */
+
         // navigate to the page
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
@@ -82,15 +84,21 @@ class CountryControllerTest extends WebTestCase
         // We've created a duplicate Country name - this should fail. We do it here, because its easy, to submit
         // corrected data - just check its not been saved.
 
-        // Validators wont have run (so we wont get .has-error classes in the DOM or anything, but DB
-        // should have thrown up (SQLite will handle the "unique" hint by creating an index, which will choke.
-        // The form wont redirect and the field 'name' - so just assert that we haven't been redirected:
+        // Validators won't have run (so we wont get .has-error classes in the DOM or anything, but DB
+        // should have thrown up (SQLite will handle the "unique" hint by creating an index, which will choke.)
+        // The form wont redirect - so just assert that we haven't been redirected. This is problematic because we
+        // don't know the id of the new entity
+        //        $this->assertFalse(
+        //            $client->getResponse()->isRedirect('/country/show/4')
+        //        );
+        // it makes the test very brittle to hard code it - so just test we didn't get a 200 OK response
         $this->assertEquals(
             Response::HTTP_OK, //not redirect
-            $client->getResponse()->getStatusCode()
+            $client->getResponse()->getStatusCode(),
+            'Form appears to have allowed us created a Duplicate country name - please check the validators'
         );
 
-        // correct the mistake, resubmit the form
+        // Correct the mistake, resubmit the form
         $formDataToSubmit['fitch_tutorbundle_country[name]'] = 'xtest';
         $form = $crawler->selectButton('Create')->form($formDataToSubmit);
         $client->submit($form);
@@ -146,14 +154,14 @@ class CountryControllerTest extends WebTestCase
         // Submit the form
         $client->submit($form);
 
-        // we're not following a redirect - as the form should have choked and we should be back on the
+        // We're not following a redirect - as the form should have choked and we should be back on the
         // same page - the form field "name" should contain its original value - we'll just check it doesn't
         // contain the incorrect one
         $formValues = $crawler->selectButton('Update')->form()->getValues();
         $this->assertNotEquals(
             'Test Country One',
             $formValues['fitch_tutorbundle_country[name]'],
-            'Missing element [value="xtest-edit"]'
+            'Form appears to have allowed us updated to a Duplicate country name - please check the validators'
         );
 
         /*
