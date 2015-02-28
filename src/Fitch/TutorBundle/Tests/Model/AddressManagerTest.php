@@ -3,8 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\AddressManager;
-use Fitch\TutorBundle\Model\Interfaces\AddressManagerInterface;
+use Fitch\TutorBundle\Model\AddressManagerInterface;
 
 class AddressManagerTest extends FixturesWebTestCase
 {
@@ -35,7 +34,7 @@ class AddressManagerTest extends FixturesWebTestCase
         $this->assertCount(6, $allEntities, "Should return six entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createAddress();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setStreetPrimary('p')
             ->setStreetSecondary('s')
@@ -43,7 +42,7 @@ class AddressManagerTest extends FixturesWebTestCase
             ->setState('st')
             ->setZip('z')
         ;
-        $this->getModelManager()->saveAddress($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 7 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -57,16 +56,16 @@ class AddressManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveAddress($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
 
         // Check that when we refresh it refreshes
         $newEntity->setStreetPrimary('p3');
-        $this->getModelManager()->refreshAddress($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('p2', $newEntity->getStreetPrimary());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeAddress($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
     }

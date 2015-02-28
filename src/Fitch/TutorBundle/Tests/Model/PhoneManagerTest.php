@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\PhoneManager;
+use Fitch\TutorBundle\Model\PhoneManagerInterface;
 
 class PhoneManagerTest extends FixturesWebTestCase
 {
@@ -41,7 +41,7 @@ class PhoneManagerTest extends FixturesWebTestCase
             ->setCountry(null)
             ->setNumber('1')
         ;
-        $this->getModelManager()->savePhone($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 7 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -55,7 +55,7 @@ class PhoneManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->savePhone($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -64,13 +64,13 @@ class PhoneManagerTest extends FixturesWebTestCase
         $this->assertEquals('2', $newEntity->getNumber());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
     }
 
     /**
-     * @return PhoneManager
+     * @return PhoneManagerInterface
      */
     public function getModelManager()
     {

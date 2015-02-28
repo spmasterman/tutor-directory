@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 
 class CurrencyManagerTest extends FixturesWebTestCase
 {
@@ -32,7 +32,7 @@ class CurrencyManagerTest extends FixturesWebTestCase
 
         $entityOne = $this->getModelManager()->findById(1);
         $entityOne->setThreeDigitCode('GBP');
-        $this->getModelManager()->saveCurrency($entityOne);
+        $this->getModelManager()->saveEntity($entityOne);
 
         $entity = $this->getModelManager()->getDefaultCurrency();
         $this->assertEquals($entity->getThreeDigitCode(), 'GBP');
@@ -88,7 +88,7 @@ class CurrencyManagerTest extends FixturesWebTestCase
             ->setActive(false)
             ->setThreeDigitCode('tdc')
         ;
-        $this->getModelManager()->saveCurrency($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(5, $allEntities, "Should return 5 entities");
@@ -100,20 +100,20 @@ class CurrencyManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveCurrency($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
 
         $newEntity->setName('c3');
         $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('c2', $newEntity->getName());
 
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return 4 entities");
     }
 
     /**
-     * @return CurrencyManager
+     * @return CurrencyManagerInterface
      */
     public function getModelManager()
     {

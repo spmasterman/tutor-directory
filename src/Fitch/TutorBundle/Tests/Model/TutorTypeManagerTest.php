@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\TutorTypeManager;
+use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 
 class TutorTypeManagerTest extends FixturesWebTestCase
 {
@@ -36,7 +36,7 @@ class TutorTypeManagerTest extends FixturesWebTestCase
             ->setName('t')
             ->setDefault(false)
         ;
-        $this->getModelManager()->saveTutorType($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 4 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -50,7 +50,7 @@ class TutorTypeManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveTutorType($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -59,7 +59,7 @@ class TutorTypeManagerTest extends FixturesWebTestCase
         $this->assertEquals('t2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
     }
@@ -72,7 +72,7 @@ class TutorTypeManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * @return TutorTypeManager
+     * @return TutorTypeManagerInterface
      */
     public function getModelManager()
     {

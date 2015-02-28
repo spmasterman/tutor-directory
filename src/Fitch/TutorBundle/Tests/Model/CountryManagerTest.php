@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
 
 class CountryManagerTest extends FixturesWebTestCase
 {
@@ -33,7 +33,7 @@ class CountryManagerTest extends FixturesWebTestCase
 
         $entityOne = $this->getModelManager()->findById(4);
         $entityOne->setTwoDigitCode('XX');
-        $this->getModelManager()->saveCountry($entityOne);
+        $this->getModelManager()->saveEntity($entityOne);
 
         $entity = $this->getModelManager()->getDefaultCountry();
         $this->assertNull($entity);
@@ -82,7 +82,7 @@ class CountryManagerTest extends FixturesWebTestCase
         $this->assertCount(4, $allEntities, "Should return 4 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createCountry();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('c')
             ->setDefaultRegion(null)
@@ -92,7 +92,7 @@ class CountryManagerTest extends FixturesWebTestCase
             ->setTwoDigitCode('12')
             ->setActive(false)
         ;
-        $this->getModelManager()->saveCountry($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(5, $allEntities, "Should return 5 entities");
@@ -104,20 +104,20 @@ class CountryManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveCountry($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
 
         $newEntity->setName('c3');
         $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('c2', $newEntity->getName());
 
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return 4 entities");
     }
 
     /**
-     * @return CountryManager
+     * @return CountryManagerInterface
      */
     public function getModelManager()
     {

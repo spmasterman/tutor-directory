@@ -9,7 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * Class SmokeTest.
  *
  * Is the server on fire? Contains tests that can be run immediately post deployment that will fail
- * if things didnt go so well. These arent intended to produce coverage
+ * if obvious things are broke. These are not intended to contribute to test coverage reports - the only thing they
+ * test is that they return a valid http response.
  */
 class SmokeTest extends WebTestCase
 {

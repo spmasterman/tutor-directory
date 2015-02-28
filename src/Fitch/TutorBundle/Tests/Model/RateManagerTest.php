@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\RateManager;
+use Fitch\TutorBundle\Model\RateManagerInterface;
 
 class RateManagerTest extends FixturesWebTestCase
 {
@@ -36,7 +36,7 @@ class RateManagerTest extends FixturesWebTestCase
             ->setName('n')
             ->setAmount(1)
         ;
-        $this->getModelManager()->saveRate($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 4 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -50,7 +50,7 @@ class RateManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveRate($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -73,14 +73,14 @@ class RateManagerTest extends FixturesWebTestCase
         $this->assertEquals(['name' => 'n', 'amount' => 1], $logs[1]->getData());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
 
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return six entities");
     }
 
     /**
-     * @return RateManager
+     * @return RateManagerInterface
      */
     public function getModelManager()
     {

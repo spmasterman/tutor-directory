@@ -2,9 +2,8 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
-use Doctrine\ORM\EntityNotFoundException;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
+use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 
 class CompetencyLevelManagerTest extends FixturesWebTestCase
 {
@@ -46,12 +45,12 @@ class CompetencyLevelManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return 3 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createCompetencyLevel();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('n')
             ->setColor('#334455')
         ;
-        $this->getModelManager()->saveCompetencyLevel($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 7 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -65,7 +64,7 @@ class CompetencyLevelManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveCompetencyLevel($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -74,7 +73,7 @@ class CompetencyLevelManagerTest extends FixturesWebTestCase
         $this->assertEquals('n2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return 3 entities");
     }
@@ -95,7 +94,7 @@ class CompetencyLevelManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * @return CompetencyLevelManager
+     * @return CompetencyLevelManagerInterface
      */
     public function getModelManager()
     {

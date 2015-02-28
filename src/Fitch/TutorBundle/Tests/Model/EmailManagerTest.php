@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\EmailManagerInterface;
 
 class EmailManagerTest extends FixturesWebTestCase
 {
@@ -40,7 +40,7 @@ class EmailManagerTest extends FixturesWebTestCase
             ->setType('t')
             ->setAddress('a@b.c')
         ;
-        $this->getModelManager()->saveEmail($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 7 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -54,7 +54,7 @@ class EmailManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveEmail($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -63,13 +63,13 @@ class EmailManagerTest extends FixturesWebTestCase
         $this->assertEquals('a2@b.c', $newEntity->getAddress());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
     }
 
     /**
-     * @return EmailManager
+     * @return EmailManagerInterface
      */
     public function getModelManager()
     {

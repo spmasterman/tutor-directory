@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
 
 class OperatingRegionTest extends FixturesWebTestCase
 {
@@ -45,7 +45,7 @@ class OperatingRegionTest extends FixturesWebTestCase
             ->setName('n')
             ->setDefault(false)
         ;
-        $this->getModelManager()->saveOperatingRegion($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 7 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -59,7 +59,7 @@ class OperatingRegionTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveOperatingRegion($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -68,13 +68,13 @@ class OperatingRegionTest extends FixturesWebTestCase
         $this->assertEquals('n2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
     }
 
     /**
-     * @return OperatingRegionManager
+     * @return OperatingRegionManagerInterface
      */
     public function getModelManager()
     {

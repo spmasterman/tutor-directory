@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 
 class CompetencyTypeManagerTest extends FixturesWebTestCase
 {
@@ -48,13 +48,13 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return 3 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createCompetencyType(
+        $newEntity = $this->getModelManager()->createEntity(
             $this->container->get('fitch.manager.category')
         );
         $newEntity
             ->setName('n')
         ;
-        $this->getModelManager()->saveCompetencyType($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 7 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -68,7 +68,7 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveCompetencyType($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -77,7 +77,7 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
         $this->assertEquals('n2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return 3 entities");
     }
@@ -104,7 +104,7 @@ class CompetencyTypeManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * @return CompetencyTypeManager
+     * @return CompetencyTypeManagerInterface
      */
     public function getModelManager()
     {

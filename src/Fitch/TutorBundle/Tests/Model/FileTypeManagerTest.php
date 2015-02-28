@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\FileTypeManager;
+use Fitch\TutorBundle\Model\FileTypeManagerInterface;
 
 class FileTypeManagerTest extends FixturesWebTestCase
 {
@@ -30,7 +30,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three file types");
 
-        // Creata new one
+        // Create new one
         $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('Test')
@@ -39,7 +39,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
             ->setDefault(false)
             ->setDisplayWithBio(false)
         ;
-        $this->getModelManager()->saveFileType($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 4 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -53,7 +53,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveFileType($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         // Check that when we refresh it refreshes
@@ -62,7 +62,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
         $this->assertEquals('Test (Updated)', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three file types");
     }
@@ -75,7 +75,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * @return FileTypeManager
+     * @return FileTypeManagerInterface
      */
     public function getModelManager()
     {

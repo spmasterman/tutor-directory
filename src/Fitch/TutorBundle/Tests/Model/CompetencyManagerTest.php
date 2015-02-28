@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\CompetencyManager;
+use Fitch\TutorBundle\Model\CompetencyManagerInterface;
 
 class CompetencyManagerTest extends FixturesWebTestCase
 {
@@ -30,11 +31,11 @@ class CompetencyManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return 3 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createCompetency();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setNote('note')
         ;
-        $this->getModelManager()->saveCompetency($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return 4 entities");
@@ -46,20 +47,20 @@ class CompetencyManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveCompetency($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         $newEntity->setNote('n3');
         $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('n2', $newEntity->getNote());
 
-        $this->getModelManager()->removeEntity($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity);
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return 3 entities");
     }
 
     /**
-     * @return CompetencyManager
+     * @return CompetencyManagerInterface
      */
     public function getModelManager()
     {
