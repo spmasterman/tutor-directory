@@ -17,9 +17,9 @@ class SmokeTest extends WebTestCase
     use AuthorisedClientTrait;
 
     /**
-     * All the routes from router:debug, acting on entity 1
+     * All the routes from router:debug, acting on entity 1.
      */
-    public function testALotOfPagesAsSuperAdmin()
+    public function testPagesThatShouldBeHTTPOKAsSuperAdmin()
     {
         // Create a new client to browse the application
         $client = $this->createAuthorizedClient('xsuper');
@@ -103,6 +103,36 @@ class SmokeTest extends WebTestCase
 
         foreach ($routes as $name => $routeBits) {
             $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
+            $this->assertEquals(
+                200,
+                $client->getResponse()->getStatusCode(),
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
+            );
+        }
+    }
+
+    /**
+     * All the routes from router:debug, acting on entity 1.
+     */
+    public function testPagesThatShouldBeHTTPREDIRECTAsSuperAdmin()
+    {
+        // Create a new client to browse the application
+        $client = $this->createAuthorizedClient('xsuper');
+
+        $routes = [
+            'user'                    => ['GET', '/user', []],
+        ];
+
+        foreach ($routes as $name => $routeBits) {
+            $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
+            $this->assertEquals(
+                301,
+                $client->getResponse()->getStatusCode(),
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
+            );
+
+            $client->followRedirect();
+
             $this->assertEquals(
                 200,
                 $client->getResponse()->getStatusCode(),

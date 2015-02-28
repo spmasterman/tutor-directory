@@ -97,15 +97,6 @@ class UserManager extends BaseModelManager implements UserManagerInterface
     }
 
     /**
-     * @param User $user
-     * @param bool $withFlush
-     */
-    public function saveEntity(User $user, $withFlush = true)
-    {
-        parent::saveEntity($user, $withFlush);
-    }
-
-    /**
      * Create a new User.
      *
      * Set its default values
@@ -143,7 +134,6 @@ class UserManager extends BaseModelManager implements UserManagerInterface
     {
         return $this->repo;
     }
-
 
     /**
      * @return LogEntryRepository

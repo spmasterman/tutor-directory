@@ -60,7 +60,7 @@ interface UserManagerInterface
      * @param User $user
      * @param bool $withFlush
      */
-    public function saveEntity(User $user, $withFlush = true);
+    public function saveEntity($user, $withFlush = true);
 
     /**
      * Create a new User.
