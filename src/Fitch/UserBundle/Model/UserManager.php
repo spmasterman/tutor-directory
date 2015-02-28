@@ -99,7 +99,7 @@ class UserManager extends BaseModelManager implements UserManagerInterface
      * @param User $user
      * @param bool $withFlush
      */
-    public function saveUser(User $user, $withFlush = true)
+    public function saveEntity(User $user, $withFlush = true)
     {
         parent::saveEntity($user, $withFlush);
     }
