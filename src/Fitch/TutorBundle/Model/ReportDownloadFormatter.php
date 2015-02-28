@@ -12,7 +12,6 @@ use Fitch\TutorBundle\Entity\Rate;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorLanguage;
-use Fitch\TutorBundle\Model\ReportDefinitionInterface;
 use Fitch\UserBundle\Entity\User;
 use Liuggio\ExcelBundle\Factory;
 use PHPExcel_Cell as Cell;
