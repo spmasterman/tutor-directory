@@ -19,7 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatche
  * also provides access to the custom repository class so that we can put all Doctrine related stuff in. This class
  * interface/api is therefore storage agnostic, and allows our controllers to be also.
  */
-class BaseModelManager
+abstract class BaseModelManager
 {
     use LoggerAwareTrait;
 
@@ -173,7 +173,7 @@ class BaseModelManager
      *
      * @return object
      */
-    protected function createEntity()
+    public function createEntity()
     {
         $class = $this->class;
         $entity = new $class();
@@ -185,7 +185,7 @@ class BaseModelManager
     /**
      * @param $entity
      */
-    protected function reloadEntity($entity)
+    public function reloadEntity($entity)
     {
         $this->em->refresh($entity);
     }
@@ -194,7 +194,7 @@ class BaseModelManager
      * @param object $entity
      * @param bool   $withFlush
      */
-    protected function removeEntity($entity, $withFlush = true)
+    public function removeEntity($entity, $withFlush = true)
     {
         if ($this->em->contains($entity)) {
             $this->em->remove($entity);

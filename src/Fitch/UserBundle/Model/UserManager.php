@@ -11,6 +11,7 @@ use Fitch\EntityAttributeValueBundle\Entity\Option;
 use Fitch\EntityAttributeValueBundle\Entity\Schema;
 use Fitch\UserBundle\Entity\Repository\UserRepository;
 use Fitch\UserBundle\Entity\User;
+use Gedmo\Loggable\Entity\Repository\LogEntryRepository;
 
 class UserManager extends BaseModelManager implements UserManagerInterface
 {
@@ -92,7 +93,7 @@ class UserManager extends BaseModelManager implements UserManagerInterface
      */
     public function getLogs(User $user)
     {
-        return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($user);
+        return $this->getLogEntryRepo()->getLogEntries($user);
     }
 
     /**
@@ -130,7 +131,7 @@ class UserManager extends BaseModelManager implements UserManagerInterface
     /**
      * @param User $user
      */
-    public function refreshUser(User $user)
+    public function reloadUser($user)
     {
         parent::reloadEntity($user);
     }
@@ -138,9 +139,18 @@ class UserManager extends BaseModelManager implements UserManagerInterface
     /**
      * @return UserRepository
      */
-    private function getRepo()
+    protected function getRepo()
     {
         return $this->repo;
+    }
+
+
+    /**
+     * @return LogEntryRepository
+     */
+    private function getLogEntryRepo()
+    {
+        return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry');
     }
 
     /**

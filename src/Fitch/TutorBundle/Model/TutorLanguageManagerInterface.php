@@ -50,7 +50,7 @@ interface TutorLanguageManagerInterface
     /**
      * @param TutorLanguage $tutorLanguage
      */
-    public function reloadEntity(TutorLanguage $tutorLanguage);
+    public function reloadEntity($tutorLanguage);
 
     /**
      * @param $id

@@ -44,5 +44,5 @@ interface NoteManagerInterface
     /**
      * @param Note $note
      */
-    public function reloadEntity(Note $note);
+    public function reloadEntity($note);
 }

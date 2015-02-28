@@ -66,5 +66,5 @@ interface ProficiencyManagerInterface
     /**
      * @param Proficiency $proficiency
      */
-    public function reloadEntity(Proficiency $proficiency);
+    public function reloadEntity($proficiency);
 }

@@ -61,5 +61,5 @@ interface FileManagerInterface
     /**
      * @param File $file
      */
-    public function reloadEntity(File $file);
+    public function reloadEntity($file);
 }

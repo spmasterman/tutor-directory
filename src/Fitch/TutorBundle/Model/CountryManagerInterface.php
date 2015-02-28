@@ -72,5 +72,5 @@ interface CountryManagerInterface
     /**
      * @param Country $country
      */
-    public function reloadEntity(Country $country);
+    public function reloadEntity($country);
 }

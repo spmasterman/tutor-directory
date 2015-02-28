@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\UserBundle\Model\UserManager;
+use Fitch\UserBundle\Model\UserManagerInterface;
 
 class UserManagerTest extends FixturesWebTestCase
 {
@@ -43,7 +44,7 @@ class UserManagerTest extends FixturesWebTestCase
             ->setUsername('u')
             ->setRoles(['ROLE_USER'])
         ;
-        $this->getModelManager()->saveUser($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
 
         // Check that there are 6 entries, and the new one is Timestamped correctly
         $allEntities = $this->getModelManager()->findAll();
@@ -57,12 +58,12 @@ class UserManagerTest extends FixturesWebTestCase
 
         sleep(1);
 
-        $this->getModelManager()->saveUser($newEntity);
+        $this->getModelManager()->saveEntity($newEntity);
         $this->assertNotEquals($allEntities[5]->getCreated(), $allEntities[5]->getUpdated());
 
         // Check that when we refresh it refreshes
         $newEntity->setFullName('u3');
-        $this->getModelManager()->refreshuser($newEntity);
+        $this->getModelManager()->reloadUser($newEntity);
         $this->assertEquals('u2', $newEntity->getFullName());
 
         // Check that when we remove it, it is no longer present
@@ -72,7 +73,7 @@ class UserManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * @return UserManager
+     * @return UserManagerInterface
      */
     public function getModelManager()
     {

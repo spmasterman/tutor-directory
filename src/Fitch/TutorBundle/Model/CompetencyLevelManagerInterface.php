@@ -66,5 +66,5 @@ interface CompetencyLevelManagerInterface
     /**
      * @param CompetencyLevel $competencyLevel
      */
-    public function reloadEntity(CompetencyLevel $competencyLevel);
+    public function reloadEntity($competencyLevel);
 }

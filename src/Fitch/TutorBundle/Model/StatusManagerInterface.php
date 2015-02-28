@@ -59,5 +59,5 @@ interface StatusManagerInterface
     /**
      * @param Status $status
      */
-    public function reloadEntity(Status $status);
+    public function reloadEntity($status);
 }

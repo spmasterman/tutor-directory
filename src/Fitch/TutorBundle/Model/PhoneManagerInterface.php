@@ -44,5 +44,5 @@ interface PhoneManagerInterface
     /**
      * @param Phone $phone
      */
-    public function reloadEntity(Phone $phone);
+    public function reloadEntity($phone);
 }

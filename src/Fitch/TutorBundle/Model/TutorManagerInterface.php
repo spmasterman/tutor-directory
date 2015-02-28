@@ -56,5 +56,5 @@ interface TutorManagerInterface
     /**
      * @param Tutor $tutor
      */
-    public function reloadEntity(Tutor $tutor);
+    public function reloadEntity($tutor);
 }

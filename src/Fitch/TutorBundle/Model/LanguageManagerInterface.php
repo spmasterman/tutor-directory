@@ -74,5 +74,5 @@ interface LanguageManagerInterface
     /**
      * @param Language $language
      */
-    public function reloadEntity(Language $language);
+    public function reloadEntity($language);
 }

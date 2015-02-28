@@ -56,5 +56,5 @@ interface RateManagerInterface
     /**
      * @param Rate $rate
      */
-    public function reloadEntity(Rate $rate);
+    public function reloadEntity($rate);
 }

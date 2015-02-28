@@ -80,5 +80,5 @@ interface CurrencyManagerInterface
     /**
      * @param Currency $currency
      */
-    public function reloadEntity(Currency $currency);
+    public function reloadEntity($currency);
 }

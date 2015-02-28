@@ -44,5 +44,5 @@ interface AddressManagerInterface
     /**
      * @param Address $address
      */
-    public function reloadEntity(Address $address);
+    public function reloadEntity($address);
 }

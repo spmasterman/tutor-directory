@@ -53,5 +53,5 @@ interface CompetencyManagerInterface
     /**
      * @param Competency $competency
      */
-    public function reloadEntity(Competency $competency);
+    public function reloadEntity($competency);
 }

@@ -57,5 +57,5 @@ interface FileTypeManagerInterface
     /**
      * @param FileType $fileType
      */
-    public function reloadEntity(FileType $fileType);
+    public function reloadEntity($fileType);
 }

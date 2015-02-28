@@ -50,5 +50,5 @@ interface ReportManagerInterface
     /**
      * @param Report $report
      */
-    public function reloadEntity(Report $report);
+    public function reloadEntity($report);
 }

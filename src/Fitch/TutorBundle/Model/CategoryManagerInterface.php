@@ -62,5 +62,5 @@ interface CategoryManagerInterface
     /**
      * @param Category $category
      */
-    public function reloadEntity(Category $category);
+    public function reloadEntity($category);
 }

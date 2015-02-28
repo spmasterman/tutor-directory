@@ -44,5 +44,5 @@ interface EmailManagerInterface
     /**
      * @param Email $email
      */
-    public function reloadEntity(Email $email);
+    public function reloadEntity($email);
 }

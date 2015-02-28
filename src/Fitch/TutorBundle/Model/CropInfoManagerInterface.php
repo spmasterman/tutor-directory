@@ -44,5 +44,5 @@ interface CropInfoManagerInterface
     /**
      * @param CropInfo $cropInfo
      */
-    public function reloadEntity(CropInfo $cropInfo);
+    public function reloadEntity($cropInfo);
 }

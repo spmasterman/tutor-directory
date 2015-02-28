@@ -68,5 +68,5 @@ interface BusinessAreaManagerInterface
     /**
      * @param BusinessArea $businessArea
      */
-    public function reloadEntity(BusinessArea $businessArea);
+    public function reloadEntity($businessArea);
 }

@@ -59,5 +59,5 @@ interface OperatingRegionManagerInterface
     /**
      * @param OperatingRegion $operatingRegion
      */
-    public function reloadEntity(OperatingRegion $operatingRegion);
+    public function reloadEntity($operatingRegion);
 }

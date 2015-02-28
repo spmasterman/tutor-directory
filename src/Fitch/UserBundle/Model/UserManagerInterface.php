@@ -81,5 +81,5 @@ interface UserManagerInterface
     /**
      * @param User $user
      */
-    public function refreshUser(User $user);
+    public function reloadUser($user);
 }
