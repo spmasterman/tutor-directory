@@ -111,10 +111,10 @@ class ReportDownloadFormatter
 
         // Set Report Header Row
         $this->workingRow = 3;
-        $col = 0;
+        $this->workingColumn = 0;
         foreach (ReportDefinition::getAvailableFields() as $key => $value) {
             if ($this->definition->isFieldDisplayed($key)) {
-                $this->currentSheet->setCellValueByColumnAndRow($col++, $this->workingRow, $value);
+                $this->currentSheet->setCellValueByColumnAndRow($this->workingColumn++, $this->workingRow, $value);
             }
         }
         $this->headerFormat(
@@ -129,6 +129,7 @@ class ReportDownloadFormatter
             $this->workingMaxLines = 1;
 
             $this->scalarCell('name', $tutor->getName(), 30);
+            $this->scalarCell('company', $tutor->getCompany(), 30);
             $this->scalarCell('tutor_type', $tutor->getTutorType()->getName(), 20);
             $this->scalarCell('status', $tutor->getStatus()->getName(), 30);
             $this->scalarCell('region', $tutor->getRegion()->getName(), 20);
