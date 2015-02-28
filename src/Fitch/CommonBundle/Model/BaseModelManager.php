@@ -66,7 +66,7 @@ class BaseModelManager
      *
      * @return object
      */
-    protected function findById($id)
+    public function findById($id)
     {
         $entity = $this->repo->findOneBy(['id' => $id]);
 
@@ -80,7 +80,7 @@ class BaseModelManager
     /**
      * @return array
      */
-    protected function findAll()
+    public function findAll()
     {
         $entities = $this->repo->findAll();
 
@@ -155,7 +155,7 @@ class BaseModelManager
      * @param object $entity
      * @param bool   $withFlush
      */
-    protected function saveEntity($entity, $withFlush = true)
+    public function saveEntity($entity, $withFlush = true)
     {
         if (! $this->em->contains($entity)) {
             $this->em->persist($entity);
