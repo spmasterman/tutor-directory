@@ -2,6 +2,11 @@ parameters:
 #    fitch_common.example.class: Fitch\CommonBundle\Example
 
 services:
-  twig.extension.intl:
-    class: Twig_Extensions_Extension_Intl
-    tags: [{ name: 'twig.extension' }]
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags: [{ name: 'twig.extension' }]
+    fitch.user_callable:
+        class: Fitch\CommonBundle\Model\UserCallable
+        arguments:
+            tokenStorage: "@security.token_storage"
+

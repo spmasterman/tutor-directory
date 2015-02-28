@@ -7,14 +7,11 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorRepository;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\AddressManagerInterface;
-use Fitch\TutorBundle\Model\CountryManagerInterface;
-use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
-use Fitch\TutorBundle\Model\StatusManagerInterface;
-use Fitch\TutorBundle\Model\TutorManagerInterface;
-use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class TutorManager.
+ */
 class TutorManager extends BaseModelManager implements TutorManagerInterface
 {
     /** @var AddressManagerInterface $addressManager  */
@@ -32,6 +29,16 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     /** @var TutorTypeManagerInterface $tutorTypeManager  */
     private $tutorTypeManager;
 
+    /**
+     * @param EventDispatcherInterface        $dispatcher
+     * @param EntityManager                   $em
+     * @param string                          $class
+     * @param AddressManagerInterface         $addressManager
+     * @param CountryManagerInterface         $countryManager
+     * @param StatusManagerInterface          $statusManager
+     * @param OperatingRegionManagerInterface $operatingRegionManager
+     * @param TutorTypeManagerInterface       $tutorTypeManager
+     */
     public function __construct(
         EventDispatcherInterface $dispatcher,
         EntityManager $em,
@@ -41,7 +48,8 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
         StatusManagerInterface $statusManager,
         OperatingRegionManagerInterface $operatingRegionManager,
         TutorTypeManagerInterface $tutorTypeManager
-    ) {
+    )
+    {
         parent::__construct($dispatcher, $em, $class);
 
         $this->addressManager = $addressManager;
@@ -52,7 +60,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @throws EntityNotFoundException
      *
@@ -90,7 +98,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor                   $tutor
+     * @param Tutor $tutor
      */
     private function createDefaultAddressIfRequired(Tutor $tutor)
     {
@@ -130,7 +138,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor                           $tutor
+     * @param Tutor $tutor
      */
     private function setDefaultRegion(Tutor $tutor)
     {
@@ -142,7 +150,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor                  $tutor
+     * @param Tutor $tutor
      */
     private function setDefaultStatus(Tutor $tutor)
     {
@@ -150,7 +158,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param Tutor                     $tutor
+     * @param Tutor $tutor
      */
     private function setDefaultTutorType(Tutor $tutor)
     {

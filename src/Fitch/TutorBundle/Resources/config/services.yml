@@ -88,6 +88,8 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.file.class%
+            tutorManager: "@fitch.manager.tutor"
+            fileTypeManager: "@fitch.manager.file_type"
     fitch.manager.file_type:
         class: %fitch.manager.file_type.class%
         calls:
@@ -249,19 +251,14 @@ services:
     fitch.upload_listener:
         class: Fitch\TutorBundle\Listener\UploadListener
         arguments:
-            tutorManager: "@fitch.manager.tutor"
             fileManager: "@fitch.manager.file"
-            fileTypeManager: "@fitch.manager.file_type"
             templating: "@templating"
-            container: "@service_container"
+            userCallable: "@fitch.user_callable"
+            authorizationChecker: "@security.authorization_checker"
         tags:
             - {name: kernel.event_listener, event: oneup_uploader.pre_upload, method: onPreUpload}
             - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onPostPersist}
-### We have to inject the wole container here, and use its lazy loading to get to the security context inside the
-### listener. This is fixed in symfony2.6 which isnt available at the time of writing. In 2.6 we can just inject
-### "@security.token_storage" rather than the whole container. If you are reading this after 2.6 is released please
-### make the approprate change.
-
+#
 #
 # Security Voter
 #

@@ -27,6 +27,8 @@ class CountryController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
@@ -108,6 +110,8 @@ class CountryController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {
@@ -284,8 +288,7 @@ class CountryController extends Controller
                         ],
                 ]
             )
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
