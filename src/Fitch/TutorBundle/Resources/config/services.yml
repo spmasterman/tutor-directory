@@ -122,6 +122,7 @@ services:
             dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
             class: %fitch.entity.competency_type.class%
+            categoryManager: "@fitch.manager.category"
     fitch.manager.country:
         class: %fitch.manager.country.class%
         calls:

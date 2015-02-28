@@ -2,12 +2,33 @@
 
 namespace Fitch\TutorBundle\Model;
 
+use Doctrine\ORM\EntityManager;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository;
 use Fitch\TutorBundle\Entity\CompetencyType;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeManagerInterface
 {
+    /** @var CategoryManagerInterface $categoryManager */
+    private $categoryManager;
+
+    /**
+     * @param EventDispatcherInterface $dispatcher
+     * @param EntityManager            $em
+     * @param string                   $class
+     * @param CategoryManagerInterface $categoryManager
+     */
+    public function __construct(
+        EventDispatcherInterface $dispatcher,
+        EntityManager $em,
+        $class,
+        CategoryManagerInterface $categoryManager
+    ) {
+        parent::__construct($dispatcher, $em, $class);
+
+        $this->categoryManager = $categoryManager;
+    }
+
     /**
      * @return CompetencyType[]
      */
@@ -31,14 +52,12 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
      * Returns all active competencyTypes as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
      *
-     * @param CategoryManagerInterface $categoryManager
-     *
      * @return array
      */
-    public function buildGroupedChoices(CategoryManagerInterface $categoryManager)
+    public function buildGroupedChoices()
     {
         $choices = [];
-        foreach ($categoryManager->findAll() as $category) {
+        foreach ($this->categoryManager->findAll() as $category) {
             $choices[$category->getId()] = ['text' => $category->__toString(), 'children' => []];
         }
 
@@ -62,17 +81,16 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
     }
 
     /**
-     * @param string                   $competencyTypeName
-     * @param CategoryManagerInterface $categoryManager
+     * @param string $competencyTypeName
      *
      * @return CompetencyType
      */
-    public function findOrCreate($competencyTypeName, CategoryManagerInterface $categoryManager)
+    public function findOrCreate($competencyTypeName)
     {
         $competencyType = $this->getRepo()->findOneBy(['name' => $competencyTypeName]);
 
         if (!$competencyType) {
-            $competencyType = $this->createEntity($categoryManager);
+            $competencyType = $this->createEntity();
             $competencyType->setName($competencyTypeName);
             $this->saveEntity($competencyType);
         }
@@ -85,27 +103,23 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
      *
      * Set its default values
      *
-     * @param CategoryManagerInterface $categoryManager
-     *
      * @return CompetencyType
      */
-    public function createEntity(
-        CategoryManagerInterface $categoryManager
-    ) {
+    public function createEntity()
+    {
         /** @var CompetencyType $competencyType */
         $competencyType = parent::createEntity();
-        $this->setDefaultCategory($competencyType, $categoryManager);
+        $this->setDefaultCategory($competencyType);
 
         return $competencyType;
     }
 
     /**
-     * @param CompetencyType           $competencyType
-     * @param CategoryManagerInterface $categoryManager
+     * @param CompetencyType $competencyType
      */
-    public function setDefaultCategory(CompetencyType $competencyType, CategoryManagerInterface $categoryManager)
+    public function setDefaultCategory(CompetencyType $competencyType)
     {
-        $category = $categoryManager->findDefaultCategory();
+        $category = $this->categoryManager->findDefaultCategory();
         if ($category) {
             $competencyType->setCategory($category);
         }

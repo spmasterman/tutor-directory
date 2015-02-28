@@ -35,19 +35,16 @@ interface CompetencyTypeManagerInterface
      * Returns all active competencyTypes as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
      *
-     * @param CategoryManagerInterface $categoryManager
-     *
      * @return array
      */
-    public function buildGroupedChoices(CategoryManagerInterface $categoryManager);
+    public function buildGroupedChoices();
 
     /**
      * @param string                   $competencyTypeName
-     * @param CategoryManagerInterface $categoryManager
      *
      * @return CompetencyType
      */
-    public function findOrCreate($competencyTypeName, CategoryManagerInterface $categoryManager);
+    public function findOrCreate($competencyTypeName);
 
     /**
      * @param CompetencyType $competencyType
@@ -60,17 +57,15 @@ interface CompetencyTypeManagerInterface
      *
      * Set its default values
      *
-     * @param CategoryManagerInterface $categoryManager
-     *
      * @return CompetencyType
      */
-    public function createEntity(CategoryManagerInterface $categoryManager);
+    public function createEntity();
 
     /**
      * @param CompetencyType           $competencyType
      * @param CategoryManagerInterface $categoryManager
      */
-    public function setDefaultCategory(CompetencyType $competencyType, CategoryManagerInterface $categoryManager);
+    public function setDefaultCategory(CompetencyType $competencyType);
 
     /**
      * @param CompetencyType $entity
