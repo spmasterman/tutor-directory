@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\StatusManager;
+use Fitch\TutorBundle\Model\StatusManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -56,7 +57,7 @@ class StatusController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $statusManager->saveStatus($status);
+            $statusManager->saveEntity($status);
 
             $this->addFlash(
                 'success',
@@ -293,7 +294,7 @@ class StatusController extends Controller
     }
 
     /**
-     * @return StatusManager
+     * @return StatusManagerInterface
      */
     private function getStatusManager()
     {

@@ -34,7 +34,7 @@ interface CompetencyManagerInterface
      * @param Competency $competency
      * @param bool       $withFlush
      */
-    public function saveCompetency($competency, $withFlush = true);
+    public function saveEntity($competency, $withFlush = true);
 
     /**
      * Create a new Competency.

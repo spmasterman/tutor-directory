@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\FileTypeManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Fitch\TutorBundle\Model\FileTypeManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -57,7 +57,7 @@ class FileTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $fileTypeManager->saveFileType($fileType);
+            $fileTypeManager->saveEntity($fileType);
 
             $this->addFlash(
                 'success',
@@ -294,7 +294,7 @@ class FileTypeController extends Controller
     }
 
     /**
-     * @return FileTypeManager
+     * @return FileTypeManagerInterface
      */
     private function getFileTypeManager()
     {

@@ -3,12 +3,10 @@
 namespace Fitch\TutorBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorLanguageRepository;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorLanguage;
-use Fitch\TutorBundle\Model\TutorLanguageManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TutorLanguageManager extends BaseModelManager implements TutorLanguageManagerInterface
@@ -28,35 +26,6 @@ class TutorLanguageManager extends BaseModelManager implements TutorLanguageMana
     }
 
     /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return TutorLanguage
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return TutorLanguage[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
-     * @param TutorLanguage $tutorLanguage
-     * @param bool          $withFlush
-     */
-    public function saveTutorLanguage($tutorLanguage, $withFlush = true)
-    {
-        parent::saveEntity($tutorLanguage, $withFlush);
-    }
-
-    /**
      * Create a new TutorLanguage.
      *
      * Set its default values
@@ -73,7 +42,7 @@ class TutorLanguageManager extends BaseModelManager implements TutorLanguageMana
     }
 
     /**
-     * @param TutorLanguage      $tutorLanguage
+     * @param TutorLanguage $tutorLanguage
      */
     public function setDefaultProficiency(TutorLanguage $tutorLanguage)
     {
@@ -100,10 +69,10 @@ class TutorLanguageManager extends BaseModelManager implements TutorLanguageMana
         parent::reloadEntity($tutorLanguage);
     }
 
-
     /**
      * @param $id
      * @param Tutor $tutor
+     *
      * @return TutorLanguage
      */
     public function findOrCreateTutorLanguage($id, Tutor $tutor)
@@ -114,6 +83,7 @@ class TutorLanguageManager extends BaseModelManager implements TutorLanguageMana
             $tutorLanguage = $this->createTutorLanguage();
             $tutor->addTutorLanguage($tutorLanguage);
         }
+
         return $tutorLanguage;
     }
 

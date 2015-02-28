@@ -5,15 +5,16 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Form\Type\ReportDefinitionType;
 use Fitch\TutorBundle\Form\Type\ReportType;
-use Fitch\TutorBundle\Model\CategoryManager;
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
-use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
+use Fitch\TutorBundle\Model\LanguageManagerInterface;
 use Fitch\TutorBundle\Model\RateManagerInterface;
-use Fitch\TutorBundle\Model\LanguageManager;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Fitch\TutorBundle\Model\ReportManager;
-use Fitch\TutorBundle\Model\TutorManager;
+use Fitch\TutorBundle\Model\ReportManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 use InvalidArgumentException;
 use JMS\Serializer\SerializerInterface;
 use Liuggio\ExcelBundle\Factory;
@@ -164,7 +165,7 @@ class ReportController extends Controller
             ]
         )->getForm();
 
-        /** @var $form FormInterface */
+        /* @var $form FormInterface */
         $form->add(
             'submit',
             'submit',
@@ -263,7 +264,7 @@ class ReportController extends Controller
 
         if ($form->isValid()) {
             $report->setCreator($this->getUser());
-            $reportManager->saveReport($report);
+            $reportManager->saveEntity($report);
 
             $this->addFlash(
                 'success',
@@ -516,7 +517,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return CurrencyManager
+     * @return CurrencyManagerInterface
      */
     private function getCurrencyManager()
     {
@@ -524,7 +525,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return CompetencyTypeManager
+     * @return CompetencyTypeManagerInterface
      */
     private function getCompetencyTypeManager()
     {
@@ -532,7 +533,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return CompetencyLevelManager
+     * @return CompetencyLevelManagerInterface
      */
     private function getCompetencyLevelManager()
     {
@@ -540,7 +541,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return TutorManager
+     * @return TutorManagerInterface
      */
     private function getTutorManager()
     {
@@ -548,7 +549,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return LanguageManager
+     * @return LanguageManagerInterface
      */
     private function getLanguageManager()
     {
@@ -556,7 +557,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return CategoryManager
+     * @return CategoryManagerInterface
      */
     private function getCategoryManager()
     {
@@ -564,7 +565,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return ReportManager
+     * @return ReportManagerInterface
      */
     private function getReportManager()
     {

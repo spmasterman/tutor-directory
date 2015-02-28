@@ -3,34 +3,12 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\StatusRepository;
 use Fitch\TutorBundle\Entity\Status;
-use Fitch\TutorBundle\Model\StatusManagerInterface;
 
 class StatusManager extends BaseModelManager implements StatusManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Status
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Status[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * Returns all active competencyLevels as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
@@ -52,15 +30,6 @@ class StatusManager extends BaseModelManager implements StatusManagerInterface
     public function findDefaultStatus()
     {
         return $this->getRepo()->findOneBy(['default' => true]);
-    }
-
-    /**
-     * @param Status $status
-     * @param bool   $withFlush
-     */
-    public function saveStatus($status, $withFlush = true)
-    {
-        parent::saveEntity($status, $withFlush);
     }
 
     /**

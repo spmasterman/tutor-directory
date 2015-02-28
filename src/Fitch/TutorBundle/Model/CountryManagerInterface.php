@@ -53,7 +53,7 @@ interface CountryManagerInterface
      * @param Country $country
      * @param bool    $withFlush
      */
-    public function saveCountry($country, $withFlush = true);
+    public function saveEntity($country, $withFlush = true);
 
     /**
      * Create a new Country.

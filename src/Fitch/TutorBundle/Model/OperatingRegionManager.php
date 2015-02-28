@@ -3,35 +3,12 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository;
 use Fitch\TutorBundle\Entity\OperatingRegion;
-use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
 
 class OperatingRegionManager extends BaseModelManager implements OperatingRegionManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return OperatingRegion
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-
-    }
-
-    /**
-     * @return OperatingRegion[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * Returns all active competencyLevels as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
@@ -53,15 +30,6 @@ class OperatingRegionManager extends BaseModelManager implements OperatingRegion
     public function findDefaultOperatingRegion()
     {
         return $this->getRepo()->findOneBy(['default' => true]);
-    }
-
-    /**
-     * @param OperatingRegion $operatingRegion
-     * @param bool            $withFlush
-     */
-    public function saveOperatingRegion($operatingRegion, $withFlush = true)
-    {
-        parent::saveEntity($operatingRegion, $withFlush);
     }
 
     /**

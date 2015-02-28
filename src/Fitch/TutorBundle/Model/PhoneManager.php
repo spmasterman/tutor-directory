@@ -2,43 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\PhoneRepository;
 use Fitch\TutorBundle\Entity\Phone;
-use Fitch\TutorBundle\Model\PhoneManagerInterface;
 
 class PhoneManager extends BaseModelManager implements PhoneManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Phone
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Phone[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
-     * @param Phone $phone
-     * @param bool  $withFlush
-     */
-    public function savePhone($phone, $withFlush = true)
-    {
-        parent::saveEntity($phone, $withFlush);
-    }
-
     /**
      * Create a new Phone.
      *

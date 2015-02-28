@@ -40,7 +40,7 @@ interface StatusManagerInterface
      * @param Status $status
      * @param bool   $withFlush
      */
-    public function saveStatus($status, $withFlush = true);
+    public function saveEntity($status, $withFlush = true);
 
     /**
      * Create a new Status.

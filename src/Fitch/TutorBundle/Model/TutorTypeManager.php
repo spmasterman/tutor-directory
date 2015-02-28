@@ -3,34 +3,12 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorTypeRepository;
 use Fitch\TutorBundle\Entity\TutorType;
-use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 
 class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return TutorType
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return TutorType[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return null|TutorType
      */
@@ -52,15 +30,6 @@ class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInter
         return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
-    }
-
-    /**
-     * @param TutorType $tutorType
-     * @param bool      $withFlush
-     */
-    public function saveTutorType($tutorType, $withFlush = true)
-    {
-        parent::saveEntity($tutorType, $withFlush);
     }
 
     /**

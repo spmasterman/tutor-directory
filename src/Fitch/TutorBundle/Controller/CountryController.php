@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\Country;
 use Fitch\TutorBundle\Form\Type\CountryType;
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -58,7 +59,7 @@ class CountryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $countryManager->saveCountry($country);
+            $countryManager->saveEntity($country);
 
             $this->addFlash(
                 'success',
@@ -292,7 +293,7 @@ class CountryController extends Controller
     }
 
     /**
-     * @return CountryManager
+     * @return CountryManagerInterface
      */
     private function getCountryManager()
     {

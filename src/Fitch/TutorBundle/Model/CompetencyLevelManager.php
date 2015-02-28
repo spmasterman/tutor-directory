@@ -3,34 +3,12 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyLevelRepository;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
-use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 
 class CompetencyLevelManager extends BaseModelManager implements CompetencyLevelManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return CompetencyLevel
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return CompetencyLevel[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return array
      */
@@ -70,15 +48,6 @@ class CompetencyLevelManager extends BaseModelManager implements CompetencyLevel
         }
 
         return $competencyLevel;
-    }
-
-    /**
-     * @param CompetencyLevel $competencyLevel
-     * @param bool            $withFlush
-     */
-    public function saveCompetencyLevel($competencyLevel, $withFlush = true)
-    {
-        parent::saveEntity($competencyLevel, $withFlush);
     }
 
     /**

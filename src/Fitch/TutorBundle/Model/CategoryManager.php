@@ -2,34 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CategoryRepository;
 use Fitch\TutorBundle\Entity\Category;
-use Fitch\TutorBundle\Model\CategoryManagerInterface;
 
 class CategoryManager extends BaseModelManager implements CategoryManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Category
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Category[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return array
      */
@@ -46,11 +24,11 @@ class CategoryManager extends BaseModelManager implements CategoryManagerInterfa
      */
     public function buildGroupedChoices()
     {
-
         $choices = [];
         foreach ($this->findAll() as $category) {
             $choices[$category->getId()] = $category->getName();
         }
+
         return $choices;
     }
 
@@ -60,15 +38,6 @@ class CategoryManager extends BaseModelManager implements CategoryManagerInterfa
     public function findDefaultCategory()
     {
         return $this->getRepo()->findOneBy(['default' => true]);
-    }
-
-    /**
-     * @param Category $category
-     * @param bool     $withFlush
-     */
-    public function saveCategory($category, $withFlush = true)
-    {
-        parent::saveEntity($category, $withFlush);
     }
 
     /**

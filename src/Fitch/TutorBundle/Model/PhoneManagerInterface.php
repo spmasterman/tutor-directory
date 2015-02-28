@@ -25,7 +25,7 @@ interface PhoneManagerInterface
      * @param Phone $phone
      * @param bool  $withFlush
      */
-    public function savePhone($phone, $withFlush = true);
+    public function saveEntity($phone, $withFlush = true);
 
     /**
      * Create a new Phone.

@@ -2,34 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\FileTypeRepository;
 use Fitch\TutorBundle\Entity\FileType;
-use Fitch\TutorBundle\Model\FileTypeManagerInterface;
 
 class FileTypeManager extends BaseModelManager implements FileTypeManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return FileType
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return FileType[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return null|FileType
      */
@@ -49,15 +27,6 @@ class FileTypeManager extends BaseModelManager implements FileTypeManagerInterfa
         return parent::buildFlatChoices(function (FileType $entity) {
             return $entity->__toString();
         });
-    }
-
-    /**
-     * @param FileType $fileType
-     * @param bool     $withFlush
-     */
-    public function saveFileType($fileType, $withFlush = true)
-    {
-        parent::saveEntity($fileType, $withFlush);
     }
 
     /**

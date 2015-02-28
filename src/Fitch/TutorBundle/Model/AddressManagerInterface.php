@@ -25,7 +25,7 @@ interface AddressManagerInterface
      * @param Address $address
      * @param bool    $withFlush
      */
-    public function saveAddress($address, $withFlush = true);
+    public function saveEntity($address, $withFlush = true);
 
     /**
      * Create a new Address.

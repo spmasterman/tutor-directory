@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\ProficiencyManager;
+use Fitch\TutorBundle\Model\ProficiencyManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -57,7 +58,7 @@ class ProficiencyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $proficiencyManager->saveProficiency($proficiency);
+            $proficiencyManager->saveEntity($proficiency);
 
             $this->addFlash(
                 'success',
@@ -204,7 +205,7 @@ class ProficiencyController extends Controller
      * @Method("PUT")
      * @Template("FitchTutorBundle:Proficiency:edit.html.twig")
      *
-     * @param Request  $request
+     * @param Request     $request
      * @param Proficiency $proficiency
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -244,7 +245,7 @@ class ProficiencyController extends Controller
      *
      * @Method("DELETE")
      *
-     * @param Request  $request
+     * @param Request     $request
      * @param Proficiency $proficiency
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -317,7 +318,7 @@ class ProficiencyController extends Controller
     }
 
     /**
-     * @return ProficiencyManager
+     * @return ProficiencyManagerInterface
      */
     private function getProficiencyManager()
     {

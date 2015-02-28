@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\FileRepository;
 use Fitch\TutorBundle\Entity\File;
@@ -36,32 +35,11 @@ class FileManager extends BaseModelManager implements FileManagerInterface
         $class,
         TutorManagerInterface $tutorManager,
         FileTypeManagerInterface $fileTypeManager
-    )
-    {
+    ) {
         parent::__construct($dispatcher, $em, $class);
 
         $this->tutorManager = $tutorManager;
         $this->fileTypeManager = $fileTypeManager;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return File
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return File[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
     }
 
     /**
@@ -91,18 +69,9 @@ class FileManager extends BaseModelManager implements FileManagerInterface
             ->setTextContent($metaInfo['textContent']);
 
         // And finally persist the whole thing
-        $this->tutorManager->saveTutor($tutor);
+        $this->tutorManager->saveEntity($tutor);
 
         return $file;
-    }
-
-    /**
-     * @param File $file
-     * @param bool $withFlush
-     */
-    public function saveFile($file, $withFlush = true)
-    {
-        parent::saveEntity($file, $withFlush);
     }
 
     /**

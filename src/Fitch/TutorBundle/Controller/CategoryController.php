@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\Category;
 use Fitch\TutorBundle\Form\Type\CategoryType;
 use Fitch\TutorBundle\Model\CategoryManager;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -56,7 +57,7 @@ class CategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $categoryManager->saveCategory($category);
+            $categoryManager->saveEntity($category);
 
             $this->addFlash(
                 'success',
@@ -293,7 +294,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @return CategoryManager
+     * @return CategoryManagerInterface
      */
     private function getCategoryManager()
     {

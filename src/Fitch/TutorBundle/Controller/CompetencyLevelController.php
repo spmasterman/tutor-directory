@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\CompetencyLevelManager;
+use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -56,7 +57,7 @@ class CompetencyLevelController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $competencyLevelManager->saveCompetencyLevel($competencyLevel);
+            $competencyLevelManager->saveEntity($competencyLevel);
 
             $this->addFlash(
                 'success',
@@ -289,7 +290,7 @@ class CompetencyLevelController extends Controller
     }
 
     /**
-     * @return CompetencyLevelManager
+     * @return CompetencyLevelManagerInterface
      */
     private function getCompetencyLevelManager()
     {

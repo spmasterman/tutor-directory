@@ -5,6 +5,7 @@
  * Date: 28/02/15
  * Time: 00:05.
  */
+
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
@@ -32,7 +33,7 @@ interface FileManagerInterface
      * @param File $file
      * @param bool $withFlush
      */
-    public function saveFile($file, $withFlush = true);
+    public function saveEntity($file, $withFlush = true);
 
     /**
      * @param Request       $request

@@ -25,7 +25,7 @@ interface NoteManagerInterface
      * @param Note $note
      * @param bool $withFlush
      */
-    public function saveNote($note, $withFlush = true);
+    public function saveEntity($note, $withFlush = true);
 
     /**
      * Create a new Note.

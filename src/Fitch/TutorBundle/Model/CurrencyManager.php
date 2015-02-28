@@ -3,35 +3,13 @@
 namespace Fitch\TutorBundle\Model;
 
 use Doctrine\ORM\NoResultException;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CurrencyRepository;
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface;
-use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 
 class CurrencyManager extends BaseModelManager implements CurrencyManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Currency
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Currency[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return Currency[]
      */
@@ -66,15 +44,6 @@ class CurrencyManager extends BaseModelManager implements CurrencyManagerInterfa
     public function buildPreferredChoices()
     {
         return $this->getRepo()->findBy(['active' => true, 'preferred' => true]);
-    }
-
-    /**
-     * @param Currency $currency
-     * @param bool     $withFlush
-     */
-    public function saveCurrency($currency, $withFlush = true)
-    {
-        parent::saveEntity($currency, $withFlush);
     }
 
     /**

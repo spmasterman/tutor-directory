@@ -3,34 +3,12 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\ProficiencyRepository;
 use Fitch\TutorBundle\Entity\Proficiency;
-use Fitch\TutorBundle\Model\ProficiencyManagerInterface;
 
 class ProficiencyManager extends BaseModelManager implements ProficiencyManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Proficiency
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Proficiency[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return null|Proficiency
      */
@@ -70,15 +48,6 @@ class ProficiencyManager extends BaseModelManager implements ProficiencyManagerI
         return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
-    }
-
-    /**
-     * @param Proficiency $proficiency
-     * @param bool        $withFlush
-     */
-    public function saveProficiency($proficiency, $withFlush = true)
-    {
-        parent::saveEntity($proficiency, $withFlush);
     }
 
     /**

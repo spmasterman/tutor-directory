@@ -46,7 +46,7 @@ interface CurrencyManagerInterface
      * @param Currency $currency
      * @param bool     $withFlush
      */
-    public function saveCurrency($currency, $withFlush = true);
+    public function saveEntity($currency, $withFlush = true);
 
     /**
      * @param ProviderInterface $provider

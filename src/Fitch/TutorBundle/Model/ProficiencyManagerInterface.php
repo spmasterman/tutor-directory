@@ -47,7 +47,7 @@ interface ProficiencyManagerInterface
      * @param Proficiency $proficiency
      * @param bool        $withFlush
      */
-    public function saveProficiency($proficiency, $withFlush = true);
+    public function saveEntity($proficiency, $withFlush = true);
 
     /**
      * Create a new Proficiency.

@@ -36,9 +36,9 @@ interface FileTypeManagerInterface
 
     /**
      * @param FileType $fileType
-     * @param bool $withFlush
+     * @param bool     $withFlush
      */
-    public function saveFileType($fileType, $withFlush = true);
+    public function saveEntity($fileType, $withFlush = true);
 
     /**
      * Create a new FileType.

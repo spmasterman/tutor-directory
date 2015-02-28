@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\BusinessArea;
 use Fitch\TutorBundle\Form\Type\BusinessAreaType;
 use Fitch\TutorBundle\Model\BusinessAreaManager;
+use Fitch\TutorBundle\Model\BusinessAreaManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -56,7 +57,7 @@ class BusinessAreaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $businessAreaManager->saveBusinessArea($businessArea);
+            $businessAreaManager->saveEntity($businessArea);
 
             $this->addFlash(
                 'success',
@@ -293,7 +294,7 @@ class BusinessAreaController extends Controller
     }
 
     /**
-     * @return BusinessAreaManager
+     * @return BusinessAreaManagerInterface
      */
     private function getBusinessAreaManager()
     {

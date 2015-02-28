@@ -12,29 +12,9 @@ use Fitch\EntityAttributeValueBundle\Entity\Schema;
 use Fitch\UserBundle\Entity\Repository\UserRepository;
 use Fitch\UserBundle\Entity\User;
 
-class UserManager extends BaseModelManager
+class UserManager extends BaseModelManager implements UserManagerInterface
 {
     const EAV_GROUP_WIDGET_STATES = "widget.state";
-
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return User
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return User[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
 
     /**
      * @param User $user
@@ -113,15 +93,6 @@ class UserManager extends BaseModelManager
     public function getLogs(User $user)
     {
         return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($user);
-    }
-
-    /**
-     * @param User $user
-     * @param bool $withFlush
-     */
-    public function saveUser(User $user, $withFlush = true)
-    {
-        parent::saveEntity($user, $withFlush);
     }
 
     /**

@@ -11,26 +11,6 @@ use Fitch\TutorBundle\Model\CountryManagerInterface;
 class CountryManager extends BaseModelManager implements CountryManagerInterface
 {
     /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Country
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Country[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
      * @return Country[]
      */
     public function buildChoicesForAddress()
@@ -84,15 +64,6 @@ class CountryManager extends BaseModelManager implements CountryManagerInterface
     public function getDefaultCountry()
     {
         return $this->getRepo()->findOneBy(['twoDigitCode' => 'GB']);
-    }
-
-    /**
-     * @param Country $country
-     * @param bool    $withFlush
-     */
-    public function saveCountry($country, $withFlush = true)
-    {
-        parent::saveEntity($country, $withFlush);
     }
 
     /**

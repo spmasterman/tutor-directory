@@ -25,7 +25,7 @@ interface EmailManagerInterface
      * @param Email $email
      * @param bool  $withFlush
      */
-    public function saveEmail($email, $withFlush = true);
+    public function saveEntity($email, $withFlush = true);
 
     /**
      * Create a new Email.

@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\CompetencyType;
-use Fitch\TutorBundle\Model\CategoryManagerInterface;
 
 interface CompetencyTypeManagerInterface
 {
@@ -54,7 +53,7 @@ interface CompetencyTypeManagerInterface
      * @param CompetencyType $competencyType
      * @param bool           $withFlush
      */
-    public function saveCompetencyType($competencyType, $withFlush = true);
+    public function saveEntity($competencyType, $withFlush = true);
 
     /**
      * Create a new CompetencyType.

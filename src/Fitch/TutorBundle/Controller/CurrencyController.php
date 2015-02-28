@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\Currency\Provider\YahooApi;
 use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -58,7 +59,7 @@ class CurrencyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $currencyManager->saveCurrency($currency);
+            $currencyManager->saveEntity($currency);
 
             $this->addFlash(
                 'success',
@@ -353,7 +354,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * @return CurrencyManager
+     * @return CurrencyManagerInterface
      */
     private function getCurrencyManager()
     {

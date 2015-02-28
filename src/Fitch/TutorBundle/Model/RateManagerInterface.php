@@ -37,7 +37,7 @@ interface RateManagerInterface
      * @param Rate $rate
      * @param bool $withFlush
      */
-    public function saveRate($rate, $withFlush = true);
+    public function saveEntity($rate, $withFlush = true);
 
     /**
      * Create a new Rate.

@@ -5,12 +5,13 @@ namespace Fitch\TutorBundle\Controller;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 use Fitch\TutorBundle\Form\Type\OperatingRegionType;
 use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -58,7 +59,7 @@ class OperatingRegionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $operatingRegionManager->saveOperatingRegion($region);
+            $operatingRegionManager->saveEntity($region);
 
             $this->addFlash(
                 'success',
@@ -297,7 +298,7 @@ class OperatingRegionController extends Controller
     }
 
     /**
-     * @return OperatingRegionManager
+     * @return OperatingRegionManagerInterface
      */
     private function getOperatingRegionManager()
     {
@@ -305,7 +306,7 @@ class OperatingRegionController extends Controller
     }
 
     /**
-     * @return CurrencyManager
+     * @return CurrencyManagerInterface
      */
     private function getCurrencyManager()
     {

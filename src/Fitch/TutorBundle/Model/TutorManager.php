@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\TutorRepository;
 use Fitch\TutorBundle\Entity\Tutor;
@@ -48,8 +47,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
         StatusManagerInterface $statusManager,
         OperatingRegionManagerInterface $operatingRegionManager,
         TutorTypeManagerInterface $tutorTypeManager
-    )
-    {
+    ) {
         parent::__construct($dispatcher, $em, $class);
 
         $this->addressManager = $addressManager;
@@ -57,26 +55,6 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
         $this->statusManager = $statusManager;
         $this->operatingRegionManager = $operatingRegionManager;
         $this->tutorTypeManager = $tutorTypeManager;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Tutor
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Tutor[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
     }
 
     /**
@@ -107,15 +85,6 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
             $address->setCountry($this->countryManager->getDefaultCountry());
             $tutor->addAddress($address);
         }
-    }
-
-    /**
-     * @param Tutor $tutor
-     * @param bool  $withFlush
-     */
-    public function saveTutor($tutor, $withFlush = true)
-    {
-        parent::saveEntity($tutor, $withFlush);
     }
 
     /**

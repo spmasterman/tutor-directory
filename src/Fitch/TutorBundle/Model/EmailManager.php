@@ -2,43 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\EmailRepository;
 use Fitch\TutorBundle\Entity\Email;
-use Fitch\TutorBundle\Model\EmailManagerInterface;
 
 class EmailManager extends BaseModelManager implements EmailManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Email
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Email[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
-     * @param Email $email
-     * @param bool  $withFlush
-     */
-    public function saveEmail($email, $withFlush = true)
-    {
-        parent::saveEntity($email, $withFlush);
-    }
-
     /**
      * Create a new Email.
      *

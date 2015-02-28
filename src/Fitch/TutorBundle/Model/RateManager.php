@@ -2,34 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\RateRepository;
 use Fitch\TutorBundle\Entity\Rate;
-use Fitch\TutorBundle\Model\RateManagerInterface;
 
 class RateManager extends BaseModelManager implements RateManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Rate
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Rate[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return array
      */
@@ -51,15 +29,6 @@ class RateManager extends BaseModelManager implements RateManagerInterface
     public function getLogs(Rate $rate)
     {
         return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($rate);
-    }
-
-    /**
-     * @param Rate $rate
-     * @param bool $withFlush
-     */
-    public function saveRate($rate, $withFlush = true)
-    {
-        parent::saveEntity($rate, $withFlush);
     }
 
     /**

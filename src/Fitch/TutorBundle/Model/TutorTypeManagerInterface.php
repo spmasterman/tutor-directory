@@ -40,7 +40,7 @@ interface TutorTypeManagerInterface
      * @param TutorType $tutorType
      * @param bool      $withFlush
      */
-    public function saveTutorType($tutorType, $withFlush = true);
+    public function saveEntity($tutorType, $withFlush = true);
 
     /**
      * Create a new TutorType.

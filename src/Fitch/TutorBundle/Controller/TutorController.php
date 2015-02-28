@@ -100,7 +100,7 @@ class TutorController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $tutorManager->saveTutor($tutor);
+            $tutorManager->saveEntity($tutor);
 
             $this->addFlash(
                 'success',

@@ -2,42 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\ReportRepository;
 use Fitch\TutorBundle\Entity\Report;
 
-class ReportManager extends BaseModelManager
+class ReportManager extends BaseModelManager implements ReportManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Report
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Report[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
-     * @param Report $report
-     * @param bool   $withFlush
-     */
-    public function saveReport($report, $withFlush = true)
-    {
-        parent::saveEntity($report, $withFlush);
-    }
-
     /**
      * Create a new Report.
      *

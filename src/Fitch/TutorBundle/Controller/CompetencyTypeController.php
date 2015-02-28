@@ -3,7 +3,9 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\CategoryManager;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
 use Fitch\TutorBundle\Model\CompetencyTypeManager;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -57,7 +59,7 @@ class CompetencyTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $competencyTypeManager->saveCompetencyType($competencyType);
+            $competencyTypeManager->saveEntity($competencyType);
 
             $this->addFlash(
                 'success',
@@ -290,7 +292,7 @@ class CompetencyTypeController extends Controller
     }
 
     /**
-     * @return CompetencyTypeManager
+     * @return CompetencyTypeManagerInterface
      */
     private function getCompetencyTypeManager()
     {
@@ -298,7 +300,7 @@ class CompetencyTypeController extends Controller
     }
 
     /**
-     * @return CategoryManager
+     * @return CategoryManagerInterface
      */
     private function getCategoryManager()
     {

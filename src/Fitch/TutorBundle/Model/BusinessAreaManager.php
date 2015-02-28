@@ -3,33 +3,12 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\BusinessAreaRepository;
 use Fitch\TutorBundle\Entity\BusinessArea;
 
-class BusinessAreaManager extends BaseModelManager
+class BusinessAreaManager extends BaseModelManager implements BusinessAreaManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return BusinessArea
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return BusinessArea[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return array
      */
@@ -57,15 +36,6 @@ class BusinessAreaManager extends BaseModelManager
     public function findDefaultBusinessArea()
     {
         return $this->getRepo()->findOneBy(['default' => true]);
-    }
-
-    /**
-     * @param BusinessArea $businessArea
-     * @param bool         $withFlush
-     */
-    public function saveBusinessArea($businessArea, $withFlush = true)
-    {
-        parent::saveEntity($businessArea, $withFlush);
     }
 
     /**

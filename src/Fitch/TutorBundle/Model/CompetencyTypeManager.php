@@ -2,35 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository;
 use Fitch\TutorBundle\Entity\CompetencyType;
-use Fitch\TutorBundle\Model\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 
 class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return CompetencyType
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return CompetencyType[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @return CompetencyType[]
      */
@@ -85,7 +62,7 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
     }
 
     /**
-     * @param string          $competencyTypeName
+     * @param string                   $competencyTypeName
      * @param CategoryManagerInterface $categoryManager
      *
      * @return CompetencyType
@@ -101,15 +78,6 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
         }
 
         return $competencyType;
-    }
-
-    /**
-     * @param CompetencyType $competencyType
-     * @param bool           $withFlush
-     */
-    public function saveCompetencyType($competencyType, $withFlush = true)
-    {
-        parent::saveEntity($competencyType, $withFlush);
     }
 
     /**
@@ -132,7 +100,7 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
     }
 
     /**
-     * @param CompetencyType  $competencyType
+     * @param CompetencyType           $competencyType
      * @param CategoryManagerInterface $categoryManager
      */
     public function setDefaultCategory(CompetencyType $competencyType, CategoryManagerInterface $categoryManager)

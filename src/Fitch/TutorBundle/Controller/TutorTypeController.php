@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Model\TutorTypeManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -57,7 +57,7 @@ class TutorTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $tutorTypeManager->saveTutorType($tutorType);
+            $tutorTypeManager->saveEntity($tutorType);
 
             $this->addFlash(
                 'success',
@@ -294,7 +294,7 @@ class TutorTypeController extends Controller
     }
 
     /**
-     * @return TutorTypeManager
+     * @return TutorTypeManagerInterface
      */
     private function getTutorTypeManager()
     {

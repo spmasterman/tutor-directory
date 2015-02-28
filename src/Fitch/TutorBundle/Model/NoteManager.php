@@ -2,43 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\NoteRepository;
 use Fitch\TutorBundle\Entity\Note;
-use Fitch\TutorBundle\Model\NoteManagerInterface;
 
 class NoteManager extends BaseModelManager implements NoteManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Note
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Note[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
-     * @param Note $note
-     * @param bool $withFlush
-     */
-    public function saveNote($note, $withFlush = true)
-    {
-        parent::saveEntity($note, $withFlush);
-    }
-
     /**
      * Create a new Note.
      *

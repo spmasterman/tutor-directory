@@ -26,7 +26,7 @@ interface TutorLanguageManagerInterface
      * @param TutorLanguage $tutorLanguage
      * @param bool          $withFlush
      */
-    public function saveTutorLanguage($tutorLanguage, $withFlush = true);
+    public function saveEntity($tutorLanguage, $withFlush = true);
 
     /**
      * Create a new TutorLanguage.

@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\ReportDefinition;
 
 interface TutorManagerInterface
 {
@@ -38,7 +37,7 @@ interface TutorManagerInterface
      * @param Tutor $tutor
      * @param bool  $withFlush
      */
-    public function saveTutor($tutor, $withFlush = true);
+    public function saveEntity($tutor, $withFlush = true);
 
     /**
      * Create a new Tutor.

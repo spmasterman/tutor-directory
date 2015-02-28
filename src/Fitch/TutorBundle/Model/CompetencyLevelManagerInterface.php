@@ -47,7 +47,7 @@ interface CompetencyLevelManagerInterface
      * @param CompetencyLevel $competencyLevel
      * @param bool            $withFlush
      */
-    public function saveCompetencyLevel($competencyLevel, $withFlush = true);
+    public function saveEntity($competencyLevel, $withFlush = true);
 
     /**
      * Create a new CompetencyLevel.

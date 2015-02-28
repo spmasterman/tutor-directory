@@ -53,9 +53,9 @@ interface LanguageManagerInterface
 
     /**
      * @param Language $language
-     * @param bool $withFlush
+     * @param bool     $withFlush
      */
-    public function saveLanguage($language, $withFlush = true);
+    public function saveEntity($language, $withFlush = true);
 
     /**
      * Create a new Language.

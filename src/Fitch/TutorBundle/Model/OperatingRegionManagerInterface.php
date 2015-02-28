@@ -40,7 +40,7 @@ interface OperatingRegionManagerInterface
      * @param OperatingRegion $operatingRegion
      * @param bool            $withFlush
      */
-    public function saveOperatingRegion($operatingRegion, $withFlush = true);
+    public function saveEntity($operatingRegion, $withFlush = true);
 
     /**
      * Create a new OperatingRegion.

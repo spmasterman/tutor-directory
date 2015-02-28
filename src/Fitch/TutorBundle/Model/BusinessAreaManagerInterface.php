@@ -1,23 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: smasterman
+ * Date: 28/02/15
+ * Time: 15:44.
+ */
 
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
-use Fitch\TutorBundle\Entity\Category;
+use Fitch\TutorBundle\Entity\BusinessArea;
 
-interface CategoryManagerInterface
+interface BusinessAreaManagerInterface
 {
     /**
      * @param $id
      *
      * @throws EntityNotFoundException
      *
-     * @return Category
+     * @return BusinessArea
      */
     public function findById($id);
 
     /**
-     * @return Category[]
+     * @return BusinessArea[]
      */
     public function findAll();
 
@@ -35,32 +41,32 @@ interface CategoryManagerInterface
     public function buildGroupedChoices();
 
     /**
-     * @return null|Category
+     * @return null|BusinessArea
      */
-    public function findDefaultCategory();
+    public function findDefaultBusinessArea();
 
     /**
-     * @param Category $category
-     * @param bool     $withFlush
+     * @param BusinessArea $businessArea
+     * @param bool         $withFlush
      */
-    public function saveEntity($category, $withFlush = true);
+    public function saveEntity($businessArea, $withFlush = true);
 
     /**
-     * Create a new Category.
+     * Create a new BusinessArea.
      *
      * Set its default values
      *
-     * @return Category
+     * @return BusinessArea
      */
-    public function createCategory();
+    public function createBusinessArea();
 
     /**
      * @param int $id
      */
-    public function removeCategory($id);
+    public function removeBusinessArea($id);
 
     /**
-     * @param Category $category
+     * @param BusinessArea $businessArea
      */
-    public function refreshCategory(Category $category);
+    public function refreshBusinessArea(BusinessArea $businessArea);
 }

@@ -2,34 +2,12 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\LanguageRepository;
 use Fitch\TutorBundle\Entity\Language;
-use Fitch\TutorBundle\Model\LanguageManagerInterface;
 
 class LanguageManager extends BaseModelManager implements LanguageManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return Language
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return Language[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
     /**
      * @param $languageName
      *
@@ -94,15 +72,6 @@ class LanguageManager extends BaseModelManager implements LanguageManagerInterfa
                 'text' => $language->getName(),
             ];
         });
-    }
-
-    /**
-     * @param Language $language
-     * @param bool     $withFlush
-     */
-    public function saveLanguage($language, $withFlush = true)
-    {
-        parent::saveEntity($language, $withFlush);
     }
 
     /**
