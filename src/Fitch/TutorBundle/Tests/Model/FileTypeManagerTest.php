@@ -31,7 +31,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return three file types");
 
         // Creata new one
-        $newEntity = $this->getModelManager()->createFileType();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('Test')
             ->setPrivate(false)
@@ -58,11 +58,11 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setName('Test (Abandoned Edit)');
-        $this->getModelManager()->refreshFileType($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('Test (Updated)', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeFileType($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three file types");
     }

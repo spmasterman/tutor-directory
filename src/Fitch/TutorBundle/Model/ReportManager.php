@@ -9,40 +9,12 @@ use Fitch\TutorBundle\Entity\Report;
 class ReportManager extends BaseModelManager implements ReportManagerInterface
 {
     /**
-     * Create a new Report.
-     *
-     * Set its default values
-     *
-     * @return Report
-     */
-    public function createReport()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeReport($id)
+    public function removeEntity($id)
     {
         $report = $this->findById($id);
         parent::removeEntity($report);
-    }
-
-    /**
-     * @param Report $report
-     */
-    public function refreshReport(Report $report)
-    {
-        parent::reloadEntity($report);
-    }
-
-    /**
-     * @return ReportRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

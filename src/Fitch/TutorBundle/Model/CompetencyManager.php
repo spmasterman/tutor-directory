@@ -22,7 +22,7 @@ class CompetencyManager extends BaseModelManager implements CompetencyManagerInt
         if ($id) {
             $competency = $this->findById($id);
         } else {
-            $competency = $this->createCompetency();
+            $competency = $this->createEntity();
             $tutor->addCompetency($competency);
         }
 
@@ -30,40 +30,12 @@ class CompetencyManager extends BaseModelManager implements CompetencyManagerInt
     }
 
     /**
-     * Create a new Competency.
-     *
-     * Set its default values
-     *
-     * @return Competency
-     */
-    public function createCompetency()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeCompetency($id)
+    public function removeEntity($id)
     {
         $competency = $this->findById($id);
         parent::removeEntity($competency);
-    }
-
-    /**
-     * @param Competency $competency
-     */
-    public function refreshCompetency(Competency $competency)
-    {
-        parent::reloadEntity($competency);
-    }
-
-    /**
-     * @return CompetencyRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

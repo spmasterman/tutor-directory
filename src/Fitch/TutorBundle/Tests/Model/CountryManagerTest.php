@@ -108,10 +108,10 @@ class CountryManagerTest extends FixturesWebTestCase
         $this->assertNotEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
 
         $newEntity->setName('c3');
-        $this->getModelManager()->refreshCountry($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('c2', $newEntity->getName());
 
-        $this->getModelManager()->removeCountry($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return 4 entities");
     }

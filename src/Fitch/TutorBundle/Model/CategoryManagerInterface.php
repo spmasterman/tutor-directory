@@ -52,15 +52,15 @@ interface CategoryManagerInterface
      *
      * @return Category
      */
-    public function createCategory();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeCategory($id);
+    public function removeEntity($id);
 
     /**
      * @param Category $category
      */
-    public function refreshCategory(Category $category);
+    public function reloadEntity(Category $category);
 }

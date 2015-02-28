@@ -51,7 +51,7 @@ class BusinessAreaController extends Controller
     {
         $businessAreaManager = $this->getBusinessAreaManager();
 
-        $businessArea = $businessAreaManager->createBusinessArea();
+        $businessArea = $businessAreaManager->createEntity();
         $form = $this->createCreateForm($businessArea);
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class BusinessAreaController extends Controller
      */
     public function newAction()
     {
-        $businessArea = $this->getBusinessAreaManager()->createBusinessArea();
+        $businessArea = $this->getBusinessAreaManager()->createEntity();
         $form   = $this->createCreateForm($businessArea);
 
         return [
@@ -254,7 +254,7 @@ class BusinessAreaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getBusinessAreaManager()->removeBusinessArea($businessArea->getId());
+            $this->getBusinessAreaManager()->removeEntity($businessArea->getId());
 
             $this->addFlash(
                 'success',

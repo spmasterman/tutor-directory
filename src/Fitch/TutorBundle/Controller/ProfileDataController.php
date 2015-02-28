@@ -198,7 +198,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\CompetencyTypeManagerInterface
+     * @return CompetencyTypeManagerInterface
      */
     private function getCompetencyTypeManager()
     {
@@ -214,7 +214,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\LanguageManagerInterface
+     * @return LanguageManagerInterface
      */
     private function getLanguageManager()
     {
@@ -222,7 +222,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\CountryManagerInterface
+     * @return CountryManagerInterface
      */
     private function getCountryManager()
     {
@@ -230,7 +230,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\StatusManagerInterface
+     * @return StatusManagerInterface
      */
     private function getStatusManager()
     {
@@ -238,7 +238,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\OperatingRegionManagerInterface
+     * @return OperatingRegionManagerInterface
      */
     private function getOperatingRegionManager()
     {
@@ -246,7 +246,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\TutorTypeManagerInterface
+     * @return TutorTypeManagerInterface
      */
     private function getTutorTypeManager()
     {
@@ -254,7 +254,7 @@ class ProfileDataController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\ProficiencyManagerInterface
+     * @return ProficiencyManagerInterface
      */
     private function getProficiencyManager()
     {

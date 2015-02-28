@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\TutorBundle\Model\PhoneManager;
+use Fitch\TutorBundle\Model\PhoneManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -38,7 +38,7 @@ class PhoneController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getPhoneManager()->removePhone($request->request->get('pk'));
+            $this->getPhoneManager()->removeEntity($request->request->get('pk'));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -52,7 +52,7 @@ class PhoneController extends Controller
     }
 
     /**
-     * @return PhoneManager
+     * @return PhoneManagerInterface
      */
     private function getPhoneManager()
     {

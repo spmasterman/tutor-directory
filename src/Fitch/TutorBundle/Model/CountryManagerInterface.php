@@ -62,15 +62,15 @@ interface CountryManagerInterface
      *
      * @return Country
      */
-    public function createCountry();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeCountry($id);
+    public function removeEntity($id);
 
     /**
      * @param Country $country
      */
-    public function refreshCountry(Country $country);
+    public function reloadEntity(Country $country);
 }

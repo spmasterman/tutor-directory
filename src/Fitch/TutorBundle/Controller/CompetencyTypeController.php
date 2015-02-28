@@ -51,7 +51,7 @@ class CompetencyTypeController extends Controller
     public function createAction(Request $request)
     {
         $competencyTypeManager = $this->getCompetencyTypeManager();
-        $competencyType = $competencyTypeManager->createCompetencyType($this->getCategoryManager());
+        $competencyType = $competencyTypeManager->createEntity($this->getCategoryManager());
 
         $form = $this->createCreateForm($competencyType);
         $form->handleRequest($request);
@@ -112,7 +112,7 @@ class CompetencyTypeController extends Controller
      */
     public function newAction()
     {
-        $competencyType = $this->getCompetencyTypeManager()->createCompetencyType($this->getCategoryManager());
+        $competencyType = $this->getCompetencyTypeManager()->createEntity($this->getCategoryManager());
         $form   = $this->createCreateForm($competencyType);
 
         return [
@@ -256,7 +256,7 @@ class CompetencyTypeController extends Controller
                 $this->get('translator')->trans('competency_type.delete.success')
             );
 
-            $this->getCompetencyTypeManager()->removeCompetencyType($competencyType->getId());
+            $this->getCompetencyTypeManager()->removeEntity($competencyType->getId());
         }
 
         return $this->redirectToRoute('competency_type');

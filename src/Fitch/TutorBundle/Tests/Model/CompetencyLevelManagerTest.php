@@ -70,11 +70,11 @@ class CompetencyLevelManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setName('n3');
-        $this->getModelManager()->refreshCompetencyLevel($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('n2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeCompetencyLevel($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return 3 entities");
     }

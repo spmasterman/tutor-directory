@@ -9,40 +9,12 @@ use Fitch\TutorBundle\Entity\Note;
 class NoteManager extends BaseModelManager implements NoteManagerInterface
 {
     /**
-     * Create a new Note.
-     *
-     * Set its default values
-     *
-     * @return Note
-     */
-    public function createNote()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeNote($id)
+    public function removeEntity($id)
     {
         $note = $this->findById($id);
         parent::removeEntity($note);
-    }
-
-    /**
-     * @param Note $note
-     */
-    public function refreshNote(Note $note)
-    {
-        parent::reloadEntity($note);
-    }
-
-    /**
-     * @return NoteRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

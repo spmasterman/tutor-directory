@@ -72,7 +72,7 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
         $competencyType = $this->getRepo()->findOneBy(['name' => $competencyTypeName]);
 
         if (!$competencyType) {
-            $competencyType = $this->createCompetencyType($categoryManager);
+            $competencyType = $this->createEntity($categoryManager);
             $competencyType->setName($competencyTypeName);
             $this->saveEntity($competencyType);
         }
@@ -89,7 +89,7 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
      *
      * @return CompetencyType
      */
-    public function createCompetencyType(
+    public function createEntity(
         CategoryManagerInterface $categoryManager
     ) {
         /** @var CompetencyType $competencyType */
@@ -114,26 +114,10 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
     /**
      * @param int $id
      */
-    public function removeCompetencyType($id)
+    public function removeEntity($id)
     {
         $competencyType = $this->findById($id);
         parent::removeEntity($competencyType);
-    }
-
-    /**
-     * @param CompetencyType $competencyType
-     */
-    public function refreshCompetencyType(CompetencyType $competencyType)
-    {
-        parent::reloadEntity($competencyType);
-    }
-
-    /**
-     * @return CompetencyTypeRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

@@ -7,9 +7,9 @@ use Fitch\TutorBundle\Entity\TutorLanguage;
 interface TutorLanguageUpdateInterface
 {
     /**
-     * @param TutorLanguage $tutorlanguage
+     * @param TutorLanguage $tutorLanguage
      * @param $value
      * @return mixed
      */
-    public function update(TutorLanguage $tutorlanguage, $value);
+    public function update(TutorLanguage $tutorLanguage, $value);
 }

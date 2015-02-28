@@ -15,6 +15,7 @@ class StatusType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
         $builder
             ->add('name')
             ->add('default', new OnOffType(), [

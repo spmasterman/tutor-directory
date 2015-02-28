@@ -51,7 +51,7 @@ class TutorTypeController extends Controller
     {
         $tutorTypeManager = $this->getTutorTypeManager();
 
-        $tutorType = $tutorTypeManager->createTutorType();
+        $tutorType = $tutorTypeManager->createEntity();
         $form = $this->createCreateForm($tutorType);
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class TutorTypeController extends Controller
      */
     public function newAction()
     {
-        $tutorType = $this->getTutorTypeManager()->createTutorType();
+        $tutorType = $this->getTutorTypeManager()->createEntity();
         $form   = $this->createCreateForm($tutorType);
 
         return [
@@ -254,7 +254,7 @@ class TutorTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getTutorTypeManager()->removeTutorType($tutorType->getId());
+            $this->getTutorTypeManager()->removeEntity($tutorType->getId());
 
             $this->addFlash(
                 'success',

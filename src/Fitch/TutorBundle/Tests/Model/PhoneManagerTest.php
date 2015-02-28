@@ -34,7 +34,7 @@ class PhoneManagerTest extends FixturesWebTestCase
         $this->assertCount(6, $allEntities, "Should return six entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createPhone();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setType('t')
             ->setPreferred(true)
@@ -60,11 +60,11 @@ class PhoneManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setNumber('3');
-        $this->getModelManager()->refreshPhone($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('2', $newEntity->getNumber());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removePhone($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
     }

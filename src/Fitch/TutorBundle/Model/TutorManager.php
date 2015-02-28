@@ -81,7 +81,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     private function createDefaultAddressIfRequired(Tutor $tutor)
     {
         if (!$tutor->hasAddress()) {
-            $address = $this->addressManager->createAddress();
+            $address = $this->addressManager->createEntity();
             $address->setCountry($this->countryManager->getDefaultCountry());
             $tutor->addAddress($address);
         }
@@ -94,7 +94,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
      *
      * @return Tutor
      */
-    public function createTutor()
+    public function createEntity()
     {
         /** @var Tutor $tutor */
         $tutor = parent::createEntity();
@@ -137,24 +137,16 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     /**
      * @param int $id
      */
-    public function removeTutor($id)
+    public function removeEntity($id)
     {
         $tutor = $this->findById($id);
         parent::removeEntity($tutor);
     }
 
     /**
-     * @param Tutor $tutor
-     */
-    public function refreshTutor(Tutor $tutor)
-    {
-        parent::reloadEntity($tutor);
-    }
-
-    /**
      * @return TutorRepository
      */
-    private function getRepo()
+    protected function getRepo()
     {
         return $this->repo;
     }

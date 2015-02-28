@@ -51,7 +51,7 @@ class StatusController extends Controller
     {
         $statusManager = $this->getStatusManager();
 
-        $status = $statusManager->createStatus();
+        $status = $statusManager->createEntity();
         $form = $this->createCreateForm($status);
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class StatusController extends Controller
      */
     public function newAction()
     {
-        $status = $this->getStatusManager()->createStatus();
+        $status = $this->getStatusManager()->createEntity();
         $form   = $this->createCreateForm($status);
 
         return [
@@ -254,7 +254,7 @@ class StatusController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getStatusManager()->removeStatus($status->getId());
+            $this->getStatusManager()->removeEntity($status->getId());
 
             $this->addFlash(
                 'success',

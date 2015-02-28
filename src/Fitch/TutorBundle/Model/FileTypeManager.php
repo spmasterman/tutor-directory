@@ -30,40 +30,12 @@ class FileTypeManager extends BaseModelManager implements FileTypeManagerInterfa
     }
 
     /**
-     * Create a new FileType.
-     *
-     * Set its default values
-     *
-     * @return FileType
-     */
-    public function createFileType()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeFileType($id)
+    public function removeEntity($id)
     {
         $fileType = $this->findById($id);
         parent::removeEntity($fileType);
-    }
-
-    /**
-     * @param FileType $fileType
-     */
-    public function refreshFileType(FileType $fileType)
-    {
-        parent::reloadEntity($fileType);
-    }
-
-    /**
-     * @return FileTypeRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

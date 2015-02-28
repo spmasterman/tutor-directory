@@ -64,7 +64,7 @@ interface CompetencyTypeManagerInterface
      *
      * @return CompetencyType
      */
-    public function createCompetencyType(CategoryManagerInterface $categoryManager);
+    public function createEntity(CategoryManagerInterface $categoryManager);
 
     /**
      * @param CompetencyType           $competencyType
@@ -75,10 +75,10 @@ interface CompetencyTypeManagerInterface
     /**
      * @param int $id
      */
-    public function removeCompetencyType($id);
+    public function removeEntity($id);
 
     /**
      * @param CompetencyType $competencyType
      */
-    public function refreshCompetencyType(CompetencyType $competencyType);
+    public function reloadEntity(CompetencyType $competencyType);
 }

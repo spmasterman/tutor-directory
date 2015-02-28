@@ -21,7 +21,7 @@ class ProfileUpdatePhone implements ProfileUpdateInterface
         if ($phoneId) {
             $phone = $this->getPhoneManager()->findById($phoneId);
         } else {
-            $phone = $this->getPhoneManager()->createPhone();
+            $phone = $this->getPhoneManager()->createEntity();
             $tutor->addPhoneNumber($phone);
         }
         $phone

@@ -56,15 +56,15 @@ interface ProficiencyManagerInterface
      *
      * @return Proficiency
      */
-    public function createProficiency();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeProficiency($id);
+    public function removeEntity($id);
 
     /**
      * @param Proficiency $proficiency
      */
-    public function refreshProficiency(Proficiency $proficiency);
+    public function reloadEntity(Proficiency $proficiency);
 }

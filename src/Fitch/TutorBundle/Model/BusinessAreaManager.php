@@ -39,40 +39,12 @@ class BusinessAreaManager extends BaseModelManager implements BusinessAreaManage
     }
 
     /**
-     * Create a new BusinessArea.
-     *
-     * Set its default values
-     *
-     * @return BusinessArea
-     */
-    public function createBusinessArea()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeBusinessArea($id)
+    public function removeEntity($id)
     {
         $businessArea = $this->findById($id);
         parent::removeEntity($businessArea);
-    }
-
-    /**
-     * @param BusinessArea $businessArea
-     */
-    public function refreshBusinessArea(BusinessArea $businessArea)
-    {
-        parent::reloadEntity($businessArea);
-    }
-
-    /**
-     * @return BusinessAreaRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

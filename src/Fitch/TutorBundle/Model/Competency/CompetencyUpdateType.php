@@ -27,7 +27,7 @@ class CompetencyUpdateType implements CompetencyUpdateInterface
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\CompetencyTypeManagerInterface
+     * @return CompetencyTypeManagerInterface
      */
     private function getCompetencyTypeManager()
     {
@@ -35,7 +35,7 @@ class CompetencyUpdateType implements CompetencyUpdateInterface
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\CategoryManagerInterface
+     * @return CategoryManagerInterface
      */
     private function getCategoryManager()
     {

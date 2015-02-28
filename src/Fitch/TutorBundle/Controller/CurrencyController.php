@@ -53,7 +53,7 @@ class CurrencyController extends Controller
     {
         $currencyManager = $this->getCurrencyManager();
 
-        $currency = $currencyManager->createCurrency();
+        $currency = $currencyManager->createEntity();
         $form = $this->createCreateForm($currency);
         $form->handleRequest($request);
 
@@ -113,7 +113,7 @@ class CurrencyController extends Controller
      */
     public function newAction()
     {
-        $currency = $this->getCurrencyManager()->createCurrency();
+        $currency = $this->getCurrencyManager()->createEntity();
         $form   = $this->createCreateForm($currency);
 
         return [
@@ -256,7 +256,7 @@ class CurrencyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getCurrencyManager()->removeCurrency($currency->getId());
+            $this->getCurrencyManager()->removeEntity($currency->getId());
 
             $this->addFlash(
                 'success',

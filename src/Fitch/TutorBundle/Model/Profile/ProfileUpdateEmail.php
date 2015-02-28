@@ -20,7 +20,7 @@ class ProfileUpdateEmail implements ProfileUpdateInterface
         if ($emailId) {
             $email = $this->getEmailManager()->findById($emailId);
         } else {
-            $email = $this->getEmailManager()->createEmail();
+            $email = $this->getEmailManager()->createEntity();
             $tutor->addEmailAddress($email);
         }
         $email

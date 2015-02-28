@@ -49,15 +49,15 @@ interface TutorTypeManagerInterface
      *
      * @return TutorType
      */
-    public function createTutorType();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeTutorType($id);
+    public function removeEntity($id);
 
     /**
      * @param TutorType $tutorType
      */
-    public function refreshTutorType(TutorType $tutorType);
+    public function reloadEntity(TutorType $tutorType);
 }

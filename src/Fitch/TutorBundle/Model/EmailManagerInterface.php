@@ -34,15 +34,15 @@ interface EmailManagerInterface
      *
      * @return Email
      */
-    public function createEmail();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeEmail($id);
+    public function removeEntity($id);
 
     /**
      * @param Email $email
      */
-    public function refreshEmail(Email $email);
+    public function reloadEntity(Email $email);
 }

@@ -67,40 +67,12 @@ class CountryManager extends BaseModelManager implements CountryManagerInterface
     }
 
     /**
-     * Create a new Country.
-     *
-     * Set its default values
-     *
-     * @return Country
-     */
-    public function createCountry()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeCountry($id)
+    public function removeEntity($id)
     {
         $country = $this->findById($id);
         parent::removeEntity($country);
-    }
-
-    /**
-     * @param Country $country
-     */
-    public function refreshCountry(Country $country)
-    {
-        parent::reloadEntity($country);
-    }
-
-    /**
-     * @return CountryRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

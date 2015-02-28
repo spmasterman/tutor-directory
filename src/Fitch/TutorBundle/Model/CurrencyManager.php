@@ -86,40 +86,12 @@ class CurrencyManager extends BaseModelManager implements CurrencyManagerInterfa
     }
 
     /**
-     * Create a new Currency.
-     *
-     * Set its default values
-     *
-     * @return Currency
-     */
-    public function createCurrency()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeCurrency($id)
+    public function removeEntity($id)
     {
         $currency = $this->findById($id);
         parent::removeEntity($currency);
-    }
-
-    /**
-     * @param Currency $currency
-     */
-    public function refreshCurrency(Currency $currency)
-    {
-        parent::reloadEntity($currency);
-    }
-
-    /**
-     * @return CurrencyRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

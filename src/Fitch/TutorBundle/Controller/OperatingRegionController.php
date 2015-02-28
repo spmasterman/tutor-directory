@@ -52,7 +52,7 @@ class OperatingRegionController extends Controller
     {
         $operatingRegionManager = $this->getOperatingRegionManager();
 
-        $region = $operatingRegionManager->createOperatingRegion();
+        $region = $operatingRegionManager->createEntity();
         $form = $this->createCreateForm($region);
         $form->handleRequest($request);
 
@@ -113,7 +113,7 @@ class OperatingRegionController extends Controller
      */
     public function newAction()
     {
-        $region = $this->getOperatingRegionManager()->createOperatingRegion();
+        $region = $this->getOperatingRegionManager()->createEntity();
         $form   = $this->createCreateForm($region);
 
         return [
@@ -257,7 +257,7 @@ class OperatingRegionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getOperatingRegionManager()->removeOperatingRegion($region->getId());
+            $this->getOperatingRegionManager()->removeEntity($region->getId());
 
             $this->addFlash(
                 'success',

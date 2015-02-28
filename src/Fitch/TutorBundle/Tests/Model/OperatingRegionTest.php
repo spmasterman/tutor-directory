@@ -39,7 +39,7 @@ class OperatingRegionTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return three entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createOperatingRegion();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setCode('c')
             ->setName('n')
@@ -64,11 +64,11 @@ class OperatingRegionTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setName('n3');
-        $this->getModelManager()->refreshOperatingRegion($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('n2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeOperatingRegion($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
     }

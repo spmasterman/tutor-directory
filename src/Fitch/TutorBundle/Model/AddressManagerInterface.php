@@ -34,15 +34,15 @@ interface AddressManagerInterface
      *
      * @return Address
      */
-    public function createAddress();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeAddress($id);
+    public function removeEntity($id);
 
     /**
      * @param Address $address
      */
-    public function refreshAddress(Address $address);
+    public function reloadEntity(Address $address);
 }

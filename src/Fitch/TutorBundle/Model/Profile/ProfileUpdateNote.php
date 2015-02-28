@@ -20,7 +20,7 @@ class ProfileUpdateNote implements ProfileUpdateInterface
         if ($noteId) {
             $note = $this->getNoteManager()->findById($noteId);
         } else {
-            $note = $this->getNoteManager()->createNote();
+            $note = $this->getNoteManager()->createEntity();
             $note
                 ->setAuthor($this->getUser())
                 ->setKey($request->request->get('noteKey'))
@@ -66,4 +66,5 @@ class ProfileUpdateNote implements ProfileUpdateInterface
 
         return $user;
     }
+    //// TODO - Get this from "UserCallable"
 }

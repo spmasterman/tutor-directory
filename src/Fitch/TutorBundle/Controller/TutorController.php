@@ -4,6 +4,8 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Form\Type\TutorType;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -92,7 +94,7 @@ class TutorController extends Controller
 
         $tutorManager = $this->getTutorManager();
 
-        $tutor = $tutorManager->createTutor();
+        $tutor = $tutorManager->createEntity();
 
         $form = $this->createCreateForm($tutor);
         $form->handleRequest($request);
@@ -157,7 +159,7 @@ class TutorController extends Controller
             throw new AccessDeniedHttpException('Unauthorised access!');
         }
 
-        $tutor = $this->getTutorManager()->createTutor();
+        $tutor = $this->getTutorManager()->createEntity();
         $form   = $this->createCreateForm($tutor);
 
         return [
@@ -167,7 +169,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\TutorManagerInterface
+     * @return TutorManagerInterface
      */
     private function getTutorManager()
     {
@@ -175,7 +177,7 @@ class TutorController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\CountryManagerInterface
+     * @return CountryManagerInterface
      */
     private function getCountryManager()
     {

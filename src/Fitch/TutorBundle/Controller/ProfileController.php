@@ -93,7 +93,7 @@ class ProfileController extends Controller
                 $relatedEntity = null;
             }
 
-            $this->getTutorManager()->saveTutor($tutor);
+            $this->getTutorManager()->saveEntity($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -117,7 +117,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\RateManagerInterface
+     * @return RateManagerInterface
      */
     private function getRateManager()
     {

@@ -81,7 +81,7 @@ class CurrencyManagerTest extends FixturesWebTestCase
         $this->assertCount(4, $allEntities, "Should return 4 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createCurrency();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('c')
             ->setPreferred(true)
@@ -104,10 +104,10 @@ class CurrencyManagerTest extends FixturesWebTestCase
         $this->assertNotEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
 
         $newEntity->setName('c3');
-        $this->getModelManager()->refreshCurrency($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('c2', $newEntity->getName());
 
-        $this->getModelManager()->removeCurrency($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(4, $allEntities, "Should return 4 entities");
     }

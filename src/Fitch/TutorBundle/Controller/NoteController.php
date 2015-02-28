@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\TutorBundle\Model\NoteManager;
+use Fitch\TutorBundle\Model\NoteManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -42,7 +42,7 @@ class NoteController extends Controller
                 throw new NotFoundHttpException('Note does not exist!');
             }
 
-            $this->getNoteManager()->removeNote($note->getId());
+            $this->getNoteManager()->removeEntity($note->getId());
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -56,7 +56,7 @@ class NoteController extends Controller
     }
 
     /**
-     * @return NoteManager
+     * @return NoteManagerInterface
      */
     private function getNoteManager()
     {

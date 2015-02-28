@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\TutorBundle\Model\AddressManager;
+use Fitch\TutorBundle\Model\AddressManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -38,7 +38,7 @@ class AddressController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getAddressManager()->removeAddress($request->request->get('pk'));
+            $this->getAddressManager()->removeEntity($request->request->get('pk'));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -52,7 +52,7 @@ class AddressController extends Controller
     }
 
     /**
-     * @return AddressManager
+     * @return AddressManagerInterface
      */
     private function getAddressManager()
     {

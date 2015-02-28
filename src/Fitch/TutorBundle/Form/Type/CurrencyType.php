@@ -15,6 +15,7 @@ class CurrencyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
         $builder
             ->add('name')
             ->add('threeDigitCode', null, [

@@ -96,7 +96,7 @@ class ReportController extends Controller
 
         $reportDefinition = new ReportDefinition($form, $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'));
 
-        $report = $this->getReportManager()->createReport();
+        $report = $this->getReportManager()->createEntity();
         $report->setDefinition($this->getSerializer()->serialize($reportDefinition, 'json'));
 
         return [
@@ -256,7 +256,7 @@ class ReportController extends Controller
     {
         $reportManager = $this->getReportManager();
 
-        $report = $reportManager->createReport();
+        $report = $reportManager->createEntity();
 
         $form = $this->createCreateForm($report);
         $form->handleRequest($request);
@@ -364,7 +364,7 @@ class ReportController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getReportManager()->removeReport($report->getId());
+            $this->getReportManager()->removeEntity($report->getId());
 
             $this->addFlash(
                 'success',

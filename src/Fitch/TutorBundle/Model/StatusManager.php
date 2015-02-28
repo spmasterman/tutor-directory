@@ -33,40 +33,12 @@ class StatusManager extends BaseModelManager implements StatusManagerInterface
     }
 
     /**
-     * Create a new Status.
-     *
-     * Set its default values
-     *
-     * @return Status
-     */
-    public function createStatus()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeStatus($id)
+    public function removeEntity($id)
     {
         $status = $this->findById($id);
         parent::removeEntity($status);
-    }
-
-    /**
-     * @param Status $status
-     */
-    public function refreshStatus(Status $status)
-    {
-        parent::reloadEntity($status);
-    }
-
-    /**
-     * @return StatusRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

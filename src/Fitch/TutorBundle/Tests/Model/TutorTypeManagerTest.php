@@ -31,7 +31,7 @@ class TutorTypeManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return three entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createTutorType();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('t')
             ->setDefault(false)
@@ -55,11 +55,11 @@ class TutorTypeManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setName('t3');
-        $this->getModelManager()->refreshTutorType($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('t2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeTutorType($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
     }

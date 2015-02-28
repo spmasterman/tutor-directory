@@ -21,7 +21,7 @@ class ProfileUpdateAddress implements ProfileUpdateInterface
         if ($addressId) {
             $address = $this->getAddressManager()->findById($addressId);
         } else {
-            $address = $this->getAddressManager()->createAddress();
+            $address = $this->getAddressManager()->createEntity();
             $tutor->addAddress($address);
         }
         $address
@@ -38,7 +38,7 @@ class ProfileUpdateAddress implements ProfileUpdateInterface
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\CountryManagerInterface
+     * @return CountryManagerInterface
      */
     private function getCountryManager()
     {

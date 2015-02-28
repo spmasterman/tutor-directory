@@ -34,15 +34,15 @@ interface NoteManagerInterface
      *
      * @return Note
      */
-    public function createNote();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeNote($id);
+    public function removeEntity($id);
 
     /**
      * @param Note $note
      */
-    public function refreshNote(Note $note);
+    public function reloadEntity(Note $note);
 }

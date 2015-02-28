@@ -56,15 +56,15 @@ interface CompetencyLevelManagerInterface
      *
      * @return CompetencyLevel
      */
-    public function createCompetencyLevel();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeCompetencyLevel($id);
+    public function removeEntity($id);
 
     /**
      * @param CompetencyLevel $competencyLevel
      */
-    public function refreshCompetencyLevel(CompetencyLevel $competencyLevel);
+    public function reloadEntity(CompetencyLevel $competencyLevel);
 }

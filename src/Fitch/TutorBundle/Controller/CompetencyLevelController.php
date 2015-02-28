@@ -50,7 +50,7 @@ class CompetencyLevelController extends Controller
     public function createAction(Request $request)
     {
         $competencyLevelManager = $this->getCompetencyLevelManager();
-        $competencyLevel = $competencyLevelManager->createCompetencyLevel();
+        $competencyLevel = $competencyLevelManager->createEntity();
 
         $form = $this->createCreateForm($competencyLevel);
         $form->handleRequest($request);
@@ -111,7 +111,7 @@ class CompetencyLevelController extends Controller
      */
     public function newAction()
     {
-        $competencyLevel = $this->getCompetencyLevelManager()->createCompetencyLevel();
+        $competencyLevel = $this->getCompetencyLevelManager()->createEntity();
         $form = $this->createCreateForm($competencyLevel);
 
         return [
@@ -255,7 +255,7 @@ class CompetencyLevelController extends Controller
                 $this->get('translator')->trans('competency_level.delete.success')
             );
 
-            $this->getCompetencyLevelManager()->removeCompetencyLevel($competencyLevel->getId());
+            $this->getCompetencyLevelManager()->removeEntity($competencyLevel->getId());
         }
 
         return $this->redirectToRoute('competency_level');

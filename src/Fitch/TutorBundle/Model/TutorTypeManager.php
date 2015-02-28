@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\TutorTypeRepository;
 use Fitch\TutorBundle\Entity\TutorType;
 
 class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInterface
@@ -33,40 +32,12 @@ class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInter
     }
 
     /**
-     * Create a new TutorType.
-     *
-     * Set its default values
-     *
-     * @return TutorType
-     */
-    public function createTutorType()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeTutorType($id)
+    public function removeEntity($id)
     {
         $tutorType = $this->findById($id);
         parent::removeEntity($tutorType);
-    }
-
-    /**
-     * @param TutorType $tutorType
-     */
-    public function refreshTutorType(TutorType $tutorType)
-    {
-        parent::reloadEntity($tutorType);
-    }
-
-    /**
-     * @return TutorTypeRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

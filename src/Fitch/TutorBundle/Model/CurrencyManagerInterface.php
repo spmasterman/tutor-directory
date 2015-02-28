@@ -70,15 +70,15 @@ interface CurrencyManagerInterface
      *
      * @return Currency
      */
-    public function createCurrency();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeCurrency($id);
+    public function removeEntity($id);
 
     /**
      * @param Currency $currency
      */
-    public function refreshCurrency(Currency $currency);
+    public function reloadEntity(Currency $currency);
 }

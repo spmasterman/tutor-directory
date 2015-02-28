@@ -33,40 +33,12 @@ class OperatingRegionManager extends BaseModelManager implements OperatingRegion
     }
 
     /**
-     * Create a new OperatingRegion.
-     *
-     * Set its default values
-     *
-     * @return OperatingRegion
-     */
-    public function createOperatingRegion()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeOperatingRegion($id)
+    public function removeEntity($id)
     {
         $operatingRegion = $this->findById($id);
         parent::removeEntity($operatingRegion);
-    }
-
-    /**
-     * @param OperatingRegion $operatingRegion
-     */
-    public function refreshOperatingRegion(OperatingRegion $operatingRegion)
-    {
-        parent::reloadEntity($operatingRegion);
-    }
-
-    /**
-     * @return OperatingRegionRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

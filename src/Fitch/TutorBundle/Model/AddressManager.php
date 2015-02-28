@@ -9,40 +9,12 @@ use Fitch\TutorBundle\Entity\Address;
 class AddressManager extends BaseModelManager implements AddressManagerInterface
 {
     /**
-     * Create a new Address.
-     *
-     * Set its default values
-     *
-     * @return Address
-     */
-    public function createAddress()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeAddress($id)
+    public function removeEntity($id)
     {
         $address = $this->findById($id);
         parent::removeEntity($address);
-    }
-
-    /**
-     * @param Address $address
-     */
-    public function refreshAddress(Address $address)
-    {
-        parent::reloadEntity($address);
-    }
-
-    /**
-     * @return AddressRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

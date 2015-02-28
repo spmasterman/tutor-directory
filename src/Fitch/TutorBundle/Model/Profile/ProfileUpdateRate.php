@@ -20,7 +20,7 @@ class ProfileUpdateRate implements ProfileUpdateInterface
         if ($rateId) {
             $rate = $this->getRateManager()->findById($rateId);
         } else {
-            $rate = $this->getRateManager()->createRate();
+            $rate = $this->getRateManager()->createEntity();
             $tutor->addRate($rate);
         }
         $rate

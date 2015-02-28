@@ -19,7 +19,7 @@ class OperatingRegionTest extends FixturesWebTestCase
 
         $entityOne->setDefaultCurrency(null);
         $this->getModelManager()->saveOperatingRegion($entityOne);
-        $this->getModelManager()->refreshOperatingRegion($entityOne);
+        $this->getModelManager()->reloadEntity($entityOne);
 
         $this->assertNull($entityOne->getDefaultCurrency());
     }

@@ -31,7 +31,7 @@ class TutorManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return three entities");
 
         // Create new one - these services probably should all be stubbed/mocked to test this in isolation ??
-        $newEntity = $this->getModelManager()->createTutor();
+        $newEntity = $this->getModelManager()->createEntity();
 
         $newEntity
             ->setName('t')
@@ -57,11 +57,11 @@ class TutorManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setName('t3');
-        $this->getModelManager()->refreshTutor($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('t2', $newEntity->getName());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeTutor($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return three entities");
     }

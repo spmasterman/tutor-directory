@@ -51,7 +51,7 @@ class CategoryController extends Controller
     {
         $categoryManager = $this->getCategoryManager();
 
-        $category = $categoryManager->createCategory();
+        $category = $categoryManager->createEntity();
         $form = $this->createCreateForm($category);
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class CategoryController extends Controller
      */
     public function newAction()
     {
-        $category = $this->getCategoryManager()->createCategory();
+        $category = $this->getCategoryManager()->createEntity();
         $form   = $this->createCreateForm($category);
 
         return [
@@ -254,7 +254,7 @@ class CategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getCategoryManager()->removeCategory($category->getId());
+            $this->getCategoryManager()->removeEntity($category->getId());
 
             $this->addFlash(
                 'success',

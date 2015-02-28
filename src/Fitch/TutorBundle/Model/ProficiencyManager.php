@@ -27,7 +27,7 @@ class ProficiencyManager extends BaseModelManager implements ProficiencyManagerI
         $proficiency = $this->getRepo()->findOneBy(['name' => $proficiencyName]);
 
         if (!$proficiency) {
-            $proficiency = $this->createProficiency();
+            $proficiency = $this->createEntity();
             $proficiency->setName($proficiencyName);
             $this->saveEntity($proficiency);
         }
@@ -51,40 +51,12 @@ class ProficiencyManager extends BaseModelManager implements ProficiencyManagerI
     }
 
     /**
-     * Create a new Proficiency.
-     *
-     * Set its default values
-     *
-     * @return Proficiency
-     */
-    public function createProficiency()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeProficiency($id)
+    public function removeEntity($id)
     {
         $proficiency = $this->findById($id);
         parent::removeEntity($proficiency);
-    }
-
-    /**
-     * @param Proficiency $proficiency
-     */
-    public function refreshProficiency(Proficiency $proficiency)
-    {
-        parent::reloadEntity($proficiency);
-    }
-
-    /**
-     * @return ProficiencyRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

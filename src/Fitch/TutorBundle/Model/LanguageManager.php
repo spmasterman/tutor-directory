@@ -18,7 +18,7 @@ class LanguageManager extends BaseModelManager implements LanguageManagerInterfa
         $language = $this->getRepo()->findOneBy(['name' => $languageName]);
 
         if (!$language) {
-            $language = $this->createLanguage();
+            $language = $this->createEntity();
             $language
                 ->setName($languageName)
                 ->setActive(true)
@@ -75,40 +75,12 @@ class LanguageManager extends BaseModelManager implements LanguageManagerInterfa
     }
 
     /**
-     * Create a new Language.
-     *
-     * Set its default values
-     *
-     * @return Language
-     */
-    public function createLanguage()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeLanguage($id)
+    public function removeEntity($id)
     {
         $language = $this->findById($id);
         parent::removeEntity($language);
-    }
-
-    /**
-     * @param Language $language
-     */
-    public function refreshLanguage(Language $language)
-    {
-        parent::reloadEntity($language);
-    }
-
-    /**
-     * @return LanguageRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

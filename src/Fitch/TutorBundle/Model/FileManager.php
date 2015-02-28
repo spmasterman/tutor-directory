@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\FileRepository;
 use Fitch\TutorBundle\Entity\File;
 use Oneup\UploaderBundle\Uploader\File\GaufretteFile;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -52,7 +51,7 @@ class FileManager extends BaseModelManager implements FileManagerInterface
     public function setMetaInfo(Request $request, GaufretteFile $gaufretteFile, $metaInfo)
     {
         $tutor = $this->tutorManager->findById($request->request->get('tutorPk'));
-        $file = $this->createFile();
+        $file = $this->createEntity();
         $tutor->addFile($file);
 
         // Get a reference to the UploadedFile - so we can get meta info (f.ex. the original name)
@@ -75,40 +74,12 @@ class FileManager extends BaseModelManager implements FileManagerInterface
     }
 
     /**
-     * Create a new File.
-     *
-     * Set its default values
-     *
-     * @return File
-     */
-    public function createFile()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeFile($id)
+    public function removeEntity($id)
     {
         $file = $this->findById($id);
         parent::removeEntity($file);
-    }
-
-    /**
-     * @param File $file
-     */
-    public function refreshFile(File $file)
-    {
-        parent::reloadEntity($file);
-    }
-
-    /**
-     * @return FileRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

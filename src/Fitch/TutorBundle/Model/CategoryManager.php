@@ -41,40 +41,12 @@ class CategoryManager extends BaseModelManager implements CategoryManagerInterfa
     }
 
     /**
-     * Create a new Category.
-     *
-     * Set its default values
-     *
-     * @return Category
-     */
-    public function createCategory()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeCategory($id)
+    public function removeEntity($id)
     {
         $category = $this->findById($id);
         parent::removeEntity($category);
-    }
-
-    /**
-     * @param Category $category
-     */
-    public function refreshCategory(Category $category)
-    {
-        parent::reloadEntity($category);
-    }
-
-    /**
-     * @return CategoryRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

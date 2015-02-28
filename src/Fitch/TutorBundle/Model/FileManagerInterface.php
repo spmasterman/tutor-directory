@@ -51,15 +51,15 @@ interface FileManagerInterface
      *
      * @return File
      */
-    public function createFile();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeFile($id);
+    public function removeEntity($id);
 
     /**
      * @param File $file
      */
-    public function refreshFile(File $file);
+    public function reloadEntity(File $file);
 }

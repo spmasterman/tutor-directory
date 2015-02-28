@@ -7,9 +7,9 @@ use Fitch\CommonBundle\Exception\UnhandledMimeTypeException;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Avatar;
 use Fitch\TutorBundle\Entity\File;
-use Fitch\TutorBundle\Model\CropInfoManager;
-use Fitch\TutorBundle\Model\FileManager;
-use Fitch\TutorBundle\Model\FileTypeManager;
+use Fitch\TutorBundle\Model\CropInfoManagerInterface;
+use Fitch\TutorBundle\Model\FileManagerInterface;
+use Fitch\TutorBundle\Model\FileTypeManagerInterface;
 use Knp\Bundle\GaufretteBundle\FilesystemMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -69,7 +69,7 @@ class FileController extends Controller
                         throw new UnknownMethodException($setter.' is not a valid File method');
                     }
             }
-            $this->getFileManager()->saveFile($file);
+            $this->getFileManager()->saveEntity($file);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -226,7 +226,7 @@ class FileController extends Controller
 
             $cropInfo = $file->getCropInfo();
             if (!$cropInfo) {
-                $cropInfo = $this->getCropInfoManager()->createCropInfo();
+                $cropInfo = $this->getCropInfoManager()->createEntity();
             }
 
             $cropInfo->setOriginX($request->request->get('originX'));
@@ -234,7 +234,7 @@ class FileController extends Controller
             $cropInfo->setWidth($request->request->get('width'));
             $cropInfo->setHeight($request->request->get('height'));
             $file->setCropInfo($cropInfo);
-            $this->getCropInfoManager()->saveCropInfo($cropInfo);
+            $this->getCropInfoManager()->saveEntity($cropInfo);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -312,7 +312,7 @@ class FileController extends Controller
             }
 
             $file->delete();
-            $this->getFileManager()->removeFile($fileEntity->getId());
+            $this->getFileManager()->removeEntity($fileEntity->getId());
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -326,7 +326,7 @@ class FileController extends Controller
     }
 
     /**
-     * @return FileManager
+     * @return FileManagerInterface
      */
     private function getFileManager()
     {
@@ -334,7 +334,7 @@ class FileController extends Controller
     }
 
     /**
-     * @return CropInfoManager
+     * @return CropInfoManagerInterface
      */
     private function getCropInfoManager()
     {
@@ -342,7 +342,7 @@ class FileController extends Controller
     }
 
     /**
-     * @return FileTypeManager
+     * @return FileTypeManagerInterface
      */
     private function getFileTypeManager()
     {

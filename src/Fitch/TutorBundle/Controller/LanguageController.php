@@ -51,7 +51,7 @@ class LanguageController extends Controller
     {
         $languageManager = $this->getLanguageManager();
 
-        $language = $languageManager->createLanguage();
+        $language = $languageManager->createEntity();
         $form = $this->createCreateForm($language);
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class LanguageController extends Controller
      */
     public function newAction()
     {
-        $language = $this->getLanguageManager()->createLanguage();
+        $language = $this->getLanguageManager()->createEntity();
         $form   = $this->createCreateForm($language);
 
         return [
@@ -254,7 +254,7 @@ class LanguageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getLanguageManager()->removeLanguage($language->getId());
+            $this->getLanguageManager()->removeEntity($language->getId());
 
             $this->addFlash(
                 'success',

@@ -35,7 +35,7 @@ class EmailManagerTest extends FixturesWebTestCase
         $this->assertCount(6, $allEntities, "Should return six entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createEmail();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setType('t')
             ->setAddress('a@b.c')
@@ -59,11 +59,11 @@ class EmailManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setAddress('a3@b.c');
-        $this->getModelManager()->refreshEmail($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('a2@b.c', $newEntity->getAddress());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEmail($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(6, $allEntities, "Should return six entities");
     }

@@ -52,7 +52,7 @@ class ProficiencyController extends Controller
     {
         $proficiencyManager = $this->getProficiencyManager();
 
-        $proficiency = $proficiencyManager->createProficiency();
+        $proficiency = $proficiencyManager->createEntity();
         $form = $this->createCreateForm($proficiency);
         $form->handleRequest($request);
 
@@ -112,7 +112,7 @@ class ProficiencyController extends Controller
      */
     public function newAction()
     {
-        $proficiency = $this->getProficiencyManager()->createProficiency();
+        $proficiency = $this->getProficiencyManager()->createEntity();
         $form   = $this->createCreateForm($proficiency);
 
         return [
@@ -255,7 +255,7 @@ class ProficiencyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getProficiencyManager()->removeProficiency($proficiency->getId());
+            $this->getProficiencyManager()->removeEntity($proficiency->getId());
 
             $this->addFlash(
                 'success',

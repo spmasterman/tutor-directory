@@ -47,15 +47,15 @@ interface FileTypeManagerInterface
      *
      * @return FileType
      */
-    public function createFileType();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeFileType($id);
+    public function removeEntity($id);
 
     /**
      * @param FileType $fileType
      */
-    public function refreshFileType(FileType $fileType);
+    public function reloadEntity(FileType $fileType);
 }

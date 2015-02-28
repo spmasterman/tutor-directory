@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\EmailManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -38,7 +38,7 @@ class EmailController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getEmailManager()->removeEmail($request->request->get('pk'));
+            $this->getEmailManager()->removeEntity($request->request->get('pk'));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -52,7 +52,7 @@ class EmailController extends Controller
     }
 
     /**
-     * @return EmailManager
+     * @return EmailManagerInterface
      */
     private function getEmailManager()
     {

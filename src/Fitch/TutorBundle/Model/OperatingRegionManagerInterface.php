@@ -49,15 +49,15 @@ interface OperatingRegionManagerInterface
      *
      * @return OperatingRegion
      */
-    public function createOperatingRegion();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeOperatingRegion($id);
+    public function removeEntity($id);
 
     /**
      * @param OperatingRegion $operatingRegion
      */
-    public function refreshOperatingRegion(OperatingRegion $operatingRegion);
+    public function reloadEntity(OperatingRegion $operatingRegion);
 }

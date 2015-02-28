@@ -5,6 +5,7 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\RateRepository;
 use Fitch\TutorBundle\Entity\Rate;
+use Gedmo\Loggable\Entity\Repository\LogEntryRepository;
 
 class RateManager extends BaseModelManager implements RateManagerInterface
 {
@@ -28,44 +29,32 @@ class RateManager extends BaseModelManager implements RateManagerInterface
      */
     public function getLogs(Rate $rate)
     {
-        return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($rate);
-    }
-
-    /**
-     * Create a new Rate.
-     *
-     * Set its default values
-     *
-     * @return Rate
-     */
-    public function createRate()
-    {
-        return parent::createEntity();
+        return $this->getLogEntryRepo()->getLogEntries($rate);
     }
 
     /**
      * @param int $id
      */
-    public function removeRate($id)
+    public function removeEntity($id)
     {
         $rate = $this->findById($id);
         parent::removeEntity($rate);
     }
 
     /**
-     * @param Rate $rate
+     * @return RateRepository
      */
-    public function refreshRate(Rate $rate)
+    protected function getRepo()
     {
-        parent::reloadEntity($rate);
+        return parent::getRepo();
     }
 
     /**
-     * @return RateRepository
+     * @return LogEntryRepository
      */
-    private function getRepo()
+    private function getLogEntryRepo()
     {
-        return $this->repo;
+        return $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry');
     }
 
     /**

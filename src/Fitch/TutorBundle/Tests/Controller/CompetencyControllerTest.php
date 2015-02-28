@@ -66,12 +66,12 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency->setNote(self::START);
 
         $manager->saveEntity($tutor);
-        $manager->refreshTutor($tutor);
+        $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getNote());
 
         $this->performMockedUpdate($tutor, $competency, 'competency-note');
 
-        $manager->refreshTutor($tutor);
+        $manager->reloadEntity($tutor);
         $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getNote());
     }
 
@@ -91,12 +91,12 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency->getCompetencyType()->setName(self::START);
 
         $manager->saveEntity($tutor);
-        $manager->refreshTutor($tutor);
+        $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
 
         $this->performMockedUpdate($tutor, $competency, 'competency-type');
 
-        $manager->refreshTutor($tutor);
+        $manager->reloadEntity($tutor);
         $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
     }
 
@@ -116,12 +116,12 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency->getCompetencyLevel()->setName(self::START);
 
         $manager->saveEntity($tutor);
-        $manager->refreshTutor($tutor);
+        $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
 
         $this->performMockedUpdate($tutor, $competency, 'competency-level');
 
-        $manager->refreshTutor($tutor);
+        $manager->reloadEntity($tutor);
         $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
     }
 

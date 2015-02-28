@@ -42,7 +42,7 @@ class CompetencyLevelManager extends BaseModelManager implements CompetencyLevel
         $competencyLevel = $this->getRepo()->findOneBy(['name' => $levelName]);
 
         if (!$competencyLevel) {
-            $competencyLevel = $this->createCompetencyLevel();
+            $competencyLevel = $this->createEntity();
             $competencyLevel->setName($levelName);
             $this->saveEntity($competencyLevel);
         }
@@ -51,40 +51,12 @@ class CompetencyLevelManager extends BaseModelManager implements CompetencyLevel
     }
 
     /**
-     * Create a new CompetencyLevel.
-     *
-     * Set its default values
-     *
-     * @return CompetencyLevel
-     */
-    public function createCompetencyLevel()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeCompetencyLevel($id)
+    public function removeEntity($id)
     {
         $competencyLevel = $this->findById($id);
         parent::removeEntity($competencyLevel);
-    }
-
-    /**
-     * @param CompetencyLevel $competencyLevel
-     */
-    public function refreshCompetencyLevel(CompetencyLevel $competencyLevel)
-    {
-        parent::reloadEntity($competencyLevel);
-    }
-
-    /**
-     * @return CompetencyLevelRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

@@ -9,40 +9,12 @@ use Fitch\TutorBundle\Entity\Email;
 class EmailManager extends BaseModelManager implements EmailManagerInterface
 {
     /**
-     * Create a new Email.
-     *
-     * Set its default values
-     *
-     * @return Email
-     */
-    public function createEmail()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removeEmail($id)
+    public function removeEntity($id)
     {
         $email = $this->findById($id);
         parent::removeEntity($email);
-    }
-
-    /**
-     * @param Email $email
-     */
-    public function refreshEmail(Email $email)
-    {
-        parent::reloadEntity($email);
-    }
-
-    /**
-     * @return EmailRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

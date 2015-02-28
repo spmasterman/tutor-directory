@@ -4,11 +4,9 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
+use Fitch\TutorBundle\Model\TutorLanguage\TutorLanguageUpdateFactory;
 use Fitch\TutorBundle\Model\TutorLanguageManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
-use Fitch\TutorBundle\Model\TutorLanguage\TutorLanguageUpdateFactory;
-use Fitch\TutorBundle\Model\TutorLanguageManager;
-use Fitch\TutorBundle\Model\TutorManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -63,7 +61,7 @@ class TutorLanguageController extends Controller
             $tutorLanguageUpdateHandler->update($tutorLanguage, $value);
 
             // Save the entity
-            $this->getTutorManager()->saveTutor($tutor);
+            $this->getTutorManager()->saveEntity($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -108,7 +106,7 @@ class TutorLanguageController extends Controller
                 throw new NotFoundHttpException('Tutor Language does not exist!');
             }
 
-            $this->getTutorLanguageManager()->removeTutorLanguage($tutorLanguage->getId());
+            $this->getTutorLanguageManager()->removeEntity($tutorLanguage->getId());
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -122,7 +120,7 @@ class TutorLanguageController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\TutorLanguageManagerInterface
+     * @return TutorLanguageManagerInterface
      */
     private function getTutorLanguageManager()
     {
@@ -130,7 +128,7 @@ class TutorLanguageController extends Controller
     }
 
     /**
-     * @return \Fitch\TutorBundle\Model\TutorManagerInterface
+     * @return TutorManagerInterface
      */
     private function getTutorManager()
     {

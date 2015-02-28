@@ -33,6 +33,7 @@ class CompetencyFilterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
         $builder
             ->add('competencyType', 'entity', [
                 'class' => 'Fitch\TutorBundle\Entity\CompetencyType',

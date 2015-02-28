@@ -49,15 +49,15 @@ interface StatusManagerInterface
      *
      * @return Status
      */
-    public function createStatus();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeStatus($id);
+    public function removeEntity($id);
 
     /**
      * @param Status $status
      */
-    public function refreshStatus(Status $status);
+    public function reloadEntity(Status $status);
 }

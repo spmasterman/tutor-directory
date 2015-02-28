@@ -31,7 +31,7 @@ class NoteManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return 3 entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createNote();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setBody('n')
             ->setKey('t')
@@ -55,11 +55,11 @@ class NoteManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setBody('n3');
-        $this->getModelManager()->refreshNote($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('n2', $newEntity->getBody());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeNote($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return 3 entities");
     }

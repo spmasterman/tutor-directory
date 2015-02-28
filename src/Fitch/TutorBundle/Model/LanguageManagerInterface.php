@@ -64,15 +64,15 @@ interface LanguageManagerInterface
      *
      * @return Language
      */
-    public function createLanguage();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeLanguage($id);
+    public function removeEntity($id);
 
     /**
      * @param Language $language
      */
-    public function refreshLanguage(Language $language);
+    public function reloadEntity(Language $language);
 }

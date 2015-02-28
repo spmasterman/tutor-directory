@@ -53,7 +53,7 @@ class CountryController extends Controller
     {
         $countryManager = $this->getCountryManager();
 
-        $country = $countryManager->createCountry();
+        $country = $countryManager->createEntity();
         $form = $this->createCreateForm($country);
         $form->handleRequest($request);
 
@@ -115,7 +115,7 @@ class CountryController extends Controller
      */
     public function newAction()
     {
-        $country = $this->getCountryManager()->createCountry();
+        $country = $this->getCountryManager()->createEntity();
         $form   = $this->createCreateForm($country);
 
         return [
@@ -254,7 +254,7 @@ class CountryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getCountryManager()->removeCountry($country->getId());
+            $this->getCountryManager()->removeEntity($country->getId());
 
             $this->addFlash(
                 'success',

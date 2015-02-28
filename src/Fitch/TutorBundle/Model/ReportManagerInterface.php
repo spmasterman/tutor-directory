@@ -40,15 +40,15 @@ interface ReportManagerInterface
      *
      * @return Report
      */
-    public function createReport();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeReport($id);
+    public function removeEntity($id);
 
     /**
      * @param Report $report
      */
-    public function refreshReport(Report $report);
+    public function reloadEntity(Report $report);
 }

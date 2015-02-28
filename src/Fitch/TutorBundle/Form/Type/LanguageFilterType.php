@@ -30,6 +30,7 @@ class LanguageFilterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
         $builder
             ->add('language', 'entity', [
                 'class' => 'FitchTutorBundle:Language',

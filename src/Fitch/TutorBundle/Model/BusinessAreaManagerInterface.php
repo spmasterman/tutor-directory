@@ -58,15 +58,15 @@ interface BusinessAreaManagerInterface
      *
      * @return BusinessArea
      */
-    public function createBusinessArea();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeBusinessArea($id);
+    public function removeEntity($id);
 
     /**
      * @param BusinessArea $businessArea
      */
-    public function refreshBusinessArea(BusinessArea $businessArea);
+    public function reloadEntity(BusinessArea $businessArea);
 }

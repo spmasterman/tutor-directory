@@ -43,15 +43,15 @@ interface CompetencyManagerInterface
      *
      * @return Competency
      */
-    public function createCompetency();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeCompetency($id);
+    public function removeEntity($id);
 
     /**
      * @param Competency $competency
      */
-    public function refreshCompetency(Competency $competency);
+    public function reloadEntity(Competency $competency);
 }

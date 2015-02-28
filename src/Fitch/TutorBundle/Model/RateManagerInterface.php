@@ -46,15 +46,15 @@ interface RateManagerInterface
      *
      * @return Rate
      */
-    public function createRate();
+    public function createEntity();
 
     /**
      * @param int $id
      */
-    public function removeRate($id);
+    public function removeEntity($id);
 
     /**
      * @param Rate $rate
      */
-    public function refreshRate(Rate $rate);
+    public function reloadEntity(Rate $rate);
 }

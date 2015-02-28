@@ -50,10 +50,10 @@ class CompetencyManagerTest extends FixturesWebTestCase
         $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
 
         $newEntity->setNote('n3');
-        $this->getModelManager()->refreshCompetency($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('n2', $newEntity->getNote());
 
-        $this->getModelManager()->removeCompetency($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return 3 entities");
     }

@@ -9,40 +9,12 @@ use Fitch\TutorBundle\Entity\Phone;
 class PhoneManager extends BaseModelManager implements PhoneManagerInterface
 {
     /**
-     * Create a new Phone.
-     *
-     * Set its default values
-     *
-     * @return Phone
-     */
-    public function createPhone()
-    {
-        return parent::createEntity();
-    }
-
-    /**
      * @param int $id
      */
-    public function removePhone($id)
+    public function removeEntity($id)
     {
         $phone = $this->findById($id);
         parent::removeEntity($phone);
-    }
-
-    /**
-     * @param Phone $phone
-     */
-    public function refreshPhone(Phone $phone)
-    {
-        parent::reloadEntity($phone);
-    }
-
-    /**
-     * @return PhoneRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

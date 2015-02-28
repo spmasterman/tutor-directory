@@ -3,36 +3,36 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
-use Fitch\TutorBundle\Entity\Phone;
+use Fitch\TutorBundle\Entity\CropInfo;
 
-interface PhoneManagerInterface
+interface CropInfoManagerInterface
 {
     /**
      * @param $id
      *
      * @throws EntityNotFoundException
      *
-     * @return Phone
+     * @return CropInfo
      */
     public function findById($id);
 
     /**
-     * @return Phone[]
+     * @return CropInfo[]
      */
     public function findAll();
 
     /**
-     * @param Phone $phone
-     * @param bool  $withFlush
+     * @param CropInfo $cropInfo
+     * @param bool $withFlush
      */
-    public function saveEntity($phone, $withFlush = true);
+    public function saveEntity($cropInfo, $withFlush = true);
 
     /**
-     * Create a new Phone.
+     * Create a new CropInfo.
      *
      * Set its default values
      *
-     * @return Phone
+     * @return CropInfo
      */
     public function createEntity();
 
@@ -42,7 +42,7 @@ interface PhoneManagerInterface
     public function removeEntity($id);
 
     /**
-     * @param Phone $phone
+     * @param CropInfo $cropInfo
      */
-    public function reloadEntity(Phone $phone);
+    public function reloadEntity(CropInfo $cropInfo);
 }

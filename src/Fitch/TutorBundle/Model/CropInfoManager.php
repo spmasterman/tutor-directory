@@ -7,72 +7,16 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Repository\CropInfoRepository;
 use Fitch\TutorBundle\Entity\CropInfo;
 
-class CropInfoManager extends BaseModelManager
+class CropInfoManager extends BaseModelManager implements CropInfoManagerInterface
 {
-    /**
-     * @param $id
-     *
-     * @throws EntityNotFoundException
-     *
-     * @return CropInfo
-     */
-    public function findById($id)
-    {
-        return parent::findById($id);
-    }
-
-    /**
-     * @return CropInfo[]
-     */
-    public function findAll()
-    {
-        return parent::findAll();
-    }
-
-    /**
-     * @param CropInfo $cropInfo
-     * @param bool     $withFlush
-     */
-    public function saveCropInfo($cropInfo, $withFlush = true)
-    {
-        parent::saveEntity($cropInfo, $withFlush);
-    }
-
-    /**
-     * Create a new CropInfo.
-     *
-     * Set its default values
-     *
-     * @return CropInfo
-     */
-    public function createCropInfo()
-    {
-        return parent::createEntity();
-    }
 
     /**
      * @param int $id
      */
-    public function removeCropInfo($id)
+    public function removeEntity($id)
     {
         $cropInfo = $this->findById($id);
         parent::removeEntity($cropInfo);
-    }
-
-    /**
-     * @param CropInfo $cropInfo
-     */
-    public function refreshCropInfo(CropInfo $cropInfo)
-    {
-        parent::reloadEntity($cropInfo);
-    }
-
-    /**
-     * @return CropInfoRepository
-     */
-    private function getRepo()
-    {
-        return $this->repo;
     }
 
     /**

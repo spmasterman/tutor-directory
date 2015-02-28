@@ -51,7 +51,7 @@ class FileTypeController extends Controller
     {
         $fileTypeManager = $this->getFileTypeManager();
 
-        $fileType = $fileTypeManager->createFileType();
+        $fileType = $fileTypeManager->createEntity();
         $form = $this->createCreateForm($fileType);
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class FileTypeController extends Controller
      */
     public function newAction()
     {
-        $fileType = $this->getFileTypeManager()->createFileType();
+        $fileType = $this->getFileTypeManager()->createEntity();
         $form   = $this->createCreateForm($fileType);
 
         return [
@@ -254,7 +254,7 @@ class FileTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getFileTypeManager()->removeFileType($fileType->getId());
+            $this->getFileTypeManager()->removeEntity($fileType->getId());
 
             $this->addFlash(
                 'success',

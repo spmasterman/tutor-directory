@@ -31,7 +31,7 @@ class RateManagerTest extends FixturesWebTestCase
         $this->assertCount(3, $allEntities, "Should return six entities");
 
         // Create new one
-        $newEntity = $this->getModelManager()->createRate();
+        $newEntity = $this->getModelManager()->createEntity();
         $newEntity
             ->setName('n')
             ->setAmount(1)
@@ -55,7 +55,7 @@ class RateManagerTest extends FixturesWebTestCase
 
         // Check that when we refresh it refreshes
         $newEntity->setName('n3');
-        $this->getModelManager()->refreshRate($newEntity);
+        $this->getModelManager()->reloadEntity($newEntity);
         $this->assertEquals('n2', $newEntity->getName());
 
         // Check Logs:
@@ -73,7 +73,7 @@ class RateManagerTest extends FixturesWebTestCase
         $this->assertEquals(['name' => 'n', 'amount' => 1], $logs[1]->getData());
 
         // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeRate($newEntity->getId());
+        $this->getModelManager()->removeEntity($newEntity->getId());
 
         $allEntities = $this->getModelManager()->findAll();
         $this->assertCount(3, $allEntities, "Should return six entities");

@@ -35,7 +35,7 @@ interface TutorLanguageManagerInterface
      *
      * @return TutorLanguage
      */
-    public function createTutorLanguage();
+    public function createEntity();
 
     /**
      * @param TutorLanguage $tutorLanguage
@@ -45,12 +45,12 @@ interface TutorLanguageManagerInterface
     /**
      * @param int $id
      */
-    public function removeTutorLanguage($id);
+    public function removeEntity($id);
 
     /**
      * @param TutorLanguage $tutorLanguage
      */
-    public function refreshTutorLanguage(TutorLanguage $tutorLanguage);
+    public function reloadEntity(TutorLanguage $tutorLanguage);
 
     /**
      * @param $id

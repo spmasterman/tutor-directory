@@ -30,6 +30,7 @@ class CategoryFilterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
         $builder
             ->add('category', 'entity', [
                 'class' => 'Fitch\TutorBundle\Entity\Category',
