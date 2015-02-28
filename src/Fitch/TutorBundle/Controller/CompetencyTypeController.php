@@ -2,17 +2,15 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\CategoryManager;
+use Fitch\TutorBundle\Entity\CompetencyType;
+use Fitch\TutorBundle\Form\Type\CompetencyTypeType;
 use Fitch\TutorBundle\Model\CategoryManagerInterface;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\CompetencyType;
-use Fitch\TutorBundle\Form\Type\CompetencyTypeType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * CompetencyType controller.
@@ -218,7 +216,7 @@ class CompetencyTypeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getCompetencyTypeManager()->saveCompetencyType($competencyType);
+            $this->getCompetencyTypeManager()->saveEntity($competencyType);
 
             $this->addFlash(
                 'success',

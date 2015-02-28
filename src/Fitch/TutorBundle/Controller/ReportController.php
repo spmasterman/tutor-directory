@@ -12,7 +12,6 @@ use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Fitch\TutorBundle\Model\LanguageManagerInterface;
 use Fitch\TutorBundle\Model\RateManagerInterface;
 use Fitch\TutorBundle\Model\ReportDefinition;
-use Fitch\TutorBundle\Model\ReportManager;
 use Fitch\TutorBundle\Model\ReportManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 use InvalidArgumentException;
@@ -328,7 +327,7 @@ class ReportController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getReportManager()->saveReport($report);
+            $this->getReportManager()->saveEntity($report);
 
             $this->addFlash(
                 'success',

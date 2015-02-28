@@ -2,15 +2,14 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\StatusManager;
+use Fitch\TutorBundle\Entity\Status;
+use Fitch\TutorBundle\Form\Type\StatusType;
 use Fitch\TutorBundle\Model\StatusManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\Status;
-use Fitch\TutorBundle\Form\Type\StatusType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Status controller.
@@ -220,7 +219,7 @@ class StatusController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getStatusManager()->saveStatus($status);
+            $this->getStatusManager()->saveEntity($status);
 
             $this->addFlash(
                 'success',

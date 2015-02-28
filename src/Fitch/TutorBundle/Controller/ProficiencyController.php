@@ -2,16 +2,15 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\ProficiencyManager;
+use Fitch\TutorBundle\Entity\Proficiency;
+use Fitch\TutorBundle\Form\Type\ProficiencyType;
 use Fitch\TutorBundle\Model\ProficiencyManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\Proficiency;
-use Fitch\TutorBundle\Form\Type\ProficiencyType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Proficiency controller.
@@ -221,7 +220,7 @@ class ProficiencyController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getProficiencyManager()->saveProficiency($proficiency);
+            $this->getProficiencyManager()->saveEntity($proficiency);
 
             $this->addFlash(
                 'success',

@@ -65,7 +65,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency = $tutor->getCompetencies()->first();
         $competency->setNote(self::START);
 
-        $manager->saveTutor($tutor);
+        $manager->saveEntity($tutor);
         $manager->refreshTutor($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getNote());
 
@@ -90,7 +90,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency = $tutor->getCompetencies()->first();
         $competency->getCompetencyType()->setName(self::START);
 
-        $manager->saveTutor($tutor);
+        $manager->saveEntity($tutor);
         $manager->refreshTutor($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
 
@@ -115,7 +115,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency = $tutor->getCompetencies()->first();
         $competency->getCompetencyLevel()->setName(self::START);
 
-        $manager->saveTutor($tutor);
+        $manager->saveEntity($tutor);
         $manager->refreshTutor($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
 

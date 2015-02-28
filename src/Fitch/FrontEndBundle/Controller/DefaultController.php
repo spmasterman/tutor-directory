@@ -4,7 +4,7 @@ namespace Fitch\FrontEndBundle\Controller;
 
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\UserBundle\Entity\User;
-use Fitch\UserBundle\Model\UserManager;
+use Fitch\UserBundle\Model\UserManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -51,7 +51,7 @@ class DefaultController extends Controller
                 $attribute = $manager->findAttributeByName($user, $key);
             }
             $attribute->setValue($state);
-            $manager->saveUser($user);
+            $manager->saveEntity($user);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -65,7 +65,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @return UserManager
+     * @return UserManagerInterface
      */
     public function getUserManager()
     {

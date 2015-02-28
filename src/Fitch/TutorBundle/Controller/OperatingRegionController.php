@@ -4,9 +4,7 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\OperatingRegion;
 use Fitch\TutorBundle\Form\Type\OperatingRegionType;
-use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\CurrencyManagerInterface;
-use Fitch\TutorBundle\Model\OperatingRegionManager;
 use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -224,7 +222,7 @@ class OperatingRegionController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getOperatingRegionManager()->saveOperatingRegion($region);
+            $this->getOperatingRegionManager()->saveEntity($region);
 
             $this->addFlash(
                 'success',

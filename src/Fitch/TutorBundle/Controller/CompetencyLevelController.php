@@ -2,7 +2,6 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
 use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -216,7 +215,7 @@ class CompetencyLevelController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getCompetencyLevelManager()->saveCompetencyLevel($competencyLevel);
+            $this->getCompetencyLevelManager()->saveEntity($competencyLevel);
 
             $this->addFlash(
                 'success',

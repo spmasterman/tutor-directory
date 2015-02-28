@@ -2,15 +2,14 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\LanguageManager;
+use Fitch\TutorBundle\Entity\Language;
+use Fitch\TutorBundle\Form\Type\LanguageType;
 use Fitch\TutorBundle\Model\LanguageManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\Language;
-use Fitch\TutorBundle\Form\Type\LanguageType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Language controller.
@@ -220,7 +219,7 @@ class LanguageController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getLanguageManager()->saveLanguage($language);
+            $this->getLanguageManager()->saveEntity($language);
 
             $this->addFlash(
                 'success',

@@ -2,17 +2,16 @@
 
 namespace Fitch\TutorBundle\Controller;
 
+use Fitch\TutorBundle\Entity\Currency;
+use Fitch\TutorBundle\Form\Type\CurrencyType;
 use Fitch\TutorBundle\Model\Currency\Provider\YahooApi;
-use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\CurrencyManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\Currency;
-use Fitch\TutorBundle\Form\Type\CurrencyType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Currency controller.
@@ -222,7 +221,7 @@ class CurrencyController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getCurrencyManager()->saveCurrency($currency);
+            $this->getCurrencyManager()->saveEntity($currency);
 
             $this->addFlash(
                 'success',

@@ -2,15 +2,14 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\TutorTypeManager;
+use Fitch\TutorBundle\Entity\TutorType;
+use Fitch\TutorBundle\Form\Type\TutorTypeType;
 use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\TutorType;
-use Fitch\TutorBundle\Form\Type\TutorTypeType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * TutorType controller.
@@ -220,7 +219,7 @@ class TutorTypeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getTutorTypeManager()->saveTutorType($tutorType);
+            $this->getTutorTypeManager()->saveEntity($tutorType);
 
             $this->addFlash(
                 'success',

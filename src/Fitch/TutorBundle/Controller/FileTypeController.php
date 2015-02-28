@@ -2,15 +2,14 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\TutorBundle\Model\FileTypeManager;
+use Fitch\TutorBundle\Entity\FileType;
+use Fitch\TutorBundle\Form\Type\FileTypeType;
 use Fitch\TutorBundle\Model\FileTypeManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Fitch\TutorBundle\Entity\FileType;
-use Fitch\TutorBundle\Form\Type\FileTypeType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * FileType controller.
@@ -220,7 +219,7 @@ class FileTypeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getFileTypeManager()->saveFileType($fileType);
+            $this->getFileTypeManager()->saveEntity($fileType);
 
             $this->addFlash(
                 'success',
