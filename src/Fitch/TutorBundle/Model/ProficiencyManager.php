@@ -29,7 +29,7 @@ class ProficiencyManager extends BaseModelManager implements ProficiencyManagerI
         if (!$proficiency) {
             $proficiency = $this->createProficiency();
             $proficiency->setName($proficiencyName);
-            $this->saveProficiency($proficiency);
+            $this->saveEntity($proficiency);
         }
 
         return $proficiency;

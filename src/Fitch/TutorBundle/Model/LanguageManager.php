@@ -24,7 +24,7 @@ class LanguageManager extends BaseModelManager implements LanguageManagerInterfa
                 ->setActive(true)
                 ->setThreeLetterCode('')
             ;
-            $this->saveLanguage($language);
+            $this->saveEntity($language);
         }
 
         return $language;

@@ -61,7 +61,7 @@ class CompetencyController extends Controller
             $competencyUpdateHandler->update($competency, $value);
 
             // Save the entity
-            $this->getTutorManager()->saveTutor($tutor);
+            $this->getTutorManager()->saveEntity($tutor);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,

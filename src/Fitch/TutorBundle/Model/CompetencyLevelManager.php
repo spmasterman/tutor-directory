@@ -44,7 +44,7 @@ class CompetencyLevelManager extends BaseModelManager implements CompetencyLevel
         if (!$competencyLevel) {
             $competencyLevel = $this->createCompetencyLevel();
             $competencyLevel->setName($levelName);
-            $this->saveCompetencyLevel($competencyLevel);
+            $this->saveEntity($competencyLevel);
         }
 
         return $competencyLevel;

@@ -80,7 +80,7 @@ class CurrencyManager extends BaseModelManager implements CurrencyManagerInterfa
         }
 
         $currency->setToGBP($rate)->setRateUpdated(new \DateTime());
-        $this->saveCurrency($currency);
+        $this->saveEntity($currency);
 
         return true;
     }

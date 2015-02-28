@@ -74,7 +74,7 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
         if (!$competencyType) {
             $competencyType = $this->createCompetencyType($categoryManager);
             $competencyType->setName($competencyTypeName);
-            $this->saveCompetencyType($competencyType);
+            $this->saveEntity($competencyType);
         }
 
         return $competencyType;
