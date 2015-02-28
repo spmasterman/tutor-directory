@@ -38,7 +38,8 @@ class AddressController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getAddressManager()->removeEntity($request->request->get('pk'));
+            $manager = $this->getAddressManager();
+            $manager->removeEntity($manager->findById($request->request->get('pk')));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,

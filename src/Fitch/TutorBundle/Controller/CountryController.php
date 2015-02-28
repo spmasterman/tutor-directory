@@ -254,7 +254,7 @@ class CountryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getCountryManager()->removeEntity($country->getId());
+            $this->getCountryManager()->removeEntity($country);
 
             $this->addFlash(
                 'success',

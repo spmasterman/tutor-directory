@@ -254,7 +254,7 @@ class FileTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getFileTypeManager()->removeEntity($fileType->getId());
+            $this->getFileTypeManager()->removeEntity($fileType);
 
             $this->addFlash(
                 'success',

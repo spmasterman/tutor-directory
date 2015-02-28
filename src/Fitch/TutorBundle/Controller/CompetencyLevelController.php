@@ -255,7 +255,7 @@ class CompetencyLevelController extends Controller
                 $this->get('translator')->trans('competency_level.delete.success')
             );
 
-            $this->getCompetencyLevelManager()->removeEntity($competencyLevel->getId());
+            $this->getCompetencyLevelManager()->removeEntity($competencyLevel);
         }
 
         return $this->redirectToRoute('competency_level');

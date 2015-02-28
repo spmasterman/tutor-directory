@@ -135,15 +135,6 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     }
 
     /**
-     * @param int $id
-     */
-    public function removeEntity($id)
-    {
-        $tutor = $this->findById($id);
-        parent::removeEntity($tutor);
-    }
-
-    /**
      * @return TutorRepository
      */
     protected function getRepo()

@@ -254,7 +254,7 @@ class StatusController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getStatusManager()->removeEntity($status->getId());
+            $this->getStatusManager()->removeEntity($status);
 
             $this->addFlash(
                 'success',

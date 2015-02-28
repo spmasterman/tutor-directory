@@ -38,7 +38,8 @@ class RateController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getRateManager()->removeEntity($request->request->get('pk'));
+            $manager = $this->getRateManager();
+            $manager->removeEntity($manager->findById($request->request->get('pk')));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,

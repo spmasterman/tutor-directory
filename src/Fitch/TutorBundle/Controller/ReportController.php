@@ -364,7 +364,7 @@ class ReportController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getReportManager()->removeEntity($report->getId());
+            $this->getReportManager()->removeEntity($report);
 
             $this->addFlash(
                 'success',

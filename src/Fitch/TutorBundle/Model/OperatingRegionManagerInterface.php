@@ -52,9 +52,10 @@ interface OperatingRegionManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param OperatingRegion $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param OperatingRegion $operatingRegion

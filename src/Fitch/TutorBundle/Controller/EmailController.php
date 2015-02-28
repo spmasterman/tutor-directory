@@ -38,7 +38,8 @@ class EmailController extends Controller
     public function removeAction(Request $request)
     {
         try {
-            $this->getEmailManager()->removeEntity($request->request->get('pk'));
+            $manager = $this->getEmailManager();
+            $manager->removeEntity($manager->findById($request->request->get('pk')));
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,

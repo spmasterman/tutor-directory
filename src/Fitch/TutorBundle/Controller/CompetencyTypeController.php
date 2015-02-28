@@ -256,7 +256,7 @@ class CompetencyTypeController extends Controller
                 $this->get('translator')->trans('competency_type.delete.success')
             );
 
-            $this->getCompetencyTypeManager()->removeEntity($competencyType->getId());
+            $this->getCompetencyTypeManager()->removeEntity($competencyType);
         }
 
         return $this->redirectToRoute('competency_type');

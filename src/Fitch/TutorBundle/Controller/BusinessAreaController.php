@@ -254,7 +254,7 @@ class BusinessAreaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getBusinessAreaManager()->removeEntity($businessArea->getId());
+            $this->getBusinessAreaManager()->removeEntity($businessArea);
 
             $this->addFlash(
                 'success',

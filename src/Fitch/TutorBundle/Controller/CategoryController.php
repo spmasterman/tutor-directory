@@ -254,7 +254,7 @@ class CategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getCategoryManager()->removeEntity($category->getId());
+            $this->getCategoryManager()->removeEntity($category);
 
             $this->addFlash(
                 'success',

@@ -37,9 +37,10 @@ interface AddressManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Address $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Address $address

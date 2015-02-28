@@ -255,7 +255,7 @@ class ProficiencyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getProficiencyManager()->removeEntity($proficiency->getId());
+            $this->getProficiencyManager()->removeEntity($proficiency);
 
             $this->addFlash(
                 'success',

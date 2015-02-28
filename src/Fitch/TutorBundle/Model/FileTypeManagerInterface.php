@@ -50,9 +50,10 @@ interface FileTypeManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param FileType $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param FileType $fileType

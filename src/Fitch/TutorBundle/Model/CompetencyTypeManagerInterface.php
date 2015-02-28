@@ -73,9 +73,10 @@ interface CompetencyTypeManagerInterface
     public function setDefaultCategory(CompetencyType $competencyType, CategoryManagerInterface $categoryManager);
 
     /**
-     * @param int $id
+     * @param CompetencyType $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param CompetencyType $competencyType

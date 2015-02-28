@@ -256,7 +256,7 @@ class CurrencyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getCurrencyManager()->removeEntity($currency->getId());
+            $this->getCurrencyManager()->removeEntity($currency);
 
             $this->addFlash(
                 'success',

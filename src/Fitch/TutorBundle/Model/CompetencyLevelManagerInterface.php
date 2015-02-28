@@ -59,9 +59,10 @@ interface CompetencyLevelManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param CompetencyLevel $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param CompetencyLevel $competencyLevel

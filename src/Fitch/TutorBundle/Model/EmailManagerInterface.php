@@ -37,9 +37,10 @@ interface EmailManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Email $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Email $email

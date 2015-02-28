@@ -33,15 +33,6 @@ class RateManager extends BaseModelManager implements RateManagerInterface
     }
 
     /**
-     * @param int $id
-     */
-    public function removeEntity($id)
-    {
-        $rate = $this->findById($id);
-        parent::removeEntity($rate);
-    }
-
-    /**
      * @return RateRepository
      */
     protected function getRepo()

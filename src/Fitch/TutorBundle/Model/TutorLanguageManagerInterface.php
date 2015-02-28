@@ -43,14 +43,15 @@ interface TutorLanguageManagerInterface
     public function setDefaultProficiency(TutorLanguage $tutorLanguage);
 
     /**
-     * @param int $id
-     */
-    public function removeEntity($id);
-
-    /**
      * @param TutorLanguage $tutorLanguage
      */
     public function reloadEntity($tutorLanguage);
+
+    /**
+     * @param TutorLanguage $entity
+     * @param bool $withFlush
+     */
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param $id

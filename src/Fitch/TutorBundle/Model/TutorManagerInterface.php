@@ -49,9 +49,10 @@ interface TutorManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Tutor $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Tutor $tutor

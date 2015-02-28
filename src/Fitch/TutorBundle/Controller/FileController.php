@@ -312,7 +312,7 @@ class FileController extends Controller
             }
 
             $file->delete();
-            $this->getFileManager()->removeEntity($fileEntity->getId());
+            $this->getFileManager()->removeEntity($fileEntity);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,

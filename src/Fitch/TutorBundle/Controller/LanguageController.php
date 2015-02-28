@@ -254,7 +254,7 @@ class LanguageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getLanguageManager()->removeEntity($language->getId());
+            $this->getLanguageManager()->removeEntity($language);
 
             $this->addFlash(
                 'success',

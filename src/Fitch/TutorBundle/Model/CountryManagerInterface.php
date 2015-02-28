@@ -65,9 +65,10 @@ interface CountryManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Country $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Country $country

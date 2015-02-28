@@ -37,9 +37,10 @@ interface NoteManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Note $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Note $note

@@ -52,15 +52,6 @@ class TutorLanguageManager extends BaseModelManager implements TutorLanguageMana
     }
 
     /**
-     * @param int $id
-     */
-    public function removeEntity($id)
-    {
-        $tutorLanguage = $this->findById($id);
-        parent::removeEntity($tutorLanguage);
-    }
-
-    /**
      * @param $id
      * @param Tutor $tutor
      *

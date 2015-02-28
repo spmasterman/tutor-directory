@@ -257,7 +257,7 @@ class OperatingRegionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getOperatingRegionManager()->removeEntity($region->getId());
+            $this->getOperatingRegionManager()->removeEntity($region);
 
             $this->addFlash(
                 'success',

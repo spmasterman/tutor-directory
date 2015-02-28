@@ -73,9 +73,10 @@ interface CurrencyManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Currency $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Currency $currency

@@ -37,9 +37,10 @@ interface CropInfoManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param CropInfo $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param CropInfo $cropInfo

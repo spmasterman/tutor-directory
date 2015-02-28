@@ -55,9 +55,10 @@ interface CategoryManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Category $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Category $category

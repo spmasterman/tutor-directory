@@ -46,9 +46,10 @@ interface CompetencyManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Competency $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Competency $competency

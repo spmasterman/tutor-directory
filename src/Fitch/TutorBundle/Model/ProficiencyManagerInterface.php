@@ -59,9 +59,10 @@ interface ProficiencyManagerInterface
     public function createEntity();
 
     /**
-     * @param int $id
+     * @param Proficiency $entity
+     * @param bool $withFlush
      */
-    public function removeEntity($id);
+    public function removeEntity($entity, $withFlush = true);
 
     /**
      * @param Proficiency $proficiency

@@ -254,7 +254,7 @@ class TutorTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getTutorTypeManager()->removeEntity($tutorType->getId());
+            $this->getTutorTypeManager()->removeEntity($tutorType);
 
             $this->addFlash(
                 'success',

@@ -106,7 +106,7 @@ class TutorLanguageController extends Controller
                 throw new NotFoundHttpException('Tutor Language does not exist!');
             }
 
-            $this->getTutorLanguageManager()->removeEntity($tutorLanguage->getId());
+            $this->getTutorLanguageManager()->removeEntity($tutorLanguage);
         } catch (Exception $e) {
             return new JsonResponse([
                 'success' => false,
