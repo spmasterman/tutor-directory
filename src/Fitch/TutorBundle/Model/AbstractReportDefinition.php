@@ -5,11 +5,15 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Tutor;
+use Fitch\TutorBundle\Model\Formatter\ReportDownloadFormatter;
 use Fitch\UserBundle\Entity\User;
 use JMS\Serializer\Annotation\Type;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\Form\FormInterface;
 
+/**
+ * Class AbstractReportDefinition.
+ */
 abstract class AbstractReportDefinition implements ReportDefinitionInterface
 {
     /**

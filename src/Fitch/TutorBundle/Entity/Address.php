@@ -92,15 +92,16 @@ class Address implements
             $this->getCity().', ',
             $this->getState().' ',
             $this->getZip().' ',
-            $this->getCountry()->getName()
+            $this->getCountry()->getName(),
         ];
 
         $outputString = '';
-        foreach($bits as $bit) {
+        foreach ($bits as $bit) {
             if (strlen($bit) > 1) {
                 $outputString .= $bit;
             }
         }
+
         return $outputString;
     }
 

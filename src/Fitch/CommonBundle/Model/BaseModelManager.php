@@ -49,6 +49,11 @@ abstract class BaseModelManager
      */
     protected $class;
 
+    /**
+     * @param EventDispatcherInterface $dispatcher
+     * @param EntityManager            $em
+     * @param string                   $class
+     */
     public function __construct(EventDispatcherInterface $dispatcher, EntityManager $em, $class)
     {
         $this->dispatcher = $dispatcher;
@@ -58,7 +63,7 @@ abstract class BaseModelManager
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @throws EntityNotFoundException
      *
@@ -98,6 +103,7 @@ abstract class BaseModelManager
      * style lists, with a grouped sections.
      *
      * @param callable $transformFunction
+     *
      * @return array
      */
     protected function buildFlatChoices($transformFunction)
@@ -117,6 +123,7 @@ abstract class BaseModelManager
      * style lists, with a preferred section.
      *
      * @param callable $transformFunction
+     *
      * @return array
      */
     protected function buildActiveAndPreferredChoices($transformFunction)
@@ -181,7 +188,7 @@ abstract class BaseModelManager
     }
 
     /**
-     * @param $entity
+     * @param object $entity
      */
     public function reloadEntity($entity)
     {
@@ -218,7 +225,8 @@ abstract class BaseModelManager
     /**
      * @return EntityRepository
      */
-    protected function getRepo() {
+    protected function getRepo()
+    {
         return $this->repo;
     }
 

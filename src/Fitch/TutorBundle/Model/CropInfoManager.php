@@ -4,6 +4,9 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
 
+/**
+ * Class CropInfoManager.
+ */
 class CropInfoManager extends BaseModelManager implements CropInfoManagerInterface
 {
     /**

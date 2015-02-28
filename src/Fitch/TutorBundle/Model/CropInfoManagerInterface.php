@@ -5,10 +5,13 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\CropInfo;
 
+/**
+ * Interface CropInfoManagerInterface.
+ */
 interface CropInfoManagerInterface
 {
     /**
-     * @param $id
+     * @param int $id
      *
      * @throws EntityNotFoundException
      *
@@ -23,7 +26,7 @@ interface CropInfoManagerInterface
 
     /**
      * @param CropInfo $cropInfo
-     * @param bool $withFlush
+     * @param bool     $withFlush
      */
     public function saveEntity($cropInfo, $withFlush = true);
 
@@ -38,7 +41,7 @@ interface CropInfoManagerInterface
 
     /**
      * @param CropInfo $entity
-     * @param bool $withFlush
+     * @param bool     $withFlush
      */
     public function removeEntity($entity, $withFlush = true);
 

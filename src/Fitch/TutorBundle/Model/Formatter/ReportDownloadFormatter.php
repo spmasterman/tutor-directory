@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitch\TutorBundle\Model;
+namespace Fitch\TutorBundle\Model\Formatter;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Fitch\TutorBundle\Entity\Address;
@@ -12,12 +12,18 @@ use Fitch\TutorBundle\Entity\Rate;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorLanguage;
+use Fitch\TutorBundle\Model\ReportDefinition;
+use Fitch\TutorBundle\Model\ReportDefinitionInterface;
 use Fitch\UserBundle\Entity\User;
 use Liuggio\ExcelBundle\Factory;
 use PHPExcel_Cell as Cell;
 use PHPExcel_Style_Alignment;
 use PHPExcel_Worksheet as Sheet;
 
+/**
+ * Class ReportDownloadFormatter
+ * @package Fitch\TutorBundle\Model\Formatter
+ */
 class ReportDownloadFormatter
 {
     const HEIGHT_PER_LINE = 14;
@@ -45,8 +51,8 @@ class ReportDownloadFormatter
      * @param Factory                   $excelFactory
      * @param User                      $user
      * @param Report                    $report
-     * @param $data
-     * @param $unrestricted
+     * @param Tutor[]                   $data
+     * @param bool                      $unrestricted
      *
      * @throws \PHPExcel_Exception
      */
