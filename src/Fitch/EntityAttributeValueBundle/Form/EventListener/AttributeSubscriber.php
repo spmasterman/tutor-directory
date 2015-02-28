@@ -96,7 +96,7 @@ class AttributeSubscriber implements EventSubscriberInterface
         );
 
         $params['required'] = (bool) $definition->isRequired();
-        $params['label'] = $definition->getLabel() ? $definition->getLabel() : $definition->getName();
+        $params['label'] = $definition->getLabel() ?: $definition->getName();
 
         if ($definition->getUnit() != "") {
             $params['label_attr']['unit'] = $definition->getUnit();

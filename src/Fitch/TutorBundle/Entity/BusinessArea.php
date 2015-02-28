@@ -75,7 +75,7 @@ class BusinessArea implements
     public function __toString()
     {
         if ($this->isDisplayAsCode()) {
-            return $this->getCode() ? $this->getCode() : $this->getName();
+            return $this->getCode() ?: $this->getName();
         } else {
             return ($this->getCode() ? "({$this->getCode()}) " : '') . $this->getName();
         }

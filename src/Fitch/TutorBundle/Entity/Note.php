@@ -136,7 +136,7 @@ class Note implements
         $author = $this->getAuthor();
         if ($author) {
             $fullName = $author->getFullName();
-            $string = $fullName ? $fullName : $author->getUsername();
+            $string = $fullName ?: $author->getUsername();
         } else {
             $string = 'Anonymous';
         }

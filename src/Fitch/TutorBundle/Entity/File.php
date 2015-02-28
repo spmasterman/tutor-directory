@@ -287,7 +287,7 @@ class File implements
         $uploader = $this->getUploader();
         if ($uploader) {
             $fullName = $uploader->getFullName();
-            $string = $fullName ? $fullName : $uploader->getUsername();
+            $string = $fullName ?: $uploader->getUsername();
         } else {
             $string = 'Anonymous';
         }
