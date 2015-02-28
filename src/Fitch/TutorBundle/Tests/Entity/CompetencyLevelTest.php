@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
+use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 
 class CompetencyLevelTest extends FixturesWebTestCase
 {
@@ -18,12 +18,12 @@ class CompetencyLevelTest extends FixturesWebTestCase
 
     public function testDefaultValues()
     {
-        $entity = $this->getModelManager()->createCompetencyLevel();
+        $entity = $this->getModelManager()->createEntity();
         $this->assertNotNull($entity->getColor());
     }
 
     /**
-     * @return CompetencyLevelManager
+     * @return CompetencyLevelManagerInterface
      */
     public function getModelManager()
     {

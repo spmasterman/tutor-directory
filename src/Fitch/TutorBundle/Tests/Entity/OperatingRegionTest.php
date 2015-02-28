@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\OperatingRegionManager;
+use Fitch\TutorBundle\Model\OperatingRegionManagerInterface;
 
 class OperatingRegionTest extends FixturesWebTestCase
 {
@@ -18,14 +18,14 @@ class OperatingRegionTest extends FixturesWebTestCase
         $this->assertEquals('ONE', $entityOne->getCode());
 
         $entityOne->setDefaultCurrency(null);
-        $this->getModelManager()->saveOperatingRegion($entityOne);
+        $this->getModelManager()->saveEntity($entityOne);
         $this->getModelManager()->reloadEntity($entityOne);
 
         $this->assertNull($entityOne->getDefaultCurrency());
     }
 
     /**
-     * @return OperatingRegionManager
+     * @return OperatingRegionManagerInterface
      */
     public function getModelManager()
     {

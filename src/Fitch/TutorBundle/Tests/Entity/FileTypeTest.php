@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\FileTypeManager;
+use Fitch\TutorBundle\Model\FileTypeManagerInterface;
 
 class FileTypeTest extends FixturesWebTestCase
 {
@@ -23,7 +23,7 @@ class FileTypeTest extends FixturesWebTestCase
     }
 
     /**
-     * @return FileTypeManager
+     * @return FileTypeManagerInterface
      */
     public function getModelManager()
     {

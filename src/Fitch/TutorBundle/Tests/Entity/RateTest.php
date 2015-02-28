@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\RateManager;
+use Fitch\TutorBundle\Model\RateManagerInterface;
 
 class RateTest extends FixturesWebTestCase
 {
@@ -15,7 +15,7 @@ class RateTest extends FixturesWebTestCase
     }
 
     /**
-     * @return RateManager
+     * @return RateManagerInterface
      */
     public function getModelManager()
     {

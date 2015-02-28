@@ -4,7 +4,7 @@ namespace Fitch\TutorBundle\Tests\Entity;
 
 use DateInterval;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\NoteManager;
+use Fitch\TutorBundle\Model\NoteManagerInterface;
 
 class NoteTest extends FixturesWebTestCase
 {
@@ -16,7 +16,7 @@ class NoteTest extends FixturesWebTestCase
 
         $entityOne->setBody('t2');
         $entityOne->setCreated($entityOne->getCreated()->sub(new \DateInterval('P1Y')));
-        $this->getModelManager()->saveNote($entityOne);
+        $this->getModelManager()->saveEntity($entityOne);
 
         $this->assertStringStartsWith('(Edited', $entityOne->getProvenance());
 
@@ -34,13 +34,13 @@ class NoteTest extends FixturesWebTestCase
         $this->assertNotEquals($entityOne->getAuthor(), $entityThree->getAuthor());
 
         $entityThree->setAuthor($entityOne->getAuthor());
-        $this->getModelManager()->saveNote($entityThree);
+        $this->getModelManager()->saveEntity($entityThree);
 
         $this->assertEquals($entityOne->getAuthor(), $entityThree->getAuthor());
     }
 
     /**
-     * @return NoteManager
+     * @return NoteManagerInterface
      */
     public function getModelManager()
     {

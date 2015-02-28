@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\TutorTypeManager;
+use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 
 class TutorTypeTest extends FixturesWebTestCase
 {
@@ -17,7 +17,7 @@ class TutorTypeTest extends FixturesWebTestCase
     }
 
     /**
-     * @return TutorTypeManager
+     * @return TutorTypeManagerInterface
      */
     public function getModelManager()
     {

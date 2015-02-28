@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\FileManagerInterface;
 
 class FileTest extends FixturesWebTestCase
 {
@@ -19,10 +19,10 @@ class FileTest extends FixturesWebTestCase
     }
 
     /**
-     * @return EmailManager
+     * @return FileManagerInterface
      */
     public function getModelManager()
     {
-        return $this->container->get('fitch.manager.email');
+        return $this->container->get('fitch.manager.file');
     }
 }

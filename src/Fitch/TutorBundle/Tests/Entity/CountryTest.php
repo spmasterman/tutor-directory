@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
 use Symfony\Component\Validator\Validator;
 
 class CountryTest extends FixturesWebTestCase
@@ -149,7 +149,7 @@ class CountryTest extends FixturesWebTestCase
     }
 
     /**
-     * @return CountryManager
+     * @return CountryManagerInterface
      */
     public function getModelManager()
     {

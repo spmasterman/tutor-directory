@@ -4,8 +4,11 @@ namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\TutorManager;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 
+/**
+ * Class TutorTest
+ */
 class TutorTest extends FixturesWebTestCase
 {
     /** @var  Tutor */
@@ -327,7 +330,7 @@ class TutorTest extends FixturesWebTestCase
     }
 
     /**
-     * @return TutorManager
+     * @return TutorManagerInterface
      */
     public function getModelManager()
     {

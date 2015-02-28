@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\EmailManager;
+use Fitch\TutorBundle\Model\EmailManagerInterface;
 
 class EmailTest extends FixturesWebTestCase
 {
@@ -17,7 +17,7 @@ class EmailTest extends FixturesWebTestCase
     }
 
     /**
-     * @return EmailManager
+     * @return EmailManagerInterface
      */
     public function getModelManager()
     {

@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\StatusManager;
+use Fitch\TutorBundle\Model\StatusManagerInterface;
 
 class StatusTest extends FixturesWebTestCase
 {
@@ -17,7 +17,7 @@ class StatusTest extends FixturesWebTestCase
     }
 
     /**
-     * @return StatusManager
+     * @return StatusManagerInterface
      */
     public function getModelManager()
     {

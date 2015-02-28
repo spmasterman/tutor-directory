@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
+use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 
 class CompetencyTypeTest extends FixturesWebTestCase
 {
@@ -17,7 +17,7 @@ class CompetencyTypeTest extends FixturesWebTestCase
     }
 
     /**
-     * @return CompetencyTypeManager
+     * @return CompetencyTypeManagerInterface
      */
     public function getModelManager()
     {

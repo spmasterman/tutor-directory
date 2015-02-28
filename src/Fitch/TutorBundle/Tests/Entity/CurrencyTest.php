@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\CurrencyManager;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 
 class CurrencyTest extends FixturesWebTestCase
 {
@@ -17,7 +17,7 @@ class CurrencyTest extends FixturesWebTestCase
     }
 
     /**
-     * @return CurrencyManager
+     * @return CurrencyManagerInterface
      */
     public function getModelManager()
     {

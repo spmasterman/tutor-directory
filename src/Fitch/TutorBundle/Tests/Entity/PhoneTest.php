@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Entity;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Model\PhoneManager;
+use Fitch\TutorBundle\Model\PhoneManagerInterface;
 
 class PhoneTest extends FixturesWebTestCase
 {
@@ -16,7 +16,7 @@ class PhoneTest extends FixturesWebTestCase
     }
 
     /**
-     * @return PhoneManager
+     * @return PhoneManagerInterface
      */
     public function getModelManager()
     {
