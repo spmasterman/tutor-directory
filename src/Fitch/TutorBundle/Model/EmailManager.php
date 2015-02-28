@@ -3,8 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\EmailRepository;
-use Fitch\TutorBundle\Entity\Email;
 
 class EmailManager extends BaseModelManager implements EmailManagerInterface
 {

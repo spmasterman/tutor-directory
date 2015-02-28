@@ -2,12 +2,9 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CompetencyLevelManager;
-use Fitch\TutorBundle\Model\CompetencyTypeManager;
 use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 

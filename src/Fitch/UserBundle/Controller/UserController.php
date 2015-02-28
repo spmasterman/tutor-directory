@@ -66,7 +66,7 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->getUserManager()->saveUser($user);
+            $this->getUserManager()->saveEntity($user);
 
             return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
@@ -221,7 +221,7 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $this->getUserManager()->saveUser($user);
+            $this->getUserManager()->saveEntity($user);
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
         }

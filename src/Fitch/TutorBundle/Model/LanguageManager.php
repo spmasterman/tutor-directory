@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\LanguageRepository;
 use Fitch\TutorBundle\Entity\Language;
 
 class LanguageManager extends BaseModelManager implements LanguageManagerInterface

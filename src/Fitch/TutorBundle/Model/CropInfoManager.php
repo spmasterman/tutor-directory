@@ -2,10 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\CropInfoRepository;
-use Fitch\TutorBundle\Entity\CropInfo;
 
 class CropInfoManager extends BaseModelManager implements CropInfoManagerInterface
 {

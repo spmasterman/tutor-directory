@@ -47,7 +47,7 @@ class DefaultController extends Controller
                 $attribute = $manager->findAttributeByName($user, $key);
             } catch (EntityNotFoundException $e) {
                 $manager->createWidgetControlDefinition($key);
-                $manager->refreshUser($user);
+                $manager->reloadUser($user);
                 $attribute = $manager->findAttributeByName($user, $key);
             }
             $attribute->setValue($state);

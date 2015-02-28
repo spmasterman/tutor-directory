@@ -2,13 +2,10 @@
 
 namespace Fitch\TutorBundle\Form\Type;
 
-use Fitch\TutorBundle\Model\CurrencyManager;
 use Fitch\TutorBundle\Model\CurrencyManagerInterface;
-use Fitch\TutorBundle\Model\RateManager;
 use Fitch\TutorBundle\Model\RateManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 

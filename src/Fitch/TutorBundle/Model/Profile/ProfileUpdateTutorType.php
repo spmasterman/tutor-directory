@@ -3,8 +3,6 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\RateManagerInterface;
-use Fitch\TutorBundle\Model\TutorTypeManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 

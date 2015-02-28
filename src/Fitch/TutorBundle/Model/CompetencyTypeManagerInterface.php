@@ -63,7 +63,6 @@ interface CompetencyTypeManagerInterface
 
     /**
      * @param CompetencyType           $competencyType
-     * @param CategoryManagerInterface $categoryManager
      */
     public function setDefaultCategory(CompetencyType $competencyType);
 

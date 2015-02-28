@@ -2,11 +2,8 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\CountryRepository;
 use Fitch\TutorBundle\Entity\Country;
-use Fitch\TutorBundle\Model\CountryManagerInterface;
 
 class CountryManager extends BaseModelManager implements CountryManagerInterface
 {

@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\OperatingRegionRepository;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 
 class OperatingRegionManager extends BaseModelManager implements OperatingRegionManagerInterface

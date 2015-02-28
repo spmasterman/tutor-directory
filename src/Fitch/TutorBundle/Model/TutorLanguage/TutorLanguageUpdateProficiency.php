@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model\TutorLanguage;
 
 use Fitch\TutorBundle\Entity\TutorLanguage;
-use Fitch\TutorBundle\Model\ProficiencyManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 
 class TutorLanguageUpdateProficiency implements TutorLanguageUpdateInterface

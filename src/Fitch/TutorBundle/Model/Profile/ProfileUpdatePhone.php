@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model\Profile;
 
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\CountryManagerInterface;
 use Fitch\TutorBundle\Model\PhoneManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;

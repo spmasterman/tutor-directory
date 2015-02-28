@@ -3,6 +3,7 @@
 namespace Fitch\FrontEndBundle\Controller;
 
 use Fitch\UserBundle\Model\UserManager;
+use Fitch\UserBundle\Model\UserManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -52,13 +53,13 @@ class NavigationController extends Controller
     {
         $user = $this->getUser();
         $user->toggleSidebar();
-        $this->getUserManager()->saveUser($user);
+        $this->getUserManager()->saveEntity($user);
 
         return new JsonResponse([]);
     }
 
     /**
-     * @return UserManager
+     * @return UserManagerInterface
      */
     private function getUserManager()
     {

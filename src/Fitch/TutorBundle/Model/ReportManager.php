@@ -3,8 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\ReportRepository;
-use Fitch\TutorBundle\Entity\Report;
 
 class ReportManager extends BaseModelManager implements ReportManagerInterface
 {

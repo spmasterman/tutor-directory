@@ -9,6 +9,7 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = null;
         // add your custom field
         $builder->add('fullName');
     }

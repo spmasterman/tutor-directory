@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\CompetencyLevelRepository;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
 
 class CompetencyLevelManager extends BaseModelManager implements CompetencyLevelManagerInterface

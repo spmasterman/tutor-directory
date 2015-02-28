@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model\Competency;
 
 use Fitch\TutorBundle\Entity\Competency;
-use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 
 class CompetencyUpdateLevel implements CompetencyUpdateInterface

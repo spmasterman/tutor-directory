@@ -5,7 +5,6 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\ReportDefinitionInterface;
 use Fitch\UserBundle\Entity\User;
 use JMS\Serializer\Annotation\Type;
 use Liuggio\ExcelBundle\Factory;

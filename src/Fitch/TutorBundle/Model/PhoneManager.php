@@ -3,8 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\PhoneRepository;
-use Fitch\TutorBundle\Entity\Phone;
 
 class PhoneManager extends BaseModelManager implements PhoneManagerInterface
 {

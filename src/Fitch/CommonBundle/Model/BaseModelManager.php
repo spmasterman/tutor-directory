@@ -4,10 +4,8 @@ namespace Fitch\CommonBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Fitch\CommonBundle\Entity\ActiveAndPreferredTrait;
 use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
 use Fitch\CommonBundle\Entity\IdentityTraitInterface;
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatcherInterface;

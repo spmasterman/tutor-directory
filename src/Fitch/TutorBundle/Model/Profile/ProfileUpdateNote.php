@@ -33,14 +33,6 @@ class ProfileUpdateNote implements ProfileUpdateInterface
     }
 
     /**
-     * @return NoteManagerInterface
-     */
-    private function getNoteManager()
-    {
-        return $this->container->get('fitch.manager.note');
-    }
-
-    /**
      * Get a user from the Security Token Storage.
      *
      * @return mixed
@@ -67,4 +59,12 @@ class ProfileUpdateNote implements ProfileUpdateInterface
         return $user;
     }
     //// TODO - Get this from "UserCallable"
+
+    /**
+     * @return NoteManagerInterface
+     */
+    private function getNoteManager()
+    {
+        return $this->container->get('fitch.manager.note');
+    }
 }

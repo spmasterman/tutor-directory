@@ -3,7 +3,6 @@
 namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\CompetencyRepository;
 use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Tutor;
 

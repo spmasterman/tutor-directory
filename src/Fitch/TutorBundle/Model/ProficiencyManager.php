@@ -4,7 +4,6 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\TutorBundle\Entity\Repository\ProficiencyRepository;
 use Fitch\TutorBundle\Entity\Proficiency;
 
 class ProficiencyManager extends BaseModelManager implements ProficiencyManagerInterface
