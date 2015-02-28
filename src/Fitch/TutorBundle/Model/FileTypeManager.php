@@ -5,6 +5,9 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\FileType;
 
+/**
+ * Class FileTypeManager.
+ */
 class FileTypeManager extends BaseModelManager implements FileTypeManagerInterface
 {
     /**

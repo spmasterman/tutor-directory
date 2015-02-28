@@ -5,6 +5,9 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Country;
 
+/**
+ * Class CountryManager.
+ */
 class CountryManager extends BaseModelManager implements CountryManagerInterface
 {
     /**

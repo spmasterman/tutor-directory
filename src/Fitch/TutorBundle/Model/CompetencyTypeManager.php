@@ -7,6 +7,9 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\CompetencyType;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class CompetencyTypeManager.
+ */
 class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeManagerInterface
 {
     /** @var CategoryManagerInterface $categoryManager */

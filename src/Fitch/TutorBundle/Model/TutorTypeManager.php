@@ -6,6 +6,9 @@ use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\TutorType;
 
+/**
+ * Class TutorTypeManager
+ */
 class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInterface
 {
     /**

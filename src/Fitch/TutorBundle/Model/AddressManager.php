@@ -4,6 +4,9 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
 
+/**
+ * Class AddressManager
+ */
 class AddressManager extends BaseModelManager implements AddressManagerInterface
 {
     /**

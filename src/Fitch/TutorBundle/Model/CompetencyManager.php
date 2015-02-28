@@ -6,12 +6,15 @@ use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Tutor;
 
+/**
+ * Class CompetencyManager.
+ */
 class CompetencyManager extends BaseModelManager implements CompetencyManagerInterface
 {
     /**
      * @inherit
      *
-     * @param $id
+     * @param int   $id
      * @param Tutor $tutor
      *
      * @return Competency

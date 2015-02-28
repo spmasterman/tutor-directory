@@ -7,6 +7,9 @@ use Fitch\TutorBundle\Entity\Repository\RateRepository;
 use Fitch\TutorBundle\Entity\Rate;
 use Gedmo\Loggable\Entity\Repository\LogEntryRepository;
 
+/**
+ * Class RateManager
+ */
 class RateManager extends BaseModelManager implements RateManagerInterface
 {
     /**

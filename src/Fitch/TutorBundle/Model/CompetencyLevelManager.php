@@ -6,6 +6,9 @@ use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
 
+/**
+ * Class CompetencyLevelManager.
+ */
 class CompetencyLevelManager extends BaseModelManager implements CompetencyLevelManagerInterface
 {
     /**
@@ -32,7 +35,7 @@ class CompetencyLevelManager extends BaseModelManager implements CompetencyLevel
     }
 
     /**
-     * @param $levelName
+     * @param string $levelName
      *
      * @return CompetencyLevel
      */

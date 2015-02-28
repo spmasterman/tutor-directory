@@ -4,6 +4,9 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
 
+/**
+ * Class NoteManager.
+ */
 class NoteManager extends BaseModelManager implements NoteManagerInterface
 {
     /**

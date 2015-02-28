@@ -6,6 +6,9 @@ use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\OperatingRegion;
 
+/**
+ * Class OperatingRegionManager.
+ */
 class OperatingRegionManager extends BaseModelManager implements OperatingRegionManagerInterface
 {
     /**

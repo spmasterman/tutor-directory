@@ -6,6 +6,9 @@ use Fitch\TutorBundle\Entity\Currency;
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Form\FormInterface;
 
+/**
+ * Class ReportDefinition.
+ */
 class ReportDefinition extends AbstractReportDefinition
 {
     /**
@@ -269,7 +272,7 @@ class ReportDefinition extends AbstractReportDefinition
     }
 
     /**
-     * @param $tutorCurrencyAlias
+     * @param string $tutorCurrencyAlias
      *
      * @return string
      */

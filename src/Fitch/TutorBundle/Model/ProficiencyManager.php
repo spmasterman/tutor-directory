@@ -6,6 +6,9 @@ use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Proficiency;
 
+/**
+ * Class ProficiencyManager.
+ */
 class ProficiencyManager extends BaseModelManager implements ProficiencyManagerInterface
 {
     /**
@@ -17,7 +20,7 @@ class ProficiencyManager extends BaseModelManager implements ProficiencyManagerI
     }
 
     /**
-     * @param $proficiencyName
+     * @param string $proficiencyName
      *
      * @return Proficiency
      */

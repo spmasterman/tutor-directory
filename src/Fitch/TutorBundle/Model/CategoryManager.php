@@ -5,6 +5,9 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Category;
 
+/**
+ * Class CategoryManager.
+ */
 class CategoryManager extends BaseModelManager implements CategoryManagerInterface
 {
     /**
@@ -25,7 +28,7 @@ class CategoryManager extends BaseModelManager implements CategoryManagerInterfa
     {
         $choices = [];
         foreach ($this->findAll() as $category) {
-            /** @var Category $category */
+            /* @var Category $category */
             $choices[$category->getId()] = $category->getName();
         }
 

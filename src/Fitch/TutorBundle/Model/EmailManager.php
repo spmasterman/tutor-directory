@@ -4,6 +4,9 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
 
+/**
+ * Class EmailManager
+ */
 class EmailManager extends BaseModelManager implements EmailManagerInterface
 {
     /**

@@ -5,10 +5,13 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Language;
 
+/**
+ * Class LanguageManager.
+ */
 class LanguageManager extends BaseModelManager implements LanguageManagerInterface
 {
     /**
-     * @param $languageName
+     * @param string $languageName
      *
      * @return Language
      */
