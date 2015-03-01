@@ -3,87 +3,101 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
+use Fitch\TutorBundle\Entity\Rate;
 use Fitch\TutorBundle\Model\RateManagerInterface;
 
-class RateManagerTest extends FixturesWebTestCase
+class RateManagerTest  extends FixturesWebTestCase
 {
-    public function testFindAll()
+    use TimestampableModelManagerTestTrait,
+        ChoicesModelManagerTestTrait,
+        FindModelManagerTestTrait;
+
+    const FIXTURE_COUNT = 3;
+    const CHOICES_COUNT = 3;
+
+    /** @var  RateManagerInterface */
+    protected $modelManager;
+
+    /**
+     * Runs for every test.
+     */
+    public function setUp()
     {
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(3, $allEntities, "Should return six entities");
-
-        $this->assertEquals('Test Rate One', $allEntities[0]->getName());
-        $this->assertEquals('Test Rate Two', $allEntities[1]->getName());
-        $this->assertEquals('Test Rate Three', $allEntities[2]->getName());
-    }
-
-    public function testFindById()
-    {
-        $entityOne = $this->getModelManager()->findById(1);
-
-        $this->assertEquals('Test Rate One', $entityOne->getName());
-    }
-
-    public function testLifeCycle()
-    {
-        // Check that there are 6 entries
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(3, $allEntities, "Should return six entities");
-
-        // Create new one
-        $newEntity = $this->getModelManager()->createEntity();
-        $newEntity
-            ->setName('n')
-            ->setAmount(1)
-        ;
-        $this->getModelManager()->saveEntity($newEntity);
-
-        // Check that there are 4 entries, and the new one is Timestamped correctly
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(4, $allEntities, "Should return seven entities");
-        $this->assertNotNull($allEntities[3]->getCreated());
-        $this->assertEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
-
-        // Updated shouldn't change until persisted
-        $newEntity->setName('n2');
-        $this->assertEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
-
-        sleep(1);
-
-        $this->getModelManager()->saveEntity($newEntity);
-        $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
-
-        // Check that when we refresh it refreshes
-        $newEntity->setName('n3');
-        $this->getModelManager()->reloadEntity($newEntity);
-        $this->assertEquals('n2', $newEntity->getName());
-
-        // Check Logs:
-        $logs = $this->getModelManager()->getLogs($newEntity);
-        $this->assertCount(2, $logs);
-        $this->assertInstanceOf('Gedmo\Loggable\Entity\LogEntry', $logs[0]);
-        $this->assertInstanceOf('Gedmo\Loggable\Entity\LogEntry', $logs[1]);
-
-        $this->assertEquals(2, $logs[0]->getVersion());
-        $this->assertEquals('update', $logs[0]->getAction());
-        $this->assertEquals(['name' => 'n2'], $logs[0]->getData());
-
-        $this->assertEquals(1, $logs[1]->getVersion());
-        $this->assertEquals('create', $logs[1]->getAction());
-        $this->assertEquals(['name' => 'n', 'amount' => 1], $logs[1]->getData());
-
-        // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity);
-
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(3, $allEntities, "Should return six entities");
+        parent::setUp();
+        $this->modelManager = $this->container->get('fitch.manager.rate');
     }
 
     /**
-     * @return RateManagerInterface
+     * Tests the findAll.
      */
-    public function getModelManager()
+    public function testFindAll()
     {
-        return $this->container->get('fitch.manager.rate');
+        $this->performFindAllTest(self::FIXTURE_COUNT, 'Test Rate One', function (Rate $entity) {
+            return $entity->getName();
+        });
+    }
+
+    /**
+     *
+     */
+    public function testFindById()
+    {
+        $this->performFindByIdTest(1, 'Test Rate One', function (Rate $entity) {
+            return $entity->getName();
+        });
+    }
+
+    public function testBuildChoices()
+    {
+        $this->performBuildChoicesTest(
+            self::CHOICES_COUNT,
+            function ($entity) {
+                return is_string($entity) ;
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    public function testLifeCycle()
+    {
+        $this->performLifeCycleTests(
+            self::FIXTURE_COUNT,
+            function (Rate $entity) {
+                $entity
+                    ->setName('n')
+                    ->setAmount(1)
+                ;
+            },
+            function (Rate $entity) {
+                $entity
+                    ->setName('n2');
+            },
+            function (Rate $entity) {
+                $entity
+                    ->setName('n3');
+            },
+            function (Rate $entity) {
+                // Check Logs:
+                $logs = $this->modelManager->getLogs($entity);
+                $this->assertCount(2, $logs);
+                $this->assertInstanceOf('Gedmo\Loggable\Entity\LogEntry', $logs[0]);
+                $this->assertInstanceOf('Gedmo\Loggable\Entity\LogEntry', $logs[1]);
+
+                $this->assertEquals(2, $logs[0]->getVersion());
+                $this->assertEquals('update', $logs[0]->getAction());
+                $this->assertEquals(['name' => 'n2'], $logs[0]->getData());
+
+                $this->assertEquals(1, $logs[1]->getVersion());
+                $this->assertEquals('create', $logs[1]->getAction());
+                $this->assertEquals(['name' => 'n', 'amount' => 1], $logs[1]->getData());
+
+                return (bool) 'p2' == $entity->getName();
+            }
+        );
     }
 }
