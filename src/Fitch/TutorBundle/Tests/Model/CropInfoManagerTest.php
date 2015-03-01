@@ -11,7 +11,7 @@ use Fitch\TutorBundle\Model\CropInfoManagerInterface;
 /**
  * Class CropInfoManagerTest.
  */
-class CropInfoManagerTest  extends FixturesWebTestCase
+class CropInfoManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
         FindModelManagerTestTrait;

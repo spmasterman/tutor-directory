@@ -130,12 +130,6 @@ class CountryManagerTest extends FixturesWebTestCase
         );
     }
 
-    public function testBuildGroupedChoices()
-    {
-        //        $choices = $this->modelManager->buildGroupedChoices();
-//        $this->assertCount(self::FIXTURE_COUNT, $choices); // this is not *generally* true only if the manager uses Flatlist
-    }
-
     public function testFindDefault()
     {
         $this->performFindDefaultTest(

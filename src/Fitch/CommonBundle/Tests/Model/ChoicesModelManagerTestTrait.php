@@ -2,7 +2,6 @@
 
 namespace Fitch\CommonBundle\Tests\Model;
 
-
 /**
  * Trait ChoicesModelManagerTestTrait.
  *

@@ -59,10 +59,10 @@ class Country implements
      *
      * @ORM\Column(name="dialing_prefix", type="string", length=12)
      * @Assert\Regex(
-     *      pattern
-     *        ="/(^$)|(^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)$)/",
-     *      message
-     *        ="Please enter a correct ITU-T E.164 dialling code, with a leading + (i.e. +44 for the UK, +1 for the US)"
+     *  pattern
+     *    ="/(^$)|(^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)$)/",
+     *  message
+     *    ="Please enter a correct ITU-T E.164 dialling code, with a leading + (i.e. +44 for the UK, +1 for the US)"
      * )
      *
      * -- obvious really!

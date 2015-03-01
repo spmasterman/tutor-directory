@@ -11,7 +11,7 @@ use Fitch\TutorBundle\Model\AddressManagerInterface;
 /**
  * Class AddressManagerTest.
  */
-class AddressManagerTest  extends FixturesWebTestCase
+class AddressManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
         FindModelManagerTestTrait;

@@ -79,13 +79,19 @@ class CategoryManagerTest extends FixturesWebTestCase
 
     public function testBuildChoices()
     {
-        $this->performBuildChoicesTest(self::FIXTURE_COUNT, function ($entity) { return $entity instanceof Category; });
+        $this->performBuildChoicesTest(
+            self::FIXTURE_COUNT,
+            function ($entity) {
+                return $entity instanceof Category;
+            }
+        );
     }
 
     public function testBuildGroupedChoices()
     {
         $choices = $this->modelManager->buildGroupedChoices();
-        $this->assertCount(self::FIXTURE_COUNT, $choices); // this is not *generally* true only if the manager uses Flatlist
+        $this->assertCount(self::FIXTURE_COUNT, $choices);
+        // this is not *generally* true only if the manager uses Flatlist
     }
 
     public function testFindDefault()
