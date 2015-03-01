@@ -70,6 +70,7 @@ class FileManager extends BaseModelManager implements FileManagerInterface
         // And finally persist the whole thing
         $this->tutorManager->saveEntity($tutor);
 
+        $this->log('info', sprintf('File Entity %s populated with metadata.', $file->getId()));
         return $file;
     }
 

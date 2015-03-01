@@ -3,76 +3,74 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
+use Fitch\TutorBundle\Entity\Email;
 use Fitch\TutorBundle\Model\EmailManagerInterface;
 
 class EmailManagerTest extends FixturesWebTestCase
 {
-    public function testFindAll()
+    use TimestampableModelManagerTestTrait,
+        FindModelManagerTestTrait;
+
+    const FIXTURE_COUNT = 6;
+
+    /** @var  EmailManagerInterface */
+    protected $modelManager;
+
+    /**
+     * Runs for every test.
+     */
+    public function setUp()
     {
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(6, $allEntities, "Should return six addresses");
-
-        $this->assertEquals('test_email_1@example.com', (string) $allEntities[0]);
-        $this->assertEquals('test_email_2@example.com', (string) $allEntities[1]);
-        $this->assertEquals('test_email_3@example.com', (string) $allEntities[2]);
-        $this->assertEquals('test_email_4@example.com', (string) $allEntities[3]);
-        $this->assertEquals('test_email_5@example.com', (string) $allEntities[4]);
-        $this->assertEquals('test_email_6@example.com', (string) $allEntities[5]);
-    }
-
-    public function testFindById()
-    {
-        $entityOne = $this->getModelManager()->findById(1);
-
-        $this->assertEquals('test_email_1@example.com', (string) $entityOne);
-        $this->assertEquals('primary', $entityOne->getType());
-    }
-
-    public function testLifeCycle()
-    {
-        // Check that there are 6 entries
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(6, $allEntities, "Should return six entities");
-
-        // Create new one
-        $newEntity = $this->getModelManager()->createEntity();
-        $newEntity
-            ->setType('t')
-            ->setAddress('a@b.c')
-        ;
-        $this->getModelManager()->saveEntity($newEntity);
-
-        // Check that there are 7 entries, and the new one is Timestamped correctly
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(7, $allEntities, "Should return seven entities");
-        $this->assertNotNull($allEntities[6]->getCreated());
-        $this->assertEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
-
-        // Updated shouldn't change until persisted
-        $newEntity->setAddress('a2@b.c');
-        $this->assertEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
-
-        sleep(1);
-
-        $this->getModelManager()->saveEntity($newEntity);
-        $this->assertNotEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
-
-        // Check that when we refresh it refreshes
-        $newEntity->setAddress('a3@b.c');
-        $this->getModelManager()->reloadEntity($newEntity);
-        $this->assertEquals('a2@b.c', $newEntity->getAddress());
-
-        // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity);
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(6, $allEntities, "Should return six entities");
+        parent::setUp();
+        $this->modelManager = $this->container->get('fitch.manager.email');
     }
 
     /**
-     * @return EmailManagerInterface
+     * Tests the findAll.
      */
-    public function getModelManager()
+    public function testFindAll()
     {
-        return $this->container->get('fitch.manager.email');
+        $this->performFindAllTest(self::FIXTURE_COUNT, 'test_email_1@example.com', function (Email $entity) {
+            return $entity->getAddress();
+        });
+    }
+
+    /**
+     *
+     */
+    public function testFindById()
+    {
+        $this->performFindByIdTest(1, 'test_email_1@example.com', function (Email $entity) {
+            return $entity->getAddress();
+        });
+    }
+
+    /**
+     *
+     */
+    public function testLifeCycle()
+    {
+        $this->performLifeCycleTests(
+            self::FIXTURE_COUNT,
+            function (Email $entity) {
+                $entity
+                    ->setAddress('p')
+                    ->setType('s')
+                ;
+            },
+            function (Email $entity) {
+                $entity
+                    ->setAddress('p2');
+            },
+            function (Email $entity) {
+                $entity
+                    ->setAddress('p3');
+            },
+            function (Email $entity) {
+                return (bool) 'p2' == $entity->getAddress();
+            }
+        );
     }
 }
