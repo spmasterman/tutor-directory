@@ -8,6 +8,7 @@ use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
 /**
@@ -31,7 +32,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
      */
     private function performMockedUpdate(Tutor $tutor, Competency $competency, $name, $value = self::END)
     {
-        // Create a response payload that should change the Note
+        // Create a request payload that should update the competency
         $requestBag = new ParameterBag([
             'pk' => $tutor->getId(),
             'competencyPk' => $competency->getId(),
@@ -145,6 +146,71 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+    }
+
+    /**
+     * Removed the competency. Doesn't have the same issue as updating it, as we dont need to render an updated row
+     * to send to the view
+     *
+     * @param Competency $competency
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    private function performMockedRemove(Competency $competency)
+    {
+        // Create a request payload that should remove the competency
+        $requestBag = new ParameterBag([
+            'pk' => $competency->getId(),
+        ]);
+
+        // Set that up in a Stub/mock Request
+        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
+        $request->request = $requestBag;
+
+        // Call the Controller Update
+        $controller = new CompetencyController();
+        $controller->setContainer($this->container);
+
+        return $controller->removeAction($request);
+    }
+
+    /**
+     * Test that we can remove a competency, and that we cant remove a non existent one
+     */
+    public function testRemove()
+    {
+        $manager = $this->getModelManager();
+
+        // Get the first tutor
+        $tutor = $manager->findById(1);
+
+        // Set the Note on his first competency, to the START tag
+        /** @var Competency $competency */
+        $competency = $tutor->getCompetencies()->first();
+
+        $this->performMockedRemove($competency);
+
+        $manager->saveEntity($tutor);
+        $manager->reloadEntity($tutor);
+
+        $this->assertNotContains(
+            $competency,
+            $tutor->getCompetencies()
+        );
+
+        // Now try removing it again - should throw an error
+        $response = $this->performMockedRemove($competency);
+        $this->assertTrue(
+            $response->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
+
+        $this->assertEquals(
+            Response::HTTP_BAD_REQUEST,
+            $response->getStatusCode()
+        );
     }
 
     /**
