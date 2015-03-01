@@ -46,9 +46,9 @@ operating_region:
         id: ID
         name: Name
         code: Code
+        currency: Default Currency
         actions: Actions
     default_message:  = Default operating region assigned to new trainers
-
 
 tutor_type:
     edit:

@@ -16,6 +16,7 @@
                     <th>{% trans %}operating_region.column.id{% endtrans %}</th>
                     <th>{% trans %}operating_region.column.name{% endtrans %}</th>
                     <th>{% trans %}operating_region.column.code{% endtrans %}</th>
+                    <th>{% trans %}operating_region.column.currency{% endtrans %}</th>
                     <th>{% trans %}operating_region.column.actions{% endtrans %}</th>
                 </tr>
                 </thead>
@@ -25,6 +26,7 @@
                         <td>{{ region.id }}{% if region.isDefault %}<i class="fa fa-asterisk yellow-font"></i>{% endif %}</td>
                         <td><a href="{{ path('region_show', { 'id': region.id }) }}">{{ region.name }}</a></td>
                         <td>{{ region.code }}</td>
+                        <td>{{ region.getDefaultCurrency }}</td>
                         <td>
                             <a href="{{ path('region_show', { 'id': region.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.show{% endtrans %}</a>
                             <a href="{{ path('region_edit', { 'id': region.id }) }}" class="btn btn-xs btn-default">{% trans %}navigation.edit{% endtrans %}</a>

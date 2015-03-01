@@ -104,6 +104,9 @@ class CountryManagerTest extends FixturesWebTestCase
         );
     }
 
+    /**
+     *
+     */
     public function testBuildChoices()
     {
         $this->performBuildChoicesTest(
@@ -117,6 +120,9 @@ class CountryManagerTest extends FixturesWebTestCase
         );
     }
 
+    /**
+     *
+     */
     public function testBuildPreferredChoices()
     {
         $this->performBuildPreferredChoicesTest(
@@ -130,6 +136,9 @@ class CountryManagerTest extends FixturesWebTestCase
         );
     }
 
+    /**
+     *
+     */
     public function testFindDefault()
     {
         $this->performFindDefaultTest(

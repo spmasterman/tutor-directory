@@ -8,9 +8,14 @@ Fitch\TutorBundle\Entity\Language:
         name: Test Language Two
         threeLetterCode: TWO
         preferred: true
-        active: true
+        active: false
     language-3:
         name: Test Language Three
         threeLetterCode: THR
-        preferred: true
+        preferred: false
         active: true
+    language-4:
+        name: Test Language Four
+        threeLetterCode: FOU
+        preferred: false
+        active: false

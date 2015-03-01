@@ -47,7 +47,7 @@ trait ChoicesModelManagerTestTrait
 
         if ($checkFunction) {
             foreach ($this->modelManager->findAll() as $entity) {
-                if (in_array($entity, $choices)) {
+                if (in_array($entity, $choices, true)) {
                     $this->assertTrue($checkFunction($entity));
                 } else {
                     $this->assertFalse($checkFunction($entity));
