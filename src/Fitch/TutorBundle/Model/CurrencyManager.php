@@ -28,7 +28,7 @@ class CurrencyManager extends BaseModelManager implements CurrencyManagerInterfa
     /**
      * @return Currency
      */
-    public function getDefaultCurrency()
+    public function findDefaultEntity()
     {
         return $this->getRepo()->findOneBy(['threeDigitCode' => 'GBP']);
     }

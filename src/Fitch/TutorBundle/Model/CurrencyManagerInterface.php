@@ -30,7 +30,7 @@ interface CurrencyManagerInterface
     /**
      * @return Currency
      */
-    public function getDefaultCurrency();
+    public function findDefaultEntity();
 
     /**
      * @return Currency[]

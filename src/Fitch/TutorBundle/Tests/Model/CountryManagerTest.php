@@ -58,12 +58,6 @@ class CountryManagerTest extends FixturesWebTestCase
                 $this->assertFalse($entity->isPreferred(), 'Unexpected Preferred Entity');
             }
 
-            if ($index < self::ACTIVE_FIXTURE_COUNT) {
-                $this->assertTrue($entity->isActive(), 'Unexpected Not-Active Entity');
-            } else {
-                $this->assertFalse($entity->isActive(), 'Unexpected Active Entity');
-            }
-
             $index++;
         }
     }

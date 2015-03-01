@@ -3,120 +3,217 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
+use Fitch\TutorBundle\Entity\Currency;
+use Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface;
 use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 
 class CurrencyManagerTest extends FixturesWebTestCase
 {
-    public function testFindAll()
+    use TimestampableModelManagerTestTrait,
+        DefaultableModelManagerTestTrait,
+        ChoicesModelManagerTestTrait,
+        FindModelManagerTestTrait;
+
+    const FIXTURE_COUNT = 4;
+    const ACTIVE_FIXTURE_COUNT = 2;
+    const PREFERRED_FIXTURE_COUNT = 2;
+    const ACTIVE_AND_PREFERRED_COUNT = 1;
+
+    /** @var  CurrencyManagerInterface */
+    protected $modelManager;
+
+    /**
+     * Runs for every test.
+     */
+    public function setUp()
     {
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(4, $allEntities, "Should return three entities");
-
-        $this->assertEquals('ONE - Test Currency One', (string) $allEntities[0]);
-        $this->assertEquals('TWO - Test Currency Two', (string) $allEntities[1]);
-        $this->assertEquals('THR - Test Currency Three', (string) $allEntities[2]);
-        $this->assertEquals('FOR - Test Currency Four', (string) $allEntities[3]);
-    }
-
-    public function testFindById()
-    {
-        $entityOne = $this->getModelManager()->findById(1);
-
-        $this->assertEquals('ONE - Test Currency One', (string) $entityOne);
-    }
-
-    public function testFindDefaultCountry()
-    {
-        $entity = $this->getModelManager()->getDefaultCurrency();
-        $this->assertNull($entity);
-
-        $entityOne = $this->getModelManager()->findById(1);
-        $entityOne->setThreeDigitCode('GBP');
-        $this->getModelManager()->saveEntity($entityOne);
-
-        $entity = $this->getModelManager()->getDefaultCurrency();
-        $this->assertEquals($entity->getThreeDigitCode(), 'GBP');
-    }
-
-    public function testPreferredChoices()
-    {
-        $allEntities = $this->getModelManager()->findAll();
-        $preferredEntities = $this->getModelManager()->buildPreferredChoices();
-        $this->assertCount(1, $preferredEntities, "Should return one entity");
-
-        foreach ($allEntities as $entity) {
-            if (in_array($entity, $preferredEntities)) {
-                $this->assertTrue($entity->isPreferred());
-            } else {
-                $this->assertFalse($entity->isPreferred() && $entity->isActive());
-            }
-        }
-
-        $sorted = $this->getModelManager()->findAllSorted();
-        $this->assertTrue($sorted[0]->isPreferred());
-        $this->assertTrue($sorted[0]->isActive());
-
-        $this->assertTrue($sorted[1]->isPreferred());
-        $this->assertFalse($sorted[1]->isActive());
-
-        $this->assertFalse($sorted[2]->isPreferred());
-        $this->assertTrue($sorted[2]->isActive());
-
-        $this->assertFalse($sorted[3]->isPreferred());
-        $this->assertFalse($sorted[3]->isActive());
-
-        $addressEntities = $this->getModelManager()->buildChoices();
-        foreach ($allEntities as $entity) {
-            if (in_array($entity, $addressEntities)) {
-                $this->assertTrue($entity->isActive());
-            } else {
-                $this->assertFalse($entity->isActive());
-            }
-        }
-    }
-
-    public function testLifeCycle()
-    {
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(4, $allEntities, "Should return 4 entities");
-
-        // Create new one
-        $newEntity = $this->getModelManager()->createEntity();
-        $newEntity
-            ->setName('c')
-            ->setPreferred(true)
-            ->setActive(false)
-            ->setThreeDigitCode('tdc')
-        ;
-        $this->getModelManager()->saveEntity($newEntity);
-
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(5, $allEntities, "Should return 5 entities");
-        $this->assertNotNull($allEntities[4]->getCreated());
-        $this->assertEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
-
-        $newEntity->setName('c2');
-        $this->assertEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
-
-        sleep(1);
-
-        $this->getModelManager()->saveEntity($newEntity);
-        $this->assertNotEquals($allEntities[4]->getCreated(), $allEntities[4]->getUpdated());
-
-        $newEntity->setName('c3');
-        $this->getModelManager()->reloadEntity($newEntity);
-        $this->assertEquals('c2', $newEntity->getName());
-
-        $this->getModelManager()->removeEntity($newEntity);
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(4, $allEntities, "Should return 4 entities");
+        parent::setUp();
+        $this->modelManager = $this->container->get('fitch.manager.currency');
     }
 
     /**
-     * @return CurrencyManagerInterface
+     * Tests the findAll.
      */
-    public function getModelManager()
+    public function testFindAll()
     {
-        return $this->container->get('fitch.manager.currency');
+        $this->performFindAllTest(self::FIXTURE_COUNT, 'ONE - Test Currency One', function (Currency $entity) {
+            return (string) $entity;
+        });
+    }
+
+    /**
+     *
+     */
+    public function testFindAllSorted()
+    {
+        $sorted = $this->modelManager->findAllSorted();
+
+        $index = 0;
+        foreach ($sorted as $entity) {
+            if ($index < self::PREFERRED_FIXTURE_COUNT) {
+                $this->assertTrue($entity->isPreferred(), 'Unexpected Not-Preferred Entity');
+            } else {
+                $this->assertFalse($entity->isPreferred(), 'Unexpected Preferred Entity');
+            }
+
+            $index++;
+        }
+    }
+
+    /**
+     *
+     */
+    public function testFindById()
+    {
+        $this->performFindByIdTest(1, 'Test Currency One', function (Currency $entity) {
+            return $entity->getName();
+        });
+    }
+
+    /**
+     *
+     */
+    public function testLifeCycle()
+    {
+        $this->performLifeCycleTests(
+            self::FIXTURE_COUNT,
+            function (Currency $entity) {
+                $entity
+                    ->setName('c')
+                    ->setPreferred(true)
+                    ->setActive(false)
+                    ->setThreeDigitCode('123')
+                    ->setToGBP(1)
+                ;
+            },
+            function (Currency $entity) {
+                $entity->setName('p2');
+            },
+            function (Currency $entity) {
+                $entity->setName('p3');
+            },
+            function (Currency $entity) {
+                return (bool) 'p2' == $entity->getName();
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    public function testBuildChoices()
+    {
+        $this->performBuildChoicesTest(
+            self::ACTIVE_FIXTURE_COUNT,
+            function ($entity) {
+                return $entity instanceof Currency;
+            },
+            function (Currency $entity) {
+                return $entity->isActive();
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    public function testBuildPreferredChoices()
+    {
+        $this->performBuildPreferredChoicesTest(
+            self::ACTIVE_AND_PREFERRED_COUNT,
+            function ($entity) {
+                return $entity instanceof Currency;
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    public function testFindDefault()
+    {
+        // Should fail, nothing in the fixture matches the default
+        $this->performFindDefaultTest(
+            function ($entity) {
+                return is_null($entity);
+            },
+            function ($entity) {
+                return is_null($entity);
+            }
+        );
+
+        // fix that
+        $defaultEntity = $this->modelManager->findById(1);
+        $defaultEntity->setThreeDigitCode('GBP');
+        $this->modelManager->saveEntity($defaultEntity);
+
+        // Should work
+        $this->performFindDefaultTest(
+            function ($entity) {
+                return $entity instanceof Currency;
+            },
+            function (Currency $entity) {
+                return $entity->getThreeDigitCode() == 'GBP';
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    public function testExchangeRate()
+    {
+        $entity = $this->modelManager->findById(1);
+        $newExchangeRate = $this->modelManager->updateExchangeRate(
+            $this->getMockProviderExpectingToBeCalled(1),
+            $entity
+        );
+        $this->assertEquals(1.123, $newExchangeRate);
+
+        // Need to set RateUpdated to null, or a week old really to test the "selection" of a
+        // currency
+        foreach ($this->modelManager->findAll() as $entity) {
+            $entity->setRateUpdated($entity->getCreated());
+            $this->modelManager->saveEntity($entity);
+        }
+
+        // Nothing is required at this stage:
+        $this->assertTrue(
+            $this->modelManager->performExchangeRateUpdateIfRequired(
+                $this->getMockProviderExpectingToBeCalled(0)
+            )
+        );
+
+        // Set up something that looks like it needs an update
+        $entity->setRateUpdated(null);
+        $entity->setToGBP(0);
+        $this->modelManager->saveEntity($entity);
+
+        // The provider should get called - one time
+        $this->assertTrue(
+            $this->modelManager->performExchangeRateUpdateIfRequired(
+                $this->getMockProviderExpectingToBeCalled(1)
+            )
+        );
+
+        // and the value should be updated
+        $this->assertEquals(1.123, $entity->getToGBP());
+    }
+
+    /**
+     * @param $times
+     * @return ProviderInterface
+     */
+    private function getMockProviderExpectingToBeCalled($times)
+    {
+        $mockProvider = $this
+            ->getMockBuilder('Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface')
+            ->getMock();
+        $mockProvider->expects($this->exactly($times))->method('getRate')->willReturn(1.123);
+        return $mockProvider;
     }
 }
