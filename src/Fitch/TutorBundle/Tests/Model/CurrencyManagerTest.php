@@ -169,7 +169,7 @@ class CurrencyManagerTest extends FixturesWebTestCase
     {
         $entity = $this->modelManager->findById(1);
         $newExchangeRate = $this->modelManager->updateExchangeRate(
-            $this->getMockProviderExpectingToBeCalled(1),
+            $this->getMockProviderExpectingToBeCalled(1, 1.123),
             $entity
         );
         $this->assertEquals(1.123, $newExchangeRate);
@@ -184,7 +184,7 @@ class CurrencyManagerTest extends FixturesWebTestCase
         // Nothing is required at this stage:
         $this->assertTrue(
             $this->modelManager->performExchangeRateUpdateIfRequired(
-                $this->getMockProviderExpectingToBeCalled(0)
+                $this->getMockProviderExpectingToBeCalled(0, false)
             )
         );
 
@@ -196,24 +196,40 @@ class CurrencyManagerTest extends FixturesWebTestCase
         // The provider should get called - one time
         $this->assertTrue(
             $this->modelManager->performExchangeRateUpdateIfRequired(
-                $this->getMockProviderExpectingToBeCalled(1)
+                $this->getMockProviderExpectingToBeCalled(1, 1.123)
             )
         );
 
         // and the value should be updated
         $this->assertEquals(1.123, $entity->getToGBP());
+
+        //do it again but fake the provider failing
+        $entity->setRateUpdated(null);
+        $entity->setToGBP(0);
+        $this->modelManager->saveEntity($entity);
+
+        // The provider should get called - one time
+        $this->assertFalse(
+            $this->modelManager->performExchangeRateUpdateIfRequired(
+                $this->getMockProviderExpectingToBeCalled(1, false)
+            )
+        );
+
+        // and the value should not be updated
+        $this->assertEquals(0, $entity->getToGBP());
+
     }
 
     /**
      * @param $times
      * @return ProviderInterface
      */
-    private function getMockProviderExpectingToBeCalled($times)
+    private function getMockProviderExpectingToBeCalled($times, $returning)
     {
         $mockProvider = $this
             ->getMockBuilder('Fitch\TutorBundle\Model\Currency\Provider\ProviderInterface')
             ->getMock();
-        $mockProvider->expects($this->exactly($times))->method('getRate')->willReturn(1.123);
+        $mockProvider->expects($this->exactly($times))->method('getRate')->willReturn($returning);
         return $mockProvider;
     }
 }

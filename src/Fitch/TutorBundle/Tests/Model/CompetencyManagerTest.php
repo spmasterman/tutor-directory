@@ -9,6 +9,7 @@ use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Model\CompetencyManager;
 use Fitch\TutorBundle\Model\CompetencyManagerInterface;
+use Fitch\TutorBundle\Model\TutorManagerInterface;
 
 class CompetencyManagerTest extends FixturesWebTestCase
 {
@@ -19,6 +20,9 @@ class CompetencyManagerTest extends FixturesWebTestCase
 
     /** @var  CompetencyManagerInterface */
     protected $modelManager;
+
+    /** @var  TutorManagerInterface */
+    protected $tutorManager;
 
     /**
      * Runs for every test.
@@ -81,5 +85,15 @@ class CompetencyManagerTest extends FixturesWebTestCase
                 return (bool) 'n2' == $entity->getNote();
             }
         );
+    }
+
+    public function testFindOrCreate()
+    {
+        $this->tutorManager = $this->container->get('fitch.manager.tutor');
+        $tutor = $this->tutorManager->findById(1);
+
+        $newCompetency = $this->modelManager->findOrCreateCompetency(false, $tutor);
+
+        $this->assertContains($newCompetency, $tutor->getCompetencies());
     }
 }
