@@ -1,7 +1,25 @@
 Fitch\TutorBundle\Entity\BusinessArea:
     area-1:
         name: Test Business Area 1
-        code: ABC
+        code: ONE
         prependToCategoryName: false
         displayAsCode: false
         default: true
+    area-2:
+        name: Test Business Area 2
+        code: TWO
+        prependToCategoryName: true
+        displayAsCode: false
+        default: false
+    area-3:
+        name: Test Business Area 3
+        code: THR
+        prependToCategoryName: false
+        displayAsCode: true
+        default: false
+    area-4:
+        name: Test Business Area 4
+        code: FOUR
+        prependToCategoryName: true
+        displayAsCode: true
+        default: false
