@@ -34,7 +34,6 @@ class TutorManagerTest extends FixturesWebTestCase
         parent::setUp();
         $this->modelManager = $this->container->get('fitch.manager.tutor');
         $this->reportManager = $this->container->get('fitch.manager.report');
-
     }
 
     /**
@@ -87,7 +86,7 @@ class TutorManagerTest extends FixturesWebTestCase
 
     public function testPopulateTable()
     {
-//        $tableData = $this->modelManager->populateTable();
+        //        $tableData = $this->modelManager->populateTable();
 //        $this->assertCount(self::FIXTURE_COUNT, $tableData);
 
         // TODO - this could (and should) be a lot more comprehensive. This is our
@@ -108,7 +107,7 @@ class TutorManagerTest extends FixturesWebTestCase
 
         $data =
             $this->modelManager->getReportData(
-                $serializer ->deserialize(
+                $serializer->deserialize(
                     $report->getDefinition(),
                     'Fitch\TutorBundle\Model\ReportDefinition',
                     'json'
@@ -119,74 +118,3 @@ class TutorManagerTest extends FixturesWebTestCase
         $this->assertContainsOnlyInstancesOf('Fitch\TutorBundle\Entity\Tutor', $data);
     }
 }
-
-
-//extends FixturesWebTestCase
-//{
-//    public function testFindAll()
-//    {
-//        $allEntities = $this->getModelManager()->findAll();
-//        $this->assertCount(3, $allEntities, "Should return three file types");
-//
-//        $this->assertEquals('Test Tutor One', $allEntities[0]->getName());
-//        $this->assertEquals('Test Tutor Two', $allEntities[1]->getName());
-//        $this->assertEquals('Test Tutor Three', $allEntities[2]->getName());
-//    }
-//
-//    public function testFindById()
-//    {
-//        $entityOne = $this->getModelManager()->findById(1);
-//
-//        $this->assertEquals('Test Tutor One', $entityOne->getName());
-//    }
-//
-//    public function testLifeCycle()
-//    {
-//        // Check that there are 3 entries
-//        $allEntities = $this->getModelManager()->findAll();
-//        $this->assertCount(3, $allEntities, "Should return three entities");
-//
-//        // Create new one - these services probably should all be stubbed/mocked to test this in isolation ??
-//        $newEntity = $this->getModelManager()->createEntity();
-//
-//        $newEntity
-//            ->setName('t')
-//            ->setBio('b')
-//            ->setLinkedInURL('l')
-//        ;
-//        $this->getModelManager()->saveEntity($newEntity);
-//
-//        // Check that there are 4 entries, and the new one is Timestamped correctly
-//        $allEntities = $this->getModelManager()->findAll();
-//        $this->assertCount(4, $allEntities, "Should return four entities");
-//        $this->assertNotNull($allEntities[3]->getCreated());
-//        $this->assertEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
-//
-//        // Updated shouldn't change until persisted
-//        $newEntity->setName('t2');
-//        $this->assertEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
-//
-//        sleep(1);
-//
-//        $this->getModelManager()->saveEntity($newEntity);
-//        $this->assertNotEquals($allEntities[3]->getCreated(), $allEntities[3]->getUpdated());
-//
-//        // Check that when we refresh it refreshes
-//        $newEntity->setName('t3');
-//        $this->getModelManager()->reloadEntity($newEntity);
-//        $this->assertEquals('t2', $newEntity->getName());
-//
-//        // Check that when we remove it, it is no longer present
-//        $this->getModelManager()->removeEntity($newEntity);
-//        $allEntities = $this->getModelManager()->findAll();
-//        $this->assertCount(3, $allEntities, "Should return three entities");
-//    }
-//
-//    /**
-//     * @return TutorManagerInterface
-//     */
-//    public function getModelManager()
-//    {
-//        return $this->container->get('fitch.manager.tutor');
-//    }
-//}
