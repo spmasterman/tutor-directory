@@ -9,6 +9,9 @@ use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Model\ReportManagerInterface;
 
+/**
+ * Class ReportManagerTest.
+ */
 class ReportManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
@@ -50,7 +53,7 @@ class ReportManagerTest extends FixturesWebTestCase
     }
 
     /**
-     *
+     * 
      */
     public function testLifeCycle()
     {

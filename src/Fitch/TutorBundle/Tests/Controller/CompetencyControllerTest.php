@@ -10,29 +10,33 @@ use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
+/**
+ * Class CompetencyControllerTest.
+ */
 class CompetencyControllerTest extends FixturesWebTestCase
 {
     const START = 'START';
     const END = 'END';
 
     /**
-     * @param Tutor      $tutor
+     * @param Tutor $tutor
      * @param Competency $competency
-     * @param string     $name
+     * @param string $name
+     * @param string $value
      *
      * This should throw an Authentication type error - that's OK its because its trying to render some
      * template that has content that is dependant on the current user. We don't care about this bit - were
      * trying to test the body of the controller. We could (possibly) mock out the security system, but there's
      * no value doing that.
      */
-    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name)
+    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name, $value = self::END)
     {
         // Create a response payload that should change the Note
         $requestBag = new ParameterBag([
             'pk' => $tutor->getId(),
             'competencyPk' => $competency->getId(),
             'name' => $name,
-            'value' => self::END,
+            'value' => $value,
         ]);
 
         // Set that up in a Stub/mock Request
@@ -94,10 +98,19 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
 
+        $originalId = $tutor->getCompetencies()->first()->getCompetencyType()->getId();
+
         $this->performMockedUpdate($tutor, $competency, 'competency-type');
 
         $manager->reloadEntity($tutor);
         $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+
+        // now change it back, but by ID
+        $this->performMockedUpdate($tutor, $competency, 'competency-type', $originalId);
+
+        $manager->saveEntity($tutor);
+        $manager->reloadEntity($tutor);
+        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
     }
 
     /**
@@ -119,10 +132,19 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
 
+        $originalId = $tutor->getCompetencies()->first()->getCompetencyLevel()->getId();
+
         $this->performMockedUpdate($tutor, $competency, 'competency-level');
 
         $manager->reloadEntity($tutor);
         $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+
+        // now change it back, but by ID
+        $this->performMockedUpdate($tutor, $competency, 'competency-level', $originalId);
+
+        $manager->saveEntity($tutor);
+        $manager->reloadEntity($tutor);
+        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
     }
 
     /**
