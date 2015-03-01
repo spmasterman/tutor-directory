@@ -12,7 +12,7 @@ use Fitch\TutorBundle\Model\LanguageManagerInterface;
 use Fitch\TutorBundle\Model\TutorLanguageManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 
-class TutorLanguageManagerTest  extends FixturesWebTestCase
+class TutorLanguageManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
         ChoicesModelManagerTestTrait,
@@ -46,9 +46,13 @@ class TutorLanguageManagerTest  extends FixturesWebTestCase
      */
     public function testFindAll()
     {
-        $this->performFindAllTest(self::FIXTURE_COUNT, 'Tutor One Speaks Language One', function (TutorLanguage $entity) {
-            return $entity->getNote();
-        });
+        $this->performFindAllTest(
+            self::FIXTURE_COUNT,
+            'Tutor One Speaks Language One',
+            function (TutorLanguage $entity) {
+                return $entity->getNote();
+            }
+        );
     }
 
     /**

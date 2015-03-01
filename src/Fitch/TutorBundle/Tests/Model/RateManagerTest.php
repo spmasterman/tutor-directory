@@ -9,7 +9,7 @@ use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Rate;
 use Fitch\TutorBundle\Model\RateManagerInterface;
 
-class RateManagerTest  extends FixturesWebTestCase
+class RateManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
         ChoicesModelManagerTestTrait,
