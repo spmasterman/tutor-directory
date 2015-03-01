@@ -31,4 +31,14 @@ trait FindModelManagerTestTrait
         $entityOne = $this->modelManager->findById($id);
         $this->assertEquals($checkValue, $checkFunction($entityOne));
     }
+
+    protected function performFindOrCreateTest($checkFunction)
+    {
+        $initialCount = count($this->modelManager->findAll());
+
+        $entity = $this->modelManager->findOrCreate('TESTNEW');
+
+        $this->assertEquals($initialCount+1, count($this->modelManager->findAll()));
+        $this->assertEquals('TESTNEW', $checkFunction($entity));
+    }
 }

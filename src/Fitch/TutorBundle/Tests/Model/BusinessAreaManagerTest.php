@@ -85,13 +85,7 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
 
     public function testBuildChoices()
     {
-        $choices = $this->modelManager->buildChoices();
-
-        $this->assertCount(self::FIXTURE_COUNT, $choices);
-
-        foreach ($choices as $choice) {
-            $this->assertTrue($choice instanceof BusinessArea);
-        }
+        $this->performBuildChoicesTest(self::FIXTURE_COUNT, function ($entity) { return $entity instanceof BusinessArea; });
     }
 
     public function testBuildGroupedChoices()
