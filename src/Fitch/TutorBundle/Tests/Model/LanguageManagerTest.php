@@ -20,7 +20,6 @@ class LanguageManagerTest extends FixturesWebTestCase
     const PREFERRED_FIXTURE_COUNT = 2;
     const ACTIVE_AND_PREFERRED_COUNT = 1;
 
-
     /** @var  LanguageManagerInterface */
     protected $modelManager;
 
@@ -130,4 +129,18 @@ class LanguageManagerTest extends FixturesWebTestCase
         );
     }
 
+    /**
+     *
+     */
+    public function testFindOrCreate()
+    {
+        $newLanguage = $this->modelManager->findOrCreate('NEWLANGUAGE');
+        $this->assertEquals('NEWLANGUAGE', $newLanguage->getName());
+
+        $this->modelManager->saveEntity($newLanguage);
+
+        $existingLanguage = $this->modelManager->findOrCreate('NEWLANGUAGE');
+
+        $this->assertEquals($existingLanguage->getId(), $newLanguage->getId());
+    }
 }

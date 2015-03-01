@@ -2,7 +2,10 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
+use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Model\ReportDefinition;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Test the creation of ReportDefinition objects. None of this tests the SQL that gets generated FROM the definition,
@@ -25,8 +28,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
             $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
             $identityEntity->expects($this->once())->method('getId')->willReturn(1);
 
-            $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-            $form->expects($this->any())->method('getData')->willReturn([
+            $form = $this->getFormMock([
                 $formField => [$identityEntity],
                 'fields' => [$formField],
             ]);
@@ -54,8 +56,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
             $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
             $identityEntity->expects($this->once())->method('getId')->willReturn(1);
 
-            $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-            $form->expects($this->any())->method('getData')->willReturn([
+            $form = $this->getFormMock([
                 $innerOuter[0] => [$innerOuter[1] => [$identityEntity]],
                 'fields' => [$innerOuter[0]],
             ]);
@@ -68,14 +69,10 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testLanguageDefaultOperatorFilter()
     {
-        $identityEntityOne = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityOne->expects($this->once())->method('getId')->willReturn(1);
+        $identityEntityOne = $this->getIdentityEntityMock(1);
+        $identityEntityTwo = $this->getIdentityEntityMock(2);
 
-        $identityEntityTwo = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityTwo->expects($this->once())->method('getId')->willReturn(2);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'language' => ['language' => [$identityEntityOne, $identityEntityTwo]],
             'fields' => ['language'],
         ]);
@@ -88,8 +85,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testNoLanguageSelectedFilter()
     {
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'language' => ['language' => []],
             'fields' => ['language'],
         ]);
@@ -101,14 +97,10 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testLanguageCombine()
     {
-        $identityEntityOne = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityOne->expects($this->once())->method('getId')->willReturn(1);
+        $identityEntityOne = $this->getIdentityEntityMock(1);
+        $identityEntityTwo = $this->getIdentityEntityMock(2);
 
-        $identityEntityTwo = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityTwo->expects($this->once())->method('getId')->willReturn(2);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'language' => [
                 'language' => [$identityEntityOne, $identityEntityTwo],
                 'combine' => 'or',
@@ -126,14 +118,10 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testCategoryCombine()
     {
-        $identityEntityOne = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityOne->expects($this->once())->method('getId')->willReturn(1);
+        $identityEntityOne = $this->getIdentityEntityMock(1);
+        $identityEntityTwo = $this->getIdentityEntityMock(2);
 
-        $identityEntityTwo = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityTwo->expects($this->once())->method('getId')->willReturn(2);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'category' => [
                 'category' => [$identityEntityOne, $identityEntityTwo],
                 'combine' => 'or',
@@ -151,17 +139,14 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testRate()
     {
-        $currencyEntity = $this->getMockBuilder('Fitch\TutorBundle\Entity\Currency')->getMock();
-        $currencyEntity->expects($this->any())->method('getThreeDigitCode')->willReturn('123');
-        $currencyEntity->expects($this->any())->method('getToGBP')->willReturn(1.1);
+        $currencyMock = $this->getCurrencyMock(1.1, '123');
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'rate' => [
                 'rateType' => ['one', 'two'],
                 'operator' => 'gt',
                 'amount' => '1',
-                'currency' => $currencyEntity,
+                'currency' => $currencyMock,
             ],
             'fields' => ['name', 'rate'],
         ]);
@@ -192,10 +177,35 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testRateOperators()
+    {
+        $currencyMock = $this->getCurrencyMock(1.1, '123');
+        $data = [
+            'lt' => ' < ',
+            'lte' => ' <= ',
+            'eq' => ' = ',
+            'gte' => ' >= ',
+            'gt' => ' > ',
+        ];
+
+        foreach ($data as $operator => $math) {
+            $form = $this->getFormMock([
+                'rate' => [
+                    'rateType' => ['one', 'two'],
+                    'operator' => $operator,
+                    'amount' => '1',
+                    'currency' => $currencyMock,
+                ],
+                'fields' => ['name', 'rate'],
+            ]);
+            $reportDefinition = new ReportDefinition($form, true);
+            $this->assertEquals(" * (X.toGBP / 1.1){$math}1", $reportDefinition->getRateLimitAsExpression('X'));
+        }
+    }
+
     public function testMissingCurrencyInRate()
     {
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'rate' => [
                 'operator' => 'gt',
                 'amount' => '1',
@@ -215,8 +225,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testMissingAmountInRate()
     {
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'rate' => [
                 'operator' => 'gt',
                 //'amount' => '1',
@@ -232,8 +241,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testMissingOperatorInRate()
     {
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'rate' => [
                 //'operator' => 'gt',
                 'amount' => '1',
@@ -249,14 +257,10 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testReturnedIds()
     {
-        $identityEntityOne = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityOne->expects($this->any())->method('getId')->willReturn(1);
+        $identityEntityOne = $this->getIdentityEntityMock(1);
+        $identityEntityTwo = $this->getIdentityEntityMock(2);
 
-        $identityEntityTwo = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityTwo->expects($this->any())->method('getId')->willReturn(2);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'category' => [
                 'category' => [$identityEntityOne, $identityEntityTwo],
                 'combine' => 'or',
@@ -306,14 +310,10 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testJustCompetencyTypeIds()
     {
-        $identityEntityOne = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityOne->expects($this->any())->method('getId')->willReturn(1);
+        $identityEntityOne = $this->getIdentityEntityMock(1);
+        $identityEntityTwo = $this->getIdentityEntityMock(2);
 
-        $identityEntityTwo = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
-        $identityEntityTwo->expects($this->any())->method('getId')->willReturn(2);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
-        $form->expects($this->any())->method('getData')->willReturn([
+        $form = $this->getFormMock([
             'competency' => [
                 'competencyType' => [$identityEntityOne, $identityEntityTwo],
                 'combine' => 'or',
@@ -354,5 +354,40 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         foreach ($defaultFields as $f) {
             $this->assertContains($f, array_keys($availableFields));
         }
+    }
+
+    /**
+     * @param int $id
+     * @return IdentityTraitInterface
+     */
+    private function getIdentityEntityMock($id)
+    {
+        $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
+        $identityEntity->expects($this->any())->method('getId')->willReturn($id);
+        return $identityEntity;
+    }
+
+    /**
+     * @param array $data
+     * @return FormInterface
+     */
+    private function getFormMock($data)
+    {
+        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')->getMock();
+        $form->expects($this->any())->method('getData')->willReturn($data);
+        return $form;
+    }
+
+    /**
+     * @param float $rate
+     * @param string $code
+     * @return Currency
+     */
+    private function getCurrencyMock($rate, $code)
+    {
+        $currencyEntity = $this->getMockBuilder('Fitch\TutorBundle\Entity\Currency')->getMock();
+        $currencyEntity->expects($this->any())->method('getThreeDigitCode')->willReturn($code);
+        $currencyEntity->expects($this->any())->method('getToGBP')->willReturn($rate);
+        return $currencyEntity;
     }
 }
