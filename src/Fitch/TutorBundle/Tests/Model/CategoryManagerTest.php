@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
+use Fitch\CommonBundle\Entity\DefaultTraitInterface;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
@@ -89,6 +90,13 @@ class CategoryManagerTest extends FixturesWebTestCase
 
     public function testFindDefault()
     {
-        $this->performFindDefaultTest(function ($entity) { return $entity instanceof Category; });
+        $this->performFindDefaultTest(
+            function ($entity) {
+                return $entity instanceof Category;
+            },
+            function (DefaultTraitInterface $entity) {
+                return $entity->isDefault();
+            }
+        );
     }
 }

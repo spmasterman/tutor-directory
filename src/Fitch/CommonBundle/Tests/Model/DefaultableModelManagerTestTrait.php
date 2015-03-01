@@ -15,10 +15,10 @@ use Monolog\Logger;
 trait DefaultableModelManagerTestTrait
 {
 
-    public function performFindDefaultTest($instanceFunction)
+    public function performFindDefaultTest($instanceFunction, $defaultFunction)
     {
         $entity = $this->modelManager->findDefaultEntity();
         $this->assertTrue($instanceFunction($entity));
-        $this->assertTrue($entity->isDefault());
+        $this->assertTrue($defaultFunction($entity));
     }
 }

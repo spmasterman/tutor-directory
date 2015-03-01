@@ -13,7 +13,7 @@ class CountryManager extends BaseModelManager implements CountryManagerInterface
     /**
      * @return Country[]
      */
-    public function buildChoicesForAddress()
+    public function buildChoices()
     {
         return $this->getRepo()->findBy(['active' => true]);
     }
@@ -21,7 +21,7 @@ class CountryManager extends BaseModelManager implements CountryManagerInterface
     /**
      * @return Country[]
      */
-    public function buildPreferredChoicesForAddress()
+    public function buildPreferredChoices()
     {
         return $this->getRepo()->findBy(['active' => true, 'preferred' => true]);
     }
@@ -61,7 +61,7 @@ class CountryManager extends BaseModelManager implements CountryManagerInterface
     /**
      * @return Country
      */
-    public function getDefaultCountry()
+    public function findDefaultEntity()
     {
         return $this->getRepo()->findOneBy(['twoDigitCode' => 'GB']);
     }

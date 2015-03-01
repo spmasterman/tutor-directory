@@ -82,7 +82,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
     {
         if (!$tutor->hasAddress()) {
             $address = $this->addressManager->createEntity();
-            $address->setCountry($this->countryManager->getDefaultCountry());
+            $address->setCountry($this->countryManager->findDefaultEntity());
             $tutor->addAddress($address);
         }
     }

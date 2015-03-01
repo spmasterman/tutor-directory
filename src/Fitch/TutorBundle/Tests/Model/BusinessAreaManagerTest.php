@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
+use Fitch\CommonBundle\Entity\DefaultTraitInterface;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
@@ -85,7 +86,12 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
 
     public function testBuildChoices()
     {
-        $this->performBuildChoicesTest(self::FIXTURE_COUNT, function ($entity) { return $entity instanceof BusinessArea; });
+        $this->performBuildChoicesTest(
+            self::FIXTURE_COUNT,
+            function ($entity) {
+                return $entity instanceof BusinessArea;
+            }
+        );
     }
 
     public function testBuildGroupedChoices()
@@ -96,8 +102,13 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
 
     public function testFindDefault()
     {
-        $entity = $this->modelManager->findDefaultEntity();
-        $this->assertTrue($entity instanceof BusinessArea);
-        $this->assertTrue($entity->isDefault());
+        $this->performFindDefaultTest(
+            function ($entity) {
+                return $entity instanceof BusinessArea;
+            },
+            function (DefaultTraitInterface $entity) {
+                return $entity->isDefault();
+            }
+        );
     }
 }

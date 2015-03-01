@@ -24,12 +24,12 @@ interface CountryManagerInterface
     /**
      * @return Country[]
      */
-    public function buildChoicesForAddress();
+    public function buildChoices();
 
     /**
      * @return Country[]
      */
-    public function buildPreferredChoicesForAddress();
+    public function buildPreferredChoices();
 
     /**
      * Returns all active languages as a Array - suitable for use in "select"
@@ -47,7 +47,7 @@ interface CountryManagerInterface
     /**
      * @return Country
      */
-    public function getDefaultCountry();
+    public function findDefaultEntity();
 
     /**
      * @param Country $country
