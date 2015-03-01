@@ -3,3 +3,15 @@ Fitch\TutorBundle\Entity\Category:
     name: Test Category One
     businessArea: @area-1
     default: true
+  category-2:
+    name: Test Category Two
+    businessArea: @area-2
+    default: false
+  category-3:
+    name: Test Category Three
+    businessArea: @area-3
+    default: false
+  category-4:
+    name: Test Category Four
+    businessArea: @area-4
+    default: false

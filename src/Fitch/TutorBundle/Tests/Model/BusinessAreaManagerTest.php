@@ -69,4 +69,31 @@ class BusinessAreaManagerTest extends TimestampableModelManagerTestCase
             }
         );
     }
+
+    public function testBuildChoices()
+    {
+        $choices = $this->modelManager->buildChoices();
+
+        $this->assertCount(self::FIXTURE_COUNT, $choices);
+
+        foreach ($choices as $choice) {
+            $this->assertTrue($choice instanceof BusinessArea);
+        }
+    }
+
+    public function testBuildGroupedChoices()
+    {
+        $choices = $this->modelManager->buildGroupedChoices();
+        $this->assertCount(self::FIXTURE_COUNT, $choices); // this is not *generally* true only if the manager uses Flatlist
+    }
+
+    public function testFindDefault()
+    {
+        $entity = $this->modelManager->findDefaultBusinessArea();
+        $this->assertTrue($entity instanceof BusinessArea);
+        $this->assertTrue($entity->isDefault());
+    }
 }
+
+//todo move baseclass to trait
+//todo make trait for other entity behaviors (defaultable, selectable, preferred-and-active etc)

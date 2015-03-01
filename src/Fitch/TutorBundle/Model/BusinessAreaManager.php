@@ -27,7 +27,7 @@ class BusinessAreaManager extends BaseModelManager implements BusinessAreaManage
      */
     public function buildGroupedChoices()
     {
-        parent::buildFlatChoices(function (NamedTraitInterface $entity) {
+        return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
     }
