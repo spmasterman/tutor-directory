@@ -201,6 +201,20 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
             $reportDefinition = new ReportDefinition($form, true);
             $this->assertEquals(" * (X.toGBP / 1.1){$math}1", $reportDefinition->getRateLimitAsExpression('X'));
         }
+
+        $form = $this->getFormMock([
+            'rate' => [
+                'rateType' => ['one', 'two'],
+                'operator' => 'BANANA',
+                'amount' => '1',
+                'currency' => $currencyMock,
+            ],
+            'fields' => ['name', 'rate'],
+        ]);
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $reportDefinition = new ReportDefinition($form, true);
+        $reportDefinition->getRateLimitAsExpression('X');
     }
 
     public function testMissingCurrencyInRate()

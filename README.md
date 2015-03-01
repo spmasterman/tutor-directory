@@ -478,6 +478,14 @@ phpUnit is declared as a composer dependency - so if you want to run these tests
  * Use a custom autoloader: pathtoproject/vendor/autoload.php
  * Configuration file: pathtoproject/app/phpunit.xml
  * Bootstrap file: pathtoproject/app/bootstrap.test.php
+ 
+In general tests are organized like this:
+ 
+ * Controller\\*ControllerTest - Functional Test of the entire controller
+ * Entity\\*Test - Unit Test of the Entity. Validator testing happens here if the entity uses them
+ * Form\\*TypeTest - Unit Test of FormTypes with sets of valid/invalid data
+ * Model\\*ManagerTest - Functional tests of the Model classes.
+ * SmokeTest - Is it on fire testing
 
 ### Data Fixtures
 I use Alice and Faker to generate fake fixture data in YML files. Fixture files are numbered 10,20,30... etc to specify 
