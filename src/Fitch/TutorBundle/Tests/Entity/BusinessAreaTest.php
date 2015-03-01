@@ -31,22 +31,10 @@ class BusinessAreaTest extends FixturesWebTestCase
     }
 
     /**
-     * Test setting BusinessArea Type
-     */
-    public function testType()
-    {
-        $entityOne = $this->getModelManager()->findById(1);
-
-        $this->assertEquals('Home', $entityOne->getType());
-        $entityOne->setType('Office');
-        $this->assertEquals('Office', $entityOne->getType());
-    }
-
-    /**
      * @return BusinessAreaManagerInterface
      */
     public function getModelManager()
     {
-        return $this->container->get('fitch.manager.address');
+        return $this->container->get('fitch.manager.business_area');
     }
 }
