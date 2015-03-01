@@ -5,8 +5,14 @@ namespace Fitch\TutorBundle\Tests\Entity;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\AddressManagerInterface;
 
+/**
+ * Class AddressTest
+ */
 class AddressTest extends FixturesWebTestCase
 {
+    /**
+     * Tests the magic __toString
+     */
     public function testToString()
     {
         $entityOne = $this->getModelManager()->findById(1);
@@ -16,6 +22,9 @@ class AddressTest extends FixturesWebTestCase
         );
     }
 
+    /**
+     * Test setting Address Type
+     */
     public function testType()
     {
         $entityOne = $this->getModelManager()->findById(1);

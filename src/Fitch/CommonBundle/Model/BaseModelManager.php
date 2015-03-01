@@ -166,6 +166,8 @@ abstract class BaseModelManager
             $this->em->persist($entity);
         }
 
+        $this->log('debug', 'Entity saved');
+
         if ($withFlush) {
             $this->em->flush();
         }
@@ -182,8 +184,8 @@ abstract class BaseModelManager
     {
         $class = $this->class;
         $entity = new $class();
+        $this->log('debug', 'Entity created');
 
-        // Set defaults here
         return $entity;
     }
 
@@ -193,6 +195,7 @@ abstract class BaseModelManager
     public function reloadEntity($entity)
     {
         $this->em->refresh($entity);
+        $this->log('debug', 'Entity reloaded');
     }
 
     /**
@@ -203,6 +206,9 @@ abstract class BaseModelManager
     {
         if ($this->em->contains($entity)) {
             $this->em->remove($entity);
+            $this->log('debug', 'Entity removed');
+        } else {
+            $this->log('debug', 'Trying to remove an un-managed entity');
         }
 
         if ($withFlush) {

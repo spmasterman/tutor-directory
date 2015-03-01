@@ -27,3 +27,8 @@ doctrine:
                 #memory: true
                 charset: utf8
 
+monolog:
+    handlers:
+        main:
+            type:  test
+            level: debug
