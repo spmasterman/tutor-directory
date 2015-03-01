@@ -3,77 +3,75 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
+use Fitch\TutorBundle\Entity\Phone;
 use Fitch\TutorBundle\Model\PhoneManagerInterface;
 
 class PhoneManagerTest extends FixturesWebTestCase
 {
-    public function testFindAll()
+    use TimestampableModelManagerTestTrait,
+        FindModelManagerTestTrait;
+
+    const FIXTURE_COUNT = 6;
+
+    /** @var  PhoneManagerInterface */
+    protected $modelManager;
+
+    /**
+     * Runs for every test.
+     */
+    public function setUp()
     {
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(6, $allEntities, "Should return six entities");
-
-        $this->assertEquals('+1 123 1111111 (Home)', (string) $allEntities[0]);
-        $this->assertEquals('+1 123 222-222 (Office)', (string) $allEntities[1]);
-        $this->assertEquals('+2 123 3 (Home)', (string) $allEntities[2]);
-        $this->assertEquals('+2 123 444-4444 (Office)', (string) $allEntities[3]);
-        $this->assertEquals('+3 123 555555 (Home)', (string) $allEntities[4]);
-        $this->assertEquals('+3 123 666666 (Office)', (string) $allEntities[5]);
-    }
-
-    public function testFindById()
-    {
-        $entityOne = $this->getModelManager()->findById(1);
-
-        $this->assertEquals('+1 123 1111111 (Home)', (string) $entityOne);
-    }
-
-    public function testLifeCycle()
-    {
-        // Check that there are 6 entries
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(6, $allEntities, "Should return six entities");
-
-        // Create new one
-        $newEntity = $this->getModelManager()->createEntity();
-        $newEntity
-            ->setType('t')
-            ->setPreferred(true)
-            ->setCountry(null)
-            ->setNumber('1')
-        ;
-        $this->getModelManager()->saveEntity($newEntity);
-
-        // Check that there are 7 entries, and the new one is Timestamped correctly
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(7, $allEntities, "Should return seven entities");
-        $this->assertNotNull($allEntities[6]->getCreated());
-        $this->assertEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
-
-        // Updated shouldn't change until persisted
-        $newEntity->setNumber('2');
-        $this->assertEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
-
-        sleep(1);
-
-        $this->getModelManager()->saveEntity($newEntity);
-        $this->assertNotEquals($allEntities[6]->getCreated(), $allEntities[6]->getUpdated());
-
-        // Check that when we refresh it refreshes
-        $newEntity->setNumber('3');
-        $this->getModelManager()->reloadEntity($newEntity);
-        $this->assertEquals('2', $newEntity->getNumber());
-
-        // Check that when we remove it, it is no longer present
-        $this->getModelManager()->removeEntity($newEntity);
-        $allEntities = $this->getModelManager()->findAll();
-        $this->assertCount(6, $allEntities, "Should return six entities");
+        parent::setUp();
+        $this->modelManager = $this->container->get('fitch.manager.phone');
     }
 
     /**
-     * @return PhoneManagerInterface
+     * Tests the findAll.
      */
-    public function getModelManager()
+    public function testFindAll()
     {
-        return $this->container->get('fitch.manager.phone');
+        $this->performFindAllTest(self::FIXTURE_COUNT, '+1 123 1111111 (Home)', function (Phone $entity) {
+            return (string) $entity;
+        });
+    }
+
+    /**
+     *
+     */
+    public function testFindById()
+    {
+        $this->performFindByIdTest(1, '+1 123 1111111 (Home)', function (Phone $entity) {
+            return (string) $entity;
+        });
+    }
+
+    /**
+     *
+     */
+    public function testLifeCycle()
+    {
+        $this->performLifeCycleTests(
+            self::FIXTURE_COUNT,
+            function (Phone $entity) {
+                $entity
+                    ->setType('t')
+                    ->setPreferred(true)
+                    ->setCountry(null)
+                    ->setNumber('1');
+            },
+            function (Phone $entity) {
+                $entity
+                    ->setNumber('p2');
+            },
+            function (Phone $entity) {
+                $entity
+                    ->setNumber('p3');
+            },
+            function (Phone $entity) {
+                return (bool) 'p2' == $entity->getNumber();
+            }
+        );
     }
 }
