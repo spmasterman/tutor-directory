@@ -17,14 +17,14 @@ class BusinessAreaTest extends FixturesWebTestCase
     {
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals(
-            'Test Business Area 1',
+            '(ONE) Test Business Area 1',
             (string) $entityOne
         );
 
         $entityOne->setDisplayAsCode(true);
 
         $this->assertEquals(
-            'ABC',
+            'ONE',
             (string) $entityOne
         );
 
