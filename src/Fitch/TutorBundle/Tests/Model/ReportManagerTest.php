@@ -4,22 +4,20 @@ namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
-use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
-use Fitch\TutorBundle\Entity\Status;
-use Fitch\TutorBundle\Model\StatusManagerInterface;
+use Fitch\TutorBundle\Entity\Report;
+use Fitch\TutorBundle\Model\ReportManagerInterface;
 
-class StatusManagerTest  extends FixturesWebTestCase
+class ReportManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
         ChoicesModelManagerTestTrait,
-        FindModelManagerTestTrait,
-        DefaultableModelManagerTestTrait;
+        FindModelManagerTestTrait;
 
-    const FIXTURE_COUNT = 3;
+    const FIXTURE_COUNT = 1;
 
-    /** @var  StatusManagerInterface */
+    /** @var  ReportManagerInterface */
     protected $modelManager;
 
     /**
@@ -28,7 +26,7 @@ class StatusManagerTest  extends FixturesWebTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->modelManager = $this->container->get('fitch.manager.status');
+        $this->modelManager = $this->container->get('fitch.manager.report');
     }
 
     /**
@@ -36,7 +34,7 @@ class StatusManagerTest  extends FixturesWebTestCase
      */
     public function testFindAll()
     {
-        $this->performFindAllTest(self::FIXTURE_COUNT, 'Test Status One', function (Status $entity) {
+        $this->performFindAllTest(self::FIXTURE_COUNT, 'Test Report One', function (Report $entity) {
             return $entity->getName();
         });
     }
@@ -46,7 +44,7 @@ class StatusManagerTest  extends FixturesWebTestCase
      */
     public function testFindById()
     {
-        $this->performFindByIdTest(1, 'Test Status One', function (Status $entity) {
+        $this->performFindByIdTest(1, 'Test Report One', function (Report $entity) {
             return $entity->getName();
         });
     }
@@ -58,37 +56,22 @@ class StatusManagerTest  extends FixturesWebTestCase
     {
         $this->performLifeCycleTests(
             self::FIXTURE_COUNT,
-            function (Status $entity) {
+            function (Report $entity) {
                 $entity
                     ->setName('n')
-                    ->setDefault(false)
+                    ->setDefinition('')
                 ;
             },
-            function (Status $entity) {
+            function (Report $entity) {
                 $entity
                     ->setName('p2');
             },
-            function (Status $entity) {
+            function (Report $entity) {
                 $entity
                     ->setName('p3');
             },
-            function (Status $entity) {
+            function (Report $entity) {
                 return (bool) 'p2' == $entity->getName();
-            }
-        );
-    }
-
-    /**
-     *
-     */
-    public function testFindDefault()
-    {
-        $this->performFindDefaultTest(
-            function ($entity) {
-                return $entity instanceof Status;
-            },
-            function (Status $entity) {
-                return $entity->isDefault();
             }
         );
     }
