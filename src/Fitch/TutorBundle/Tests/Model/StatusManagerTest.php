@@ -10,7 +10,7 @@ use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Status;
 use Fitch\TutorBundle\Model\StatusManagerInterface;
 
-class StatusManagerTest  extends FixturesWebTestCase
+class StatusManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait,
         ChoicesModelManagerTestTrait,
