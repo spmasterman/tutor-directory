@@ -111,7 +111,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
      */
     private function setDefaultRegion(Tutor $tutor)
     {
-        $region = $this->operatingRegionManager->findDefaultOperatingRegion();
+        $region = $this->operatingRegionManager->findDefaultEntity();
         if ($region) {
             $tutor->setRegion($region);
             $tutor->setCurrency($region->getDefaultCurrency());
@@ -123,7 +123,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
      */
     private function setDefaultStatus(Tutor $tutor)
     {
-        $tutor->setStatus($this->statusManager->findDefaultStatus());
+        $tutor->setStatus($this->statusManager->findDefaultEntity());
     }
 
     /**
@@ -131,7 +131,7 @@ class TutorManager extends BaseModelManager implements TutorManagerInterface
      */
     private function setDefaultTutorType(Tutor $tutor)
     {
-        $tutor->setTutorType($this->tutorTypeManager->findDefaultTutorType());
+        $tutor->setTutorType($this->tutorTypeManager->findDefaultEntity());
     }
 
     /**

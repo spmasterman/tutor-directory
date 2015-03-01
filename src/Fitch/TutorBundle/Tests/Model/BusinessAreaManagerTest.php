@@ -3,6 +3,9 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\BusinessArea;
 use Fitch\TutorBundle\Model\BusinessAreaManagerInterface;
@@ -12,7 +15,10 @@ use Fitch\TutorBundle\Model\BusinessAreaManagerInterface;
  */
 class BusinessAreaManagerTest extends FixturesWebTestCase
 {
-    use TimestampableModelManagerTestTrait;
+    use TimestampableModelManagerTestTrait,
+        DefaultableModelManagerTestTrait,
+        ChoicesModelManagerTestTrait,
+        FindModelManagerTestTrait;
 
     const FIXTURE_COUNT = 4;
 
@@ -96,7 +102,7 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
 
     public function testFindDefault()
     {
-        $entity = $this->modelManager->findDefaultBusinessArea();
+        $entity = $this->modelManager->findDefaultEntity();
         $this->assertTrue($entity instanceof BusinessArea);
         $this->assertTrue($entity->isDefault());
     }

@@ -122,7 +122,7 @@ class CompetencyTypeManager extends BaseModelManager implements CompetencyTypeMa
      */
     public function setDefaultCategory(CompetencyType $competencyType)
     {
-        $category = $this->categoryManager->findDefaultCategory();
+        $category = $this->categoryManager->findDefaultEntity();
         if ($category) {
             $competencyType->setCategory($category);
         }

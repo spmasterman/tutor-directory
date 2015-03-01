@@ -26,7 +26,7 @@ class OperatingRegionTest extends FixturesWebTestCase
 
     public function testFindDefaultOperatingRegion()
     {
-        $entity = $this->getModelManager()->findDefaultOperatingRegion();
+        $entity = $this->getModelManager()->findDefaultEntity();
         $entityOne = $this->getModelManager()->findById(1);
         $this->assertEquals($entity, $entityOne);
         $this->assertTrue($entity->isDefault());

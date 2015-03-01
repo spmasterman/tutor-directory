@@ -37,7 +37,7 @@ interface CategoryManagerInterface
     /**
      * @return null|Category
      */
-    public function findDefaultCategory();
+    public function findDefaultEntity();
 
     /**
      * @param Category $category

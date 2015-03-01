@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Address;
 use Fitch\TutorBundle\Model\AddressManagerInterface;
@@ -12,7 +13,8 @@ use Fitch\TutorBundle\Model\AddressManagerInterface;
  */
 class AddressManagerTest  extends FixturesWebTestCase
 {
-    use TimestampableModelManagerTestTrait;
+    use TimestampableModelManagerTestTrait,
+        FindModelManagerTestTrait;
 
     const FIXTURE_COUNT = 6;
 

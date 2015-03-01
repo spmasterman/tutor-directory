@@ -5,12 +5,15 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\BusinessArea;
+use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
 
 /**
  * Class BusinessAreaManager.
  */
 class BusinessAreaManager extends BaseModelManager implements BusinessAreaManagerInterface
 {
+    use DefaultEntityTrait;
+
     /**
      * @return array
      */
@@ -30,14 +33,6 @@ class BusinessAreaManager extends BaseModelManager implements BusinessAreaManage
         return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
-    }
-
-    /**
-     * @return null|BusinessArea
-     */
-    public function findDefaultBusinessArea()
-    {
-        return $this->getRepo()->findOneBy(['default' => true]);
     }
 
     /**

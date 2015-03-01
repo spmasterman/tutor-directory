@@ -5,12 +5,15 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Status;
+use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
 
 /**
  * Class StatusManager.
  */
 class StatusManager extends BaseModelManager implements StatusManagerInterface
 {
+    use DefaultEntityTrait;
+
     /**
      * Returns all active competencyLevels as a Array - suitable for use in "select"
      * style lists, with a grouped sections.
@@ -24,14 +27,6 @@ class StatusManager extends BaseModelManager implements StatusManagerInterface
         return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
             return $entity->getName();
         });
-    }
-
-    /**
-     * @return null|Status
-     */
-    public function findDefaultStatus()
-    {
-        return $this->getRepo()->findOneBy(['default' => true]);
     }
 
     /**

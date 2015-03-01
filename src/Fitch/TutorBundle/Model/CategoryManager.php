@@ -4,12 +4,15 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Category;
+use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
 
 /**
  * Class CategoryManager.
  */
 class CategoryManager extends BaseModelManager implements CategoryManagerInterface
 {
+    use DefaultEntityTrait;
+
     /**
      * @return array
      */
@@ -33,14 +36,6 @@ class CategoryManager extends BaseModelManager implements CategoryManagerInterfa
         }
 
         return $choices;
-    }
-
-    /**
-     * @return null|Category
-     */
-    public function findDefaultCategory()
-    {
-        return $this->getRepo()->findOneBy(['default' => true]);
     }
 
     /**

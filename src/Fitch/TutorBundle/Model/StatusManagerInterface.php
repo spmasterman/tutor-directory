@@ -34,7 +34,7 @@ interface StatusManagerInterface
     /**
      * @return null|Status
      */
-    public function findDefaultStatus();
+    public function findDefaultEntity();
 
     /**
      * @param Status $status

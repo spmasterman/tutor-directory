@@ -5,19 +5,14 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Proficiency;
+use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
 
 /**
  * Class ProficiencyManager.
  */
 class ProficiencyManager extends BaseModelManager implements ProficiencyManagerInterface
 {
-    /**
-     * @return null|Proficiency
-     */
-    public function findDefaultProficiency()
-    {
-        return $this->getRepo()->findOneBy(['default' => true]);
-    }
+    use DefaultEntityTrait;
 
     /**
      * @param string $proficiencyName

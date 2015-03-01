@@ -54,7 +54,7 @@ class TutorLanguageManager extends BaseModelManager implements TutorLanguageMana
      */
     public function setDefaultProficiency(TutorLanguage $tutorLanguage)
     {
-        $proficiency = $this->proficiencyManager->findDefaultProficiency();
+        $proficiency = $this->proficiencyManager->findDefaultEntity();
         if ($proficiency) {
             $tutorLanguage->setProficiency($proficiency);
         }

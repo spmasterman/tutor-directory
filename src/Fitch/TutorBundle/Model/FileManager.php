@@ -62,7 +62,7 @@ class FileManager extends BaseModelManager implements FileManagerInterface
         $file
             ->setName($uploadedFile->getClientOriginalName())
             ->setFileSystemKey($gaufretteFile->getKey())
-            ->setFileType($this->fileTypeManager->findDefaultFileType())
+            ->setFileType($this->fileTypeManager->findDefaultEntity())
             ->setMimeType($metaInfo['mimeType'])
             ->setUploader($metaInfo['uploader'])
             ->setTextContent($metaInfo['textContent']);

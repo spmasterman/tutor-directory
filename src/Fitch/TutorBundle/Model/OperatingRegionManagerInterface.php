@@ -34,7 +34,7 @@ interface OperatingRegionManagerInterface
     /**
      * @return null|OperatingRegion
      */
-    public function findDefaultOperatingRegion();
+    public function findDefaultEntity();
 
     /**
      * @param OperatingRegion $operatingRegion

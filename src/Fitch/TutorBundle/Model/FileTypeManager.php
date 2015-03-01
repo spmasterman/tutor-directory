@@ -4,19 +4,14 @@ namespace Fitch\TutorBundle\Model;
 
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\FileType;
+use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
 
 /**
  * Class FileTypeManager.
  */
 class FileTypeManager extends BaseModelManager implements FileTypeManagerInterface
 {
-    /**
-     * @return null|FileType
-     */
-    public function findDefaultFileType()
-    {
-        return $this->getRepo()->findOneBy(['default' => true]);
-    }
+    use DefaultEntityTrait;
 
     /**
      * Returns all active file types as a Array - suitable for use in "select"

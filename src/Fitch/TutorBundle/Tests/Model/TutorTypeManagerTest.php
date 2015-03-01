@@ -66,7 +66,7 @@ class TutorTypeManagerTest extends FixturesWebTestCase
 
     public function testFindDefaultFileType()
     {
-        $entity = $this->getModelManager()->findDefaultTutorType();
+        $entity = $this->getModelManager()->findDefaultEntity();
 
         $this->assertTrue($entity->isDefault());
     }

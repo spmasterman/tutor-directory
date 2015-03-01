@@ -66,7 +66,7 @@ class StatusManagerTest extends FixturesWebTestCase
 
     public function testFindDefaultFileType()
     {
-        $entity = $this->getModelManager()->findDefaultStatus();
+        $entity = $this->getModelManager()->findDefaultEntity();
 
         $this->assertTrue($entity->isDefault());
     }

@@ -43,7 +43,7 @@ interface BusinessAreaManagerInterface
     /**
      * @return null|BusinessArea
      */
-    public function findDefaultBusinessArea();
+    public function findDefaultEntity();
 
     /**
      * @param BusinessArea $businessArea

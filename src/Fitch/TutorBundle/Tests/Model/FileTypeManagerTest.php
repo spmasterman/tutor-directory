@@ -69,7 +69,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
 
     public function testFindDefaultFileType()
     {
-        $fileType = $this->getModelManager()->findDefaultFileType();
+        $fileType = $this->getModelManager()->findDefaultEntity();
 
         $this->assertTrue($fileType->isDefault());
     }

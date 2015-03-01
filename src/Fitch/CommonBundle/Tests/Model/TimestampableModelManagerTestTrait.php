@@ -7,40 +7,20 @@ use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
 /**
- * Class TimestampableModelManagerTestCase.
+ * Class TimestampableModelManagerTestTrait.
  *
  * Provides some helper functions for testing ModelManagers for Entities that
  * implement TimestampableTraitInterface
  */
 trait TimestampableModelManagerTestTrait
 {
-    protected function performFindAllTest($checkCount, $checkValue, $checkFunction)
-    {
-        $entities = $this->modelManager->findAll();
-
-        $this->assertCount(
-            $checkCount,
-            $entities,
-            sprintf("Should return %s entity(s)", $checkCount)
-        );
-
-        $this->assertEquals($checkValue, $checkFunction($entities[0]));
-    }
-
-    protected function performFindByIdTest($id, $checkValue, $checkFunction)
-    {
-        $entityOne = $this->modelManager->findById($id);
-        $this->assertEquals($checkValue, $checkFunction($entityOne));
-    }
-
     protected function performLifeCycleTests(
         $fixtureCount,
         $createFunction,
         $editFunction,
         $uncommittedEditFunction,
         $checkFunction
-    )
-    {
+    ) {
         // Check that there are 1 entry
         $entities = $this->modelManager->findAll();
 

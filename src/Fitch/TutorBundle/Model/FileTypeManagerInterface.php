@@ -24,7 +24,7 @@ interface FileTypeManagerInterface
     /**
      * @return null|FileType
      */
-    public function findDefaultFileType();
+    public function findDefaultEntity();
 
     /**
      * Returns all active file types as a Array - suitable for use in "select"

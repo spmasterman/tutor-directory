@@ -5,19 +5,14 @@ namespace Fitch\TutorBundle\Model;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\TutorType;
+use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
 
 /**
  * Class TutorTypeManager
  */
 class TutorTypeManager extends BaseModelManager implements TutorTypeManagerInterface
 {
-    /**
-     * @return null|TutorType
-     */
-    public function findDefaultTutorType()
-    {
-        return $this->getRepo()->findOneBy(['default' => true]);
-    }
+    use DefaultEntityTrait;
 
     /**
      * Returns all active tutorTypes as a Array - suitable for use in "select"

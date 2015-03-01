@@ -3,6 +3,9 @@
 namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
+use Fitch\CommonBundle\Tests\Model\FindModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Category;
 use Fitch\TutorBundle\Model\CategoryManagerInterface;
@@ -12,7 +15,10 @@ use Fitch\TutorBundle\Model\CategoryManagerInterface;
  */
 class CategoryManagerTest extends FixturesWebTestCase
 {
-    use TimestampableModelManagerTestTrait;
+    use TimestampableModelManagerTestTrait,
+        DefaultableModelManagerTestTrait,
+        ChoicesModelManagerTestTrait,
+        FindModelManagerTestTrait;
 
     const FIXTURE_COUNT = 4;
 
@@ -72,13 +78,7 @@ class CategoryManagerTest extends FixturesWebTestCase
 
     public function testBuildChoices()
     {
-        $choices = $this->modelManager->buildChoices();
-
-        $this->assertCount(self::FIXTURE_COUNT, $choices);
-
-        foreach ($choices as $choice) {
-            $this->assertTrue($choice instanceof Category);
-        }
+        $this->performBuildChoicesTest(self::FIXTURE_COUNT, function ($entity) { return $entity instanceof Category; });
     }
 
     public function testBuildGroupedChoices()
@@ -89,11 +89,6 @@ class CategoryManagerTest extends FixturesWebTestCase
 
     public function testFindDefault()
     {
-        $entity = $this->modelManager->findDefaultCategory();
-        $this->assertTrue($entity instanceof Category);
-        $this->assertTrue($entity->isDefault());
+        $this->performFindDefaultTest(function ($entity) { return $entity instanceof Category; });
     }
 }
-
-//todo move baseclass to trait
-//todo make trait for other entity behaviors (defaultable, selectable, preferred-and-active etc)

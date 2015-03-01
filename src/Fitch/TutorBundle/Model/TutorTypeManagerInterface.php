@@ -24,7 +24,7 @@ interface TutorTypeManagerInterface
     /**
      * @return null|TutorType
      */
-    public function findDefaultTutorType();
+    public function findDefaultEntity();
 
     /**
      * Returns all active tutorTypes as a Array - suitable for use in "select"

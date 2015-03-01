@@ -24,7 +24,7 @@ interface ProficiencyManagerInterface
     /**
      * @return null|Proficiency
      */
-    public function findDefaultProficiency();
+    public function findDefaultEntity();
 
     /**
      * @param $proficiencyName
