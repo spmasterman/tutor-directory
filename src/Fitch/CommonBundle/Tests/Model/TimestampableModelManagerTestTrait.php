@@ -3,8 +3,6 @@
 namespace Fitch\CommonBundle\Tests\Model;
 
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-use Fitch\CommonBundle\Model\BaseModelManager;
-use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
@@ -14,11 +12,8 @@ use Monolog\Logger;
  * Provides some helper functions for testing ModelManagers for Entities that
  * implement TimestampableTraitInterface
  */
-abstract class TimestampableModelManagerTestCase extends FixturesWebTestCase
+trait TimestampableModelManagerTestTrait
 {
-    /** @var  BaseModelManager */
-    protected $modelManager;
-
     protected function performFindAllTest($checkCount, $checkValue, $checkFunction)
     {
         $entities = $this->modelManager->findAll();

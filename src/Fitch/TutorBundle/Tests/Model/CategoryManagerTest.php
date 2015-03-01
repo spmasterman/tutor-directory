@@ -4,19 +4,19 @@ namespace Fitch\TutorBundle\Tests\Model;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
-use Fitch\TutorBundle\Entity\BusinessArea;
-use Fitch\TutorBundle\Model\BusinessAreaManagerInterface;
+use Fitch\TutorBundle\Entity\Category;
+use Fitch\TutorBundle\Model\CategoryManagerInterface;
 
 /**
- * Class BusinessAreaManagerTest.
+ * Class CategoryManagerTest.
  */
-class BusinessAreaManagerTest extends FixturesWebTestCase
+class CategoryManagerTest extends FixturesWebTestCase
 {
     use TimestampableModelManagerTestTrait;
 
     const FIXTURE_COUNT = 4;
 
-    /** @var  BusinessAreaManagerInterface */
+    /** @var  CategoryManagerInterface */
     protected $modelManager;
 
     /**
@@ -25,7 +25,7 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->modelManager = $this->container->get('fitch.manager.business_area');
+        $this->modelManager = $this->container->get('fitch.manager.category');
     }
 
     /**
@@ -33,7 +33,7 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
      */
     public function testFindAll()
     {
-        $this->performFindAllTest(self::FIXTURE_COUNT, 'Test Business Area 1', function (BusinessArea $entity) {
+        $this->performFindAllTest(self::FIXTURE_COUNT, 'Test Category One', function (Category $entity) {
             return $entity->getName();
         });
     }
@@ -43,7 +43,7 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
      */
     public function testFindById()
     {
-        $this->performFindByIdTest(1, 'Test Business Area 1', function (BusinessArea $entity) {
+        $this->performFindByIdTest(1, 'Test Category One', function (Category $entity) {
             return $entity->getName();
         });
     }
@@ -55,23 +55,16 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
     {
         $this->performLifeCycleTests(
             self::FIXTURE_COUNT,
-            function (BusinessArea $entity) {
-                $entity
-                    ->setName('b')
-                    ->setCode('c')
-                    ->setPrependToCategoryName(false)
-                    ->setDisplayAsCode(false)
-                    ->setDefault(false);
+            function (Category $entity) {
+                $entity->setName('b');
             },
-            function (BusinessArea $entity) {
-                $entity
-                    ->setName('p2');
+            function (Category $entity) {
+                $entity->setName('p2');
             },
-            function (BusinessArea $entity) {
-                $entity
-                    ->setName('p3');
+            function (Category $entity) {
+                $entity->setName('p3');
             },
-            function (BusinessArea $entity) {
+            function (Category $entity) {
                 return (bool) 'p2' == $entity->getName();
             }
         );
@@ -84,7 +77,7 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
         $this->assertCount(self::FIXTURE_COUNT, $choices);
 
         foreach ($choices as $choice) {
-            $this->assertTrue($choice instanceof BusinessArea);
+            $this->assertTrue($choice instanceof Category);
         }
     }
 
@@ -96,8 +89,11 @@ class BusinessAreaManagerTest extends FixturesWebTestCase
 
     public function testFindDefault()
     {
-        $entity = $this->modelManager->findDefaultBusinessArea();
-        $this->assertTrue($entity instanceof BusinessArea);
+        $entity = $this->modelManager->findDefaultCategory();
+        $this->assertTrue($entity instanceof Category);
         $this->assertTrue($entity->isDefault());
     }
 }
+
+//todo move baseclass to trait
+//todo make trait for other entity behaviors (defaultable, selectable, preferred-and-active etc)

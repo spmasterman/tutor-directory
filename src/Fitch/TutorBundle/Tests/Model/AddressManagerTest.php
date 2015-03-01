@@ -2,15 +2,22 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
-use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestCase;
+use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\Model\TimestampableModelManagerTestTrait;
 use Fitch\TutorBundle\Entity\Address;
+use Fitch\TutorBundle\Model\AddressManagerInterface;
 
 /**
  * Class AddressManagerTest.
  */
-class AddressManagerTest  extends TimestampableModelManagerTestCase
+class AddressManagerTest  extends FixturesWebTestCase
 {
+    use TimestampableModelManagerTestTrait;
+
     const FIXTURE_COUNT = 6;
+
+    /** @var  AddressManagerInterface */
+    protected $modelManager;
 
     /**
      * Runs for every test.
