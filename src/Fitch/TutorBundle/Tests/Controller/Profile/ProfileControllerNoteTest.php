@@ -75,6 +75,9 @@ class ProfileControllerNoteTest extends FixturesWebTestCase
         $this->assertEquals(TestSlug::START_1, $tutor->getNotes()->first()->getKey()); //NOTE: KEY shouldn't change
         $this->assertEquals(TestSlug::END_2, $tutor->getNotes()->first()->getBody());
         $this->assertEquals('Admin User', $tutor->getNotes()->first()->getAuthor()->getFullName());
+
+        // we messed with the container - which is held as a static in these tests - invalidate it for next test
+        $this->discardContainer();
     }
 
     /**

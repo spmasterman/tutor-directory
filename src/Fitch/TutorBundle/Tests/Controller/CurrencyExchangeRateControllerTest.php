@@ -34,6 +34,9 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->assertCount(1, $flashes);
         $this->assertArrayHasKey('success', $flashes);
         $this->assertCount(1, $flashes['success']);
+
+        // we messed with the container - which is held as a static in these tests - invalidate it for next test
+        $this->discardContainer();
     }
 
     public function testUpdateExchangeRateFailing()
@@ -49,6 +52,9 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->assertCount(1, $flashes);
         $this->assertArrayHasKey('warning', $flashes);
         $this->assertCount(1, $flashes['warning']);
+
+        // we messed with the container - which is held as a static in these tests - invalidate it for next test
+        $this->discardContainer();
     }
 
 

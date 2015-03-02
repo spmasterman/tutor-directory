@@ -54,15 +54,15 @@ class FixturesWebTestCase extends WebTestCase
         restoreDatabase();
     }
 
+    protected function discardContainer()
+    {
+        static::$kernel = null;
+    }
+
     protected function tearDown()
     {
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
         $em->clear();
     }
-
-//    public function testThatTestHarnessIsWorking()
-//    {
-//        $this->assertTrue(true);
-//    }
 }
