@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Model\Profile;
 
+use Fitch\CommonBundle\Model\UserCallableInterface;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\NoteManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
@@ -21,44 +22,29 @@ class ProfileUpdateNote implements ProfileUpdateInterface
             $note = $this->getNoteManager()->findById($noteId);
         } else {
             $note = $this->getNoteManager()->createEntity();
-            $note
-                ->setAuthor($this->getUser())
-                ->setKey($request->request->get('noteKey'))
+            $note->setKey($request->request->get('noteKey'))
             ;
             $tutor->addNote($note);
         }
-        $note->setBody($value);
+
+        // only update things if they have changed
+        if ($value != $note->getBody()) {
+            $note
+                ->setAuthor($this->getUserCallable()->getCurrentUser())
+                ->setBody($value)
+            ;
+        }
 
         return $note;
     }
 
     /**
-     * Get a user from the Security Token Storage.
-     *
-     * @return mixed
-     *
-     * @throws \LogicException If SecurityBundle is not available
-     *
-     * @see TokenInterface::getUser()
+     * @return UserCallableInterface
      */
-    private function getUser()
+    private function getUserCallable()
     {
-        if (!$this->container->has('security.token_storage')) {
-            throw new \LogicException('The SecurityBundle is not registered in your application.');
-        }
-
-        if (null === $token = $this->container->get('security.token_storage')->getToken()) {
-            return;
-        }
-
-        if (!is_object($user = $token->getUser())) {
-            // e.g. anonymous authentication
-            return;
-        }
-
-        return $user;
+        return $this->container->get('fitch.user_callable');
     }
-    //// TODO - Get this from "UserCallable"
 
     /**
      * @return NoteManagerInterface

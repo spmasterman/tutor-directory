@@ -16,6 +16,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundE
  */
 class CompetencyControllerTest extends FixturesWebTestCase
 {
+    use AssertBadRequestJsonResponseTrait;
+
     const START = 'START';
     const END = 'END';
 
@@ -29,6 +31,8 @@ class CompetencyControllerTest extends FixturesWebTestCase
      * template that has content that is dependant on the current user. We don't care about this bit - were
      * trying to test the body of the controller. We could (possibly) mock out the security system, but there's
      * no value doing that.
+     *
+     * @return null|\Symfony\Component\HttpFoundation\JsonResponse
      */
     private function performMockedUpdate(Tutor $tutor, Competency $competency, $name, $value = self::END)
     {
@@ -165,17 +169,8 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $competency = $tutor->getCompetencies()->first();
 
         $response = $this->performMockedUpdate($tutor, $competency, 'competency-banana');
-        $this->assertTrue(
-            $response->headers->contains(
-                'Content-Type',
-                'application/json'
-            )
-        );
 
-        $this->assertEquals(
-            Response::HTTP_BAD_REQUEST,
-            $response->getStatusCode()
-        );
+        $this->assertBadRequestJsonResponse($response);
     }
 
 
@@ -231,17 +226,8 @@ class CompetencyControllerTest extends FixturesWebTestCase
 
         // Now try removing it again - should throw an error
         $response = $this->performMockedRemove($competency);
-        $this->assertTrue(
-            $response->headers->contains(
-                'Content-Type',
-                'application/json'
-            )
-        );
 
-        $this->assertEquals(
-            Response::HTTP_BAD_REQUEST,
-            $response->getStatusCode()
-        );
+        $this->assertBadRequestJsonResponse($response);
     }
 
     /**
