@@ -3,56 +3,20 @@
 namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
-use Fitch\TutorBundle\Controller\ProfileController;
-use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Email;
-use Fitch\TutorBundle\Entity\Phone;
-use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\CountryManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
-use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
  * Class ProfileControllerEmailTest.
  */
 class ProfileControllerEmailTest extends FixturesWebTestCase
 {
-    // Just some text constants to set values to and from in order to check that it happens right
-    const START_1 = 'START_1';
-    const START_2 = 'START_2';
-    const END_1 = 'END_1';
-    const END_2 = 'END_2';
+    use ProfileMockedUpdateTrait;
 
     /**
-     * @param Tutor  $tutor
-     * @param string $name
-     * @param string $value
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * Test adding an email.
      */
-    private function performMockedUpdate(Tutor $tutor, $name, $requestExtras = [])
-    {
-        // Create a response payload that should change the Note
-        $requestBag = new ParameterBag(array_merge([
-            'pk' => $tutor->getId(),
-            'name' => $name,
-        ], $requestExtras));
-
-        // Set that up in a Stub/mock Request
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
-        $request->request = $requestBag;
-
-        // Call the Controller Update
-        $controller = new ProfileController();
-        $controller->setContainer($this->container);
-
-        return $controller->updateAction($request);
-    }
-
-    /**
-     * Test editing an email.
-     */
-    public function testUpdatingEmail()
+    public function testUpdateEmail()
     {
         $manager = $this->getModelManager();
 
@@ -63,27 +27,62 @@ class ProfileControllerEmailTest extends FixturesWebTestCase
         /** @var Email $email*/
         $email = $tutor->getEmailAddresses()->first();
         $email
-            ->setAddress(self::START_1)
-            ->setType(self::START_2)
+            ->setAddress(TestSlug::START_1)
+            ->setType(TestSlug::START_2)
         ;
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::START_1, $tutor->getEmailAddresses()->first()->getAddress());
-        $this->assertEquals(self::START_2, $tutor->getEmailAddresses()->first()->getType());
+        $this->assertEquals(TestSlug::START_1, $tutor->getEmailAddresses()->first()->getAddress());
+        $this->assertEquals(TestSlug::START_2, $tutor->getEmailAddresses()->first()->getType());
 
         $this->performMockedUpdate($tutor, 'email'.$email->getId(), [
             'emailPk' => $email->getId(),
             'value' => [
-                'address' => self::END_1,
-                'type' => self::END_2,
+                'address' => TestSlug::END_1,
+                'type' => TestSlug::END_2,
             ],
         ]);
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::END_1, $tutor->getEmailAddresses()->first()->getAddress());
-        $this->assertEquals(self::END_2, $tutor->getEmailAddresses()->first()->getType());
+        $this->assertEquals(TestSlug::END_1, $tutor->getEmailAddresses()->first()->getAddress());
+        $this->assertEquals(TestSlug::END_2, $tutor->getEmailAddresses()->first()->getType());
     }
+
+    /**
+     * Test editing an email.
+     */
+    public function testAddEmail()
+    {
+        $manager = $this->getModelManager();
+
+        // Get the first tutor
+        $tutor = $manager->findById(1);
+
+        // remove any existing emails
+        foreach ($tutor->getEmailAddresses() as $emailAddress) {
+            $tutor->removeEmailAddress($emailAddress);
+        };
+
+        $manager->saveEntity($tutor);
+        $manager->reloadEntity($tutor);
+
+        $this->performMockedUpdate($tutor, 'email0', [
+            'emailPk' => 0,
+            'value' => [
+                'address' => TestSlug::END_1,
+                'type' => TestSlug::END_2,
+            ],
+        ]);
+
+        $manager->reloadEntity($tutor);
+        $this->assertEquals(TestSlug::END_1, $tutor->getEmailAddresses()->first()->getAddress());
+        $this->assertEquals(TestSlug::END_2, $tutor->getEmailAddresses()->first()->getType());
+    }
+
+    /**
+     * NOTE: Removing a Email tested in EmailController.
+     */
 
     /**
      * @return TutorManagerInterface

@@ -498,12 +498,16 @@ Testing a specific database state is probably bad practice, but I'm not really s
 If you find working with my tests and test data too painful - just create a new kernel environment for whatever you need to do, and create your own tests.    
   
 ### Bundles
-There are 4 bundles :
+There are 5 bundles :
 
 * "Common" contains any dependencies that the other three rely on (AbstractBase classes etc)
 * "FrontEnd" contains all the general web-sitey stuff. All the javascript libraries, SCSS files etc. Also controllers for 
 Menus, Header Bar etc.
 * "Tutor" contains the main entities, their CRUD controllers and the controller for the main Profile and the Lookup table
+* "EntityAttributeValue" - this implements EAV storage on entities - effectively allowing us to store schema driven or 
+schema-less key-value pairs against any entity (I use it to store the state of various UI things). Its nearly a self 
+contained library. Eventually I'll get round to pulling it out and making it a vendor dependency. It was based off some 
+ abandoned project on github that I spannered around with to get what I needed. It needs a full rewrite.
 * "User" contains all the user management stuff (and relies heavily on FOSUserBundle) 
 
 ### Jenkins
