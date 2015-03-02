@@ -49,10 +49,12 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $controller->setContainer($this->container);
 
         try {
-            $controller->updateAction($request);
+            $response = $controller->updateAction($request);
         } catch (AuthenticationCredentialsNotFoundException $e) {
-            // Do nothing
+            $response = null;
         }
+
+        return $response;
     }
 
     /**
@@ -147,6 +149,35 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $manager->reloadEntity($tutor);
         $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
     }
+
+    /**
+     * Test Setting a New CompetencyLevel via a (mock)request object being passed to update controller method.
+     */
+    public function testInvalidUpdate()
+    {
+        $manager = $this->getModelManager();
+
+        // Get the first tutor
+        $tutor = $manager->findById(1);
+
+        // Set the Note on his first competency, to the START tag
+        /** @var Competency $competency */
+        $competency = $tutor->getCompetencies()->first();
+
+        $response = $this->performMockedUpdate($tutor, $competency, 'competency-banana');
+        $this->assertTrue(
+            $response->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
+
+        $this->assertEquals(
+            Response::HTTP_BAD_REQUEST,
+            $response->getStatusCode()
+        );
+    }
+
 
     /**
      * Removed the competency. Doesn't have the same issue as updating it, as we dont need to render an updated row
