@@ -34,9 +34,9 @@ class CompetencyTypeControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
+        $form = $crawler->selectButton('Create')->form([
             'fitch_tutorbundle_competencytype[name]'  => 'xtest',
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -51,9 +51,9 @@ class CompetencyTypeControllerTest extends WebTestCase
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
-        $form = $crawler->selectButton('Update')->form(array(
+        $form = $crawler->selectButton('Update')->form([
             'fitch_tutorbundle_competencytype[name]'  => 'xtest-edit',
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();

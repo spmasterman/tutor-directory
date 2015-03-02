@@ -34,10 +34,10 @@ class CompetencyLevelControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
+        $form = $crawler->selectButton('Create')->form([
             'fitch_tutorbundle_competencylevel[name]'  => 'xtest',
             'fitch_tutorbundle_competencylevel[color]' => '#daac8a',
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -52,10 +52,10 @@ class CompetencyLevelControllerTest extends WebTestCase
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
-        $form = $crawler->selectButton('Update')->form(array(
+        $form = $crawler->selectButton('Update')->form([
             'fitch_tutorbundle_competencylevel[name]'  => 'xtest-edit',
             'fitch_tutorbundle_competencylevel[color]' => '#db8c8b',
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();

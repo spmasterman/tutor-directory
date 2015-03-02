@@ -8,7 +8,7 @@ use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
 /**
@@ -18,14 +18,11 @@ class CompetencyControllerTest extends FixturesWebTestCase
 {
     use AssertBadRequestJsonResponseTrait;
 
-    const START = 'START';
-    const END = 'END';
-
     /**
-     * @param Tutor $tutor
+     * @param Tutor      $tutor
      * @param Competency $competency
-     * @param string $name
-     * @param string $value
+     * @param string     $name
+     * @param string     $value
      *
      * This should throw an Authentication type error - that's OK its because its trying to render some
      * template that has content that is dependant on the current user. We don't care about this bit - were
@@ -34,19 +31,14 @@ class CompetencyControllerTest extends FixturesWebTestCase
      *
      * @return null|\Symfony\Component\HttpFoundation\JsonResponse
      */
-    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name, $value = self::END)
+    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name, $value = TestSlug::END_1)
     {
-        // Create a request payload that should update the competency
-        $requestBag = new ParameterBag([
+        $request = $this->getMockedRequest([
             'pk' => $tutor->getId(),
             'competencyPk' => $competency->getId(),
             'name' => $name,
             'value' => $value,
         ]);
-
-        // Set that up in a Stub/mock Request
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
-        $request->request = $requestBag;
 
         // Call the Controller Update
         $controller = new CompetencyController();
@@ -74,16 +66,16 @@ class CompetencyControllerTest extends FixturesWebTestCase
         // Set the Note on his first competency, to the START tag
         /** @var Competency $competency */
         $competency = $tutor->getCompetencies()->first();
-        $competency->setNote(self::START);
+        $competency->setNote(TestSlug::START_1);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getNote());
+        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getNote());
 
         $this->performMockedUpdate($tutor, $competency, 'competency-note');
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getNote());
+        $this->assertEquals(TestSlug::END_1, $tutor->getCompetencies()->first()->getNote());
     }
 
     /**
@@ -99,25 +91,25 @@ class CompetencyControllerTest extends FixturesWebTestCase
         // Set the Note on his first competency, to the START tag
         /** @var Competency $competency */
         $competency = $tutor->getCompetencies()->first();
-        $competency->getCompetencyType()->setName(self::START);
+        $competency->getCompetencyType()->setName(TestSlug::START_1);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
 
         $originalId = $tutor->getCompetencies()->first()->getCompetencyType()->getId();
 
         $this->performMockedUpdate($tutor, $competency, 'competency-type');
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+        $this->assertEquals(TestSlug::END_1, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
 
         // now change it back, but by ID
         $this->performMockedUpdate($tutor, $competency, 'competency-type', $originalId);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
     }
 
     /**
@@ -133,25 +125,25 @@ class CompetencyControllerTest extends FixturesWebTestCase
         // Set the Note on his first competency, to the START tag
         /** @var Competency $competency */
         $competency = $tutor->getCompetencies()->first();
-        $competency->getCompetencyLevel()->setName(self::START);
+        $competency->getCompetencyLevel()->setName(TestSlug::START_1);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
 
         $originalId = $tutor->getCompetencies()->first()->getCompetencyLevel()->getId();
 
         $this->performMockedUpdate($tutor, $competency, 'competency-level');
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::END, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+        $this->assertEquals(TestSlug::END_1, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
 
         // now change it back, but by ID
         $this->performMockedUpdate($tutor, $competency, 'competency-level', $originalId);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(self::START, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
     }
 
     /**
@@ -173,10 +165,9 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $this->assertBadRequestJsonResponse($response);
     }
 
-
     /**
      * Removed the competency. Doesn't have the same issue as updating it, as we dont need to render an updated row
-     * to send to the view
+     * to send to the view.
      *
      * @param Competency $competency
      *
@@ -184,14 +175,9 @@ class CompetencyControllerTest extends FixturesWebTestCase
      */
     private function performMockedRemove(Competency $competency)
     {
-        // Create a request payload that should remove the competency
-        $requestBag = new ParameterBag([
+        $request = $this->getMockedRequest([
             'pk' => $competency->getId(),
         ]);
-
-        // Set that up in a Stub/mock Request
-        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
-        $request->request = $requestBag;
 
         // Call the Controller Update
         $controller = new CompetencyController();
@@ -201,7 +187,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
     }
 
     /**
-     * Test that we can remove a competency, and that we cant remove a non existent one
+     * Test that we can remove a competency, and that we cant remove a non existent one.
      */
     public function testRemove()
     {
@@ -228,6 +214,24 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $response = $this->performMockedRemove($competency);
 
         $this->assertBadRequestJsonResponse($response);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return Request
+     */
+    private function getMockedRequest($parameters)
+    {
+        // Create a request payload that should update the competency
+        $requestBag = new ParameterBag($parameters);
+
+        // Set that up in a Stub/mock Request
+        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
+        /* @var Request $request */
+        $request->request = $requestBag;
+
+        return $request;
     }
 
     /**
