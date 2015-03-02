@@ -12,6 +12,16 @@ class YahooApi implements ProviderInterface
     const API_URL = 'http://download.finance.yahoo.com/d/quotes.csv?s=[fromCurrency][toCurrency]=X&f=nl1d1t1';
 
     /**
+     * @var HttpRequestInterface $httpRequestInterface
+     */
+    private $httpRequestInterface;
+
+    public function __construct(HttpRequestInterface $httpRequestInterface)
+    {
+        $this->httpRequestInterface = $httpRequestInterface;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getRate($fromCurrency, $toCurrency)
@@ -25,14 +35,15 @@ class YahooApi implements ProviderInterface
             static::API_URL
         );
 
-        $curlHandle = curl_init();
         $timeout = 0;
-        curl_setopt($curlHandle, CURLOPT_URL, $url);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curlHandle, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)');
-        curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $rawData = curl_exec($curlHandle);
-        curl_close($curlHandle);
+
+        $this->httpRequestInterface->setOption(CURLOPT_URL, $url);
+        $this->httpRequestInterface->setOption(CURLOPT_RETURNTRANSFER, 1);
+        $this->httpRequestInterface->setOption(CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)');
+        $this->httpRequestInterface->setOption(CURLOPT_CONNECTTIMEOUT, $timeout);
+
+        $rawData = $this->httpRequestInterface->execute();
+        $this->httpRequestInterface->close();
 
         return explode(',', $rawData)[1];
     }

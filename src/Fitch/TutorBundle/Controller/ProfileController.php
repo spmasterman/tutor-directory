@@ -8,7 +8,7 @@ use Fitch\CommonBundle\Exception\ClassNotFoundException;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Note;
 use Fitch\TutorBundle\Entity\Tutor;
-use Fitch\TutorBundle\Model\Profile\ProfileUpdateFactory;
+use Fitch\TutorBundle\Controller\Profile\ProfileUpdateFactory;
 use Fitch\TutorBundle\Model\RateManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

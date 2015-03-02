@@ -2,6 +2,7 @@
 
 namespace Fitch\TutorBundle\Command;
 
+use Fitch\TutorBundle\Model\Currency\Provider\CurlRequest;
 use Fitch\TutorBundle\Model\Currency\Provider\YahooApi;
 use Fitch\TutorBundle\Model\CurrencyManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -38,7 +39,7 @@ class UpdateExchangeRateCommand extends ContainerAwareCommand
         $this->container = $this->getContainer();
         $currencyManager = $this->getCurrencyManager();
 
-        if ($currencyManager->performExchangeRateUpdateIfRequired(new YahooApi())) {
+        if ($currencyManager->performExchangeRateUpdateIfRequired(new YahooApi(new CurlRequest()))) {
             $output->writeln(
                 '<info>Exchange rate update ran without error</info>'
             );

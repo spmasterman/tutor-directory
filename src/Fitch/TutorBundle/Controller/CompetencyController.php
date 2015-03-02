@@ -4,7 +4,7 @@ namespace Fitch\TutorBundle\Controller;
 
 use Exception;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
-use Fitch\TutorBundle\Model\Competency\CompetencyUpdateFactory;
+use Fitch\TutorBundle\Controller\Competency\CompetencyUpdateFactory;
 use Fitch\TutorBundle\Model\CompetencyManagerInterface;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

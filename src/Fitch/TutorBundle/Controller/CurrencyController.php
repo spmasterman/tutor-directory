@@ -4,6 +4,7 @@ namespace Fitch\TutorBundle\Controller;
 
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Form\Type\CurrencyType;
+use Fitch\TutorBundle\Model\Currency\Provider\CurlRequest;
 use Fitch\TutorBundle\Model\Currency\Provider\YahooApi;
 use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -343,7 +344,7 @@ class CurrencyController extends Controller
      */
     public function updateExchangeRateAction(Currency $currency)
     {
-        if ($this->getCurrencyManager()->updateExchangeRate(new YahooApi(), $currency)) {
+        if ($this->getCurrencyManager()->updateExchangeRate(new YahooApi(new CurlRequest()), $currency)) {
             $this->addFlash('success', $this->get('translator')->trans('currency.update.xr-success'));
         } else {
             $this->addFlash('warning', $this->get('translator')->trans('currency.update.xr-failure'));

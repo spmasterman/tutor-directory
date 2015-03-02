@@ -61,8 +61,8 @@ class FixturesWebTestCase extends WebTestCase
         $em->clear();
     }
 
-    public function testThatTestHarnessIsWorking()
-    {
-        $this->assertTrue(true);
-    }
+//    public function testThatTestHarnessIsWorking()
+//    {
+//        $this->assertTrue(true);
+//    }
 }
