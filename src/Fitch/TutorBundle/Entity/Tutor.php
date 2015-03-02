@@ -81,7 +81,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="Address",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $addresses;
@@ -93,7 +94,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="Phone",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $phoneNumbers;
@@ -105,7 +107,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="Email",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $emailAddresses;
@@ -117,7 +120,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="File",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $files;
@@ -129,7 +133,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="Competency",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $competencies;
@@ -154,7 +159,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="Note",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $notes;
@@ -182,7 +188,8 @@ class Tutor implements
      * @ORM\OneToMany(targetEntity="Rate",
      *      mappedBy="tutor",
      *      indexBy="id",
-     *      cascade={"persist", "remove"}
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
      * )
      */
     protected $rates;

@@ -7,6 +7,9 @@ use Fitch\TutorBundle\Model\PhoneManagerInterface;
 use Fitch\TutorBundle\Model\Traits\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ProfileUpdatePhone.
+ */
 class ProfileUpdatePhone implements ProfileUpdateInterface
 {
     use ContainerAwareTrait;
