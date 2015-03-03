@@ -6,7 +6,7 @@ class CurlRequest implements HttpRequestInterface
 {
     private $handle = null;
 
-    public function __construct($url=null)
+    public function __construct($url = null)
     {
         $this->handle = curl_init($url);
     }

@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Model\Currency\Provider;
 
 /**
- * Class YahooApi
+ * Class YahooApi.
  */
 class YahooApi implements ProviderInterface
 {
@@ -15,7 +15,7 @@ class YahooApi implements ProviderInterface
     const API_URL = 'http://download.finance.yahoo.com/d/quotes.csv?s=[fromCurrency][toCurrency]=X&f=nl1d1t1';
 
     /**
-     * @var HttpRequestInterface $httpRequestInterface
+     * @var HttpRequestInterface
      */
     private $httpRequestInterface;
 
@@ -50,6 +50,10 @@ class YahooApi implements ProviderInterface
 
         $rawData = $this->httpRequestInterface->execute();
         $this->httpRequestInterface->close();
+
+        if (!$rawData) {
+            return false;
+        }
 
         return explode(',', $rawData)[1];
     }

@@ -53,7 +53,7 @@ class ReportManagerTest extends FixturesWebTestCase
     }
 
     /**
-     * 
+     *
      */
     public function testLifeCycle()
     {
