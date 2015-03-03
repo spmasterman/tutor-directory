@@ -2,24 +2,30 @@ Fitch\TutorBundle\Entity\TutorLanguage:
     tutorlanguage-1:
         tutor: @tutor-1
         language: @language-1
+        proficiency: @proficiency-1
         note: Tutor One Speaks Language One
     tutorlanguage-2:
         tutor: @tutor-1
         language: @language-2
+        proficiency: @proficiency-2
         note: Tutor One Speaks Language TWO
     tutorlanguage-3:
         tutor: @tutor-1
         language: @language-3
+        proficiency: @proficiency-1
         note: Tutor One Speaks Language Three
     tutorlanguage-4:
         tutor: @tutor-2
         language: @language-1
+        proficiency: @proficiency-2
         note: Tutor Two Speaks Language One
     tutorlanguage-5:
         tutor: @tutor-2
         language: @language-2
+        proficiency: @proficiency-3
         note: Tutor Two Speaks Language Two
     tutorlanguage-6:
         tutor: @tutor-3
         language: @language-3
+        proficiency: @proficiency-3
         note: Tutor Three Speaks Language Three

@@ -101,11 +101,13 @@ class TutorLanguage implements
 
     /**
      * @param Proficiency $proficiency
+     *
      * @return $this
      */
     public function setProficiency($proficiency)
     {
         $this->proficiency = $proficiency;
+
         return $this;
     }
 
