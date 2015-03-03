@@ -21,6 +21,8 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
     const PASS = true;
     const FAIL = false;
 
+    private $savedService;
+
     public function testUpdateExchangeRatePassing()
     {
         $this->injectCurrencyManagerThatWill(self::PASS);
@@ -36,7 +38,7 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->assertCount(1, $flashes['success']);
 
         // we messed with the container - which is held as a static in these tests - invalidate it for next test
-        $this->discardContainer();
+        $this->restoreContainer();
     }
 
     public function testUpdateExchangeRateFailing()
@@ -54,7 +56,7 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->assertCount(1, $flashes['warning']);
 
         // we messed with the container - which is held as a static in these tests - invalidate it for next test
-        $this->discardContainer();
+        $this->restoreContainer();
     }
 
 
@@ -64,7 +66,14 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
             ->disableOriginalConstructor()
             ->getMock();
         $currencyManagerMock->expects($this->any())->method('updateExchangeRate')->willReturn($passOrFail);
-        $this->container->set('fitch.manager.currency', $currencyManagerMock);
 
+        $this->savedService = $this->container->get('fitch.manager.currency');
+
+        $this->container->set('fitch.manager.currency', $currencyManagerMock);
+    }
+
+    private function restoreContainer()
+    {
+        $this->container->set('fitch.manager.currency', $this->savedService);
     }
 }

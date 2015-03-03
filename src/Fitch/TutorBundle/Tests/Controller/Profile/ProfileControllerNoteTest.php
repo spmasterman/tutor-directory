@@ -15,6 +15,8 @@ class ProfileControllerNoteTest extends FixturesWebTestCase
 {
     use ProfileMockedUpdateTrait;
 
+    private $savedService;
+
     /**
      * Test editing a Note
      */
@@ -77,7 +79,7 @@ class ProfileControllerNoteTest extends FixturesWebTestCase
         $this->assertEquals('Admin User', $tutor->getNotes()->first()->getAuthor()->getFullName());
 
         // we messed with the container - which is held as a static in these tests - invalidate it for next test
-        $this->discardContainer();
+        $this->restoreContainer();
     }
 
     /**
@@ -95,8 +97,13 @@ class ProfileControllerNoteTest extends FixturesWebTestCase
         $mockUserCallable->expects($this->any())->method('getCurrentUser')->willReturn(
             $this->getUserManager()->findById($id)
         );
-
+        $this->savedService = $this->container->get('fitch.user_callable');
         $this->container->set('fitch.user_callable', $mockUserCallable);
+    }
+
+    private function restoreContainer()
+    {
+        $this->container->set('fitch.user_callable', $this->savedService);
     }
 
     /**
