@@ -14,6 +14,24 @@ use Fitch\TutorBundle\Model\ReportDefinition;
  */
 class TutorRepository extends EntityRepository
 {
+    /**
+     * Finds the data that is required to display the searchable table
+     *
+     * This query is MySQL specific. It will not run on a SQLite database, and so cannot be included in the functional
+     * tests (including the smoke test) that uses SQLLite
+     *
+     * The differences in syntax are
+     * 1) SET SESSION doesn't exist in SQLite
+     * 2) GROUP_CONCAT is different (the separator is a separate parameter GROUP_CONCAT(x,y) vs.
+     * GROUP_CONCAT(x SEPARATOR y)
+     * 3) CONCAT becomes ||
+     *
+     * We could catch syntax errors, and try and /search/replace/ the problems away in our tests, but then... what are
+     * we testing?
+     *
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function findAllForTable()
     {
         $sql = <<<'SQL'

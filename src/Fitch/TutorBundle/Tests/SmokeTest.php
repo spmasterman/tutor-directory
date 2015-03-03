@@ -103,10 +103,17 @@ class SmokeTest extends WebTestCase
 
         foreach ($routes as $name => $routeBits) {
             $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
+
+            $responseContent = '';
+            if ($client->getResponse()->getStatusCode() != 200) {
+                // IF YOUR SMOKE TEST FAILS - SET A BREAKPOINT HERE TO INSPECT THE RESPONSE;
+                $responseContent = $client->getResponse()->getContent();
+            }
+
             $this->assertEquals(
                 200,
                 $client->getResponse()->getStatusCode(),
-                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}: {$responseContent}"
             );
         }
     }

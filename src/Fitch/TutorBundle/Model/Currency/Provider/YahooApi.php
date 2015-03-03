@@ -2,6 +2,9 @@
 
 namespace Fitch\TutorBundle\Model\Currency\Provider;
 
+/**
+ * Class YahooApi
+ */
 class YahooApi implements ProviderInterface
 {
     /**
@@ -16,6 +19,9 @@ class YahooApi implements ProviderInterface
      */
     private $httpRequestInterface;
 
+    /**
+     * @param HttpRequestInterface $httpRequestInterface
+     */
     public function __construct(HttpRequestInterface $httpRequestInterface)
     {
         $this->httpRequestInterface = $httpRequestInterface;
