@@ -7,6 +7,11 @@ use Nelmio\Alice\Fixtures;
 
 /**
  * Class AppFixtures.
+ *
+ * @codeCoverageIgnore
+ *
+ * This does not independent testing - as it runs as part of the setup of FixturesWebTestCase - they will all fail
+ * if this fails.
  */
 class AppFixtures extends DataFixtureLoader
 {
