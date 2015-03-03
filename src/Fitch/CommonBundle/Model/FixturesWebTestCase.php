@@ -36,17 +36,22 @@ class FixturesWebTestCase extends WebTestCase
         parent::__construct($name, $data, $dataName);
 
         if (!static::$kernel) {
-            try {
-                static::$kernel = self::createKernel([
-                    'environment' => $this->environment,
-                    'debug'       => $this->debug,
-                ]);
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
-            static::$kernel->boot();
+            $this->boot();
         }
         $this->container = static::$kernel->getContainer();
+    }
+
+    private function boot()
+    {
+        try {
+            static::$kernel = self::createKernel([
+                'environment' => $this->environment,
+                'debug'       => $this->debug,
+            ]);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+        static::$kernel->boot();
     }
 
     protected function setUp()
@@ -56,7 +61,8 @@ class FixturesWebTestCase extends WebTestCase
 
     protected function discardContainer()
     {
-        static::$kernel = null;
+        $this->boot();
+        $this->container = static::$kernel->getContainer();
     }
 
     protected function tearDown()
