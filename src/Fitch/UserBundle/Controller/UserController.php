@@ -29,6 +29,8 @@ class UserController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
@@ -113,6 +115,8 @@ class UserController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {
@@ -280,8 +284,7 @@ class UserController extends Controller
                         ],
                 ]
             )
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**

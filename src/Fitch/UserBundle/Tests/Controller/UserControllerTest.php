@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class UserControllerTest
+ * Class UserControllerTest.
  */
 class UserControllerTest extends WebTestCase
 {
@@ -61,15 +61,15 @@ class UserControllerTest extends WebTestCase
 
         // here's our test data - we have a duplicate "name" - this should choke
         $formDataToSubmit = [
-            'fitch_userbundle_user_new[userName]'  => 'xuser',
-            'fitch_userbundle_user_new[fullName]'  => 'Test User Created',
-            'fitch_userbundle_user_new[email]'  => 'user@plainuser.com',
-            'fitch_userbundle_user_new[plainPassword]'  => 'test',
+            'fitch_userbundle_user_new[userName]' => 'xuser',
+            'fitch_userbundle_user_new[fullName]' => 'Test User Created',
+            'fitch_userbundle_user_new[email]' => 'user@plainuser.com',
+            'fitch_userbundle_user_new[plainPassword]' => 'test',
         ];
 
         // Form wont have any elements for checkboxes that aren't ticked (by default) so we cant check for them...
         $formCheckBoxes = [
-            'fitch_userbundle_user_new[enabled]'  => true,
+            'fitch_userbundle_user_new[enabled]' => true,
         ];
 
         // but we can check for everything else
@@ -107,7 +107,7 @@ class UserControllerTest extends WebTestCase
 
         // Correct the mistake, resubmit the form
         $formDataToSubmit['fitch_userbundle_user_new[userName]'] = 'xtest';
-        $formDataToSubmit['fitch_userbundle_user_new[email]']  = 'test@example.com';
+        $formDataToSubmit['fitch_userbundle_user_new[email]'] = 'test@example.com';
         $form = $crawler->selectButton('Create')->form($formDataToSubmit);
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -128,13 +128,13 @@ class UserControllerTest extends WebTestCase
 
         // grab the form, will it with edited data
         $form = $crawler->selectButton('Update')->form(array(
-            'fitch_userbundle_user[userName]'  => 'xtest-edit',
-            'fitch_userbundle_user[fullName]'  => 'Test User Edited',
-            'fitch_userbundle_user[email]'  => 'test-edit@example.com',
+            'fitch_userbundle_user[userName]' => 'xtest-edit',
+            'fitch_userbundle_user[fullName]' => 'Test User Edited',
+            'fitch_userbundle_user[email]' => 'test-edit@example.com',
         ));
 
         $formCheckBoxes = [
-            'fitch_userbundle_user[enabled]'  => true,
+            'fitch_userbundle_user[enabled]' => true,
         ];
 
         // ...and manually tick() the check boxes
@@ -167,9 +167,9 @@ class UserControllerTest extends WebTestCase
 
         // Try an invalid form - we'll use the same duplicate value we used earlier
         $form = $crawler->selectButton('Update')->form(array(
-            'fitch_userbundle_user[userName]'  => 'xuser',
-            'fitch_userbundle_user[fullName]'  => 'Test User Created',
-            'fitch_userbundle_user[email]'  => 'user@plainuser.com',
+            'fitch_userbundle_user[userName]' => 'xuser',
+            'fitch_userbundle_user[fullName]' => 'Test User Created',
+            'fitch_userbundle_user[email]' => 'user@plainuser.com',
         ));
 
         // Submit the form
@@ -204,5 +204,47 @@ class UserControllerTest extends WebTestCase
         $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
             && ($crawler->filter('html:contains("Fitch\UserBundle\Entity\User object not found.")')->count() > 0);
         $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find User entity'");
+    }
+
+    /**
+     *
+     */
+    public function testProfile()
+    {
+        // Create a new client to browse the application
+        $client = $this->createAuthorizedClient('xsuper');
+
+        $crawler = $client->request('GET', '/');
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            "Unexpected HTTP status code for GET /"
+        );
+
+        $link = $crawler->selectLink('Profile')->link();
+        $crawler = $client->click($link);
+
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            "Unexpected HTTP status code for Profile Page"
+        );
+
+        $link = $crawler->selectLink('Edit Password')->link();
+        $crawler = $client->click($link);
+
+        $form = $crawler->selectButton('Update')->form(array(
+            'fos_user_profile_form[plainPassword][first]'  => 'abc',
+            'fos_user_profile_form[plainPassword][second]'  => 'abc',
+            'fos_user_profile_form[fullName]'  => 'Edited User',
+        ));
+
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals(
+            1,
+            $crawler->filter('.alert-success')->count()
+        );
     }
 }
