@@ -6,8 +6,14 @@ use DateInterval;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\NoteManagerInterface;
 
+/**
+ * Class NoteTest
+ */
 class NoteTest extends FixturesWebTestCase
 {
+    /**
+     *
+     */
     public function testProvenance()
     {
         $entityOne = $this->getModelManager()->findById(1);
@@ -24,6 +30,9 @@ class NoteTest extends FixturesWebTestCase
         $this->assertStringStartsWith('Anonymous on', $entityThree->getProvenance());
     }
 
+    /**
+     *
+     */
     public function testAuthor()
     {
         $entityOne = $this->getModelManager()->findById(1);
