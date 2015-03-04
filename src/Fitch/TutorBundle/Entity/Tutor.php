@@ -24,12 +24,6 @@ class Tutor implements
 {
     use IdentityTrait, TimestampableTrait, NamedTrait;
 
-    // These constants are used to control access to individual tutors via the TutorVoter class.
-    const ACCESS_LEVEL_LIMITED_VIEW = 'Limited View';
-    const ACCESS_LEVEL_FULL_VIEW = 'Full View';
-    const ACCESS_LEVEL_LIMITED_EDIT = 'Limited Edit';
-    const ACCESS_LEVEL_FULL_EDIT = 'Full Edit';
-
     /**
      * @var string
      *
@@ -194,6 +188,9 @@ class Tutor implements
      */
     protected $rates;
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
@@ -708,7 +705,7 @@ class Tutor implements
     }
 
     /**
-     * @return File|null
+     * @return File|bool
      */
     public function getProfilePicture()
     {
@@ -721,7 +718,7 @@ class Tutor implements
             }
         }
 
-        return;
+        return false;
     }
 
     /**
@@ -783,11 +780,13 @@ class Tutor implements
 
     /**
      * @param string $company
+     *
      * @return $this
      */
     public function setCompany($company)
     {
         $this->company = $company;
+
         return $this;
     }
 }
