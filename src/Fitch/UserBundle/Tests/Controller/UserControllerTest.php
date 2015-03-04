@@ -74,7 +74,7 @@ class UserControllerTest extends WebTestCase
 
         // but we can check for everything else
         foreach (array_keys($formDataToSubmit) as $key) {
-            $this->assertArrayHasKey($key, $formValues, $key.' not in ['.implode(', ', array_keys($formValues)));
+            $this->assertArrayHasKey($key, $formValues, $key . ' not in [' . implode(', ', array_keys($formValues)));
         }
 
         // Fill in the form and submit it
@@ -207,7 +207,8 @@ class UserControllerTest extends WebTestCase
     }
 
     /**
-     *
+     * Test the Profile pages by clicking the Profile menu item in the user menu
+     * then editing the Password and Full Name fields
      */
     public function testProfile()
     {
@@ -234,9 +235,9 @@ class UserControllerTest extends WebTestCase
         $crawler = $client->click($link);
 
         $form = $crawler->selectButton('Update')->form(array(
-            'fos_user_profile_form[plainPassword][first]'  => 'abc',
-            'fos_user_profile_form[plainPassword][second]'  => 'abc',
-            'fos_user_profile_form[fullName]'  => 'Edited User',
+            'fos_user_profile_form[plainPassword][first]' => 'abc',
+            'fos_user_profile_form[plainPassword][second]' => 'abc',
+            'fos_user_profile_form[fullName]' => 'Edited User',
         ));
 
         $client->submit($form);
@@ -245,6 +246,41 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(
             1,
             $crawler->filter('.alert-success')->count()
+        );
+    }
+
+
+    /**
+     * Test the Switch to functionality by navigating to the user list,
+     * clicking the first Switch to button, and using the user menu to
+     * switch back.
+     */
+    public function testSwitchUser()
+    {
+        // Create a new client to browse the application
+        $client = $this->createAuthorizedClient('xsuper');
+
+        $crawler = $client->request('GET', '/user/');
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            "Unexpected HTTP status code for GET /user/"
+        );
+
+        $client->click($crawler->selectLink('Switch to')->link());
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals(
+            1,
+            $crawler->filter('a:contains("xuser")')->count()
+        );
+
+        $client->click($crawler->selectLink('xsuper')->link());
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals(
+            0,
+            $crawler->filter('a:contains("xuser")')->count()
         );
     }
 }
