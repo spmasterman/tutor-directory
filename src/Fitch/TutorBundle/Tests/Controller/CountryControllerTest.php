@@ -6,10 +6,16 @@ use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CountryControllerTest
+ */
 class CountryControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
+    /**
+     *
+     */
     public function testAccess()
     {
         $users = [
@@ -24,6 +30,9 @@ class CountryControllerTest extends WebTestCase
         $this->checkAccess('GET', '/admin/country/', $users);
     }
 
+    /**
+     *
+     */
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
@@ -37,7 +46,7 @@ class CountryControllerTest extends WebTestCase
         $this->assertEquals(
             200,
             $client->getResponse()->getStatusCode(),
-            "Unexpected HTTP status code for GET /user/"
+            "Unexpected HTTP status code for GET /admin/country/"
         );
 
         /*
