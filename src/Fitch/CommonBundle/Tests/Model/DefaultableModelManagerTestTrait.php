@@ -2,7 +2,7 @@
 
 namespace Fitch\CommonBundle\Tests\Model;
 
-use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
@@ -10,7 +10,7 @@ use Monolog\Logger;
  * Trait DefaultableModelManagerTestTrait.
  *
  * Provides some helper functions for testing ModelManagers for Entities that
- * implement DefaultTraitInterface
+ * implement DefaultableEntityInterface
  */
 trait DefaultableModelManagerTestTrait
 {

@@ -6,7 +6,7 @@ namespace Fitch\CommonBundle\Tests\Model;
  * Trait ChoicesModelManagerTestTrait.
  *
  * Provides some helper functions for testing ModelManagers for Entities that
- * implement DefaultTraitInterface
+ * implement DefaultableEntityInterface
  */
 trait ChoicesModelManagerTestTrait
 {

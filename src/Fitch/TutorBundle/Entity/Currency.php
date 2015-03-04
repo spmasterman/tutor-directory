@@ -3,14 +3,14 @@
 namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\ActiveAndPreferredTrait;
-use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
-use Fitch\CommonBundle\Entity\IdentityTrait;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
-use Fitch\CommonBundle\Entity\NamedTrait;
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Entity\TimestampableTrait;
-use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredEntityTrait;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredEntityInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
+use Fitch\CommonBundle\Entity\NamedEntityTrait;
+use Fitch\CommonBundle\Entity\NamedEntityInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
+use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -21,12 +21,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("name")
  */
 class Currency implements
-    IdentityTraitInterface,
-    TimestampableTraitInterface,
-    NamedTraitInterface,
-    ActiveAndPreferredTraitInterface
+    IdentityEntityInterface,
+    TimestampableEntityInterface,
+    NamedEntityInterface,
+    ActiveAndPreferredEntityInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait, ActiveAndPreferredTrait;
+    use IdentityEntityTrait, TimestampableEntityTrait, NamedEntityTrait, ActiveAndPreferredEntityTrait;
 
     /**
      * @var string

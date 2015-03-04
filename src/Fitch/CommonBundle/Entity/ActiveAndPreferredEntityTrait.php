@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-trait ActiveAndPreferredTrait
+/**
+ * Class ActiveAndPreferredEntityTrait.
+ */
+trait ActiveAndPreferredEntityTrait
 {
     /**
      * @ORM\Column(name="preferred", type="boolean")

@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-interface IdentityTraitInterface
+/**
+ * Interface IdentityEntityInterface.
+ */
+interface IdentityEntityInterface
 {
     /**
      * Get id.

@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-interface DefaultTraitInterface
+/**
+ * Interface DefaultableEntityInterface.
+ */
+interface DefaultableEntityInterface
 {
     /**
      * @return boolean

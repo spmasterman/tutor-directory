@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller;
 
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
+use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\TutorBundle\Model\CategoryManagerInterface;
 use Fitch\TutorBundle\Model\CompetencyLevelManagerInterface;
 use Fitch\TutorBundle\Model\CompetencyTypeManagerInterface;
@@ -177,7 +177,7 @@ class ProfileDataController extends Controller
             'isAdmin' => $isAdmin,
         ];
 
-        $extractName = function (NamedTraitInterface $object) {
+        $extractName = function (NamedEntityInterface $object) {
             return $object->getName();
         };
 

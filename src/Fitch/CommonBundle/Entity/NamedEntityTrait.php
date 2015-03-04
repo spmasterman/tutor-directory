@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-trait NamedTrait
+/**
+ * Class NamedEntityTrait.
+ */
+trait NamedEntityTrait
 {
     // Don't declare the name property in here, as it needs to be declared with ORM annotations, in the 'host' class
     // (the ORM declarations will be different)

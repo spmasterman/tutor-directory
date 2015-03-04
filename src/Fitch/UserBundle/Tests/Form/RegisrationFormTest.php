@@ -1,22 +1,23 @@
 <?php
 
-namespace Fictch\TutorBundle\Tests\Form;
+namespace Fictch\UserBundle\Tests\Form;
 
 use Fitch\TutorBundle\Entity\Country;
 use Fitch\TutorBundle\Form\Type\CountryType;
+use Fitch\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class CountryTypeTest extends TypeTestCase
+class RegisrationFormTest extends TypeTestCase
 {
     /**
      * @dataProvider getValidTestData
      */
     public function testSubmitValidData($data)
     {
-        $type = new CountryType();
+        $type = new RegistrationFormType();
         $form = $this->factory->create($type);
 
-        $object = new Country();
+        $object = new User();
         $object->fromArray($data);
 
         // submit the data to the form directly

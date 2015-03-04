@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
+use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\Status;
 use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
@@ -24,7 +24,7 @@ class StatusManager extends BaseModelManager implements StatusManagerInterface
      */
     public function buildGroupedChoices()
     {
-        return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
+        return parent::buildFlatChoices(function (NamedEntityInterface $entity) {
             return $entity->getName();
         });
     }

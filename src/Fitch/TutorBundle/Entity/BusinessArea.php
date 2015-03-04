@@ -4,14 +4,14 @@ namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\DefaultTrait;
-use Fitch\CommonBundle\Entity\DefaultTraitInterface;
-use Fitch\CommonBundle\Entity\IdentityTrait;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
-use Fitch\CommonBundle\Entity\NamedTrait;
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
-use Fitch\CommonBundle\Entity\TimestampableTrait;
-use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\CommonBundle\Entity\DefaultableEntityTrait;
+use Fitch\CommonBundle\Entity\DefaultableEntityInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
+use Fitch\CommonBundle\Entity\NamedEntityTrait;
+use Fitch\CommonBundle\Entity\NamedEntityInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
+use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,12 +23,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("name")
  */
 class BusinessArea implements
-    IdentityTraitInterface,
-    TimestampableTraitInterface,
-    NamedTraitInterface,
-    DefaultTraitInterface
+    IdentityEntityInterface,
+    TimestampableEntityInterface,
+    NamedEntityInterface,
+    DefaultableEntityInterface
 {
-    use IdentityTrait, TimestampableTrait, NamedTrait, DefaultTrait;
+    use IdentityEntityTrait, TimestampableEntityTrait, NamedEntityTrait, DefaultableEntityTrait;
 
     /**
      * @var ArrayCollection

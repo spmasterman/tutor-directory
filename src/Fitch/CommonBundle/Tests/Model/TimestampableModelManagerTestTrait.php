@@ -2,7 +2,7 @@
 
 namespace Fitch\CommonBundle\Tests\Model;
 
-use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
@@ -10,7 +10,7 @@ use Monolog\Logger;
  * Class TimestampableModelManagerTestTrait.
  *
  * Provides some helper functions for testing ModelManagers for Entities that
- * implement TimestampableTraitInterface
+ * implement TimestampableEntityInterface
  */
 trait TimestampableModelManagerTestTrait
 {
@@ -25,10 +25,10 @@ trait TimestampableModelManagerTestTrait
         $entities = $this->modelManager->findAll();
 
         $this->assertTrue(
-            $entities[0] instanceof TimestampableTraitInterface,
+            $entities[0] instanceof TimestampableEntityInterface,
             "Test case not suitable for Subject under test"
         );
-        /* @var TimestampableTraitInterface[] $entities */
+        /* @var TimestampableEntityInterface[] $entities */
 
         $this->assertCount(
             $fixtureCount,

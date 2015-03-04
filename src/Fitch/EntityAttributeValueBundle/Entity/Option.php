@@ -3,16 +3,16 @@
 namespace Fitch\EntityAttributeValueBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\IdentityTrait;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="attribute_option")
  */
-class Option implements IdentityTraitInterface
+class Option implements IdentityEntityInterface
 {
-    use IdentityTrait;
+    use IdentityEntityTrait;
     /**
      * @ORM\Column(type="string", length=255)
      *

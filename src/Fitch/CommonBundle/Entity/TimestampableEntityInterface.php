@@ -4,7 +4,10 @@ namespace Fitch\CommonBundle\Entity;
 
 use DateTime;
 
-interface TimestampableTraitInterface
+/**
+ * Interface TimestampableEntityInterface.
+ */
+interface TimestampableEntityInterface
 {
     /**
      * @return DateTime

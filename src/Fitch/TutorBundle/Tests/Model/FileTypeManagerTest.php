@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
-use Fitch\CommonBundle\Entity\DefaultTraitInterface;
+use Fitch\CommonBundle\Entity\DefaultableEntityInterface;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\CommonBundle\Tests\Model\ChoicesModelManagerTestTrait;
 use Fitch\CommonBundle\Tests\Model\DefaultableModelManagerTestTrait;
@@ -93,7 +93,7 @@ class FileTypeManagerTest extends FixturesWebTestCase
             function ($entity) {
                 return $entity instanceof FileType;
             },
-            function (DefaultTraitInterface $entity) {
+            function (DefaultableEntityInterface $entity) {
                 return $entity->isDefault();
             }
         );

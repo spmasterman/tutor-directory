@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-interface NamedTraitInterface
+/**
+ * Interface NamedEntityInterface.
+ */
+interface NamedEntityInterface
 {
     /**
      * Set name.

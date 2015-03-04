@@ -141,6 +141,9 @@ fos_user:
     profile:
         form:
             type: fitch_user_registration
+    registration:
+        form:
+            type: fitch_user_registration
 
 stof_doctrine_extensions:
     default_locale: en_US

@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
+use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\CompetencyLevel;
 
@@ -29,7 +29,7 @@ class CompetencyLevelManager extends BaseModelManager implements CompetencyLevel
      */
     public function buildGroupedChoices()
     {
-        return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
+        return parent::buildFlatChoices(function (NamedEntityInterface $entity) {
             return $entity->getName();
         });
     }

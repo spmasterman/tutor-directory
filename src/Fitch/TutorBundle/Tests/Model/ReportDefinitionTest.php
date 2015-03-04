@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Tests\Model;
 
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Fitch\TutorBundle\Entity\Currency;
 use Fitch\TutorBundle\Model\ReportDefinition;
 use Symfony\Component\Form\FormInterface;
@@ -372,7 +372,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param int $id
-     * @return IdentityTraitInterface
+     * @return IdentityEntityInterface
      */
     private function getIdentityEntityMock($id)
     {

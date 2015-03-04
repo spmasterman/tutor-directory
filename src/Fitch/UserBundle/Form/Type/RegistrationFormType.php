@@ -11,7 +11,9 @@ class RegistrationFormType extends AbstractType
     {
         $options = null;
         // add your custom field
-        $builder->add('fullName');
+        $builder->add('fullName', null, [
+            'label'=>'full name'
+        ]);
     }
 
     public function getParent()

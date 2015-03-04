@@ -4,7 +4,10 @@ namespace Fitch\CommonBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 
-trait TimestampableTrait
+/**
+ * Class TimestampableEntityTrait.
+ */
+trait TimestampableEntityTrait
 {
     /**
      * @var \DateTime

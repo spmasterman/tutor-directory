@@ -4,17 +4,17 @@ namespace Fitch\EntityAttributeValueBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\IdentityTrait;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
  * @ORM\Table("attribute_schema")
  */
-class Schema implements IdentityTraitInterface
+class Schema implements IdentityEntityInterface
 {
-    use IdentityTrait;
+    use IdentityEntityTrait;
 
     /**
      * @ORM\Column(name="class_name", type="string", length=255)

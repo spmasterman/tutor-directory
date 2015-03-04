@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-trait IdentityTrait
+/**
+ * Class IdentityEntityTrait.
+ */
+trait IdentityEntityTrait
 {
     /**
      * @var int

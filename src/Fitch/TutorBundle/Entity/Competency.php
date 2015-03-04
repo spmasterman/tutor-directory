@@ -3,10 +3,10 @@
 namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\IdentityTrait;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
-use Fitch\CommonBundle\Entity\TimestampableTrait;
-use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
+use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 
 /**
  * Competency.
@@ -15,10 +15,10 @@ use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyRepository")
  */
 class Competency implements
-    IdentityTraitInterface,
-    TimestampableTraitInterface
+    IdentityEntityInterface,
+    TimestampableEntityInterface
 {
-    use IdentityTrait, TimestampableTrait;
+    use IdentityEntityTrait, TimestampableEntityTrait;
 
     const NOT_YET_SPECIFIED = 'Unspecified';
 

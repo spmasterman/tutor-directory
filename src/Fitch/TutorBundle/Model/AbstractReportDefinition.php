@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Fitch\TutorBundle\Entity\Report;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Model\Formatter\ReportDownloadFormatter;
@@ -43,7 +43,7 @@ abstract class AbstractReportDefinition implements ReportDefinitionInterface
         $data = $form->getData();
         if ($data && array_key_exists($key, $data)) {
             foreach ($data[$key] as $entity) {
-                /* @var IdentityTraitInterface $entity */
+                /* @var IdentityEntityInterface $entity */
                 $target[] = $entity->getId();
             }
         }
@@ -61,7 +61,7 @@ abstract class AbstractReportDefinition implements ReportDefinitionInterface
         if (array_key_exists($key, $data)) {
             if (array_key_exists($keyInner, $data[$key])) {
                 foreach ($data[$key][$keyInner] as $entity) {
-                    /* @var IdentityTraitInterface $entity */
+                    /* @var IdentityEntityInterface $entity */
                     $target[] = $entity->getId();
                 }
             }

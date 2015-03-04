@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Controller\Profile;
 
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Fitch\TutorBundle\Entity\Tutor;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,7 +13,7 @@ interface ProfileUpdateInterface
      * @param Tutor   $tutor
      * @param $value
      *
-     * @return IdentityTraitInterface|null
+     * @return IdentityEntityInterface|null
      */
     public function update(Request $request, Tutor $tutor, $value);
 }

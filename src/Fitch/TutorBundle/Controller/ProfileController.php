@@ -3,7 +3,7 @@
 namespace Fitch\TutorBundle\Controller;
 
 use Exception;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Fitch\CommonBundle\Exception\ClassNotFoundException;
 use Fitch\CommonBundle\Exception\UnknownMethodException;
 use Fitch\TutorBundle\Entity\Note;
@@ -103,7 +103,7 @@ class ProfileController extends Controller
 
         return new JsonResponse([
             'success' => true,
-            'id' => $relatedEntity instanceof IdentityTraitInterface ? $relatedEntity->getId() : null,
+            'id' => $relatedEntity instanceof IdentityEntityInterface ? $relatedEntity->getId() : null,
             'detail' => $relatedEntity instanceof Note ? $relatedEntity->getProvenance() : null,
         ]);
     }

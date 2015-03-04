@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-interface ActiveAndPreferredTraitInterface
+/**
+ * Interface ActiveAndPreferredEntityInterface.
+ */
+interface ActiveAndPreferredEntityInterface
 {
     /**
      * @return boolean

@@ -4,8 +4,8 @@ namespace Fitch\CommonBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Fitch\CommonBundle\Entity\ActiveAndPreferredTraitInterface;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredEntityInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatcherInterface;
@@ -110,7 +110,7 @@ abstract class BaseModelManager
     {
         $choices = [];
         foreach ($this->findAll() as $entity) {
-            if ($entity instanceof IdentityTraitInterface) {
+            if ($entity instanceof IdentityEntityInterface) {
                 $choices[$entity->getId()] = $transformFunction($entity);
             }
         }
@@ -140,7 +140,7 @@ abstract class BaseModelManager
         ];
 
         foreach ($this->findAllSorted() as $entity) {
-            if ($entity instanceof ActiveAndPreferredTraitInterface) {
+            if ($entity instanceof ActiveAndPreferredEntityInterface) {
                 if ($entity->isActive()) {
                     $key = $entity->isPreferred() ? 0 : 1;
                     $choices[$key]['children'][] = $transformFunction($entity);

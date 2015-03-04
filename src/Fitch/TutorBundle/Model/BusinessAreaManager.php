@@ -2,7 +2,7 @@
 
 namespace Fitch\TutorBundle\Model;
 
-use Fitch\CommonBundle\Entity\NamedTraitInterface;
+use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Model\BaseModelManager;
 use Fitch\TutorBundle\Entity\BusinessArea;
 use Fitch\TutorBundle\Model\Traits\DefaultEntityTrait;
@@ -30,7 +30,7 @@ class BusinessAreaManager extends BaseModelManager implements BusinessAreaManage
      */
     public function buildGroupedChoices()
     {
-        return parent::buildFlatChoices(function (NamedTraitInterface $entity) {
+        return parent::buildFlatChoices(function (NamedEntityInterface $entity) {
             return $entity->getName();
         });
     }

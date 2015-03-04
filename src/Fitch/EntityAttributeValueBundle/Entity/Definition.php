@@ -4,16 +4,16 @@ namespace Fitch\EntityAttributeValueBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\IdentityTrait;
-use Fitch\CommonBundle\Entity\IdentityTraitInterface;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="attribute_definition")
  */
-class Definition implements IdentityTraitInterface
+class Definition implements IdentityEntityInterface
 {
-    use IdentityTrait;
+    use IdentityEntityTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Schema",

@@ -2,7 +2,7 @@
 
 namespace Fitch\CommonBundle\Tests\Model;
 
-use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 

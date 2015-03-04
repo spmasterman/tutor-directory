@@ -2,7 +2,10 @@
 
 namespace Fitch\CommonBundle\Entity;
 
-trait DefaultTrait
+/**
+ * Class DefaultableEntityTrait.
+ */
+trait DefaultableEntityTrait
 {
     /**
      * @var boolean
