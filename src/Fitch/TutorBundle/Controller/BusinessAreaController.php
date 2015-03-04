@@ -262,7 +262,7 @@ class BusinessAreaController extends Controller
             );
         }
 
-        return $this->redirectToRoute('businessArea');
+        return $this->redirectToRoute('business_area');
     }
 
     /**

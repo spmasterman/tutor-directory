@@ -6,7 +6,7 @@ use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class CountryControllerTest extends WebTestCase
+class BusinessAreaControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
@@ -21,7 +21,7 @@ class CountryControllerTest extends WebTestCase
             'xsuper' => 200,
         ];
 
-        $this->checkAccess('GET', '/admin/country/', $users);
+        $this->checkAccess('GET', '/admin/business_area/', $users);
     }
 
     public function testCompleteScenario()
@@ -33,11 +33,11 @@ class CountryControllerTest extends WebTestCase
          * Test "Get List"
          */
 
-        $crawler = $client->request('GET', '/admin/country/');
+        $crawler = $client->request('GET', '/admin/business_area/');
         $this->assertEquals(
             200,
             $client->getResponse()->getStatusCode(),
-            "Unexpected HTTP status code for GET /admin/country/"
+            "Unexpected HTTP status code for GET /admin/business_area/"
         );
 
         /*
@@ -52,17 +52,15 @@ class CountryControllerTest extends WebTestCase
 
         // here's our test data - we have a duplicate "name" - this should choke
         $formDataToSubmit = [
-            'fitch_tutorbundle_country[name]'  => 'Test Country One',
-            'fitch_tutorbundle_country[twoDigitCode]'  => 'xt',
-            'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
-            'fitch_tutorbundle_country[dialingCode]'  => '+1',
-            'fitch_tutorbundle_country[defaultRegion]' => 1,
+            'fitch_tutorbundle_business_area[name]'  => 'Test Business Area 1',
+            'fitch_tutorbundle_business_area[code]'  => 'XX',
         ];
 
         // Form wont have any elements for checkboxes that aren't ticked (by default) so we cant check for them...
         $formCheckBoxes = [
-            'fitch_tutorbundle_country[preferred]'  => true,
-            'fitch_tutorbundle_country[active]'  => true,
+            'fitch_tutorbundle_business_area[prependToCategoryName]' => true,
+            'fitch_tutorbundle_business_area[displayAsCode]'  => true,
+            'fitch_tutorbundle_business_area[default]'  => true,
         ];
 
         // but we can check for everything else
@@ -81,7 +79,7 @@ class CountryControllerTest extends WebTestCase
         // submit the form
         $crawler = $client->submit($form);
 
-        // We've created a duplicate Country name - this should fail. We do it here, because its easy, to submit
+        // We've created a duplicate Business Area name - this should fail. We do it here, because its easy, to submit
         // corrected data - just check its not been saved.
 
         // Validators won't have run (so we wont get .has-error classes in the DOM or anything, but DB
@@ -89,17 +87,17 @@ class CountryControllerTest extends WebTestCase
         // The form wont redirect - so just assert that we haven't been redirected. This is problematic because we
         // don't know the id of the new entity
         //        $this->assertFalse(
-        //            $client->getResponse()->isRedirect('/country/show/4')
+        //            $client->getResponse()->isRedirect('/entity/show/4')
         //        );
         // it makes the test very brittle to hard code it - so just test we didn't get a 200 OK response
         $this->assertEquals(
             Response::HTTP_OK, //not redirect
             $client->getResponse()->getStatusCode(),
-            'Form appears to have allowed us created a Duplicate country name - please check the validators'
+            'Form appears to have allowed us created a Duplicate Business Area name - please check the validators'
         );
 
         // Correct the mistake, resubmit the form
-        $formDataToSubmit['fitch_tutorbundle_country[name]'] = 'xtest';
+        $formDataToSubmit['fitch_tutorbundle_business_area[name]'] = 'xtest';
         $form = $crawler->selectButton('Create')->form($formDataToSubmit);
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -120,11 +118,8 @@ class CountryControllerTest extends WebTestCase
 
         // grab the form, will it with edited data
         $form = $crawler->selectButton('Update')->form(array(
-            'fitch_tutorbundle_country[name]'  => 'xtest-edit',
-            'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
-            'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
-            'fitch_tutorbundle_country[dialingCode]'  => '+44',
-            'fitch_tutorbundle_country[defaultRegion]' => 2,
+            'fitch_tutorbundle_business_area[name]'  => 'xtest-edit',
+            'fitch_tutorbundle_business_area[code]'  => 'XX',
         ));
 
         // ...and manually tick() the check boxes
@@ -145,10 +140,8 @@ class CountryControllerTest extends WebTestCase
 
         // Try an invalid form - we'll use the same duplicate value we used earlier
         $form = $crawler->selectButton('Update')->form(array(
-            'fitch_tutorbundle_country[name]'  => 'Test Country One', //dupe
-            'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
-            'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
-            'fitch_tutorbundle_country[dialingCode]'  => '+44',
+            'fitch_tutorbundle_business_area[name]'  => 'Test Business Area 1',
+            'fitch_tutorbundle_business_area[code]'  => 'XX',
         ));
 
         // Submit the form
@@ -159,9 +152,9 @@ class CountryControllerTest extends WebTestCase
         // contain the incorrect one
         $formValues = $crawler->selectButton('Update')->form()->getValues();
         $this->assertNotEquals(
-            'Test Country One',
-            $formValues['fitch_tutorbundle_country[name]'],
-            'Form appears to have allowed us updated to a Duplicate country name - please check the validators'
+            'Test Business Area 1',
+            $formValues['fitch_tutorbundle_business_area[name]'],
+            'Form appears to have allowed us updated to a Duplicate Business Area name - please check the validators'
         );
 
         /*
@@ -175,13 +168,13 @@ class CountryControllerTest extends WebTestCase
         $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());
 
         /*
-         * Test updating a non existent Country
+         * Test updating a non existent BusinessArea
          */
 
         // Try spoofing the form with an unknown ID
-        $crawler = $client->request('PUT', '/admin/country/999');
+        $crawler = $client->request('PUT', '/admin/business_area/999');
         $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
-            && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\Country object not found.")')->count() > 0);
-        $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Country entity'");
+            && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\BusinessArea object not found.")')->count() > 0);
+        $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find BusinessArea entity'");
     }
 }
