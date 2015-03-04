@@ -16,6 +16,7 @@
             <directory>../src/*/*Bundle/Tests</directory>
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
             <exclude>../src/Fitch/CommonBundle/Tests/FixturesWebTestCase.php</exclude>
+            <exclude>../src/Fitch/TutorBundle/Tests/SmokeTest.php</exclude>
         </testsuite>
     </testsuites>
 
