@@ -5,10 +5,16 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class CurrencyControllerTest
+ */
 class CurrencyControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
+    /**
+     *
+     */
     public function testAccess()
     {
         $users = [
@@ -23,6 +29,9 @@ class CurrencyControllerTest extends WebTestCase
         $this->checkAccess('GET', '/admin/currency/', $users);
     }
 
+    /**
+     *
+     */
     public function testCompleteScenario()
     {
         // Create a new client to browse the application

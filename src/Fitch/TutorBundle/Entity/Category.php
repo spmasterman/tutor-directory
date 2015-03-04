@@ -12,12 +12,15 @@ use Fitch\CommonBundle\Entity\NamedTrait;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category.
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CategoryRepository")
+ * @UniqueEntity("name")
  */
 class Category implements
     IdentityTraitInterface,
@@ -50,10 +53,14 @@ class Category implements
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128)
+     * @ORM\Column(name="name", type="string", length=128, unique=true)
+     * @Assert\NotBlank()
      */
     protected $name;
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return ($this->businessArea->isPrependToCategoryName()
@@ -62,6 +69,9 @@ class Category implements
         .$this->getName();
     }
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->competencyTypes = new ArrayCollection();

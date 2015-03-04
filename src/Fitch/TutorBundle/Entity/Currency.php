@@ -11,12 +11,14 @@ use Fitch\CommonBundle\Entity\NamedTrait;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Currency.
  *
  * @ORM\Table(name="currency")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CurrencyRepository")
+ * @UniqueEntity("name")
  */
 class Currency implements
     IdentityTraitInterface,
@@ -29,7 +31,8 @@ class Currency implements
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64)
+     * @ORM\Column(name="name", type="string", length=64, unique=true)
+     * @Assert\NotBlank())
      */
     protected $name;
 
