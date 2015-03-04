@@ -259,16 +259,7 @@ services:
         tags:
             - {name: kernel.event_listener, event: oneup_uploader.pre_upload, method: onPreUpload}
             - {name: kernel.event_listener, event: oneup_uploader.post_persist, method: onPostPersist}
-#
-#
-# Security Voter
-#
-    security.access.tutor_voter:
-        class:      Fitch\TutorBundle\Security\Authorization\Voter\TutorVoter
-        public:     false
-        arguments: ['%security.role_hierarchy.roles%']
-        tags:
-           - { name: security.voter }
+
 
 #
 # Amazon S3 Bucket

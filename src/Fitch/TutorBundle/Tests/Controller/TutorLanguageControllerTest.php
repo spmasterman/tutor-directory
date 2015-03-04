@@ -4,23 +4,25 @@ namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Controller\CompetencyController;
+use Fitch\TutorBundle\Controller\TutorLanguageController;
 use Fitch\TutorBundle\Entity\Competency;
 use Fitch\TutorBundle\Entity\Tutor;
+use Fitch\TutorBundle\Entity\TutorLanguage;
 use Fitch\TutorBundle\Model\TutorManagerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
 /**
- * Class CompetencyControllerTest.
+ * Class TutorLanguageControllerTest.
  */
-class CompetencyControllerTest extends FixturesWebTestCase
+class TutorLanguageControllerTest extends FixturesWebTestCase
 {
     use AssertBadRequestJsonResponseTrait;
 
     /**
      * @param Tutor      $tutor
-     * @param Competency $competency
+     * @param TutorLanguage $tutorLanguage
      * @param string     $name
      * @param string     $value
      *
@@ -31,17 +33,17 @@ class CompetencyControllerTest extends FixturesWebTestCase
      *
      * @return null|\Symfony\Component\HttpFoundation\JsonResponse
      */
-    private function performMockedUpdate(Tutor $tutor, Competency $competency, $name, $value = TestSlug::END_1)
+    private function performMockedUpdate(Tutor $tutor, TutorLanguage $tutorLanguage, $name, $value = TestSlug::END_1)
     {
         $request = $this->getMockedRequest([
             'pk' => $tutor->getId(),
-            'competencyPk' => $competency->getId(),
+            'tutorLanguagePk' => $tutorLanguage->getId(),
             'name' => $name,
             'value' => $value,
         ]);
 
         // Call the Controller Update
-        $controller = new CompetencyController();
+        $controller = new TutorLanguageController();
         $controller->setContainer($this->container);
 
         try {
@@ -63,87 +65,87 @@ class CompetencyControllerTest extends FixturesWebTestCase
         // Get the first tutor
         $tutor = $manager->findById(1);
 
-        // Set the Note on his first competency, to the START tag
-        /** @var Competency $competency */
-        $competency = $tutor->getCompetencies()->first();
-        $competency->setNote(TestSlug::START_1);
+        // Set the Note on his first tutorLanguage, to the START tag
+        /** @var TutorLanguage $tutorLanguage*/
+        $tutorLanguage = $tutor->getTutorLanguages()->first();
+        $tutorLanguage->setNote(TestSlug::START_1);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getNote());
+        $this->assertEquals(TestSlug::START_1, $tutor->getTutorLanguages()->first()->getNote());
 
-        $this->performMockedUpdate($tutor, $competency, 'competency-note');
+        $this->performMockedUpdate($tutor, $tutorLanguage, 'tutor-language-note');
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::END_1, $tutor->getCompetencies()->first()->getNote());
+        $this->assertEquals(TestSlug::END_1, $tutor->getTutorLanguages()->first()->getNote());
     }
 
     /**
-     * Test Setting a New CompetencyType via a (mock)request object being passed to update controller method.
+     * Test Setting a New Languge via a (mock)request object being passed to update controller method.
      */
-    public function testUpdatingType()
+    public function testUpdatingLanguage()
     {
         $manager = $this->getModelManager();
 
         // Get the first tutor
         $tutor = $manager->findById(1);
 
-        // Set the Type on his first competency, to the START tag
-        /** @var Competency $competency */
-        $competency = $tutor->getCompetencies()->first();
-        $competency->getCompetencyType()->setName(TestSlug::START_1);
+        // Set the Language on his first competency, to the START tag
+        /** @var TutorLanguage $tutorLanguage */
+        $tutorLanguage = $tutor->getTutorLanguages()->first();
+        $tutorLanguage->getLanguage()->setName(TestSlug::START_1);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getTutorLanguages()->first()->getLanguage()->getName());
 
-        $originalId = $tutor->getCompetencies()->first()->getCompetencyType()->getId();
+        $originalId = $tutor->getTutorLanguages()->first()->getLanguage()->getId();
 
-        $this->performMockedUpdate($tutor, $competency, 'competency-type');
+        $this->performMockedUpdate($tutor, $tutorLanguage, 'tutor-language');
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::END_1, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+        $this->assertEquals(TestSlug::END_1, $tutor->getTutorLanguages()->first()->getLanguage()->getName());
 
         // now change it back, but by ID
-        $this->performMockedUpdate($tutor, $competency, 'competency-type', $originalId);
+        $this->performMockedUpdate($tutor, $tutorLanguage, 'tutor-language', $originalId);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyType()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getTutorLanguages()->first()->getLanguage()->getName());
     }
 
     /**
-     * Test Setting a New CompetencyLevel via a (mock)request object being passed to update controller method.
+     * Test Setting a New Proficiency via a (mock)request object being passed to update controller method.
      */
-    public function testUpdatingLevel()
+    public function testUpdatingProficiency()
     {
         $manager = $this->getModelManager();
 
         // Get the first tutor
         $tutor = $manager->findById(1);
 
-        // Set the Level on his first competency, to the START tag
-        /** @var Competency $competency */
-        $competency = $tutor->getCompetencies()->first();
-        $competency->getCompetencyLevel()->setName(TestSlug::START_1);
+        // Set the Proficiency on his first competency, to the START tag
+        /** @var TutorLanguage $tutorLanguage */
+        $tutorLanguage = $tutor->getTutorLanguages()->first();
+        $tutorLanguage->getProficiency()->setName(TestSlug::START_1);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getTutorLanguages()->first()->getProficiency()->getName());
 
-        $originalId = $tutor->getCompetencies()->first()->getCompetencyLevel()->getId();
+        $originalId = $tutor->getTutorLanguages()->first()->getProficiency()->getId();
 
-        $this->performMockedUpdate($tutor, $competency, 'competency-level');
+        $this->performMockedUpdate($tutor, $tutorLanguage, 'tutor-language-proficiency');
 
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::END_1, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+        $this->assertEquals(TestSlug::END_1, $tutor->getTutorLanguages()->first()->getProficiency()->getName());
 
         // now change it back, but by ID
-        $this->performMockedUpdate($tutor, $competency, 'competency-level', $originalId);
+        $this->performMockedUpdate($tutor, $tutorLanguage, 'tutor-language-proficiency', $originalId);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
-        $this->assertEquals(TestSlug::START_1, $tutor->getCompetencies()->first()->getCompetencyLevel()->getName());
+        $this->assertEquals(TestSlug::START_1, $tutor->getTutorLanguages()->first()->getProficiency()->getName());
     }
 
     /**
@@ -156,10 +158,10 @@ class CompetencyControllerTest extends FixturesWebTestCase
         // Get the first tutor
         $tutor = $manager->findById(1);
 
-        /** @var Competency $competency */
-        $competency = $tutor->getCompetencies()->first();
+        /** @var TutorLanguage $tutorLanguage */
+        $tutorLanguage = $tutor->getTutorLanguages()->first();
 
-        $response = $this->performMockedUpdate($tutor, $competency, 'competency-banana');
+        $response = $this->performMockedUpdate($tutor, $tutorLanguage, 'tutor-language-banana');
 
         $this->assertBadRequestJsonResponse($response);
     }
@@ -168,25 +170,25 @@ class CompetencyControllerTest extends FixturesWebTestCase
      * Removed the competency. Doesn't have the same issue as updating it, as we dont need to render an updated row
      * to send to the view.
      *
-     * @param Competency $competency
+     * @param TutorLanguage $tutorLanguage
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    private function performMockedRemove(Competency $competency)
+    private function performMockedRemove(TutorLanguage $tutorLanguage)
     {
         $request = $this->getMockedRequest([
-            'pk' => $competency->getId(),
+            'pk' => $tutorLanguage->getId(),
         ]);
 
         // Call the Controller Update
-        $controller = new CompetencyController();
+        $controller = new TutorLanguageController();
         $controller->setContainer($this->container);
 
         return $controller->removeAction($request);
     }
 
     /**
-     * Test that we can remove a competency, and that we cant remove a non existent one.
+     * Test that we can remove a TutorLanguage, and that we cant remove a non existent one.
      */
     public function testRemove()
     {
@@ -195,21 +197,21 @@ class CompetencyControllerTest extends FixturesWebTestCase
         // Get the first tutor
         $tutor = $manager->findById(1);
 
-        /** @var Competency $competency */
-        $competency = $tutor->getCompetencies()->first();
+        /** @var TutorLanguage $tutorLanguage */
+        $tutorLanguage = $tutor->getTutorLanguages()->first();
 
-        $this->performMockedRemove($competency);
+        $this->performMockedRemove($tutorLanguage);
 
         $manager->saveEntity($tutor);
         $manager->reloadEntity($tutor);
 
         $this->assertNotContains(
-            $competency,
-            $tutor->getCompetencies()
+            $tutorLanguage,
+            $tutor->getTutorLanguages()
         );
 
         // Now try removing it again - should throw an error
-        $response = $this->performMockedRemove($competency);
+        $response = $this->performMockedRemove($tutorLanguage);
 
         $this->assertBadRequestJsonResponse($response);
     }

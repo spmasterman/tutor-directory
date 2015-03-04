@@ -3,9 +3,11 @@
 namespace Fitch\TutorBundle\Tests\Command;
 
 use Fitch\TutorBundle\Command\UpdateExchangeRateCommand;
+use Fitch\TutorBundle\Model\CurrencyManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class UpdateExchangeRateCommandTest.
@@ -47,8 +49,8 @@ class UpdateExchangeRateCommandTest extends WebTestCase
                     $this->getMockCurrencyManagerThatWill(self::PASS)
                 )
             );
-        $this->application->add($this->updateExchangeRateCommand);
 
+        $this->application->add($this->updateExchangeRateCommand);
         $command = $this->application->find('fitch:exchange-rate:update');
         $commandTester = new CommandTester($command);
         $commandTester->execute(['command' => $command->getName()]);
@@ -71,7 +73,6 @@ class UpdateExchangeRateCommandTest extends WebTestCase
                 )
             );
         $this->application->add($this->updateExchangeRateCommand);
-
         $command = $this->application->find('fitch:exchange-rate:update');
         $commandTester = new CommandTester($command);
         $commandTester->execute(['command' => $command->getName()]);
@@ -82,7 +83,7 @@ class UpdateExchangeRateCommandTest extends WebTestCase
     /**
      * @param $passOrFail
      *
-     * @return \PHPUnit_Framework_MockObject_Builder_InvocationMocker
+     * @return CurrencyManagerInterface
      */
     private function getMockCurrencyManagerThatWill($passOrFail)
     {
@@ -102,7 +103,7 @@ class UpdateExchangeRateCommandTest extends WebTestCase
     /**
      * @param $currencyManager
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return ContainerInterface
      */
     private function getMockContainer($currencyManager)
     {

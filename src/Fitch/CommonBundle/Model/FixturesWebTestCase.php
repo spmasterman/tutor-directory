@@ -3,10 +3,14 @@
 namespace Fitch\CommonBundle\Model;
 
 use Doctrine\ORM\EntityManager;
+use Fitch\UserBundle\Model\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\Validator\Validator;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class FixturesWebTestCase
+ */
 class FixturesWebTestCase extends WebTestCase
 {
     /**
@@ -23,6 +27,9 @@ class FixturesWebTestCase extends WebTestCase
      * @var Container
      */
     protected $container;
+
+    /** @var  TokenStorageInterface */
+    private $savedService;
 
     /**
      * Constructor.
@@ -49,15 +56,80 @@ class FixturesWebTestCase extends WebTestCase
         $this->container = static::$kernel->getContainer();
     }
 
+    /**
+     * Executed before very test
+     */
     protected function setUp()
     {
         restoreDatabase();
     }
 
+    /**
+     * Executed after every test
+     */
     protected function tearDown()
     {
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
         $em->clear();
+    }
+
+    /**
+     * Executes a block/callable with the container setup to return the user
+     * specified by $userId.
+     *
+     * @param int      $userId
+     * @param callable $function
+     */
+    protected function performTestAsUser($userId, $function)
+    {
+        try {
+            $this->injectMockUser($userId);
+            $function();
+        } finally {
+            $this->restoreContainer();
+        }
+    }
+
+    /**
+     * @param int $id
+     */
+    private function injectMockUser($id)
+    {
+        $mockTokenStorage = $this->getMockBuilder(
+            'Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage'
+        )
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockToken = $this->getMockBuilder(
+            'Symfony\Component\Security\Core\Authentication\Token\TokenInterface'
+        )
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $user = $this->getUserManager()->findById($id);
+
+        $mockToken->expects($this->any())->method('getUser')->willReturn($user);
+        $mockTokenStorage->expects($this->any())->method('getToken')->willReturn($mockToken);
+
+        $this->savedService = $this->container->get('security.token_storage');
+        $this->container->set('security.token_storage', $mockTokenStorage);
+    }
+
+    /**
+     * Puts the container back to its unadulterated state
+     */
+    private function restoreContainer()
+    {
+        $this->container->set('security.token_storage', $this->savedService);
+    }
+
+    /**
+     * @return UserManagerInterface
+     */
+    protected function getUserManager()
+    {
+        return $this->container->get('fitch.manager.user');
     }
 }

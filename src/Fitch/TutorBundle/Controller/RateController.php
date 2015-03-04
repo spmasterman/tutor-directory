@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Rate controller.
@@ -44,7 +45,7 @@ class RateController extends Controller
             return new JsonResponse([
                 'success' => false,
                 'message' => $e->getMessage(),
-            ]);
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         return new JsonResponse([

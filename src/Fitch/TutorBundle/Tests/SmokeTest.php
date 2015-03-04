@@ -103,10 +103,17 @@ class SmokeTest extends WebTestCase
 
         foreach ($routes as $name => $routeBits) {
             $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
+
+            $responseContent = '';
+            if ($client->getResponse()->getStatusCode() != 200) {
+                // IF YOUR SMOKE TEST FAILS - SET A BREAKPOINT HERE TO INSPECT THE RESPONSE;
+                $responseContent = $client->getResponse()->getContent();
+            }
+
             $this->assertEquals(
                 200,
                 $client->getResponse()->getStatusCode(),
-                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}: {$responseContent}"
             );
         }
     }
@@ -127,6 +134,49 @@ class SmokeTest extends WebTestCase
             $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
             $this->assertEquals(
                 301,
+                $client->getResponse()->getStatusCode(),
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
+            );
+
+            $client->followRedirect();
+
+            $this->assertEquals(
+                200,
+                $client->getResponse()->getStatusCode(),
+                "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
+            );
+        }
+    }
+
+    /**
+     * All the DELETE routes from router:debug, acting on entity 1.
+     */
+    public function testAllDeleteHTTPMethodRoutesAsSuperAdmin()
+    {
+        // Create a new client to browse the application
+        $client = $this->createAuthorizedClient('xsuper');
+
+        $routes = [
+            'business_area_delete   ' => ['DELETE', '/admin/business_area/1', []],
+            'category_delete        ' => ['DELETE', '/admin/category/1', []],
+            'competency_level_delete' => ['DELETE', '/admin/level/competency/1', []],
+            'competency_type_delete ' => ['DELETE', '/admin/type/competency/1', []],
+            'country_delete         ' => ['DELETE', '/admin/country/1', []],
+            'currency_delete        ' => ['DELETE', '/admin/currency/1', []],
+            'file_type_delete       ' => ['DELETE', '/admin/type/file/1', []],
+            'language_delete        ' => ['DELETE', '/admin/language/1', []],
+            'region_delete          ' => ['DELETE', '/admin/region/1', []],
+            'proficiency_delete     ' => ['DELETE', '/admin/proficiency/1', []],
+            'report_delete          ' => ['DELETE', '/report/1', []],
+            'status_delete          ' => ['DELETE', '/admin/status/1', []],
+            'tutor_type_delete      ' => ['DELETE', '/admin/type/tutor/1', []],
+            'user_delete            ' => ['DELETE', '/user/1', []],
+        ];
+
+        foreach ($routes as $name => $routeBits) {
+            $client->request($routeBits[0], $routeBits[1], $routeBits[2]);
+            $this->assertEquals(
+                302,
                 $client->getResponse()->getStatusCode(),
                 "Unexpected HTTP status code for {$name} at {$routeBits[0]}, {$routeBits[1]}"
             );

@@ -210,10 +210,6 @@ class BusinessAreaController extends Controller
      */
     public function updateAction(Request $request, BusinessArea $businessArea)
     {
-        if (!$businessArea) {
-            throw $this->createNotFoundException('Unable to find BusinessArea entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($businessArea->getId());
         $editForm = $this->createEditForm($businessArea);
         $editForm->handleRequest($request);
@@ -262,7 +258,7 @@ class BusinessAreaController extends Controller
             );
         }
 
-        return $this->redirectToRoute('businessArea');
+        return $this->redirectToRoute('business_area');
     }
 
     /**

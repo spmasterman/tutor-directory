@@ -11,7 +11,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class DefaultController.
+ */
 class DefaultController extends Controller
 {
     /**
@@ -38,9 +42,9 @@ class DefaultController extends Controller
         try {
             $key = $request->request->get('key');
             $state = $request->request->get('state');
+
             /** @var User $user */
             $user = $this->getUser();
-
             $manager = $this->getUserManager();
 
             try {
@@ -56,7 +60,7 @@ class DefaultController extends Controller
             return new JsonResponse([
                 'success' => false,
                 'message' => $e->getMessage(),
-            ]);
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         return new JsonResponse([

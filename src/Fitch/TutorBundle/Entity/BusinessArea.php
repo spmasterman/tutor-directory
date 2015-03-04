@@ -12,12 +12,15 @@ use Fitch\CommonBundle\Entity\NamedTrait;
 use Fitch\CommonBundle\Entity\NamedTraitInterface;
 use Fitch\CommonBundle\Entity\TimestampableTrait;
 use Fitch\CommonBundle\Entity\TimestampableTraitInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * BusinessArea.
  *
  * @ORM\Table(name="business_area")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\BusinessAreaRepository")
+ * @UniqueEntity("name")
  */
 class BusinessArea implements
     IdentityTraitInterface,
@@ -42,6 +45,14 @@ class BusinessArea implements
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=128, unique=true)
+     * @Assert\NotBlank()
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="code", type="string", length=4, nullable=true)
      */
     protected $code;
@@ -61,23 +72,22 @@ class BusinessArea implements
     protected $displayAsCode;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128)
      */
-    protected $name;
-
     public function __construct()
     {
         $this->categories = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         if ($this->isDisplayAsCode()) {
             return $this->getCode() ?: $this->getName();
         } else {
-            return ($this->getCode() ? "({$this->getCode()}) " : '') . $this->getName();
+            return ($this->getCode() ? "({$this->getCode()}) " : '').$this->getName();
         }
     }
 
@@ -131,11 +141,13 @@ class BusinessArea implements
 
     /**
      * @param boolean $prependToCategoryName
+     *
      * @return $this
      */
     public function setPrependToCategoryName($prependToCategoryName)
     {
         $this->prependToCategoryName = $prependToCategoryName;
+
         return $this;
     }
 
@@ -149,11 +161,13 @@ class BusinessArea implements
 
     /**
      * @param boolean $displayAsCode
+     *
      * @return $this
      */
     public function setDisplayAsCode($displayAsCode)
     {
         $this->displayAsCode = $displayAsCode;
+
         return $this;
     }
 }
