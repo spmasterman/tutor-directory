@@ -25,7 +25,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         ];
 
         foreach ($filters as $formField => $filterKey) {
-            $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
+            $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityEntityInterface')->getMock();
             $identityEntity->expects($this->once())->method('getId')->willReturn(1);
 
             $form = $this->getFormMock([
@@ -53,7 +53,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
         ];
 
         foreach ($filters as $filterKey => $innerOuter) {
-            $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
+            $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityEntityInterface')->getMock();
             $identityEntity->expects($this->once())->method('getId')->willReturn(1);
 
             $form = $this->getFormMock([
@@ -376,7 +376,7 @@ class ReportDefinitionTest extends \PHPUnit_Framework_TestCase
      */
     private function getIdentityEntityMock($id)
     {
-        $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityTraitInterface')->getMock();
+        $identityEntity = $this->getMockBuilder('Fitch\CommonBundle\Entity\IdentityEntityInterface')->getMock();
         $identityEntity->expects($this->any())->method('getId')->willReturn($id);
         return $identityEntity;
     }
