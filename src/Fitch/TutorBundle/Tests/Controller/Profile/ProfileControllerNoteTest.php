@@ -113,12 +113,4 @@ class ProfileControllerNoteTest extends FixturesWebTestCase
     {
         return $this->container->get('fitch.manager.tutor');
     }
-
-    /**
-     * @return UserManagerInterface
-     */
-    public function getUserManager()
-    {
-        return $this->container->get('fitch.manager.user');
-    }
 }
