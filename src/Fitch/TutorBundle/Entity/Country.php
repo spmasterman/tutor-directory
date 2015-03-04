@@ -2,16 +2,17 @@
 
 namespace Fitch\TutorBundle\Entity;
 
-use Doctrine\Common\Util\Inflector;
 use Doctrine\ORM\Mapping as ORM;
-use Fitch\CommonBundle\Entity\ActiveAndPreferredEntityTrait;
 use Fitch\CommonBundle\Entity\ActiveAndPreferredEntityInterface;
-use Fitch\CommonBundle\Entity\IdentityEntityTrait;
+use Fitch\CommonBundle\Entity\ActiveAndPreferredEntityTrait;
+use Fitch\CommonBundle\Entity\ArrayLoadableEntityInterface;
+use Fitch\CommonBundle\Entity\ArrayLoadableEntityTrait;
 use Fitch\CommonBundle\Entity\IdentityEntityInterface;
-use Fitch\CommonBundle\Entity\NamedEntityTrait;
+use Fitch\CommonBundle\Entity\IdentityEntityTrait;
 use Fitch\CommonBundle\Entity\NamedEntityInterface;
-use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
+use Fitch\CommonBundle\Entity\NamedEntityTrait;
 use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
+use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -28,9 +29,15 @@ class Country implements
     IdentityEntityInterface,
     TimestampableEntityInterface,
     NamedEntityInterface,
-    ActiveAndPreferredEntityInterface
+    ActiveAndPreferredEntityInterface,
+    ArrayLoadableEntityInterface
 {
-    use IdentityEntityTrait, TimestampableEntityTrait, NamedEntityTrait, ActiveAndPreferredEntityTrait;
+    use IdentityEntityTrait,
+        TimestampableEntityTrait,
+        NamedEntityTrait,
+        ActiveAndPreferredEntityTrait,
+        ArrayLoadableEntityTrait
+        ;
 
     /**
      * @var string
@@ -89,22 +96,6 @@ class Country implements
     public function __toString()
     {
         return sprintf('%s (%s) %s', $this->getName(), $this->getThreeDigitCode(), $this->getDialingCode());
-    }
-
-    /**
-     * Loads up an object from a named array, via its setters
-     *
-     * @param array $data
-     */
-    public function fromArray(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $method = 'set' . Inflector::classify($key);
-
-            if (method_exists($this, $method)) {
-                call_user_func(array($this, $method), $value);
-            }
-        }
     }
 
     /**

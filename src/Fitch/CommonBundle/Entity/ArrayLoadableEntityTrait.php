@@ -5,9 +5,9 @@ namespace Fitch\CommonBundle\Entity;
 use Doctrine\Common\Inflector\Inflector;
 
 /**
- * Class ArrayLoadableTrait.
+ * Class ArrayLoadableEntityTrait.
  */
-trait ArrayLoadableTrait
+trait ArrayLoadableEntityTrait
 {
     /**
      * Loads up an object from a named array, via its setters.

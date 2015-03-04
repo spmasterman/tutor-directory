@@ -3,9 +3,9 @@
 namespace Fitch\CommonBundle\Entity;
 
 /**
- * Interface ArrayLoadableInterface.
+ * Interface ArrayLoadableEntityInterface.
  */
-interface ArrayLoadableInterface
+interface ArrayLoadableEntityInterface
 {
     /**
      * Loads up an object from a named array, via its setters.
