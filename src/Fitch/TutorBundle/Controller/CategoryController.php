@@ -210,10 +210,6 @@ class CategoryController extends Controller
      */
     public function updateAction(Request $request, Category $category)
     {
-        if (!$category) {
-            throw $this->createNotFoundException('Unable to find Category entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($category->getId());
         $editForm = $this->createEditForm($category);
         $editForm->handleRequest($request);
