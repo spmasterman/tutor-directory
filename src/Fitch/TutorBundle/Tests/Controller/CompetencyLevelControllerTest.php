@@ -3,12 +3,18 @@
 namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
+use Fitch\CommonBundle\Tests\Controller\CrudTestableTrait;
+use Fitch\CommonBundle\Tests\Controller\CrudTestConfig;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 class CompetencyLevelControllerTest extends WebTestCase
 {
-    use AuthorisedClientTrait;
+    use AuthorisedClientTrait, CrudTestableTrait;
 
+    /**
+     * Perform Access Tests
+     */
     public function testAccess()
     {
         $users = [
@@ -23,54 +29,76 @@ class CompetencyLevelControllerTest extends WebTestCase
         $this->checkAccess('GET', '/admin/level/competency/', $users);
     }
 
+    /**
+     * Test the CRUD interface
+     */
     public function testCompleteScenario()
     {
-        // Create a new client to browse the application
-        $client = $this->createAuthorizedClient('xadmin');
+        $crudTestConfig = new CrudTestConfig();
+        $crudTestConfig
+            ->setUser('xadmin')
+            ->setUrl('/admin/country/')
+            ->setFormData([
+                'fitch_tutorbundle_country[name]'  => 'Test Country One',
+                'fitch_tutorbundle_country[twoDigitCode]'  => 'xt',
+                'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
+                'fitch_tutorbundle_country[dialingCode]'  => '+1',
+                'fitch_tutorbundle_country[defaultRegion]' => 1,
+            ])
+            ->setCheckBoxes([
+                'fitch_tutorbundle_country[preferred]'  => true,
+                'fitch_tutorbundle_country[active]'  => true,
+            ])
+            ->setFixedFormData([
+                'fitch_tutorbundle_country[name]'  => 'xtest',
+                'fitch_tutorbundle_country[twoDigitCode]'  => 'xt',
+                'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
+                'fitch_tutorbundle_country[dialingCode]'  => '+1',
+                'fitch_tutorbundle_country[defaultRegion]' => 1,
+            ])
+            ->setCheckAdditionFunction(function(Crawler $crawler) {
+                $this->assertGreaterThan(
+                    0,
+                    $crawler->filter('td:contains("xtest")')->count(),
+                    'Missing element td:contains("Test")'
+                );
+            })
+            ->setEditFormData([
+                'fitch_tutorbundle_country[name]'  => 'xtest-edit',
+                'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
+                'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
+                'fitch_tutorbundle_country[dialingCode]'  => '+44',
+                'fitch_tutorbundle_country[defaultRegion]' => 2,
+            ])
+            ->setCheckEditFunction(function(Crawler $crawler){
+                $this->assertGreaterThan(
+                    0,
+                    $crawler->filter('[value="xtest-edit"]')->count(),
+                    'Missing element [value="xtest-edit"]'
+                );
+            })
+            ->setBadEditFormData([
+                'fitch_tutorbundle_country[name]'  => 'Test Country One', //dupe
+                'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
+                'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
+                'fitch_tutorbundle_country[dialingCode]'  => '+44',
+            ])
+            ->setCheckBadEditFunction(function($formValues){
+                $this->assertNotEquals(
+                    'Test Country One',
+                    $formValues['fitch_tutorbundle_country[name]'],
+                    'Form appears to have allowed us updated to a Duplicate country name - please check the validators'
+                );
+            })
+            ->setCheckDeletedFunction(function($responseContent) {
+                $this->assertNotRegExp('/xtest-edit/', $responseContent);
+            })
+            ->setCheckBadUpdateFunction(function(Crawler $crawler){
+                $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
+                    && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\Country object not found.")')->count() > 0);
+                $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Country entity'");
+            });
 
-        // Create a new entry in the database
-        $crawler = $client->request('GET', '/admin/level/competency/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /user/");
-        $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
-
-        // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form([
-            'fitch_tutorbundle_competencylevel[name]'  => 'xtest',
-            'fitch_tutorbundle_competencylevel[color]' => '#daac8a',
-        ]);
-
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        // Check data in the show view
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('td:contains("xtest")')->count(),
-            'Missing element td:contains("Test")'
-        );
-
-        // Edit the entity
-        $crawler = $client->click($crawler->selectLink('Edit')->link());
-
-        $form = $crawler->selectButton('Update')->form([
-            'fitch_tutorbundle_competencylevel[name]'  => 'xtest-edit',
-            'fitch_tutorbundle_competencylevel[color]' => '#db8c8b',
-        ]);
-
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('[value="xtest-edit"]')->count(),
-            'Missing element [value="xtest-edit"]'
-        );
-
-        // Delete the entity
-        $client->submit($crawler->selectButton('Delete')->form());
-        $client->followRedirect();
-
-        // Check the entity has been delete on the list
-        $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());
+        $this->performCrudTest($crudTestConfig);
     }
 }

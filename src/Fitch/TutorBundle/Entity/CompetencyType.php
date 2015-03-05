@@ -9,12 +9,15 @@ use Fitch\CommonBundle\Entity\NamedEntityTrait;
 use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
 use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CompetencyType.
  *
  * @ORM\Table(name="competency_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\CompetencyTypeRepository")
+ * @UniqueEntity("name")
  */
 class CompetencyType implements
     IdentityEntityInterface,
@@ -34,7 +37,8 @@ class CompetencyType implements
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128)
+     * @ORM\Column(name="name", type="string", length=128, unique=true)
+     * @Assert\NotBlank()
      */
     protected $name = '...';
 
