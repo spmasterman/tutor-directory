@@ -102,10 +102,6 @@ class CompetencyController extends Controller
     {
         try {
             $competency = $this->getCompetencyManager()->findById($request->request->get('pk'));
-            if (!$competency) {
-                throw new NotFoundHttpException('Competency does not exist!');
-            }
-
             $this->getCompetencyManager()->removeEntity($competency);
         } catch (Exception $e) {
             return new JsonResponse([
