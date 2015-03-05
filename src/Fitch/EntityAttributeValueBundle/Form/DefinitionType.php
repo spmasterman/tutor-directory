@@ -12,13 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class DefinitionType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options = null;
-
         $builder->add('name', 'text', [
         ]);
         $builder->add('description', 'textarea', [

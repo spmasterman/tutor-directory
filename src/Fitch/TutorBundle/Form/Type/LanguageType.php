@@ -10,12 +10,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class LanguageType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options = null;
         $builder
             ->add('name')
             ->add('threeLetterCode')

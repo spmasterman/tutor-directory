@@ -11,12 +11,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 class RegistrationFormType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options = null;
         // add custom field
         $builder
             ->add('fullName', null, [

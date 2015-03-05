@@ -13,8 +13,7 @@ use Fitch\EntityAttributeValueBundle\Form\EventListener\AttributeSubscriber;
 class AttributeType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

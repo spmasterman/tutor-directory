@@ -55,13 +55,10 @@ class ReportDefinitionType extends AbstractType
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options = null;
-
         $builder
             ->add('tutor_type', 'entity', [
                 'class' => 'FitchTutorBundle:TutorType',

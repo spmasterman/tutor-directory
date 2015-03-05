@@ -10,15 +10,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 class CompleteAttributeType extends AttributeType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('definition', new DefinitionType(), array(
-
-        ));
+        $builder->add('definition', new DefinitionType(), []);
     }
 }

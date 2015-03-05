@@ -12,13 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class SchemaType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options = null;
-
         $builder->add('definitions', 'collection', [
             'type' => new DefinitionType(),
             'allow_add' => true,

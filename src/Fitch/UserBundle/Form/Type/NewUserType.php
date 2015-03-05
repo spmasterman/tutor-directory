@@ -11,12 +11,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class NewUserType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options = null;
         $builder
             ->add('userName')
             ->add('fullName')
