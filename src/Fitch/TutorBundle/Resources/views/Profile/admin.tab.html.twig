@@ -1,0 +1,17 @@
+
+    <div class="row admin-function">
+        {% if is_granted('ROLE_CAN_EDIT_TUTOR') %}
+        <div class="alert alert-warning" role="alert">
+            <h4><i class="fa fa-exclamation-triangle"></i> Delete Tutor</h4>
+            <p>To completely and irreversibly delete a tutor, use the button below.</p>
+            <p>It is almost always better to just set an appropriate status for a tutor if they are no longer of
+               service. This will stop other users of the system from recreating the tutor, and stops historic
+               information from being lost.
+            </p>
+            <p><strong>This function should only be used to remove tutor records created in error. </strong></p>
+        </div>
+        <div class="well">
+            <button class="btn btn-danger btn-large delete-tutor"><i class="fa fa-trash-o"></i> Delete Tutor</button>
+        </div>
+        {% endif %}
+    </div>

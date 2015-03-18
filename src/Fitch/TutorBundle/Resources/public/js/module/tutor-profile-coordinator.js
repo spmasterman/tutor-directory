@@ -48,6 +48,8 @@ var TutorProfileCoordinator = (function ($) {
         new TutorProfileRate(serverData.ratePrototype);
         new TutorProfileFile();
 
+        new TutorProfileAdmin();
+
         // Initialise the other x-editable elements
         $('.inline').editable();
     };

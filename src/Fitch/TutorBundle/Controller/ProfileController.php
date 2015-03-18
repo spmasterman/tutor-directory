@@ -34,8 +34,8 @@ class ProfileController extends Controller
      * @Method("GET")
      * @Template()
      *
-     * @param Tutor $tutor
-     * @param $tab
+     * @param Tutor  $tutor
+     * @param string $tab
      *
      * @return array
      */

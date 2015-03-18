@@ -14,6 +14,9 @@
         {% endif %}
         <li {% if tab == 'competency' %}class="active"{% endif %}><a href="#competency-tab" data-toggle="tab"><i class="fa fa-puzzle-piece"></i> {% trans %}profile.tab.competencies{% endtrans %}</a></li>
         <li {% if tab == 'files' %}class="active"{% endif %}><a href="#files-tab" data-toggle="tab"><i class="fa fa-cloud-upload"></i> {% trans %}profile.tab.files{% endtrans %}</a></li>
+        {% if isEditor %}
+        <li {% if tab == 'admin' %}class="active"{% endif %}><a href="#admin-tab" data-toggle="tab"><i class="fa fa-cog"></i> {% trans %}profile.tab.admin{% endtrans %}</a></li>
+        {% endif %}
     </ul>
 
     <div class="tab-content profile-page">
@@ -29,6 +32,9 @@
         </div>
         <div class="tab-pane files{% if tab == 'files' %} active{% endif %}" id="files-tab">
             {% include 'FitchTutorBundle:Profile:files.tab.html.twig' %}
+        </div>
+        <div class="tab-pane admin{% if tab == 'admin' %} active{% endif %}" id="admin-tab">
+            {% include 'FitchTutorBundle:Profile:admin.tab.html.twig' %}
         </div>
     </div>
 {% endblock %}
@@ -48,6 +54,7 @@
             '@FitchTutorBundle/Resources/public/js/module/tutor-phone.js'
             '@FitchTutorBundle/Resources/public/js/module/tutor-email.js'
             '@FitchTutorBundle/Resources/public/js/module/tutor-file.js'
+            '@FitchTutorBundle/Resources/public/js/module/tutor-admin.js'
 
             '@FitchTutorBundle/Resources/public/js/type/address.js'
             '@FitchTutorBundle/Resources/public/js/type/email.js'

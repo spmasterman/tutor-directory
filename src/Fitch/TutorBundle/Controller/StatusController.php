@@ -27,6 +27,8 @@ class StatusController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
@@ -108,6 +110,8 @@ class StatusController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {
@@ -288,8 +292,7 @@ class StatusController extends Controller
                         ],
                 ]
             )
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
