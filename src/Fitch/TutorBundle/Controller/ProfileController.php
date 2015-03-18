@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Tutor Profile controller.
@@ -48,6 +49,7 @@ class ProfileController extends Controller
             'rateManager' => $this->getRateManager(),
             'isEditor' => $this->isGranted('ROLE_CAN_EDIT_TUTOR'),
             'isAdmin' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
+            'delete_form' => $this->createDeleteForm($tutor->getId())->createView(),
         ];
     }
 
@@ -106,6 +108,67 @@ class ProfileController extends Controller
             'id' => $relatedEntity instanceof IdentityEntityInterface ? $relatedEntity->getId() : null,
             'detail' => $relatedEntity instanceof Note ? $relatedEntity->getProvenance() : null,
         ]);
+    }
+
+    /**
+     * Deletes a Tutor entity.
+     *
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="tutor_delete")
+     *
+     * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param Tutor   $tutor
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @throws AccessDeniedHttpException
+     */
+    public function deleteAction(Request $request, Tutor $tutor)
+    {
+        if (!$this->isGranted('ROLE_CAN_EDIT_TUTOR')) {
+            throw new AccessDeniedHttpException('Unauthorised access!');
+        }
+
+        $form = $this->createDeleteForm($tutor->getId());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->getTutorManager()->removeEntity($tutor);
+
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('tutor.delete.success')
+            );
+        }
+
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * Creates a form to delete a Status entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+        ->setAction($this->generateUrl('tutor_delete', ['id' => $id]))
+        ->setMethod('DELETE')
+        ->add(
+            'submit',
+            'submit',
+            [
+                'label' => $this->get('translator')->trans('tutor.delete.action'),
+                'attr' => [
+                    'submit_class' => 'btn-danger btn-large delete-tutor',
+                    'submit_glyph' => 'fa-exclamation-circle',
+                ],
+            ]
+        )
+        ->getForm();
     }
 
     /**

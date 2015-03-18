@@ -26,7 +26,7 @@ class CompetencyType implements
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="competencyTypes")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      *
      * @var Category
      */

@@ -23,29 +23,28 @@ var TutorProfileAdmin = (function ($) {
         container.on('click', '.delete-tutor', function (e) {
             e.preventDefault();
 
-            var row = $(this).closest('.well');
+            var deleteForm = $(this).closest('form');
 
             $.when(function () {
-                return row.find('.delete-tutor').fadeOut(400);
+                return deleteForm.find('.delete-tutor').fadeOut(400);
             }()).done(function () {
-                row.append(
+                deleteForm.append(
                     '<div class="confirm-remove" style="display: none"><h4><i class="fa fa-warning red-font"></i> Are you sure? </h4>' +
                         '<button class="confirm-execute btn btn-large btn-danger"><i class="fa fa-trash-o"></i> Yes I understand what I am doing</button>' +
                         '<button class="confirm-cancel btn btn-large btn-default"><i class="fa fa-arrow-circle-o-left"></i> No, please cancel</button>' +
                     '</div>'
                 );
-                row.find('.confirm-remove').fadeIn(400);
+                deleteForm.find('.confirm-remove').fadeIn(400);
             });
 
-            row.on('click', '.confirm-cancel', function (e) {
+            deleteForm.on('click', '.confirm-cancel', function (e) {
                 e.preventDefault();
                 $(this).closest('.confirm-remove').remove();
-                row.find('.delete-tutor').fadeIn(400);
+                deleteForm.find('.delete-tutor').fadeIn(400);
             });
-            row.on('click', '.confirm-execute', function (e) {
+            deleteForm.on('click', '.confirm-execute', function (e) {
                 e.preventDefault();
-
-                //
+                $(this).closest('form').submit();
             });
         });
     }
