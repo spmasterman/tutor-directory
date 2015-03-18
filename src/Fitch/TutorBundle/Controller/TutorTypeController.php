@@ -108,6 +108,8 @@ class TutorTypeController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {
@@ -288,8 +290,7 @@ class TutorTypeController extends Controller
                         ],
                 ]
             )
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**

@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class CompetencyFilterType.
+ */
 class CompetencyFilterType extends AbstractType
 {
     /** @var  Translator */
@@ -16,6 +19,10 @@ class CompetencyFilterType extends AbstractType
     /** @var  \Fitch\TutorBundle\Model\CompetencyTypeManagerInterface */
     protected $competencyTypeManager;
 
+    /**
+     * @param TranslatorInterface            $translator
+     * @param CompetencyTypeManagerInterface $competencyTypeManager
+     */
     public function __construct(
         TranslatorInterface $translator,
         CompetencyTypeManagerInterface $competencyTypeManager
@@ -50,7 +57,7 @@ class CompetencyFilterType extends AbstractType
                 'multiple' => false,
                 'choices' => [
                     'and' => 'All selected Competency Types',
-                    'or' => 'Any selected Competency Types'
+                    'or' => 'Any selected Competency Types',
                 ],
                 'required' => false,
                 'attr' => [

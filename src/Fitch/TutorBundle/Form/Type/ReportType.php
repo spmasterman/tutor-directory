@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class ReportType
+ */
 class ReportType extends AbstractType
 {
     /**
@@ -15,8 +18,7 @@ class ReportType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('definition', 'hidden')
-        ;
+            ->add('definition', 'hidden');
     }
 
     /**

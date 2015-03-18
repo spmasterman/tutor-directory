@@ -45,6 +45,8 @@ class ReportController extends Controller
      * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
      * @Template()
+     *
+     * @return array
      */
     public function listAction()
     {
@@ -62,6 +64,8 @@ class ReportController extends Controller
      * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
      * @Template()
+     *
+     * @return array
      */
     public function headerAction()
     {
@@ -398,8 +402,7 @@ class ReportController extends Controller
                     ],
                 ]
             )
-            ->getForm()
-            ;
+            ->getForm();
     }
 
     /**
@@ -436,7 +439,7 @@ class ReportController extends Controller
      * @Security("has_role('ROLE_CAN_VIEW_SAVED_REPORTS')")
      *
      * @param Report $report
-     * @param $format
+     * @param string $format
      *
      * @return StreamedResponse
      *

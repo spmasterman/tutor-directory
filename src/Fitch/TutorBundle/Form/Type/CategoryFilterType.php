@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class CategoryFilterType.
+ */
 class CategoryFilterType extends AbstractType
 {
     /** @var  Translator */
@@ -16,6 +19,10 @@ class CategoryFilterType extends AbstractType
     /** @var  \Fitch\TutorBundle\Model\CategoryManagerInterface */
     protected $categoryManager;
 
+    /**
+     * @param TranslatorInterface      $translator
+     * @param CategoryManagerInterface $categoryManager
+     */
     public function __construct(
         TranslatorInterface $translator,
         CategoryManagerInterface  $categoryManager
@@ -50,7 +57,7 @@ class CategoryFilterType extends AbstractType
                 'multiple' => false,
                 'choices' => [
                     'and' => 'All selected Categories',
-                    'or' => 'Any selected Categories'
+                    'or' => 'Any selected Categories',
                 ],
                 'required' => false,
                 'attr' => [
@@ -59,7 +66,6 @@ class CategoryFilterType extends AbstractType
                 ],
                 'label_attr' => ['class' => 'sr-only'],
             ])
-
         ;
     }
 

@@ -8,6 +8,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class ProficiencyType
+ * @package Fitch\TutorBundle\Form\Type
+ */
 class ProficiencyType extends AbstractType
 {
     /**

@@ -7,6 +7,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class CountryType.
+ */
 class CountryType extends AbstractType
 {
     /**
@@ -25,8 +28,8 @@ class CountryType extends AbstractType
             ->add('dialingCode', null, [
                 'attr' => [
                     'title' => "Please enter a valid international dialing code (i.e. +44 for the UK, +1 for the US)",
-                    'placeholder' => 'A valid international dialing code (i.e. +44 for the UK, +1 for the US)'
-                ]
+                    'placeholder' => 'A valid international dialing code (i.e. +44 for the UK, +1 for the US)',
+                ],
             ])
             ->add('active', new OnOffType(), [
                 'type' => 'yesno',

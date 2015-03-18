@@ -9,6 +9,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class RateFilterType.
+ */
 class RateFilterType extends AbstractType
 {
     /** @var  Translator */
@@ -20,6 +23,11 @@ class RateFilterType extends AbstractType
     /** @var  RateManagerInterface */
     protected $rateManager;
 
+    /**
+     * @param TranslatorInterface      $translator
+     * @param CurrencyManagerInterface $currencyManager
+     * @param RateManagerInterface     $rateManager
+     */
     public function __construct(
         TranslatorInterface $translator,
         CurrencyManagerInterface $currencyManager,
@@ -40,7 +48,7 @@ class RateFilterType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'attr' => [
-                    'class' => "control-inline simple-checkbox",
+                    'class' => "control-inline simple-checkbox stacked-group",
                 ],
                 'choices' => $this->rateManager->buildChoices(),
                 'placeholder' => 'Filter by Rate...',
@@ -89,8 +97,7 @@ class RateFilterType extends AbstractType
                 ],
                 'label_attr' => ['class' => 'sr-only'],
 
-            ])
-        ;
+            ]);
     }
 
     /**

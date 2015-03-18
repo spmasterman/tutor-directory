@@ -3,11 +3,16 @@
 namespace Fitch\TutorBundle\Form\Type;
 
 use Fitch\TutorBundle\Model\CountryManager;
+use Fitch\TutorBundle\Model\CountryManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class TutorType.
+ */
 class TutorType extends AbstractType
 {
     /** @var  Translator */
@@ -16,6 +21,10 @@ class TutorType extends AbstractType
     /** @var  CountryManager  */
     protected $countryManager;
 
+    /**
+     * @param TranslatorInterface     $translator
+     * @param CountryManagerInterface $countryManager
+     */
     public function __construct($translator, $countryManager)
     {
         $this->translator = $translator;

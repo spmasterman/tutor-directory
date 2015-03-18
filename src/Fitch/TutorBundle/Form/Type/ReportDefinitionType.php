@@ -13,6 +13,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class ReportDefinitionType.
+ */
 class ReportDefinitionType extends AbstractType
 {
     /** @var  TranslatorInterface */
@@ -36,6 +39,15 @@ class ReportDefinitionType extends AbstractType
     /** @var  \Fitch\TutorBundle\Model\LanguageManagerInterface */
     protected $languageManager;
 
+    /**
+     * @param TranslatorInterface             $translator
+     * @param CurrencyManagerInterface        $currencyManager
+     * @param RateManagerInterface            $rateManager
+     * @param CategoryManagerInterface        $categoryManager
+     * @param CompetencyTypeManagerInterface  $competencyTypeManager
+     * @param CompetencyLevelManagerInterface $competencyLevelManager
+     * @param LanguageManagerInterface        $languageManager
+     */
     public function __construct(
         TranslatorInterface $translator,
         CurrencyManagerInterface $currencyManager,

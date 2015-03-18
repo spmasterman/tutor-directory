@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class LanguageFilterType.
+ */
 class LanguageFilterType extends AbstractType
 {
     /** @var  Translator */
@@ -16,6 +19,10 @@ class LanguageFilterType extends AbstractType
     /** @var  LanguageManagerInterface */
     protected $languageManager;
 
+    /**
+     * @param TranslatorInterface      $translator
+     * @param LanguageManagerInterface $languageManager
+     */
     public function __construct(
         TranslatorInterface $translator,
         LanguageManagerInterface $languageManager
@@ -50,7 +57,7 @@ class LanguageFilterType extends AbstractType
                 'multiple' => false,
                 'choices' => [
                     'and' => 'All selected Languages',
-                    'or' => 'Any selected Language'
+                    'or' => 'Any selected Language',
                 ],
                 'required' => false,
                 'attr' => [
