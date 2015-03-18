@@ -27,6 +27,7 @@ class TutorController extends Controller
      *
      * @Method("GET")
      * @Template()
+     * @return array
      */
     public function indexAction()
     {
@@ -152,6 +153,7 @@ class TutorController extends Controller
      *
      * @Method("GET")
      * @Template()
+     * @return array
      */
     public function newAction()
     {

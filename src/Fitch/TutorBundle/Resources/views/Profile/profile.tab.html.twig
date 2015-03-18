@@ -39,7 +39,7 @@
                     <p class="data-row">
                         <span class="data-name">{% trans %}profile.field.status{% endtrans %}</span>
                         <span class="data-value">
-                            {% if isEditor %}<a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getRegion.getId }}" data-title="Select Status">{% endif %}
+                            {% if isEditor %}<a href="#" id="status" class="inline" data-source="{{ path('all_status') }}" data-type="select" data-pk="{{ tutor.getId }}" data-url="{{ path('tutor_ajax_update')}}" data-value="{{ tutor.getStatus.getId }}" data-title="Select Status">{% endif %}
                                 {{ tutor.getStatus.getName }}
                             {% if isEditor %}</a>{% endif %}
                         </span>

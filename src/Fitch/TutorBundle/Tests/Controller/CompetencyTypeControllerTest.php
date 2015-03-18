@@ -8,10 +8,16 @@ use Fitch\CommonBundle\Tests\Controller\CrudTestConfig;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
+/**
+ * Class CompetencyTypeControllerTest
+ */
 class CompetencyTypeControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait, CrudTestableTrait;
 
+    /**
+     * @inheritdoc
+     */
     public function testAccess()
     {
         $users = [
@@ -62,15 +68,11 @@ class CompetencyTypeControllerTest extends WebTestCase
                 );
             })
             ->setBadEditFormData([
-                $formName.'[name]'  => 'Test Competency Type One', //dupe
+                $formName.'[name]'  => 'Test Competency Type One',
+                //There are no bad entries - the skill name is not unique
             ])
-            ->setCheckBadEditFunction(function ($formValues) {
-                $this->assertNotEquals(
-                    'Test Competency Type One',
-                    $formValues['fitch_tutorbundle_competencytype[name]'],
-                    'Form appears to have allowed us updated to a Duplicate competency type '.
-                    '- please check the validators'
-                );
+            ->setCheckBadEditFunction(function () {
+                // so do nothing
             })
             ->setCheckDeletedFunction(function ($responseContent) {
                 $this->assertNotRegExp('/xtest-edit/', $responseContent);
@@ -82,7 +84,8 @@ class CompetencyTypeControllerTest extends WebTestCase
                             ->count() > 0
                     );
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Competency Type entity'");
-            });
+            })
+            ->disableUniqueChecks();
 
         $this->performCrudTest($crudTestConfig);
     }

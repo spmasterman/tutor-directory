@@ -10,12 +10,15 @@ use Fitch\CommonBundle\Entity\NamedEntityTrait;
 use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
 use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tutor.
  *
  * @ORM\Table(name="tutor")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\TutorRepository")
+ * @UniqueEntity("name", message="A tutor with this name already exists. If two tutors have the same name, please differentiate them with a middle initial")
  */
 class Tutor implements
     IdentityEntityInterface,
@@ -27,7 +30,8 @@ class Tutor implements
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     protected $name;
 
@@ -40,7 +44,7 @@ class Tutor implements
 
     /**
      * @ORM\ManyToOne(targetEntity="TutorType")
-     * @ORM\JoinColumn(name="tutor_type_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tutor_type_id", referencedColumnName="id", nullable=false)
      *
      * @var TutorType
      */
@@ -62,7 +66,7 @@ class Tutor implements
 
     /**
      * @ORM\ManyToOne(targetEntity="Status", inversedBy="tutor")
-     * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      *
      * @var Status
      */
@@ -161,7 +165,7 @@ class Tutor implements
 
     /**
      * @ORM\ManyToOne(targetEntity="OperatingRegion")
-     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
      *
      * @var OperatingRegion
      */
@@ -169,7 +173,7 @@ class Tutor implements
 
     /**
      * @ORM\ManyToOne(targetEntity="Currency")
-     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id", nullable=false)
      *
      * @var Currency
      */

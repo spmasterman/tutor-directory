@@ -43,6 +43,9 @@ class CrudTestConfig
     /** @var  callable */
     protected $checkBadUpdateFunction;
 
+    /** @var  bool */
+    protected $includeUniqueChecks = true;
+
     /**
      * @return string
      */
@@ -279,6 +282,24 @@ class CrudTestConfig
     public function setCheckBadUpdateFunction($checkBadUpdateFunction)
     {
         $this->checkBadUpdateFunction = $checkBadUpdateFunction;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function areUniqueChecksEnabled()
+    {
+        return $this->includeUniqueChecks;
+    }
+
+    /**
+     * @return $this
+     */
+    public function disableUniqueChecks()
+    {
+        $this->includeUniqueChecks = false;
 
         return $this;
     }
