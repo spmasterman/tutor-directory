@@ -81,7 +81,7 @@ class TutorLanguageControllerTest extends FixturesWebTestCase
     }
 
     /**
-     * Test Setting a New Languge via a (mock)request object being passed to update controller method.
+     * Test Setting a New Language via a (mock)request object being passed to update controller method.
      */
     public function testUpdatingLanguage()
     {

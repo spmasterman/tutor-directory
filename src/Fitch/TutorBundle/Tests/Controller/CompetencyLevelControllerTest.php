@@ -37,24 +37,15 @@ class CompetencyLevelControllerTest extends WebTestCase
         $crudTestConfig = new CrudTestConfig();
         $crudTestConfig
             ->setUser('xadmin')
-            ->setUrl('/admin/country/')
+            ->setUrl('/admin/level/competency/')
             ->setFormData([
-                'fitch_tutorbundle_country[name]'  => 'Test Country One',
-                'fitch_tutorbundle_country[twoDigitCode]'  => 'xt',
-                'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
-                'fitch_tutorbundle_country[dialingCode]'  => '+1',
-                'fitch_tutorbundle_country[defaultRegion]' => 1,
+                'fitch_tutorbundle_competencylevel[name]'  => 'Test Level One',
+                'fitch_tutorbundle_competencylevel[color]'  => '#cccccc',
             ])
-            ->setCheckBoxes([
-                'fitch_tutorbundle_country[preferred]'  => true,
-                'fitch_tutorbundle_country[active]'  => true,
-            ])
+            ->setCheckBoxes([])
             ->setFixedFormData([
-                'fitch_tutorbundle_country[name]'  => 'xtest',
-                'fitch_tutorbundle_country[twoDigitCode]'  => 'xt',
-                'fitch_tutorbundle_country[threeDigitCode]'  => 'xtt',
-                'fitch_tutorbundle_country[dialingCode]'  => '+1',
-                'fitch_tutorbundle_country[defaultRegion]' => 1,
+                'fitch_tutorbundle_competencylevel[name]'  => 'xtest',
+                'fitch_tutorbundle_competencylevel[color]'  => '#cccccc',
             ])
             ->setCheckAdditionFunction(function(Crawler $crawler) {
                 $this->assertGreaterThan(
@@ -64,13 +55,10 @@ class CompetencyLevelControllerTest extends WebTestCase
                 );
             })
             ->setEditFormData([
-                'fitch_tutorbundle_country[name]'  => 'xtest-edit',
-                'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
-                'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
-                'fitch_tutorbundle_country[dialingCode]'  => '+44',
-                'fitch_tutorbundle_country[defaultRegion]' => 2,
+                'fitch_tutorbundle_competencylevel[name]'  => 'xtest-edit',
+                'fitch_tutorbundle_competencylevel[color]'  => '#db8c8b',
             ])
-            ->setCheckEditFunction(function(Crawler $crawler){
+            ->setCheckEditFunction(function(Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('[value="xtest-edit"]')->count(),
@@ -78,25 +66,25 @@ class CompetencyLevelControllerTest extends WebTestCase
                 );
             })
             ->setBadEditFormData([
-                'fitch_tutorbundle_country[name]'  => 'Test Country One', //dupe
-                'fitch_tutorbundle_country[twoDigitCode]'  => 'xe',
-                'fitch_tutorbundle_country[threeDigitCode]'  => 'xte',
-                'fitch_tutorbundle_country[dialingCode]'  => '+44',
+                'fitch_tutorbundle_competencylevel[name]'  => 'Test Level One',
+                'fitch_tutorbundle_competencylevel[color]'  => '#cccccc',
             ])
-            ->setCheckBadEditFunction(function($formValues){
+            ->setCheckBadEditFunction(function($formValues) {
                 $this->assertNotEquals(
-                    'Test Country One',
-                    $formValues['fitch_tutorbundle_country[name]'],
-                    'Form appears to have allowed us updated to a Duplicate country name - please check the validators'
+                    'Test Level One',
+                    $formValues['fitch_tutorbundle_competencylevel[name]'],
+                    'Form appears to have allowed us updated to a Duplicate CompetencyLevel name - please check the validators'
                 );
             })
             ->setCheckDeletedFunction(function($responseContent) {
                 $this->assertNotRegExp('/xtest-edit/', $responseContent);
             })
-            ->setCheckBadUpdateFunction(function(Crawler $crawler){
+            ->setCheckBadUpdateFunction(function(Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
-                    && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\Country object not found.")')->count() > 0);
-                $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Country entity'");
+                    && ($crawler->filter(
+                            'html:contains("Fitch\TutorBundle\Entity\CompetencyLevel object not found.")'
+                        )->count() > 0);
+                $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find CompetencyLevel entity'");
             });
 
         $this->performCrudTest($crudTestConfig);

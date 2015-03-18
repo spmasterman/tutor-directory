@@ -23,6 +23,9 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
 
     private $savedService;
 
+    /**
+     * @inheritdoc
+     */
     public function testUpdateExchangeRatePassing()
     {
         $this->injectCurrencyManagerThatWill(self::PASS);
@@ -41,6 +44,9 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->restoreContainer();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function testUpdateExchangeRateFailing()
     {
         $this->injectCurrencyManagerThatWill(self::FAIL);
@@ -59,7 +65,9 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->restoreContainer();
     }
 
-
+    /**
+     * @inheritdoc
+     */
     private function injectCurrencyManagerThatWill($passOrFail)
     {
         $currencyManagerMock = $this->getMockBuilder('Fitch\TutorBundle\Model\CurrencyManager')
@@ -72,6 +80,9 @@ class CurrencyExchangeRateControllerTest extends FixturesWebTestCase
         $this->container->set('fitch.manager.currency', $currencyManagerMock);
     }
 
+    /**
+     * @inheritdoc
+     */
     private function restoreContainer()
     {
         $this->container->set('fitch.manager.currency', $this->savedService);

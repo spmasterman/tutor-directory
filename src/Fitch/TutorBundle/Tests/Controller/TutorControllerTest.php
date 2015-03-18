@@ -5,10 +5,16 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class TutorControllerTest
+ */
 class TutorControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
+    /**
+     * @inheritdoc
+     */
     public function testAccess()
     {
         $users = [
@@ -23,6 +29,9 @@ class TutorControllerTest extends WebTestCase
         $this->checkAccess('GET', '/', $users);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function testReadOnly()
     {
         // Create a new client to browse the application
@@ -36,6 +45,9 @@ class TutorControllerTest extends WebTestCase
         $this->checkAccess('GET', '/new', ['xuser' => 403]);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function testCreateNewTutor()
     {
         // Create a new client to browse the application

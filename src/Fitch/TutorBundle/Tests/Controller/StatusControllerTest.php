@@ -5,10 +5,16 @@ namespace Fitch\TutorBundle\Tests\Controller;
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class StatusControllerTest
+ */
 class StatusControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait;
 
+    /**
+     * @inheritdoc
+     */
     public function testAccess()
     {
         $users = [
@@ -23,6 +29,9 @@ class StatusControllerTest extends WebTestCase
         $this->checkAccess('GET', '/admin/status/', $users);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
