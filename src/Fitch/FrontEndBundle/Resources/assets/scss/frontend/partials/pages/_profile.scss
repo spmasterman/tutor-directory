@@ -21,6 +21,18 @@
 
 .tab-content.profile-page {
 	padding: 35px 15px;
+
+    .confirm {
+      font-style: italic;
+      color: #333;
+      display: none;
+      padding: 3px;
+      margin-left: 200px;
+      button {
+        font-style: normal;
+        margin-right: 5px;
+      }
+    }
 }
 
 /* profile tab */

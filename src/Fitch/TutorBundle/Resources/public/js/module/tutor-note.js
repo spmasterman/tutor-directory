@@ -42,16 +42,32 @@ var TutorProfileNote = (function ($) {
 
         notesContainer.on('click', '.remove-note', function(e){
             e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                notePk = $(this).data('pk')
-                ;
-            $.post(Routing.generate('note_ajax_remove'), {'pk' : notePk}, function(data) {
-                if (data.success) {
-                    row.remove();
-                } else {
-                    console.log(data);
-                }
-            }, "json");
+
+            var row = $(this).closest('.data-row');
+
+            $.when( function() {
+                return row.find('span').fadeOut(400);
+            }() ).done(function() {
+                row.append('<div class="confirm" style="display: none"><i class="fa fa-warning red-font"/> Are you sure? <button class="confirm-execute btn btn-xs btn-danger"><i class="fa fa-trash-o"/>Delete</button><button class="confirm-cancel btn btn-xs btn-default"><i class="fa fa-arrow-circle-o-left"/>Cancel</button></div>');
+                row.find('.confirm').fadeIn(400);
+            });
+
+            row.on('click', '.confirm-cancel', function(e) {
+                e.preventDefault();
+                $(this).closest('.confirm').remove();
+                row.find('span').fadeIn(400);
+            });
+            row.on('click', '.confirm-execute', function(e) {
+                e.preventDefault();
+                var notePk = $(this).data('pk');
+                $.post(Routing.generate('note_ajax_remove'), {'pk' : notePk}, function(data) {
+                    if (data.success) {
+                        row.remove();
+                    } else {
+                        console.log(data);
+                    }
+                }, "json");
+            });
         });
     }
 

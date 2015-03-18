@@ -59,21 +59,36 @@ var TutorProfileCompetency = (function ($) {
 
         competencyContainer.on('click', '.remove-competency', function(e){
             e.preventDefault();
-            var row = $(this).closest('.data-row'),
-                competencyPk = row.find('span.data-value a').attr('data-competency-pk')
-                ;
 
-            if (competencyPk != '0') {
-                $.post(Routing.generate('competency_ajax_remove'), {'pk' : competencyPk}, function(data) {
-                    if (data.success) {
-                        row.remove();
-                    } else {
-                        console.log(data);
-                    }
-                }, "json");
-            } else {
-                row.remove();
-            }
+            var row = $(this).closest('.data-row');
+
+            $.when( function() {
+                return row.find('span').fadeOut(400);
+            }() ).done(function() {
+                row.append('<div class="confirm" style="display: none"><i class="fa fa-warning red-font"/> Are you sure? <button class="confirm-execute btn btn-xs btn-danger"><i class="fa fa-trash-o"/>Delete</button><button class="confirm-cancel btn btn-xs btn-default"><i class="fa fa-arrow-circle-o-left"/>Cancel</button></div>');
+                row.find('.confirm').fadeIn(400);
+            });
+
+            row.on('click', '.confirm-cancel', function(e) {
+                e.preventDefault();
+                $(this).closest('.confirm').remove();
+                row.find('span').fadeIn(400);
+            });
+            row.on('click', '.confirm-execute', function(e) {
+                e.preventDefault();
+                var competencyPk = row.find('span.data-value a').attr('data-competency-pk');
+                if (competencyPk != '0') {
+                    $.post(Routing.generate('competency_ajax_remove'), {'pk' : competencyPk}, function(data) {
+                        if (data.success) {
+                            row.remove();
+                        } else {
+                            console.log(data);
+                        }
+                    }, "json");
+                } else {
+                    row.remove();
+                }
+            });
         });
     }
 
