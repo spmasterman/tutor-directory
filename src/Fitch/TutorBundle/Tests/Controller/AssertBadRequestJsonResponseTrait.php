@@ -2,16 +2,18 @@
 
 namespace Fitch\TutorBundle\Tests\Controller;
 
-use Fitch\TutorBundle\Controller\ProfileController;
-use Fitch\TutorBundle\Entity\Tutor;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Trait AssertBadRequestJsonResponseTrait
+ *
+ * Mixin for Controller tests (typically) to allow simple testing of JSON responses
+ */
 trait AssertBadRequestJsonResponseTrait
 {
-
     /**
-     * Assert that the response has Json headers, and is badRequest
+     * Assert that the response has Json headers, and is badRequest.
+     *
      * @param $response
      */
     public function assertBadRequestJsonResponse($response)

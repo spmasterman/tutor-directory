@@ -9,14 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class CurrencyControllerTest
+ * Class CurrencyControllerTest.
  */
 class CurrencyControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait, CrudTestableTrait;
 
     /**
-     *
+     * @inheritdoc
      */
     public function testAccess()
     {
@@ -32,9 +32,8 @@ class CurrencyControllerTest extends WebTestCase
         $this->checkAccess('GET', '/admin/currency/', $users);
     }
 
-
     /**
-     * Test the CRUD interface
+     * Test the CRUD interface.
      */
     public function testCompleteScenario()
     {
@@ -56,7 +55,7 @@ class CurrencyControllerTest extends WebTestCase
                 $formName.'[name]'  => 'xtest',
                 $formName.'[threeDigitCode]'  => 'xtt',
             ])
-            ->setCheckAdditionFunction(function(Crawler $crawler) {
+            ->setCheckAdditionFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
@@ -67,7 +66,7 @@ class CurrencyControllerTest extends WebTestCase
                 $formName.'[name]'  => 'xtest-edit',
                 $formName.'[threeDigitCode]'  => 'abc',
             ])
-            ->setCheckEditFunction(function(Crawler $crawler){
+            ->setCheckEditFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('[value="xtest-edit"]')->count(),
@@ -78,17 +77,17 @@ class CurrencyControllerTest extends WebTestCase
                 $formName.'[name]'  => 'Test Currency One',
                 $formName.'[threeDigitCode]'  => 'xtt',
             ])
-            ->setCheckBadEditFunction(function($formValues){
+            ->setCheckBadEditFunction(function ($formValues) {
                 $this->assertNotEquals(
                     'Test Currency One',
                     $formValues['fitch_tutorbundle_currency[name]'],
                     'Form appears to have allowed us updated to a Duplicate currency name - please check the validators'
                 );
             })
-            ->setCheckDeletedFunction(function($responseContent) {
+            ->setCheckDeletedFunction(function ($responseContent) {
                 $this->assertNotRegExp('/xtest-edit/', $responseContent);
             })
-            ->setCheckBadUpdateFunction(function(Crawler $crawler){
+            ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
                     && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\Currency object not found.")')->count() > 0);
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Currency entity'");

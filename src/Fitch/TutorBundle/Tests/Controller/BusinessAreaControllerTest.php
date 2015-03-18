@@ -7,12 +7,17 @@ use Fitch\CommonBundle\Tests\Controller\CrudTestableTrait;
 use Fitch\CommonBundle\Tests\Controller\CrudTestConfig;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class BusinessAreaControllerTest.
+ */
 class BusinessAreaControllerTest extends WebTestCase
 {
     use AuthorisedClientTrait, CrudTestableTrait;
 
+    /**
+     * @inheritdoc
+     */
     public function testAccess()
     {
         $users = [
@@ -26,7 +31,6 @@ class BusinessAreaControllerTest extends WebTestCase
 
         $this->checkAccess('GET', '/admin/business_area/', $users);
     }
-
 
     /**
      * Test the CRUD interface.

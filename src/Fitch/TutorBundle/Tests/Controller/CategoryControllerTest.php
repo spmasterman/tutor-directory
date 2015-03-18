@@ -16,7 +16,7 @@ class CategoryControllerTest extends WebTestCase
     use AuthorisedClientTrait, CrudTestableTrait;
 
     /**
-     *
+     * @inheritdoc
      */
     public function testAccess()
     {
@@ -88,8 +88,9 @@ class CategoryControllerTest extends WebTestCase
             })
             ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
-                    && ($crawler
-                            ->filter('html:contains("Fitch\TutorBundle\Entity\Category object not found.")')->count() > 0);
+                    && ($crawler->filter(
+                            'html:contains("Fitch\TutorBundle\Entity\Category object not found.")'
+                        )->count() > 0);
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Category entity'");
             });
 

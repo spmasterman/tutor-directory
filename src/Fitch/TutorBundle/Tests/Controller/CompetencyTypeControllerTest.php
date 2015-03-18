@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class CompetencyTypeControllerTest
+ * Class CompetencyTypeControllerTest.
  */
 class CompetencyTypeControllerTest extends WebTestCase
 {
