@@ -89,7 +89,9 @@ class LanguageControllerTest extends WebTestCase
             })
             ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
-                    && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\Language object not found.")')->count() > 0);
+                    && ($crawler->filter(
+                        'html:contains("Fitch\TutorBundle\Entity\Language object not found.")'
+                    )->count() > 0);
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Language entity'");
             });
 
