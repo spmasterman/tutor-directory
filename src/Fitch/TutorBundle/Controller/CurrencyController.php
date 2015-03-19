@@ -213,10 +213,6 @@ class CurrencyController extends Controller
      */
     public function updateAction(Request $request, Currency $currency)
     {
-        if (!$currency) {
-            throw $this->createNotFoundException('Unable to find Currency entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($currency->getId());
         $editForm = $this->createEditForm($currency);
         $editForm->handleRequest($request);
