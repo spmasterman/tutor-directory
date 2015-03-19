@@ -3,6 +3,7 @@
 namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
+use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
 use Fitch\TutorBundle\Controller\ProfileDataController;
 
 /**
@@ -10,7 +11,45 @@ use Fitch\TutorBundle\Controller\ProfileDataController;
  */
 class ProfileDataControllerTest extends FixturesWebTestCase
 {
+    use AuthorisedClientTrait;
+
     private $savedService;
+
+    /**
+     * test lookups (json objects full of entity values for a select)
+     */
+    public function testLookups()
+    {
+        $urls = [
+            '/profile/active/language',
+            '/profile/active/proficiency',
+            '/profile/active/competency/type',
+            '/profile/active/competency/level',
+            '/profile/active/region',
+            '/profile/active/tutor_type',
+            '/profile/active/status',
+            '/profile/active/file_type',
+        ];
+
+        // really not much to do except grab these chunks of json data
+        $client = $this->createAuthorizedClient('xsuper');
+
+        foreach ($urls as $url) {
+            $client->request('GET', $url);
+            $this->assertEquals(
+                200,
+                $client->getResponse()->getStatusCode(),
+                "Unexpected HTTP status code for GET $url"
+            );
+
+            $this->assertTrue(
+                $client->getResponse()->headers->contains(
+                    'Content-Type',
+                    'application/json'
+                )
+            );
+        }
+    }
 
     /**
      * Test the prototype Action. This action returns a JSON response with a lot of
@@ -48,6 +87,7 @@ class ProfileDataControllerTest extends FixturesWebTestCase
 
         $this->restoreContainer();
     }
+
     /**
      * This injects a mock into the container in place of the security.authorization_checker service.
      *

@@ -14,7 +14,7 @@ trait AssertBadRequestJsonResponseTrait
     /**
      * Assert that the response has Json headers, and is badRequest.
      *
-     * @param $response
+     * @param Response $response
      */
     public function assertBadRequestJsonResponse($response)
     {
