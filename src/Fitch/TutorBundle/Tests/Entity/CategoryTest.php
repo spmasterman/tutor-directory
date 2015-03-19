@@ -41,7 +41,25 @@ class CategoryTest extends FixturesWebTestCase
             'CODE: Test Category One',
             (string) $entityOne
         );
+    }
 
+    /**
+     * Test the CompetencyTypes Access methods, others get tested in the CRUD Controller Tests
+     */
+    public function testCompetencyTypes()
+    {
+        $entityOne = $this->getModelManager()->findById(1);
+        $entityTwo = $this->getModelManager()->findById(2);
+
+        $this->assertCount(3, $entityOne->getCompetencyTypes());
+        $this->assertCount(0, $entityTwo->getCompetencyTypes());
+
+        $entityTwo->setCompetencyTypes($entityOne->getCompetencyTypes());
+
+        $this->assertEquals(
+            $entityOne->getCompetencyTypes(),
+            $entityTwo->getCompetencyTypes()
+        );
     }
 
     /**
