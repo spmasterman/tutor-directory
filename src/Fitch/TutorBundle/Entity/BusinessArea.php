@@ -4,6 +4,8 @@ namespace Fitch\TutorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Fitch\CommonBundle\Entity\ArrayLoadableEntityInterface;
+use Fitch\CommonBundle\Entity\ArrayLoadableEntityTrait;
 use Fitch\CommonBundle\Entity\DefaultableEntityTrait;
 use Fitch\CommonBundle\Entity\DefaultableEntityInterface;
 use Fitch\CommonBundle\Entity\IdentityEntityTrait;
@@ -26,9 +28,15 @@ class BusinessArea implements
     IdentityEntityInterface,
     TimestampableEntityInterface,
     NamedEntityInterface,
-    DefaultableEntityInterface
+    DefaultableEntityInterface,
+    ArrayLoadableEntityInterface
 {
-    use IdentityEntityTrait, TimestampableEntityTrait, NamedEntityTrait, DefaultableEntityTrait;
+    use IdentityEntityTrait,
+        TimestampableEntityTrait,
+        NamedEntityTrait,
+        DefaultableEntityTrait,
+        ArrayLoadableEntityTrait
+        ;
 
     /**
      * @var ArrayCollection

@@ -2,14 +2,14 @@
 
 namespace Fictch\TutorBundle\Tests\Form;
 
-use Fitch\TutorBundle\Entity\Country;
-use Fitch\TutorBundle\Form\Type\CountryType;
+use Fitch\TutorBundle\Entity\BusinessArea;
+use Fitch\TutorBundle\Form\Type\BusinessAreaType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * Class CountryTypeTest.
+ * Class BusinessAreaTypeTest.
  */
-class CountryTypeTest extends TypeTestCase
+class BusinessAreaTypeTest extends TypeTestCase
 {
     /**
      * @dataProvider getValidTestData
@@ -18,10 +18,10 @@ class CountryTypeTest extends TypeTestCase
      */
     public function testSubmitValidData($data)
     {
-        $type = new CountryType();
+        $type = new BusinessAreaType();
         $form = $this->factory->create($type);
 
-        $object = new Country();
+        $object = new BusinessArea();
         $object->fromArray($data);
 
         // submit the data to the form directly
@@ -47,16 +47,19 @@ class CountryTypeTest extends TypeTestCase
             [
                 'data' => [
                     'name' => 'Test',
-                    'twoDigitCode' => 'US',
-                    'threeDigitCode' => 'USA',
-                    'dialingCode' => '+1',
-                    'preferred' => true,
-                    'active' => true,
+                    'code' => '123',
+                    'prependToCategoryName' => true,
+                    'displayAsCode' => true,
+                    'default' => true,
                 ],
             ],
             [
                 'data' => [
-                    'active' => true,
+                    'name' => '',
+                    'code' => '123',
+                    'prependToCategoryName' => true,
+                    'displayAsCode' => true,
+                    'default' => true,
                 ],
             ],
         ];
