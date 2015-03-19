@@ -32,12 +32,4 @@ class Status implements
      * @ORM\Column(name="name", type="string", length=64)
      */
     protected $name;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Tutor", mappedBy="status")
-     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id")
-     *
-     * @var Tutor
-     */
-    protected $tutor;
 }
