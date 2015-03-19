@@ -10,7 +10,7 @@
 
     {% if is_granted('ROLE_CAN_CREATE_SAVED_REPORTS') %}
         {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
-        <div class="widget widget-table" id="report-holder">
+        <div class="widget widget-table" id="report-save">
             {{ helper.widget_header('Save Report Definition', 'fa fa-save', 'widget-report_save') }}
                 {% form_theme saveForm 'FitchFrontEndBundle:Form:horizontal.html.twig' %}
                 {{ form(saveForm, {'attr': {'class': 'form-horizontal'} }) }}
