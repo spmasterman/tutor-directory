@@ -12,12 +12,16 @@ use Fitch\CommonBundle\Entity\NamedEntityTrait;
 use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
 use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Language.
  *
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\LanguageRepository")
+ * @UniqueEntity("name")
+ * @UniqueEntity("threeLetterCode")
  */
 class Language implements
     IdentityEntityInterface,
@@ -43,14 +47,16 @@ class Language implements
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64)
+     * @ORM\Column(name="name", type="string", length=64,  unique=true)
+     * @Assert\NotBlank()
      */
     protected $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="three_letter_code", type="string", length=3)
+     * @ORM\Column(name="three_letter_code", type="string", length=3, unique=true)
+     * @Assert\NotBlank()
      */
     protected $threeLetterCode;
 

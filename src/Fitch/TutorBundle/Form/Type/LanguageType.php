@@ -46,6 +46,6 @@ class LanguageType extends AbstractType
      */
     public function getName()
     {
-        return 'fitch_tutorbundle_currency';
+        return 'fitch_tutorbundle_language';
     }
 }

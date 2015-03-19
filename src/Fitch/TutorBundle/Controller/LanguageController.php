@@ -210,10 +210,6 @@ class LanguageController extends Controller
      */
     public function updateAction(Request $request, Language $language)
     {
-        if (!$language) {
-            throw $this->createNotFoundException('Unable to find Language entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($language->getId());
         $editForm = $this->createEditForm($language);
         $editForm->handleRequest($request);
