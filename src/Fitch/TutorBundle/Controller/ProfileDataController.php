@@ -161,7 +161,7 @@ class ProfileDataController extends Controller
      *
      * @Method("GET")
      *
-     * @param $tutorId
+     * @param int $tutorId
      *
      * @return JsonResponse
      */

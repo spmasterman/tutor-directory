@@ -50,6 +50,22 @@ class CurrencyManager extends BaseModelManager implements CurrencyManagerInterfa
     }
 
     /**
+     * Returns all active currencies as a Array - suitable for use in "select"
+     * style lists, with a preferred section.
+     *
+     * @return array
+     */
+    public function buildGroupedChoices()
+    {
+        return parent::buildActiveAndPreferredChoices(function (Currency $currency) {
+            return [
+                'value' => $currency->getId(),
+                'text' => (string) $currency,
+            ];
+        });
+    }
+
+    /**
      * @param ProviderInterface $provider
      *
      * @return bool

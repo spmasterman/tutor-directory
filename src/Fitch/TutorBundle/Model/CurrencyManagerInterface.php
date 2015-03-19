@@ -43,6 +43,14 @@ interface CurrencyManagerInterface
     public function buildPreferredChoices();
 
     /**
+     * Returns all active currencies as a Array - suitable for use in "select"
+     * style lists, with a preferred section.
+     *
+     * @return array
+     */
+    public function buildGroupedChoices();
+
+    /**
      * @param Currency $currency
      * @param bool     $withFlush
      */

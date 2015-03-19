@@ -303,28 +303,7 @@ class CurrencyController extends Controller
      */
     public function activeAction()
     {
-        $out = [
-            [
-                'text' => 'Preferred',
-                'children' => [],
-            ],
-            [
-                'text' => 'Other',
-                'children' => [],
-            ],
-        ];
-
-        foreach ($this->getCurrencyManager()->findAllSorted() as $currency) {
-            if ($currency->isActive()) {
-                $key = $currency->isPreferred() ? 0 : 1;
-                $out[$key]['children'][] = [
-                    'value' => $currency->getId(),
-                    'text' => (string) $currency,
-                ];
-            }
-        }
-
-        return new JsonResponse($out);
+        return new JsonResponse($this->getCurrencyManager()->buildGroupedChoices());
     }
 
     /**
