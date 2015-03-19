@@ -81,7 +81,8 @@ class CurrencyControllerTest extends WebTestCase
                 $this->assertNotEquals(
                     'Test Currency One',
                     $formValues['fitch_tutorbundle_currency[name]'],
-                    'Form appears to have allowed us updated to a Duplicate currency name - please check the validators'
+                    'Form appears to have allowed us updated to a Duplicate currency name'.
+                    ' - please check the validators'
                 );
             })
             ->setCheckDeletedFunction(function ($responseContent) {
@@ -89,7 +90,9 @@ class CurrencyControllerTest extends WebTestCase
             })
             ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
-                    && ($crawler->filter('html:contains("Fitch\TutorBundle\Entity\Currency object not found.")')->count() > 0);
+                    && ($crawler->filter(
+                        'html:contains("Fitch\TutorBundle\Entity\Currency object not found.")'
+                    )->count() > 0);
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Currency entity'");
             });
 

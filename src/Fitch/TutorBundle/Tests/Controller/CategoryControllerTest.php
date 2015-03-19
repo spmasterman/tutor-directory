@@ -80,7 +80,8 @@ class CategoryControllerTest extends WebTestCase
                 $this->assertNotEquals(
                     'Test Category One',
                     $formValues['fitch_tutorbundle_category[name]'],
-                    'Form appears to have allowed us updated to a Duplicate Category name - please check the validators'
+                    'Form appears to have allowed us updated to a Duplicate Category name'.
+                    ' - please check the validators'
                 );
             })
             ->setCheckDeletedFunction(function ($responseContent) {
@@ -89,8 +90,8 @@ class CategoryControllerTest extends WebTestCase
             ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
                     && ($crawler->filter(
-                            'html:contains("Fitch\TutorBundle\Entity\Category object not found.")'
-                        )->count() > 0);
+                        'html:contains("Fitch\TutorBundle\Entity\Category object not found.")'
+                    )->count() > 0);
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Category entity'");
             });
 

@@ -76,7 +76,8 @@ class CompetencyLevelControllerTest extends WebTestCase
                 $this->assertNotEquals(
                     'Test Level One',
                     $formValues['fitch_tutorbundle_competencylevel[name]'],
-                    'Form appears to have allowed us updated to a Duplicate CompetencyLevel name - please check the validators'
+                    'Form appears to have allowed us updated to a Duplicate CompetencyLevel name' .
+                    ' - please check the validators'
                 );
             })
             ->setCheckDeletedFunction(function ($responseContent) {
@@ -85,8 +86,8 @@ class CompetencyLevelControllerTest extends WebTestCase
             ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
                     && ($crawler->filter(
-                            'html:contains("Fitch\TutorBundle\Entity\CompetencyLevel object not found.")'
-                        )->count() > 0);
+                        'html:contains("Fitch\TutorBundle\Entity\CompetencyLevel object not found.")'
+                    )->count() > 0);
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find CompetencyLevel entity'");
             });
 
