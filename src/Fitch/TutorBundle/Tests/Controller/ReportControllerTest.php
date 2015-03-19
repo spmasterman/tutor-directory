@@ -3,17 +3,14 @@
 namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
-use Fitch\CommonBundle\Tests\Controller\CrudTestableTrait;
-use Fitch\CommonBundle\Tests\Controller\CrudTestConfig;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class ReportControllerTest.
  */
 class ReportControllerTest extends WebTestCase
 {
-    use AuthorisedClientTrait, CrudTestableTrait;
+    use AuthorisedClientTrait;
 
     /**
      * @inheritdoc
@@ -33,7 +30,7 @@ class ReportControllerTest extends WebTestCase
     }
 
     /**
-     * Test the default Report (i.e. no form changes)
+     * Test the default Report (i.e. no form changes).
      */
     public function testDefaultReport()
     {
@@ -78,7 +75,7 @@ class ReportControllerTest extends WebTestCase
     }
 
     /**
-     * Test the removing a column
+     * Test the removing a column.
      */
     public function testColumnSelection()
     {
@@ -128,7 +125,7 @@ class ReportControllerTest extends WebTestCase
     }
 
     /**
-     * Test Filtering by Region
+     * Test Filtering by Region.
      */
     public function testRegionFilter()
     {
@@ -166,5 +163,4 @@ class ReportControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('td:contains("Test Region Two")'));
         $this->assertCount(1, $crawler->filter('td:contains("Test Region Three")'));
     }
-
 }
