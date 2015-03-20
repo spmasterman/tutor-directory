@@ -214,10 +214,6 @@ class StatusController extends Controller
      */
     public function updateAction(Request $request, Status $status)
     {
-        if (!$status) {
-            throw $this->createNotFoundException('Unable to find Status entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($status->getId());
         $editForm = $this->createEditForm($status);
         $editForm->handleRequest($request);
