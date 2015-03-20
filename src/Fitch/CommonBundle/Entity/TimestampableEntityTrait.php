@@ -15,7 +15,7 @@ trait TimestampableEntityTrait
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    protected $created;
 
     /**
      * @var \DateTime
@@ -23,7 +23,7 @@ trait TimestampableEntityTrait
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    protected $updated;
 
     /**
      * @return \DateTime
@@ -39,33 +39,5 @@ trait TimestampableEntityTrait
     public function getUpdated()
     {
         return $this->updated;
-    }
-
-    /**
-     * Set created.
-     *
-     * @param \DateTime $created
-     *
-     * @return mixed
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Set updated.
-     *
-     * @param \DateTime $updated
-     *
-     * @return mixed
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
     }
 }

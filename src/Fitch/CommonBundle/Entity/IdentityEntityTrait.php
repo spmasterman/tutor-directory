@@ -14,7 +14,7 @@ trait IdentityEntityTrait
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * Get id.
@@ -24,17 +24,5 @@ trait IdentityEntityTrait
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return mixed
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 }

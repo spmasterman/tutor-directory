@@ -7,13 +7,20 @@ use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
 /**
- * Class TimestampableModelManagerTestTrait.
+ * Trait TimestampableModelManagerTestTrait.
  *
  * Provides some helper functions for testing ModelManagers for Entities that
  * implement TimestampableEntityInterface
  */
 trait TimestampableModelManagerTestTrait
 {
+    /**
+     * @param int      $fixtureCount
+     * @param callable $createFunction
+     * @param callable $editFunction
+     * @param callable $uncommittedEditFunction
+     * @param callable $checkFunction
+     */
     protected function performLifeCycleTests(
         $fixtureCount,
         $createFunction,

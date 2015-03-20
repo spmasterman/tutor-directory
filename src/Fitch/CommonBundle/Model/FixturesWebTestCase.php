@@ -10,6 +10,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * Class FixturesWebTestCase
+ *
+ * @codeCoverageIgnore
+ *   Don't need to test our test class. We're not that meta.
  */
 class FixturesWebTestCase extends WebTestCase
 {

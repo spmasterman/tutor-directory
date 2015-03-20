@@ -2,17 +2,18 @@
 
 namespace Fitch\CommonBundle\Tests\Model;
 
-use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
-use Monolog\Handler\TestHandler;
-use Monolog\Logger;
-
 /**
- * Class FindModelManagerTestTrait.
+ * Trait FindModelManagerTestTrait.
  *
  * Provides some helper functions for testing ModelManagers
  */
 trait FindModelManagerTestTrait
 {
+    /**
+     * @param int      $checkCount
+     * @param mixed    $checkValue
+     * @param callable $checkFunction
+     */
     protected function performFindAllTest($checkCount, $checkValue, $checkFunction)
     {
         $entities = $this->modelManager->findAll();
@@ -26,12 +27,20 @@ trait FindModelManagerTestTrait
         $this->assertEquals($checkValue, $checkFunction($entities[0]));
     }
 
+    /**
+     * @param int      $id
+     * @param mixed    $checkValue
+     * @param callable $checkFunction
+     */
     protected function performFindByIdTest($id, $checkValue, $checkFunction)
     {
         $entityOne = $this->modelManager->findById($id);
         $this->assertEquals($checkValue, $checkFunction($entityOne));
     }
 
+    /**
+     * @param callable $checkFunction
+     */
     protected function performFindOrCreateTest($checkFunction)
     {
         $initialCount = count($this->modelManager->findAll());
