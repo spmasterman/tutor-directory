@@ -6,19 +6,21 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class OnOffType - css slider style checkbox
+ */
 class OnOffType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setOptional(array('type'));
     }
 
     /**
-     * Pass the inner_class option to the view.
-     *
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
+     * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -27,11 +29,17 @@ class OnOffType extends AbstractType
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
         return 'checkbox';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'onoff';
