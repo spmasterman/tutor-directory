@@ -179,7 +179,9 @@ class ReportControllerTest extends WebTestCase
         );
 
         // Now try downloading an Excel
+        ob_start();
         $client->click($crawler->filter('a:contains("Download Excel")')->eq(0)->link());
+        ob_end_clean();
         $response = $client->getResponse();
 
         $this->assertTrue($response->headers->contains(
@@ -193,7 +195,9 @@ class ReportControllerTest extends WebTestCase
         ));
 
         // Now try downloading a PDF
+        ob_start();
         $client->click($crawler->filter('a:contains("Download PDF")')->eq(0)->link());
+        ob_end_clean();
         $response = $client->getResponse();
 
         $this->assertTrue($response->headers->contains(
@@ -207,7 +211,9 @@ class ReportControllerTest extends WebTestCase
         ));
 
         // Now try downloading a CSV
+        ob_start();
         $client->click($crawler->filter('a:contains("Download CSV")')->eq(0)->link());
+        ob_end_clean();
         $response = $client->getResponse();
 
         $this->assertTrue($response->headers->contains(
