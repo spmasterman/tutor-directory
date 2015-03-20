@@ -212,10 +212,6 @@ class TutorTypeController extends Controller
      */
     public function updateAction(Request $request, TutorType $tutorType)
     {
-        if (!$tutorType) {
-            throw $this->createNotFoundException('Unable to find TutorType entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($tutorType->getId());
         $editForm = $this->createEditForm($tutorType);
         $editForm->handleRequest($request);
