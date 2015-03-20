@@ -30,6 +30,8 @@ class CurrencyController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
@@ -111,6 +113,8 @@ class CurrencyController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {

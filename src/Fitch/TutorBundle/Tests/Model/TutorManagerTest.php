@@ -86,7 +86,7 @@ class TutorManagerTest extends FixturesWebTestCase
 
     public function testPopulateTable()
     {
-        //        $tableData = $this->modelManager->populateTable();
+//        $tableData = $this->modelManager->populateTable();
 //        $this->assertCount(self::FIXTURE_COUNT, $tableData);
 
         // TODO - this could (and should) be a lot more comprehensive. This is our

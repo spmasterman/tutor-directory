@@ -33,6 +33,30 @@ class CurrencyControllerTest extends WebTestCase
     }
 
     /**
+     * Test getting all active currencies
+     */
+    public function testAllCurrencies()
+    {
+        $url = '/admin/currency/active';
+
+        $client = $this->createAuthorizedClient('xsuper');
+        $client->request('GET', $url);
+
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            "Unexpected HTTP status code for GET $url"
+        );
+
+        $this->assertTrue(
+            $client->getResponse()->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
+    }
+
+    /**
      * Test the CRUD interface.
      */
     public function testCompleteScenario()
