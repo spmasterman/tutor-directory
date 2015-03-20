@@ -282,6 +282,11 @@ class File implements
         return $this;
     }
 
+    /**
+     * Get the uploader string
+     *
+     * @return string
+     */
     public function getProvenance()
     {
         $uploader = $this->getUploader();

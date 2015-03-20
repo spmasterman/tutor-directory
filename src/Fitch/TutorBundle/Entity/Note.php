@@ -8,6 +8,7 @@ use Fitch\CommonBundle\Entity\IdentityEntityInterface;
 use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
 use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
 use Fitch\UserBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 
 /**
  * Phone.
@@ -131,6 +132,11 @@ class Note implements
         return $this;
     }
 
+    /**
+     * Get the author created/edited string
+     *
+     * @return string
+     */
     public function getProvenance()
     {
         $author = $this->getAuthor();
@@ -143,7 +149,12 @@ class Note implements
 
         $string .= ' on '.$this->getCreated()->format('M d, Y');
 
-        if ($this->getUpdated() != $this->getCreated()) {
+        // give an hours grace before we mark something as edited
+        $timestampTransformer = new DateTimeToTimestampTransformer();
+        $editedTime = $timestampTransformer->transform($this->getUpdated())
+            - $timestampTransformer->transform($this->getCreated());
+
+        if ($editedTime > 3600) {
             $string = '(Edited '.$this->getUpdated()->format('M d, Y').') '.$string;
         }
 
