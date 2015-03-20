@@ -37,18 +37,19 @@ class CompetencyLevelControllerTest extends WebTestCase
      */
     public function testCompleteScenario()
     {
+        $formName = 'fitch_tutorbundle_competencylevel';
         $crudTestConfig = new CrudTestConfig();
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/level/competency/')
             ->setFormData([
-                'fitch_tutorbundle_competencylevel[name]'  => 'Test Level One',
-                'fitch_tutorbundle_competencylevel[color]'  => '#cccccc',
+                $formName.'[name]'  => 'Test Level One',
+                $formName.'[color]'  => '#cccccc',
             ])
             ->setCheckBoxes([])
             ->setFixedFormData([
-                'fitch_tutorbundle_competencylevel[name]'  => 'xtest',
-                'fitch_tutorbundle_competencylevel[color]'  => '#cccccc',
+                $formName.'[name]'  => 'xtest',
+                $formName.'[color]'  => '#cccccc',
             ])
             ->setCheckAdditionFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
@@ -58,8 +59,8 @@ class CompetencyLevelControllerTest extends WebTestCase
                 );
             })
             ->setEditFormData([
-                'fitch_tutorbundle_competencylevel[name]'  => 'xtest-edit',
-                'fitch_tutorbundle_competencylevel[color]'  => '#db8c8b',
+                $formName.'[name]'  => 'xtest-edit',
+                $formName.'[color]'  => '#db8c8b',
             ])
             ->setCheckEditFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
@@ -69,13 +70,13 @@ class CompetencyLevelControllerTest extends WebTestCase
                 );
             })
             ->setBadEditFormData([
-                'fitch_tutorbundle_competencylevel[name]'  => 'Test Level One',
-                'fitch_tutorbundle_competencylevel[color]'  => '#cccccc',
+                $formName.'[name]'  => 'Test Level One',
+                $formName.'[color]'  => '#cccccc',
             ])
-            ->setCheckBadEditFunction(function ($formValues) {
+            ->setCheckBadEditFunction(function ($formValues) use ($formName) {
                 $this->assertNotEquals(
                     'Test Level One',
-                    $formValues['fitch_tutorbundle_competencylevel[name]'],
+                    $formValues[$formName.'[name]'],
                     'Form appears to have allowed us updated to a Duplicate CompetencyLevel name' .
                     ' - please check the validators'
                 );
