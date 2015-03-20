@@ -28,6 +28,8 @@ class ProficiencyController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
@@ -109,6 +111,8 @@ class ProficiencyController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {
@@ -211,10 +215,6 @@ class ProficiencyController extends Controller
      */
     public function updateAction(Request $request, Proficiency $proficiency)
     {
-        if (!$proficiency) {
-            throw $this->createNotFoundException('Unable to find Proficiency entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($proficiency->getId());
         $editForm = $this->createEditForm($proficiency);
         $editForm->handleRequest($request);

@@ -16,7 +16,7 @@ class ProficiencyControllerTest extends WebTestCase
     use AuthorisedClientTrait, CrudTestableTrait;
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function testAccess()
     {
@@ -30,6 +30,30 @@ class ProficiencyControllerTest extends WebTestCase
         ];
 
         $this->checkAccess('GET', '/admin/proficiency/', $users);
+    }
+
+    /**
+     * Test getting all active proficiency
+     */
+    public function testAllProficiencies()
+    {
+        $url = '/admin/proficiency/all';
+
+        $client = $this->createAuthorizedClient('xsuper');
+        $client->request('GET', $url);
+
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            "Unexpected HTTP status code for GET $url"
+        );
+
+        $this->assertTrue(
+            $client->getResponse()->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
     }
 
     /**
