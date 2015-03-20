@@ -44,7 +44,7 @@ class CompetencyTypeControllerTest extends WebTestCase
             ->setUser('xadmin')
             ->setUrl('/admin/type/competency/')
             ->setFormData([
-                $formName.'[name]'  => 'Test Competency Type One',
+                $formName.'[name]'  => '', //bank name is bad
             ])
             ->setCheckBoxes([])
             ->setFixedFormData([
@@ -68,11 +68,15 @@ class CompetencyTypeControllerTest extends WebTestCase
                 );
             })
             ->setBadEditFormData([
-                $formName.'[name]'  => 'Test Competency Type One',
-                //There are no bad entries - the skill name is not unique
+                $formName.'[name]'  => '', //Blank should be bad
             ])
-            ->setCheckBadEditFunction(function () {
-                // so do nothing
+            ->setCheckBadEditFunction(function ($formValues) use ($formName) {
+                $this->assertNotEquals(
+                    '',
+                    $formValues[$formName.'[name]'],
+                    'Form appears to have allowed us updated to a blank CompetencyType name' .
+                    ' - please check the validators'
+                );
             })
             ->setCheckDeletedFunction(function ($responseContent) {
                 $this->assertNotRegExp('/xtest-edit/', $responseContent);
