@@ -108,6 +108,8 @@ class CompetencyLevelController extends Controller
      *
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function newAction()
     {
