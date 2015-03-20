@@ -37,11 +37,6 @@ class NoteController extends Controller
     {
         try {
             $note = $this->getNoteManager()->findById($request->request->get('pk'));
-
-            if (!$note) {
-                throw new NotFoundHttpException('Note does not exist!');
-            }
-
             $this->getNoteManager()->removeEntity($note);
         } catch (Exception $e) {
             return new JsonResponse([
