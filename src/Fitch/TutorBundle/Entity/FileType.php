@@ -11,12 +11,15 @@ use Fitch\CommonBundle\Entity\NamedEntityTrait;
 use Fitch\CommonBundle\Entity\NamedEntityInterface;
 use Fitch\CommonBundle\Entity\TimestampableEntityTrait;
 use Fitch\CommonBundle\Entity\TimestampableEntityInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * FileType.
  *
  * @ORM\Table(name="file_type")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\FileTypeRepository")
+ * @UniqueEntity("name")
  */
 class FileType implements
     IdentityEntityInterface,
@@ -50,7 +53,8 @@ class FileType implements
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64)
+     * @ORM\Column(name="name", type="string", length=64, unique=true)
+     * @Assert\NotBlank()
      */
     protected $name;
 

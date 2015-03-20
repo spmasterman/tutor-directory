@@ -210,10 +210,6 @@ class FileTypeController extends Controller
      */
     public function updateAction(Request $request, FileType $fileType)
     {
-        if (!$fileType) {
-            throw $this->createNotFoundException('Unable to find FileType entity.');
-        }
-
         $deleteForm = $this->createDeleteForm($fileType->getId());
         $editForm = $this->createEditForm($fileType);
         $editForm->handleRequest($request);

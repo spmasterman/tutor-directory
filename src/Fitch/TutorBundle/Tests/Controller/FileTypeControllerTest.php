@@ -3,12 +3,21 @@
 namespace Fitch\TutorBundle\Tests\Controller;
 
 use Fitch\CommonBundle\Tests\AuthorisedClientTrait;
+use Fitch\CommonBundle\Tests\Controller\CrudTestableTrait;
+use Fitch\CommonBundle\Tests\Controller\CrudTestConfig;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
+/**
+ * Class FileTypeControllerTest
+ */
 class FileTypeControllerTest extends WebTestCase
 {
-    use AuthorisedClientTrait;
+    use AuthorisedClientTrait, CrudTestableTrait;
 
+    /**
+     * {@inheritdoc}
+     */
     public function testAccess()
     {
         $users = [
@@ -23,58 +32,68 @@ class FileTypeControllerTest extends WebTestCase
         $this->checkAccess('GET', '/admin/type/file/', $users);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function testCompleteScenario()
     {
-        // Create a new client to browse the application
-        $client = $this->createAuthorizedClient('xadmin');
+        $formName = 'fitch_tutorbundle_filetype';
 
-        // Create a new entry in the database
-        $crawler = $client->request('GET', '/admin/type/file/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /user/");
-        $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
+        $crudTestConfig = new CrudTestConfig();
+        $crudTestConfig
+            ->setUser('xadmin')
+            ->setUrl('/admin/type/file/')
+            ->setFormData([
+                $formName.'[name]'  => 'Test File Type One',
+            ])
+            ->setCheckBoxes([
+                $formName.'[default]'  => true,
+                $formName.'[private]'  => true,
+                $formName.'[suitableForProfilePicture]'  => true,
+                $formName.'[displayWithBio]'  => true,
+            ])
+            ->setFixedFormData([
+                $formName.'[name]'  => 'xtest',
+            ])
+            ->setCheckAdditionFunction(function (Crawler $crawler) {
+                $this->assertGreaterThan(
+                    0,
+                    $crawler->filter('td:contains("xtest")')->count(),
+                    'Missing element td:contains("Test")'
+                );
+            })
+            ->setEditFormData([
+                $formName.'[name]'  => 'xtest-edit',
+            ])
+            ->setCheckEditFunction(function (Crawler $crawler) {
+                $this->assertGreaterThan(
+                    0,
+                    $crawler->filter('[value="xtest-edit"]')->count(),
+                    'Missing element [value="xtest-edit"]'
+                );
+            })
+            ->setBadEditFormData([
+                $formName.'[name]'  => 'Test File Type One', //dupe
+            ])
+            ->setCheckBadEditFunction(function ($formValues) use ($formName) {
+                $this->assertNotEquals(
+                    'Test Country One',
+                    $formValues[$formName.'[name]'],
+                    'Form appears to have allowed us updated to a Duplicate file type name'.
+                    '- please check the validators'
+                );
+            })
+            ->setCheckDeletedFunction(function ($responseContent) {
+                $this->assertNotRegExp('/xtest-edit/', $responseContent);
+            })
+            ->setCheckBadUpdateFunction(function (Crawler $crawler) {
+                $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
+                    && ($crawler->filter(
+                        'html:contains("Fitch\TutorBundle\Entity\FileType object not found.")'
+                    )->count() > 0);
+                $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find FileType entity'");
+            });
 
-        // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'fitch_tutorbundle_filetype[name]'  => 'xtest',
-            'fitch_tutorbundle_filetype[private]'  => false,
-            'fitch_tutorbundle_filetype[default]'  => false,
-            'fitch_tutorbundle_filetype[suitableForProfilePicture]'  => false,
-        ));
-
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        // Check data in the show view
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('td:contains("xtest")')->count(),
-            'Missing element td:contains("Test")'
-        );
-
-        // Edit the entity
-        $crawler = $client->click($crawler->selectLink('Edit')->link());
-
-        $form = $crawler->selectButton('Update')->form(array(
-            'fitch_tutorbundle_filetype[name]'  => 'xtest-edit',
-            'fitch_tutorbundle_filetype[private]'  => true,
-            'fitch_tutorbundle_filetype[default]'  => true,
-            'fitch_tutorbundle_filetype[suitableForProfilePicture]'  => true,
-        ));
-
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('[value="xtest-edit"]')->count(),
-            'Missing element [value="xtest-edit"]'
-        );
-
-        // Delete the entity
-        $client->submit($crawler->selectButton('Delete')->form());
-        $crawler = $client->followRedirect();
-
-        // Check the entity has been delete on the list
-        $this->assertNotRegExp('/xtest-edit/', $client->getResponse()->getContent());
+        $this->performCrudTest($crudTestConfig);
     }
 }
