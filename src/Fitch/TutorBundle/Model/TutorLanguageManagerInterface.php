@@ -6,10 +6,13 @@ use Fitch\CommonBundle\Exception\EntityNotFoundException;
 use Fitch\TutorBundle\Entity\Tutor;
 use Fitch\TutorBundle\Entity\TutorLanguage;
 
+/**
+ * Interface TutorLanguageManagerInterface.
+ */
 interface TutorLanguageManagerInterface
 {
     /**
-     * @param $id
+     * @param int $id
      *
      * @throws EntityNotFoundException
      *
@@ -49,12 +52,12 @@ interface TutorLanguageManagerInterface
 
     /**
      * @param TutorLanguage $entity
-     * @param bool $withFlush
+     * @param bool          $withFlush
      */
     public function removeEntity($entity, $withFlush = true);
 
     /**
-     * @param $id
+     * @param int   $id
      * @param Tutor $tutor
      *
      * @return TutorLanguage

@@ -102,10 +102,6 @@ class TutorLanguageController extends Controller
     {
         try {
             $tutorLanguage = $this->getTutorLanguageManager()->findById($request->request->get('pk'));
-            if (!$tutorLanguage) {
-                throw new NotFoundHttpException('Tutor Language does not exist!');
-            }
-
             $this->getTutorLanguageManager()->removeEntity($tutorLanguage);
         } catch (Exception $e) {
             return new JsonResponse([
