@@ -5,10 +5,13 @@ namespace Fitch\TutorBundle\Tests\Entity;
 use Fitch\CommonBundle\Model\FixturesWebTestCase;
 use Fitch\TutorBundle\Model\TutorLanguageManagerInterface;
 
+/**
+ * Class TutorLanguageTest
+ */
 class TutorLanguageTest extends FixturesWebTestCase
 {
     /**
-     *
+     * {@inheritdoc}
      */
     public function testName()
     {
