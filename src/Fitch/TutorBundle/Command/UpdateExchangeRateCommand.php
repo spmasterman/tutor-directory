@@ -19,7 +19,7 @@ class UpdateExchangeRateCommand extends ContainerAwareCommand
     protected $container;
 
     /**
-     *
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -29,10 +29,7 @@ class UpdateExchangeRateCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
-     * @return int
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
