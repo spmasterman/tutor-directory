@@ -23,7 +23,7 @@ class File implements
     TimestampableEntityInterface,
     NamedEntityInterface
 {
-    use IdentityEntityTrait, TimestampableEntityTrait, NamedEntityTrait;
+    use IdentityEntityTrait, TimestampableEntityTrait, NamedEntityTrait, ProvenanceBuilderTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="files")
@@ -289,26 +289,7 @@ class File implements
      */
     public function getProvenance()
     {
-        $uploader = $this->getUploader();
-        if ($uploader) {
-            $fullName = $uploader->getFullName();
-            $string = $fullName ?: $uploader->getUsername();
-        } else {
-            $string = 'Anonymous';
-        }
-
-        $string .= ' on '.$this->getCreated()->format('M d, Y');
-
-        // give an hours grace before we mark something as edited
-        $timestampTransformer = new DateTimeToTimestampTransformer();
-        $editedTime = $timestampTransformer->transform($this->getUpdated())
-            - $timestampTransformer->transform($this->getCreated());
-
-        if ($editedTime > 3600) {
-            $string = '(Edited '.$this->getUpdated()->format('M d, Y').') '.$string;
-        }
-
-        return $string;
+        return $this->generateProvenanceString($this->getUploader());
     }
 
     /**

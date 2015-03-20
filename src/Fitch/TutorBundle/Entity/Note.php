@@ -20,7 +20,7 @@ class Note implements
     IdentityEntityInterface,
     TimestampableEntityInterface
 {
-    use IdentityEntityTrait, TimestampableEntityTrait;
+    use IdentityEntityTrait, TimestampableEntityTrait, ProvenanceBuilderTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="notes")
@@ -139,25 +139,6 @@ class Note implements
      */
     public function getProvenance()
     {
-        $author = $this->getAuthor();
-        if ($author) {
-            $fullName = $author->getFullName();
-            $string = $fullName ?: $author->getUsername();
-        } else {
-            $string = 'Anonymous';
-        }
-
-        $string .= ' on '.$this->getCreated()->format('M d, Y');
-
-        // give an hours grace before we mark something as edited
-        $timestampTransformer = new DateTimeToTimestampTransformer();
-        $editedTime = $timestampTransformer->transform($this->getUpdated())
-            - $timestampTransformer->transform($this->getCreated());
-
-        if ($editedTime > 3600) {
-            $string = '(Edited '.$this->getUpdated()->format('M d, Y').') '.$string;
-        }
-
-        return $string;
+        return $this->generateProvenanceString($this->getAuthor());
     }
 }
