@@ -83,11 +83,6 @@ class ReportControllerTest extends WebTestCase
         $client = $this->createAuthorizedClient('xsuper');
 
         $crawler = $client->request('GET', '/report');
-        $this->assertEquals(
-            200,
-            $client->getResponse()->getStatusCode(),
-            "Unexpected HTTP status code for GET '/report'"
-        );
 
         $form = $crawler->selectButton('View Report')->form([]);
         // Cant find a way to select these by ID - this isnt very flexible testing
@@ -133,11 +128,6 @@ class ReportControllerTest extends WebTestCase
         $client = $this->createAuthorizedClient('xsuper');
 
         $crawler = $client->request('GET', '/report');
-        $this->assertEquals(
-            200,
-            $client->getResponse()->getStatusCode(),
-            "Unexpected HTTP status code for GET '/report'"
-        );
 
         $form = $crawler->selectButton('View Report')->form([]);
         $form['ftbr[operating_region][0]']->untick();// region 1
@@ -162,5 +152,72 @@ class ReportControllerTest extends WebTestCase
         $this->assertCount(0, $crawler->filter('td:contains("Test Region One")'));
         $this->assertCount(1, $crawler->filter('td:contains("Test Region Two")'));
         $this->assertCount(1, $crawler->filter('td:contains("Test Region Three")'));
+    }
+
+    /**
+     * Test saving Report.
+     */
+    public function testSavingReport()
+    {
+        // Create a new client to browse the application
+        $client = $this->createAuthorizedClient('xsuper');
+        $crawler = $client->request('GET', '/report');
+        $form = $crawler->selectButton('View Report')->form([]); //empty
+
+        $crawler = $client->submit($form);
+
+        // save this report
+        $form = $crawler->selectButton('Create')->form([
+            'fitch_tutorbundle_report[name]' => 'SavedReport',
+        ]);
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+
+        $this->assertCount(
+            1,
+            $crawler->filter('h2:contains("SavedReport")')
+        );
+
+        // Now try downloading an Excel
+        $client->click($crawler->filter('a:contains("Download Excel")')->eq(0)->link());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->headers->contains(
+            'Content-Type',
+            'text/vnd.ms-excel; charset=utf-8'
+        ));
+
+        $this->assertTrue($response->headers->contains(
+            'Content-Disposition',
+            'attachment;filename=TrainerReport-SavedReport.xls'
+        ));
+
+        // Now try downloading a PDF
+        $client->click($crawler->filter('a:contains("Download PDF")')->eq(0)->link());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->headers->contains(
+            'Content-Type',
+            'application/pdf'
+        ));
+
+        $this->assertTrue($response->headers->contains(
+            'Content-Disposition',
+            'attachment;filename=TrainerReport-SavedReport.pdf'
+        ));
+
+        // Now try downloading a CSV
+        $client->click($crawler->filter('a:contains("Download CSV")')->eq(0)->link());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->headers->contains(
+            'Content-Type',
+            'text/csv; charset=UTF-8'
+        ));
+
+        $this->assertTrue($response->headers->contains(
+            'Content-Disposition',
+            'attachment;filename=TrainerReport-SavedReport.csv'
+        ));
     }
 }
