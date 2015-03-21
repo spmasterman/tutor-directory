@@ -21,7 +21,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="Fitch\TutorBundle\Entity\Repository\LanguageRepository")
  * @UniqueEntity("name")
- * @UniqueEntity("threeLetterCode")
  */
 class Language implements
     IdentityEntityInterface,
@@ -55,7 +54,7 @@ class Language implements
     /**
      * @var string
      *
-     * @ORM\Column(name="three_letter_code", type="string", length=3, unique=true)
+     * @ORM\Column(name="three_letter_code", type="string", length=3)
      * @Assert\NotBlank()
      */
     protected $threeLetterCode;
