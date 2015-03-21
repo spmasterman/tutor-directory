@@ -65,7 +65,7 @@ class Tutor implements
     protected $bio;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Status", inversedBy="tutor")
+     * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      *
      * @var Status

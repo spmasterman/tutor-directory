@@ -37,7 +37,7 @@ class TutorLanguage implements
     protected $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Proficiency", inversedBy="tutorLanguages")
+     * @ORM\ManyToOne(targetEntity="Proficiency")
      * @ORM\JoinColumn(name="proficiency_id", referencedColumnName="id")
      *
      * @var Proficiency
