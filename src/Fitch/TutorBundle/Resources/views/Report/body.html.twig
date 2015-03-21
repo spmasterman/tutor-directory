@@ -142,5 +142,10 @@
         {% endfor %}
         </tbody>
     </table>
+
+    {% if data|length == 0 %}
+        <strong> No trainers match the criteria you have specified.</strong>
+    {% endif %}
+
     {{ helper.widget_footer() }}
 </div>
