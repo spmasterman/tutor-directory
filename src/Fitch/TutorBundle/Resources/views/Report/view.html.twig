@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block main_content -%}
-    {% include 'FitchTutorBundle:Report:definition.html.twig' %}
     {% include 'FitchTutorBundle:Report:body.html.twig' %}
+    {% include 'FitchTutorBundle:Report:definition.html.twig' %}
 
     {% if is_granted('ROLE_CAN_CREATE_SAVED_REPORTS') %}
         {% import 'FitchFrontEndBundle::helper.html.twig' as helper %}
