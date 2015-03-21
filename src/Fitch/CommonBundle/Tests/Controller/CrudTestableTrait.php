@@ -53,6 +53,9 @@ trait CrudTestableTrait
         if ($crudTestConfig->areUniqueChecksEnabled()) {
             /** @var CrudTestableTrait $this */
             $crawler = $this->performUniqueTests($crudTestConfig, $formValues, $crawler, $formCheckBoxes, $client);
+        } else {
+            /** @var CrudTestableTrait $this */
+            $crawler = $this->performNotBlankTests($crudTestConfig, $formValues, $crawler, $formCheckBoxes, $client);
         }
 
         // Correct the mistake, resubmit the form
@@ -161,6 +164,50 @@ trait CrudTestableTrait
             Response::HTTP_OK, //not redirect
             $client->getResponse()->getStatusCode(),
             'Form appears to have allowed us created a Duplicate Entity - please check the validators'
+        );
+
+        return $crawler;
+    }
+
+    /**
+     * @param CrudTestConfig $crudTestConfig
+     * @param array          $formValues
+     * @param Crawler        $crawler
+     * @param array          $formCheckBoxes
+     * @param Client         $client
+     *
+     * @return Crawler
+     */
+    public function performNotBlankTests(CrudTestConfig $crudTestConfig, $formValues, $crawler, $formCheckBoxes, $client)
+    {
+        // here's our test data - we have a duplicate "name" - this should choke
+        $formDataToSubmit = $crudTestConfig->getBadCreateFormData();
+
+        // but we can check for everything else
+        foreach (array_keys($formDataToSubmit) as $key) {
+            /** @var KernelTestCase $this */
+            $this->assertArrayHasKey($key, $formValues, $key.' not in ['.implode(', ', array_keys($formValues)));
+        }
+
+        // Fill in the form and submit it
+        $form = $crawler->selectButton('Create')->form($formDataToSubmit);
+
+        // ...and manually tick() the check boxes
+        foreach (array_keys($formCheckBoxes) as $key) {
+            /** @var ChoiceFormField $choiceField */
+            $choiceField = $form[$key];
+            $choiceField->tick();
+        }
+
+        // submit the form
+        $crawler = $client->submit($form);
+
+        // We've created a blank Entity name - this should fail. We do it here, because its easy, to submit
+        // corrected data - just check its not been saved.
+        $this->assertEquals(
+            Response::HTTP_OK, //not redirect
+            $client->getResponse()->getStatusCode(),
+            'Form appears to have allowed us created a Blank Entity - please check the validators'
         );
 
         return $crawler;

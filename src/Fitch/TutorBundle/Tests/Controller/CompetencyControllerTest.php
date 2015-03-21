@@ -18,16 +18,13 @@ class CompetencyControllerTest extends FixturesWebTestCase
 {
     use AssertBadRequestJsonResponseTrait;
 
+    private $savedService;
+
     /**
      * @param Tutor      $tutor
      * @param Competency $competency
      * @param string     $name
      * @param string     $value
-     *
-     * This should throw an Authentication type error - that's OK its because its trying to render some
-     * template that has content that is dependant on the current user. We don't care about this bit - were
-     * trying to test the body of the controller. We could (possibly) mock out the security system, but there's
-     * no value doing that.
      *
      * @return null|\Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -42,6 +39,7 @@ class CompetencyControllerTest extends FixturesWebTestCase
 
         // Call the Controller Update
         $controller = new CompetencyController();
+        $this->injectAuthService(true);
         $controller->setContainer($this->container);
 
         try {
@@ -49,6 +47,8 @@ class CompetencyControllerTest extends FixturesWebTestCase
         } catch (AuthenticationCredentialsNotFoundException $e) {
             $response = null;
         }
+
+        $this->restoreContainer();
 
         return $response;
     }
@@ -230,6 +230,28 @@ class CompetencyControllerTest extends FixturesWebTestCase
         $request->request = $requestBag;
 
         return $request;
+    }
+
+    /**
+     * This injects a mock into the container in place of the security.authorization_checker service.
+     *
+     * @param bool $isGranted
+     */
+    private function injectAuthService($isGranted)
+    {
+        $mockAuthChecker = $this->getMockBuilder('Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockAuthChecker->expects($this->any())->method('isGranted')->willReturn($isGranted);
+
+        $this->savedService = $this->container->get('security.authorization_checker');
+        $this->container->set('security.authorization_checker', $mockAuthChecker);
+    }
+
+    private function restoreContainer()
+    {
+        $this->container->set('security.authorization_checker', $this->savedService);
     }
 
     /**
