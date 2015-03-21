@@ -103,10 +103,16 @@ class ReportController extends Controller
         $report = $this->getReportManager()->createEntity();
         $report->setDefinition($this->getSerializer()->serialize($reportDefinition, 'json'));
 
+        $data = $this->getReportData($reportDefinition);
+
+        if (!$data) {
+            $this->addFlash('warning', 'The report definition matches zero trainers');
+        }
+
         return [
             'form' => $form->createView(),
             'saveForm' => $this->createCreateForm($report)->createView(),
-            'data' => $this->getReportData($reportDefinition),
+            'data' => $data,
             'definition' => $reportDefinition,
             'unrestricted' => $this->isGranted('ROLE_CAN_ACCESS_SENSITIVE_DATA'),
         ];
