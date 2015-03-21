@@ -43,7 +43,7 @@ class FileTypeControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/type/file/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => 'Test File Type One',
             ])
             ->setCheckBoxes([
@@ -52,17 +52,17 @@ class FileTypeControllerTest extends WebTestCase
                 $formName.'[suitableForProfilePicture]'  => true,
                 $formName.'[displayWithBio]'  => true,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
             ])
             ->setCheckEditFunction(function (Crawler $crawler) {

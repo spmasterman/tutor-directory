@@ -43,7 +43,7 @@ class LanguageControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/language/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => 'Test Language One',
                 $formName.'[threeLetterCode]'  => 'xtt',
             ])
@@ -51,18 +51,18 @@ class LanguageControllerTest extends WebTestCase
                 $formName.'[preferred]'  => true,
                 $formName.'[active]'  => true,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
                 $formName.'[threeLetterCode]'  => 'xtt',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
                 $formName.'[threeLetterCode]'  => 'xtt',
             ])

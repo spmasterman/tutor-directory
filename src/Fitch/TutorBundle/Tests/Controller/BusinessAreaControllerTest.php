@@ -43,7 +43,7 @@ class BusinessAreaControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/business_area/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]' => 'Test Business Area 1',
                 $formName.'[code]' => 'XX',
             ])
@@ -52,18 +52,18 @@ class BusinessAreaControllerTest extends WebTestCase
                 $formName.'[displayAsCode]'  => true,
                 $formName.'[default]'  => true,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]' => 'xtest',
                 $formName.'[code]' => 'XX',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]' => 'xtest-edit',
                 $formName.'[code]' => 'YY',
             ])

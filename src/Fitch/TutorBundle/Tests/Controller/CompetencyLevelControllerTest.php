@@ -42,23 +42,23 @@ class CompetencyLevelControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/level/competency/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => 'Test Level One',
                 $formName.'[color]'  => '#cccccc',
             ])
             ->setCheckBoxes([])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
                 $formName.'[color]'  => '#cccccc',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
                 $formName.'[color]'  => '#db8c8b',
             ])

@@ -56,12 +56,12 @@ trait CrudTestableTrait
         }
 
         // Correct the mistake, resubmit the form
-        $formDataToSubmit = $crudTestConfig->getFixedFormData();
+        $formDataToSubmit = $crudTestConfig->getFixedCreateFormData();
         $form = $crawler->selectButton('Create')->form($formDataToSubmit);
         $client->submit($form);
         $crawler = $client->followRedirect();
 
-        $check = $crudTestConfig->getCheckAdditionFunction();
+        $check = $crudTestConfig->getCheckCreateFunction();
         $check($crawler);
 
         // Test "Edit" the entity
@@ -69,7 +69,7 @@ trait CrudTestableTrait
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         // grab the form, will it with edited data
-        $form = $crawler->selectButton('Update')->form($crudTestConfig->getEditFormData());
+        $form = $crawler->selectButton('Update')->form($crudTestConfig->getFixedEditFormData());
 
         // ...and manually tick() the check boxes
         foreach (array_keys($formCheckBoxes) as $key) {
@@ -125,7 +125,7 @@ trait CrudTestableTrait
     public function performUniqueTests(CrudTestConfig $crudTestConfig, $formValues, $crawler, $formCheckBoxes, $client)
     {
         // here's our test data - we have a duplicate "name" - this should choke
-        $formDataToSubmit = $crudTestConfig->getFormData();
+        $formDataToSubmit = $crudTestConfig->getBadCreateFormData();
 
         // but we can check for everything else
         foreach (array_keys($formDataToSubmit) as $key) {

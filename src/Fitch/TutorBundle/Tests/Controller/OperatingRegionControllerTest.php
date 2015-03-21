@@ -42,7 +42,7 @@ class OperatingRegionControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/region/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => 'Test Region One',
                 $formName.'[code]'  => 'xt',
                 $formName.'[defaultCurrency]' => 1,
@@ -50,19 +50,19 @@ class OperatingRegionControllerTest extends WebTestCase
             ->setCheckBoxes([
                 $formName.'[default]'  => true,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
                 $formName.'[code]'  => 'xt',
                 $formName.'[defaultCurrency]' => 1,
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
                 $formName.'[code]'  => 'xte',
                 $formName.'[defaultCurrency]' => 2,

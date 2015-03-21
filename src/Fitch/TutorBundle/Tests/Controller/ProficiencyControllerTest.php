@@ -67,23 +67,23 @@ class ProficiencyControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/proficiency/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => 'Test Proficiency One',
             ])
             ->setCheckBoxes([
                 $formName.'[default]'  => true,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
             ])
             ->setCheckEditFunction(function (Crawler $crawler) {

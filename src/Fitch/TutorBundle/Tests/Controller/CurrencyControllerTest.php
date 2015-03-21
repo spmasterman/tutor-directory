@@ -67,7 +67,7 @@ class CurrencyControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/currency/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => 'Test Currency One',
                 $formName.'[threeDigitCode]'  => 'xtt',
             ])
@@ -75,18 +75,18 @@ class CurrencyControllerTest extends WebTestCase
                 $formName.'[preferred]'  => false,
                 $formName.'[active]'  => false,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
                 $formName.'[threeDigitCode]'  => 'xtt',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
                 $formName.'[threeDigitCode]'  => 'abc',
             ])

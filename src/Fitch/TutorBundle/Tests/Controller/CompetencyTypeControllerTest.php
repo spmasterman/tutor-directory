@@ -43,21 +43,21 @@ class CompetencyTypeControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/type/competency/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]'  => '', //bank name is bad
             ])
             ->setCheckBoxes([])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]'  => 'xtest',
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]'  => 'xtest-edit',
             ])
             ->setCheckEditFunction(function (Crawler $crawler) {
@@ -74,7 +74,7 @@ class CompetencyTypeControllerTest extends WebTestCase
                 $this->assertNotEquals(
                     '',
                     $formValues[$formName.'[name]'],
-                    'Form appears to have allowed us updated to a blank CompetencyType name' .
+                    'Form appears to have allowed us updated to a blank CompetencyType name'.
                     ' - please check the validators'
                 );
             })
@@ -84,8 +84,8 @@ class CompetencyTypeControllerTest extends WebTestCase
             ->setCheckBadUpdateFunction(function (Crawler $crawler) {
                 $exceptionThrown = ($crawler->filter('html:contains("NotFoundHttpException")')->count() > 0)
                     && ($crawler
-                            ->filter('html:contains("Fitch\TutorBundle\Entity\CompetencyType object not found.")')
-                            ->count() > 0
+                        ->filter('html:contains("Fitch\TutorBundle\Entity\CompetencyType object not found.")')
+                        ->count() > 0
                     );
                 $this->assertTrue($exceptionThrown, "Exception thrown 'Unable to find Competency Type entity'");
             })

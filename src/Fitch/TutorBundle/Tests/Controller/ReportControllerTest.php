@@ -162,7 +162,23 @@ class ReportControllerTest extends WebTestCase
         // Create a new client to browse the application
         $client = $this->createAuthorizedClient('xsuper');
         $crawler = $client->request('GET', '/report');
-        $form = $crawler->selectButton('View Report')->form([]); //empty
+        $form = $crawler->selectButton('View Report')->form([]);
+        // Cant find a way to select these by ID - this isnt very flexible testing
+        $form['ftbr[fields][0]']->tick(); // Full Name
+        $form['ftbr[fields][1]']->tick(); // Company
+        $form['ftbr[fields][2]']->tick(); // Trainer Type
+        $form['ftbr[fields][3]']->tick(); // Status
+        $form['ftbr[fields][4]']->tick(); // Region
+        $form['ftbr[fields][5]']->tick(); // Languages
+        $form['ftbr[fields][6]']->tick(); // Skills
+        $form['ftbr[fields][7]']->tick(); // Rates [Restricted]
+        $form['ftbr[fields][8]']->tick(); // Addresses
+        $form['ftbr[fields][9]']->tick(); // Email Addresses
+        $form['ftbr[fields][10]']->tick(); // Phone Numbers
+        $form['ftbr[fields][11]']->tick(); // Biography
+        $form['ftbr[fields][12]']->tick(); // LinkedIn Profile
+        $form['ftbr[fields][13]']->tick(); // Terms of Engagement Notes [Restricted]
+        $form['ftbr[fields][14]']->tick(); // Created Date
 
         $crawler = $client->submit($form);
 
@@ -172,11 +188,7 @@ class ReportControllerTest extends WebTestCase
         ]);
         $client->submit($form);
         $crawler = $client->followRedirect();
-
-        $this->assertCount(
-            1,
-            $crawler->filter('h2:contains("SavedReport")')
-        );
+        $this->assertCount(1, $crawler->filter('h2:contains("SavedReport")'));
 
         // Now try downloading an Excel
         ob_start();
@@ -225,5 +237,33 @@ class ReportControllerTest extends WebTestCase
             'Content-Disposition',
             'attachment;filename=TrainerReport-SavedReport.csv'
         ));
+
+        // Check that we can view the report
+        $crawler = $client->request('GET', '/report');
+        $this->assertCount(1, $crawler->filter('a:contains("SavedReport")'));
+        $this->assertCount(0, $crawler->filter('a:contains("EditedReport")'));
+
+        $client->click($crawler->filter('a:contains("SavedReport")')->eq(0)->link());
+
+        //TODO Check that when we view it with an unprivileged user, the sensitive info is redacted
+
+        // Check we can edit it
+        $crawler = $client->request('GET', '/report');
+        $this->assertCount(2, $crawler->filter('a:contains("Edit")'));
+        $crawler = $client->click($crawler->filter('a:contains("Edit")')->eq(1)->link()); // second button
+        $this->assertCount(1, $crawler->filter('h3:contains("SavedReport")'));
+
+        $form = $crawler->selectButton('Update')->form([
+            'fitch_tutorbundle_report[name]' => 'EditedReport',
+        ]);
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+        $this->assertCount(1, $crawler->filter('h4:contains("Success")'));
+
+        // Check we can delete it
+        $client->submit($crawler->selectButton('Delete')->form());
+        $crawler = $client->followRedirect();
+        $this->assertCount(0, $crawler->filter('a:contains("SavedReport")'));
+        $this->assertCount(0, $crawler->filter('a:contains("EditedReport")'));
     }
 }

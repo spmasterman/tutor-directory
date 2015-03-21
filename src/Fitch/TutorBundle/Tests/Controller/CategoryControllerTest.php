@@ -43,25 +43,25 @@ class CategoryControllerTest extends WebTestCase
         $crudTestConfig
             ->setUser('xadmin')
             ->setUrl('/admin/category/')
-            ->setFormData([
+            ->setBadCreateFormData([
                 $formName.'[name]' => 'Test Category One',
                 $formName.'[businessArea]' => 1,
             ])
             ->setCheckBoxes([
                 'fitch_tutorbundle_category[default]' => true,
             ])
-            ->setFixedFormData([
+            ->setFixedCreateFormData([
                 $formName.'[name]' => 'xtest',
                 $formName.'[businessArea]' => 1,
             ])
-            ->setCheckAdditionFunction(function (Crawler $crawler) {
+            ->setCheckCreateFunction(function (Crawler $crawler) {
                 $this->assertGreaterThan(
                     0,
                     $crawler->filter('td:contains("xtest")')->count(),
                     'Missing element td:contains("Test")'
                 );
             })
-            ->setEditFormData([
+            ->setFixedEditFormData([
                 $formName.'[name]' => 'xtest-edit',
                 $formName.'[businessArea]' => 2,
             ])

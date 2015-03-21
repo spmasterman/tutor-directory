@@ -14,22 +14,22 @@ class CrudTestConfig
     protected $url;
 
     /** @var  array */
-    protected $formData;
+    protected $badCreateFormData;
 
     /** @var  array */
     protected $checkBoxes;
 
     /** @var  array */
-    protected $fixedFormData;
+    protected $fixedCreateFormData;
 
     /** @var  array */
-    protected $editFormData;
+    protected $fixedEditFormData;
 
     /** @var  array */
     protected $badEditFormData;
 
     /** @var  callable */
-    protected $checkAdditionFunction;
+    protected $checkCreateFunction;
 
     /** @var  callable */
     protected $checkEditFunction;
@@ -89,19 +89,19 @@ class CrudTestConfig
     /**
      * @return array
      */
-    public function getFormData()
+    public function getBadCreateFormData()
     {
-        return $this->formData;
+        return $this->badCreateFormData;
     }
 
     /**
-     * @param array $formData
+     * @param array $badCreateFormData
      *
      * @return $this
      */
-    public function setFormData($formData)
+    public function setBadCreateFormData($badCreateFormData)
     {
-        $this->formData = $formData;
+        $this->badCreateFormData = $badCreateFormData;
 
         return $this;
     }
@@ -129,19 +129,19 @@ class CrudTestConfig
     /**
      * @return array
      */
-    public function getFixedFormData()
+    public function getFixedCreateFormData()
     {
-        return $this->fixedFormData;
+        return $this->fixedCreateFormData;
     }
 
     /**
-     * @param array $fixedFormData
+     * @param array $fixedCreateFormData
      *
      * @return $this
      */
-    public function setFixedFormData($fixedFormData)
+    public function setFixedCreateFormData($fixedCreateFormData)
     {
-        $this->fixedFormData = $fixedFormData;
+        $this->fixedCreateFormData = $fixedCreateFormData;
 
         return $this;
     }
@@ -149,19 +149,19 @@ class CrudTestConfig
     /**
      * @return array
      */
-    public function getEditFormData()
+    public function getFixedEditFormData()
     {
-        return $this->editFormData;
+        return $this->fixedEditFormData;
     }
 
     /**
-     * @param array $editFormData
+     * @param array $fixedEditFormData
      *
      * @return $this
      */
-    public function setEditFormData($editFormData)
+    public function setFixedEditFormData($fixedEditFormData)
     {
-        $this->editFormData = $editFormData;
+        $this->fixedEditFormData = $fixedEditFormData;
 
         return $this;
     }
@@ -169,19 +169,19 @@ class CrudTestConfig
     /**
      * @return callable
      */
-    public function getCheckAdditionFunction()
+    public function getCheckCreateFunction()
     {
-        return $this->checkAdditionFunction;
+        return $this->checkCreateFunction;
     }
 
     /**
-     * @param callable $checkAdditionFunction
+     * @param callable $checkCreateFunction
      *
      * @return $this
      */
-    public function setCheckAdditionFunction($checkAdditionFunction)
+    public function setCheckCreateFunction($checkCreateFunction)
     {
-        $this->checkAdditionFunction = $checkAdditionFunction;
+        $this->checkCreateFunction = $checkCreateFunction;
 
         return $this;
     }
